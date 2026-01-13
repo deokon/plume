@@ -1,0 +1,13 @@
+{
+  "name": "@deokon/plume",
+  "version": "1.0.0",
+  "description": "A comprehensive UI library for Laravel and Alpine.js",
+  "main": "resources/js/index.js",
+  "files": [
+    "resources/js",
+    "resources/css",
+    "resources/views"
+  ],
+  "author": "Dennis Okon",
+  "license": "MIT"
+}
