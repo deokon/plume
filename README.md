@@ -24,82 +24,40 @@ npm install -D @iconify/tailwind4 @iconify-json/fluent
 
 #### Tailwind CSS (v4)
 
-Add the Iconify plugin, package views to your Tailwind content scanning, and include the required theme variables in your `app.css`:
+Add the Iconify plugin, package views to your Tailwind content scanning, and include the required theme variables in your `app.css`.
+
+**Option A: Direct Import (Recommended)**
+Import the theme directly from the vendor directory:
 
 ```css
 /* resources/css/app.css */
 @import "tailwindcss";
 
-/* 1. Add the Iconify plugin */
 @plugin "@iconify/tailwind4" {
     prefix: "icon";
     scale: 1.6;
 }
 
-/* 2. Tell Tailwind to scan the package components */
 @source "../../vendor/deokon/plume/resources/views/**/*.blade.php";
 
-/* 3. Include the required theme variables */
 @theme {
-    /* PRIMARY */
-    --color-primary-50: oklch(97% 0.02 260);
-    --color-primary-100: oklch(93% 0.05 260);
-    --color-primary-200: oklch(88% 0.08 260);
-    --color-primary-300: oklch(82% 0.12 260);
-    --color-primary-400: oklch(74% 0.16 260);
-    --color-primary-500: oklch(65% 0.2 260);
-    --color-primary-600: oklch(57% 0.2 260);
-    --color-primary-700: oklch(49% 0.18 260);
-    --color-primary-800: oklch(42% 0.15 260);
-    --color-primary-900: oklch(35% 0.12 260);
-    --color-primary-950: oklch(25% 0.1 260);
-    --color-primary: var(--color-primary-600);
-    --color-primary-foreground: oklch(100% 0 0);
+    @import "../../vendor/deokon/plume/resources/css/theme.css";
+}
+```
 
-    /* SECONDARY */
-    --color-secondary-50: oklch(98% 0.01 260);
-    --color-secondary-100: oklch(95% 0.02 260);
-    --color-secondary-200: oklch(90% 0.03 260);
-    --color-secondary-300: oklch(84% 0.04 260);
-    --color-secondary-400: oklch(70% 0.06 260);
-    --color-secondary-500: oklch(55% 0.06 260);
-    --color-secondary-600: oklch(45% 0.06 260);
-    --color-secondary-700: oklch(35% 0.05 260);
-    --color-secondary-800: oklch(25% 0.04 260);
-    --color-secondary-900: oklch(15% 0.03 260);
-    --color-secondary-950: oklch(10% 0.03 260);
-    --color-secondary: var(--color-secondary-100);
-    --color-secondary-foreground: var(--color-secondary-900);
+**Option B: Publish and Customize**
+Publish the theme file to your project if you want to customize the colors:
 
-    /* BACKGROUND / NEUTRAL */
-    --color-background-50: oklch(98% 0.005 285);
-    --color-background-100: oklch(95% 0.01 285);
-    --color-background-200: oklch(90% 0.01 285);
-    --color-background-300: oklch(82% 0.02 285);
-    --color-background-400: oklch(70% 0.03 285);
-    --color-background-500: oklch(55% 0.03 285);
-    --color-background-600: oklch(45% 0.03 285);
-    --color-background-700: oklch(35% 0.03 285);
-    --color-background-800: oklch(25% 0.02 285);
-    --color-background-900: oklch(15% 0.02 285);
-    --color-background-950: oklch(10% 0.02 285);
-    --color-background: var(--color-background-50);
-    --color-foreground: var(--color-background-950);
+```bash
+php artisan vendor:publish --tag=plume-assets
+```
 
-    /* DESTRUCTIVE */
-    --color-destructive-50: oklch(98% 0.02 25);
-    --color-destructive-100: oklch(95% 0.05 25);
-    --color-destructive-200: oklch(90% 0.08 25);
-    --color-destructive-300: oklch(82% 0.12 25);
-    --color-destructive-400: oklch(72% 0.16 25);
-    --color-destructive-500: oklch(63% 0.22 25);
-    --color-destructive-600: oklch(55% 0.22 25);
-    --color-destructive-700: oklch(48% 0.2 25);
-    --color-destructive-800: oklch(38% 0.16 25);
-    --color-destructive-900: oklch(28% 0.12 25);
-    --color-destructive-950: oklch(20% 0.08 25);
-    --color-destructive: var(--color-destructive-600);
-    --color-destructive-foreground: oklch(100% 0 0);
+Then import the published file:
+
+```css
+/* resources/css/app.css */
+@theme {
+    @import "./vendor/plume/theme.css";
 }
 ```
 
