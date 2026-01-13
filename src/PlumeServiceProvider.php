@@ -9,8 +9,11 @@ class PlumeServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        // Register the views under a namespace (e.g., <x-plume::button>)
+        // Register the view namespace
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'plume');
+
+        // Register the component namespace for anonymous components
+        Blade::anonymousComponentPath(__DIR__ . '/../resources/views/components', 'plume');
 
         // Optional: Publish assets so users can modify them
         $this->publishes([
