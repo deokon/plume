@@ -14,18 +14,32 @@ composer require deokon/plume
 
 ### 2. Assets Setup
 
+#### Iconify (Required)
+
+This library uses the Fluent icon set via Iconify. Install the required dependencies:
+
+```bash
+npm install -D @iconify/tailwind4 @iconify-json/fluent
+```
+
 #### Tailwind CSS (v4)
 
-Add the package views to your Tailwind content scanning and include the required theme variables in your `app.css`:
+Add the Iconify plugin, package views to your Tailwind content scanning, and include the required theme variables in your `app.css`:
 
 ```css
 /* resources/css/app.css */
 @import "tailwindcss";
 
-/* 1. Tell Tailwind to scan the package components */
+/* 1. Add the Iconify plugin */
+@plugin "@iconify/tailwind4" {
+    prefix: "icon";
+    scale: 1.6;
+}
+
+/* 2. Tell Tailwind to scan the package components */
 @source "../../vendor/deokon/plume/resources/views/**/*.blade.php";
 
-/* 2. Include the required theme variables */
+/* 3. Include the required theme variables */
 @theme {
     /* PRIMARY */
     --color-primary-50: oklch(97% 0.02 260);
