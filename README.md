@@ -40,9 +40,7 @@ Import the theme directly from the vendor directory:
 
 @source "../../vendor/deokon/plume/resources/views/**/*.blade.php";
 
-@theme {
-    @import "../../vendor/deokon/plume/resources/css/theme.css";
-}
+@import "../../vendor/deokon/plume/resources/css/theme.css";
 ```
 
 **Option B: Publish and Customize**
@@ -56,9 +54,7 @@ Then import the published file:
 
 ```css
 /* resources/css/app.css */
-@theme {
-    @import "./vendor/plume/theme.css";
-}
+@import "./vendor/plume/theme.css";
 ```
 
 #### Alpine.js

@@ -59,7 +59,7 @@ $class = ($attributes->get('class') ?? '')
 @else
 <a
     href="{{ $href ?? '#' }}"
-    {{ $attributes->merge(['class' => $class . ' ' . $sizeClass . ' ' . $styleClass]) }}
+    {{ $attributes->merge(['class' => $class . ' ' . $sizeClass . ' ' . $styleClass . ' ' . $shapeClass]) }}
 >
 @if($icon)
     <x-plume::icon i="{{ $icon }}" />
