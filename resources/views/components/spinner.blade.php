@@ -21,6 +21,13 @@
     };
 @endphp
 
-<div {{ $attributes->merge(['class' => 'inline-block animate-spin rounded-full border-2 border-current border-t-transparent ' . $sizeClasses . ' ' . $styleClass]) }} role="status" aria-label="loading">
-    <span class="sr-only">Loading...</span>
-</div>
+@if($style === 'feather')
+    <div {{ $attributes->merge(['class' => 'inline-block animate-pulse ' . $sizeClasses . ' ' . $styleClass]) }} role="status" aria-label="loading">
+        <x-plume::logo :size="$sizeClasses" />
+        <span class="sr-only">Loading...</span>
+    </div>
+@else
+    <div {{ $attributes->merge(['class' => 'inline-block animate-spin rounded-full border-2 border-current border-t-transparent ' . $sizeClasses . ' ' . $styleClass]) }} role="status" aria-label="loading">
+        <span class="sr-only">Loading...</span>
+    </div>
+@endif
