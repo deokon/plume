@@ -21,9 +21,9 @@
     };
 @endphp
 
-@if($style === 'feather')
+@if($style === 'custom')
     <div {{ $attributes->merge(['class' => 'inline-block animate-pulse ' . $sizeClasses . ' ' . $styleClass]) }} role="status" aria-label="loading">
-        <x-plume::logo :size="$sizeClasses" />
+        {{ $slot }}
         <span class="sr-only">Loading...</span>
     </div>
 @else
