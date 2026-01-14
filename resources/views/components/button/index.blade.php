@@ -11,10 +11,10 @@
 
 @php
 $sizeClass = match($size) {
-    'sm' => 'text-sm font-medium gap-1.5 px-3 has-[>svg]:px-2.5 has-[>.icon]:px-2.5 py-1.5',
-    'lg' => 'text-xl font-medium gap-2.5 px-5 has-[>svg]:px-4 has-[>.icon]:px-4 py-3',
+    'sm' => 'text-sm font-medium gap-1.5 px-3 py-1.5',
+    'lg' => 'text-xl font-medium gap-2.5 px-5 py-3',
     // 'md'
-    default => 'text-base font-medium gap-2 px-4 has-[>svg]:px-3 has-[>.icon]:px-3 py-2.5'
+    default => 'text-base font-medium gap-2 px-4 py-2.5'
 };
 
 $styleClass = match($style) {
