@@ -51,7 +51,8 @@
             <input 
                 x-ref="searchInput"
                 type="text" 
-                class="block w-full pl-3 pr-10 py-2 border border-background-700/40 dark:border-background-400/20 rounded-lg bg-background placeholder:text-foreground/30 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all sm:text-sm cursor-default"
+                class="block w-full pl-3 pr-10 py-2 border border-background-700/40 dark:border-background-400/20 rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all sm:text-sm cursor-default"
+                :class="selectedLabel ? 'placeholder:text-foreground' : 'placeholder:text-foreground/30'"
                 :placeholder="selectedLabel || '{{ $placeholder }}'"
                 @focus="open = true"
                 x-model="search"
