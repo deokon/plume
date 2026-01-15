@@ -1,9 +1,8 @@
 {{--
 @component x-plume::button.loader
-@description Button with built-in loading state management.
-@prop {mixed} var - Required. AlpineJS boolean variable to control loading state. (Default: required)
-@prop {string} size -  (Default: md)
-@prop {null} style -  (Default: null)
+@prop {mixed} var - Default: required
+@prop {string} size - Default: md
+@prop {null} style - Default: null
 --}}
 @props([
     'var',

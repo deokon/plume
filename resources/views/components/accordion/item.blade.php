@@ -1,8 +1,8 @@
 {{--
 @component x-plume::accordion.item
-@prop {mixed} title -  (Default: required)
-@prop {string} id -  (Default: \Illuminate\Support\Str::random(8))
-@prop {boolean} open -  (Default: false)
+@prop {mixed} title - Default: required
+@prop {string} id - Default: \Illuminate\Support\Str::random(8)
+@prop {boolean} open - Default: false
 --}}
 @props([
     'title',

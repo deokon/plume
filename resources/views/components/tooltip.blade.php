@@ -1,8 +1,7 @@
 {{--
 @component x-plume::tooltip
-@description A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
-@prop {mixed} text - Required. The text to display inside the tooltip. (Default: required)
-@prop {string} position - Options: top, bottom, left, right. (Default: top)
+@prop {mixed} text - Default: required
+@prop {string} position - Default: top
 --}}
 @props([
     'text',

@@ -1,7 +1,6 @@
 {{--
 @component x-plume::divider
-@description Visually separates content sections with an optional label.
-@prop {null} label - Optional text to display in the center of the divider. (Default: null)
+@prop {null} label - Default: null
 --}}
 @props(['label' => null])
 

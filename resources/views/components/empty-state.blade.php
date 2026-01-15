@@ -1,7 +1,7 @@
 {{--
 @component x-plume::empty-state
-@prop {string} title -  (Default: No results found)
-@prop {string} description -  (Default: Nothing found here.)
+@prop {string} title - Default: No results found
+@prop {string} description - Default: Nothing found here.
 --}}
 @props([
     'title' => 'No results found',

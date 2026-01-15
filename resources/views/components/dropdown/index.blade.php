@@ -1,9 +1,8 @@
 {{--
 @component x-plume::dropdown
-@description Displays a menu to the user—such as a set of actions or functions—triggered by a button.
-@prop {string} align - Alignment: left, right, top. (Default: right)
-@prop {number} width - Tailwind width class suffix (e.g., 48 becomes w-48). (Default: 48)
-@prop {string} contentClasses - Additional CSS classes for the dropdown content container. (Default: py-1 bg-background dark:bg-background-800)
+@prop {string} align - Default: right
+@prop {number} width - Default: 48
+@prop {string} contentClasses - Default: py-1 bg-background dark:bg-background-800
 --}}
 @props([
     'align' => 'right',

@@ -1,9 +1,8 @@
 {{--
 @component x-plume::form.checkbox
-@description Checkbox input for binary choices.
-@prop {null} label -  (Default: null)
-@prop {null} id -  (Default: null)
-@prop {string} value -  (Default: )
+@prop {null} label - Default: null
+@prop {null} id - Default: null
+@prop {string} value - Default: 
 --}}
 @props([
     'label' => null,

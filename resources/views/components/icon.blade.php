@@ -1,7 +1,6 @@
 {{--
 @component x-plume::icon
-@description Renders an Iconify icon.
-@prop {mixed} i - Required. Icon class name (e.g. icon-[set--name]). (Default: required)
+@prop {mixed} i - Default: required
 --}}
 @props([
     'i',

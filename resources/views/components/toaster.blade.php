@@ -1,6 +1,5 @@
 {{--
 @component x-plume::toaster
-@description A succinct message that is displayed temporarily.
 --}}
 <div
     class="fixed bottom-0 right-0 z-50 flex flex-col gap-2 p-4 sm:p-6"

@@ -1,7 +1,6 @@
 {{--
 @component x-plume::badge
-@description Displays a badge or a component that looks like a badge.
-@prop {string} style - Options: default, secondary, destructive, outline, success. (Default: default)
+@prop {string} style - Default: default
 --}}
 @props([
     'style' => 'default',

@@ -1,9 +1,9 @@
 {{--
 @component x-plume::form.section
-@prop {null} title -  (Default: null)
-@prop {null} description -  (Default: null)
-@prop {number} minCols -  (Default: 1)
-@prop {null} maxCols -  (Default: null)
+@prop {null} title - Default: null
+@prop {null} description - Default: null
+@prop {number} minCols - Default: 1
+@prop {null} maxCols - Default: null
 --}}
 @props([
     'title' => null,

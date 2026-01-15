@@ -1,11 +1,10 @@
 {{--
 @component x-plume::form.select
-@description Dropdown selection field.
-@prop {null} label -  (Default: null)
-@prop {null} name -  (Default: null)
-@prop {null} id -  (Default: null)
-@prop {null} model -  (Default: null)
-@prop {null} after -  (Default: null)
+@prop {null} label - Default: null
+@prop {null} name - Default: null
+@prop {null} id - Default: null
+@prop {null} model - Default: null
+@prop {null} after - Default: null
 --}}
 @props([
     'label' => null,

@@ -1,6 +1,6 @@
 {{--
 @component x-plume::tabs.item
-@prop {number} for -  (Default: 1)
+@prop {number} for - Default: 1
 --}}
 @props([
     'for' => '1'

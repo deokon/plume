@@ -1,11 +1,10 @@
 {{--
 @component x-plume::audio
-@description A styled wrapper for HTML5 audio content.
-@prop {mixed} src - Required. Audio file URL. (Default: required)
-@prop {boolean} autoplay - Start playback on load. (Default: false)
-@prop {boolean} controls - Show player controls. (Default: true)
-@prop {boolean} loop - Loop the audio. (Default: false)
-@prop {boolean} muted -  (Default: false)
+@prop {mixed} src - Default: required
+@prop {boolean} autoplay - Default: false
+@prop {boolean} controls - Default: true
+@prop {boolean} loop - Default: false
+@prop {boolean} muted - Default: false
 --}}
 @props([
     'src',

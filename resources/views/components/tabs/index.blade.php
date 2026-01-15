@@ -1,8 +1,7 @@
 {{--
 @component x-plume::tabs
-@description A set of layered sections of content, known as tab panels, that are displayed one at a time.
-@prop {number} default - The identifier of the initially active tab. (Default: 1)
-@prop {string} side - Layout orientation: top, left, right. (Default: top)
+@prop {number} default - Default: 1
+@prop {string} side - Default: top
 --}}
 @props([
     'default' => '1',

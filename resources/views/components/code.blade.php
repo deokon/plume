@@ -1,9 +1,8 @@
 {{--
 @component x-plume::code
-@description A component for displaying code snippets with a copy-to-clipboard feature.
-@prop {null} language - Programming language for the tag. (Default: null)
-@prop {null} title - Filename or title displayed in header. (Default: null)
-@prop {null} code - Optional prop to pass code content instead of slot. (Default: null)
+@prop {null} language - Default: null
+@prop {null} title - Default: null
+@prop {null} code - Default: null
 --}}
 @props([
     'language' => null,
