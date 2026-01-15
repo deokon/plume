@@ -7,6 +7,7 @@
     'alt' => '',
     'fallback' => '',
     'size' => 'md',
+    'status' => null,
 ])
 
 @php
@@ -18,22 +19,44 @@
         // 'md'
         default => 'size-10 text-base',
     };
+
+    $statusSizeClasses = match($size) {
+        'xs' => 'size-1.5',
+        'sm' => 'size-2',
+        'lg' => 'size-3',
+        'xl' => 'size-4',
+        default => 'size-2.5',
+    };
+
+    $statusColorClasses = match($status) {
+        'online' => 'bg-emerald-500',
+        'away' => 'bg-amber-500',
+        'busy' => 'bg-rose-500',
+        'offline' => 'bg-slate-500',
+        default => '',
+    };
 @endphp
 
-<div {{ $attributes->merge(['class' => 'relative flex shrink-0 overflow-hidden rounded-full bg-background-200 dark:bg-background-700 ' . $sizeClasses]) }}>
-    @if($src)
-        <img
-            src="{{ $src }}"
-            alt="{{ $alt }}"
-            class="aspect-square h-full w-full object-cover"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-        >
-    @endif
+<div {{ $attributes->merge(['class' => 'relative inline-flex shrink-0']) }}>
+    <div class="flex h-full w-full items-center justify-center overflow-hidden rounded-full bg-background-200 dark:bg-background-700 {{ $sizeClasses }}">
+        @if($src)
+            <img
+                src="{{ $src }}"
+                alt="{{ $alt }}"
+                class="aspect-square h-full w-full object-cover"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            >
+        @endif
 
-    <div
-        class="flex h-full w-full items-center justify-center rounded-full font-medium uppercase"
-        @if($src) style="display: none;" @endif
-    >
-        {{ $fallback }}
+        <div
+            class="flex h-full w-full items-center justify-center rounded-full font-medium uppercase"
+            @if($src) style="display: none;" @endif
+        >
+            {{ $fallback }}
+        </div>
     </div>
+
+    @if($status)
+        <span class="absolute bottom-0 right-0 block rounded-full ring-2 ring-background {{ $statusSizeClasses }} {{ $statusColorClasses }}"></span>
+    @endif
 </div>
