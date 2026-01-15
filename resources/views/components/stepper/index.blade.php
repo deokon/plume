@@ -1,6 +1,7 @@
 {{--
 @component x-plume::stepper
-@prop {number} active - Default: 1
+@description Guide users through multi-step processes.
+@prop {number} active - The current active step number. (Default: 1)
 --}}
 @props([
     'active' => 1,

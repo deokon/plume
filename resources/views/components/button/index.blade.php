@@ -1,8 +1,9 @@
 {{--
 @component x-plume::button
-@prop {null} href - Default: null
-@prop {null} icon - Default: null
-@prop {boolean} fullWidth - Default: false
+@description Displays a button or a component that looks like a button.
+@prop {null} href - Renders as an anchor tag if provided. (Default: null)
+@prop {null} icon - Icon class name. (Default: null)
+@prop {boolean} fullWidth - Expand to 100% width. (Default: false)
 --}}
 @props([
     'href' => null,

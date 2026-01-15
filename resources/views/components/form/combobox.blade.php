@@ -1,9 +1,10 @@
 {{--
 @component x-plume::form.combobox
-@prop {null} label - Default: null
-@prop {null} model - Default: null
-@prop {string} placeholder - Default: Select an option...
-@prop {string} options - Default: []
+@description Searchable dropdown for selecting from a list of options.
+@prop {null} label - The label for the field. (Default: null)
+@prop {null} model - Livewire model binding name. (Default: null)
+@prop {string} placeholder -  (Default: Select an option...)
+@prop {string} options - Required. Array of objects with `value` and `label`. (Default: [])
 --}}
 @props([
     'label' => null,

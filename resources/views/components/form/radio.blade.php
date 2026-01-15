@@ -1,8 +1,9 @@
 {{--
 @component x-plume::form.radio
-@prop {null} label - Default: null
-@prop {null} id - Default: null
-@prop {string} value - Default: 
+@description Radio buttons for selecting a single option from a set.
+@prop {null} label -  (Default: null)
+@prop {null} id -  (Default: null)
+@prop {string} value -  (Default: )
 --}}
 @props([
     'label' => null,

@@ -1,12 +1,13 @@
 {{--
 @component x-plume::button.toggle
-@prop {mixed} var - Default: required
-@prop {string} size - Default: md
-@prop {null} style - Default: null
-@prop {null} offStyle - Default: null
-@prop {null} on - Default: null
-@prop {null} off - Default: null
-@prop {null} click - Default: null
+@description Button that toggles between two states.
+@prop {mixed} var - Required. AlpineJS boolean variable. (Default: required)
+@prop {string} size -  (Default: md)
+@prop {null} style -  (Default: null)
+@prop {null} offStyle - Button style when false. (Default: null)
+@prop {null} on - Label when true. (Default: null)
+@prop {null} off - Label when false. (Default: null)
+@prop {null} click -  (Default: null)
 --}}
 @props([
     'var',

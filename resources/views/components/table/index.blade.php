@@ -1,6 +1,7 @@
 {{--
 @component x-plume::table
-@prop {boolean} striped - Default: false
+@description A responsive table component.
+@prop {boolean} striped - Whether to alternate row background colors. (Default: false)
 --}}
 @props([
     'striped' => false,

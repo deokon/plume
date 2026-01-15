@@ -1,10 +1,11 @@
 {{--
 @component x-plume::alert
-@prop {null} icon - Default: null
-@prop {string} style - Default: info
-@prop {boolean} closable - Default: false
-@prop {null} autoclose - Default: null
-@prop {null} title - Default: null
+@description Displays a callout for user attention.
+@prop {null} icon - Override the default icon class. (Default: null)
+@prop {string} style - Visual style: info, success, warning, destructive. (Default: info)
+@prop {boolean} closable - Whether to show a close button. (Default: false)
+@prop {null} autoclose - Delay in ms to hide the alert automatically. (Default: null)
+@prop {null} title - Optional bold heading for the alert. (Default: null)
 --}}
 @props([
     'icon' => null,

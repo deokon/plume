@@ -1,9 +1,9 @@
 {{--
 @component x-plume::progress.percent
-@prop {number} value - Default: 0
-@prop {null} title - Default: null
-@prop {null} model - Default: null
-@prop {string} style - Default: default
+@prop {number} value -  (Default: 0)
+@prop {null} title -  (Default: null)
+@prop {null} model -  (Default: null)
+@prop {string} style -  (Default: default)
 --}}
 @props([
     'value' => 0,

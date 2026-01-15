@@ -17,220 +17,285 @@
     },
     "x-plume::spacer": {
       "path": "plume/resources/views/components/spacer.blade.php",
-      "props": {}
+      "props": {},
+      "description": "A utility component that fills available space in a flex container.",
+      "usage": "&lt;div class=\"flex\"&gt;\n    &lt;div&gt;Left&lt;/div&gt;\n    &lt;x-plume::spacer /&gt;\n    &lt;div&gt;Right&lt;/div&gt;\n&lt;/div&gt;"
     },
     "x-plume::spinner": {
       "path": "plume/resources/views/components/spinner.blade.php",
       "props": {
         "size": {
           "default": "md",
-          "type": "string"
+          "type": "string",
+          "description": "Options: sm, md, lg, xl."
         },
         "style": {
           "default": "default",
-          "type": "string"
+          "type": "string",
+          "description": "Options: default, secondary, destructive, white."
         }
-      }
+      },
+      "description": "A standalone loading indicator.",
+      "usage": "&lt;x-plume::spinner size=\"lg\" style=\"secondary\" /&gt;"
     },
     "x-plume::badge": {
       "path": "plume/resources/views/components/badge.blade.php",
       "props": {
         "style": {
           "default": "default",
-          "type": "string"
+          "type": "string",
+          "description": "Options: default, secondary, destructive, outline, success."
         }
-      }
+      },
+      "description": "Displays a badge or a component that looks like a badge.",
+      "usage": "&lt;x-plume::badge style=\"secondary\"&gt;\n    New Feature\n&lt;/x-plume::badge&gt;"
     },
     "x-plume::toaster": {
       "path": "plume/resources/views/components/toaster.blade.php",
-      "props": {}
+      "props": {},
+      "description": "A succinct message that is displayed temporarily."
     },
     "x-plume::gallery": {
       "path": "plume/resources/views/components/gallery.blade.php",
       "props": {
         "cols": {
           "default": "3",
-          "type": "number"
+          "type": "number",
+          "description": "Max columns on desktop. Options: 1, 2, 3, 4."
         },
         "gap": {
           "default": "4",
-          "type": "number"
+          "type": "number",
+          "description": "Tailwind gap size (e.g. 2 = 0.5rem)."
         }
-      }
+      },
+      "description": "Responsive grid layout for images and figures.",
+      "usage": "&lt;x-plume::gallery cols=\"3\" gap=\"6\"&gt;\n    &lt;x-plume::figure src=\"...\" /&gt;\n    &lt;x-plume::figure src=\"...\" /&gt;\n    &lt;x-plume::figure src=\"...\" /&gt;\n&lt;/x-plume::gallery&gt;"
     },
     "x-plume::code": {
       "path": "plume/resources/views/components/code.blade.php",
       "props": {
         "language": {
           "default": "null",
-          "type": "null"
+          "type": "null",
+          "description": "Programming language for the tag."
         },
         "title": {
           "default": "null",
-          "type": "null"
+          "type": "null",
+          "description": "Filename or title displayed in header."
         },
         "code": {
           "default": "null",
-          "type": "null"
+          "type": "null",
+          "description": "Optional prop to pass code content instead of slot."
         }
-      }
+      },
+      "description": "A component for displaying code snippets with a copy-to-clipboard feature.",
+      "usage": "&lt;x-plume::code \n    title=\"welcome.blade.php\" \n    language=\"blade\"\n&gt;\n    &lt;h1&gt;Welcome&lt;/h1&gt;\n&lt;/x-plume::code&gt;"
     },
     "x-plume::icon": {
       "path": "plume/resources/views/components/icon.blade.php",
       "props": {
         "i": {
           "default": "required",
-          "type": "mixed"
+          "type": "mixed",
+          "description": "Required. Icon class name (e.g. icon-[set--name])."
         }
-      }
+      },
+      "description": "Renders an Iconify icon.",
+      "usage": "&lt;x-plume::icon i=\"icon-[fluent--star-24-filled]\" class=\"size-5 text-warning\" /&gt;"
     },
     "x-plume::video": {
       "path": "plume/resources/views/components/video.blade.php",
       "props": {
         "src": {
           "default": "required",
-          "type": "mixed"
+          "type": "mixed",
+          "description": "Required. Video file URL."
         },
         "poster": {
           "default": "null",
-          "type": "null"
+          "type": "null",
+          "description": "Placeholder image URL."
         },
         "autoplay": {
           "default": "false",
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Start playback on load."
         },
         "controls": {
           "default": "true",
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Show player controls."
         },
         "loop": {
           "default": "false",
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Loop the video."
         },
         "muted": {
           "default": "false",
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Mute audio by default."
         },
         "aspect": {
           "default": "video",
-          "type": "string"
+          "type": "string",
+          "description": "Options: video, square, 21/9."
         }
-      }
+      },
+      "description": "A styled wrapper for HTML5 video content.",
+      "usage": "&lt;x-plume::video \n    src=\"/path/to/video.mp4\" \n    poster=\"/path/to/poster.jpg\" \n/&gt;"
     },
     "x-plume::figure": {
       "path": "plume/resources/views/components/figure.blade.php",
       "props": {
         "src": {
           "default": "required",
-          "type": "mixed"
+          "type": "mixed",
+          "description": "Required. Image URL."
         },
         "alt": {
           "default": "",
-          "type": "string"
+          "type": "string",
+          "description": "Alt text for accessibility."
         },
         "caption": {
           "default": "null",
-          "type": "null"
+          "type": "null",
+          "description": "Optional text caption."
         },
         "aspect": {
           "default": "null",
-          "type": "null"
+          "type": "null",
+          "description": "Options: square, video, 4/3, 3/2, 21/9."
         }
-      }
+      },
+      "description": "Enhanced image component with captions and aspect ratio control.",
+      "usage": "&lt;x-plume::figure \n    src=\"/path/to/image.jpg\" \n    alt=\"Description\" \n    aspect=\"video\" \n    caption=\"Captured in 2024\"\n/&gt;"
     },
     "x-plume::pagination": {
       "path": "plume/resources/views/components/pagination.blade.php",
       "props": {
         "total": {
           "default": "1",
-          "type": "number"
+          "type": "number",
+          "description": "Total number of pages."
         },
         "current": {
           "default": "1",
-          "type": "number"
+          "type": "number",
+          "description": "The current active page."
         }
-      }
+      },
+      "description": "Displays a sequence of links for navigating through a series of related pages.",
+      "usage": "&lt;x-plume::pagination :total=\"10\" :current=\"1\" /&gt;"
     },
     "x-plume::avatar": {
       "path": "plume/resources/views/components/avatar.blade.php",
       "props": {
         "src": {
           "default": "null",
-          "type": "null"
+          "type": "null",
+          "description": "Image source URL."
         },
         "alt": {
           "default": "",
-          "type": "string"
+          "type": "string",
+          "description": "Alt text for the image."
         },
         "fallback": {
           "default": "",
-          "type": "string"
+          "type": "string",
+          "description": "Initials or text to show if image fails."
         },
         "size": {
           "default": "md",
-          "type": "string"
+          "type": "string",
+          "description": "Options: xs, sm, md, lg, xl."
         }
-      }
+      },
+      "description": "An image element with a fallback for representing the user.",
+      "usage": "&lt;x-plume::avatar \n    src=\"https://github.com/shadcn.png\" \n    alt=\"@shadcn\" \n    fallback=\"CN\" \n    size=\"lg\" \n/&gt;"
     },
     "x-plume::audio": {
       "path": "plume/resources/views/components/audio.blade.php",
       "props": {
         "src": {
           "default": "required",
-          "type": "mixed"
+          "type": "mixed",
+          "description": "Required. Audio file URL."
         },
         "autoplay": {
           "default": "false",
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Start playback on load."
         },
         "controls": {
           "default": "true",
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Show player controls."
         },
         "loop": {
           "default": "false",
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Loop the audio."
         },
         "muted": {
           "default": "false",
           "type": "boolean"
         }
-      }
+      },
+      "description": "A styled wrapper for HTML5 audio content.",
+      "usage": "&lt;x-plume::audio src=\"/path/to/audio.mp3\" /&gt;"
     },
     "x-plume::divider": {
       "path": "plume/resources/views/components/divider.blade.php",
       "props": {
         "label": {
           "default": "null",
-          "type": "null"
+          "type": "null",
+          "description": "Optional text to display in the center of the divider."
         }
-      }
+      },
+      "description": "Visually separates content sections with an optional label.",
+      "usage": "&lt;!-- Basic --&gt;\n&lt;x-plume::divider /&gt;\n\n&lt;!-- With Label --&gt;\n&lt;x-plume::divider label=\"Continue with\" /&gt;\n\n&lt;!-- With Icon --&gt;\n&lt;x-plume::divider&gt;\n    &lt;x-plume::icon i=\"icon-[fluent--star-24-filled]\" /&gt;\n&lt;/x-plume::divider&gt;"
     },
     "x-plume::aspect": {
       "path": "plume/resources/views/components/aspect.blade.php",
       "props": {
         "ratio": {
           "default": "video",
-          "type": "string"
+          "type": "string",
+          "description": "Options: video, square, 4/3, 3/2, 21/9. Also accepts custom Tailwind aspect ratio classes."
         }
-      }
+      },
+      "description": "A container component to maintain consistent proportions for media and content.",
+      "usage": "&lt;x-plume::aspect ratio=\"square\"&gt;\n    &lt;img src=\"...\" class=\"object-cover\" /&gt;\n&lt;/x-plume::aspect&gt;"
     },
     "x-plume::tooltip": {
       "path": "plume/resources/views/components/tooltip.blade.php",
       "props": {
         "text": {
           "default": "required",
-          "type": "mixed"
+          "type": "mixed",
+          "description": "Required. The text to display inside the tooltip."
         },
         "position": {
           "default": "top",
-          "type": "string"
+          "type": "string",
+          "description": "Options: top, bottom, left, right."
         }
-      }
+      },
+      "description": "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
+      "usage": "&lt;x-plume::tooltip text=\"Helpful information\" position=\"top\"&gt;\n    &lt;x-plume::button style=\"ghost\" shape=\"round\"&gt;\n        &lt;x-plume::icon i=\"icon-[fluent--info-24-regular]\" /&gt;\n    &lt;/x-plume::button&gt;\n&lt;/x-plume::tooltip&gt;"
     },
     "x-plume::skeleton": {
       "path": "plume/resources/views/components/skeleton.blade.php",
-      "props": {}
+      "props": {},
+      "description": "Use to display a placeholder preview of your content before the data gets loaded to reduce cognitive load.",
+      "usage": "&lt;div class=\"flex items-center space-x-4\"&gt;\n    &lt;x-plume::skeleton class=\"size-12 rounded-full\" /&gt;\n    &lt;div class=\"space-y-2\"&gt;\n        &lt;x-plume::skeleton class=\"h-4 w-[250px]\" /&gt;\n        &lt;x-plume::skeleton class=\"h-4 w-[200px]\" /&gt;\n    &lt;/div&gt;\n&lt;/div&gt;"
     },
     "x-plume::button-group": {
       "path": "plume/resources/views/components/button-group.blade.php",
@@ -250,25 +315,32 @@
       "props": {
         "icon": {
           "default": "null",
-          "type": "null"
+          "type": "null",
+          "description": "Override the default icon class."
         },
         "style": {
           "default": "info",
-          "type": "string"
+          "type": "string",
+          "description": "Visual style: info, success, warning, destructive."
         },
         "closable": {
           "default": "false",
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Whether to show a close button."
         },
         "autoclose": {
           "default": "null",
-          "type": "null"
+          "type": "null",
+          "description": "Delay in ms to hide the alert automatically."
         },
         "title": {
           "default": "null",
-          "type": "null"
+          "type": "null",
+          "description": "Optional bold heading for the alert."
         }
-      }
+      },
+      "description": "Displays a callout for user attention.",
+      "usage": "&lt;x-plume::alert \n    style=\"success\" \n    title=\"Success\" \n    closable \n    autoclose=\"3000\"\n&gt;\n    Your changes have been saved.\n&lt;/x-plume::alert&gt;"
     },
     "x-plume::logo": {
       "path": "plume/resources/views/components/logo/index.blade.php",
@@ -290,7 +362,9 @@
           "default": "\\Illuminate\\Support\\Str::random(8)",
           "type": "string"
         }
-      }
+      },
+      "description": "A powerful search and action interface accessible via keyboard shortcuts.",
+      "usage": "&lt;x-plume::command&gt;\n    &lt;x-plume::button&gt;Open&lt;/x-plume::button&gt;\n\n    &lt;x-slot:content&gt;\n        &lt;x-plume::command.group title=\"Group Title\"&gt;\n            &lt;x-plume::command.item icon=\"icon-...\" shortcut=\"\u2318K\"&gt;\n                Item Label\n            &lt;/x-plume::command.item&gt;\n        &lt;/x-plume::command.group&gt;\n    &lt;/x-slot:content&gt;\n&lt;/x-plume::command&gt;"
     },
     "x-plume::command.group": {
       "path": "plume/resources/views/components/command/group.blade.php",
@@ -316,7 +390,9 @@
     },
     "x-plume::card": {
       "path": "plume/resources/views/components/card/index.blade.php",
-      "props": {}
+      "props": {},
+      "description": "Displays a card with header, content, and footer.",
+      "usage": "&lt;x-plume::card&gt;\n    &lt;x-plume::card.header&gt;\n        &lt;x-plume::card.title&gt;Notifications&lt;/x-plume::card.title&gt;\n        &lt;x-plume::card.description&gt;Manage your notification settings.&lt;/x-plume::card.description&gt;\n    &lt;/x-plume::card.header&gt;\n    &lt;x-plume::card.content&gt;\n        &lt;!-- Main content --&gt;\n    &lt;/x-plume::card.content&gt;\n    &lt;x-plume::card.footer&gt;\n        &lt;x-plume::button style=\"outline\"&gt;Cancel&lt;/x-plume::button&gt;\n        &lt;x-plume::spacer /&gt;\n        &lt;x-plume::button&gt;Save&lt;/x-plume::button&gt;\n    &lt;/x-plume::card.footer&gt;\n&lt;/x-plume::card&gt;"
     },
     "x-plume::card.title": {
       "path": "plume/resources/views/components/card/title.blade.php",
@@ -343,13 +419,17 @@
       "props": {
         "default": {
           "default": "1",
-          "type": "number"
+          "type": "number",
+          "description": "The identifier of the initially active tab."
         },
         "side": {
           "default": "top",
-          "type": "string"
+          "type": "string",
+          "description": "Layout orientation: top, left, right."
         }
-      }
+      },
+      "description": "A set of layered sections of content, known as tab panels, that are displayed one at a time.",
+      "usage": "&lt;x-plume::tabs default=\"profile\" side=\"left\"&gt;\n    &lt;x-plume::tabs.group&gt;\n        &lt;x-plume::tabs.item for=\"profile\"&gt;Profile&lt;/x-plume::tabs.item&gt;\n        &lt;x-plume::tabs.item for=\"settings\"&gt;Settings&lt;/x-plume::tabs.item&gt;\n    &lt;/x-plume::tabs.group&gt;\n\n    &lt;x-plume::tabs.panel for=\"profile\"&gt;\n        Profile content...\n    &lt;/x-plume::tabs.panel&gt;\n    &lt;x-plume::tabs.panel for=\"settings\"&gt;\n        Settings content...\n    &lt;/x-plume::tabs.panel&gt;\n&lt;/x-plume::tabs&gt;"
     },
     "x-plume::tabs.group": {
       "path": "plume/resources/views/components/tabs/group.blade.php",
@@ -378,17 +458,22 @@
       "props": {
         "align": {
           "default": "right",
-          "type": "string"
+          "type": "string",
+          "description": "Alignment: left, right, top."
         },
         "width": {
           "default": "48",
-          "type": "number"
+          "type": "number",
+          "description": "Tailwind width class suffix (e.g., 48 becomes w-48)."
         },
         "contentClasses": {
           "default": "py-1 bg-background dark:bg-background-800",
-          "type": "string"
+          "type": "string",
+          "description": "Additional CSS classes for the dropdown content container."
         }
-      }
+      },
+      "description": "Displays a menu to the user\u2014such as a set of actions or functions\u2014triggered by a button.",
+      "usage": "&lt;x-plume::dropdown align=\"right\" width=\"48\"&gt;\n    &lt;x-slot name=\"trigger\"&gt;\n        &lt;x-plume::button&gt;Click Me&lt;/x-plume::button&gt;\n    &lt;/x-slot&gt;\n\n    &lt;x-slot name=\"content\"&gt;\n        &lt;x-plume::dropdown.item href=\"/profile\"&gt;Profile&lt;/x-plume::dropdown.item&gt;\n        &lt;x-plume::dropdown.separator /&gt;\n        &lt;x-plume::dropdown.item&gt;Logout&lt;/x-plume::dropdown.item&gt;\n    &lt;/x-slot&gt;\n&lt;/x-plume::dropdown&gt;"
     },
     "x-plume::dropdown.item": {
       "path": "plume/resources/views/components/dropdown/item.blade.php",
@@ -403,13 +488,17 @@
       "props": {
         "placeholder": {
           "default": "Search...",
-          "type": "string"
+          "type": "string",
+          "description": "Input placeholder text."
         },
         "model": {
           "default": "null",
-          "type": "null"
+          "type": "null",
+          "description": "Livewire model binding name."
         }
-      }
+      },
+      "description": "Styled search input with an integrated results dropdown.",
+      "usage": "&lt;x-plume::search placeholder=\"Search items...\"&gt;\n    &lt;x-slot:results&gt;\n        &lt;x-plume::search.result title=\"Result 1\" href=\"/link\" icon=\"icon-...\"&gt;\n            Description text...\n        &lt;/x-plume::search.result&gt;\n    &lt;/x-slot:results&gt;\n&lt;/x-plume::search&gt;"
     },
     "x-plume::search.result": {
       "path": "plume/resources/views/components/search/result.blade.php",
@@ -433,9 +522,12 @@
       "props": {
         "active": {
           "default": "1",
-          "type": "number"
+          "type": "number",
+          "description": "The current active step number."
         }
-      }
+      },
+      "description": "Guide users through multi-step processes.",
+      "usage": "&lt;x-plume::stepper active=\"1\"&gt;\n    &lt;x-plume::stepper.step step=\"1\" title=\"First\" /&gt;\n    &lt;x-plume::stepper.step step=\"2\" title=\"Second\" /&gt;\n&lt;/x-plume::stepper&gt;"
     },
     "x-plume::stepper.step": {
       "path": "plume/resources/views/components/stepper/step.blade.php",
@@ -459,17 +551,21 @@
       "props": {
         "name": {
           "default": "required",
-          "type": "mixed"
+          "type": "mixed",
+          "description": "Required. Unique identifier for the drawer."
         },
         "show": {
           "default": "false",
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Initial visibility state."
         },
         "side": {
           "default": "right",
-          "type": "string"
+          "type": "string",
+          "description": "Slide direction: left, right, top, bottom."
         }
-      }
+      },
+      "description": "A panel that slides in from the edge of the screen."
     },
     "x-plume::drawer.title": {
       "path": "plume/resources/views/components/drawer/title.blade.php",
@@ -493,7 +589,9 @@
     },
     "x-plume::breadcrumb": {
       "path": "plume/resources/views/components/breadcrumb/index.blade.php",
-      "props": {}
+      "props": {},
+      "description": "Displays the path to the current resource using a hierarchy of links.",
+      "usage": "&lt;x-plume::breadcrumb&gt;\n    &lt;x-plume::breadcrumb.item href=\"/\"&gt;Home&lt;/x-plume::breadcrumb.item&gt;\n    &lt;x-plume::breadcrumb.separator /&gt;\n    &lt;x-plume::breadcrumb.item active&gt;Settings&lt;/x-plume::breadcrumb.item&gt;\n&lt;/x-plume::breadcrumb&gt;"
     },
     "x-plume::breadcrumb.item": {
       "path": "plume/resources/views/components/breadcrumb/item.blade.php",
@@ -517,17 +615,21 @@
       "props": {
         "name": {
           "default": "required",
-          "type": "mixed"
+          "type": "mixed",
+          "description": "Required. Unique identifier for the modal."
         },
         "show": {
           "default": "false",
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Initial visibility state."
         },
         "maxWidth": {
           "default": "2xl",
-          "type": "string"
+          "type": "string",
+          "description": "Max width: sm, md, lg, xl, 2xl."
         }
-      }
+      },
+      "description": "A dialog box or popup window that is displayed on top of the current page."
     },
     "x-plume::modal.title": {
       "path": "plume/resources/views/components/modal/title.blade.php",
@@ -554,9 +656,12 @@
       "props": {
         "striped": {
           "default": "false",
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Whether to alternate row background colors."
         }
-      }
+      },
+      "description": "A responsive table component.",
+      "usage": "&lt;x-plume::table striped&gt;\n    &lt;x-plume::table.header&gt;\n        &lt;x-plume::table.row&gt;\n            &lt;x-plume::table.head&gt;Header&lt;/x-plume::table.head&gt;\n        &lt;/x-plume::table.row&gt;\n    &lt;/x-plume::table.header&gt;\n    &lt;x-plume::table.body&gt;\n        &lt;x-plume::table.row&gt;\n            &lt;x-plume::table.cell&gt;Cell Content&lt;/x-plume::table.cell&gt;\n        &lt;/x-plume::table.row&gt;\n    &lt;/x-plume::table.body&gt;\n&lt;/x-plume::table&gt;"
     },
     "x-plume::table.head": {
       "path": "plume/resources/views/components/table/head.blade.php",
@@ -583,28 +688,34 @@
       "props": {
         "action": {
           "default": "",
-          "type": "string"
+          "type": "string",
+          "description": "Form submission URL."
         },
         "method": {
           "default": "POST",
-          "type": "string"
+          "type": "string",
+          "description": "HTTP method."
         },
         "formData": {
           "default": "null",
-          "type": "null"
+          "type": "null",
+          "description": "AlpineJS function name for form state."
         }
-      }
+      },
+      "description": "A collection of form components for user input."
     },
     "x-plume::form.combobox": {
       "path": "plume/resources/views/components/form/combobox.blade.php",
       "props": {
         "label": {
           "default": "null",
-          "type": "null"
+          "type": "null",
+          "description": "The label for the field."
         },
         "model": {
           "default": "null",
-          "type": "null"
+          "type": "null",
+          "description": "Livewire model binding name."
         },
         "placeholder": {
           "default": "Select an option...",
@@ -612,9 +723,12 @@
         },
         "options": {
           "default": "[]",
-          "type": "string"
+          "type": "string",
+          "description": "Required. Array of objects with `value` and `label`."
         }
-      }
+      },
+      "description": "Searchable dropdown for selecting from a list of options.",
+      "usage": "&lt;x-plume::form.combobox \n    label=\"Country\" \n    model=\"country\"\n    :options=\"[\n        ['value' => 'us', 'label' => 'United States'],\n        ['value' => 'uk', 'label' => 'United Kingdom'],\n    ]\" \n/&gt;"
     },
     "x-plume::form.time": {
       "path": "plume/resources/views/components/form/time.blade.php",
@@ -668,7 +782,9 @@
           "default": "false",
           "type": "boolean"
         }
-      }
+      },
+      "description": "Switch toggle for binary states.",
+      "usage": "&lt;x-plume::form.toggle model=\"wifi\"&gt;WiFi&lt;/x-plume::form.toggle&gt;"
     },
     "x-plume::form.date": {
       "path": "plume/resources/views/components/form/date.blade.php",
@@ -693,7 +809,9 @@
           "default": "",
           "type": "string"
         }
-      }
+      },
+      "description": "Date, time, and datetime inputs.",
+      "usage": "&lt;x-plume::form.date model=\"date\"&gt;Date&lt;/x-plume::form.date&gt;\n&lt;x-plume::form.time model=\"time\"&gt;Time&lt;/x-plume::form.time&gt;\n&lt;x-plume::form.datetime model=\"datetime\"&gt;Datetime&lt;/x-plume::form.datetime&gt;"
     },
     "x-plume::form.password": {
       "path": "plume/resources/views/components/form/password.blade.php",
@@ -743,14 +861,17 @@
           "default": "null",
           "type": "null"
         }
-      }
+      },
+      "description": "Dropdown selection field.",
+      "usage": "&lt;x-plume::form.select label=\"Role\" model=\"role\"&gt;\n    &lt;option value=\"admin\"&gt;Admin&lt;/option&gt;\n    &lt;option value=\"editor\"&gt;Editor&lt;/option&gt;\n&lt;/x-plume::form.select&gt;"
     },
     "x-plume::form.input": {
       "path": "plume/resources/views/components/form/input.blade.php",
       "props": {
         "label": {
           "default": "null",
-          "type": "null"
+          "type": "null",
+          "description": "The label for the input."
         },
         "name": {
           "default": "null",
@@ -762,11 +883,13 @@
         },
         "type": {
           "default": "text",
-          "type": "string"
+          "type": "string",
+          "description": "Input type (text, email, etc)."
         },
         "model": {
           "default": "null",
-          "type": "null"
+          "type": "null",
+          "description": "AlpineJS model name."
         },
         "value": {
           "default": "",
@@ -778,13 +901,16 @@
         },
         "icon": {
           "default": "null",
-          "type": "null"
+          "type": "null",
+          "description": "Icon class."
         },
         "after": {
           "default": "null",
           "type": "null"
         }
-      }
+      },
+      "description": "Standard text input fields, including password and number variants.",
+      "usage": "&lt;x-plume::form.input label=\"Username\" model=\"username\" /&gt;\n&lt;x-plume::form.password label=\"Password\" model=\"password\" /&gt;\n&lt;x-plume::form.number label=\"Age\" model=\"age\" min=\"0\" /&gt;"
     },
     "x-plume::form.number": {
       "path": "plume/resources/views/components/form/number.blade.php",
@@ -844,7 +970,8 @@
         },
         "rows": {
           "default": "3",
-          "type": "number"
+          "type": "number",
+          "description": "Number of visible text lines."
         },
         "model": {
           "default": "null",
@@ -858,7 +985,9 @@
           "default": "null",
           "type": "null"
         }
-      }
+      },
+      "description": "Multi-line text input field.",
+      "usage": "&lt;x-plume::form.textarea \n    label=\"Message\" \n    model=\"message\" \n    rows=\"5\" \n/&gt;"
     },
     "x-plume::form.radio": {
       "path": "plume/resources/views/components/form/radio.blade.php",
@@ -875,7 +1004,9 @@
           "default": "",
           "type": "string"
         }
-      }
+      },
+      "description": "Radio buttons for selecting a single option from a set.",
+      "usage": "&lt;x-plume::form.group label=\"Contact Method\" model=\"contact\"&gt;\n    &lt;x-plume::form.radio value=\"email\"&gt;Email&lt;/x-plume::form.radio&gt;\n    &lt;x-plume::form.radio value=\"phone\"&gt;Phone&lt;/x-plume::form.radio&gt;\n&lt;/x-plume::form.group&gt;"
     },
     "x-plume::form.group": {
       "path": "plume/resources/views/components/form/group.blade.php",
@@ -987,7 +1118,9 @@
           "default": "PNG",
           "type": "string"
         }
-      }
+      },
+      "description": "Input field for file uploads.",
+      "usage": "&lt;x-plume::form.file model=\"document\"&gt;Upload Document&lt;/x-plume::form.file&gt;"
     },
     "x-plume::form.checkbox": {
       "path": "plume/resources/views/components/form/checkbox.blade.php",
@@ -1004,7 +1137,9 @@
           "default": "",
           "type": "string"
         }
-      }
+      },
+      "description": "Checkbox input for binary choices.",
+      "usage": "&lt;!-- Single --&gt;\n&lt;x-plume::form.checkbox model=\"accept\"&gt;I accept&lt;/x-plume::form.checkbox&gt;\n\n&lt;!-- Group --&gt;\n&lt;x-plume::form.group label=\"Interests\" model=\"interests\"&gt;\n    &lt;x-plume::form.checkbox value=\"code\"&gt;Coding&lt;/x-plume::form.checkbox&gt;\n    &lt;x-plume::form.checkbox value=\"design\"&gt;Design&lt;/x-plume::form.checkbox&gt;\n&lt;/x-plume::form.group&gt;"
     },
     "x-plume::form.element": {
       "path": "plume/resources/views/components/form/element.blade.php",
@@ -1094,29 +1229,36 @@
       "props": {
         "value": {
           "default": "0",
-          "type": "number"
+          "type": "number",
+          "description": "Current progress value."
         },
         "max": {
           "default": "100",
-          "type": "number"
+          "type": "number",
+          "description": "Maximum progress value."
         },
         "style": {
           "default": "default",
-          "type": "string"
+          "type": "string",
+          "description": "Options: default, secondary, destructive, success."
         },
         "title": {
           "default": "null",
-          "type": "null"
+          "type": "null",
+          "description": "Label displayed above the bar."
         },
         "model": {
           "default": "null",
-          "type": "null"
+          "type": "null",
+          "description": "AlpineJS model for reactive progress."
         },
         "display": {
           "default": "percentage",
-          "type": "string"
+          "type": "string",
+          "description": "Options: percentage, number, outof, none."
         }
-      }
+      },
+      "description": "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar."
     },
     "x-plume::progress.percent": {
       "path": "plume/resources/views/components/progress/percent.blade.php",
@@ -1144,9 +1286,12 @@
       "props": {
         "alwaysOpen": {
           "default": "false",
-          "type": "boolean"
+          "type": "boolean",
+          "description": "If true, multiple items can stay open."
         }
-      }
+      },
+      "description": "Collapsible content panels for saving vertical space.",
+      "usage": "&lt;x-plume::accordion&gt;\n    &lt;x-plume::accordion.item title=\"Heading\"&gt;\n        Content goes here...\n    &lt;/x-plume::accordion.item&gt;\n&lt;/x-plume::accordion&gt;"
     },
     "x-plume::accordion.item": {
       "path": "plume/resources/views/components/accordion/item.blade.php",
@@ -1170,24 +1315,30 @@
       "props": {
         "href": {
           "default": "null",
-          "type": "null"
+          "type": "null",
+          "description": "Renders as an anchor tag if provided."
         },
         "icon": {
           "default": "null",
-          "type": "null"
+          "type": "null",
+          "description": "Icon class name."
         },
         "fullWidth": {
           "default": "false",
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Expand to 100% width."
         }
-      }
+      },
+      "description": "Displays a button or a component that looks like a button.",
+      "usage": "&lt;x-plume::button style=\"primary\" size=\"md\"&gt;\n    Click Me\n&lt;/x-plume::button&gt;"
     },
     "x-plume::button.loader": {
       "path": "plume/resources/views/components/button/loader.blade.php",
       "props": {
         "var": {
           "default": "required",
-          "type": "mixed"
+          "type": "mixed",
+          "description": "Required. AlpineJS boolean variable to control loading state."
         },
         "size": {
           "default": "md",
@@ -1197,14 +1348,17 @@
           "default": "null",
           "type": "null"
         }
-      }
+      },
+      "description": "Button with built-in loading state management.",
+      "usage": "&lt;x-plume::button.loader var=\"isSaving\"&gt;\n    Save\n&lt;/x-plume::button.loader&gt;"
     },
     "x-plume::button.toggle": {
       "path": "plume/resources/views/components/button/toggle.blade.php",
       "props": {
         "var": {
           "default": "required",
-          "type": "mixed"
+          "type": "mixed",
+          "description": "Required. AlpineJS boolean variable."
         },
         "size": {
           "default": "md",
@@ -1216,21 +1370,26 @@
         },
         "offStyle": {
           "default": "null",
-          "type": "null"
+          "type": "null",
+          "description": "Button style when false."
         },
         "on": {
           "default": "null",
-          "type": "null"
+          "type": "null",
+          "description": "Label when true."
         },
         "off": {
           "default": "null",
-          "type": "null"
+          "type": "null",
+          "description": "Label when false."
         },
         "click": {
           "default": "null",
           "type": "null"
         }
-      }
+      },
+      "description": "Button that toggles between two states.",
+      "usage": "&lt;x-plume::button.toggle var=\"active\" on=\"Active\" off=\"Inactive\" /&gt;"
     }
   }
 }

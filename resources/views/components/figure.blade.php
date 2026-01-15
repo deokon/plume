@@ -1,9 +1,10 @@
 {{--
 @component x-plume::figure
-@prop {mixed} src - Default: required
-@prop {string} alt - Default: 
-@prop {null} caption - Default: null
-@prop {null} aspect - Default: null
+@description Enhanced image component with captions and aspect ratio control.
+@prop {mixed} src - Required. Image URL. (Default: required)
+@prop {string} alt - Alt text for accessibility. (Default: )
+@prop {null} caption - Optional text caption. (Default: null)
+@prop {null} aspect - Options: square, video, 4/3, 3/2, 21/9. (Default: null)
 --}}
 @props([
     'src',

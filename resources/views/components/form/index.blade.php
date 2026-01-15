@@ -1,8 +1,9 @@
 {{--
 @component x-plume::form
-@prop {string} action - Default: 
-@prop {string} method - Default: POST
-@prop {null} formData - Default: null
+@description A collection of form components for user input.
+@prop {string} action - Form submission URL. (Default: )
+@prop {string} method - HTTP method. (Default: POST)
+@prop {null} formData - AlpineJS function name for form state. (Default: null)
 --}}
 @props([
     'action' => '',

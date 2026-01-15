@@ -1,14 +1,15 @@
 {{--
 @component x-plume::form.input
-@prop {null} label - Default: null
-@prop {null} name - Default: null
-@prop {null} id - Default: null
-@prop {string} type - Default: text
-@prop {null} model - Default: null
-@prop {string} value - Default: 
-@prop {string} placeholder - Default: 
-@prop {null} icon - Default: null
-@prop {null} after - Default: null
+@description Standard text input fields, including password and number variants.
+@prop {null} label - The label for the input. (Default: null)
+@prop {null} name -  (Default: null)
+@prop {null} id -  (Default: null)
+@prop {string} type - Input type (text, email, etc). (Default: text)
+@prop {null} model - AlpineJS model name. (Default: null)
+@prop {string} value -  (Default: )
+@prop {string} placeholder -  (Default: )
+@prop {null} icon - Icon class. (Default: null)
+@prop {null} after -  (Default: null)
 --}}
 @props([
     'label' => null,

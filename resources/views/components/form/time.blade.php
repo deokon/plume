@@ -1,10 +1,10 @@
 {{--
 @component x-plume::form.time
-@prop {null} label - Default: null
-@prop {null} name - Default: null
-@prop {null} id - Default: null
-@prop {null} model - Default: null
-@prop {string} value - Default: 
+@prop {null} label -  (Default: null)
+@prop {null} name -  (Default: null)
+@prop {null} id -  (Default: null)
+@prop {null} model -  (Default: null)
+@prop {string} value -  (Default: )
 --}}
 @props([
     'label' => null,

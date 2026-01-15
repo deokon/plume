@@ -1,6 +1,7 @@
 {{--
 @component x-plume::aspect
-@prop {string} ratio - Default: video
+@description A container component to maintain consistent proportions for media and content.
+@prop {string} ratio - Options: video, square, 4/3, 3/2, 21/9. Also accepts custom Tailwind aspect ratio classes. (Default: video)
 --}}
 @props([
     'ratio' => 'video',

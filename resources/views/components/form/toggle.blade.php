@@ -1,11 +1,12 @@
 {{--
 @component x-plume::form.toggle
-@prop {null} label - Default: null
-@prop {null} name - Default: null
-@prop {null} id - Default: null
-@prop {null} model - Default: null
-@prop {number} value - Default: 1
-@prop {boolean} checked - Default: false
+@description Switch toggle for binary states.
+@prop {null} label -  (Default: null)
+@prop {null} name -  (Default: null)
+@prop {null} id -  (Default: null)
+@prop {null} model -  (Default: null)
+@prop {number} value -  (Default: 1)
+@prop {boolean} checked -  (Default: false)
 --}}
 @props([
     'label' => null,

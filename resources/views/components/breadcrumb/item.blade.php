@@ -1,7 +1,7 @@
 {{--
 @component x-plume::breadcrumb.item
-@prop {null} href - Default: null
-@prop {boolean} active - Default: false
+@prop {null} href -  (Default: null)
+@prop {boolean} active -  (Default: false)
 --}}
 @props([
     'href' => null,

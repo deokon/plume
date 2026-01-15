@@ -1,11 +1,11 @@
 {{--
 @component x-plume::form.group
-@prop {null} label - Default: null
-@prop {string} description - Default: 
-@prop {null} name - Default: null
-@prop {null} model - Default: null
-@prop {number} minCols - Default: 1
-@prop {null} maxCols - Default: null
+@prop {null} label -  (Default: null)
+@prop {string} description -  (Default: )
+@prop {null} name -  (Default: null)
+@prop {null} model -  (Default: null)
+@prop {number} minCols -  (Default: 1)
+@prop {null} maxCols -  (Default: null)
 --}}
 @props([
     'label' => null,

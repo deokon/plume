@@ -1,11 +1,12 @@
 {{--
 @component x-plume::progress
-@prop {number} value - Default: 0
-@prop {number} max - Default: 100
-@prop {string} style - Default: default
-@prop {null} title - Default: null
-@prop {null} model - Default: null
-@prop {string} display - Default: percentage
+@description Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.
+@prop {number} value - Current progress value. (Default: 0)
+@prop {number} max - Maximum progress value. (Default: 100)
+@prop {string} style - Options: default, secondary, destructive, success. (Default: default)
+@prop {null} title - Label displayed above the bar. (Default: null)
+@prop {null} model - AlpineJS model for reactive progress. (Default: null)
+@prop {string} display - Options: percentage, number, outof, none. (Default: percentage)
 --}}
 @props([
     'value' => 0,

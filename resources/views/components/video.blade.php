@@ -1,12 +1,13 @@
 {{--
 @component x-plume::video
-@prop {mixed} src - Default: required
-@prop {null} poster - Default: null
-@prop {boolean} autoplay - Default: false
-@prop {boolean} controls - Default: true
-@prop {boolean} loop - Default: false
-@prop {boolean} muted - Default: false
-@prop {string} aspect - Default: video
+@description A styled wrapper for HTML5 video content.
+@prop {mixed} src - Required. Video file URL. (Default: required)
+@prop {null} poster - Placeholder image URL. (Default: null)
+@prop {boolean} autoplay - Start playback on load. (Default: false)
+@prop {boolean} controls - Show player controls. (Default: true)
+@prop {boolean} loop - Loop the video. (Default: false)
+@prop {boolean} muted - Mute audio by default. (Default: false)
+@prop {string} aspect - Options: video, square, 21/9. (Default: video)
 --}}
 @props([
     'src',

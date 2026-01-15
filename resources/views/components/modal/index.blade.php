@@ -1,8 +1,9 @@
 {{--
 @component x-plume::modal
-@prop {mixed} name - Default: required
-@prop {boolean} show - Default: false
-@prop {string} maxWidth - Default: 2xl
+@description A dialog box or popup window that is displayed on top of the current page.
+@prop {mixed} name - Required. Unique identifier for the modal. (Default: required)
+@prop {boolean} show - Initial visibility state. (Default: false)
+@prop {string} maxWidth - Max width: sm, md, lg, xl, 2xl. (Default: 2xl)
 --}}
 @props([
     'name',

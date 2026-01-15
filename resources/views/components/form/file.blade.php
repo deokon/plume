@@ -1,10 +1,11 @@
 {{--
 @component x-plume::form.file
-@prop {null} label - Default: null
-@prop {null} name - Default: null
-@prop {null} id - Default: null
-@prop {null} model - Default: null
-@prop {string} helpText - Default: PNG
+@description Input field for file uploads.
+@prop {null} label -  (Default: null)
+@prop {null} name -  (Default: null)
+@prop {null} id -  (Default: null)
+@prop {null} model -  (Default: null)
+@prop {string} helpText -  (Default: PNG)
 --}}
 @props([
     'label' => null,

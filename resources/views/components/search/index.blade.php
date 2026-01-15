@@ -1,7 +1,8 @@
 {{--
 @component x-plume::search
-@prop {string} placeholder - Default: Search...
-@prop {null} model - Default: null
+@description Styled search input with an integrated results dropdown.
+@prop {string} placeholder - Input placeholder text. (Default: Search...)
+@prop {null} model - Livewire model binding name. (Default: null)
 --}}
 @props([
     'placeholder' => 'Search...',
