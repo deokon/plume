@@ -343,15 +343,6 @@ No props defined.
 
 ---
 
-## x-plume::logo
-Documentation: [https://plume.dennisokon.com/docs/logo](https://plume.dennisokon.com/docs/logo)
-
-Path: `plume/resources/views/components/logo/index.blade.php`
-
-No props defined.
-
----
-
 ## x-plume::command
 A powerful search and action interface accessible via keyboard shortcuts.
 

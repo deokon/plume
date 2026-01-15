@@ -1,6 +1,7 @@
 {
   "name": "Plume UI",
   "namespace": "x-plume",
+  "baseUrl": "https://plume.dennisokon.com",
   "components": {
     "x-plume::empty-state": {
       "path": "plume/resources/views/components/empty-state.blade.php",
@@ -129,11 +130,6 @@
       "description": "Displays a callout for user attention.",
       "usage": "&lt;x-plume::alert \n    style=\"success\" \n    title=\"Success\" \n    closable \n    autoclose=\"3000\"\n&gt;\n    Your changes have been saved.\n&lt;/x-plume::alert&gt;",
       "doc_url": "https://plume.dennisokon.com/docs/alert"
-    },
-    "x-plume::logo": {
-      "path": "plume/resources/views/components/logo/index.blade.php",
-      "props": {},
-      "doc_url": "https://plume.dennisokon.com/docs/logo"
     },
     "x-plume::command": {
       "path": "plume/resources/views/components/command/index.blade.php",
@@ -526,6 +522,5 @@
       "usage": "&lt;x-plume::button.toggle var=\"active\" on=\"Active\" off=\"Inactive\" /&gt;",
       "doc_url": "https://plume.dennisokon.com/docs/button-toggle"
     }
-  },
-  "baseUrl": "https://plume.dennisokon.com"
+  }
 }
