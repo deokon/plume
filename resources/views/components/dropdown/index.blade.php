@@ -5,7 +5,7 @@
 @props([
     'align' => 'right',
     'width' => 'md',
-    'contentClasses' => 'py-1 bg-background dark:bg-background-800',
+    'contentClasses' => 'bg-background dark:bg-background-800',
 ])
 
 @php
