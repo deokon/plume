@@ -1,7 +1,7 @@
 export default (initialTotal = 1, initialCurrent = 1, onEachSide = 1) => ({
-    total: initialTotal,
-    current: initialCurrent,
-    onEachSide: onEachSide,
+    total: parseInt(initialTotal) || 1,
+    current: parseInt(initialCurrent) || 1,
+    onEachSide: parseInt(onEachSide) || 1,
 
     get pages() {
         if (this.total <= 1) return [1];
@@ -29,12 +29,19 @@ export default (initialTotal = 1, initialCurrent = 1, onEachSide = 1) => ({
     sync() {
         const t = parseInt(this.$el.getAttribute('total'));
         const c = parseInt(this.$el.getAttribute('current'));
-        if (!isNaN(t)) this.total = t;
-        if (!isNaN(c)) this.current = c;
+        
+        if (!isNaN(t) && t >= 0) {
+            this.total = t;
+        }
+        
+        if (!isNaN(c)) {
+            this.current = Math.max(1, Math.min(c, this.total || 1));
+        }
     },
 
     dispatch(page) {
         if (page === '...') return;
-        this.$dispatch('change', { page: page });
+        const targetPage = Math.max(1, Math.min(page, this.total));
+        this.$dispatch('change', { page: targetPage });
     }
 });

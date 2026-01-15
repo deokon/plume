@@ -5,9 +5,9 @@ export default (perPage = 10, paginated = false, sortable = true) => ({
     sortCol: '',
     sortDir: 'asc',
     page: 1,
-    perPage: perPage,
-    paginated: paginated,
-    sortable: sortable,
+    perPage: parseInt(perPage) || 10,
+    paginated: !!paginated,
+    sortable: !!sortable,
 
     init() {
         this.sync();
@@ -20,14 +20,32 @@ export default (perPage = 10, paginated = false, sortable = true) => ({
         try {
             const d = this.$el.getAttribute('data');
             const c = this.$el.getAttribute('columns');
-            if (d) this.data = JSON.parse(d);
-            if (c) this.columns = JSON.parse(c);
+            
+            if (d) {
+                const parsedData = JSON.parse(d);
+                if (Array.isArray(parsedData)) {
+                    this.data = parsedData;
+                } else {
+                    console.warn('Plume Data Table: "data" attribute must be an array.');
+                }
+            }
+            
+            if (c) {
+                const parsedCols = JSON.parse(c);
+                if (Array.isArray(parsedCols)) {
+                    this.columns = parsedCols;
+                } else {
+                    console.warn('Plume Data Table: "columns" attribute must be an array.');
+                }
+            }
         } catch (e) {
-            console.error('Data Table sync error:', e);
+            console.error('Plume Data Table sync error: Invalid JSON provided to data or columns.', e);
         }
     },
 
     get filteredData() {
+        if (!Array.isArray(this.data)) return [];
+        
         let filtered = [...this.data];
 
         if (this.search) {
@@ -54,9 +72,10 @@ export default (perPage = 10, paginated = false, sortable = true) => ({
     },
 
     get pagedData() {
-        if (!this.paginated) return this.filteredData;
+        const data = this.filteredData;
+        if (!this.paginated) return data;
         const start = (this.page - 1) * this.perPage;
-        return this.filteredData.slice(start, start + this.perPage);
+        return data.slice(start, start + this.perPage);
     },
 
     get totalPages() {
