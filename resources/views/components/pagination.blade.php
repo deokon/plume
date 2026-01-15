@@ -49,26 +49,32 @@
                 if (!isNaN(c)) this.current = c;
             };
             
-            const observer = new MutationObserver(sync);
-            observer.observe(this.$el, { attributes: true, attributeFilter: ['total', 'current'] });
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (mutation.type === 'attributes') {
+                        sync();
+                    }
+                });
+            });
+
+            observer.observe(this.$el, { attributes: true });
             sync();
         },
         get pages() {
             if (this.total <= 7) return Array.from({length: this.total}, (_, i) => i + 1);
-            let pages = [1];
-            if (this.current > this.onEachSide + 2) pages.push('...');
+            let p = [1];
+            if (this.current > this.onEachSide + 2) p.push('...');
             let start = Math.max(2, this.current - this.onEachSide);
             let end = Math.min(this.total - 1, this.current + this.onEachSide);
-            for (let i = start; i <= end; i++) pages.push(i);
-            if (this.current < this.total - (this.onEachSide + 1)) pages.push('...');
-            pages.push(this.total);
-            return pages;
+            for (let i = start; i <= end; i++) p.push(i);
+            if (this.current < this.total - (this.onEachSide + 1)) p.push('...');
+            p.push(this.total);
+            return p;
         },
         next() { if (this.current < this.total) this.dispatch(this.current + 1) },
         prev() { if (this.current > 1) this.dispatch(this.current - 1) },
         dispatch(page) {
             if (page === '...') return;
-            this.current = page;
             this.$dispatch('change', { page: page });
         }
     }"
@@ -125,7 +131,7 @@
                             style="ghost"
                             size="sm"
                             @click="dispatch(page)"
-                            ::class="page == current ? 'bg-primary text-primary-foreground hover:bg-primary-800' : ''"
+                            ::class="page == current ? 'bg-primary text-primary-foreground hover:bg-primary-800 hover:text-primary-foreground' : ''"
                             ::aria-label="'Page ' + page"
                             ::aria-current="page == current ? 'page' : 'false'"
                         >
