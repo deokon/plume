@@ -1,3 +1,9 @@
+{{--
+@component x-plume::dropdown
+@prop {string} align - Default: right
+@prop {number} width - Default: 48
+@prop {string} contentClasses - Default: py-1 bg-background dark:bg-background-800
+--}}
 @props([
     'align' => 'right',
     'width' => '48',

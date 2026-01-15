@@ -1,3 +1,11 @@
+{{--
+@component x-plume::alert
+@prop {null} icon - Default: null
+@prop {string} style - Default: info
+@prop {boolean} closable - Default: false
+@prop {null} autoclose - Default: null
+@prop {null} title - Default: null
+--}}
 @props([
     'icon' => null,
     'style' => 'info',

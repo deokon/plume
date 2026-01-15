@@ -1,3 +1,11 @@
+{{--
+@component x-plume::audio
+@prop {mixed} src - Default: required
+@prop {boolean} autoplay - Default: false
+@prop {boolean} controls - Default: true
+@prop {boolean} loop - Default: false
+@prop {boolean} muted - Default: false
+--}}
 @props([
     'src',
     'autoplay' => false,

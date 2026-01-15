@@ -1,3 +1,9 @@
+{{--
+@component x-plume::search.result
+@prop {string} href - Default: #
+@prop {null} icon - Default: null
+@prop {mixed} title - Default: required
+--}}
 @props([
     'href' => '#',
     'icon' => null,

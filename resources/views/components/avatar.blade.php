@@ -1,3 +1,10 @@
+{{--
+@component x-plume::avatar
+@prop {null} src - Default: null
+@prop {string} alt - Default: 
+@prop {string} fallback - Default: 
+@prop {string} size - Default: md
+--}}
 @props([
     'src' => null,
     'alt' => '',

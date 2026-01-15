@@ -1,3 +1,11 @@
+{{--
+@component x-plume::form.datetime
+@prop {null} label - Default: null
+@prop {null} name - Default: null
+@prop {null} id - Default: null
+@prop {null} model - Default: null
+@prop {string} value - Default: 
+--}}
 @props([
     'label' => null,
     'name' => null,

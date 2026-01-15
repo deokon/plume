@@ -1,3 +1,9 @@
+{{--
+@component x-plume::drawer
+@prop {mixed} name - Default: required
+@prop {boolean} show - Default: false
+@prop {string} side - Default: right
+--}}
 @props([
     'name',
     'show' => false,

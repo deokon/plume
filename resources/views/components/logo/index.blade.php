@@ -1,3 +1,7 @@
+{{--
+@component x-plume::logo
+@prop {string} size - Default: size-6
+--}}
 @props(['size' => 'size-6'])
 
 <svg {{ $attributes->merge(['class' => $size]) }} viewBox="0 0 800 800" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

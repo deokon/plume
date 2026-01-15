@@ -1,3 +1,7 @@
+{{--
+@component x-plume::divider
+@prop {null} label - Default: null
+--}}
 @props(['label' => null])
 
 <div {{ $attributes->merge(['class' => 'relative flex items-center py-5']) }}>

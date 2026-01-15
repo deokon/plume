@@ -1,3 +1,8 @@
+{{--
+@component x-plume::spinner
+@prop {string} size - Default: md
+@prop {string} style - Default: default
+--}}
 @props([
     'size' => 'md',
     'style' => 'default',

@@ -1,3 +1,8 @@
+{{--
+@component x-plume::tooltip
+@prop {mixed} text - Default: required
+@prop {string} position - Default: top
+--}}
 @props([
     'text',
     'position' => 'top',

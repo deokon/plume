@@ -1,3 +1,8 @@
+{{--
+@component x-plume::pagination
+@prop {number} total - Default: 1
+@prop {number} current - Default: 1
+--}}
 @props([
     'total' => 1,
     'current' => 1,

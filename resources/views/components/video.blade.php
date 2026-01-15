@@ -1,3 +1,13 @@
+{{--
+@component x-plume::video
+@prop {mixed} src - Default: required
+@prop {null} poster - Default: null
+@prop {boolean} autoplay - Default: false
+@prop {boolean} controls - Default: true
+@prop {boolean} loop - Default: false
+@prop {boolean} muted - Default: false
+@prop {string} aspect - Default: video
+--}}
 @props([
     'src',
     'poster' => null,

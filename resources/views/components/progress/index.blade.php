@@ -1,3 +1,12 @@
+{{--
+@component x-plume::progress
+@prop {number} value - Default: 0
+@prop {number} max - Default: 100
+@prop {string} style - Default: default
+@prop {null} title - Default: null
+@prop {null} model - Default: null
+@prop {string} display - Default: percentage
+--}}
 @props([
     'value' => 0,
     'max' => 100,

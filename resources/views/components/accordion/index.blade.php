@@ -1,3 +1,7 @@
+{{--
+@component x-plume::accordion
+@prop {boolean} alwaysOpen - Default: false
+--}}
 @props([
     'alwaysOpen' => false,
 ])

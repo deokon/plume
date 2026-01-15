@@ -1,0 +1,1236 @@
+{
+  "name": "Plume UI",
+  "namespace": "x-plume",
+  "components": {
+    "x-plume::empty-state": {
+      "path": "plume/resources/views/components/empty-state.blade.php",
+      "props": {
+        "title": {
+          "default": "No results found",
+          "type": "string"
+        },
+        "description": {
+          "default": "Nothing found here.",
+          "type": "string"
+        }
+      }
+    },
+    "x-plume::spacer": {
+      "path": "plume/resources/views/components/spacer.blade.php",
+      "props": {}
+    },
+    "x-plume::spinner": {
+      "path": "plume/resources/views/components/spinner.blade.php",
+      "props": {
+        "size": {
+          "default": "md",
+          "type": "string"
+        },
+        "style": {
+          "default": "default",
+          "type": "string"
+        }
+      }
+    },
+    "x-plume::badge": {
+      "path": "plume/resources/views/components/badge.blade.php",
+      "props": {
+        "style": {
+          "default": "default",
+          "type": "string"
+        }
+      }
+    },
+    "x-plume::toaster": {
+      "path": "plume/resources/views/components/toaster.blade.php",
+      "props": {}
+    },
+    "x-plume::gallery": {
+      "path": "plume/resources/views/components/gallery.blade.php",
+      "props": {
+        "cols": {
+          "default": "3",
+          "type": "number"
+        },
+        "gap": {
+          "default": "4",
+          "type": "number"
+        }
+      }
+    },
+    "x-plume::code": {
+      "path": "plume/resources/views/components/code.blade.php",
+      "props": {
+        "language": {
+          "default": "null",
+          "type": "null"
+        },
+        "title": {
+          "default": "null",
+          "type": "null"
+        },
+        "code": {
+          "default": "null",
+          "type": "null"
+        }
+      }
+    },
+    "x-plume::icon": {
+      "path": "plume/resources/views/components/icon.blade.php",
+      "props": {
+        "i": {
+          "default": "required",
+          "type": "mixed"
+        }
+      }
+    },
+    "x-plume::video": {
+      "path": "plume/resources/views/components/video.blade.php",
+      "props": {
+        "src": {
+          "default": "required",
+          "type": "mixed"
+        },
+        "poster": {
+          "default": "null",
+          "type": "null"
+        },
+        "autoplay": {
+          "default": "false",
+          "type": "boolean"
+        },
+        "controls": {
+          "default": "true",
+          "type": "boolean"
+        },
+        "loop": {
+          "default": "false",
+          "type": "boolean"
+        },
+        "muted": {
+          "default": "false",
+          "type": "boolean"
+        },
+        "aspect": {
+          "default": "video",
+          "type": "string"
+        }
+      }
+    },
+    "x-plume::figure": {
+      "path": "plume/resources/views/components/figure.blade.php",
+      "props": {
+        "src": {
+          "default": "required",
+          "type": "mixed"
+        },
+        "alt": {
+          "default": "",
+          "type": "string"
+        },
+        "caption": {
+          "default": "null",
+          "type": "null"
+        },
+        "aspect": {
+          "default": "null",
+          "type": "null"
+        }
+      }
+    },
+    "x-plume::pagination": {
+      "path": "plume/resources/views/components/pagination.blade.php",
+      "props": {
+        "total": {
+          "default": "1",
+          "type": "number"
+        },
+        "current": {
+          "default": "1",
+          "type": "number"
+        }
+      }
+    },
+    "x-plume::avatar": {
+      "path": "plume/resources/views/components/avatar.blade.php",
+      "props": {
+        "src": {
+          "default": "null",
+          "type": "null"
+        },
+        "alt": {
+          "default": "",
+          "type": "string"
+        },
+        "fallback": {
+          "default": "",
+          "type": "string"
+        },
+        "size": {
+          "default": "md",
+          "type": "string"
+        }
+      }
+    },
+    "x-plume::audio": {
+      "path": "plume/resources/views/components/audio.blade.php",
+      "props": {
+        "src": {
+          "default": "required",
+          "type": "mixed"
+        },
+        "autoplay": {
+          "default": "false",
+          "type": "boolean"
+        },
+        "controls": {
+          "default": "true",
+          "type": "boolean"
+        },
+        "loop": {
+          "default": "false",
+          "type": "boolean"
+        },
+        "muted": {
+          "default": "false",
+          "type": "boolean"
+        }
+      }
+    },
+    "x-plume::divider": {
+      "path": "plume/resources/views/components/divider.blade.php",
+      "props": {
+        "label": {
+          "default": "null",
+          "type": "null"
+        }
+      }
+    },
+    "x-plume::aspect": {
+      "path": "plume/resources/views/components/aspect.blade.php",
+      "props": {
+        "ratio": {
+          "default": "video",
+          "type": "string"
+        }
+      }
+    },
+    "x-plume::tooltip": {
+      "path": "plume/resources/views/components/tooltip.blade.php",
+      "props": {
+        "text": {
+          "default": "required",
+          "type": "mixed"
+        },
+        "position": {
+          "default": "top",
+          "type": "string"
+        }
+      }
+    },
+    "x-plume::skeleton": {
+      "path": "plume/resources/views/components/skeleton.blade.php",
+      "props": {}
+    },
+    "x-plume::button-group": {
+      "path": "plume/resources/views/components/button-group.blade.php",
+      "props": {
+        "size": {
+          "default": "md",
+          "type": "string"
+        },
+        "stack": {
+          "default": "true",
+          "type": "boolean"
+        }
+      }
+    },
+    "x-plume::alert": {
+      "path": "plume/resources/views/components/alert.blade.php",
+      "props": {
+        "icon": {
+          "default": "null",
+          "type": "null"
+        },
+        "style": {
+          "default": "info",
+          "type": "string"
+        },
+        "closable": {
+          "default": "false",
+          "type": "boolean"
+        },
+        "autoclose": {
+          "default": "null",
+          "type": "null"
+        },
+        "title": {
+          "default": "null",
+          "type": "null"
+        }
+      }
+    },
+    "x-plume::logo": {
+      "path": "plume/resources/views/components/logo/index.blade.php",
+      "props": {
+        "size": {
+          "default": "size-6",
+          "type": "string"
+        }
+      }
+    },
+    "x-plume::command": {
+      "path": "plume/resources/views/components/command/index.blade.php",
+      "props": {
+        "placeholder": {
+          "default": "Type a command or search...",
+          "type": "string"
+        },
+        "id": {
+          "default": "\\Illuminate\\Support\\Str::random(8)",
+          "type": "string"
+        }
+      }
+    },
+    "x-plume::command.group": {
+      "path": "plume/resources/views/components/command/group.blade.php",
+      "props": {
+        "title": {
+          "default": "null",
+          "type": "null"
+        }
+      }
+    },
+    "x-plume::command.item": {
+      "path": "plume/resources/views/components/command/item.blade.php",
+      "props": {
+        "icon": {
+          "default": "null",
+          "type": "null"
+        },
+        "shortcut": {
+          "default": "null",
+          "type": "null"
+        }
+      }
+    },
+    "x-plume::card": {
+      "path": "plume/resources/views/components/card/index.blade.php",
+      "props": {}
+    },
+    "x-plume::card.title": {
+      "path": "plume/resources/views/components/card/title.blade.php",
+      "props": {}
+    },
+    "x-plume::card.content": {
+      "path": "plume/resources/views/components/card/content.blade.php",
+      "props": {}
+    },
+    "x-plume::card.header": {
+      "path": "plume/resources/views/components/card/header.blade.php",
+      "props": {}
+    },
+    "x-plume::card.description": {
+      "path": "plume/resources/views/components/card/description.blade.php",
+      "props": {}
+    },
+    "x-plume::card.footer": {
+      "path": "plume/resources/views/components/card/footer.blade.php",
+      "props": {}
+    },
+    "x-plume::tabs": {
+      "path": "plume/resources/views/components/tabs/index.blade.php",
+      "props": {
+        "default": {
+          "default": "1",
+          "type": "number"
+        },
+        "side": {
+          "default": "top",
+          "type": "string"
+        }
+      }
+    },
+    "x-plume::tabs.group": {
+      "path": "plume/resources/views/components/tabs/group.blade.php",
+      "props": {}
+    },
+    "x-plume::tabs.item": {
+      "path": "plume/resources/views/components/tabs/item.blade.php",
+      "props": {
+        "for": {
+          "default": "1",
+          "type": "number"
+        }
+      }
+    },
+    "x-plume::tabs.panel": {
+      "path": "plume/resources/views/components/tabs/panel.blade.php",
+      "props": {
+        "for": {
+          "default": "1",
+          "type": "number"
+        }
+      }
+    },
+    "x-plume::dropdown": {
+      "path": "plume/resources/views/components/dropdown/index.blade.php",
+      "props": {
+        "align": {
+          "default": "right",
+          "type": "string"
+        },
+        "width": {
+          "default": "48",
+          "type": "number"
+        },
+        "contentClasses": {
+          "default": "py-1 bg-background dark:bg-background-800",
+          "type": "string"
+        }
+      }
+    },
+    "x-plume::dropdown.item": {
+      "path": "plume/resources/views/components/dropdown/item.blade.php",
+      "props": {}
+    },
+    "x-plume::dropdown.separator": {
+      "path": "plume/resources/views/components/dropdown/separator.blade.php",
+      "props": {}
+    },
+    "x-plume::search": {
+      "path": "plume/resources/views/components/search/index.blade.php",
+      "props": {
+        "placeholder": {
+          "default": "Search...",
+          "type": "string"
+        },
+        "model": {
+          "default": "null",
+          "type": "null"
+        }
+      }
+    },
+    "x-plume::search.result": {
+      "path": "plume/resources/views/components/search/result.blade.php",
+      "props": {
+        "href": {
+          "default": "#",
+          "type": "string"
+        },
+        "icon": {
+          "default": "null",
+          "type": "null"
+        },
+        "title": {
+          "default": "required",
+          "type": "mixed"
+        }
+      }
+    },
+    "x-plume::stepper": {
+      "path": "plume/resources/views/components/stepper/index.blade.php",
+      "props": {
+        "active": {
+          "default": "1",
+          "type": "number"
+        }
+      }
+    },
+    "x-plume::stepper.step": {
+      "path": "plume/resources/views/components/stepper/step.blade.php",
+      "props": {
+        "step": {
+          "default": "required",
+          "type": "mixed"
+        },
+        "title": {
+          "default": "required",
+          "type": "mixed"
+        },
+        "description": {
+          "default": "null",
+          "type": "null"
+        }
+      }
+    },
+    "x-plume::drawer": {
+      "path": "plume/resources/views/components/drawer/index.blade.php",
+      "props": {
+        "name": {
+          "default": "required",
+          "type": "mixed"
+        },
+        "show": {
+          "default": "false",
+          "type": "boolean"
+        },
+        "side": {
+          "default": "right",
+          "type": "string"
+        }
+      }
+    },
+    "x-plume::drawer.title": {
+      "path": "plume/resources/views/components/drawer/title.blade.php",
+      "props": {}
+    },
+    "x-plume::drawer.content": {
+      "path": "plume/resources/views/components/drawer/content.blade.php",
+      "props": {}
+    },
+    "x-plume::drawer.header": {
+      "path": "plume/resources/views/components/drawer/header.blade.php",
+      "props": {}
+    },
+    "x-plume::drawer.description": {
+      "path": "plume/resources/views/components/drawer/description.blade.php",
+      "props": {}
+    },
+    "x-plume::drawer.footer": {
+      "path": "plume/resources/views/components/drawer/footer.blade.php",
+      "props": {}
+    },
+    "x-plume::breadcrumb": {
+      "path": "plume/resources/views/components/breadcrumb/index.blade.php",
+      "props": {}
+    },
+    "x-plume::breadcrumb.item": {
+      "path": "plume/resources/views/components/breadcrumb/item.blade.php",
+      "props": {
+        "href": {
+          "default": "null",
+          "type": "null"
+        },
+        "active": {
+          "default": "false",
+          "type": "boolean"
+        }
+      }
+    },
+    "x-plume::breadcrumb.separator": {
+      "path": "plume/resources/views/components/breadcrumb/separator.blade.php",
+      "props": {}
+    },
+    "x-plume::modal": {
+      "path": "plume/resources/views/components/modal/index.blade.php",
+      "props": {
+        "name": {
+          "default": "required",
+          "type": "mixed"
+        },
+        "show": {
+          "default": "false",
+          "type": "boolean"
+        },
+        "maxWidth": {
+          "default": "2xl",
+          "type": "string"
+        }
+      }
+    },
+    "x-plume::modal.title": {
+      "path": "plume/resources/views/components/modal/title.blade.php",
+      "props": {}
+    },
+    "x-plume::modal.content": {
+      "path": "plume/resources/views/components/modal/content.blade.php",
+      "props": {}
+    },
+    "x-plume::modal.header": {
+      "path": "plume/resources/views/components/modal/header.blade.php",
+      "props": {}
+    },
+    "x-plume::modal.description": {
+      "path": "plume/resources/views/components/modal/description.blade.php",
+      "props": {}
+    },
+    "x-plume::modal.footer": {
+      "path": "plume/resources/views/components/modal/footer.blade.php",
+      "props": {}
+    },
+    "x-plume::table": {
+      "path": "plume/resources/views/components/table/index.blade.php",
+      "props": {
+        "striped": {
+          "default": "false",
+          "type": "boolean"
+        }
+      }
+    },
+    "x-plume::table.head": {
+      "path": "plume/resources/views/components/table/head.blade.php",
+      "props": {}
+    },
+    "x-plume::table.header": {
+      "path": "plume/resources/views/components/table/header.blade.php",
+      "props": {}
+    },
+    "x-plume::table.row": {
+      "path": "plume/resources/views/components/table/row.blade.php",
+      "props": {}
+    },
+    "x-plume::table.body": {
+      "path": "plume/resources/views/components/table/body.blade.php",
+      "props": {}
+    },
+    "x-plume::table.cell": {
+      "path": "plume/resources/views/components/table/cell.blade.php",
+      "props": {}
+    },
+    "x-plume::form": {
+      "path": "plume/resources/views/components/form/index.blade.php",
+      "props": {
+        "action": {
+          "default": "",
+          "type": "string"
+        },
+        "method": {
+          "default": "POST",
+          "type": "string"
+        },
+        "formData": {
+          "default": "null",
+          "type": "null"
+        }
+      }
+    },
+    "x-plume::form.combobox": {
+      "path": "plume/resources/views/components/form/combobox.blade.php",
+      "props": {
+        "label": {
+          "default": "null",
+          "type": "null"
+        },
+        "model": {
+          "default": "null",
+          "type": "null"
+        },
+        "placeholder": {
+          "default": "Select an option...",
+          "type": "string"
+        },
+        "options": {
+          "default": "[]",
+          "type": "string"
+        }
+      }
+    },
+    "x-plume::form.time": {
+      "path": "plume/resources/views/components/form/time.blade.php",
+      "props": {
+        "label": {
+          "default": "null",
+          "type": "null"
+        },
+        "name": {
+          "default": "null",
+          "type": "null"
+        },
+        "id": {
+          "default": "null",
+          "type": "null"
+        },
+        "model": {
+          "default": "null",
+          "type": "null"
+        },
+        "value": {
+          "default": "",
+          "type": "string"
+        }
+      }
+    },
+    "x-plume::form.toggle": {
+      "path": "plume/resources/views/components/form/toggle.blade.php",
+      "props": {
+        "label": {
+          "default": "null",
+          "type": "null"
+        },
+        "name": {
+          "default": "null",
+          "type": "null"
+        },
+        "id": {
+          "default": "null",
+          "type": "null"
+        },
+        "model": {
+          "default": "null",
+          "type": "null"
+        },
+        "value": {
+          "default": "1",
+          "type": "number"
+        },
+        "checked": {
+          "default": "false",
+          "type": "boolean"
+        }
+      }
+    },
+    "x-plume::form.date": {
+      "path": "plume/resources/views/components/form/date.blade.php",
+      "props": {
+        "label": {
+          "default": "null",
+          "type": "null"
+        },
+        "name": {
+          "default": "null",
+          "type": "null"
+        },
+        "id": {
+          "default": "null",
+          "type": "null"
+        },
+        "model": {
+          "default": "null",
+          "type": "null"
+        },
+        "value": {
+          "default": "",
+          "type": "string"
+        }
+      }
+    },
+    "x-plume::form.password": {
+      "path": "plume/resources/views/components/form/password.blade.php",
+      "props": {
+        "label": {
+          "default": "null",
+          "type": "null"
+        },
+        "name": {
+          "default": "null",
+          "type": "null"
+        },
+        "id": {
+          "default": "null",
+          "type": "null"
+        },
+        "model": {
+          "default": "null",
+          "type": "null"
+        },
+        "after": {
+          "default": "null",
+          "type": "null"
+        }
+      }
+    },
+    "x-plume::form.select": {
+      "path": "plume/resources/views/components/form/select.blade.php",
+      "props": {
+        "label": {
+          "default": "null",
+          "type": "null"
+        },
+        "name": {
+          "default": "null",
+          "type": "null"
+        },
+        "id": {
+          "default": "null",
+          "type": "null"
+        },
+        "model": {
+          "default": "null",
+          "type": "null"
+        },
+        "after": {
+          "default": "null",
+          "type": "null"
+        }
+      }
+    },
+    "x-plume::form.input": {
+      "path": "plume/resources/views/components/form/input.blade.php",
+      "props": {
+        "label": {
+          "default": "null",
+          "type": "null"
+        },
+        "name": {
+          "default": "null",
+          "type": "null"
+        },
+        "id": {
+          "default": "null",
+          "type": "null"
+        },
+        "type": {
+          "default": "text",
+          "type": "string"
+        },
+        "model": {
+          "default": "null",
+          "type": "null"
+        },
+        "value": {
+          "default": "",
+          "type": "string"
+        },
+        "placeholder": {
+          "default": "",
+          "type": "string"
+        },
+        "icon": {
+          "default": "null",
+          "type": "null"
+        },
+        "after": {
+          "default": "null",
+          "type": "null"
+        }
+      }
+    },
+    "x-plume::form.number": {
+      "path": "plume/resources/views/components/form/number.blade.php",
+      "props": {
+        "label": {
+          "default": "null",
+          "type": "null"
+        },
+        "name": {
+          "default": "null",
+          "type": "null"
+        },
+        "id": {
+          "default": "null",
+          "type": "null"
+        },
+        "model": {
+          "default": "null",
+          "type": "null"
+        },
+        "value": {
+          "default": "0",
+          "type": "number"
+        },
+        "min": {
+          "default": "0",
+          "type": "number"
+        },
+        "max": {
+          "default": "100",
+          "type": "number"
+        },
+        "step": {
+          "default": "1",
+          "type": "number"
+        },
+        "after": {
+          "default": "null",
+          "type": "null"
+        }
+      }
+    },
+    "x-plume::form.textarea": {
+      "path": "plume/resources/views/components/form/textarea.blade.php",
+      "props": {
+        "label": {
+          "default": "null",
+          "type": "null"
+        },
+        "name": {
+          "default": "null",
+          "type": "null"
+        },
+        "id": {
+          "default": "null",
+          "type": "null"
+        },
+        "rows": {
+          "default": "3",
+          "type": "number"
+        },
+        "model": {
+          "default": "null",
+          "type": "null"
+        },
+        "placeholder": {
+          "default": "",
+          "type": "string"
+        },
+        "after": {
+          "default": "null",
+          "type": "null"
+        }
+      }
+    },
+    "x-plume::form.radio": {
+      "path": "plume/resources/views/components/form/radio.blade.php",
+      "props": {
+        "label": {
+          "default": "null",
+          "type": "null"
+        },
+        "id": {
+          "default": "null",
+          "type": "null"
+        },
+        "value": {
+          "default": "",
+          "type": "string"
+        }
+      }
+    },
+    "x-plume::form.group": {
+      "path": "plume/resources/views/components/form/group.blade.php",
+      "props": {
+        "label": {
+          "default": "null",
+          "type": "null"
+        },
+        "description": {
+          "default": "",
+          "type": "string"
+        },
+        "name": {
+          "default": "null",
+          "type": "null"
+        },
+        "model": {
+          "default": "null",
+          "type": "null"
+        },
+        "minCols": {
+          "default": "1",
+          "type": "number"
+        },
+        "maxCols": {
+          "default": "null",
+          "type": "null"
+        }
+      }
+    },
+    "x-plume::form.range": {
+      "path": "plume/resources/views/components/form/range.blade.php",
+      "props": {
+        "label": {
+          "default": "null",
+          "type": "null"
+        },
+        "name": {
+          "default": "null",
+          "type": "null"
+        },
+        "id": {
+          "default": "null",
+          "type": "null"
+        },
+        "model": {
+          "default": "null",
+          "type": "null"
+        },
+        "min": {
+          "default": "0",
+          "type": "number"
+        },
+        "max": {
+          "default": "100",
+          "type": "number"
+        },
+        "step": {
+          "default": "1",
+          "type": "number"
+        },
+        "value": {
+          "default": "null",
+          "type": "null"
+        }
+      }
+    },
+    "x-plume::form.section": {
+      "path": "plume/resources/views/components/form/section.blade.php",
+      "props": {
+        "title": {
+          "default": "null",
+          "type": "null"
+        },
+        "description": {
+          "default": "null",
+          "type": "null"
+        },
+        "minCols": {
+          "default": "1",
+          "type": "number"
+        },
+        "maxCols": {
+          "default": "null",
+          "type": "null"
+        }
+      }
+    },
+    "x-plume::form.file": {
+      "path": "plume/resources/views/components/form/file.blade.php",
+      "props": {
+        "label": {
+          "default": "null",
+          "type": "null"
+        },
+        "name": {
+          "default": "null",
+          "type": "null"
+        },
+        "id": {
+          "default": "null",
+          "type": "null"
+        },
+        "model": {
+          "default": "null",
+          "type": "null"
+        },
+        "helpText": {
+          "default": "PNG",
+          "type": "string"
+        }
+      }
+    },
+    "x-plume::form.checkbox": {
+      "path": "plume/resources/views/components/form/checkbox.blade.php",
+      "props": {
+        "label": {
+          "default": "null",
+          "type": "null"
+        },
+        "id": {
+          "default": "null",
+          "type": "null"
+        },
+        "value": {
+          "default": "",
+          "type": "string"
+        }
+      }
+    },
+    "x-plume::form.element": {
+      "path": "plume/resources/views/components/form/element.blade.php",
+      "props": {
+        "label": {
+          "default": "",
+          "type": "string"
+        },
+        "name": {
+          "default": "null",
+          "type": "null"
+        },
+        "id": {
+          "default": "null",
+          "type": "null"
+        },
+        "model": {
+          "default": "null",
+          "type": "null"
+        },
+        "after": {
+          "default": "null",
+          "type": "null"
+        }
+      }
+    },
+    "x-plume::form.actions": {
+      "path": "plume/resources/views/components/form/actions.blade.php",
+      "props": {}
+    },
+    "x-plume::form.color": {
+      "path": "plume/resources/views/components/form/color.blade.php",
+      "props": {
+        "label": {
+          "default": "null",
+          "type": "null"
+        },
+        "name": {
+          "default": "null",
+          "type": "null"
+        },
+        "id": {
+          "default": "null",
+          "type": "null"
+        },
+        "model": {
+          "default": "null",
+          "type": "null"
+        },
+        "value": {
+          "default": "#000000",
+          "type": "string"
+        }
+      }
+    },
+    "x-plume::form.inline": {
+      "path": "plume/resources/views/components/form/inline.blade.php",
+      "props": {}
+    },
+    "x-plume::form.datetime": {
+      "path": "plume/resources/views/components/form/datetime.blade.php",
+      "props": {
+        "label": {
+          "default": "null",
+          "type": "null"
+        },
+        "name": {
+          "default": "null",
+          "type": "null"
+        },
+        "id": {
+          "default": "null",
+          "type": "null"
+        },
+        "model": {
+          "default": "null",
+          "type": "null"
+        },
+        "value": {
+          "default": "",
+          "type": "string"
+        }
+      }
+    },
+    "x-plume::progress": {
+      "path": "plume/resources/views/components/progress/index.blade.php",
+      "props": {
+        "value": {
+          "default": "0",
+          "type": "number"
+        },
+        "max": {
+          "default": "100",
+          "type": "number"
+        },
+        "style": {
+          "default": "default",
+          "type": "string"
+        },
+        "title": {
+          "default": "null",
+          "type": "null"
+        },
+        "model": {
+          "default": "null",
+          "type": "null"
+        },
+        "display": {
+          "default": "percentage",
+          "type": "string"
+        }
+      }
+    },
+    "x-plume::progress.percent": {
+      "path": "plume/resources/views/components/progress/percent.blade.php",
+      "props": {
+        "value": {
+          "default": "0",
+          "type": "number"
+        },
+        "title": {
+          "default": "null",
+          "type": "null"
+        },
+        "model": {
+          "default": "null",
+          "type": "null"
+        },
+        "style": {
+          "default": "default",
+          "type": "string"
+        }
+      }
+    },
+    "x-plume::accordion": {
+      "path": "plume/resources/views/components/accordion/index.blade.php",
+      "props": {
+        "alwaysOpen": {
+          "default": "false",
+          "type": "boolean"
+        }
+      }
+    },
+    "x-plume::accordion.item": {
+      "path": "plume/resources/views/components/accordion/item.blade.php",
+      "props": {
+        "title": {
+          "default": "required",
+          "type": "mixed"
+        },
+        "id": {
+          "default": "\\Illuminate\\Support\\Str::random(8)",
+          "type": "string"
+        },
+        "open": {
+          "default": "false",
+          "type": "boolean"
+        }
+      }
+    },
+    "x-plume::button": {
+      "path": "plume/resources/views/components/button/index.blade.php",
+      "props": {
+        "href": {
+          "default": "null",
+          "type": "null"
+        },
+        "icon": {
+          "default": "null",
+          "type": "null"
+        },
+        "fullWidth": {
+          "default": "false",
+          "type": "boolean"
+        }
+      }
+    },
+    "x-plume::button.loader": {
+      "path": "plume/resources/views/components/button/loader.blade.php",
+      "props": {
+        "var": {
+          "default": "required",
+          "type": "mixed"
+        },
+        "size": {
+          "default": "md",
+          "type": "string"
+        },
+        "style": {
+          "default": "null",
+          "type": "null"
+        }
+      }
+    },
+    "x-plume::button.toggle": {
+      "path": "plume/resources/views/components/button/toggle.blade.php",
+      "props": {
+        "var": {
+          "default": "required",
+          "type": "mixed"
+        },
+        "size": {
+          "default": "md",
+          "type": "string"
+        },
+        "style": {
+          "default": "null",
+          "type": "null"
+        },
+        "offStyle": {
+          "default": "null",
+          "type": "null"
+        },
+        "on": {
+          "default": "null",
+          "type": "null"
+        },
+        "off": {
+          "default": "null",
+          "type": "null"
+        },
+        "click": {
+          "default": "null",
+          "type": "null"
+        }
+      }
+    }
+  }
+}

@@ -1,3 +1,7 @@
+{{--
+@component x-plume::aspect
+@prop {string} ratio - Default: video
+--}}
 @props([
     'ratio' => 'video',
 ])

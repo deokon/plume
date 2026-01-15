@@ -1,3 +1,9 @@
+{{--
+@component x-plume::button
+@prop {null} href - Default: null
+@prop {null} icon - Default: null
+@prop {boolean} fullWidth - Default: false
+--}}
 @props([
     'href' => null,
     'icon' => null,

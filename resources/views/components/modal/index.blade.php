@@ -1,3 +1,9 @@
+{{--
+@component x-plume::modal
+@prop {mixed} name - Default: required
+@prop {boolean} show - Default: false
+@prop {string} maxWidth - Default: 2xl
+--}}
 @props([
     'name',
     'show' => false,

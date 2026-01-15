@@ -1,3 +1,7 @@
+{{--
+@component x-plume::table
+@prop {boolean} striped - Default: false
+--}}
 @props([
     'striped' => false,
 ])

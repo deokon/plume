@@ -1,3 +1,9 @@
+{{--
+@component x-plume::form.checkbox
+@prop {null} label - Default: null
+@prop {null} id - Default: null
+@prop {string} value - Default: 
+--}}
 @props([
     'label' => null,
     'id' => null,

@@ -1,3 +1,7 @@
+{{--
+@component x-plume::icon
+@prop {mixed} i - Default: required
+--}}
 @props([
     'i',
 ])

@@ -1,3 +1,8 @@
+{{--
+@component x-plume::command.item
+@prop {null} icon - Default: null
+@prop {null} shortcut - Default: null
+--}}
 @props([
     'icon' => null,
     'shortcut' => null,

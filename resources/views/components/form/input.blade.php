@@ -1,3 +1,15 @@
+{{--
+@component x-plume::form.input
+@prop {null} label - Default: null
+@prop {null} name - Default: null
+@prop {null} id - Default: null
+@prop {string} type - Default: text
+@prop {null} model - Default: null
+@prop {string} value - Default: 
+@prop {string} placeholder - Default: 
+@prop {null} icon - Default: null
+@prop {null} after - Default: null
+--}}
 @props([
     'label' => null,
     'name' => null,

@@ -1,3 +1,6 @@
+{{--
+@component x-plume::tabs.group
+--}}
 @aware([
     'side' => 'top',
 ])

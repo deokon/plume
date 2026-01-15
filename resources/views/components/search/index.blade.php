@@ -1,3 +1,8 @@
+{{--
+@component x-plume::search
+@prop {string} placeholder - Default: Search...
+@prop {null} model - Default: null
+--}}
 @props([
     'placeholder' => 'Search...',
     'model' => null,

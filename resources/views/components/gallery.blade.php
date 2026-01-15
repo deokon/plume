@@ -1,3 +1,8 @@
+{{--
+@component x-plume::gallery
+@prop {number} cols - Default: 3
+@prop {number} gap - Default: 4
+--}}
 @props([
     'cols' => 3,
     'gap' => 4,

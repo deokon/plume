@@ -1,3 +1,9 @@
+{{--
+@component x-plume::code
+@prop {null} language - Default: null
+@prop {null} title - Default: null
+@prop {null} code - Default: null
+--}}
 @props([
     'language' => null,
     'title' => null,

@@ -1,3 +1,7 @@
+{{--
+@component x-plume::stepper
+@prop {number} active - Default: 1
+--}}
 @props([
     'active' => 1,
 ])

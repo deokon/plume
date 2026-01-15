@@ -1,3 +1,7 @@
+{{--
+@component x-plume::badge
+@prop {string} style - Default: default
+--}}
 @props([
     'style' => 'default',
 ])

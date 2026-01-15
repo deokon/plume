@@ -1,3 +1,13 @@
+{{--
+@component x-plume::button.toggle
+@prop {mixed} var - Default: required
+@prop {string} size - Default: md
+@prop {null} style - Default: null
+@prop {null} offStyle - Default: null
+@prop {null} on - Default: null
+@prop {null} off - Default: null
+@prop {null} click - Default: null
+--}}
 @props([
     'var',
     'size' => 'md',

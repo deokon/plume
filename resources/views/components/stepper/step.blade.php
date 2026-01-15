@@ -1,3 +1,9 @@
+{{--
+@component x-plume::stepper.step
+@prop {mixed} step - Default: required
+@prop {mixed} title - Default: required
+@prop {null} description - Default: null
+--}}
 @props([
     'step',
     'title',

@@ -1,3 +1,9 @@
+{{--
+@component x-plume::form
+@prop {string} action - Default: 
+@prop {string} method - Default: POST
+@prop {null} formData - Default: null
+--}}
 @props([
     'action' => '',
     'method' => 'POST',

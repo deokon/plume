@@ -1,3 +1,8 @@
+{{--
+@component x-plume::tabs
+@prop {number} default - Default: 1
+@prop {string} side - Default: top
+--}}
 @props([
     'default' => '1',
     'side' => 'top',
