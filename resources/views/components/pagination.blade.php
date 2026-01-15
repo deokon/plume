@@ -43,8 +43,10 @@
         onEachSide: {{ $onEachSide }},
         init() {
             const sync = () => {
-                this.total = parseInt(this.$el.getAttribute('total')) || this.total;
-                this.current = parseInt(this.$el.getAttribute('current')) || this.current;
+                const t = parseInt(this.$el.getAttribute('total'));
+                const c = parseInt(this.$el.getAttribute('current'));
+                if (!isNaN(t)) this.total = t;
+                if (!isNaN(c)) this.current = c;
             };
             
             const observer = new MutationObserver(sync);
@@ -66,14 +68,15 @@
         prev() { if (this.current > 1) this.dispatch(this.current - 1) },
         dispatch(page) {
             if (page === '...') return;
+            this.current = page;
             this.$dispatch('change', { page: page });
         }
     }"
     {{ $attributes->merge(['class' => 'flex items-center justify-center gap-1']) }} 
     aria-label="Pagination"
     @if(!$isStatic)
-        total="{{ $total }}"
-        current="{{ $current }}"
+        :total="{{ $total }}"
+        :current="{{ $current }}"
     @endif
 >
     {{-- Previous Page --}}
@@ -122,9 +125,9 @@
                             style="ghost"
                             size="sm"
                             @click="dispatch(page)"
-                            ::class="page === current ? 'bg-primary text-primary-foreground hover:bg-primary-800' : ''"
+                            ::class="page == current ? 'bg-primary text-primary-foreground hover:bg-primary-800' : ''"
                             ::aria-label="'Page ' + page"
-                            ::aria-current="page === current ? 'page' : 'false'"
+                            ::aria-current="page == current ? 'page' : 'false'"
                         >
                             <span x-text="page"></span>
                         </x-plume::button>
