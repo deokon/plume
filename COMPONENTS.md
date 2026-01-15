@@ -174,17 +174,27 @@ No props defined.
 ---
 
 ## x-plume::pagination
-Displays a sequence of links for navigating through a series of related pages.
+Displays a sequence of links for navigating through a series of related pages. Powered by AlpineJS for high reactivity.
 
 Documentation: [https://plume.dennisokon.com/docs/pagination](https://plume.dennisokon.com/docs/pagination)
 
 Path: `plume/resources/views/components/pagination.blade.php`
 
-No props defined.
+### Properties
+- `total` (number): Total number of pages.
+- `current` (number): The current active page.
+- `onEachSide` (number): How many pages to show on each side of the current page. Default: `1`.
+
+### Events
+- `change`: Fired when a page is clicked. Detail: `{ page: number }`.
 
 ### Usage
 ```blade
-&lt;x-plume::pagination :total="10" :current="1" /&gt;
+&lt;x-plume::pagination 
+    :total="10" 
+    :current="1" 
+    @change="console.log($event.detail.page)"
+/&gt;
 ```
 
 ---
@@ -196,7 +206,12 @@ Documentation: [https://plume.dennisokon.com/docs/avatar](https://plume.dennisok
 
 Path: `plume/resources/views/components/avatar.blade.php`
 
-No props defined.
+### Properties
+- `src` (string): Image source URL.
+- `alt` (string): Alt text for the image.
+- `fallback` (string): Initials or text to show if image fails.
+- `size` (string): Options: `xs` (16px), `sm` (24px), `md` (32px), `lg` (40px), `xl` (48px). Default: `md`.
+- `status` (string): Presence indicator. Options: `online`, `away`, `busy`, `offline`.
 
 ### Usage
 ```blade
@@ -205,6 +220,7 @@ No props defined.
     alt="@shadcn" 
     fallback="CN" 
     size="lg" 
+    status="online"
 /&gt;
 ```
 
@@ -598,24 +614,49 @@ Documentation: [https://plume.dennisokon.com/docs/stepper](https://plume.denniso
 
 Path: `plume/resources/views/components/stepper/index.blade.php`
 
-No props defined.
+### Properties
+- `active` (number): The current active step number. Default: `1`.
 
 ### Usage
 ```blade
 &lt;x-plume::stepper active="1"&gt;
-    &lt;x-plume::stepper.step step="1" title="First" /&gt;
-    &lt;x-plume::stepper.step step="2" title="Second" /&gt;
+    &lt;x-plume::stepper.step step="1" title="Profile" next="Continue"&gt;
+        Content...
+    &lt;/x-plume::stepper.step&gt;
+    &lt;x-plume::stepper.step step="2" title="Review" prev="Back"&gt;
+        Content...
+    &lt;/x-plume::stepper.step&gt;
 &lt;/x-plume::stepper&gt;
 ```
 
 ---
 
 ## x-plume::stepper.step
-Documentation: [https://plume.dennisokon.com/docs/stepper-step](https://plume.dennisokon.com/docs/stepper-step)
+Individual step within a stepper.
 
 Path: `plume/resources/views/components/stepper/step.blade.php`
 
-No props defined.
+### Properties
+- `step` (number): **Required**. The index of this step.
+- `title` (string): **Required**. Step label.
+- `description` (string): Optional helper text.
+- `prev` (string|bool): Label for the previous button.
+- `next` (string|bool): Label for the next button.
+
+### Slots
+- `default`: Main content for the step. Shown when active or completed.
+- `actions`: Custom action layout override.
+
+---
+
+## x-plume::stepper.actions
+Standard actions layout for stepper components.
+
+Path: `plume/resources/views/components/stepper/actions.blade.php`
+
+### Properties
+- `prev` (string|bool): Label for the previous button.
+- `next` (string|bool): Label for the next button.
 
 ---
 
@@ -776,11 +817,14 @@ Documentation: [https://plume.dennisokon.com/docs/table](https://plume.dennisoko
 
 Path: `plume/resources/views/components/table/index.blade.php`
 
-No props defined.
+### Properties
+- `striped` (boolean): Alternate row colors. Default: `false`.
+- `hoverable` (boolean): Highlight rows on hover. Default: `false`.
+- `density` (string): Options: `compact`, `default`, `loose`. Default: `default`.
 
 ### Usage
 ```blade
-&lt;x-plume::table striped&gt;
+&lt;x-plume::table striped hoverable density="compact"&gt;
     &lt;x-plume::table.header&gt;
         &lt;x-plume::table.row&gt;
             &lt;x-plume::table.head&gt;Header&lt;/x-plume::table.head&gt;
@@ -792,6 +836,36 @@ No props defined.
         &lt;/x-plume::table.row&gt;
     &lt;/x-plume::table.body&gt;
 &lt;/x-plume::table&gt;
+```
+
+---
+
+## x-plume::data-table
+Advanced table with built-in sorting, filtering, and pagination powered by AlpineJS.
+
+Documentation: [https://plume.dennisokon.com/docs/data-table](https://plume.dennisokon.com/docs/data-table)
+
+Path: `plume/resources/views/components/data-table/index.blade.php`
+
+### Properties
+- `data` (array|string): PHP array or JSON string of objects.
+- `columns` (array|string): PHP array or JSON string of column definitions (`key`, `label`, `sortable`, `headerClass`, `cellClass`).
+- `searchable` (boolean): Enable search filter. Default: `false`.
+- `paginated` (boolean): Enable client-side pagination. Default: `false`.
+- `per-page` (number): Items per page. Default: `10`.
+- `sortable` (boolean): Enable column sorting globally. Default: `true`.
+
+### Usage
+```blade
+&lt;x-plume::data-table 
+    :data="$users" 
+    :columns="[
+        ['key' => 'id', 'label' => 'ID', 'sortable' => true],
+        ['key' => 'name', 'label' => 'Name', 'sortable' => true],
+    ]" 
+    searchable 
+    paginated 
+/&gt;
 ```
 
 ---
