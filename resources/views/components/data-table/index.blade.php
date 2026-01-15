@@ -1,6 +1,6 @@
 {{--
 @component x-plume::data-table
-@description Advanced table with sorting, filtering, and pagination.
+@description Advanced table with sorting, filtering, and pagination. Powered by AlpineJS.
 --}}
 @props([
     'data' => [],
@@ -88,12 +88,25 @@
             <x-plume::table.row>
                 <template x-for="col in columns" :key="col.key">
                     <x-plume::table.head 
-                        ::sortable="col.sortable !== false && {{ Js::from($sortable) }}"
-                        ::direction="sortCol === col.key ? sortDir : null"
+                        ::class="(col.sortable !== false && {{ Js::from($sortable) }} ? 'cursor-pointer select-none hover:bg-background-200/50 dark:hover:bg-background-700/50 ' : '') + (col.headerClass || '')"
                         @click="col.sortable !== false && {{ Js::from($sortable) }} && toggleSort(col.key)"
-                        ::class="col.headerClass"
                     >
-                        <span x-text="col.label"></span>
+                        <div class="flex items-center gap-2">
+                            <span x-text="col.label"></span>
+                            
+                            <template x-if="col.sortable !== false && {{ Js::from($sortable) }}">
+                                <div class="flex flex-col text-foreground/30 shrink-0">
+                                    <span 
+                                        class="icon icon-[fluent--chevron-up-24-regular] size-3 -mb-1 transition-colors"
+                                        :class="sortCol === col.key && sortDir === 'asc' ? 'text-primary opacity-100' : ''"
+                                    ></span>
+                                    <span 
+                                        class="icon icon-[fluent--chevron-down-24-regular] size-3 -mt-1 transition-colors"
+                                        :class="sortCol === col.key && sortDir === 'desc' ? 'text-primary opacity-100' : ''"
+                                    ></span>
+                                </div>
+                            </template>
+                        </div>
                     </x-plume::table.head>
                 </template>
             </x-plume::table.row>
