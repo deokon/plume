@@ -95,13 +95,13 @@
                             <span x-text="col.label"></span>
                             
                             <template x-if="col.sortable !== false && {{ Js::from($sortable) }}">
-                                <div class="flex flex-col text-foreground/30 shrink-0">
+                                <div class="flex flex-col text-foreground/40 shrink-0">
                                     <span 
-                                        class="icon icon-[fluent--chevron-up-24-regular] size-3 -mb-1 transition-colors"
+                                        class="icon icon-[fluent--caret-up-24-filled] size-3.5 -mb-1.5 transition-colors"
                                         :class="sortCol === col.key && sortDir === 'asc' ? 'text-primary opacity-100' : ''"
                                     ></span>
                                     <span 
-                                        class="icon icon-[fluent--chevron-down-24-regular] size-3 -mt-1 transition-colors"
+                                        class="icon icon-[fluent--caret-down-24-filled] size-3.5 -mt-1.5 transition-colors"
                                         :class="sortCol === col.key && sortDir === 'desc' ? 'text-primary opacity-100' : ''"
                                     ></span>
                                 </div>
