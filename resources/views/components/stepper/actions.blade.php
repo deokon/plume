@@ -1,6 +1,8 @@
 {{--
 @component x-plume::stepper.actions
 @description Standard actions layout for stepper components.
+@usage
+<x-plume::stepper.actions prev="Back" next="Continue" />
 --}}
 @props([
     'prev' => null,

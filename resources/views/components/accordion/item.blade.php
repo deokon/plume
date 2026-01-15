@@ -1,5 +1,10 @@
 {{--
 @component x-plume::accordion.item
+@description An individual collapsible item within an accordion.
+@usage
+<x-plume::accordion.item title="Heading">
+    Content...
+</x-plume::accordion.item>
 --}}
 @props([
     'title',

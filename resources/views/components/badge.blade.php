@@ -2,6 +2,10 @@
 {{--
 @component x-plume::badge
 @description Displays a badge or a component that looks like a badge.
+@usage
+<x-plume::badge style="secondary">
+    New Feature
+</x-plume::badge>
 --}}
 @props([
     'style' => 'default',

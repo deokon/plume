@@ -2,6 +2,14 @@
 {{--
 @component x-plume::avatar
 @description An image element with a fallback for representing the user.
+@usage
+<x-plume::avatar 
+    src="https://github.com/shadcn.png" 
+    alt="@shadcn" 
+    fallback="CN" 
+    size="lg" 
+    status="online"
+/>
 --}}
 @props([
     'src' => null,

@@ -1,6 +1,12 @@
 {{--
 @component x-plume::accordion
 @description Collapsible content panels for saving vertical space.
+@usage
+<x-plume::accordion>
+    <x-plume::accordion.item title="Heading">
+        Content...
+    </x-plume::accordion.item>
+</x-plume::accordion>
 --}}
 @props([
     'alwaysOpen' => false,

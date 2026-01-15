@@ -2,6 +2,10 @@
 {{--
 @component x-plume::alert
 @description Displays a callout for user attention.
+@usage
+<x-plume::alert style="success" title="Success" closable autoclose="3000">
+    Your changes have been saved.
+</x-plume::alert>
 --}}
 @props([
     'icon' => null,

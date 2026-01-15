@@ -2,6 +2,8 @@
 {{--
 @component x-plume::spinner
 @description A standalone loading indicator.
+@usage
+<x-plume::spinner size="lg" style="secondary" />
 --}}
 @props([
     'size' => 'md',

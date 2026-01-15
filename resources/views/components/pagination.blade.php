@@ -1,6 +1,8 @@
 {{--
 @component x-plume::pagination
 @description Displays a sequence of links for navigating through a series of related pages. Powered by AlpineJS.
+@usage
+<x-plume::pagination :total="10" :current="1" @change="page = $event.detail.page" />
 --}}
 @props([
     'total' => 1,
