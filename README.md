@@ -39,6 +39,7 @@ Import the theme directly from the vendor directory:
 }
 
 @source "../../vendor/deokon/plume/resources/views/**/*.blade.php";
+@source "../../vendor/deokon/plume/src/**/*.php";
 
 @import "../../vendor/deokon/plume/resources/css/plume.css";
 ```
@@ -65,12 +66,14 @@ Register the provided plugins in your `app.js`:
 ```javascript
 // resources/js/app.js
 import Alpine from "alpinejs";
-import { modal, toaster, page, clipboard } from "../../vendor/deokon/plume/resources/js";
+import { modal, toaster, page, clipboard, pagination, dataTable } from "../../vendor/deokon/plume/resources/js";
 
 Alpine.plugin(modal);
 Alpine.plugin(toaster);
 Alpine.plugin(page);
 Alpine.plugin(clipboard);
+Alpine.plugin(pagination);
+Alpine.plugin(dataTable);
 
 window.Alpine = Alpine;
 Alpine.start();
