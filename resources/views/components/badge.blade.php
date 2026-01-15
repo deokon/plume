@@ -8,10 +8,10 @@
 
 @php
     $styleClass = match($style) {
-        'secondary' => 'bg-secondary/20 text-secondary-foreground border-secondary/30',
-        'destructive' => 'bg-destructive/60 text-destructive-foreground border-destructive/30',
+        'secondary' => 'bg-secondary-200 text-secondary-foreground border-secondary-300',
+        'destructive' => 'bg-destructive-600 text-destructive-foreground border-destructive-700',
         'outline' => 'border text-foreground dark:text-background-200',
-        'success' => 'bg-primary/80 text-primary-foreground border-primary/30',
+        'success' => 'bg-primary text-primary-foreground border-transparent',
         // 'default'
         default => 'bg-primary text-primary-foreground border-transparent',
     };
