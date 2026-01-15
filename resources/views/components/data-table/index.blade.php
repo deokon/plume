@@ -122,7 +122,7 @@
     </x-plume::table>
 
     @if($paginated)
-        <div class="flex items-center justify-between px-4 pb-4">
+        <div class="flex flex-col items-center gap-4 px-4 pb-4 sm:flex-row sm:justify-between">
             <div class="text-xs text-foreground/50">
                 Showing <span x-text="filteredData.length > 0 ? ((page - 1) * perPage) + 1 : 0"></span> to 
                 <span x-text="Math.min(page * perPage, filteredData.length)"></span> of 
