@@ -11,29 +11,10 @@
 ])
 
 @php
-    $styleClass = match($style) {
-        'success' => 'bg-primary-100 dark:bg-primary-500/30 text-primary-800 dark:text-primary-200 border-primary-300 dark:border-primary-500/50',
-        'warning' => 'bg-destructive-50 dark:bg-destructive-300/30 text-secondary-800 dark:text-secondary-100 border-destructive-100 dark:border-destructive-300/50',
-        'destructive' => 'bg-destructive-100 dark:bg-destructive-500/30 text-destructive-800 dark:text-destructive-200 border-destructive-300 dark:border-destructive-500/50',
-        'info' => 'bg-secondary-100 dark:bg-secondary-500/30 text-secondary-800 dark:text-secondary-200 border-secondary-300 dark:border-secondary-500/50',
-        default => ''
-    };
-
-    $iconStyleClass = match($style) {
-        'success' => 'text-primary-500 dark:text-primary-300',
-        'warning' => 'text-secondary-500 dark:text-secondary-300',
-        'destructive' => 'text-destructive-500 dark:text-destructive-100',
-        'info' => 'text-secondary-500 dark:text-secondary-300',
-        default => ''
-    };
-
-    $icon = match($style) {
-        'success' => $icon ?? 'icon-[fluent--checkmark-circle-24-regular]',
-        'warning' => $icon ?? 'icon-[fluent--warning-24-regular]',
-        'destructive' => $icon ?? 'icon-[fluent--error-circle-24-regular]',
-        'info' => $icon ?? 'icon-[fluent--info-24-regular]',
-        default => $icon
-    };
+    $theme = \deokon\Plume\Theme::alert($style);
+    $styleClass = $theme['container'];
+    $iconStyleClass = $theme['icon'];
+    $icon = $icon ?? $theme['icon_name'];
 @endphp
 
 <div 

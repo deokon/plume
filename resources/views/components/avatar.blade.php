@@ -11,22 +11,9 @@
 ])
 
 @php
-    $sizeClasses = match($size) {
-        'xs' => 'size-4 text-[8px]',
-        'sm' => 'size-6 text-[10px]',
-        'lg' => 'size-10 text-base',
-        'xl' => 'size-12 text-lg',
-        // 'md'
-        default => 'size-8 text-xs',
-    };
-
-    $statusSizeClasses = match($size) {
-        'xs' => 'size-1',
-        'sm' => 'size-1.5',
-        'lg' => 'size-2.5',
-        'xl' => 'size-3',
-        default => 'size-2',
-    };
+    $theme = \deokon\Plume\Theme::avatar($size);
+    $sizeClasses = $theme['container'];
+    $statusSizeClasses = $theme['status'];
 
     $statusColorClasses = match($status) {
         'online' => 'bg-emerald-500',
