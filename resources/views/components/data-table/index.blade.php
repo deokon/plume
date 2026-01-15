@@ -21,6 +21,10 @@
         page: 1,
         perPage: {{ $perPage }},
 
+        init() {
+            this.$watch('search', () => this.page = 1);
+        },
+
         get filteredData() {
             let filtered = this.data;
             
@@ -54,7 +58,7 @@
         },
 
         get totalPages() {
-            return Math.ceil(this.filteredData.length / this.perPage);
+            return Math.ceil(this.filteredData.length / this.perPage) || 1;
         },
 
         toggleSort(key) {
@@ -69,16 +73,13 @@
     class="space-y-4"
 >
     @if($searchable)
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between px-4 pt-4">
             <x-plume::form.input 
                 x-model.debounce.300ms="search" 
                 placeholder="Search..." 
                 class="max-w-xs"
-            >
-                <x-slot:prefix>
-                    <x-plume::icon i="icon-[fluent--search-24-regular]" class="size-4 text-foreground/40" />
-                </x-slot:prefix>
-            </x-plume::form.input>
+                icon="icon-[fluent--search-24-regular]"
+            />
         </div>
     @endif
 
@@ -109,7 +110,7 @@
             </template>
             <template x-if="filteredData.length === 0">
                 <x-plume::table.row>
-                    <x-plume::table.cell ::colspan="columns.length" class="text-center py-8">
+                    <x-plume::table.cell ::colspan="columns.length" class="text-center py-12">
                         <x-plume::empty-state 
                             title="No results found" 
                             description="Try adjusting your search or filters."
@@ -121,9 +122,9 @@
     </x-plume::table>
 
     @if($paginated)
-        <div class="flex items-center justify-between px-2">
+        <div class="flex items-center justify-between px-4 pb-4">
             <div class="text-xs text-foreground/50">
-                Showing <span x-text="((page - 1) * perPage) + 1"></span> to 
+                Showing <span x-text="filteredData.length > 0 ? ((page - 1) * perPage) + 1 : 0"></span> to 
                 <span x-text="Math.min(page * perPage, filteredData.length)"></span> of 
                 <span x-text="filteredData.length"></span> results
             </div>
