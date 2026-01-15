@@ -9,6 +9,10 @@
     'step',
     'title' => null,
     'description' => null,
+    'back' => null,
+    'next' => null,
+    'previous' => null,
+    'finish' => null,
 ])
 
 <div 
@@ -67,10 +71,23 @@
             </div>
             <div class="flex-1 pb-6 pt-1">
                 @if($slot->isNotEmpty())
-                    <div class="text-sm">
+                    <div class="text-sm" x-show="isActive || isCompleted">
                         {{ $slot }}
                     </div>
                 @endif
+
+                <div x-show="isActive" style="display: none;">
+                    @if(isset($actions))
+                        {{ $actions }}
+                    @elseif($back || $next || $previous || $finish)
+                        <x-plume::stepper.actions 
+                            :back="$back" 
+                            :next="$next" 
+                            :previous="$previous" 
+                            :finish="$finish" 
+                        />
+                    @endif
+                </div>
             </div>
         </div>
     @else
@@ -81,5 +98,13 @@
                 :style="{ width: isCompleted ? '100%' : '0%' }"
             ></div>
         </div>
+        
+        {{-- For horizontal, if actions are defined on the step, they might still be desired below the stepper? 
+             Actually the prompt says 'hidden for all but current step', 
+             in horizontal layout steps are usually side-by-side. 
+             Placing them inside the step div in horizontal might break layout. 
+             Usually horizontal stepper actions are outside the x-plume::stepper container.
+             However, I will follow the vertical implementation for now as it's most common for per-step actions.
+        --}}
     @endif
 </div>
