@@ -47,7 +47,6 @@
             @if($description)
                 <p class="text-xs text-foreground/40 truncate">{{ $description }}</p>
             @endif
-            {{ $slot }}
         </div>
     </div>
     <div class="flex gap-3">
@@ -60,14 +59,14 @@
             </div>
         </div>
         <div class="flex-1 pb-6 pt-1">
-            @if($slot ?? null)
+            @if($slot->isNotEmpty())
                 <div class="text-sm" x-show="isActive || isCompleted">
                     {{ $slot }}
                 </div>
             @endif
 
             <div x-show="isActive" style="display: none;">
-                @if($actions ?? null)
+                @if(isset($actions))
                     {{ $actions }}
                 @elseif($prev || $next)
                     <x-plume::stepper.actions :prev="$prev" :next="$next" />
