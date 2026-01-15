@@ -10,7 +10,7 @@
     'label' => null,
     'model' => null,
     'placeholder' => 'Select an option...',
-    'options' => [],
+    'options' => [], // Array of ['value' => '...', 'label' => '...']
 ])
 
 <x-plume::form.element :label="$label" :model="$model" {{ $attributes->only('class') }}>
@@ -18,7 +18,7 @@
         x-data="{ 
             open: false,
             search: '',
-            value: @if($model) $wire.entangle('{{ $model }}') @else null @endif,
+            value: null,
             localOptions: [],
             get filteredOptions() {
                 if (this.search === '') return this.localOptions;
@@ -32,17 +32,29 @@
             },
             select(option) {
                 this.value = option.value;
+                @if($model) 
+                    if (typeof $data.{{ $model }} !== 'undefined') {
+                        $data.{{ $model }} = option.value;
+                    }
+                @endif
                 this.search = '';
                 this.open = false;
             }
         }"
         x-init="
             localOptions = $data.options || {{ json_encode($options) }};
+            @if($model)
+                if (typeof $data.{{ $model }} !== 'undefined') {
+                    $watch('$data.{{ $model }}', val => value = val);
+                    value = $data.{{ $model }};
+                }
+            @endif
             $watch('open', val => { if(val) $nextTick(() => $refs.searchInput.focus()) })
         "
         class="relative"
         @click.away="open = false"
     >
+        {{-- Input --}}
         <div class="relative">
             <input 
                 x-ref="searchInput"
@@ -59,6 +71,7 @@
             </div>
         </div>
 
+        {{-- Dropdown --}}
         <div 
             x-show="open"
             x-transition:enter="transition ease-out duration-100"
