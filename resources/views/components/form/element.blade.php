@@ -1,3 +1,4 @@
+@use('deokon\Plume\Form')
 {{--
 @component x-plume::form.element
 --}}
@@ -10,7 +11,7 @@
 ])
 @php
     $name = $name ?? $model;
-    $id = \deokon\Plume\Form::resolveId($name, $model, $id);
+    $id = Form::resolveId($name, $model, $id);
 @endphp
 <div {{ $attributes->merge(['class' => 'space-y-2 p-4 rounded-md border border-transparent transition-colors']) }} x-bind:class="{ 'bg-destructive/10 border-destructive': hasError('{{ $model }}') }">
     @if($label)

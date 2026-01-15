@@ -1,3 +1,4 @@
+@use('deokon\Plume\Theme')
 {{--
 @component x-plume::avatar
 @description An image element with a fallback for representing the user.
@@ -11,7 +12,7 @@
 ])
 
 @php
-    $theme = \deokon\Plume\Theme::avatar($size);
+    $theme = Theme::avatar($size);
     $sizeClasses = $theme['container'];
     $statusSizeClasses = $theme['status'];
 

@@ -1,3 +1,4 @@
+@use('deokon\Plume\Theme')
 {{--
 @component x-plume::alert
 @description Displays a callout for user attention.
@@ -11,7 +12,7 @@
 ])
 
 @php
-    $theme = \deokon\Plume\Theme::alert($style);
+    $theme = Theme::alert($style);
     $styleClass = $theme['container'];
     $iconStyleClass = $theme['icon'];
     $icon = $icon ?? $theme['icon_name'];

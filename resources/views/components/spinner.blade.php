@@ -1,3 +1,4 @@
+@use('deokon\Plume\Theme')
 {{--
 @component x-plume::spinner
 @description A standalone loading indicator.
@@ -8,7 +9,7 @@
 ])
 
 @php
-    $themeClasses = \deokon\Plume\Theme::spinner($size, $style);
+    $themeClasses = Theme::spinner($size, $style);
 @endphp
 
 @if($style === 'custom')

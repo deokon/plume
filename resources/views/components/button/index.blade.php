@@ -1,3 +1,4 @@
+@use('deokon\Plume\Theme')
 {{--
 @component x-plume::button
 @description Displays a button or a component that looks like a button.
@@ -14,10 +15,7 @@
 ])
 
 @php
-    $themeClasses = 
-deokon
-Plume
-Theme::button($style, $size, $shape);
+    $themeClasses = Theme::button($style, $size, $shape);
 
     $class = ($attributes->get('class') ?? '')
         .' inline-flex items-center justify-center whitespace-nowrap transition-all shrink-0'

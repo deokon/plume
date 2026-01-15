@@ -1,3 +1,4 @@
+@use('deokon\Plume\Form')
 {{--
 @component x-plume::form.number
 --}}
@@ -14,8 +15,8 @@
 ])
 @php
     $name = $name ?? $model;
-    $id = \deokon\Plume\Form::resolveId($name, $model, $id);
-    $classes = \deokon\Plume\Form::inputClasses() . ' text-center';
+    $id = Form::resolveId($name, $model, $id);
+    $classes = Form::inputClasses() . ' text-center';
 @endphp
 <x-plume::form.element :label="$label ?? $slot" :name="$name" :id="$id" :model="$model">
     @if($after)
