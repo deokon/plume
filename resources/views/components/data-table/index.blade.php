@@ -11,10 +11,10 @@
     'sortable' => true,
 ])
 
-<div
+<div 
     x-data="{
-        data: {{ Js::from($data) }},
-        columns: {{ Js::from($columns) }},
+        data: [],
+        columns: [],
         search: '',
         sortCol: '',
         sortDir: 'asc',
@@ -22,16 +22,34 @@
         perPage: {{ $perPage }},
 
         init() {
+            // Initial sync from props (as strings/JSON from attributes)
+            this.sync();
+
+            // Watch for attribute changes (dynamic JS data)
+            const observer = new MutationObserver(() => this.sync());
+            observer.observe(this.$el, { attributes: true, attributeFilter: ['data', 'columns'] });
+
             this.$watch('search', () => this.page = 1);
+        },
+
+        sync() {
+            try {
+                const d = this.$el.getAttribute('data');
+                const c = this.$el.getAttribute('columns');
+                if (d) this.data = JSON.parse(d);
+                if (c) this.columns = JSON.parse(c);
+            } catch (e) {
+                // Fallback to static props if JSON parsing fails (e.g. they are already objects in some contexts)
+            }
         },
 
         get filteredData() {
             let filtered = [...this.data];
-
+            
             if (this.search) {
                 const query = this.search.toLowerCase();
                 filtered = filtered.filter(row => {
-                    return Object.values(row).some(val =>
+                    return Object.values(row).some(val => 
                         String(val).toLowerCase().includes(query)
                     );
                 });
@@ -41,7 +59,7 @@
                 filtered.sort((a, b) => {
                     let valA = a[this.sortCol];
                     let valB = b[this.sortCol];
-
+                    
                     if (valA < valB) return this.sortDir === 'asc' ? -1 : 1;
                     if (valA > valB) return this.sortDir === 'asc' ? 1 : -1;
                     return 0;
@@ -70,37 +88,39 @@
             }
         }
     }"
-    class="space-y-4"
+    {{ $attributes->merge(['class' => 'space-y-4']) }}
+    :data="{{ Js::from($data) }}"
+    :columns="{{ Js::from($columns) }}"
 >
     @if($searchable)
         <div class="flex items-center justify-between px-4 pt-4">
-            <x-plume::form.input
-                x-model.debounce.300ms="search"
-                placeholder="Search..."
+            <x-plume::form.input 
+                x-model.debounce.300ms="search" 
+                placeholder="Search..." 
                 class="max-w-xs"
                 icon="icon-[fluent--search-24-regular]"
             />
         </div>
     @endif
 
-    <x-plume::table {{ $attributes }}>
+    <x-plume::table>
         <x-plume::table.header>
             <x-plume::table.row>
                 <template x-for="col in columns" :key="col.key">
-                    <x-plume::table.head
+                    <x-plume::table.head 
                         ::class="(col.sortable !== false && {{ Js::from($sortable) }} ? 'cursor-pointer select-none hover:bg-background-200/50 dark:hover:bg-background-700/50 ' : '') + (col.headerClass || '')"
                         @click="col.sortable !== false && {{ Js::from($sortable) }} && toggleSort(col.key)"
                     >
                         <div class="flex items-center gap-2">
                             <span x-text="col.label"></span>
-
+                            
                             <template x-if="col.sortable !== false && {{ Js::from($sortable) }}">
                                 <div class="flex flex-col text-foreground/40 shrink-0 gap-y-1.5">
-                                    <span
+                                    <span 
                                         class="icon icon-[fluent--caret-up-24-filled] size-3.5 -mb-1.5 transition-colors"
                                         :class="sortCol === col.key && sortDir === 'asc' ? 'text-primary opacity-100' : ''"
                                     ></span>
-                                    <span
+                                    <span 
                                         class="icon icon-[fluent--caret-down-24-filled] size-3.5 -mt-1.5 transition-colors"
                                         :class="sortCol === col.key && sortDir === 'desc' ? 'text-primary opacity-100' : ''"
                                     ></span>
@@ -124,8 +144,8 @@
             <template x-if="filteredData.length === 0">
                 <x-plume::table.row>
                     <x-plume::table.cell ::colspan="columns.length" class="text-center py-12">
-                        <x-plume::empty-state
-                            title="No results found"
+                        <x-plume::empty-state 
+                            title="No results found" 
                             description="Try adjusting your search or filters."
                         />
                     </x-plume::table.cell>
@@ -137,13 +157,13 @@
     @if($paginated)
         <div class="flex flex-col items-center gap-4 px-4 pb-4 sm:flex-row sm:justify-between">
             <div class="text-xs text-foreground/50">
-                Showing <span x-text="filteredData.length > 0 ? ((page - 1) * perPage) + 1 : 0"></span> to
-                <span x-text="Math.min(page * perPage, filteredData.length)"></span> of
+                Showing <span x-text="filteredData.length > 0 ? ((page - 1) * perPage) + 1 : 0"></span> to 
+                <span x-text="Math.min(page * perPage, filteredData.length)"></span> of 
                 <span x-text="filteredData.length"></span> results
             </div>
-            <x-plume::pagination
-                ::total="totalPages"
-                ::current="page"
+            <x-plume::pagination 
+                ::total="totalPages" 
+                ::current="page" 
                 @change="page = $event.detail.page"
             />
         </div>
