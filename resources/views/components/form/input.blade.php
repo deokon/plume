@@ -15,11 +15,8 @@
 ])
 @php
     $name = $name ?? $model;
-    $id = $id ?? Str::slug($name, '_');
-    $classes = 'block w-full px-3 py-2 border rounded-md shadow-sm placeholder-foreground/50 dark:placeholder-background-400 border-background-700/40 dark:border-background-400/20 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm bg-background-50 dark:bg-background-700'
-        . ($icon ? ' pl-10' : '')
-        . (($rightSide ?? null) ? ' pr-10' : '') // Add right padding if rightSide slot is present
-    ;
+    $id = \deokon\Plume\Form::resolveId($name, $model, $id);
+    $classes = \deokon\Plume\Form::inputClasses($icon, isset($rightSide));
 @endphp
 <x-plume::form.element :label="$label ?? $slot" :name="$name" :id="$id" :model="$model">
     @if($after ?? null)

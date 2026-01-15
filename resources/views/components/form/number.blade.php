@@ -13,7 +13,9 @@
     'after' => null,
 ])
 @php
-    $classes = 'block w-full px-3 py-2 border rounded-md shadow-sm placeholder-foreground/50 dark:placeholder-background-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm bg-background-50 dark:bg-background-700 text-center border-background-700/40 dark:border-background-400/20';
+    $name = $name ?? $model;
+    $id = \deokon\Plume\Form::resolveId($name, $model, $id);
+    $classes = \deokon\Plume\Form::inputClasses() . ' text-center';
 @endphp
 <x-plume::form.element :label="$label ?? $slot" :name="$name" :id="$id" :model="$model">
     @if($after)
