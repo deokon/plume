@@ -1,4 +1,5 @@
 export default function (Alpine) {
+    console.log('Registering dataTable component');
     Alpine.data('dataTable', (perPage = 10, paginated = false, sortable = true) => ({
         data: [],
         columns: [],

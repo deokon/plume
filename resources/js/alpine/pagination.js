@@ -1,4 +1,5 @@
 export default function (Alpine) {
+    console.log('Registering pagination component');
     Alpine.data('pagination', (initialTotal = 1, initialCurrent = 1, onEachSide = 1) => ({
         total: parseInt(initialTotal) || 1,
         current: parseInt(initialCurrent) || 1,
