@@ -18,11 +18,26 @@
       "deokon\\Plume\\": "src/"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "deokon\\Plume\\Tests\\": "tests/"
+    }
+  },
   "extra": {
     "laravel": {
       "providers": [
         "deokon\\Plume\\PlumeServiceProvider"
       ]
+    }
+  },
+  "require-dev": {
+    "pestphp/pest": "^4.3",
+    "pestphp/pest-plugin-laravel": "^4.0",
+    "orchestra/testbench": "^10.9"
+  },
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
     }
   }
 }
