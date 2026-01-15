@@ -1,8 +1,6 @@
 {{--
 @component x-plume::drawer
-@prop {mixed} name - Default: required
-@prop {boolean} show - Default: false
-@prop {string} side - Default: right
+@description A panel that slides in from the edge of the screen.
 --}}
 @props([
     'name',

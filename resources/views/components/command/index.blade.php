@@ -1,7 +1,6 @@
 {{--
 @component x-plume::command
-@prop {string} placeholder - Default: Type a command or search...
-@prop {string} id - Default: \Illuminate\Support\Str::random(8)
+@description A powerful search and action interface accessible via keyboard shortcuts.
 --}}
 @props([
     'placeholder' => 'Type a command or search...',

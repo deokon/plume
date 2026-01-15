@@ -1,8 +1,6 @@
 {{--
 @component x-plume::code
-@prop {null} language - Default: null
-@prop {null} title - Default: null
-@prop {null} code - Default: null
+@description A component for displaying code snippets with a copy-to-clipboard feature.
 --}}
 @props([
     'language' => null,

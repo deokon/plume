@@ -1,7 +1,5 @@
 {{--
 @component x-plume::button-group
-@prop {string} size - Default: md
-@prop {boolean} stack - Default: true
 --}}
 @props([
     'size' => 'md',

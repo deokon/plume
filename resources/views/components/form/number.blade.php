@@ -1,14 +1,5 @@
 {{--
 @component x-plume::form.number
-@prop {null} label - Default: null
-@prop {null} name - Default: null
-@prop {null} id - Default: null
-@prop {null} model - Default: null
-@prop {number} value - Default: 0
-@prop {number} min - Default: 0
-@prop {number} max - Default: 100
-@prop {number} step - Default: 1
-@prop {null} after - Default: null
 --}}
 @props([
     'label' => null,

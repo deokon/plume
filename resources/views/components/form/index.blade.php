@@ -1,8 +1,6 @@
 {{--
 @component x-plume::form
-@prop {string} action - Default: 
-@prop {string} method - Default: POST
-@prop {null} formData - Default: null
+@description A collection of form components for user input.
 --}}
 @props([
     'action' => '',

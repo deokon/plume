@@ -1,7 +1,6 @@
 {{--
 @component x-plume::gallery
-@prop {number} cols - Default: 3
-@prop {number} gap - Default: 4
+@description Responsive grid layout for images and figures.
 --}}
 @props([
     'cols' => 3,

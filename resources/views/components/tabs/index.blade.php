@@ -1,7 +1,6 @@
 {{--
 @component x-plume::tabs
-@prop {number} default - Default: 1
-@prop {string} side - Default: top
+@description A set of layered sections of content, known as tab panels, that are displayed one at a time.
 --}}
 @props([
     'default' => '1',

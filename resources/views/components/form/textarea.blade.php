@@ -1,12 +1,6 @@
 {{--
 @component x-plume::form.textarea
-@prop {null} label - Default: null
-@prop {null} name - Default: null
-@prop {null} id - Default: null
-@prop {number} rows - Default: 3
-@prop {null} model - Default: null
-@prop {string} placeholder - Default: 
-@prop {null} after - Default: null
+@description Multi-line text input field.
 --}}
 @props([
     'label' => null,

@@ -1,6 +1,6 @@
 {{--
 @component x-plume::accordion
-@prop {boolean} alwaysOpen - Default: false
+@description Collapsible content panels for saving vertical space.
 --}}
 @props([
     'alwaysOpen' => false,

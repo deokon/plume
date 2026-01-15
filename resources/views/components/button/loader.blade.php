@@ -1,8 +1,6 @@
 {{--
 @component x-plume::button.loader
-@prop {mixed} var - Default: required
-@prop {string} size - Default: md
-@prop {null} style - Default: null
+@description Button with built-in loading state management.
 --}}
 @props([
     'var',

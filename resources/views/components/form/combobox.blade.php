@@ -1,9 +1,6 @@
 {{--
 @component x-plume::form.combobox
-@prop {null} label - Default: null
-@prop {null} model - Default: null
-@prop {string} placeholder - Default: Select an option...
-@prop {string} options - Default: []
+@description Searchable dropdown for selecting from a list of options.
 --}}
 @props([
     'label' => null,

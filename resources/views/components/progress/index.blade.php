@@ -1,11 +1,6 @@
 {{--
 @component x-plume::progress
-@prop {number} value - Default: 0
-@prop {number} max - Default: 100
-@prop {string} style - Default: default
-@prop {null} title - Default: null
-@prop {null} model - Default: null
-@prop {string} display - Default: percentage
+@description Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.
 --}}
 @props([
     'value' => 0,

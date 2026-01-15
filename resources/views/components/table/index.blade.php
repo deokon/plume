@@ -1,6 +1,6 @@
 {{--
 @component x-plume::table
-@prop {boolean} striped - Default: false
+@description A responsive table component.
 --}}
 @props([
     'striped' => false,

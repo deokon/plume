@@ -1,9 +1,6 @@
 {{--
 @component x-plume::avatar
-@prop {null} src - Default: null
-@prop {string} alt - Default: 
-@prop {string} fallback - Default: 
-@prop {string} size - Default: md
+@description An image element with a fallback for representing the user.
 --}}
 @props([
     'src' => null,

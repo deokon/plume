@@ -1,8 +1,6 @@
 {{--
 @component x-plume::dropdown
-@prop {string} align - Default: right
-@prop {number} width - Default: 48
-@prop {string} contentClasses - Default: py-1 bg-background dark:bg-background-800
+@description Displays a menu to the user—such as a set of actions or functions—triggered by a button.
 --}}
 @props([
     'align' => 'right',

@@ -1,10 +1,5 @@
 {{--
 @component x-plume::form.color
-@prop {null} label - Default: null
-@prop {null} name - Default: null
-@prop {null} id - Default: null
-@prop {null} model - Default: null
-@prop {string} value - Default: #000000
 --}}
 @props([
     'label' => null,

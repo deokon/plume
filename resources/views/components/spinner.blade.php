@@ -1,7 +1,6 @@
 {{--
 @component x-plume::spinner
-@prop {string} size - Default: md
-@prop {string} style - Default: default
+@description A standalone loading indicator.
 --}}
 @props([
     'size' => 'md',

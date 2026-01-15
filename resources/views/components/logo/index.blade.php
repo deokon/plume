@@ -1,6 +1,5 @@
 {{--
 @component x-plume::logo
-@prop {string} size - Default: size-6
 --}}
 @props(['size' => 'size-6'])
 

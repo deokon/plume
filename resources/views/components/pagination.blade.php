@@ -1,7 +1,6 @@
 {{--
 @component x-plume::pagination
-@prop {number} total - Default: 1
-@prop {number} current - Default: 1
+@description Displays a sequence of links for navigating through a series of related pages.
 --}}
 @props([
     'total' => 1,

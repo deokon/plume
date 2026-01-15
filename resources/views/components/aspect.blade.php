@@ -1,6 +1,6 @@
 {{--
 @component x-plume::aspect
-@prop {string} ratio - Default: video
+@description A container component to maintain consistent proportions for media and content.
 --}}
 @props([
     'ratio' => 'video',

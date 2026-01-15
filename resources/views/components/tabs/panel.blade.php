@@ -1,6 +1,5 @@
 {{--
 @component x-plume::tabs.panel
-@prop {number} for - Default: 1
 --}}
 @props([
     'for' => '1'

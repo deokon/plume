@@ -1,6 +1,5 @@
 {{--
 @component x-plume::command.group
-@prop {null} title - Default: null
 --}}
 @props([
     'title' => null,
