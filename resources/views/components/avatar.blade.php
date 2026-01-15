@@ -12,20 +12,20 @@
 
 @php
     $sizeClasses = match($size) {
-        'xs' => 'size-6 text-[10px]',
-        'sm' => 'size-8 text-xs',
-        'lg' => 'size-12 text-lg',
-        'xl' => 'size-16 text-xl',
+        'xs' => 'size-4 text-[8px]',
+        'sm' => 'size-6 text-[10px]',
+        'lg' => 'size-10 text-base',
+        'xl' => 'size-12 text-lg',
         // 'md'
-        default => 'size-10 text-base',
+        default => 'size-8 text-xs',
     };
 
     $statusSizeClasses = match($size) {
-        'xs' => 'size-1.5',
-        'sm' => 'size-2',
-        'lg' => 'size-3',
-        'xl' => 'size-4',
-        default => 'size-2.5',
+        'xs' => 'size-1',
+        'sm' => 'size-1.5',
+        'lg' => 'size-2.5',
+        'xl' => 'size-3',
+        default => 'size-2',
     };
 
     $statusColorClasses = match($status) {
@@ -37,8 +37,8 @@
     };
 @endphp
 
-<div {{ $attributes->merge(['class' => 'relative inline-flex shrink-0']) }}>
-    <div class="flex h-full w-full items-center justify-center overflow-hidden rounded-full bg-background-200 dark:bg-background-700 {{ $sizeClasses }}">
+<div {{ $attributes->merge(['class' => 'relative inline-flex shrink-0 ' . $sizeClasses]) }}>
+    <div class="flex h-full w-full items-center justify-center overflow-hidden rounded-full bg-background-200 dark:bg-background-700">
         @if($src)
             <img
                 src="{{ $src }}"

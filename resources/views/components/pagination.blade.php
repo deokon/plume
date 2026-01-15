@@ -42,17 +42,23 @@
     }
 @endphp
 
-<nav {{ $attributes->merge(['class' => 'flex items-center justify-center gap-1']) }} aria-label="Pagination">
+<nav 
+    x-data 
+    {{ $attributes->merge(['class' => 'flex items-center justify-center gap-1']) }} 
+    aria-label="Pagination"
+>
     {{-- Previous Page --}}
+    @php $prevUrl = $current > 1 ? $getPageUrl($current - 1) : null; @endphp
     <x-plume::button
         style="ghost"
         size="sm"
         :disabled="$current <= 1"
-        :href="$current > 1 ? $getPageUrl($current - 1) : null"
+        :href="$prevUrl"
+        @click="$dispatch('change', { page: {{ $current - 1 }} })"
         aria-label="Previous Page"
     >
         <x-plume::icon i="icon-[fluent--chevron-left-24-regular]" class="size-4" />
-        <span class="sm:hidden ml-1">Previous</span>
+        <span class="hidden sm:inline-block ml-1">Previous</span>
     </x-plume::button>
 
     {{-- Page Numbers (Desktop) --}}
@@ -67,6 +73,7 @@
                     :style="$page === $current ? 'default' : 'ghost'"
                     size="sm"
                     :href="$getPageUrl($page)"
+                    @click="$dispatch('change', { page: {{ $page }} })"
                     aria-label="Page {{ $page }}"
                     aria-current="{{ $page === $current ? 'page' : 'false' }}"
                 >
@@ -82,14 +89,16 @@
     </div>
 
     {{-- Next Page --}}
+    @php $nextUrl = $current < $total ? $getPageUrl($current + 1) : null; @endphp
     <x-plume::button
         style="ghost"
         size="sm"
         :disabled="$current >= $total"
-        :href="$current < $total ? $getPageUrl($current + 1) : null"
+        :href="$nextUrl"
+        @click="$dispatch('change', { page: {{ $current + 1 }} })"
         aria-label="Next Page"
     >
-        <span class="sm:hidden mr-1">Next</span>
+        <span class="hidden sm:inline-block mr-1">Next</span>
         <x-plume::icon i="icon-[fluent--chevron-right-24-regular]" class="size-4" />
     </x-plume::button>
 </nav>
