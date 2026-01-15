@@ -38,18 +38,18 @@
 
 <nav 
     x-data="{
-        total: {{ $isStatic ? $total : '1' }},
-        current: {{ $isStatic ? $current : '1' }},
+        total: {{ $isStatic ? $total : 1 }},
+        current: {{ $isStatic ? $current : 1 }},
         onEachSide: {{ $onEachSide }},
         init() {
-            if (this.$el.hasAttribute('total')) {
-                this.$watch('$el.getAttribute(\'total\')', val => this.total = parseInt(val));
-                this.total = parseInt(this.$el.getAttribute('total')) || 1;
-            }
-            if (this.$el.hasAttribute('current')) {
-                this.$watch('$el.getAttribute(\'current\')', val => this.current = parseInt(val));
-                this.current = parseInt(this.$el.getAttribute('current')) || 1;
-            }
+            const sync = () => {
+                this.total = parseInt(this.$el.getAttribute('total')) || this.total;
+                this.current = parseInt(this.$el.getAttribute('current')) || this.current;
+            };
+            
+            const observer = new MutationObserver(sync);
+            observer.observe(this.$el, { attributes: true, attributeFilter: ['total', 'current'] });
+            sync();
         },
         get pages() {
             if (this.total <= 7) return Array.from({length: this.total}, (_, i) => i + 1);
@@ -66,12 +66,15 @@
         prev() { if (this.current > 1) this.dispatch(this.current - 1) },
         dispatch(page) {
             if (page === '...') return;
-            this.current = page;
             this.$dispatch('change', { page: page });
         }
     }"
     {{ $attributes->merge(['class' => 'flex items-center justify-center gap-1']) }} 
     aria-label="Pagination"
+    @if(!$isStatic)
+        total="{{ $total }}"
+        current="{{ $current }}"
+    @endif
 >
     {{-- Previous Page --}}
     <x-plume::button
@@ -95,20 +98,20 @@
                     </span>
                 @else
                     <x-plume::button
-                        :style="$page === $current ? 'default' : 'ghost'"
+                        :style="$page == $current ? 'default' : 'ghost'"
                         size="sm"
                         :href="$getPageUrl($page)"
                         @click="dispatch({{ $page }})"
                         aria-label="Page {{ $page }}"
-                        aria-current="{{ $page === $current ? 'page' : 'false' }}"
+                        aria-current="{{ $page == $current ? 'page' : 'false' }}"
                     >
                         {{ $page }}
                     </x-plume::button>
                 @endif
             @endforeach
         @else
-            <template x-for="page in pages" :key="page === '...' ? Math.random() : page">
-                <div>
+            <template x-for="(page, index) in pages" :key="index">
+                <div class="flex items-center">
                     <template x-if="page === '...'">
                         <span class="flex size-8 items-center justify-center text-sm text-foreground/50">
                             <x-plume::icon i="icon-[fluent--more-horizontal-24-regular]" class="size-4" />
@@ -116,9 +119,10 @@
                     </template>
                     <template x-if="page !== '...'">
                         <x-plume::button
-                            ::style="page === current ? 'default' : 'ghost'"
+                            style="ghost"
                             size="sm"
                             @click="dispatch(page)"
+                            ::class="page === current ? 'bg-primary text-primary-foreground hover:bg-primary-800' : ''"
                             ::aria-label="'Page ' + page"
                             ::aria-current="page === current ? 'page' : 'false'"
                         >

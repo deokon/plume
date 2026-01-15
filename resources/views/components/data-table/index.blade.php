@@ -26,7 +26,7 @@
         },
 
         get filteredData() {
-            let filtered = this.data;
+            let filtered = [...this.data];
             
             if (this.search) {
                 const query = this.search.toLowerCase();
