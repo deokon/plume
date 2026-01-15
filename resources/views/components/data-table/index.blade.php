@@ -12,82 +12,7 @@
 ])
 
 <div 
-    x-data="{
-        data: [],
-        columns: [],
-        search: '',
-        sortCol: '',
-        sortDir: 'asc',
-        page: 1,
-        perPage: {{ $perPage }},
-
-        init() {
-            // Initial sync from props (as strings/JSON from attributes)
-            this.sync();
-
-            // Watch for attribute changes (dynamic JS data)
-            const observer = new MutationObserver(() => this.sync());
-            observer.observe(this.$el, { attributes: true, attributeFilter: ['data', 'columns'] });
-
-            this.$watch('search', () => this.page = 1);
-        },
-
-        sync() {
-            try {
-                const d = this.$el.getAttribute('data');
-                const c = this.$el.getAttribute('columns');
-                if (d) this.data = JSON.parse(d);
-                if (c) this.columns = JSON.parse(c);
-            } catch (e) {
-                // Fallback to static props if JSON parsing fails (e.g. they are already objects in some contexts)
-            }
-        },
-
-        get filteredData() {
-            let filtered = [...this.data];
-            
-            if (this.search) {
-                const query = this.search.toLowerCase();
-                filtered = filtered.filter(row => {
-                    return Object.values(row).some(val => 
-                        String(val).toLowerCase().includes(query)
-                    );
-                });
-            }
-
-            if (this.sortCol) {
-                filtered.sort((a, b) => {
-                    let valA = a[this.sortCol];
-                    let valB = b[this.sortCol];
-                    
-                    if (valA < valB) return this.sortDir === 'asc' ? -1 : 1;
-                    if (valA > valB) return this.sortDir === 'asc' ? 1 : -1;
-                    return 0;
-                });
-            }
-
-            return filtered;
-        },
-
-        get pagedData() {
-            if (!{{ Js::from($paginated) }}) return this.filteredData;
-            const start = (this.page - 1) * this.perPage;
-            return this.filteredData.slice(start, start + this.perPage);
-        },
-
-        get totalPages() {
-            return Math.ceil(this.filteredData.length / this.perPage) || 1;
-        },
-
-        toggleSort(key) {
-            if (this.sortCol === key) {
-                this.sortDir = this.sortDir === 'asc' ? 'desc' : 'asc';
-            } else {
-                this.sortCol = key;
-                this.sortDir = 'asc';
-            }
-        }
-    }"
+    x-data="dataTable({{ $perPage }}, {{ Js::from($paginated) }}, {{ Js::from($sortable) }})"
     {{ $attributes->merge(['class' => 'space-y-4']) }}
     :data="{{ Js::from($data) }}"
     :columns="{{ Js::from($columns) }}"
@@ -108,13 +33,13 @@
             <x-plume::table.row>
                 <template x-for="col in columns" :key="col.key">
                     <x-plume::table.head 
-                        ::class="(col.sortable !== false && {{ Js::from($sortable) }} ? 'cursor-pointer select-none hover:bg-background-200/50 dark:hover:bg-background-700/50 ' : '') + (col.headerClass || '')"
-                        @click="col.sortable !== false && {{ Js::from($sortable) }} && toggleSort(col.key)"
+                        ::class="(col.sortable !== false && sortable ? 'cursor-pointer select-none hover:bg-background-200/50 dark:hover:bg-background-700/50 ' : '') + (col.headerClass || '')"
+                        @click="col.sortable !== false && sortable && toggleSort(col.key)"
                     >
                         <div class="flex items-center gap-2">
                             <span x-text="col.label"></span>
                             
-                            <template x-if="col.sortable !== false && {{ Js::from($sortable) }}">
+                            <template x-if="col.sortable !== false && sortable">
                                 <div class="flex flex-col text-foreground/40 shrink-0 gap-y-1.5">
                                     <span 
                                         class="icon icon-[fluent--caret-up-24-filled] size-3.5 -mb-1.5 transition-colors"
