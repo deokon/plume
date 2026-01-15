@@ -22,6 +22,8 @@ class PlumeServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__ . '/../resources/css/theme.css' => resource_path('css/vendor/plume/theme.css'),
+            __DIR__ . '/../resources/css/animations.css' => resource_path('css/vendor/plume/animations.css'),
+            __DIR__ . '/../resources/css/plume.css' => resource_path('css/vendor/plume/plume.css'),
         ], 'plume-assets');
     }
 }

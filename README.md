@@ -40,21 +40,22 @@ Import the theme directly from the vendor directory:
 
 @source "../../vendor/deokon/plume/resources/views/**/*.blade.php";
 
-@import "../../vendor/deokon/plume/resources/css/theme.css";
+@import "../../vendor/deokon/plume/resources/css/plume.css";
 ```
 
 **Option B: Publish and Customize**
-Publish the theme file to your project if you want to customize the colors:
+Publish the assets to your project if you want to customize the theme colors:
 
 ```bash
 php artisan vendor:publish --tag=plume-assets
 ```
 
-Then import the published file:
+Then import the required files in your `app.css`. It is recommended to import the animations even if you customize the theme:
 
 ```css
 /* resources/css/app.css */
-@import "./vendor/plume/theme.css";
+@import "./vendor/plume/animations.css";
+@import "./vendor/plume/theme.css"; /* Your customized theme */
 ```
 
 #### Alpine.js
