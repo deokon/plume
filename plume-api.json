@@ -28,6 +28,73 @@
             "usage": "<x-plume::accordion.item title=\"Heading\">\n    Content...\n</x-plume::accordion.item>",
             "doc_url": "https://plume.dennisokon.com/docs/accordion-item"
         },
+        "x-plume::alert-dialog": {
+            "path": "plume/resources/views/components/alert-dialog/index.blade.php",
+            "props": {
+                "name": {
+                    "type": "string",
+                    "default": "required"
+                },
+                "show": {
+                    "type": "boolean",
+                    "default": "false"
+                },
+                "maxWidth": {
+                    "type": "string",
+                    "default": "md"
+                }
+            },
+            "description": "Modal dialog specifically designed for alerting users to important information or actions.",
+            "usage": "<x-plume::alert-dialog name=\"confirm\">\n    <x-plume::alert-dialog.content>\n        <x-plume::alert-dialog.title>...</x-plume::alert-dialog.title>\n        <x-plume::alert-dialog.description>...</x-plume::alert-dialog.description>\n    </x-plume::alert-dialog.content>\n    <x-plume::alert-dialog.footer>\n        <x-plume::alert-dialog.cancel>Cancel</x-plume::alert-dialog.cancel>\n        <x-plume::alert-dialog.action>Continue</x-plume::alert-dialog.action>\n    </x-plume::alert-dialog.footer>\n</x-plume::alert-dialog>",
+            "doc_url": "https://plume.dennisokon.com/docs/alert-dialog"
+        },
+        "x-plume::alert-dialog.content": {
+            "path": "plume/resources/views/components/alert-dialog/content.blade.php",
+            "props": {},
+            "description": "Container for alert dialog content.",
+            "usage": null,
+            "doc_url": "https://plume.dennisokon.com/docs/alert-dialog"
+        },
+        "x-plume::alert-dialog.title": {
+            "path": "plume/resources/views/components/alert-dialog/title.blade.php",
+            "props": {},
+            "description": "Title for the alert dialog.",
+            "usage": null,
+            "doc_url": "https://plume.dennisokon.com/docs/alert-dialog"
+        },
+        "x-plume::alert-dialog.description": {
+            "path": "plume/resources/views/components/alert-dialog/description.blade.php",
+            "props": {},
+            "description": "Description text for the alert dialog.",
+            "usage": null,
+            "doc_url": "https://plume.dennisokon.com/docs/alert-dialog"
+        },
+        "x-plume::alert-dialog.footer": {
+            "path": "plume/resources/views/components/alert-dialog/footer.blade.php",
+            "props": {},
+            "description": "Footer area for actions.",
+            "usage": null,
+            "doc_url": "https://plume.dennisokon.com/docs/alert-dialog"
+        },
+        "x-plume::alert-dialog.action": {
+            "path": "plume/resources/views/components/alert-dialog/action.blade.php",
+            "props": {
+                "style": {
+                    "type": "string",
+                    "default": "primary"
+                }
+            },
+            "description": "Action button for the alert dialog.",
+            "usage": null,
+            "doc_url": "https://plume.dennisokon.com/docs/alert-dialog"
+        },
+        "x-plume::alert-dialog.cancel": {
+            "path": "plume/resources/views/components/alert-dialog/cancel.blade.php",
+            "props": {},
+            "description": "Cancel button for the alert dialog.",
+            "usage": null,
+            "doc_url": "https://plume.dennisokon.com/docs/alert-dialog"
+        },
         "x-plume::alert": {
             "path": "plume/resources/views/components/alert.blade.php",
             "props": {

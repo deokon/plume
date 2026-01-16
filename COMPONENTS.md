@@ -43,6 +43,91 @@ Path: `plume/resources/views/components/accordion/item.blade.php`
 
 ---
 
+## x-plume::alert-dialog
+Modal dialog specifically designed for alerting users to important information or actions.
+
+Documentation: [https://plume.dennisokon.com/docs/alert-dialog](https://plume.dennisokon.com/docs/alert-dialog)
+
+Path: `plume/resources/views/components/alert-dialog/index.blade.php`
+
+### Properties
+- `name` (string): Default: `required`.
+- `show` (boolean): Default: `false`.
+- `maxWidth` (string): Default: `md`.
+
+### Usage
+```blade
+<x-plume::alert-dialog name="confirm">
+    <x-plume::alert-dialog.content>
+        <x-plume::alert-dialog.title>...</x-plume::alert-dialog.title>
+        <x-plume::alert-dialog.description>...</x-plume::alert-dialog.description>
+    </x-plume::alert-dialog.content>
+    <x-plume::alert-dialog.footer>
+        <x-plume::alert-dialog.cancel>Cancel</x-plume::alert-dialog.cancel>
+        <x-plume::alert-dialog.action>Continue</x-plume::alert-dialog.action>
+    </x-plume::alert-dialog.footer>
+</x-plume::alert-dialog>
+```
+
+---
+
+## x-plume::alert-dialog.content
+Container for alert dialog content.
+
+Documentation: [https://plume.dennisokon.com/docs/alert-dialog](https://plume.dennisokon.com/docs/alert-dialog)
+
+Path: `plume/resources/views/components/alert-dialog/content.blade.php`
+
+---
+
+## x-plume::alert-dialog.title
+Title for the alert dialog.
+
+Documentation: [https://plume.dennisokon.com/docs/alert-dialog](https://plume.dennisokon.com/docs/alert-dialog)
+
+Path: `plume/resources/views/components/alert-dialog/title.blade.php`
+
+---
+
+## x-plume::alert-dialog.description
+Description text for the alert dialog.
+
+Documentation: [https://plume.dennisokon.com/docs/alert-dialog](https://plume.dennisokon.com/docs/alert-dialog)
+
+Path: `plume/resources/views/components/alert-dialog/description.blade.php`
+
+---
+
+## x-plume::alert-dialog.footer
+Footer area for actions.
+
+Documentation: [https://plume.dennisokon.com/docs/alert-dialog](https://plume.dennisokon.com/docs/alert-dialog)
+
+Path: `plume/resources/views/components/alert-dialog/footer.blade.php`
+
+---
+
+## x-plume::alert-dialog.action
+Action button for the alert dialog.
+
+Documentation: [https://plume.dennisokon.com/docs/alert-dialog](https://plume.dennisokon.com/docs/alert-dialog)
+
+Path: `plume/resources/views/components/alert-dialog/action.blade.php`
+
+### Properties
+- `style` (string): Default: `primary`.
+
+---
+
+## x-plume::alert-dialog.cancel
+Cancel button for the alert dialog.
+
+Documentation: [https://plume.dennisokon.com/docs/alert-dialog](https://plume.dennisokon.com/docs/alert-dialog)
+
+Path: `plume/resources/views/components/alert-dialog/cancel.blade.php`
+
+---
+
 ## x-plume::alert
 Displays a callout for user attention.
 
