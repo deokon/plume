@@ -1580,7 +1580,7 @@ Path: `plume/resources/views/components/tooltip.blade.php`
 ---
 
 ## x-plume::video
-A styled wrapper for HTML5 video content.
+A styled wrapper for HTML5 video, YouTube, and Vimeo content.
 
 Documentation: [https://plume.dennisokon.com/docs/video](https://plume.dennisokon.com/docs/video)
 

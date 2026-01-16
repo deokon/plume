@@ -1869,7 +1869,7 @@
                     "default": "video"
                 }
             },
-            "description": "A styled wrapper for HTML5 video content.",
+            "description": "A styled wrapper for HTML5 video, YouTube, and Vimeo content.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/video"
         }
