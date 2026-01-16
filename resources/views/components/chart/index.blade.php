@@ -104,7 +104,7 @@
     
     {{-- X-Axis Labels --}}
     @if($count > 0)
-        <div class="flex justify-between mt-2 text-xs text-foreground/50">
+        <div class="flex justify-between mt-2 text-xs text-foreground/50 dark:text-background-400">
             @foreach($labels as $label)
                 <span class="truncate px-1 text-center" style="width: {{ 100 / $count }}%">{{ $label }}</span>
             @endforeach

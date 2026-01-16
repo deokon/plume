@@ -50,7 +50,7 @@
                             <span x-text="col.label"></span>
                             
                             <template x-if="col.sortable !== false && sortable">
-                                <div class="flex flex-col text-foreground/40 shrink-0 gap-y-1.5">
+                                <div class="flex flex-col text-foreground/40 dark:text-background-400/50 shrink-0 gap-y-1.5">
                                     <span 
                                         class="icon icon-[fluent--caret-up-24-filled] size-3.5 -mb-1.5 transition-colors"
                                         :class="sortCol === col.key && sortDir === 'asc' ? 'text-primary opacity-100' : ''"
@@ -91,7 +91,7 @@
 
     @if($paginated)
         <div class="flex flex-col items-center gap-4 px-4 pb-4 sm:flex-row sm:justify-between">
-            <div class="text-xs text-foreground/50">
+            <div class="text-xs text-foreground/50 dark:text-background-400">
                 Showing <span x-text="filteredData.length > 0 ? ((page - 1) * perPage) + 1 : 0"></span> to 
                 <span x-text="Math.min(page * perPage, filteredData.length)"></span> of 
                 <span x-text="filteredData.length"></span> results

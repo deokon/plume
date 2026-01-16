@@ -11,7 +11,7 @@
     'sizes' => null,
 ])
 
-<figure {{ $attributes->merge(['class' => 'overflow-hidden rounded-lg bg-background-100 dark:bg-background-800']) }}>
+<figure {{ $attributes->merge(['class' => 'overflow-hidden rounded-lg bg-background-100 dark:bg-background-900/50']) }}>
     <div @class([
         'relative w-full',
         match($aspect) {
