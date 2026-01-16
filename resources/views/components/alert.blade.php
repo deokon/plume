@@ -34,7 +34,7 @@
 >
     <div {{ $attributes->merge(['class' => 'flex items-start p-4 border-l-[3px] rounded-md ' . $styleClass]) }}>
         @if($icon)
-            <x-plume::icon :i="$icon" class="mr-3 mt-0.5 {{ $iconStyleClass }}" />
+            <x-plume::icon :i="$icon" class="mr-3 mt-0.5 shrink-0 {{ $iconStyleClass }}" />
         @endif
         <div class="grow">
             @if($title)

@@ -35,35 +35,28 @@
             
              @if($model)
                 if (typeof $data.{{ $model }} !== 'undefined') {
-                     this.$watch('value', val => {
-                         $data.{{ $model }} = val;
-                     });
-                     
                      if ($data.{{ $model }}) {
                          this.value = $data.{{ $model }};
-                         // Re-init logic if needed when external model changes
-                         if (this.mode === 'single') {
-                             this.selectedDate = this.parseDate(this.value);
-                             if(this.selectedDate) this.currDate = new Date(this.selectedDate);
-                         } else {
-                             if(Array.isArray(this.value)) {
-                                 this.rangeStart = this.parseDate(this.value[0]);
-                                 this.rangeEnd = this.parseDate(this.value[1]);
-                                 if(this.rangeStart) this.currDate = new Date(this.rangeStart);
-                             }
-                         }
+                         this.syncInternalState(this.value);
                      }
                 }
             @endif
 
             this.$watch('value', val => {
-                if (this.mode === 'single') {
-                    this.selectedDate = this.parseDate(val);
-                } else if (Array.isArray(val)) {
-                    this.rangeStart = this.parseDate(val[0]);
-                    this.rangeEnd = this.parseDate(val[1]);
-                }
+                this.syncInternalState(val);
+                this.$dispatch('change', val);
             });
+        },
+
+        syncInternalState(val) {
+            if (this.mode === 'single') {
+                this.selectedDate = this.parseDate(val);
+                if (this.selectedDate) this.currDate = new Date(this.selectedDate);
+            } else if (Array.isArray(val)) {
+                this.rangeStart = this.parseDate(val[0]);
+                this.rangeEnd = this.parseDate(val[1]);
+                if (this.rangeStart) this.currDate = new Date(this.rangeStart);
+            }
         },
 
         parseDate(dateStr) {
@@ -162,7 +155,7 @@
         }
     }"
     x-modelable="value"
-    {{ $attributes->merge(['class' => 'w-full max-w-[280px] bg-background border border-background-700/40 dark:border-background-400/20 rounded-xl shadow-sm p-4']) }}
+    {{ $attributes->merge(['class' => 'w-full max-w-[280px] bg-background dark:bg-background-800 border border-background-700/40 dark:border-background-400/20 rounded-xl shadow-sm p-4']) }}
 >
     {{-- Header --}}
     <div class="flex items-center justify-between mb-4">

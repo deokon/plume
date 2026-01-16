@@ -39,7 +39,7 @@
         <template x-for="(page, index) in pages" :key="index + '-' + page">
             <div class="flex items-center">
                 <template x-if="page === '...'">
-                    <span class="flex size-8 items-center justify-center text-sm text-foreground/50">
+                    <span class="flex size-8 items-center justify-center text-sm text-foreground/50 dark:text-background-400">
                         <x-plume::icon i="icon-[fluent--more-horizontal-24-regular]" class="size-4" />
                     </span>
                 </template>
@@ -48,7 +48,7 @@
                         type="button"
                         @click="dispatch(page)"
                         class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 size-8 hover:bg-primary/20 hover:text-foreground dark:hover:bg-background-700 dark:hover:text-background-200"
-                        :class="page == current ? 'bg-primary text-primary-foreground hover:bg-primary-800 hover:text-primary-foreground' : 'text-foreground/70'"
+                        :class="page == current ? 'bg-primary text-primary-foreground hover:bg-primary-800 hover:text-primary-foreground' : 'text-foreground/70 dark:text-background-400'"
                         :aria-label="'Page ' + page"
                         :aria-current="page == current ? 'page' : 'false'"
                     >
@@ -60,7 +60,7 @@
     </div>
 
     {{-- Page Info (Mobile) --}}
-    <div class="sm:hidden px-4 text-sm font-medium text-foreground/70">
+    <div class="sm:hidden px-4 text-sm font-medium text-foreground/70 dark:text-background-400">
         <span x-text="current"></span> / <span x-text="total"></span>
     </div>
 

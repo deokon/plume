@@ -73,8 +73,8 @@
             style="display: none;"
         >
             <x-plume::calendar 
-                ::value="value"
-                @change="value = $event.detail; onDateChange($event.detail)"
+                x-model="value"
+                @change="onDateChange($event.detail)"
                 class="border-0 shadow-none"
             />
         </div>
