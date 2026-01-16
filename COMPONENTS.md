@@ -1446,6 +1446,7 @@ Path: `plume/resources/views/components/table/index.blade.php`
 - `striped` (boolean): Default: `false`.
 - `hoverable` (boolean): Default: `false`.
 - `density` (string): Default: `default`.
+- `stickyHeader` (boolean): Default: `false`.
 
 ---
 
@@ -1465,6 +1466,9 @@ Documentation: [https://plume.dennisokon.com/docs/table-cell](https://plume.denn
 
 Path: `plume/resources/views/components/table/cell.blade.php`
 
+### Properties
+- `align` (string): Default: `left`.
+
 ---
 
 ## x-plume::table.head
@@ -1474,6 +1478,9 @@ Documentation: [https://plume.dennisokon.com/docs/table-head](https://plume.denn
 
 Path: `plume/resources/views/components/table/head.blade.php`
 
+### Properties
+- `align` (string): Default: `left`.
+
 ---
 
 ## x-plume::table.header
@@ -1482,6 +1489,9 @@ No description provided.
 Documentation: [https://plume.dennisokon.com/docs/table-header](https://plume.dennisokon.com/docs/table-header)
 
 Path: `plume/resources/views/components/table/header.blade.php`
+
+### Properties
+- `sticky` (boolean): Default: `false`.
 
 ---
 

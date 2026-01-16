@@ -5,6 +5,7 @@
 @props([
     'striped' => false,
     'hoverable' => false,
+    'stickyHeader' => false,
     'density' => 'default', // compact, default, loose
 ])
 
@@ -16,7 +17,7 @@
     };
 @endphp
 
-<div class="relative w-full overflow-auto">
+<div class="relative w-full overflow-auto {{ $stickyHeader ? 'max-h-[500px]' : '' }}">
     <table {{ $attributes->merge(['class' => 'w-full caption-bottom text-sm ' . $densityClasses . ($hoverable ? ' [&_tbody_tr:hover]:bg-background-200/50 dark:[&_tbody_tr:hover]:bg-background-700/50' : '')]) }}>
         {{ $slot }}
     </table>

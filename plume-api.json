@@ -1690,6 +1690,10 @@
                 "density": {
                     "type": "string",
                     "default": "default"
+                },
+                "stickyHeader": {
+                    "type": "boolean",
+                    "default": "false"
                 }
             },
             "description": "A responsive table component.",
@@ -1705,21 +1709,36 @@
         },
         "x-plume::table.cell": {
             "path": "plume/resources/views/components/table/cell.blade.php",
-            "props": {},
+            "props": {
+                "align": {
+                    "type": "string",
+                    "default": "left"
+                }
+            },
             "description": "No description provided.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/table-cell"
         },
         "x-plume::table.head": {
             "path": "plume/resources/views/components/table/head.blade.php",
-            "props": {},
+            "props": {
+                "align": {
+                    "type": "string",
+                    "default": "left"
+                }
+            },
             "description": "No description provided.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/table-head"
         },
         "x-plume::table.header": {
             "path": "plume/resources/views/components/table/header.blade.php",
-            "props": {},
+            "props": {
+                "sticky": {
+                    "type": "boolean",
+                    "default": "false"
+                }
+            },
             "description": "No description provided.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/table-header"
