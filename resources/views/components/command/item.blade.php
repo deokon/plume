@@ -25,6 +25,6 @@
     <span class="flex-1 truncate">{{ $slot }}</span>
 
     @if($shortcut)
-        <span class="text-[10px] uppercase font-semibold opacity-50">{{ $shortcut }}</span>
+        <x-plume::kbd size="sm">{{ $shortcut }}</x-plume::kbd>
     @endif
 </div>
