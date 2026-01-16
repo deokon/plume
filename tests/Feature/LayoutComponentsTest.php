@@ -39,7 +39,10 @@ test('accordion renders items correctly', function () {
 BLADE;
 
     $view = Blade::render($template);
-    expect($view)->toContain('Section 1')->toContain('Content 1')->toContain('active: null');
+    expect($view)
+        ->toContain('Section 1')
+        ->toContain('Content 1')
+        ->toContain('x-data="accordion(false)"');
 });
 
 test('tabs render correctly', function () {

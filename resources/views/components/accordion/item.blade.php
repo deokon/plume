@@ -13,21 +13,7 @@
 ])
 
 <div 
-    x-data="{ 
-        id: '{{ $id }}',
-        get isOpen() {
-            if (this.alwaysOpen) return this.localOpen;
-            return this.active === this.id;
-        },
-        set isOpen(value) {
-            if (this.alwaysOpen) {
-                this.localOpen = value;
-            } else {
-                this.select(this.id);
-            }
-        },
-        localOpen: {{ $open ? 'true' : 'false' }}
-    }"
+    x-data="accordionItem('{{ $id }}', {{ $open ? 'true' : 'false' }})"
     x-init="if(localOpen && !alwaysOpen) active = id"
     {{ $attributes->merge(['class' => 'group']) }}
 >

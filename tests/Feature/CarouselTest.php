@@ -11,10 +11,8 @@ test('carousel renders correctly', function () {
     ');
 
     expect($view)
-        ->toContain('x-data')
-        ->toContain('activeSlide')
+        ->toContain('x-data="carousel(false, 5000)"')
         ->toContain('snap-x')
-        ->toContain('snap-center')
         ->toContain('Slide 1')
         ->toContain('Slide 2');
 });

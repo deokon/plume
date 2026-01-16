@@ -16,28 +16,7 @@
 
 <x-plume::form.element :label="$label ?? $slot" :name="$name" :id="$id" :model="$model">
     <div
-        x-data="{
-            isDropping: false,
-            file: null,
-            handleDrop(event) {
-                const files = event.dataTransfer.files;
-                if (files.length > 0) {
-                    this.$refs.input.files = files;
-                    this.file = files[0];
-                }
-                this.isDropping = false;
-            },
-            handleFileSelect(event) {
-                const files = event.target.files;
-                if (files.length > 0) {
-                    this.file = files[0];
-                }
-            },
-            removeFile() {
-                this.$refs.input.value = '';
-                this.file = null;
-            }
-        }"
+        x-data="fileInput()"
         class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-background-700/40 dark:border-background-400/20 border-dashed rounded-md"
         x-bind:class="{ 'border-primary bg-primary/10': isDropping }"
         @dragover.prevent="isDropping = true"

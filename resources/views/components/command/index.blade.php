@@ -14,17 +14,7 @@
 @endphp
 
 <div 
-    x-data="{ 
-        open: false,
-        search: '',
-        activeIndex: 0,
-        get filteredItems() {
-            return Array.from(this.$refs.items.querySelectorAll('[role=option]')).filter(item => {
-                return item.textContent.toLowerCase().includes(this.search.toLowerCase());
-            });
-        },
-        toggle() { this.open = !this.open; if(this.open) { this.search = ''; this.activeIndex = 0; $nextTick(() => this.$refs.input.focus()); } }
-    }"
+    x-data="command()"
     @keydown.window.prevent.cmd.k="toggle()"
     @keydown.window.prevent.ctrl.k="toggle()"
     @keydown.escape.window="open = false"
@@ -68,9 +58,7 @@
                         type="text" 
                         class="w-full bg-transparent border-none focus:ring-0 text-base py-4 px-3 placeholder:text-foreground/30 focus:outline-none text-foreground"
                         placeholder="{{ $placeholder }}"
-                        @keydown.arrow-down.prevent="activeIndex = (activeIndex + 1) % filteredItems.length"
-                        @keydown.arrow-up.prevent="activeIndex = (activeIndex - 1 + filteredItems.length) % filteredItems.length"
-                        @keydown.enter.prevent="if(filteredItems[activeIndex]) filteredItems[activeIndex].click()"
+                        @keydown="onKeydown"
                     >
                     <div class="hidden sm:flex items-center">
                         <x-plume::kbd size="sm">Esc</x-plume::kbd>

@@ -47,17 +47,7 @@
             }
         ])
         @if(!$isEmbed)
-        x-data="{
-            playing: {{ $autoplay ? 'true' : 'false' }},
-            toggle() {
-                if (this.playing) {
-                    this.$refs.video.pause();
-                } else {
-                    this.$refs.video.play();
-                }
-                this.playing = !this.playing;
-            }
-        }"
+        x-data="video({{ $autoplay ? 'true' : 'false' }})"
         @endif
     >
         @if($isEmbed)
