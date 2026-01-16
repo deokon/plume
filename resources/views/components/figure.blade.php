@@ -1,12 +1,14 @@
 {{--
 @component x-plume::figure
-@description Enhanced image component with captions and aspect ratio control.
+@description Enhanced image component with captions, aspect ratio control, and support for modern image formats.
 --}}
 @props([
     'src',
     'alt' => '',
     'caption' => null,
     'aspect' => null,
+    'srcset' => null,
+    'sizes' => null,
 ])
 
 <figure {{ $attributes->merge(['class' => 'overflow-hidden rounded-lg bg-background-100 dark:bg-background-800']) }}>
@@ -21,12 +23,28 @@
             default => '',
         }
     ])>
-        <img 
-            src="{{ $src }}" 
-            alt="{{ $alt }}" 
-            class="h-full w-full object-cover"
-            loading="lazy"
-        >
+        @if(isset($sources) && $sources->isNotEmpty())
+            <picture>
+                {{ $sources }}
+                <img 
+                    src="{{ $src }}" 
+                    alt="{{ $alt }}" 
+                    @if($srcset) srcset="{{ $srcset }}" @endif
+                    @if($sizes) sizes="{{ $sizes }}" @endif
+                    class="h-full w-full object-cover"
+                    loading="lazy"
+                >
+            </picture>
+        @else
+            <img 
+                src="{{ $src }}" 
+                alt="{{ $alt }}" 
+                @if($srcset) srcset="{{ $srcset }}" @endif
+                @if($sizes) sizes="{{ $sizes }}" @endif
+                class="h-full w-full object-cover"
+                loading="lazy"
+            >
+        @endif
     </div>
     @if($caption || $slot->isNotEmpty())
         <figcaption class="p-3 text-sm text-foreground/60 dark:text-background-400">

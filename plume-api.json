@@ -658,9 +658,17 @@
                 "aspect": {
                     "type": "any",
                     "default": "null"
+                },
+                "srcset": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "sizes": {
+                    "type": "string",
+                    "default": "null"
                 }
             },
-            "description": "Enhanced image component with captions and aspect ratio control.",
+            "description": "Enhanced image component with captions, aspect ratio control, and support for modern formats.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/figure"
         },

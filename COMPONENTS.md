@@ -661,7 +661,7 @@ Path: `plume/resources/views/components/empty-state.blade.php`
 ---
 
 ## x-plume::figure
-Enhanced image component with captions and aspect ratio control.
+Enhanced image component with captions, aspect ratio control, and support for modern formats.
 
 Documentation: [https://plume.dennisokon.com/docs/figure](https://plume.dennisokon.com/docs/figure)
 
@@ -671,6 +671,8 @@ Path: `plume/resources/views/components/figure.blade.php`
 - `alt` (string): Default: ``.
 - `caption` (any): Default: `null`.
 - `aspect` (any): Default: `null`.
+- `srcset` (string): Default: `null`.
+- `sizes` (string): Default: `null`.
 
 ---
 
