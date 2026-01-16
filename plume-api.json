@@ -402,6 +402,30 @@
             "usage": "<x-plume::carousel.item>\n    <img src=\"...\" alt=\"...\">\n</x-plume::carousel.item>",
             "doc_url": "https://plume.dennisokon.com/docs/carousel"
         },
+        "x-plume::chart": {
+            "path": "plume/resources/views/components/chart/index.blade.php",
+            "props": {
+                "type": {
+                    "type": "string",
+                    "default": "bar"
+                },
+                "data": {
+                    "type": "array",
+                    "default": "[]"
+                },
+                "height": {
+                    "type": "number",
+                    "default": "200"
+                },
+                "color": {
+                    "type": "string",
+                    "default": "text-primary"
+                }
+            },
+            "description": "Basic chart component for data visualization (bar, line).",
+            "usage": "<x-plume::chart type=\"bar\" :data=\"['A'=>10, 'B'=>20]\" />",
+            "doc_url": "https://plume.dennisokon.com/docs/chart"
+        },
         "x-plume::code": {
             "path": "plume/resources/views/components/code.blade.php",
             "props": {

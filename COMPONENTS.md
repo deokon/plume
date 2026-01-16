@@ -431,6 +431,26 @@ Path: `plume/resources/views/components/carousel/item.blade.php`
 
 ---
 
+## x-plume::chart
+Basic chart component for data visualization (bar, line).
+
+Documentation: [https://plume.dennisokon.com/docs/chart](https://plume.dennisokon.com/docs/chart)
+
+Path: `plume/resources/views/components/chart/index.blade.php`
+
+### Properties
+- `type` (string): Default: `bar`.
+- `data` (array): Default: `[]`.
+- `height` (number): Default: `200`.
+- `color` (string): Default: `text-primary`.
+
+### Usage
+```blade
+<x-plume::chart type="bar" :data="['A'=>10, 'B'=>20]" />
+```
+
+---
+
 ## x-plume::code
 A component for displaying code snippets with a copy-to-clipboard feature.
 
