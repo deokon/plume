@@ -3,10 +3,9 @@ export default function (Alpine) {
         items: [],
         add(toast) {
             const id = Date.now();
-            this.items.push({ 
-                id, 
-                position: 'bottom-right',
-                ...toast 
+            this.items.push({
+                id,
+                ...toast
             });
             if (toast.autoclose !== false) {
                 setTimeout(() => this.remove(id), toast.duration || 3000);

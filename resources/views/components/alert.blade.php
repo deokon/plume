@@ -13,6 +13,7 @@
     'closable' => false,
     'autoclose' => null,
     'title' => null,
+    'onClose' => null,
 ])
 
 @php
@@ -22,17 +23,18 @@
     $icon = $icon ?? $theme['icon_name'];
 @endphp
 
-<div 
-    x-data="{ open: true }" 
-    x-show="open" 
+<div
+    x-data="{ open: true, close() { open = false; @if($onClose) {{ $onClose }} @endif } }"
+    x-show="open"
     x-transition:leave="transition ease-in duration-200"
     x-transition:leave-start="opacity-100 scale-100"
     x-transition:leave-end="opacity-0 scale-95"
     @if($autoclose)
-        x-init="setTimeout(() => open = false, {{ $autoclose }})"
+        x-init="setTimeout(() => close(), {{ $autoclose }})"
     @endif
+    class="w-full"
 >
-    <div {{ $attributes->merge(['class' => 'flex items-start p-4 border-l-[3px] rounded-md ' . $styleClass]) }}>
+    <div {{ $attributes->merge(['class' => 'w-full flex items-start p-4 border-l-[3px] rounded-md ' . $styleClass]) }}>
         @if($icon)
             <x-plume::icon :i="$icon" class="mr-3 mt-0.5 shrink-0 {{ $iconStyleClass }}" />
         @endif
@@ -48,7 +50,7 @@
                 style="ghost"
                 class="ml-auto -mr-1.5 -mt-1.5 p-1"
                 aria-label="Close"
-                x-on:click="open = false"
+                x-on:click="close()"
             >
                 <x-plume::icon i="icon-[fluent--dismiss-24-regular]" class="text-lg" />
             </x-plume::button>
