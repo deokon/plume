@@ -55,6 +55,15 @@
                      }
                 }
             @endif
+
+            this.$watch('value', val => {
+                if (this.mode === 'single') {
+                    this.selectedDate = this.parseDate(val);
+                } else if (Array.isArray(val)) {
+                    this.rangeStart = this.parseDate(val[0]);
+                    this.rangeEnd = this.parseDate(val[1]);
+                }
+            });
         },
 
         parseDate(dateStr) {
