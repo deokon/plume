@@ -1400,6 +1400,36 @@
             "usage": "<x-plume::pagination :total=\"10\" :current=\"1\"",
             "doc_url": "https://plume.dennisokon.com/docs/pagination"
         },
+        "x-plume::popover": {
+            "path": "plume/resources/views/components/popover/index.blade.php",
+            "props": {
+                "position": {
+                    "type": "string",
+                    "default": "bottom"
+                },
+                "align": {
+                    "type": "string",
+                    "default": "center"
+                }
+            },
+            "description": "Displays rich content in a portal, triggered by a button.",
+            "usage": "<x-plume::popover>\n    <x-plume::popover.trigger>Open</x-plume::popover.trigger>\n    <x-plume::popover.content>Content</x-plume::popover.content>\n</x-plume::popover>",
+            "doc_url": "https://plume.dennisokon.com/docs/popover"
+        },
+        "x-plume::popover.trigger": {
+            "path": "plume/resources/views/components/popover/trigger.blade.php",
+            "props": {},
+            "description": "The element that triggers the popover.",
+            "usage": null,
+            "doc_url": "https://plume.dennisokon.com/docs/popover"
+        },
+        "x-plume::popover.content": {
+            "path": "plume/resources/views/components/popover/content.blade.php",
+            "props": {},
+            "description": "The content displayed within the popover.",
+            "usage": null,
+            "doc_url": "https://plume.dennisokon.com/docs/popover"
+        },
         "x-plume::progress": {
             "path": "plume/resources/views/components/progress/index.blade.php",
             "props": {

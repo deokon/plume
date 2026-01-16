@@ -1156,6 +1156,45 @@ Path: `plume/resources/views/components/pagination.blade.php`
 
 ---
 
+## x-plume::popover
+Displays rich content in a portal, triggered by a button.
+
+Documentation: [https://plume.dennisokon.com/docs/popover](https://plume.dennisokon.com/docs/popover)
+
+Path: `plume/resources/views/components/popover/index.blade.php`
+
+### Properties
+- `position` (string): Default: `bottom`.
+- `align` (string): Default: `center`.
+
+### Usage
+```blade
+<x-plume::popover>
+    <x-plume::popover.trigger>Open</x-plume::popover.trigger>
+    <x-plume::popover.content>Content</x-plume::popover.content>
+</x-plume::popover>
+```
+
+---
+
+## x-plume::popover.trigger
+The element that triggers the popover.
+
+Documentation: [https://plume.dennisokon.com/docs/popover](https://plume.dennisokon.com/docs/popover)
+
+Path: `plume/resources/views/components/popover/trigger.blade.php`
+
+---
+
+## x-plume::popover.content
+The content displayed within the popover.
+
+Documentation: [https://plume.dennisokon.com/docs/popover](https://plume.dennisokon.com/docs/popover)
+
+Path: `plume/resources/views/components/popover/content.blade.php`
+
+---
+
 ## x-plume::progress
 Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.
 
