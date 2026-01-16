@@ -33,75 +33,77 @@
     @endif
 
     {{-- Modal Overlay --}}
-    <div 
-        x-show="open" 
-        x-transition:enter="transition ease-out duration-300"
-        x-transition:enter-start="opacity-0"
-        x-transition:enter-end="opacity-100"
-        x-transition:leave="transition ease-in duration-200"
-        x-transition:leave-start="opacity-100"
-        x-transition:leave-end="opacity-0"
-        class="fixed inset-0 z-[100] flex items-start justify-center pt-[10vh] sm:pt-[15vh] px-4 bg-background/80 backdrop-blur-sm"
-        @click.self="open = false"
-        style="display: none;"
-    >
+    <template x-teleport="body">
         <div 
-            x-show="open"
+            x-show="open" 
             x-transition:enter="transition ease-out duration-300"
-            x-transition:enter-start="opacity-0 scale-95"
-            x-transition:enter-end="opacity-100 scale-100"
-            class="w-full max-w-2xl bg-background rounded-xl shadow-2xl border border-background-700/40 dark:border-background-400/20 overflow-hidden flex flex-col"
+            x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100"
+            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+            class="fixed inset-0 z-[100] flex items-start justify-center pt-[10vh] sm:pt-[15vh] px-4 bg-background/80 backdrop-blur-sm"
+            @click.self="open = false"
+            style="display: none;"
         >
-            {{-- Input Header --}}
-            <div class="flex items-center px-4 border-b border-background-700/40 dark:border-background-400/20">
-                <x-plume::icon i="icon-[fluent--search-24-regular]" class="size-5 text-foreground/40" />
-                <input 
-                    x-ref="input"
-                    x-model="search"
-                    type="text" 
-                    class="w-full bg-transparent border-none focus:ring-0 text-base py-4 px-3 placeholder:text-foreground/30 focus:outline-none"
-                    placeholder="{{ $placeholder }}"
-                    @keydown.arrow-down.prevent="activeIndex = (activeIndex + 1) % filteredItems.length"
-                    @keydown.arrow-up.prevent="activeIndex = (activeIndex - 1 + filteredItems.length) % filteredItems.length"
-                    @keydown.enter.prevent="if(filteredItems[activeIndex]) filteredItems[activeIndex].click()"
-                >
-                <div class="hidden sm:flex items-center">
-                    <x-plume::kbd size="sm">Esc</x-plume::kbd>
-                </div>
-            </div>
-
-            {{-- Results List --}}
             <div 
-                x-ref="items"
-                class="flex-1 overflow-y-auto max-h-[60vh] p-2 space-y-4"
+                x-show="open"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 scale-95"
+                x-transition:enter-end="opacity-100 scale-100"
+                class="w-full max-w-2xl bg-background rounded-xl shadow-2xl border border-background-700/40 dark:border-background-400/20 overflow-hidden flex flex-col"
             >
-                {{-- Template for dynamic content or just manual structure --}}
-                <div x-show="search === '' && !$refs.results?.children.length" class="p-4 text-center text-sm text-foreground/40">
-                    No recent searches.
+                {{-- Input Header --}}
+                <div class="flex items-center px-4 border-b border-background-700/40 dark:border-background-400/20">
+                    <x-plume::icon i="icon-[fluent--search-24-regular]" class="size-5 text-foreground/40" />
+                    <input 
+                        x-ref="input"
+                        x-model="search"
+                        type="text" 
+                        class="w-full bg-transparent border-none focus:ring-0 text-base py-4 px-3 placeholder:text-foreground/30 focus:outline-none text-foreground"
+                        placeholder="{{ $placeholder }}"
+                        @keydown.arrow-down.prevent="activeIndex = (activeIndex + 1) % filteredItems.length"
+                        @keydown.arrow-up.prevent="activeIndex = (activeIndex - 1 + filteredItems.length) % filteredItems.length"
+                        @keydown.enter.prevent="if(filteredItems[activeIndex]) filteredItems[activeIndex].click()"
+                    >
+                    <div class="hidden sm:flex items-center">
+                        <x-plume::kbd size="sm">Esc</x-plume::kbd>
+                    </div>
                 </div>
-                <div x-ref="results">
-                    {{ $content ?? '' }}
-                </div>
-            </div>
 
-            {{-- Footer --}}
-            <div class="px-4 py-3 bg-background-50 dark:bg-background-900 border-t border-background-700/40 dark:border-background-400/20 flex items-center gap-6 text-[10px] text-foreground/60 uppercase font-semibold">
-                <div class="flex items-center gap-1.5">
-                    <x-plume::kbd size="sm" class="min-w-5 justify-center">
-                        <x-plume::icon i="icon-[fluent--arrow-enter-up-24-regular]" class="size-3" />
-                    </x-plume::kbd>
-                    <span>Select</span>
+                {{-- Results List --}}
+                <div 
+                    x-ref="items"
+                    class="flex-1 overflow-y-auto max-h-[60vh] p-2 space-y-4"
+                >
+                    {{-- Template for dynamic content or just manual structure --}}
+                    <div x-show="search === '' && !$refs.results?.children.length" class="p-4 text-center text-sm text-foreground/40">
+                        No recent searches.
+                    </div>
+                    <div x-ref="results">
+                        {{ $content ?? '' }}
+                    </div>
                 </div>
-                <div class="flex items-center gap-1.5">
-                    <x-plume::kbd size="sm" class="min-w-5 justify-center">
-                        <x-plume::icon i="icon-[fluent--arrow-up-24-regular]" class="size-3" />
-                    </x-plume::kbd>
-                    <x-plume::kbd size="sm" class="min-w-5 justify-center">
-                        <x-plume::icon i="icon-[fluent--arrow-down-24-regular]" class="size-3" />
-                    </x-plume::kbd>
-                    <span>Navigate</span>
+
+                {{-- Footer --}}
+                <div class="px-4 py-3 bg-background-50 dark:bg-background-900 border-t border-background-700/40 dark:border-background-400/20 flex items-center gap-6 text-[10px] text-foreground/60 dark:text-background-400 uppercase font-semibold">
+                    <div class="flex items-center gap-1.5">
+                        <x-plume::kbd size="sm" class="min-w-5 justify-center">
+                            <x-plume::icon i="icon-[fluent--arrow-enter-up-24-regular]" class="size-3" />
+                        </x-plume::kbd>
+                        <span>Select</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <x-plume::kbd size="sm" class="min-w-5 justify-center">
+                            <x-plume::icon i="icon-[fluent--arrow-up-24-regular]" class="size-3" />
+                        </x-plume::kbd>
+                        <x-plume::kbd size="sm" class="min-w-5 justify-center">
+                            <x-plume::icon i="icon-[fluent--arrow-down-24-regular]" class="size-3" />
+                        </x-plume::kbd>
+                        <span>Navigate</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </template>
 </div>
