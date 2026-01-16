@@ -22,8 +22,7 @@
         .' outline-none focus-visible:border-primary focus-visible:ring-primary/50 focus-visible:ring-[3px] dark:focus-visible:border-primary-200 dark:focus-visible:ring-primary-200/50'
         .' hover:cursor-pointer active:scale-95'
         .' disabled:pointer-events-none disabled:opacity-70 disabled:cursor-default disabled:saturate-30'
-        .' [&_span.icon]:pointer-events-none [&_span.icon:not([class*=\'size-\'
-])]:size-8 [&_span.icon]:shrink-0'
+        .' [&_span.icon]:pointer-events-none [&_span.icon:not([class*=\'size-\'])]:size-8 [&_span.icon]:shrink-0'
         .' aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive'
         . ($fullWidth ? ' w-full' : '')
         . ' ' . $themeClasses;
