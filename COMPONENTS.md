@@ -308,8 +308,26 @@ Path: `plume/resources/views/components/button/toggle.blade.php`
 
 ---
 
+## x-plume::calendar
+A visual calendar interface for selecting dates.
+
+Documentation: [https://plume.dennisokon.com/docs/calendar](https://plume.dennisokon.com/docs/calendar)
+
+Path: `plume/resources/views/components/calendar.blade.php`
+
+### Properties
+- `model` (string): Default: `null`.
+- `value` (string): Default: `null`.
+
+### Usage
+```blade
+<x-plume::calendar />
+```
+
+---
+
 ## x-plume::card
-Displays a card with header, content, and footer.
+
 
 Documentation: [https://plume.dennisokon.com/docs/card](https://plume.dennisokon.com/docs/card)
 
@@ -665,6 +683,22 @@ Path: `plume/resources/views/components/form/combobox.blade.php`
 - `placeholder` (string): Default: `Select an option...`.
 - `options` (array): Default: `[]`.
 - `emptyMessage` (string): Default: `No results found.`.
+
+---
+
+## x-plume::form.date-picker
+Date picker with visual calendar.
+
+Documentation: [https://plume.dennisokon.com/docs/form-date-picker](https://plume.dennisokon.com/docs/form-date-picker)
+
+Path: `plume/resources/views/components/form/date-picker.blade.php`
+
+### Properties
+- `label` (any): Default: `null`.
+- `name` (any): Default: `null`.
+- `id` (any): Default: `null`.
+- `model` (any): Default: `null`.
+- `placeholder` (string): Default: `Select a date...`.
 
 ---
 

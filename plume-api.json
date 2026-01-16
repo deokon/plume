@@ -313,6 +313,22 @@
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/button-toggle"
         },
+        "x-plume::calendar": {
+            "path": "plume/resources/views/components/calendar.blade.php",
+            "props": {
+                "model": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "value": {
+                    "type": "string",
+                    "default": "null"
+                }
+            },
+            "description": "A visual calendar interface for selecting dates.",
+            "usage": "<x-plume::calendar />",
+            "doc_url": "https://plume.dennisokon.com/docs/calendar"
+        },
         "x-plume::card": {
             "path": "plume/resources/views/components/card/index.blade.php",
             "props": {},
@@ -703,6 +719,34 @@
             "description": "Searchable dropdown for selecting from a list of options.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/form-combobox"
+        },
+        "x-plume::form.date-picker": {
+            "path": "plume/resources/views/components/form/date-picker.blade.php",
+            "props": {
+                "label": {
+                    "type": "any",
+                    "default": "null"
+                },
+                "name": {
+                    "type": "any",
+                    "default": "null"
+                },
+                "id": {
+                    "type": "any",
+                    "default": "null"
+                },
+                "model": {
+                    "type": "any",
+                    "default": "null"
+                },
+                "placeholder": {
+                    "type": "string",
+                    "default": "Select a date..."
+                }
+            },
+            "description": "Date picker with visual calendar.",
+            "usage": null,
+            "doc_url": "https://plume.dennisokon.com/docs/form-date-picker"
         },
         "x-plume::form.date": {
             "path": "plume/resources/views/components/form/date.blade.php",
