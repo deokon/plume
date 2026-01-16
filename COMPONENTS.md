@@ -1137,6 +1137,88 @@ Path: `plume/resources/views/components/modal/title.blade.php`
 
 ---
 
+## x-plume::navbar
+A top-level navigation component for site-wide links and actions.
+
+Documentation: [https://plume.dennisokon.com/docs/navbar](https://plume.dennisokon.com/docs/navbar)
+
+Path: `plume/resources/views/components/navbar/index.blade.php`
+
+### Usage
+```blade
+<x-plume::navbar>
+    <x-plume::navbar.logo>Logo</x-plume::navbar.logo>
+    <x-plume::navbar.menu>
+        <x-plume::navbar.item>Item</x-plume::navbar.item>
+    </x-plume::navbar.menu>
+    <x-plume::navbar.mobile-toggle />
+</x-plume::navbar>
+```
+
+---
+
+## x-plume::navbar.logo
+The brand logo or title.
+
+Documentation: [https://plume.dennisokon.com/docs/navbar](https://plume.dennisokon.com/docs/navbar)
+
+Path: `plume/resources/views/components/navbar/logo.blade.php`
+
+---
+
+## x-plume::navbar.menu
+Container for navigation items.
+
+Documentation: [https://plume.dennisokon.com/docs/navbar](https://plume.dennisokon.com/docs/navbar)
+
+Path: `plume/resources/views/components/navbar/menu.blade.php`
+
+---
+
+## x-plume::navbar.item
+Individual navigation link.
+
+Documentation: [https://plume.dennisokon.com/docs/navbar](https://plume.dennisokon.com/docs/navbar)
+
+Path: `plume/resources/views/components/navbar/item.blade.php`
+
+### Properties
+- `active` (boolean): Default: `false`.
+- `href` (string): Default: `#`.
+
+---
+
+## x-plume::navbar.mobile-toggle
+Toggle button for the mobile menu.
+
+Documentation: [https://plume.dennisokon.com/docs/navbar](https://plume.dennisokon.com/docs/navbar)
+
+Path: `plume/resources/views/components/navbar/mobile-toggle.blade.php`
+
+---
+
+## x-plume::navbar.mobile-menu
+Responsive mobile menu container.
+
+Documentation: [https://plume.dennisokon.com/docs/navbar](https://plume.dennisokon.com/docs/navbar)
+
+Path: `plume/resources/views/components/navbar/mobile-menu.blade.php`
+
+---
+
+## x-plume::navbar.mobile-item
+Individual navigation link for mobile menu.
+
+Documentation: [https://plume.dennisokon.com/docs/navbar](https://plume.dennisokon.com/docs/navbar)
+
+Path: `plume/resources/views/components/navbar/mobile-item.blade.php`
+
+### Properties
+- `active` (boolean): Default: `false`.
+- `href` (string): Default: `#`.
+
+---
+
 ## x-plume::pagination
 Displays a sequence of links for navigating through a series of related pages. Powered by AlpineJS.
 

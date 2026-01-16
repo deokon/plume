@@ -1380,6 +1380,73 @@
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/modal-title"
         },
+        "x-plume::navbar": {
+            "path": "plume/resources/views/components/navbar/index.blade.php",
+            "props": {},
+            "description": "A top-level navigation component for site-wide links and actions.",
+            "usage": "<x-plume::navbar>\n    <x-plume::navbar.logo>Logo</x-plume::navbar.logo>\n    <x-plume::navbar.menu>\n        <x-plume::navbar.item>Item</x-plume::navbar.item>\n    </x-plume::navbar.menu>\n    <x-plume::navbar.mobile-toggle />\n</x-plume::navbar>",
+            "doc_url": "https://plume.dennisokon.com/docs/navbar"
+        },
+        "x-plume::navbar.logo": {
+            "path": "plume/resources/views/components/navbar/logo.blade.php",
+            "props": {},
+            "description": "The brand logo or title.",
+            "usage": null,
+            "doc_url": "https://plume.dennisokon.com/docs/navbar"
+        },
+        "x-plume::navbar.menu": {
+            "path": "plume/resources/views/components/navbar/menu.blade.php",
+            "props": {},
+            "description": "Container for navigation items.",
+            "usage": null,
+            "doc_url": "https://plume.dennisokon.com/docs/navbar"
+        },
+        "x-plume::navbar.item": {
+            "path": "plume/resources/views/components/navbar/item.blade.php",
+            "props": {
+                "active": {
+                    "type": "boolean",
+                    "default": "false"
+                },
+                "href": {
+                    "type": "string",
+                    "default": "#"
+                }
+            },
+            "description": "Individual navigation link.",
+            "usage": null,
+            "doc_url": "https://plume.dennisokon.com/docs/navbar"
+        },
+        "x-plume::navbar.mobile-toggle": {
+            "path": "plume/resources/views/components/navbar/mobile-toggle.blade.php",
+            "props": {},
+            "description": "Toggle button for the mobile menu.",
+            "usage": null,
+            "doc_url": "https://plume.dennisokon.com/docs/navbar"
+        },
+        "x-plume::navbar.mobile-menu": {
+            "path": "plume/resources/views/components/navbar/mobile-menu.blade.php",
+            "props": {},
+            "description": "Responsive mobile menu container.",
+            "usage": null,
+            "doc_url": "https://plume.dennisokon.com/docs/navbar"
+        },
+        "x-plume::navbar.mobile-item": {
+            "path": "plume/resources/views/components/navbar/mobile-item.blade.php",
+            "props": {
+                "active": {
+                    "type": "boolean",
+                    "default": "false"
+                },
+                "href": {
+                    "type": "string",
+                    "default": "#"
+                }
+            },
+            "description": "Individual navigation link for mobile menu.",
+            "usage": null,
+            "doc_url": "https://plume.dennisokon.com/docs/navbar"
+        },
         "x-plume::pagination": {
             "path": "plume/resources/views/components/pagination.blade.php",
             "props": {
