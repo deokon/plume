@@ -1,3 +1,4 @@
+@use('deokon\Plume\Theme')
 {{--
 @component x-plume::command
 @description A powerful search and action interface accessible via keyboard shortcuts.
@@ -6,6 +7,11 @@
     'placeholder' => 'Type a command or search...',
     'id' => \Illuminate\Support\Str::random(8),
 ])
+
+@php
+    $enter = Theme::transitions('overlay-enter');
+    $leave = Theme::transitions('overlay-leave');
+@endphp
 
 <div 
     x-data="{ 
@@ -36,10 +42,10 @@
     <template x-teleport="body">
         <div 
             x-show="open" 
-            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter="{{ $enter }}"
             x-transition:enter-start="opacity-0"
             x-transition:enter-end="opacity-100"
-            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave="{{ $leave }}"
             x-transition:leave-start="opacity-100"
             x-transition:leave-end="opacity-0"
             class="fixed inset-0 z-[100] flex items-start justify-center pt-[10vh] sm:pt-[15vh] px-4 bg-background-950/80 backdrop-blur-sm"
@@ -48,7 +54,7 @@
         >
             <div 
                 x-show="open"
-                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter="{{ $enter }}"
                 x-transition:enter-start="opacity-0 scale-95"
                 x-transition:enter-end="opacity-100 scale-100"
                 class="w-full max-w-2xl bg-background rounded-xl shadow-2xl border border-background-700/40 dark:border-background-400/20 overflow-hidden flex flex-col"

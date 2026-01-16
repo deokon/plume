@@ -105,4 +105,120 @@ class Theme
 
         return ($sizes[$size] ?? $sizes['md']) . ' ' . ($styles[$style] ?? $styles['primary']);
     }
+
+    public static function modal(string $maxWidth = '2xl'): string
+    {
+        $widths = [
+            'sm' => 'sm:max-w-sm',
+            'md' => 'sm:max-w-md',
+            'lg' => 'sm:max-w-lg',
+            'xl' => 'sm:max-w-xl',
+            '2xl' => 'sm:max-w-2xl',
+        ];
+
+        return $widths[$maxWidth] ?? $widths['2xl'];
+    }
+
+    public static function drawer(string $side = 'right'): array
+    {
+        $classes = [
+            'left' => 'left-0 h-full w-full max-w-sm border-r',
+            'top' => 'top-0 w-full h-auto max-h-[80vh] border-b',
+            'bottom' => 'bottom-0 w-full h-auto max-h-[80vh] border-t',
+            'right' => 'right-0 h-full w-full max-w-sm border-l',
+        ];
+
+        $transitions = [
+            'left' => 'x-transition:enter-start="-translate-x-full" x-transition:leave-end="-translate-x-full"',
+            'top' => 'x-transition:enter-start="-translate-y-full" x-transition:leave-end="-translate-y-full"',
+            'bottom' => 'x-transition:enter-start="translate-y-full" x-transition:leave-end="translate-y-full"',
+            'right' => 'x-transition:enter-start="translate-x-full" x-transition:leave-end="translate-x-full"',
+        ];
+
+        return [
+            'classes' => $classes[$side] ?? $classes['right'],
+            'transition' => $transitions[$side] ?? $transitions['right'],
+        ];
+    }
+
+    public static function table(string $density = 'default'): string
+    {
+        $densities = [
+            'compact' => '[&_td]:p-2 [&_th]:h-8 [&_th]:px-2',
+            'loose' => '[&_td]:p-6 [&_th]:h-16 [&_th]:px-6',
+            'default' => '[&_td]:p-4 [&_th]:h-12 [&_th]:px-4',
+        ];
+
+        return $densities[$density] ?? $densities['default'];
+    }
+
+    public static function dropdown(string $align = 'right', string $width = 'md'): array
+    {
+        $alignments = [
+            'left' => 'origin-top-left left-0',
+            'top' => 'origin-top',
+            'right' => 'origin-top-right right-0',
+        ];
+
+        $widths = [
+            'xs' => 'w-32',
+            'sm' => 'w-48',
+            'md' => 'w-56',
+            'lg' => 'w-64',
+            'xl' => 'w-80',
+        ];
+
+        return [
+            'align' => $alignments[$align] ?? $alignments['right'],
+            'width' => $widths[$width] ?? $width, // Allow arbitrary width classes if not a key
+        ];
+    }
+
+    public static function kbd(string $size = 'md'): string
+    {
+        $sizes = [
+            'sm' => 'px-1 text-[10px] min-w-[16px] h-4',
+            'md' => 'px-1.5 text-xs min-w-[20px] h-5',
+            'lg' => 'px-2 text-sm min-w-[24px] h-6',
+        ];
+
+        return $sizes[$size] ?? $sizes['md'];
+    }
+
+    public static function progress(string $style = 'default'): string
+    {
+        $styles = [
+            'secondary' => 'bg-secondary',
+            'destructive' => 'bg-destructive',
+            'success' => 'bg-primary',
+            'default' => 'bg-primary',
+        ];
+
+        return $styles[$style] ?? $styles['default'];
+    }
+
+    public static function tabs(string $side = 'top'): string
+    {
+        $directions = [
+            'left' => 'flex-row',
+            'right' => 'flex-row-reverse',
+            'top' => 'flex-col',
+            'bottom' => 'flex-col-reverse', // Adding bottom support logically, though main implementation defaults to flex-col
+        ];
+
+        return $directions[$side] ?? 'flex-col';
+    }
+
+    public static function transitions(string $type = 'default'): string
+    {
+        $durations = [
+            'fast' => 'duration-150',
+            'default' => 'duration-300',
+            'slow' => 'duration-500',
+            'overlay-enter' => 'ease-out duration-300',
+            'overlay-leave' => 'ease-in duration-200',
+        ];
+
+        return $durations[$type] ?? $durations['default'];
+    }
 }

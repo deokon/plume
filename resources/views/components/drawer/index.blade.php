@@ -1,3 +1,4 @@
+@use('deokon\Plume\Theme')
 {{--
 @component x-plume::drawer
 @description A panel that slides in from the edge of the screen.
@@ -9,20 +10,11 @@
 ])
 
 @php
-    $sideClasses = match($side) {
-        'left' => 'left-0 h-full w-full max-w-sm border-r',
-        'top' => 'top-0 w-full h-auto max-h-[80vh] border-b',
-        'bottom' => 'bottom-0 w-full h-auto max-h-[80vh] border-t',
-        // 'right'
-        default => 'right-0 h-full w-full max-w-sm border-l',
-    };
-
-    $transitionClasses = match($side) {
-        'left' => 'x-transition:enter-start="-translate-x-full" x-transition:leave-end="-translate-x-full"',
-        'top' => 'x-transition:enter-start="-translate-y-full" x-transition:leave-end="-translate-y-full"',
-        'bottom' => 'x-transition:enter-start="translate-y-full" x-transition:leave-end="translate-y-full"',
-        default => 'x-transition:enter-start="translate-x-full" x-transition:leave-end="translate-x-full"',
-    };
+    $theme = Theme::drawer($side);
+    $sideClasses = $theme['classes'];
+    $transitionClasses = $theme['transition'];
+    $enter = Theme::transitions('overlay-enter');
+    $leave = Theme::transitions('overlay-leave');
 @endphp
 
 <div
@@ -47,10 +39,10 @@
         x-show="show"
         class="fixed inset-0 transform transition-all"
         x-on:click="show = false"
-        x-transition:enter="ease-out duration-300"
+        x-transition:enter="{{ $enter }}"
         x-transition:enter-start="opacity-0"
         x-transition:enter-end="opacity-100"
-        x-transition:leave="ease-in duration-200"
+        x-transition:leave="{{ $leave }}"
         x-transition:leave-start="opacity-100"
         x-transition:leave-end="opacity-0"
     >

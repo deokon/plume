@@ -1,3 +1,4 @@
+@use('deokon\Plume\Theme')
 {{--
 @component x-plume::progress
 @description Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.
@@ -13,13 +14,7 @@
 
 @php
     $percentage = $model ? null : min(100, max(0, ($value / $max) * 100));
-
-    $styleClass = match($style) {
-        'secondary' => 'bg-secondary',
-        'destructive' => 'bg-destructive',
-        'success' => 'bg-primary',
-        default => 'bg-primary',
-    };
+    $styleClass = Theme::progress($style);
 @endphp
 
 <div {{ $attributes->merge(['class' => 'w-full space-y-2']) }}>

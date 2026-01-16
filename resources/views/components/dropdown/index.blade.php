@@ -1,3 +1,4 @@
+@use('deokon\Plume\Theme')
 {{--
 @component x-plume::dropdown
 @description Displays a menu to the user—such as a set of actions or functions—triggered by a button.
@@ -9,27 +10,9 @@
 ])
 
 @php
-switch ($align) {
-    case 'left':
-        $alignmentClasses = 'origin-top-left left-0';
-        break;
-    case 'top':
-        $alignmentClasses = 'origin-top';
-        break;
-    case 'right':
-    default:
-        $alignmentClasses = 'origin-top-right right-0';
-        break;
-}
-
-$widthClass = match ($width) {
-    'xs' => 'w-32',
-    'sm' => 'w-48',
-    'md' => 'w-56',
-    'lg' => 'w-64',
-    'xl' => 'w-80',
-    default => $width,
-};
+    $theme = Theme::dropdown($align, $width);
+    $alignmentClasses = $theme['align'];
+    $widthClass = $theme['width'];
 @endphp
 
 <div class="relative" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
