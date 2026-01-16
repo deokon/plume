@@ -12,7 +12,6 @@
 <div 
     x-data="{
         data: {{ json_encode($data) }},
-        type: '{{ $type }}',
         height: {{ $height }},
         
         get max() {
@@ -29,7 +28,7 @@
         },
         
         get points() {
-            if (!this.data.length) return '';
+            if (!this.data.length || this.max === 0) return '';
             const step = 100 / (this.data.length - 1);
             return this.values.map((val, i) => {
                 const x = i * step;
@@ -51,16 +50,16 @@
         </div>
         
         {{-- Chart --}}
-        <svg class="w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 100 100">
+        <svg class="w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
              {{-- Bar Chart --}}
-            <template x-if="type === 'bar'">
+            @if($type === 'bar')
                 <g class="{{ $color }}">
-                    <template x-for="(val, index) in values">
+                    <template x-for="(val, index) in values" :key="index">
                         <rect 
                             :x="index * (100 / values.length) + (100 / values.length * 0.1)" 
-                            :y="100 - ((val / max) * 100)" 
+                            :y="max > 0 ? 100 - ((val / max) * 100) : 100" 
                             :width="(100 / values.length) * 0.8" 
-                            :height="((val / max) * 100)" 
+                            :height="max > 0 ? ((val / max) * 100) : 0" 
                             fill="currentColor"
                             class="hover:opacity-80 transition-opacity"
                         >
@@ -68,10 +67,10 @@
                         </rect>
                     </template>
                 </g>
-            </template>
+            @endif
             
             {{-- Line Chart --}}
-            <template x-if="type === 'line'">
+            @if($type === 'line')
                 <g class="{{ $color }}">
                     <polyline 
                         :points="points" 
@@ -81,10 +80,10 @@
                         vector-effect="non-scaling-stroke"
                     />
                     {{-- Dots --}}
-                     <template x-for="(val, i) in values">
+                     <template x-for="(val, i) in values" :key="i">
                         <circle 
                             :cx="i * (100 / (values.length - 1))" 
-                            :cy="100 - ((val / max) * 100)" 
+                            :cy="max > 0 ? 100 - ((val / max) * 100) : 100" 
                             r="3" 
                             fill="currentColor"
                             vector-effect="non-scaling-stroke"
@@ -94,13 +93,13 @@
                         </circle>
                     </template>
                 </g>
-            </template>
+            @endif
         </svg>
     </div>
     
     {{-- X-Axis Labels --}}
     <div class="flex justify-between mt-2 text-xs text-foreground/50">
-         <template x-for="label in labels">
+         <template x-for="(label, index) in labels" :key="index">
             <span x-text="label" class="truncate px-1" :style="`width: ${100/data.length}%`"></span>
         </template>
     </div>
