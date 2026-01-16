@@ -1,6 +1,7 @@
 {{--
 @component x-plume::table.cell
 --}}
-<td {{ $attributes->merge(['class' => 'p-4 align-middle [&:has([role=checkbox])]:pr-0']) }}>
+@props(['align' => 'left'])
+<td {{ $attributes->merge(['class' => "p-4 align-middle text-$align [&:has([role=checkbox])]:pr-0"]) }}>
     {{ $slot }}
 </td>

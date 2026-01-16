@@ -1,60 +1,33 @@
 {{--
 @component x-plume::pagination
-@description Displays a sequence of links for navigating through a series of related pages.
+@description Displays a sequence of links for navigating through a series of related pages. Powered by AlpineJS.
+@usage
+<x-plume::pagination :total="10" :current="1" @change="page = $event.detail.page" />
 --}}
 @props([
     'total' => 1,
     'current' => 1,
-    'url' => null,
-    'route' => null,
     'onEachSide' => 1,
 ])
 
 @php
-    $getPageUrl = function($page) use ($url, $route) {
-        if ($page === '...') return null;
-        if ($route) return route($route, ['page' => $page]);
-        if ($url) return str_replace(':page', $page, $url);
-        return null;
-    };
-
-    $pages = [];
-    if ($total <= 7) {
-        $pages = range(1, $total);
-    } else {
-        $pages[] = 1;
-        if ($current > $onEachSide + 2) {
-            $pages[] = '...';
-        }
-
-        $start = max(2, $current - $onEachSide);
-        $end = min($total - 1, $current + $onEachSide);
-
-        for ($i = $start; $i <= $end; $i++) {
-            $pages[] = $i;
-        }
-
-        if ($current < $total - ($onEachSide + 1)) {
-            $pages[] = '...';
-        }
-
-        $pages[] = $total;
-    }
+    $initialTotal = is_numeric($total) ? $total : 1;
+    $initialCurrent = is_numeric($current) ? $current : 1;
 @endphp
 
 <nav 
-    x-data 
+    x-data="pagination({{ $initialTotal }}, {{ $initialCurrent }}, {{ $onEachSide }})"
     {{ $attributes->merge(['class' => 'flex items-center justify-center gap-1']) }} 
     aria-label="Pagination"
+    :total="{{ is_numeric($total) ? $total : $total }}"
+    :current="{{ is_numeric($current) ? $current : $current }}"
 >
     {{-- Previous Page --}}
-    @php $prevUrl = $current > 1 ? $getPageUrl($current - 1) : null; @endphp
     <x-plume::button
         style="ghost"
         size="sm"
-        :disabled="$current <= 1"
-        :href="$prevUrl"
-        @click="$dispatch('change', { page: {{ $current - 1 }} })"
+        ::disabled="current <= 1"
+        @click="dispatch(current - 1)"
         aria-label="Previous Page"
     >
         <x-plume::icon i="icon-[fluent--chevron-left-24-regular]" class="size-4" />
@@ -63,39 +36,40 @@
 
     {{-- Page Numbers (Desktop) --}}
     <div class="hidden sm:flex items-center gap-1">
-        @foreach($pages as $page)
-            @if($page === '...')
-                <span class="flex size-8 items-center justify-center text-sm text-foreground/50">
-                    <x-plume::icon i="icon-[fluent--more-horizontal-24-regular]" class="size-4" />
-                </span>
-            @else
-                <x-plume::button
-                    :style="$page === $current ? 'default' : 'ghost'"
-                    size="sm"
-                    :href="$getPageUrl($page)"
-                    @click="$dispatch('change', { page: {{ $page }} })"
-                    aria-label="Page {{ $page }}"
-                    aria-current="{{ $page === $current ? 'page' : 'false' }}"
-                >
-                    {{ $page }}
-                </x-plume::button>
-            @endif
-        @endforeach
+        <template x-for="(page, index) in pages" :key="index + '-' + page">
+            <div class="flex items-center">
+                <template x-if="page === '...'">
+                    <span class="flex size-8 items-center justify-center text-sm text-foreground/50 dark:text-background-400">
+                        <x-plume::icon i="icon-[fluent--more-horizontal-24-regular]" class="size-4" />
+                    </span>
+                </template>
+                <template x-if="page !== '...'">
+                    <button
+                        type="button"
+                        @click="dispatch(page)"
+                        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 size-8 hover:bg-primary/20 hover:text-foreground dark:hover:bg-background-700 dark:hover:text-background-200"
+                        :class="page == current ? 'bg-primary text-primary-foreground hover:bg-primary-800 hover:text-primary-foreground' : 'text-foreground/70 dark:text-background-400'"
+                        :aria-label="'Page ' + page"
+                        :aria-current="page == current ? 'page' : 'false'"
+                    >
+                        <span x-text="page"></span>
+                    </button>
+                </template>
+            </div>
+        </template>
     </div>
 
     {{-- Page Info (Mobile) --}}
-    <div class="sm:hidden px-4 text-sm font-medium">
-        {{ $current }} / {{ $total }}
+    <div class="sm:hidden px-4 text-sm font-medium text-foreground/70 dark:text-background-400">
+        <span x-text="current"></span> / <span x-text="total"></span>
     </div>
 
     {{-- Next Page --}}
-    @php $nextUrl = $current < $total ? $getPageUrl($current + 1) : null; @endphp
     <x-plume::button
         style="ghost"
         size="sm"
-        :disabled="$current >= $total"
-        :href="$nextUrl"
-        @click="$dispatch('change', { page: {{ $current + 1 }} })"
+        ::disabled="current >= total"
+        @click="dispatch(current + 1)"
         aria-label="Next Page"
     >
         <span class="hidden sm:inline-block mr-1">Next</span>

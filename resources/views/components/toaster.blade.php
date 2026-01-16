@@ -2,19 +2,33 @@
 @component x-plume::toaster
 @description A succinct message that is displayed temporarily.
 --}}
+@props([
+    'position' => 'bottom-right', // top-left, top-right, bottom-left, bottom-right
+])
+
+@php
+    $positionClasses = match($position) {
+        'top-left' => 'top-0 left-0',
+        'top-right' => 'top-0 right-0',
+        'bottom-left' => 'bottom-0 left-0',
+        'bottom-right' => 'bottom-0 right-0',
+        default => 'bottom-0 right-0',
+    };
+@endphp
+
 <div
-    class="fixed bottom-0 right-0 z-50 flex flex-col gap-2 p-4 sm:p-6"
+    class="fixed {{ $positionClasses }} z-50 flex flex-col gap-2 p-4 sm:p-6 max-h-screen overflow-hidden pointer-events-none"
     x-data
 >
-    <template x-for="toast in $store.toasts.items" :key="toast.id">
+    <template x-for="toast in $store.toasts.items.filter(t => t.position === '{{ $position }}')" :key="toast.id">
         <div
             x-transition:enter="transition ease-out duration-300"
-            x-transition:enter-start="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
+            x-transition:enter-start="translate-y-2 opacity-0 sm:translate-y-0 {{ str_contains($position, 'right') ? 'sm:translate-x-2' : 'sm:-translate-x-2' }}"
             x-transition:enter-end="translate-y-0 opacity-100 sm:translate-x-0"
             x-transition:leave="transition ease-in duration-200"
             x-transition:leave-start="opacity-100"
             x-transition:leave-end="opacity-0"
-            class="flex w-full max-w-sm overflow-hidden rounded-lg border border-background-700/40 bg-background shadow-lg dark:border-background-400/20 dark:bg-background-800"
+            class="flex w-full max-w-sm overflow-hidden rounded-lg border border-background-700/40 bg-background shadow-lg dark:border-background-400/20 dark:bg-background-800 pointer-events-auto"
         >
             <div class="flex-1 p-4">
                 <div class="flex items-start">
@@ -27,6 +41,9 @@
                         </template>
                         <template x-if="toast.type === 'info'">
                             <x-plume::icon i="icon-[fluent--info-24-regular]" class="size-6 text-foreground/50 dark:text-background-400" />
+                        </template>
+                        <template x-if="toast.type === 'warning'">
+                            <x-plume::icon i="icon-[fluent--warning-24-regular]" class="size-6 text-warning" />
                         </template>
                     </div>
                     <div :class="toast.type ? 'ml-3' : ''" class="flex-1">

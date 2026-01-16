@@ -1,0 +1,24 @@
+<?php
+
+use Illuminate\Support\Facades\Blade;
+
+test('pagination renders correctly with dynamic attributes', function () {
+    $view = Blade::render('<x-plume::pagination :total="5" :current="1" />');
+    expect($view)->toContain('x-data="pagination(5, 1, 1)"')
+        ->toContain(':total="5"')
+        ->toContain(':current="1"');
+});
+
+test('data table renders correctly with dynamic attributes', function () {
+    $data = [['id' => 1, 'name' => 'John']];
+    $cols = [['key' => 'id', 'label' => 'ID']];
+    
+    $view = Blade::render('<x-plume::data-table :data="$data" :columns="$cols" paginated per-page="5" />', [
+        'data' => $data,
+        'cols' => $cols,
+    ]);
+    
+    expect($view)->toContain('x-data="dataTable(5, true, true)"')
+        ->toContain('x-text="col.label"')
+        ->toContain('x-text="row[col.key]"');
+});

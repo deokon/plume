@@ -1,5 +1,10 @@
 {{--
 @component x-plume::stepper.step
+@description An individual step within a stepper component.
+@usage
+<x-plume::stepper.step step="1" title="Initial Step" next="Continue">
+    <p>Step content goes here...</p>
+</x-plume::stepper.step>
 --}}
 @props([
     'step',

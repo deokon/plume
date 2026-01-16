@@ -1,3 +1,4 @@
+@use('deokon\Plume\Form')
 {{--
 @component x-plume::form.date
 @description Date, time, and datetime inputs.
@@ -11,8 +12,8 @@
 ])
 @php
     $name = $name ?? $model;
-    $id = $id ?? Str::slug($name, '_');
-    $classes = 'block w-full px-3 py-2 border rounded-md shadow-sm placeholder-foreground/50 dark:placeholder-background-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm bg-background-50 dark:bg-background-700 border-background-700/40 dark:border-background-400/20';
+    $id = Form::resolveId($name, $model, $id);
+    $classes = Form::inputClasses();
 @endphp
 <x-plume::form.element :label="$label ?? $slot" :name="$name" :id="$id" :model="$model">
     <input
