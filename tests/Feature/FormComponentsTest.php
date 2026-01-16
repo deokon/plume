@@ -31,3 +31,18 @@ test('password input renders with correct id and label', function () {
     $view = Blade::render('<x-plume::form.password label="Secret" name="pass" />');
     expect($view)->toContain('for="pass"')->toContain('id="pass"')->toContain('Secret');
 });
+
+test('combobox renders with correct id, label and options', function () {
+    $options = [
+        ['value' => 'foo', 'label' => 'Foo Bar'],
+        ['value' => 'baz', 'label' => 'Baz Qux'],
+    ];
+    $view = Blade::render('<x-plume::form.combobox label="Select Item" name="item" :options="$options" />', ['options' => $options]);
+    
+    expect($view)
+        ->toContain('for="item"')
+        ->toContain('id="item"')
+        ->toContain('Select Item')
+        ->toContain('Foo Bar')
+        ->toContain('Baz Qux');
+});

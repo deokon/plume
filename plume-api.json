@@ -608,6 +608,14 @@
                     "type": "any",
                     "default": "null"
                 },
+                "name": {
+                    "type": "any",
+                    "default": "null"
+                },
+                "id": {
+                    "type": "any",
+                    "default": "null"
+                },
                 "model": {
                     "type": "any",
                     "default": "null"
@@ -619,6 +627,10 @@
                 "options": {
                     "type": "array",
                     "default": "[]"
+                },
+                "emptyMessage": {
+                    "type": "string",
+                    "default": "No results found."
                 }
             },
             "description": "Searchable dropdown for selecting from a list of options.",

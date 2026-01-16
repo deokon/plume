@@ -574,9 +574,12 @@ Path: `plume/resources/views/components/form/combobox.blade.php`
 
 ### Properties
 - `label` (any): Default: `null`.
+- `name` (any): Default: `null`.
+- `id` (any): Default: `null`.
 - `model` (any): Default: `null`.
 - `placeholder` (string): Default: `Select an option...`.
 - `options` (array): Default: `[]`.
+- `emptyMessage` (string): Default: `No results found.`.
 
 ---
 
