@@ -22,7 +22,7 @@
         mode: '{{ $mode }}',
         minDate: '{{ $min }}' ? new Date('{{ $min }}') : null,
         maxDate: '{{ $max }}' ? new Date('{{ $max }}') : null,
-        
+
         init() {
             if (this.mode === 'single' && this.value) {
                 this.selectedDate = this.parseDate(this.value);
@@ -32,7 +32,7 @@
                 if (this.value[1]) this.rangeEnd = this.parseDate(this.value[1]);
                 this.currDate = new Date(this.rangeStart);
             }
-            
+
              @if($model)
                 if (typeof $data.{{ $model }} !== 'undefined') {
                      if ($data.{{ $model }}) {
@@ -74,15 +74,15 @@
             const localDate = new Date(date.getTime() - (offset*60*1000));
             return localDate.toISOString().split('T')[0];
         },
-        
+
         get year() { return this.currDate.getFullYear(); },
         get month() { return this.currDate.getMonth(); },
         get monthName() { return this.monthNames[this.month]; },
-        
+
         get calendarDays() {
             const daysInMonth = new Date(this.year, this.month + 1, 0).getDate();
             const firstDayIndex = new Date(this.year, this.month, 1).getDay();
-            
+
             let days = [];
             for (let i = 0; i < firstDayIndex; i++) {
                 days.push({ day: '', disabled: true });
@@ -90,7 +90,7 @@
             for (let i = 1; i <= daysInMonth; i++) {
                 const date = new Date(this.year, this.month, i);
                 let disabled = false;
-                
+
                 if (this.minDate && date < this.minDate) disabled = true;
                 if (this.maxDate && date > this.maxDate) disabled = true;
 
@@ -98,18 +98,18 @@
             }
             return days;
         },
-        
+
         nextMonth() {
             this.currDate = new Date(this.year, this.month + 1, 1);
         },
-        
+
         prevMonth() {
             this.currDate = new Date(this.year, this.month - 1, 1);
         },
-        
+
         selectDate(day) {
             if (day.disabled) return;
-            
+
             if (this.mode === 'single') {
                 this.selectedDate = day.date;
                 this.value = this.formatDate(day.date);
@@ -132,7 +132,7 @@
             }
             this.$dispatch('input', this.value);
         },
-        
+
         isSelected(day) {
             if (day.disabled) return false;
             if (this.mode === 'single') {
@@ -148,7 +148,7 @@
             if (this.mode !== 'range' || !this.rangeStart || !this.rangeEnd || day.disabled) return false;
             return day.date > this.rangeStart && day.date < this.rangeEnd;
         },
-        
+
         isToday(day) {
             if (day.disabled) return false;
             return day.date.toDateString() === new Date().toDateString();
@@ -159,44 +159,44 @@
 >
     {{-- Header --}}
     <div class="flex items-center justify-between mb-4">
-        <button @click="prevMonth" type="button" class="p-1 hover:bg-background-100 dark:hover:bg-background-800 rounded-full transition-colors text-foreground/70">
+        <button @click="prevMonth" type="button" class="p-1 hover:bg-background-100 dark:hover:bg-background-800 dark:text-background-200 rounded-full transition-colors text-foreground/70">
             <x-plume::icon i="icon-[fluent--chevron-left-24-regular]" class="size-5" />
         </button>
         <div class="font-semibold text-sm">
             <span x-text="monthName"></span> <span x-text="year"></span>
         </div>
-        <button @click="nextMonth" type="button" class="p-1 hover:bg-background-100 dark:hover:bg-background-800 rounded-full transition-colors text-foreground/70">
+        <button @click="nextMonth" type="button" class="p-1 hover:bg-background-100 dark:hover:bg-background-800 dark:text-background-200 rounded-full transition-colors text-foreground/70">
              <x-plume::icon i="icon-[fluent--chevron-right-24-regular]" class="size-5" />
         </button>
     </div>
-    
+
     {{-- Grid Headers --}}
     <div class="grid grid-cols-7 gap-1 text-center mb-2">
         <template x-for="day in days">
-            <div x-text="day" class="text-xs font-medium text-foreground/50 h-8 flex items-center justify-center"></div>
+            <div x-text="day" class="text-xs font-medium text-foreground/50 dark:text-background-200/50 h-8 flex items-center justify-center"></div>
         </template>
     </div>
-    
+
     {{-- Grid Days --}}
     <div class="grid grid-cols-7 gap-1">
         <template x-for="(dayObj, index) in calendarDays" :key="index">
             <div class="flex justify-center w-full">
                 <template x-if="!dayObj.disabled">
-                    <button 
+                    <button
                         @click="selectDate(dayObj)"
                         type="button"
                         class="w-8 h-8 rounded-full flex items-center justify-center text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 relative z-10"
                         :class="{
                             'bg-primary text-primary-foreground': isSelected(dayObj),
                             'bg-primary/10 text-primary': isInRange(dayObj),
-                            'hover:bg-background-100 dark:hover:bg-background-800 text-foreground': !isSelected(dayObj) && !isInRange(dayObj),
-                            'text-primary font-bold': isToday(dayObj) && !isSelected(dayObj) && !isInRange(dayObj)
+                            'hover:bg-background-100 dark:hover:bg-background-800 text-foreground dark:text-background-200': !isSelected(dayObj) && !isInRange(dayObj),
+                            'text-primary dark:text-primary font-bold': isToday(dayObj) && !isSelected(dayObj) && !isInRange(dayObj)
                         }"
                         x-text="dayObj.day"
                     ></button>
                 </template>
                  <template x-if="dayObj.disabled">
-                    <div class="w-8 h-8 flex items-center justify-center text-sm text-foreground/20 cursor-not-allowed">
+                    <div class="w-8 h-8 flex items-center justify-center text-sm text-foreground/20 dark:text-background-200/50 cursor-not-allowed">
                         <span x-text="dayObj.day"></span>
                     </div>
                 </template>
