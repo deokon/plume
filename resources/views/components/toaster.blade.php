@@ -3,17 +3,30 @@
 @description A succinct message that is displayed temporarily.
 --}}
 @props([
-    'position' => 'bottom-right', // top-left, top-right, bottom-left, bottom-right
+    'position' => 'bottom-right', // top-left, top-center, top-right, bottom-left, bottom-center, bottom-right
 ])
 
 @php
     $positionClasses = match($position) {
-        'top-left' => 'top-0 left-0',
-        'top-right' => 'top-0 right-0',
-        'bottom-left' => 'bottom-0 left-0',
-        'bottom-right' => 'bottom-0 right-0',
-        default => 'bottom-0 right-0',
+        'top-left' => 'top-0 left-0 items-start',
+        'top-center' => 'top-0 left-1/2 -translate-x-1/2 items-center',
+        'top-right' => 'top-0 right-0 items-end',
+        'bottom-left' => 'bottom-0 left-0 items-start',
+        'bottom-center' => 'bottom-0 left-1/2 -translate-x-1/2 items-center',
+        'bottom-right' => 'bottom-0 right-0 items-end',
+        default => 'bottom-0 right-0 items-end',
     };
+
+    $enterStart = 'translate-y-2 opacity-0';
+    if (str_contains($position, 'center')) {
+        // Center: keep vertical slide (translate-y-2), no horizontal
+    } elseif (str_contains($position, 'right')) {
+        // Right: Reset Y, slide from right
+        $enterStart .= ' sm:translate-y-0 sm:translate-x-2';
+    } else {
+        // Left: Reset Y, slide from left
+        $enterStart .= ' sm:translate-y-0 sm:-translate-x-2';
+    }
 @endphp
 
 <div
@@ -23,7 +36,7 @@
     <template x-for="toast in $store.toasts.items.filter(t => (t.position || 'bottom-right') === '{{ $position }}')" :key="toast.id">
         <div
             x-transition:enter="transition ease-out duration-300"
-            x-transition:enter-start="translate-y-2 opacity-0 sm:translate-y-0 {{ str_contains($position, 'right') ? '-sm:translate-x-2' : 'sm:-translate-x-2' }}"
+            x-transition:enter-start="{{ $enterStart }}"
             x-transition:enter-end="translate-y-0 opacity-100 sm:translate-x-0"
             x-transition:leave="transition ease-in duration-200"
             x-transition:leave-start="opacity-100"
