@@ -41,8 +41,9 @@
         x-transition:leave="transition ease-in duration-200"
         x-transition:leave-start="opacity-100"
         x-transition:leave-end="opacity-0"
-        class="fixed inset-0 z-[100] flex items-start justify-center pt-[10vh] sm:pt-[15vh] px-4 bg-background-950/50 backdrop-blur-sm"
+        class="fixed inset-0 z-[100] flex items-start justify-center pt-[10vh] sm:pt-[15vh] px-4 bg-background/80 backdrop-blur-sm"
         @click.self="open = false"
+        style="display: none;"
     >
         <div 
             x-show="open"
@@ -58,14 +59,14 @@
                     x-ref="input"
                     x-model="search"
                     type="text" 
-                    class="w-full bg-transparent border-none focus:ring-0 text-base py-4 px-3 placeholder:text-foreground/30"
+                    class="w-full bg-transparent border-none focus:ring-0 text-base py-4 px-3 placeholder:text-foreground/30 focus:outline-none"
                     placeholder="{{ $placeholder }}"
                     @keydown.arrow-down.prevent="activeIndex = (activeIndex + 1) % filteredItems.length"
                     @keydown.arrow-up.prevent="activeIndex = (activeIndex - 1 + filteredItems.length) % filteredItems.length"
                     @keydown.enter.prevent="if(filteredItems[activeIndex]) filteredItems[activeIndex].click()"
                 >
-                <div class="hidden sm:flex items-center gap-1.5 px-1.5 py-0.5 rounded border border-background-700/40 text-[10px] font-medium text-foreground/40 uppercase">
-                    <span>Esc</span>
+                <div class="hidden sm:flex items-center">
+                    <x-plume::kbd size="sm">Esc</x-plume::kbd>
                 </div>
             </div>
 
@@ -84,20 +85,20 @@
             </div>
 
             {{-- Footer --}}
-            <div class="px-4 py-3 bg-background-50 dark:bg-background-900 border-t border-background-700/40 dark:border-background-400/20 flex items-center gap-6 text-[10px] text-foreground/40 uppercase font-semibold">
+            <div class="px-4 py-3 bg-background-50 dark:bg-background-900 border-t border-background-700/40 dark:border-background-400/20 flex items-center gap-6 text-[10px] text-foreground/60 uppercase font-semibold">
                 <div class="flex items-center gap-1.5">
-                    <kbd class="px-1.5 py-0.5 rounded border border-background-700/40 bg-background flex items-center justify-center min-w-5">
+                    <x-plume::kbd size="sm" class="min-w-5 justify-center">
                         <x-plume::icon i="icon-[fluent--arrow-enter-up-24-regular]" class="size-3" />
-                    </kbd>
+                    </x-plume::kbd>
                     <span>Select</span>
                 </div>
                 <div class="flex items-center gap-1.5">
-                    <kbd class="px-1.5 py-0.5 rounded border border-background-700/40 bg-background flex items-center justify-center min-w-5">
+                    <x-plume::kbd size="sm" class="min-w-5 justify-center">
                         <x-plume::icon i="icon-[fluent--arrow-up-24-regular]" class="size-3" />
-                    </kbd>
-                    <kbd class="px-1.5 py-0.5 rounded border border-background-700/40 bg-background flex items-center justify-center min-w-5">
+                    </x-plume::kbd>
+                    <x-plume::kbd size="sm" class="min-w-5 justify-center">
                         <x-plume::icon i="icon-[fluent--arrow-down-24-regular]" class="size-3" />
-                    </kbd>
+                    </x-plume::kbd>
                     <span>Navigate</span>
                 </div>
             </div>
