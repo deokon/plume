@@ -1557,6 +1557,9 @@ Documentation: [https://plume.dennisokon.com/docs/toaster](https://plume.denniso
 
 Path: `plume/resources/views/components/toaster.blade.php`
 
+### Properties
+- `position` (string): Default: `bottom-right`.
+
 ---
 
 ## x-plume::tooltip

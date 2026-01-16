@@ -2,8 +2,22 @@
 @component x-plume::toaster
 @description A succinct message that is displayed temporarily.
 --}}
+@props([
+    'position' => 'bottom-right', // top-left, top-right, bottom-left, bottom-right
+])
+
+@php
+    $positionClasses = match($position) {
+        'top-left' => 'top-0 left-0',
+        'top-right' => 'top-0 right-0',
+        'bottom-left' => 'bottom-0 left-0',
+        'bottom-right' => 'bottom-0 right-0',
+        default => 'bottom-0 right-0',
+    };
+@endphp
+
 <div
-    class="fixed bottom-0 right-0 z-50 flex flex-col gap-2 p-4 sm:p-6"
+    class="fixed {{ $positionClasses }} z-50 flex flex-col gap-2 p-4 sm:p-6 max-h-screen overflow-hidden"
     x-data
 >
     <template x-for="toast in $store.toasts.items" :key="toast.id">
@@ -27,6 +41,9 @@
                         </template>
                         <template x-if="toast.type === 'info'">
                             <x-plume::icon i="icon-[fluent--info-24-regular]" class="size-6 text-foreground/50 dark:text-background-400" />
+                        </template>
+                        <template x-if="toast.type === 'warning'">
+                            <x-plume::icon i="icon-[fluent--warning-24-regular]" class="size-6 text-warning" />
                         </template>
                     </div>
                     <div :class="toast.type ? 'ml-3' : ''" class="flex-1">

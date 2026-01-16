@@ -1799,7 +1799,12 @@
         },
         "x-plume::toaster": {
             "path": "plume/resources/views/components/toaster.blade.php",
-            "props": {},
+            "props": {
+                "position": {
+                    "type": "string",
+                    "default": "bottom-right"
+                }
+            },
             "description": "A succinct message that is displayed temporarily.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/toaster"
