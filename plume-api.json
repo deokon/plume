@@ -323,6 +323,18 @@
                 "value": {
                     "type": "string",
                     "default": "null"
+                },
+                "mode": {
+                    "type": "string",
+                    "default": "single"
+                },
+                "min": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "max": {
+                    "type": "string",
+                    "default": "null"
                 }
             },
             "description": "A visual calendar interface for selecting dates.",

@@ -5,50 +5,72 @@
 @props([
     'model' => null,
     'value' => null,
+    'min' => null, // 'YYYY-MM-DD'
+    'max' => null, // 'YYYY-MM-DD'
+    'mode' => 'single', // 'single', 'range'
 ])
 
 <div
     x-data="{
-        value: @if($value) '{{ $value }}' @else null @endif,
+        value: @if($value) {{ $mode === 'range' ? json_encode($value) : "'$value'" }} @else {{ $mode === 'range' ? '[]' : 'null' }} @endif,
         selectedDate: null,
+        rangeStart: null,
+        rangeEnd: null,
         currDate: new Date(),
         days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
         monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        mode: '{{ $mode }}',
+        minDate: '{{ $min }}' ? new Date('{{ $min }}') : null,
+        maxDate: '{{ $max }}' ? new Date('{{ $max }}') : null,
         
         init() {
-            if (this.value) {
-                // Handle YYYY-MM-DD
-                const parts = this.value.split('-');
-                if(parts.length === 3) {
-                     this.selectedDate = new Date(parts[0], parts[1] - 1, parts[2]);
-                     this.currDate = new Date(this.selectedDate);
-                } else {
-                     this.selectedDate = new Date(this.value);
-                     this.currDate = new Date(this.selectedDate);
-                }
+            if (this.mode === 'single' && this.value) {
+                this.selectedDate = this.parseDate(this.value);
+                this.currDate = new Date(this.selectedDate);
+            } else if (this.mode === 'range' && Array.isArray(this.value) && this.value.length > 0) {
+                this.rangeStart = this.parseDate(this.value[0]);
+                if (this.value[1]) this.rangeEnd = this.parseDate(this.value[1]);
+                this.currDate = new Date(this.rangeStart);
             }
             
              @if($model)
                 if (typeof $data.{{ $model }} !== 'undefined') {
-                     this.$watch('selectedDate', val => {
-                         if(val) {
-                             // Format YYYY-MM-DD local time
-                             const offset = val.getTimezoneOffset();
-                             const localDate = new Date(val.getTime() - (offset*60*1000));
-                             $data.{{ $model }} = localDate.toISOString().split('T')[0];
-                         }
+                     this.$watch('value', val => {
+                         $data.{{ $model }} = val;
                      });
                      
                      if ($data.{{ $model }}) {
                          this.value = $data.{{ $model }};
-                         const parts = this.value.split('-');
-                         if(parts.length === 3) {
-                             this.selectedDate = new Date(parts[0], parts[1] - 1, parts[2]);
-                             this.currDate = new Date(this.selectedDate);
+                         // Re-init logic if needed when external model changes
+                         if (this.mode === 'single') {
+                             this.selectedDate = this.parseDate(this.value);
+                             if(this.selectedDate) this.currDate = new Date(this.selectedDate);
+                         } else {
+                             if(Array.isArray(this.value)) {
+                                 this.rangeStart = this.parseDate(this.value[0]);
+                                 this.rangeEnd = this.parseDate(this.value[1]);
+                                 if(this.rangeStart) this.currDate = new Date(this.rangeStart);
+                             }
                          }
                      }
                 }
             @endif
+        },
+
+        parseDate(dateStr) {
+            if(!dateStr) return null;
+            const parts = dateStr.split('-');
+            if(parts.length === 3) {
+                 return new Date(parts[0], parts[1] - 1, parts[2]);
+            }
+            return new Date(dateStr);
+        },
+
+        formatDate(date) {
+            if(!date) return null;
+            const offset = date.getTimezoneOffset();
+            const localDate = new Date(date.getTime() - (offset*60*1000));
+            return localDate.toISOString().split('T')[0];
         },
         
         get year() { return this.currDate.getFullYear(); },
@@ -60,13 +82,17 @@
             const firstDayIndex = new Date(this.year, this.month, 1).getDay();
             
             let days = [];
-            // Previous month padding
             for (let i = 0; i < firstDayIndex; i++) {
                 days.push({ day: '', disabled: true });
             }
-            // Current month days
             for (let i = 1; i <= daysInMonth; i++) {
-                days.push({ day: i, disabled: false, date: new Date(this.year, this.month, i) });
+                const date = new Date(this.year, this.month, i);
+                let disabled = false;
+                
+                if (this.minDate && date < this.minDate) disabled = true;
+                if (this.maxDate && date > this.maxDate) disabled = true;
+
+                days.push({ day: i, disabled: disabled, date: date });
             }
             return days;
         },
@@ -81,20 +107,44 @@
         
         selectDate(day) {
             if (day.disabled) return;
-            this.selectedDate = day.date;
             
-            const offset = day.date.getTimezoneOffset();
-            const localDate = new Date(day.date.getTime() - (offset*60*1000));
-            this.value = localDate.toISOString().split('T')[0];
-            
-            this.$dispatch('change', this.value);
-            // Also dispatch input for v-model support if wrapper uses it
+            if (this.mode === 'single') {
+                this.selectedDate = day.date;
+                this.value = this.formatDate(day.date);
+                this.$dispatch('change', this.value);
+            } else {
+                if (!this.rangeStart || (this.rangeStart && this.rangeEnd)) {
+                    this.rangeStart = day.date;
+                    this.rangeEnd = null;
+                    this.value = [this.formatDate(this.rangeStart), null];
+                } else {
+                    if (day.date < this.rangeStart) {
+                        this.rangeEnd = this.rangeStart;
+                        this.rangeStart = day.date;
+                    } else {
+                        this.rangeEnd = day.date;
+                    }
+                    this.value = [this.formatDate(this.rangeStart), this.formatDate(this.rangeEnd)];
+                    this.$dispatch('change', this.value);
+                }
+            }
             this.$dispatch('input', this.value);
         },
         
         isSelected(day) {
-            if (!this.selectedDate || day.disabled) return false;
-            return day.date.toDateString() === this.selectedDate.toDateString();
+            if (day.disabled) return false;
+            if (this.mode === 'single') {
+                return this.selectedDate && day.date.toDateString() === this.selectedDate.toDateString();
+            } else {
+                if (this.rangeStart && day.date.toDateString() === this.rangeStart.toDateString()) return true;
+                if (this.rangeEnd && day.date.toDateString() === this.rangeEnd.toDateString()) return true;
+                return false;
+            }
+        },
+
+        isInRange(day) {
+            if (this.mode !== 'range' || !this.rangeStart || !this.rangeEnd || day.disabled) return false;
+            return day.date > this.rangeStart && day.date < this.rangeEnd;
         },
         
         isToday(day) {
@@ -128,22 +178,25 @@
     {{-- Grid Days --}}
     <div class="grid grid-cols-7 gap-1">
         <template x-for="(dayObj, index) in calendarDays" :key="index">
-            <div class="flex justify-center">
+            <div class="flex justify-center w-full">
                 <template x-if="!dayObj.disabled">
                     <button 
                         @click="selectDate(dayObj)"
                         type="button"
-                        class="w-8 h-8 rounded-full flex items-center justify-center text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50"
+                        class="w-8 h-8 rounded-full flex items-center justify-center text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 relative z-10"
                         :class="{
                             'bg-primary text-primary-foreground': isSelected(dayObj),
-                            'hover:bg-background-100 dark:hover:bg-background-800 text-foreground': !isSelected(dayObj),
-                            'text-primary font-bold': isToday(dayObj) && !isSelected(dayObj)
+                            'bg-primary/10 text-primary': isInRange(dayObj),
+                            'hover:bg-background-100 dark:hover:bg-background-800 text-foreground': !isSelected(dayObj) && !isInRange(dayObj),
+                            'text-primary font-bold': isToday(dayObj) && !isSelected(dayObj) && !isInRange(dayObj)
                         }"
                         x-text="dayObj.day"
                     ></button>
                 </template>
                  <template x-if="dayObj.disabled">
-                    <div class="w-8 h-8"></div>
+                    <div class="w-8 h-8 flex items-center justify-center text-sm text-foreground/20 cursor-not-allowed">
+                        <span x-text="dayObj.day"></span>
+                    </div>
                 </template>
             </div>
         </template>

@@ -318,6 +318,9 @@ Path: `plume/resources/views/components/calendar.blade.php`
 ### Properties
 - `model` (string): Default: `null`.
 - `value` (string): Default: `null`.
+- `mode` (string): Default: `single`.
+- `min` (string): Default: `null`.
+- `max` (string): Default: `null`.
 
 ### Usage
 ```blade
