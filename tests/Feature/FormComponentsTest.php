@@ -55,3 +55,11 @@ test('date picker renders with correct id and label', function () {
         ->toContain('Select Date')
         ->toContain('monthNames');
 });
+
+test('label renders correctly', function () {
+    $view = Blade::render('<x-plume::form.label for="email" required>Email</x-plume::form.label>');
+    expect($view)
+        ->toContain('for="email"')
+        ->toContain('Email')
+        ->toContain('*');
+});

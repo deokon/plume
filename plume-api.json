@@ -998,6 +998,22 @@
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/form-input"
         },
+        "x-plume::form.label": {
+            "path": "plume/resources/views/components/form/label.blade.php",
+            "props": {
+                "for": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "required": {
+                    "type": "boolean",
+                    "default": "false"
+                }
+            },
+            "description": "Reusable form label component.",
+            "usage": "<x-plume::form.label for=\"email\">Email</x-plume::form.label>",
+            "doc_url": "https://plume.dennisokon.com/docs/form-label"
+        },
         "x-plume::form.number": {
             "path": "plume/resources/views/components/form/number.blade.php",
             "props": {

@@ -871,6 +871,24 @@ Path: `plume/resources/views/components/form/input.blade.php`
 
 ---
 
+## x-plume::form.label
+Reusable form label component.
+
+Documentation: [https://plume.dennisokon.com/docs/form-label](https://plume.dennisokon.com/docs/form-label)
+
+Path: `plume/resources/views/components/form/label.blade.php`
+
+### Properties
+- `for` (string): Default: `null`.
+- `required` (boolean): Default: `false`.
+
+### Usage
+```blade
+<x-plume::form.label for="email">Email</x-plume::form.label>
+```
+
+---
+
 ## x-plume::form.number
 No description provided.
 

@@ -14,9 +14,11 @@
     $id = Form::resolveId($name, $model, $id);
 @endphp
 <div {{ $attributes->merge(['class' => 'space-y-2 p-4 rounded-md border border-transparent transition-colors']) }} x-bind:class="{ 'bg-destructive/10 border-destructive': hasError('{{ $model }}') }">
-    @if($label)
-        <label for="{{ $id }}" class="block text-sm font-medium text-foreground dark:text-background-200">{{ $label }}</label>
-    @endif
+        @if($label)
+            <x-plume::form.label :for="$id">
+                {{ $label }}
+            </x-plume::form.label>
+        @endif
     {{ $slot }}
     @if($after)
         {{ $after }}
