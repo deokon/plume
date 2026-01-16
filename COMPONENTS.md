@@ -141,6 +141,7 @@ Path: `plume/resources/views/components/alert.blade.php`
 - `closable` (boolean): Default: `false`.
 - `autoclose` (any): Default: `null`.
 - `title` (any): Default: `null`.
+- `onClose` (any): Default: `null`.
 
 ### Usage
 ```blade

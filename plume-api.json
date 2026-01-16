@@ -117,6 +117,10 @@
                 "title": {
                     "type": "any",
                     "default": "null"
+                },
+                "onClose": {
+                    "type": "any",
+                    "default": "null"
                 }
             },
             "description": "Displays a callout for user attention.",

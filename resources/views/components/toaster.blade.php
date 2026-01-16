@@ -20,7 +20,7 @@
     class="fixed {{ $positionClasses }} z-50 flex flex-col gap-2 p-4 sm:p-6 max-h-screen overflow-hidden pointer-events-none"
     x-data
 >
-    <template x-for="toast in $store.toasts.items" :key="toast.id">
+    <template x-for="toast in $store.toasts.items.filter(t => (t.position || 'bottom-right') === '{{ $position }}')" :key="toast.id">
         <div
             x-transition:enter="transition ease-out duration-300"
             x-transition:enter-start="translate-y-2 opacity-0 sm:translate-y-0 {{ str_contains($position, 'right') ? '-sm:translate-x-2' : 'sm:-translate-x-2' }}"
