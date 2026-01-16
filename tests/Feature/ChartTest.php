@@ -11,10 +11,10 @@ test('chart renders correctly', function () {
     $view = Blade::render('<x-plume::chart :data="$data" />', ['data' => $data]);
 
     expect($view)
-        ->toContain('x-data')
         ->toContain('svg')
         ->toContain('rect') // Bar chart default
-        ->toContain('value');
+        ->toContain('A: 10')
+        ->toContain('B: 20');
 });
 
 test('chart renders line type', function () {

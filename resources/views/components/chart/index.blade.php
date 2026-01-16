@@ -9,37 +9,19 @@
     'color' => 'text-primary',
 ])
 
-<div 
-    x-data="{
-        data: {{ json_encode($data) }},
-        height: {{ $height }},
-        
-        get max() {
-            if (!this.data.length) return 0;
-            return Math.max(...this.values);
-        },
-        
-        get values() {
-            return this.data.map(d => typeof d === 'object' ? d.value : d);
-        },
-        
-        get labels() {
-             return this.data.map(d => typeof d === 'object' ? d.label : '');
-        },
-        
-        get points() {
-            if (!this.data.length || this.max === 0) return '';
-            const step = 100 / (this.data.length - 1);
-            return this.values.map((val, i) => {
-                const x = i * step;
-                const y = 100 - ((val / this.max) * 100);
-                return `${x},${y}`;
-            }).join(' ');
-        }
-    }"
-    class="w-full"
->
-    <div class="relative w-full" :style="`height: ${height}px`">
+@php
+    $normalizedData = array_map(function($d) {
+        return is_array($d) ? $d : ['label' => '', 'value' => $d];
+    }, $data);
+
+    $values = array_column($normalizedData, 'value');
+    $labels = array_column($normalizedData, 'label');
+    $max = count($values) > 0 ? max($values) : 0;
+    $count = count($values);
+@endphp
+
+<div class="w-full">
+    <div class="relative w-full" style="height: {{ $height }}px">
         {{-- Y-Axis Lines --}}
         <div class="absolute inset-0 flex flex-col justify-between text-xs text-foreground/40 pointer-events-none">
             <div class="border-b border-background-700/20 dark:border-background-400/10 w-full h-0"></div>
@@ -52,55 +34,80 @@
         {{-- Chart --}}
         <svg class="w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
              {{-- Bar Chart --}}
-            @if($type === 'bar')
+            @if($type === 'bar' && $count > 0)
                 <g class="{{ $color }}">
-                    <template x-for="(val, index) in values" :key="index">
+                    @foreach($values as $index => $val)
+                        @php
+                            $barWidth = (100 / $count) * 0.8;
+                            $x = $index * (100 / $count) + (100 / $count * 0.1);
+                            $h = $max > 0 ? ($val / $max) * 100 : 0;
+                            $y = 100 - $h;
+                        @endphp
                         <rect 
-                            :x="index * (100 / values.length) + (100 / values.length * 0.1)" 
-                            :y="max > 0 ? 100 - ((val / max) * 100) : 100" 
-                            :width="(100 / values.length) * 0.8" 
-                            :height="max > 0 ? ((val / max) * 100) : 0" 
+                            x="{{ $x }}" 
+                            y="{{ $y }}" 
+                            width="{{ $barWidth }}" 
+                            height="{{ $h }}" 
                             fill="currentColor"
                             class="hover:opacity-80 transition-opacity"
                         >
-                             <title x-text="labels[index] + ': ' + val"></title>
+                             <title>{{ ($labels[$index] ?? '') . ': ' . $val }}</title>
                         </rect>
-                    </template>
+                    @endforeach
                 </g>
             @endif
             
             {{-- Line Chart --}}
-            @if($type === 'line')
+            @if($type === 'line' && $count > 0)
+                @php
+                    $points = '';
+                    if ($count > 1 && $max > 0) {
+                        $step = 100 / ($count - 1);
+                        foreach ($values as $i => $val) {
+                            $px = $i * $step;
+                            $py = 100 - (($val / $max) * 100);
+                            $points .= "$px,$py ";
+                        }
+                    }
+                @endphp
                 <g class="{{ $color }}">
-                    <polyline 
-                        :points="points" 
-                        fill="none" 
-                        stroke="currentColor" 
-                        stroke-width="2" 
-                        vector-effect="non-scaling-stroke"
-                    />
+                    @if($points)
+                        <polyline 
+                            points="{{ trim($points) }}" 
+                            fill="none" 
+                            stroke="currentColor" 
+                            stroke-width="2" 
+                            vector-effect="non-scaling-stroke"
+                        />
+                    @endif
                     {{-- Dots --}}
-                     <template x-for="(val, i) in values" :key="i">
+                    @foreach($values as $i => $val)
+                        @php
+                            $cx = $count > 1 ? $i * (100 / ($count - 1)) : 50;
+                            $cy = $max > 0 ? 100 - (($val / $max) * 100) : 100;
+                        @endphp
                         <circle 
-                            :cx="i * (100 / (values.length - 1))" 
-                            :cy="max > 0 ? 100 - ((val / max) * 100) : 100" 
+                            cx="{{ $cx }}" 
+                            cy="{{ $cy }}" 
                             r="3" 
                             fill="currentColor"
                             vector-effect="non-scaling-stroke"
                             class="hover:scale-150 transition-transform origin-center cursor-pointer"
                         >
-                            <title x-text="labels[i] + ': ' + val"></title>
+                            <title>{{ ($labels[$i] ?? '') . ': ' . $val }}</title>
                         </circle>
-                    </template>
+                    @endforeach
                 </g>
             @endif
         </svg>
     </div>
     
     {{-- X-Axis Labels --}}
-    <div class="flex justify-between mt-2 text-xs text-foreground/50">
-         <template x-for="(label, index) in labels" :key="index">
-            <span x-text="label" class="truncate px-1" :style="`width: ${100/data.length}%`"></span>
-        </template>
-    </div>
+    @if($count > 0)
+        <div class="flex justify-between mt-2 text-xs text-foreground/50">
+            @foreach($labels as $label)
+                <span class="truncate px-1 text-center" style="width: {{ 100 / $count }}%">{{ $label }}</span>
+            @endforeach
+        </div>
+    @endif
 </div>
