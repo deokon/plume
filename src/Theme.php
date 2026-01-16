@@ -36,8 +36,8 @@ class Theme
     {
         $styles = [
             'info' => [
-                'container' => 'bg-background-100 dark:bg-background-600/50 text-foreground border-background-200 dark:border-background-700',
-                'icon' => 'text-primary-500 dark:text-background-950',
+                'container' => 'bg-background-100 dark:bg-background-600/50 text-foreground dark:text-background-200 border-background-200 dark:border-background-700',
+                'icon' => 'text-primary-500 dark:text-background-200',
                 'icon_name' => 'icon-[fluent--info-24-regular]',
             ],
             'success' => [
