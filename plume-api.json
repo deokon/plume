@@ -1301,6 +1301,18 @@
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/icon"
         },
+        "x-plume::kbd": {
+            "path": "plume/resources/views/components/kbd.blade.php",
+            "props": {
+                "size": {
+                    "type": "string",
+                    "default": "md"
+                }
+            },
+            "description": "A component for displaying keyboard keys or shortcuts.",
+            "usage": "<x-plume::kbd>Ctrl</x-plume::kbd>",
+            "doc_url": "https://plume.dennisokon.com/docs/kbd"
+        },
         "x-plume::modal": {
             "path": "plume/resources/views/components/modal/index.blade.php",
             "props": {

@@ -1044,6 +1044,23 @@ Path: `plume/resources/views/components/icon.blade.php`
 
 ---
 
+## x-plume::kbd
+A component for displaying keyboard keys or shortcuts.
+
+Documentation: [https://plume.dennisokon.com/docs/kbd](https://plume.dennisokon.com/docs/kbd)
+
+Path: `plume/resources/views/components/kbd.blade.php`
+
+### Properties
+- `size` (string): Default: `md`.
+
+### Usage
+```blade
+<x-plume::kbd>Ctrl</x-plume::kbd>
+```
+
+---
+
 ## x-plume::modal
 A dialog box or popup window that is displayed on top of the current page.
 
