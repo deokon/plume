@@ -371,6 +371,37 @@
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/card-title"
         },
+        "x-plume::carousel": {
+            "path": "plume/resources/views/components/carousel/index.blade.php",
+            "props": {
+                "controls": {
+                    "type": "boolean",
+                    "default": "true"
+                },
+                "indicators": {
+                    "type": "boolean",
+                    "default": "false"
+                },
+                "autoplay": {
+                    "type": "boolean",
+                    "default": "false"
+                },
+                "interval": {
+                    "type": "number",
+                    "default": "5000"
+                }
+            },
+            "description": "A slideshow component for cycling through elements.",
+            "usage": "<x-plume::carousel indicators>\n    <x-plume::carousel.item>Slide 1</x-plume::carousel.item>\n    <x-plume::carousel.item>Slide 2</x-plume::carousel.item>\n</x-plume::carousel>",
+            "doc_url": "https://plume.dennisokon.com/docs/carousel"
+        },
+        "x-plume::carousel.item": {
+            "path": "plume/resources/views/components/carousel/item.blade.php",
+            "props": {},
+            "description": "An individual slide within a carousel.",
+            "usage": "<x-plume::carousel.item>\n    <img src=\"...\" alt=\"...\">\n</x-plume::carousel.item>",
+            "doc_url": "https://plume.dennisokon.com/docs/carousel"
+        },
         "x-plume::code": {
             "path": "plume/resources/views/components/code.blade.php",
             "props": {

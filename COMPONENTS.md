@@ -392,6 +392,45 @@ Path: `plume/resources/views/components/card/title.blade.php`
 
 ---
 
+## x-plume::carousel
+A slideshow component for cycling through elements.
+
+Documentation: [https://plume.dennisokon.com/docs/carousel](https://plume.dennisokon.com/docs/carousel)
+
+Path: `plume/resources/views/components/carousel/index.blade.php`
+
+### Properties
+- `controls` (boolean): Default: `true`.
+- `indicators` (boolean): Default: `false`.
+- `autoplay` (boolean): Default: `false`.
+- `interval` (number): Default: `5000`.
+
+### Usage
+```blade
+<x-plume::carousel indicators>
+    <x-plume::carousel.item>Slide 1</x-plume::carousel.item>
+    <x-plume::carousel.item>Slide 2</x-plume::carousel.item>
+</x-plume::carousel>
+```
+
+---
+
+## x-plume::carousel.item
+An individual slide within a carousel.
+
+Documentation: [https://plume.dennisokon.com/docs/carousel](https://plume.dennisokon.com/docs/carousel)
+
+Path: `plume/resources/views/components/carousel/item.blade.php`
+
+### Usage
+```blade
+<x-plume::carousel.item>
+    <img src="..." alt="...">
+</x-plume::carousel.item>
+```
+
+---
+
 ## x-plume::code
 A component for displaying code snippets with a copy-to-clipboard feature.
 
