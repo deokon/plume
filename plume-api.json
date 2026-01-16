@@ -795,34 +795,6 @@
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/form-combobox"
         },
-        "x-plume::form.date-picker": {
-            "path": "plume/resources/views/components/form/date-picker.blade.php",
-            "props": {
-                "label": {
-                    "type": "any",
-                    "default": "null"
-                },
-                "name": {
-                    "type": "any",
-                    "default": "null"
-                },
-                "id": {
-                    "type": "any",
-                    "default": "null"
-                },
-                "model": {
-                    "type": "any",
-                    "default": "null"
-                },
-                "placeholder": {
-                    "type": "string",
-                    "default": "Select a date..."
-                }
-            },
-            "description": "Date picker with visual calendar.",
-            "usage": null,
-            "doc_url": "https://plume.dennisokon.com/docs/form-date-picker"
-        },
         "x-plume::form.date": {
             "path": "plume/resources/views/components/form/date.blade.php",
             "props": {

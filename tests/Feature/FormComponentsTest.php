@@ -47,15 +47,6 @@ test('combobox renders with correct id, label and options', function () {
         ->toContain('Baz Qux');
 });
 
-test('date picker renders with correct id and label', function () {
-    $view = Blade::render('<x-plume::form.date-picker label="Select Date" name="my_date" />');
-    expect($view)
-        ->toContain('for="my_date"')
-        ->toContain('id="my_date"')
-        ->toContain('Select Date')
-        ->toContain('monthNames');
-});
-
 test('label renders correctly', function () {
     $view = Blade::render('<x-plume::form.label for="email" required>Email</x-plume::form.label>');
     expect($view)
