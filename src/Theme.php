@@ -18,7 +18,7 @@ class Theme
             'outline' => 'border bg-none shadow-xs hover:bg-primary/20 hover:text-foreground dark:hover:bg-background-700 dark:hover:text-background-200',
             'ghost' => 'hover:bg-primary/20 hover:text-foreground dark:hover:bg-background-700 dark:hover:text-background-200',
             'link' => 'underline-offset-4 hover:underline text-primary',
-            'minor' => 'text-foreground/50 hover:text-primary hover:bg-primary/10 dark:text-background-400 dark:hover:text-primary-400 dark:hover:bg-primary/10',
+            'minor' => 'text-foreground/50 hover:text-primary hover:bg-primary/10 dark:text-background-400 dark:hover:text-primary-400 dark:hover:bg-primary/10 scale-80',
             'default' => 'bg-primary text-primary-foreground hover:bg-primary-800 dark:hover:bg-primary/80',
         ];
 
