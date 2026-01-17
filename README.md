@@ -6,8 +6,6 @@ A comprehensive, responsive, and beautiful component library for Laravel, built 
 
 ### 1. Install via Composer
 
-Add the package to your `composer.json` (using a local path repository if not published) or install it directly:
-
 ```bash
 composer require deokon/plume
 ```
@@ -16,18 +14,11 @@ composer require deokon/plume
 
 #### Iconify (Required)
 
-This library uses the Fluent icon set via Iconify. Install the required dependencies:
-
 ```bash
 npm install -D @iconify/tailwind4 @iconify-json/fluent
 ```
 
 #### Tailwind CSS (v4)
-
-Add the Iconify plugin, package views to your Tailwind content scanning, and include the required theme variables in your `app.css`.
-
-**Option A: Direct Import (Recommended)**
-Import the theme directly from the vendor directory:
 
 ```css
 /* resources/css/app.css */
@@ -44,21 +35,6 @@ Import the theme directly from the vendor directory:
 @import "../../vendor/deokon/plume/resources/css/plume.css";
 ```
 
-**Option B: Publish and Customize**
-Publish the assets to your project if you want to customize the theme colors:
-
-```bash
-php artisan vendor:publish --tag=plume-assets
-```
-
-Then import the required files in your `app.css`. It is recommended to import the animations even if you customize the theme:
-
-```css
-/* resources/css/app.css */
-@import "./vendor/plume/animations.css";
-@import "./vendor/plume/theme.css"; /* Your customized theme */
-```
-
 #### Alpine.js
 
 Register the provided plugins in your `app.js`:
@@ -66,54 +42,67 @@ Register the provided plugins in your `app.js`:
 ```javascript
 // resources/js/app.js
 import Alpine from "alpinejs";
-import { modal, toaster, page, clipboard, pagination, dataTable } from "../../vendor/deokon/plume/resources/js";
+import { 
+    modal, 
+    drawer, 
+    toaster, 
+    page, 
+    clipboard, 
+    pagination, 
+    dataTable, 
+    calendar,
+    carousel,
+    combobox,
+    command,
+    fileInput,
+    video,
+    accordion
+} from "../../vendor/deokon/plume/resources/js";
 
 Alpine.plugin(modal);
+Alpine.plugin(drawer);
 Alpine.plugin(toaster);
 Alpine.plugin(page);
 Alpine.plugin(clipboard);
-Alpine.plugin(pagination);
-Alpine.plugin(dataTable);
+
+// Data components
+Alpine.data('pagination', pagination);
+Alpine.data('dataTable', dataTable);
+// ... register others as needed
 
 window.Alpine = Alpine;
 Alpine.start();
 ```
 
-### 3. Usage
+### 3. Global Magic Helpers
 
-Use components via the `plume` namespace:
+Plume provides powerful shorthands for common tasks:
 
-```blade
-<x-plume::alert style="success" title="Success">
-    Your package has been installed!
-</x-plume::alert>
+```javascript
+// Open/Close Overlays
+$openModal('login-modal')
+$closeModal()
+$openDrawer('settings')
 
-<x-plume::button style="primary">
-    Confirm Action
-</x-plume::button>
+// Notifications
+$success('Profile updated!')
+$error('Failed to save')
+$toast('Processing...', { type: 'info' })
+
+// Utilities
+$copy('Text to copy')
 ```
 
 ## Available Components
 
-- Alert
-- Avatar
-- Badge
-- Breadcrumb
-- Button (Loader, Toggle, Group)
-- Card
-- Code
-- Drawer
-- Dropdown
-- Forms (Input, Select, Textarea, Checkbox, Radio, Toggle, etc.)
-- Modal
-- Pagination
-- Progress
-- Skeleton
-- Spinner
-- Table
-- Tabs
-- Toast
-- Tooltip
+- **Overlays:** Modal, Drawer, Alert Dialog, Popover, Tooltip, Toast
+- **Navigation:** Navbar, Breadcrumb, Pagination, Stepper, Tabs
+- **Data:** Table, Data Table (sorting/filtering), Chart (bar/line), Calendar
+- **Forms:** Input, Password, Number, Textarea, Select, Combobox, Checkbox, Radio, Toggle, File Upload, Date/Time
+- **Layout:** Card, Accordion, Divider, Aspect Ratio, Gallery, Spacer
+- **Feedback:** Alert, Badge, Spinner, Skeleton Loader, Progress Bar
+- **Media:** Video Player (HTML5, YouTube, Vimeo), Audio Player, Figure, Avatar
+- **Typography:** Code Snippets, Kbd
 
 ## License
 
