@@ -2,12 +2,6 @@
 @component x-plume::popover
 @description Displays rich content in a portal, triggered by a button.
 --}}
-    <x-slot:trigger>
-        <button>Custom Trigger</button>
-    </x-slot:trigger>
-    Content
-</x-plume::popover>
---}}
 @props([
     'trigger' => null,
     'position' => 'bottom', // top, bottom, left, right
