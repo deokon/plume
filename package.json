@@ -9,5 +9,15 @@
     "resources/views"
   ],
   "author": "Dennis Okon",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint resources/js",
+    "format": "prettier --write \"resources/**/*.{js,css,blade.php}\""
+  },
+  "devDependencies": {
+    "@shufo/prettier-plugin-blade": "^1.16.1",
+    "eslint": "^9.39.2",
+    "prettier": "^3.8.0",
+    "prettier-plugin-tailwindcss": "^0.7.2"
+  }
 }
