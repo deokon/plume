@@ -9,4 +9,8 @@
             {{ $slot }}
         </div>
     </div>
+
+    @if (isset($mobileMenu))
+        {{ $mobileMenu }}
+    @endif
 </nav>

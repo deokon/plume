@@ -20,16 +20,19 @@ test('navbar renders correctly', function () {
         ->toContain('sm:flex');
 });
 
-test('mobile menu renders correctly', function () {
+test('mobile menu renders correctly via slot', function () {
     $view = Blade::render('
-        <div x-data="{ mobileOpen: true }">
-            <x-plume::navbar.mobile-menu>
-                <x-plume::navbar.mobile-item>Mobile Item</x-plume::navbar.mobile-item>
-            </x-plume::navbar.mobile-menu>
-        </div>
+        <x-plume::navbar>
+            <x-slot:mobileMenu>
+                <x-plume::navbar.mobile-menu>
+                    <x-plume::navbar.mobile-item>Mobile Item</x-plume::navbar.mobile-item>
+                </x-plume::navbar.mobile-menu>
+            </x-slot:mobileMenu>
+        </x-plume::navbar>
     ');
     
     expect($view)
         ->toContain('Mobile Item')
-        ->toContain('sm:hidden');
+        ->toContain('sm:hidden')
+        ->toContain('x-data="{ mobileOpen: false }"');
 });
