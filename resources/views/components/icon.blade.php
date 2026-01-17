@@ -2,8 +2,6 @@
 @component x-plume::icon
 @description Renders an Iconify icon.
 --}}
-@props([
-    'i',
-])
+@props(['i'])
 
-<span {{ $attributes->merge(['class' => 'icon '.$i]) }}></span>
+<span {{ $attributes->merge(['class' => 'icon ' . $i]) }}></span>

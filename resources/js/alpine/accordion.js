@@ -4,9 +4,9 @@ export function accordion(alwaysOpen) {
         alwaysOpen: alwaysOpen,
         select(id) {
             if (this.alwaysOpen) return;
-            this.active = (this.active === id) ? null : id;
-        }
-    }
+            this.active = this.active === id ? null : id;
+        },
+    };
 }
 
 export function accordionItem(id, open) {
@@ -23,6 +23,6 @@ export function accordionItem(id, open) {
                 this.select(this.id);
             }
         },
-        localOpen: open
-    }
+        localOpen: open,
+    };
 }

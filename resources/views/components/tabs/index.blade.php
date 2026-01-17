@@ -8,10 +8,7 @@
     'side' => 'top',
 ])
 
-<div
-    x-data="{ activeTab: '{{ $default }}' }"
-    {{ $attributes->merge(['class' => 'w-full']) }}
->
+<div x-data="{ activeTab: '{{ $default }}' }" {{ $attributes->merge(['class' => 'w-full']) }}>
     <div class="flex {{ Theme::tabs($side) }}">
         {{ $slot }}
     </div>

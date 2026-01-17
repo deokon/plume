@@ -4,7 +4,7 @@ export default function () {
         search: '',
         activeIndex: 0,
         get filteredItems() {
-            return Array.from(this.$refs.items.querySelectorAll('[role=option]')).filter(item => {
+            return Array.from(this.$refs.items.querySelectorAll('[role=option]')).filter((item) => {
                 return item.textContent.toLowerCase().includes(this.search.toLowerCase());
             });
         },
@@ -21,7 +21,8 @@ export default function () {
                 this.activeIndex = (this.activeIndex + 1) % this.filteredItems.length;
                 e.preventDefault();
             } else if (e.key === 'ArrowUp') {
-                this.activeIndex = (this.activeIndex - 1 + this.filteredItems.length) % this.filteredItems.length;
+                this.activeIndex =
+                    (this.activeIndex - 1 + this.filteredItems.length) % this.filteredItems.length;
                 e.preventDefault();
             } else if (e.key === 'Enter') {
                 if (this.filteredItems[this.activeIndex]) {
@@ -29,6 +30,6 @@ export default function () {
                 }
                 e.preventDefault();
             }
-        }
-    }
+        },
+    };
 }

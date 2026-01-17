@@ -13,14 +13,14 @@ import fileInput from './alpine/file-input';
 import video from './alpine/video';
 import { accordion, accordionItem } from './alpine/accordion';
 
-export { 
-    modal, 
+export {
+    modal,
     drawer,
-    toaster, 
-    page, 
-    clipboard, 
-    pagination, 
-    dataTable, 
+    toaster,
+    page,
+    clipboard,
+    pagination,
+    dataTable,
     calendar,
     carousel,
     combobox,
@@ -28,5 +28,5 @@ export {
     fileInput,
     video,
     accordion,
-    accordionItem
+    accordionItem,
 };

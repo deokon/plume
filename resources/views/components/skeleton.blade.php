@@ -24,7 +24,7 @@
 @endphp
 
 <div {{ $attributes->class($classes) }}>
-    @if($slot->isNotEmpty())
+    @if ($slot->isNotEmpty())
         <div class="opacity-30 dark:opacity-20 flex items-center justify-center">
             {{ $slot }}
         </div>

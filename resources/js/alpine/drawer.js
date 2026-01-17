@@ -12,7 +12,7 @@ export default function (Alpine) {
         name: name,
 
         init() {
-            this.$watch('show', value => {
+            this.$watch('show', (value) => {
                 if (value) {
                     document.body.classList.add('overflow-y-hidden');
                 } else {
@@ -20,13 +20,13 @@ export default function (Alpine) {
                 }
             });
 
-            window.addEventListener('open-drawer', event => {
+            window.addEventListener('open-drawer', (event) => {
                 if (event.detail === this.name) {
                     this.show = true;
                 }
             });
 
-            window.addEventListener('close-drawer', event => {
+            window.addEventListener('close-drawer', (event) => {
                 if (!event.detail || event.detail === this.name) {
                     this.show = false;
                 }
@@ -35,6 +35,6 @@ export default function (Alpine) {
 
         close() {
             this.show = false;
-        }
+        },
     }));
 }

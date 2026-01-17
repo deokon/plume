@@ -19,18 +19,11 @@
     $classes = Form::inputClasses() . ' text-center';
 @endphp
 <x-plume::form.element :label="$label ?? $slot" :name="$name" :id="$id" :model="$model">
-    @if($after)
+    @if ($after)
         <x-slot:after>{{ $after }}</x-slot:after>
     @endif
-        <input
-            type="number"
-            name="{{ $name }}"
-            id="{{ $id }}"
-            min="{{ $min }}"
-            max="{{ $max }}"
-            step="{{ $step }}"
-            value="{{ $value }}"
-            @if($model) x-model.number="{{ $model }}" @endif
-            {{ $attributes->merge(['class' => $classes]) }}
-        >
+    <input type="number" name="{{ $name }}" id="{{ $id }}" min="{{ $min }}"
+        max="{{ $max }}" step="{{ $step }}" value="{{ $value }}"
+        @if ($model) x-model.number="{{ $model }}" @endif
+        {{ $attributes->merge(['class' => $classes]) }}>
 </x-plume::form.element>

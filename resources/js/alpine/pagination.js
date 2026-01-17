@@ -43,5 +43,5 @@ export default (initialTotal = 1, initialCurrent = 1, onEachSide = 1) => ({
         if (page === '...') return;
         const targetPage = Math.max(1, Math.min(page, this.total));
         this.$dispatch('change', { page: targetPage });
-    }
+    },
 });

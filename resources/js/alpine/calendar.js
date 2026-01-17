@@ -1,11 +1,30 @@
-export default (initialValue = null, mode = 'single', minDateStr = null, maxDateStr = null, modelName = null) => ({
+export default (
+    initialValue = null,
+    mode = 'single',
+    minDateStr = null,
+    maxDateStr = null,
+    modelName = null
+) => ({
     value: initialValue,
     selectedDate: null,
     rangeStart: null,
     rangeEnd: null,
     currDate: new Date(),
     days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-    monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+    monthNames: [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+    ],
     mode: mode,
     minDate: minDateStr ? new Date(minDateStr) : null,
     maxDate: maxDateStr ? new Date(maxDateStr) : null,
@@ -21,7 +40,7 @@ export default (initialValue = null, mode = 'single', minDateStr = null, maxDate
         }
 
         if (modelName) {
-            // Note: In Alpine V3, accessing $data in init might be tricky if scopes are not fully merged yet, 
+            // Note: In Alpine V3, accessing $data in init might be tricky if scopes are not fully merged yet,
             // but this mimics the original inline script logic.
             // Using $nextTick might be safer if $data isn't ready.
             this.$nextTick(() => {
@@ -34,7 +53,7 @@ export default (initialValue = null, mode = 'single', minDateStr = null, maxDate
             });
         }
 
-        this.$watch('value', val => {
+        this.$watch('value', (val) => {
             this.syncInternalState(val);
             this.$dispatch('change', val);
         });
@@ -52,27 +71,33 @@ export default (initialValue = null, mode = 'single', minDateStr = null, maxDate
     },
 
     parseDate(dateStr) {
-        if(!dateStr) return null;
+        if (!dateStr) return null;
         // Check if dateStr is already a Date object
         if (dateStr instanceof Date) return dateStr;
-        
+
         const parts = String(dateStr).split('-');
-        if(parts.length === 3) {
-             return new Date(parts[0], parts[1] - 1, parts[2]);
+        if (parts.length === 3) {
+            return new Date(parts[0], parts[1] - 1, parts[2]);
         }
         return new Date(dateStr);
     },
 
     formatDate(date) {
-        if(!date) return null;
+        if (!date) return null;
         const offset = date.getTimezoneOffset();
-        const localDate = new Date(date.getTime() - (offset*60*1000));
+        const localDate = new Date(date.getTime() - offset * 60 * 1000);
         return localDate.toISOString().split('T')[0];
     },
 
-    get year() { return this.currDate.getFullYear(); },
-    get month() { return this.currDate.getMonth(); },
-    get monthName() { return this.monthNames[this.month]; },
+    get year() {
+        return this.currDate.getFullYear();
+    },
+    get month() {
+        return this.currDate.getMonth();
+    },
+    get monthName() {
+        return this.monthNames[this.month];
+    },
 
     get calendarDays() {
         const daysInMonth = new Date(this.year, this.month + 1, 0).getDate();
@@ -131,21 +156,26 @@ export default (initialValue = null, mode = 'single', minDateStr = null, maxDate
     isSelected(day) {
         if (day.disabled) return false;
         if (this.mode === 'single') {
-            return this.selectedDate && day.date.toDateString() === this.selectedDate.toDateString();
+            return (
+                this.selectedDate && day.date.toDateString() === this.selectedDate.toDateString()
+            );
         } else {
-            if (this.rangeStart && day.date.toDateString() === this.rangeStart.toDateString()) return true;
-            if (this.rangeEnd && day.date.toDateString() === this.rangeEnd.toDateString()) return true;
+            if (this.rangeStart && day.date.toDateString() === this.rangeStart.toDateString())
+                return true;
+            if (this.rangeEnd && day.date.toDateString() === this.rangeEnd.toDateString())
+                return true;
             return false;
         }
     },
 
     isInRange(day) {
-        if (this.mode !== 'range' || !this.rangeStart || !this.rangeEnd || day.disabled) return false;
+        if (this.mode !== 'range' || !this.rangeStart || !this.rangeEnd || day.disabled)
+            return false;
         return day.date > this.rangeStart && day.date < this.rangeEnd;
     },
 
     isToday(day) {
         if (day.disabled) return false;
         return day.date.toDateString() === new Date().toDateString();
-    }
+    },
 });

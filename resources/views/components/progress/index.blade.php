@@ -18,38 +18,36 @@
 @endphp
 
 <div {{ $attributes->merge(['class' => 'w-full space-y-2']) }}>
-    @if($title || $display !== 'none')
+    @if ($title || $display !== 'none')
         <div class="flex justify-between text-sm font-medium">
-            @if($title)
+            @if ($title)
                 <span>{{ $title }}</span>
             @endif
 
-            @if($display !== 'none')
-                @if($model)
-                    <span x-text="{!! match($display) {
+            @if ($display !== 'none')
+                @if ($model)
+                    <span x-text="{!! match ($display) {
                         'number' => $model,
                         'outof' => "$model + ' / ' + $max",
-                        default => "Math.round(Math.min($max, Math.max(0, $model)) / $max * 100) + '%'"
+                        default => "Math.round(Math.min($max, Math.max(0, $model)) / $max * 100) + '%'",
                     } !!}"></span>
                 @else
-                    <span>{!! match($display) {
+                    <span>{!! match ($display) {
                         'number' => $value,
                         'outof' => "$value / $max",
-                        default => round($percentage) . '%'
+                        default => round($percentage) . '%',
                     } !!}</span>
                 @endif
             @endif
         </div>
     @endif
 
-    <div class="relative h-4 w-full overflow-hidden rounded-full bg-background-200 dark:bg-background-700">
-        <div
-            class="h-full w-full flex-1 transition-all {{ $styleClass }}"
-            @if($model)
-                :style="`transform: translateX(-${100 - (Math.min({{ $max }}, Math.max(0, {{ $model }})) / {{ $max }} * 100)}%)`"
+    <div
+        class="relative h-4 w-full overflow-hidden rounded-full bg-background-200 dark:bg-background-700">
+        <div class="h-full w-full flex-1 transition-all {{ $styleClass }}"
+            @if ($model) :style="`transform: translateX(-${100 - (Math.min({{ $max }}, Math.max(0, {{ $model }})) / {{ $max }} * 100)}%)`"
             @else
-                style="transform: translateX(-{{ 100 - $percentage }}%)"
-            @endif
-        ></div>
+                style="transform: translateX(-{{ 100 - $percentage }}%)" @endif>
+        </div>
     </div>
 </div>

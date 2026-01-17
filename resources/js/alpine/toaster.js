@@ -2,7 +2,7 @@ export default function (Alpine) {
     Alpine.magic('toast', (el, { Alpine }) => (message, options = {}) => {
         Alpine.store('toasts').add({
             message,
-            ...options
+            ...options,
         });
     });
 
@@ -10,7 +10,7 @@ export default function (Alpine) {
         Alpine.store('toasts').add({
             message,
             type: 'success',
-            ...options
+            ...options,
         });
     });
 
@@ -18,7 +18,7 @@ export default function (Alpine) {
         Alpine.store('toasts').add({
             message,
             type: 'error',
-            ...options
+            ...options,
         });
     });
 
@@ -28,14 +28,14 @@ export default function (Alpine) {
             const id = Date.now();
             this.items.push({
                 id,
-                ...toast
+                ...toast,
             });
             if (toast.autoclose !== false) {
                 setTimeout(() => this.remove(id), toast.duration || 3000);
             }
         },
         remove(id) {
-            this.items = this.items.filter(t => t.id !== id);
-        }
+            this.items = this.items.filter((t) => t.id !== id);
+        },
     });
 }

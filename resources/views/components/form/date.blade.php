@@ -16,12 +16,8 @@
     $classes = Form::inputClasses();
 @endphp
 <x-plume::form.element :label="$label ?? $slot" :name="$name" :id="$id" :model="$model">
-    <input
-        type="date"
-        name="{{ $name }}"
-        id="{{ $id }}"
+    <input type="date" name="{{ $name }}" id="{{ $id }}"
         value="{{ $value }}"
-        @if($model) x-model="{{ $model }}" @endif
-        {{ $attributes->merge(['class' => $classes . ' dark:scheme-dark']) }}
-    >
+        @if ($model) x-model="{{ $model }}" @endif
+        {{ $attributes->merge(['class' => $classes . ' dark:scheme-dark']) }}>
 </x-plume::form.element>

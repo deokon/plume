@@ -13,7 +13,7 @@ export default (perPage = 10, paginated = false, sortable = true) => ({
         this.sync();
         const observer = new MutationObserver(() => this.sync());
         observer.observe(this.$el, { attributes: true, attributeFilter: ['data', 'columns'] });
-        this.$watch('search', () => this.page = 1);
+        this.$watch('search', () => (this.page = 1));
     },
 
     sync() {
@@ -39,7 +39,10 @@ export default (perPage = 10, paginated = false, sortable = true) => ({
                 }
             }
         } catch (e) {
-            console.error('Plume Data Table sync error: Invalid JSON provided to data or columns.', e);
+            console.error(
+                'Plume Data Table sync error: Invalid JSON provided to data or columns.',
+                e
+            );
         }
     },
 
@@ -50,10 +53,8 @@ export default (perPage = 10, paginated = false, sortable = true) => ({
 
         if (this.search) {
             const query = this.search.toLowerCase();
-            filtered = filtered.filter(row => {
-                return Object.values(row).some(val =>
-                    String(val).toLowerCase().includes(query)
-                );
+            filtered = filtered.filter((row) => {
+                return Object.values(row).some((val) => String(val).toLowerCase().includes(query));
             });
         }
 
@@ -89,5 +90,5 @@ export default (perPage = 10, paginated = false, sortable = true) => ({
             this.sortCol = key;
             this.sortDir = 'asc';
         }
-    }
+    },
 });

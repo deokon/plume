@@ -18,15 +18,11 @@
     $classes = Form::inputClasses();
 @endphp
 <x-plume::form.element :label="$label" :name="$name" :id="$id" :model="$model">
-    @if($after)
+    @if ($after)
         <x-slot:after>{{ $after }}</x-slot:after>
     @endif
-    <textarea
-        name="{{ $name }}"
-        id="{{ $id }}"
-        rows="{{ $rows }}"
+    <textarea name="{{ $name }}" id="{{ $id }}" rows="{{ $rows }}"
         placeholder="{{ $placeholder }}"
-        @if($model) x-model="{{ $model }}" @endif
-        {{ $attributes->merge(['class' => $classes]) }}
-    >{{ $slot }}</textarea>
+        @if ($model) x-model="{{ $model }}" @endif
+        {{ $attributes->merge(['class' => $classes]) }}>{{ $slot }}</textarea>
 </x-plume::form.element>

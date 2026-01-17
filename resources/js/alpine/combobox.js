@@ -8,13 +8,13 @@ export default function (options, model) {
         activeIndex: -1,
         init() {
             this.filteredOptions = this.options;
-            
+
             if (model) {
                 // Sync with parent Alpine data if available
                 if (typeof this.$data[model] !== 'undefined') {
-                     this.$watch('value', val => this.$data[model] = val);
-                     this.$watch('$data.' + model, val => this.value = val);
-                     this.value = this.$data[model];
+                    this.$watch('value', (val) => (this.$data[model] = val));
+                    this.$watch('$data.' + model, (val) => (this.value = val));
+                    this.value = this.$data[model];
                 }
             }
 
@@ -27,14 +27,14 @@ export default function (options, model) {
             });
         },
         get selectedLabel() {
-            const opt = this.options.find(o => o.value == this.value);
+            const opt = this.options.find((o) => o.value == this.value);
             return opt ? opt.label : '';
         },
         filterOptions() {
             if (this.search === '') {
                 this.filteredOptions = this.options;
             } else {
-                this.filteredOptions = this.options.filter(opt =>
+                this.filteredOptions = this.options.filter((opt) =>
                     String(opt.label).toLowerCase().includes(this.search.toLowerCase())
                 );
             }
@@ -59,13 +59,15 @@ export default function (options, model) {
                 }
                 return;
             }
-            
+
             if (e.key === 'ArrowDown') {
                 this.activeIndex = (this.activeIndex + 1) % this.filteredOptions.length;
                 this.scrollToActive();
                 e.preventDefault();
             } else if (e.key === 'ArrowUp') {
-                this.activeIndex = (this.activeIndex - 1 + this.filteredOptions.length) % this.filteredOptions.length;
+                this.activeIndex =
+                    (this.activeIndex - 1 + this.filteredOptions.length) %
+                    this.filteredOptions.length;
                 this.scrollToActive();
                 e.preventDefault();
             } else if (e.key === 'Enter') {
@@ -80,10 +82,10 @@ export default function (options, model) {
             }
         },
         scrollToActive() {
-             this.$nextTick(() => {
+            this.$nextTick(() => {
                 const activeEl = this.$refs.list.children[this.activeIndex];
                 if (activeEl) activeEl.scrollIntoView({ block: 'nearest' });
             });
-        }
-    }
+        },
+    };
 }

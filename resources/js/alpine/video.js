@@ -8,6 +8,6 @@ export default function (autoplay) {
                 this.$refs.video.play();
             }
             this.playing = !this.playing;
-        }
-    }
+        },
+    };
 }

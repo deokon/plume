@@ -7,7 +7,7 @@
 ])
 
 @php
-    $ratioClass = match($ratio) {
+    $ratioClass = match ($ratio) {
         'square' => 'aspect-square',
         'video' => 'aspect-video',
         '4/3' => 'aspect-[4/3]',

@@ -7,12 +7,14 @@
 ])
 
 <li {{ $attributes->merge(['class' => 'inline-flex items-center gap-1.5']) }}>
-    @if($href && !$active)
-        <a href="{{ $href }}" class="transition-colors hover:text-foreground dark:hover:text-background-200">
+    @if ($href && !$active)
+        <a href="{{ $href }}"
+            class="transition-colors hover:text-foreground dark:hover:text-background-200">
             {{ $slot }}
         </a>
     @else
-        <span role="link" aria-disabled="true" aria-current="{{ $active ? 'page' : 'false' }}" class="{{ $active ? 'font-normal text-foreground dark:text-background-200' : '' }}">
+        <span role="link" aria-disabled="true" aria-current="{{ $active ? 'page' : 'false' }}"
+            class="{{ $active ? 'font-normal text-foreground dark:text-background-200' : '' }}">
             {{ $slot }}
         </span>
     @endif

@@ -11,6 +11,6 @@
     'active' => 1,
 ])
 
-<div  x-data="{ active: {{ $active }} }" {{ $attributes->merge(['class' => 'flex w-full flex-col gap-2']) }}>
+<div x-data="{ active: {{ $active }} }" {{ $attributes->merge(['class' => 'flex w-full flex-col gap-2']) }}>
     {{ $slot }}
 </div>

@@ -8,7 +8,7 @@
 ])
 
 @php
-    $gridCols = match(intval($cols)) {
+    $gridCols = match (intval($cols)) {
         1 => 'grid-cols-1',
         2 => 'grid-cols-1 sm:grid-cols-2',
         3 => 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
@@ -16,7 +16,7 @@
         default => 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
     };
 
-    $gridGap = 'gap-'.$gap;
+    $gridGap = 'gap-' . $gap;
 @endphp
 
 <div {{ $attributes->merge(['class' => 'grid ' . $gridCols . ' ' . $gridGap]) }}>

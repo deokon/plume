@@ -8,12 +8,5 @@
     'style' => 'default',
 ])
 
-<x-plume::progress 
-    :value="$value" 
-    max="100" 
-    display="percentage" 
-    :title="$title" 
-    :model="$model" 
-    :style="$style"
-    {{ $attributes }} 
-/>
+<x-plume::progress :value="$value" max="100" display="percentage" :title="$title"
+    :model="$model" :style="$style" {{ $attributes }} />

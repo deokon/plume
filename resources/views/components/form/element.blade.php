@@ -13,19 +13,21 @@
     $name = $name ?? $model;
     $id = Form::resolveId($name, $model, $id);
 @endphp
-<div {{ $attributes->merge(['class' => 'space-y-2 p-4 rounded-md border border-transparent transition-colors']) }} x-bind:class="{ 'bg-destructive/10 border-destructive': hasError('{{ $model }}') }">
-        @if($label)
-            <x-plume::form.label :for="$id">
-                {{ $label }}
-            </x-plume::form.label>
-        @endif
+<div {{ $attributes->merge(['class' => 'space-y-2 p-4 rounded-md border border-transparent transition-colors']) }}
+    x-bind:class="{ 'bg-destructive/10 border-destructive': hasError('{{ $model }}') }">
+    @if ($label)
+        <x-plume::form.label :for="$id">
+            {{ $label }}
+        </x-plume::form.label>
+    @endif
     {{ $slot }}
-    @if($after)
+    @if ($after)
         {{ $after }}
     @endif
-    @if($model)
+    @if ($model)
         <template x-if="hasError('{{ $model }}')">
-            <p class="mt-2 text-sm text-destructive" x-text="errors['{{ $model }}']" aria-live="assertive"></p>
+            <p class="mt-2 text-sm text-destructive" x-text="errors['{{ $model }}']"
+                aria-live="assertive"></p>
         </template>
     @endif
 </div>

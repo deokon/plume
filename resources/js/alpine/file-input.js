@@ -19,6 +19,6 @@ export default function () {
         removeFile() {
             this.$refs.input.value = '';
             this.file = null;
-        }
-    }
+        },
+    };
 }
