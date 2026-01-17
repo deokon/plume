@@ -1,4 +1,27 @@
 export default function (Alpine) {
+    Alpine.magic('toast', (el, { Alpine }) => (message, options = {}) => {
+        Alpine.store('toasts').add({
+            message,
+            ...options
+        });
+    });
+
+    Alpine.magic('success', (el, { Alpine }) => (message, options = {}) => {
+        Alpine.store('toasts').add({
+            message,
+            type: 'success',
+            ...options
+        });
+    });
+
+    Alpine.magic('error', (el, { Alpine }) => (message, options = {}) => {
+        Alpine.store('toasts').add({
+            message,
+            type: 'error',
+            ...options
+        });
+    });
+
     Alpine.store('toasts', {
         items: [],
         add(toast) {
