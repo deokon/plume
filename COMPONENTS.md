@@ -273,21 +273,23 @@ Path: `plume/resources/views/components/calendar.blade.php`
 ---
 
 ## x-plume::card
-
+Displays a card with header, content, and footer.
 
 Documentation: [https://plume.dennisokon.com/docs/card](https://plume.dennisokon.com/docs/card)
 
 Path: `plume/resources/views/components/card/index.blade.php`
 
+### Properties
+- `title` (string): Default: `null`.
+- `description` (string): Default: `null`.
+- `badge` (string): Default: `null`.
+- `badgeStyle` (string): Default: `default`.
+
 ### Usage
 ```blade
-<x-plume::card>
-    <x-plume::card.header>
-        <x-plume::card.title>Title</x-plume::card.title>
-        <x-plume::card.description>Description</x-plume::card.description>
-    </x-plume::card.header>
-    <x-plume::card.content>Content</x-plume::card.content>
-    <x-plume::card.footer>Footer</x-plume::card.footer>
+<x-plume::card title="Title" description="Description" badge="New" badgeStyle="success">
+    Content
+    <x-slot:footer>Footer</x-slot:footer>
 </x-plume::card>
 ```
 

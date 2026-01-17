@@ -4,17 +4,32 @@ use Illuminate\Support\Facades\Blade;
 
 test('card renders named slots correctly', function () {
     $template = <<<'BLADE'
-<x-plume::card>
-    <x-plume::card.header>
-        <x-plume::card.title>Title</x-plume::card.title>
-    </x-plume::card.header>
-    <x-plume::card.content>Content</x-plume::card.content>
-    <x-plume::card.footer>Footer</x-plume::card.footer>
+<x-plume::card title="Title" description="Description">
+    Content
+    <x-slot:footer>Footer</x-slot:footer>
 </x-plume::card>
 BLADE;
 
     $view = Blade::render($template);
-    expect($view)->toContain('Title')->toContain('Content')->toContain('Footer');
+    expect($view)
+        ->toContain('Title')
+        ->toContain('Description')
+        ->toContain('Content')
+        ->toContain('Footer');
+});
+
+test('card renders with badge', function () {
+    $template = <<<'BLADE'
+<x-plume::card title="Project" badge="Active" badgeStyle="success">
+    Content
+</x-plume::card>
+BLADE;
+
+    $view = Blade::render($template);
+    expect($view)
+        ->toContain('Project')
+        ->toContain('Active')
+        ->toContain('bg-primary'); // success badge uses primary color in Theme::badge
 });
 
 test('modal renders with required attributes', function () {
@@ -38,10 +53,17 @@ test('modal renders custom header slot', function () {
 });
 
 test('drawer renders correctly', function () {
-    $view = Blade::render('<x-plume::drawer name="test-drawer" side="left">Drawer Content</x-plume::drawer>');
+    $view = Blade::render('
+        <x-plume::drawer name="test-drawer" side="left" title="Drawer Title">
+            Drawer Content
+            <x-slot:footer>Drawer Footer</x-slot:footer>
+        </x-plume::drawer>
+    ');
     expect($view)->toContain('x-data="drawer(\'test-drawer\'')
         ->toContain('-translate-x-full')
-        ->toContain('Drawer Content');
+        ->toContain('Drawer Title')
+        ->toContain('Drawer Content')
+        ->toContain('Drawer Footer');
 });
 
 test('accordion renders items correctly', function () {

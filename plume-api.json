@@ -327,9 +327,26 @@
         },
         "x-plume::card": {
             "path": "plume/resources/views/components/card/index.blade.php",
-            "props": {},
+            "props": {
+                "title": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "description": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "badge": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "badgeStyle": {
+                    "type": "string",
+                    "default": "default"
+                }
+            },
             "description": "Displays a card with header, content, and footer.",
-            "usage": "<x-plume::card>\n    <x-plume::card.header>\n        <x-plume::card.title>Title</x-plume::card.title>\n        <x-plume::card.description>Description</x-plume::card.description>\n    </x-plume::card.header>\n    <x-plume::card.content>Content</x-plume::card.content>\n    <x-plume::card.footer>Footer</x-plume::card.footer>\n</x-plume::card>",
+            "usage": "<x-plume::card title=\"Title\" description=\"Description\" badge=\"New\">\n    Content\n    <x-slot:footer>Footer</x-slot:footer>\n</x-plume::card>",
             "doc_url": "https://plume.dennisokon.com/docs/card"
         },
         "x-plume::card.content": {
