@@ -1,5 +1,5 @@
 {{--
-@component x-plume::table.body
+@component x-plume::table.tbody
 --}}
 @aware([
     'striped' => false,

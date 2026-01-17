@@ -31,10 +31,10 @@
     @endif
 
     <x-plume::table>
-        <x-plume::table.header>
-            <x-plume::table.row>
+        <x-plume::table.thead>
+            <x-plume::table.tr>
                 <template x-for="col in columns" :key="col.key">
-                    <x-plume::table.head ::class="(col.sortable !== false && sortable ?
+                    <x-plume::table.th ::class="(col.sortable !== false && sortable ?
                         'cursor-pointer select-none hover:bg-background-200/50 dark:hover:bg-background-700/50 ' :
                         '') + (col.headerClass || '')"
                         @click="col.sortable !== false && sortable && toggleSort(col.key)">
@@ -55,29 +55,29 @@
                                 </div>
                             </template>
                         </div>
-                    </x-plume::table.head>
+                    </x-plume::table.th>
                 </template>
-            </x-plume::table.row>
-        </x-plume::table.header>
-        <x-plume::table.body>
+            </x-plume::table.tr>
+        </x-plume::table.thead>
+        <x-plume::table.tbody>
             <template x-for="(row, index) in pagedData" :key="index">
-                <x-plume::table.row>
+                <x-plume::table.tr>
                     <template x-for="col in columns" :key="col.key">
-                        <x-plume::table.cell ::class="col.cellClass">
+                        <x-plume::table.td ::class="col.cellClass">
                             <span x-text="row[col.key]"></span>
-                        </x-plume::table.cell>
+                        </x-plume::table.td>
                     </template>
-                </x-plume::table.row>
+                </x-plume::table.tr>
             </template>
             <template x-if="filteredData.length === 0">
-                <x-plume::table.row>
-                    <x-plume::table.cell ::colspan="columns.length" class="text-center py-12">
+                <x-plume::table.tr>
+                    <x-plume::table.td ::colspan="columns.length" class="text-center py-12">
                         <x-plume::empty-state title="No results found"
                             description="Try adjusting your search or filters." />
-                    </x-plume::table.cell>
-                </x-plume::table.row>
+                    </x-plume::table.td>
+                </x-plume::table.tr>
             </template>
-        </x-plume::table.body>
+        </x-plume::table.tbody>
     </x-plume::table>
 
     @if ($paginated)

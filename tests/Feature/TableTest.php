@@ -8,13 +8,13 @@ test('table renders correctly', function () {
 });
 
 test('table supports sticky header', function () {
-    $view = Blade::render('<x-plume::table sticky-header><x-plume::table.header sticky>Head</x-plume::table.header></x-plume::table>');
+    $view = Blade::render('<x-plume::table sticky-header><x-plume::table.thead sticky>Head</x-plume::table.thead></x-plume::table>');
     expect($view)
         ->toContain('max-h-[500px]')
         ->toContain('sticky top-0');
 });
 
 test('table cells support alignment', function () {
-    $view = Blade::render('<x-plume::table.cell align="right">Data</x-plume::table.cell>');
+    $view = Blade::render('<x-plume::table.td align="right">Data</x-plume::table.td>');
     expect($view)->toContain('text-right');
 });

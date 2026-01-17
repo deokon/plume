@@ -1,5 +1,5 @@
 {{--
-@component x-plume::table.header
+@component x-plume::table.thead
 --}}
 @props(['sticky' => false])
 <thead
