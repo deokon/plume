@@ -1312,6 +1312,10 @@
                 "footer": {
                     "type": "any",
                     "default": "null"
+                },
+                "header": {
+                    "type": "any",
+                    "default": "null"
                 }
             },
             "description": "A dialog box or popup window that is displayed on top of the current page.",

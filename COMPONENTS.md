@@ -1021,6 +1021,7 @@ Path: `plume/resources/views/components/modal/index.blade.php`
 - `maxWidth` (string): Default: `2xl`.
 - `title` (any): Default: `null`.
 - `footer` (any): Default: `null`.
+- `header` (any): Default: `null`.
 
 ---
 
