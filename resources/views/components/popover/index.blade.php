@@ -2,6 +2,12 @@
 @component x-plume::popover
 @description Displays rich content in a portal, triggered by a button.
 --}}
+    <x-slot:trigger>
+        <button>Custom Trigger</button>
+    </x-slot:trigger>
+    Content
+</x-plume::popover>
+--}}
 @props([
     'trigger' => null,
     'position' => 'bottom', // top, bottom, left, right
@@ -19,7 +25,13 @@
 }" class="relative inline-block" @keydown.escape.window="close()"
     @click.outside="close()">
     <div @click="toggle" class="inline-flex cursor-pointer">
-        {{ $trigger }}
+        @if (isset($trigger) && $trigger instanceof \Illuminate\View\ComponentSlot)
+            {{ $trigger }}
+        @elseif (isset($trigger))
+            <x-plume::button type="button" style="outline" ::class="{ 'bg-background-100 dark:bg-background-700': open }">
+                {{ $trigger }}
+            </x-plume::button>
+        @endif
     </div>
 
     <div x-show="open" x-transition:enter="transition ease-out duration-200"
