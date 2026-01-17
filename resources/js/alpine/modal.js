@@ -1,4 +1,12 @@
 export default function (Alpine) {
+    Alpine.magic('openModal', () => (name) => {
+        window.dispatchEvent(new CustomEvent('open-modal', { detail: name }));
+    });
+
+    Alpine.magic('closeModal', () => (name = null) => {
+        window.dispatchEvent(new CustomEvent('close-modal', { detail: name }));
+    });
+
     Alpine.data('modal', (name, initialShow = false, autofocus = false) => ({
         show: initialShow,
         name: name,
@@ -26,7 +34,7 @@ export default function (Alpine) {
             });
 
             window.addEventListener('close-modal', event => {
-                if (event.detail === this.name) {
+                if (!event.detail || event.detail === this.name) {
                     this.show = false;
                 }
             });
