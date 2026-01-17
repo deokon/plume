@@ -22,7 +22,7 @@
     x-on:keydown.escape.window="show = false"
     x-on:keydown.tab.prevent="handleTab($event)"
     x-show="show"
-    class="fixed inset-0 z-50 overflow-y-auto"
+    {{ $attributes->merge(['class' => 'fixed inset-0 z-50 overflow-y-auto']) }}
     style="display: {{ $show ? 'block' : 'none' }};"
 >
     <div

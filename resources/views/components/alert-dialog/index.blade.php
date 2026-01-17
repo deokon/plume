@@ -11,7 +11,16 @@
     'withCancel' => true,
     'onConfirm' => '',
 ])
-<x-plume::modal {{ $attributes }}>
+<x-plume::modal
+    name="{{ $name }}"
+    :show="$show"
+    :maxWidth="$maxWidth"
+    role="alertdialog"
+    aria-modal="true"
+    aria-labelledby="{{ $name }}-title"
+    aria-describedby="{{ $name }}-description"
+    {{ $attributes }}
+>
     {{ $slot }}
     <x-slot:footer>
         @if($withCancel)

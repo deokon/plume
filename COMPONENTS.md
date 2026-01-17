@@ -51,80 +51,19 @@ Documentation: [https://plume.dennisokon.com/docs/alert-dialog](https://plume.de
 Path: `plume/resources/views/components/alert-dialog/index.blade.php`
 
 ### Properties
-- `name` (string): Default: `required`.
+- `name` (string): Default: `alert-dialog`.
 - `show` (boolean): Default: `false`.
-- `maxWidth` (string): Default: `md`.
+- `maxWidth` (string): Default: `2xl`.
+- `action` (string): Default: `Confirm`.
+- `withCancel` (boolean): Default: `true`.
+- `onConfirm` (string): Default: ``.
 
 ### Usage
 ```blade
-<x-plume::alert-dialog name="confirm">
-    <x-plume::alert-dialog.content>
-        <x-plume::alert-dialog.title>...</x-plume::alert-dialog.title>
-        <x-plume::alert-dialog.description>...</x-plume::alert-dialog.description>
-    </x-plume::alert-dialog.content>
-    <x-plume::alert-dialog.footer>
-        <x-plume::alert-dialog.cancel>Cancel</x-plume::alert-dialog.cancel>
-        <x-plume::alert-dialog.action>Continue</x-plume::alert-dialog.action>
-    </x-plume::alert-dialog.footer>
+<x-plume::alert-dialog name="confirm" title="Are you sure?" action="Delete" onConfirm="deleteUser()">
+    This action cannot be undone.
 </x-plume::alert-dialog>
 ```
-
----
-
-## x-plume::alert-dialog.content
-Container for alert dialog content.
-
-Documentation: [https://plume.dennisokon.com/docs/alert-dialog](https://plume.dennisokon.com/docs/alert-dialog)
-
-Path: `plume/resources/views/components/alert-dialog/content.blade.php`
-
----
-
-## x-plume::alert-dialog.title
-Title for the alert dialog.
-
-Documentation: [https://plume.dennisokon.com/docs/alert-dialog](https://plume.dennisokon.com/docs/alert-dialog)
-
-Path: `plume/resources/views/components/alert-dialog/title.blade.php`
-
----
-
-## x-plume::alert-dialog.description
-Description text for the alert dialog.
-
-Documentation: [https://plume.dennisokon.com/docs/alert-dialog](https://plume.dennisokon.com/docs/alert-dialog)
-
-Path: `plume/resources/views/components/alert-dialog/description.blade.php`
-
----
-
-## x-plume::alert-dialog.footer
-Footer area for actions.
-
-Documentation: [https://plume.dennisokon.com/docs/alert-dialog](https://plume.dennisokon.com/docs/alert-dialog)
-
-Path: `plume/resources/views/components/alert-dialog/footer.blade.php`
-
----
-
-## x-plume::alert-dialog.action
-Action button for the alert dialog.
-
-Documentation: [https://plume.dennisokon.com/docs/alert-dialog](https://plume.dennisokon.com/docs/alert-dialog)
-
-Path: `plume/resources/views/components/alert-dialog/action.blade.php`
-
-### Properties
-- `style` (string): Default: `primary`.
-
----
-
-## x-plume::alert-dialog.cancel
-Cancel button for the alert dialog.
-
-Documentation: [https://plume.dennisokon.com/docs/alert-dialog](https://plume.dennisokon.com/docs/alert-dialog)
-
-Path: `plume/resources/views/components/alert-dialog/cancel.blade.php`
 
 ---
 
@@ -1077,53 +1016,11 @@ Documentation: [https://plume.dennisokon.com/docs/modal](https://plume.dennisoko
 Path: `plume/resources/views/components/modal/index.blade.php`
 
 ### Properties
+- `name` (any): Default: `null`.
 - `show` (boolean): Default: `false`.
 - `maxWidth` (string): Default: `2xl`.
-
----
-
-## x-plume::modal.content
-No description provided.
-
-Documentation: [https://plume.dennisokon.com/docs/modal-content](https://plume.dennisokon.com/docs/modal-content)
-
-Path: `plume/resources/views/components/modal/content.blade.php`
-
----
-
-## x-plume::modal.description
-No description provided.
-
-Documentation: [https://plume.dennisokon.com/docs/modal-description](https://plume.dennisokon.com/docs/modal-description)
-
-Path: `plume/resources/views/components/modal/description.blade.php`
-
----
-
-## x-plume::modal.footer
-No description provided.
-
-Documentation: [https://plume.dennisokon.com/docs/modal-footer](https://plume.dennisokon.com/docs/modal-footer)
-
-Path: `plume/resources/views/components/modal/footer.blade.php`
-
----
-
-## x-plume::modal.header
-No description provided.
-
-Documentation: [https://plume.dennisokon.com/docs/modal-header](https://plume.dennisokon.com/docs/modal-header)
-
-Path: `plume/resources/views/components/modal/header.blade.php`
-
----
-
-## x-plume::modal.title
-No description provided.
-
-Documentation: [https://plume.dennisokon.com/docs/modal-title](https://plume.dennisokon.com/docs/modal-title)
-
-Path: `plume/resources/views/components/modal/title.blade.php`
+- `title` (any): Default: `null`.
+- `footer` (any): Default: `null`.
 
 ---
 
