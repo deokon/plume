@@ -24,6 +24,19 @@ test('modal renders with required attributes', function () {
         ->toContain('Modal Content');
 });
 
+test('modal renders custom header slot', function () {
+    $view = Blade::render('
+        <x-plume::modal name="test-modal">
+            <x-slot:header>Custom Header</x-slot:header>
+            Content
+        </x-plume::modal>
+    ');
+    expect($view)
+        ->toContain('Custom Header')
+        ->not->toContain('h3') // Default title styling
+        ->toContain('pt-0'); // Content padding adjustment
+});
+
 test('drawer renders correctly', function () {
     $view = Blade::render('<x-plume::drawer name="test-drawer" side="left">Drawer Content</x-plume::drawer>');
     expect($view)->toContain('x-on:open-drawer.window')

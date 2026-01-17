@@ -21,7 +21,9 @@
     aria-describedby="{{ $name }}-description"
     {{ $attributes }}
 >
-    {{ $slot }}
+    <div id="{{ $name }}-description">
+        {{ $slot }}
+    </div>
     <x-slot:footer>
         @if($withCancel)
             <x-plume::button style="outline" x-on:click="show = false;">Cancel</x-plume::button>
