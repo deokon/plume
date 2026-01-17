@@ -28,7 +28,7 @@
             class="block w-full pl-10 pr-3 py-2 border border-background-700/40 dark:border-background-400/20 rounded-lg bg-background placeholder:text-foreground/30 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all sm:text-sm" 
             placeholder="{{ $placeholder }}"
         >
-        <div x-show="query.length > 0" class="absolute inset-y-0 right-0 flex items-center pr-3">
+        <div x-show="query.length > 0" x-cloak class="absolute inset-y-0 right-0 flex items-center pr-3">
             <button @click="query = ''; open = false" class="text-foreground/30 hover:text-foreground/60">
                 <x-plume::icon i="icon-[fluent--dismiss-circle-24-filled]" class="size-4" />
             </button>
@@ -38,6 +38,7 @@
     {{-- Results Dropdown --}}
     <div 
         x-show="open && query.length > 0" 
+        x-cloak
         x-transition:enter="transition ease-out duration-200"
         x-transition:enter-start="opacity-0 translate-y-1"
         x-transition:enter-end="opacity-100 translate-y-0"

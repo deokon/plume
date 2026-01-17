@@ -34,11 +34,13 @@
     x-on:keydown.escape.window="close()"
     x-on:keydown.tab.prevent="handleTab($event)"
     x-show="show"
+    x-cloak
     {{ $attributes->merge(['class' => 'fixed inset-0 z-50 overflow-y-auto']) }}
     style="display: {{ $show ? 'block' : 'none' }};"
 >
     <div
         x-show="show"
+        x-cloak
         class="fixed inset-0 transform transition-all"
         x-on:click="close()"
         x-transition:enter="{{ $enter }}"
@@ -53,10 +55,12 @@
 
     <div
         x-show="show"
+        x-cloak
         class="mb-6 flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
     >
         <div
             x-show="show"
+            x-cloak
             class="relative w-full transform overflow-hidden rounded-xl border border-background-700/40 bg-background text-left shadow-xl transition-all dark:border-background-400/20 dark:bg-background-800 {{ $maxWidthClass }} sm:my-8 sm:w-full"
             x-transition:enter="{{ $enter }}"
             x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
