@@ -39,7 +39,7 @@ test('modal renders custom header slot', function () {
 
 test('drawer renders correctly', function () {
     $view = Blade::render('<x-plume::drawer name="test-drawer" side="left">Drawer Content</x-plume::drawer>');
-    expect($view)->toContain('x-on:open-drawer.window')
+    expect($view)->toContain('x-data="drawer(\'test-drawer\'')
         ->toContain('-translate-x-full')
         ->toContain('Drawer Content');
 });

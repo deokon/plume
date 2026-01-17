@@ -1,4 +1,5 @@
 import modal from './alpine/modal';
+import drawer from './alpine/drawer';
 import toaster from './alpine/toaster';
 import page from './alpine/page';
 import clipboard from './alpine/clipboard';
@@ -14,6 +15,7 @@ import { accordion, accordionItem } from './alpine/accordion';
 
 export { 
     modal, 
+    drawer,
     toaster, 
     page, 
     clipboard, 

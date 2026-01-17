@@ -18,19 +18,8 @@
 @endphp
 
 <div
-    x-data="{ 
-        show: @js($show),
-    }"
-    x-init="$watch('show', value => {
-        if (value) {
-            document.body.classList.add('overflow-y-hidden');
-        } else {
-            document.body.classList.remove('overflow-y-hidden');
-        }
-    })"
-    x-on:open-drawer.window="if ($event.detail === '{{ $name }}') show = true"
-    x-on:close-drawer.window="if ($event.detail === '{{ $name }}') show = false"
-    x-on:keydown.escape.window="show = false"
+    x-data="drawer('{{ $name }}', @js($show))"
+    x-on:keydown.escape.window="close()"
     x-show="show"
     class="fixed inset-0 z-50 overflow-hidden"
     style="display: {{ $show ? 'block' : 'none' }};"
@@ -38,7 +27,7 @@
     <div
         x-show="show"
         class="fixed inset-0 transform transition-all"
-        x-on:click="show = false"
+        x-on:click="close()"
         x-transition:enter="{{ $enter }}"
         x-transition:enter-start="opacity-0"
         x-transition:enter-end="opacity-100"
