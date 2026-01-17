@@ -26,8 +26,8 @@
     </div>
     <x-slot:footer>
         @if($withCancel)
-            <x-plume::button style="outline" x-on:click="show = false;">Cancel</x-plume::button>
+            <x-plume::button style="outline" x-on:click="close()">Cancel</x-plume::button>
         @endif
-        <x-plume::button style="destructive" x-on:click="show = false; {{ $onConfirm }}">{{ $action }}</x-plume::button>
+        <x-plume::button style="destructive" x-on:click="close(); {{ $onConfirm }}">{{ $action }}</x-plume::button>
     </x-slot:footer>
 </x-plume::modal>

@@ -31,7 +31,7 @@
 
 <div
     x-data="modal('{{ $name }}', @js($show), @js($attributes->has('focusable')))"
-    x-on:keydown.escape.window="show = false"
+    x-on:keydown.escape.window="close()"
     x-on:keydown.tab.prevent="handleTab($event)"
     x-show="show"
     {{ $attributes->merge(['class' => 'fixed inset-0 z-50 overflow-y-auto']) }}
@@ -40,7 +40,7 @@
     <div
         x-show="show"
         class="fixed inset-0 transform transition-all"
-        x-on:click="show = false"
+        x-on:click="close()"
         x-transition:enter="{{ $enter }}"
         x-transition:enter-start="opacity-0"
         x-transition:enter-end="opacity-100"

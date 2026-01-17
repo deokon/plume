@@ -32,6 +32,10 @@ export default function (Alpine) {
             });
         },
 
+        close() {
+            this.show = false;
+        },
+
         focusables() {
             // All focusable element types
             let selector = 'a, button, input:not([type="hidden"]), textarea, select, details, [tabindex]:not([tabindex="-1"])';
