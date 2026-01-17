@@ -559,9 +559,19 @@ Documentation: [https://plume.dennisokon.com/docs/dropdown](https://plume.dennis
 Path: `plume/resources/views/components/dropdown/index.blade.php`
 
 ### Properties
+- `trigger` (string): Default: `null`.
 - `align` (string): Default: `right`.
 - `width` (string): Default: `md`.
 - `contentClasses` (string): Default: `bg-background dark:bg-background-800`.
+
+### Usage
+```blade
+<x-plume::dropdown trigger="Options">
+    <x-plume::dropdown.item href="/profile">Profile</x-plume::dropdown.item>
+    <x-plume::dropdown.separator />
+    <x-plume::dropdown.item>Logout</x-plume::dropdown.item>
+</x-plume::dropdown>
+```
 
 ---
 
@@ -1045,6 +1055,12 @@ Path: `plume/resources/views/components/navbar/index.blade.php`
         <x-plume::navbar.item>Item</x-plume::navbar.item>
     </x-plume::navbar.menu>
     <x-plume::navbar.mobile-toggle />
+    
+    <x-slot:mobileMenu>
+        <x-plume::navbar.mobile-menu>
+            <x-plume::navbar.mobile-item>Mobile Item</x-plume::navbar.mobile-item>
+        </x-plume::navbar.mobile-menu>
+    </x-slot:mobileMenu>
 </x-plume::navbar>
 ```
 
@@ -1139,34 +1155,16 @@ Documentation: [https://plume.dennisokon.com/docs/popover](https://plume.denniso
 Path: `plume/resources/views/components/popover/index.blade.php`
 
 ### Properties
+- `trigger` (string): Default: `null`.
 - `position` (string): Default: `bottom`.
 - `align` (string): Default: `center`.
 
 ### Usage
 ```blade
-<x-plume::popover>
-    <x-plume::popover.trigger>Open</x-plume::popover.trigger>
-    <x-plume::popover.content>Content</x-plume::popover.content>
+<x-plume::popover trigger="Open Popover">
+    <p>This is the popover content.</p>
 </x-plume::popover>
 ```
-
----
-
-## x-plume::popover.trigger
-The element that triggers the popover.
-
-Documentation: [https://plume.dennisokon.com/docs/popover](https://plume.dennisokon.com/docs/popover)
-
-Path: `plume/resources/views/components/popover/trigger.blade.php`
-
----
-
-## x-plume::popover.content
-The content displayed within the popover.
-
-Documentation: [https://plume.dennisokon.com/docs/popover](https://plume.dennisokon.com/docs/popover)
-
-Path: `plume/resources/views/components/popover/content.blade.php`
 
 ---
 
@@ -1343,57 +1341,57 @@ Path: `plume/resources/views/components/table/index.blade.php`
 
 ---
 
-## x-plume::table.body
+## x-plume::table.tbody
 No description provided.
 
 Documentation: [https://plume.dennisokon.com/docs/table-body](https://plume.dennisokon.com/docs/table-body)
 
-Path: `plume/resources/views/components/table/body.blade.php`
+Path: `plume/resources/views/components/table/tbody.blade.php`
 
 ---
 
-## x-plume::table.cell
+## x-plume::table.td
 No description provided.
 
 Documentation: [https://plume.dennisokon.com/docs/table-cell](https://plume.dennisokon.com/docs/table-cell)
 
-Path: `plume/resources/views/components/table/cell.blade.php`
+Path: `plume/resources/views/components/table/td.blade.php`
 
 ### Properties
 - `align` (string): Default: `left`.
 
 ---
 
-## x-plume::table.head
+## x-plume::table.th
 No description provided.
 
 Documentation: [https://plume.dennisokon.com/docs/table-head](https://plume.dennisokon.com/docs/table-head)
 
-Path: `plume/resources/views/components/table/head.blade.php`
+Path: `plume/resources/views/components/table/th.blade.php`
 
 ### Properties
 - `align` (string): Default: `left`.
 
 ---
 
-## x-plume::table.header
+## x-plume::table.thead
 No description provided.
 
 Documentation: [https://plume.dennisokon.com/docs/table-header](https://plume.dennisokon.com/docs/table-header)
 
-Path: `plume/resources/views/components/table/header.blade.php`
+Path: `plume/resources/views/components/table/thead.blade.php`
 
 ### Properties
 - `sticky` (boolean): Default: `false`.
 
 ---
 
-## x-plume::table.row
+## x-plume::table.tr
 No description provided.
 
 Documentation: [https://plume.dennisokon.com/docs/table-row](https://plume.dennisokon.com/docs/table-row)
 
-Path: `plume/resources/views/components/table/row.blade.php`
+Path: `plume/resources/views/components/table/tr.blade.php`
 
 ---
 

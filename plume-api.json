@@ -601,6 +601,10 @@
         "x-plume::dropdown": {
             "path": "plume/resources/views/components/dropdown/index.blade.php",
             "props": {
+                "trigger": {
+                    "type": "string",
+                    "default": "null"
+                },
                 "align": {
                     "type": "string",
                     "default": "right"
@@ -615,7 +619,7 @@
                 }
             },
             "description": "Displays a menu to the user\u2014such as a set of actions or functions\u2014triggered by a button.",
-            "usage": null,
+            "usage": "<x-plume::dropdown trigger=\"Options\">\n    <x-plume::dropdown.item>Item</x-plume::dropdown.item>\n</x-plume::dropdown>",
             "doc_url": "https://plume.dennisokon.com/docs/dropdown"
         },
         "x-plume::dropdown.item": {
@@ -1444,6 +1448,10 @@
         "x-plume::popover": {
             "path": "plume/resources/views/components/popover/index.blade.php",
             "props": {
+                "trigger": {
+                    "type": "string",
+                    "default": "null"
+                },
                 "position": {
                     "type": "string",
                     "default": "bottom"
@@ -1454,21 +1462,7 @@
                 }
             },
             "description": "Displays rich content in a portal, triggered by a button.",
-            "usage": "<x-plume::popover>\n    <x-plume::popover.trigger>Open</x-plume::popover.trigger>\n    <x-plume::popover.content>Content</x-plume::popover.content>\n</x-plume::popover>",
-            "doc_url": "https://plume.dennisokon.com/docs/popover"
-        },
-        "x-plume::popover.trigger": {
-            "path": "plume/resources/views/components/popover/trigger.blade.php",
-            "props": {},
-            "description": "The element that triggers the popover.",
-            "usage": null,
-            "doc_url": "https://plume.dennisokon.com/docs/popover"
-        },
-        "x-plume::popover.content": {
-            "path": "plume/resources/views/components/popover/content.blade.php",
-            "props": {},
-            "description": "The content displayed within the popover.",
-            "usage": null,
+            "usage": "<x-plume::popover trigger=\"Open\">\n    Content...\n</x-plume::popover>",
             "doc_url": "https://plume.dennisokon.com/docs/popover"
         },
         "x-plume::progress": {
@@ -1674,15 +1668,15 @@
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/table"
         },
-        "x-plume::table.body": {
-            "path": "plume/resources/views/components/table/body.blade.php",
+        "x-plume::table.tbody": {
+            "path": "plume/resources/views/components/table/tbody.blade.php",
             "props": {},
             "description": "No description provided.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/table-body"
         },
-        "x-plume::table.cell": {
-            "path": "plume/resources/views/components/table/cell.blade.php",
+        "x-plume::table.td": {
+            "path": "plume/resources/views/components/table/td.blade.php",
             "props": {
                 "align": {
                     "type": "string",
@@ -1693,8 +1687,8 @@
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/table-cell"
         },
-        "x-plume::table.head": {
-            "path": "plume/resources/views/components/table/head.blade.php",
+        "x-plume::table.th": {
+            "path": "plume/resources/views/components/table/th.blade.php",
             "props": {
                 "align": {
                     "type": "string",
@@ -1705,8 +1699,8 @@
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/table-head"
         },
-        "x-plume::table.header": {
-            "path": "plume/resources/views/components/table/header.blade.php",
+        "x-plume::table.thead": {
+            "path": "plume/resources/views/components/table/thead.blade.php",
             "props": {
                 "sticky": {
                     "type": "boolean",
@@ -1717,8 +1711,8 @@
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/table-header"
         },
-        "x-plume::table.row": {
-            "path": "plume/resources/views/components/table/row.blade.php",
+        "x-plume::table.tr": {
+            "path": "plume/resources/views/components/table/tr.blade.php",
             "props": {},
             "description": "No description provided.",
             "usage": null,
