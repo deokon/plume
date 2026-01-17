@@ -16,13 +16,13 @@
     $maxWidthClass = Theme::modal($maxWidth);
     $enter = Theme::transitions('overlay-enter');
     $leave = Theme::transitions('overlay-leave');
-    
+
     // Check if header slot is provided via $header variable (from x-slot:header) or prop
-    $hasHeader = !empty($header) || isset($headerSlot); 
-    // Note: 'header' is a reserved slot name in some contexts? No. 
-    // Laravel provides $header variable if <x-slot:header> is used? 
+    $hasHeader = !empty($header) || isset($headerSlot);
+    // Note: 'header' is a reserved slot name in some contexts? No.
+    // Laravel provides $header variable if <x-slot:header> is used?
     // Actually, simple slots are passed as variables matching the name.
-    
+
     // We need to check attributes/slots.
     // If <x-slot:header> is used, $header will be defined in the component scope if we add it to props or if we don't.
     // If we add it to props, it defaults to null. If slot is present, it might be passed?
@@ -74,15 +74,16 @@
                 <h3 class="text-lg font-semibold leading-none tracking-tight">{{ $title }}</h3>
             </div>
         @endif
-        
+
         <div class="p-6 @if((isset($header) && $header->isNotEmpty()) || $title) pt-0 @endif">
             {{ $slot }}
         </div>
-        
+
         @if($footer)
             <div class="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2 p-6 pt-0">
                 {{ $footer }}
             </div>
         @endif
+        </div>
     </div>
 </div>
