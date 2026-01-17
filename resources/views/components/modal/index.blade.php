@@ -3,10 +3,12 @@
 @component x-plume::modal
 @description A dialog box or popup window that is displayed on top of the current page.
 --}}
-@props([
+@aware([
     'name',
     'show' => false,
     'maxWidth' => '2xl',
+    'title' => null,
+    'footer' => null,
 ])
 
 @php
@@ -51,7 +53,18 @@
             x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
             x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
         >
+        @if($title)
+            <div class="flex flex-col space-y-1.5 p-6">
+                <h3 class="text-lg font-semibold leading-none tracking-tight">{{ $title }}</h3>
+            </div>
+        @endif
+        <div class="p-6 pt-0">
             {{ $slot }}
         </div>
+        @if($footer)
+            <div class="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2 p-6 pt-0">
+                {{ $footer}}
+            </div>
+        @endif
     </div>
 </div>
