@@ -1,4 +1,8 @@
 export default function (Alpine) {
+    Alpine.magic('copy', () => (text) => {
+        navigator.clipboard.writeText(text);
+    });
+
     Alpine.data('clipboard', (text = null) => ({
         copied: false,
         copy(customText = null) {
