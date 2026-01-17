@@ -201,6 +201,21 @@
         "x-plume::button": {
             "path": "plume/resources/views/components/button/index.blade.php",
             "props": {
+                "style": {
+                    "type": "string",
+                    "default": "default",
+                    "values": ["default", "secondary", "destructive", "outline", "ghost", "link", "minor"]
+                },
+                "size": {
+                    "type": "string",
+                    "default": "md",
+                    "values": ["sm", "md", "lg"]
+                },
+                "shape": {
+                    "type": "string",
+                    "default": "default",
+                    "values": ["default", "pill", "round"]
+                },
                 "href": {
                     "type": "any",
                     "default": "null"

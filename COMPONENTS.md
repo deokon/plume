@@ -199,6 +199,9 @@ Documentation: [https://plume.dennisokon.com/docs/button](https://plume.dennisok
 Path: `plume/resources/views/components/button/index.blade.php`
 
 ### Properties
+- `style` (string): Options: `default`, `secondary`, `destructive`, `outline`, `ghost`, `link`, `minor`. Default: `default`.
+- `size` (string): Options: `sm`, `md`, `lg`. Default: `md`.
+- `shape` (string): Options: `default`, `pill`, `round`. Default: `default`.
 - `href` (any): Default: `null`.
 - `icon` (any): Default: `null`.
 - `fullWidth` (boolean): Default: `false`.
