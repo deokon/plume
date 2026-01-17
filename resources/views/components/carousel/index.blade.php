@@ -27,14 +27,14 @@
     @if($controls)
         <button 
             @click="prev" 
-            class="absolute top-1/2 left-4 -translate-y-1/2 p-2 rounded-full bg-background/80 backdrop-blur-sm shadow-sm opacity-0 group-hover:opacity-100 transition-opacity hover:bg-background text-foreground/80 z-10"
+            class="absolute top-1/2 left-4 -translate-y-1/2 p-2 rounded-full bg-background/80 dark:bg-background-800/80 backdrop-blur-sm shadow-sm opacity-0 group-hover:opacity-100 transition-opacity hover:bg-background dark:hover:bg-background-700 text-foreground/80 dark:text-background-200 z-10"
             aria-label="Previous slide"
         >
             <x-plume::icon i="icon-[fluent--chevron-left-24-regular]" class="size-6" />
         </button>
         <button 
             @click="next" 
-            class="absolute top-1/2 right-4 -translate-y-1/2 p-2 rounded-full bg-background/80 backdrop-blur-sm shadow-sm opacity-0 group-hover:opacity-100 transition-opacity hover:bg-background text-foreground/80 z-10"
+            class="absolute top-1/2 right-4 -translate-y-1/2 p-2 rounded-full bg-background/80 dark:bg-background-800/80 backdrop-blur-sm shadow-sm opacity-0 group-hover:opacity-100 transition-opacity hover:bg-background dark:hover:bg-background-700 text-foreground/80 dark:text-background-200 z-10"
             aria-label="Next slide"
         >
             <x-plume::icon i="icon-[fluent--chevron-right-24-regular]" class="size-6" />
@@ -47,8 +47,8 @@
             <template x-for="i in slideCount">
                 <button 
                     @click="scrollTo(i - 1)" 
-                    class="w-2 h-2 rounded-full transition-all bg-background shadow-sm"
-                    :class="activeSlide === i - 1 ? 'w-6 bg-primary' : 'hover:bg-primary/50 opacity-50'"
+                    class="w-2 h-2 rounded-full transition-all bg-background dark:bg-background-400 shadow-sm"
+                    :class="activeSlide === i - 1 ? 'w-6 bg-primary dark:bg-primary-400' : 'hover:bg-primary/50 dark:hover:bg-primary-400/50 opacity-50'"
                     :aria-label="'Go to slide ' + i"
                 ></button>
             </template>

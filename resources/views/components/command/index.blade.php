@@ -41,7 +41,6 @@
             x-transition:leave-end="opacity-0"
             class="fixed inset-0 z-[100] flex items-start justify-center pt-[10vh] sm:pt-[15vh] px-4 bg-background-950/80 backdrop-blur-sm"
             @click.self="open = false"
-            style="display: none;"
         >
             <div 
                 x-show="open"
@@ -49,16 +48,16 @@
                 x-transition:enter="{{ $enter }}"
                 x-transition:enter-start="opacity-0 scale-95"
                 x-transition:enter-end="opacity-100 scale-100"
-                class="w-full max-w-2xl bg-background rounded-xl shadow-2xl border border-background-700/40 dark:border-background-400/20 overflow-hidden flex flex-col"
+                class="w-full max-w-2xl bg-background dark:bg-background-800 rounded-xl shadow-2xl border border-background-700/40 dark:border-background-400/20 overflow-hidden flex flex-col"
             >
                 {{-- Input Header --}}
                 <div class="flex items-center px-4 border-b border-background-700/40 dark:border-background-400/20">
-                    <x-plume::icon i="icon-[fluent--search-24-regular]" class="size-5 text-foreground/40" />
+                    <x-plume::icon i="icon-[fluent--search-24-regular]" class="size-5 text-foreground/40 dark:text-background-400" />
                     <input 
                         x-ref="input"
                         x-model="search"
                         type="text" 
-                        class="w-full bg-transparent border-none focus:ring-0 text-base py-4 px-3 placeholder:text-foreground/30 focus:outline-none text-foreground"
+                        class="w-full bg-transparent border-none focus:ring-0 text-base py-4 px-3 placeholder:text-foreground/30 dark:placeholder:text-background-500 focus:outline-none text-foreground dark:text-background-200"
                         placeholder="{{ $placeholder }}"
                         @keydown="onKeydown"
                     >
@@ -73,7 +72,7 @@
                     class="flex-1 overflow-y-auto max-h-[60vh] p-2 space-y-4"
                 >
                     {{-- Template for dynamic content or just manual structure --}}
-                    <div x-show="search === '' && !$refs.results?.children.length" class="p-4 text-center text-sm text-foreground/40">
+                    <div x-show="search === '' && !$refs.results?.children.length" class="p-4 text-center text-sm text-foreground/40 dark:text-background-500">
                         No recent searches.
                     </div>
                     <div x-ref="results">

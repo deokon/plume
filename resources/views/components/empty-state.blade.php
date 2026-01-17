@@ -17,7 +17,7 @@
     <div class="mb-4 rounded-full bg-background-200 dark:bg-background-700 p-4">
         <x-plume::icon :i="$icon" class="size-8 text-foreground/40 dark:text-background-400/60" />
     </div>
-    <h3 class="text-lg font-bold">{{ $title }}</h3>
+    <h3 class="text-lg font-bold dark:text-background-200">{{ $title }}</h3>
     @if($description)
         <p class="mt-1 text-sm text-foreground/50 dark:text-background-400">{{ $description }}</p>
     @endif

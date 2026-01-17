@@ -23,7 +23,7 @@
 <div class="w-full">
     <div class="relative w-full" style="height: {{ $height }}px">
         {{-- Y-Axis Lines --}}
-        <div class="absolute inset-0 flex flex-col justify-between text-xs text-foreground/40 pointer-events-none">
+        <div class="absolute inset-0 flex flex-col justify-between text-xs text-foreground/40 dark:text-background-400/60 pointer-events-none">
             <div class="border-b border-background-700/20 dark:border-background-400/10 w-full h-0"></div>
             <div class="border-b border-background-700/20 dark:border-background-400/10 w-full h-0"></div>
             <div class="border-b border-background-700/20 dark:border-background-400/10 w-full h-0"></div>
