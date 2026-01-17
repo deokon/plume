@@ -4,6 +4,7 @@
 @description Displays a menu to the user—such as a set of actions or functions—triggered by a button.
 --}}
 @props([
+    'trigger' => null,
     'align' => 'right',
     'width' => 'md',
     'contentClasses' => 'bg-background dark:bg-background-800',
@@ -17,7 +18,14 @@
 
 <div class="relative" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
     <div @click="open = ! open">
-        {{ $trigger }}
+        @if (isset($trigger) && $trigger instanceof \Illuminate\View\ComponentSlot)
+            {{ $trigger }}
+        @elseif (isset($trigger))
+            <x-plume::button type="button" style="outline" class="justify-between" ::class="{ 'bg-background-100 dark:bg-background-700': open }">
+                {{ $trigger }}
+                <x-plume::icon i="icon-[fluent--chevron-down-12-filled]" class="size-4 ml-2 transition-transform duration-200" ::class="{ 'rotate-180': open }" />
+            </x-plume::button>
+        @endif
     </div>
 
     <div x-show="open" x-cloak x-transition:enter="transition ease-out duration-200"

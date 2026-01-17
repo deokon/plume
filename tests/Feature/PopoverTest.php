@@ -4,9 +4,8 @@ use Illuminate\Support\Facades\Blade;
 
 test('popover renders correctly', function () {
     $view = Blade::render('
-        <x-plume::popover>
-            <x-plume::popover.trigger>Open</x-plume::popover.trigger>
-            <x-plume::popover.content>Content</x-plume::popover.content>
+        <x-plume::popover trigger="Open">
+            Content
         </x-plume::popover>
     ');
 
@@ -15,4 +14,19 @@ test('popover renders correctly', function () {
         ->toContain('Open')
         ->toContain('Content')
         ->toContain('absolute z-50');
+});
+
+test('popover renders with trigger slot', function () {
+    $view = Blade::render('
+        <x-plume::popover>
+            <x-slot:trigger>
+                <button>Custom Trigger</button>
+            </x-slot:trigger>
+            Content
+        </x-plume::popover>
+    ');
+
+    expect($view)
+        ->toContain('Custom Trigger')
+        ->toContain('Content');
 });

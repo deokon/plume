@@ -96,3 +96,32 @@ BLADE;
         ->toContain('Panel 1');
 });
 
+test('dropdown renders with trigger slot', function () {
+    $template = <<<'BLADE'
+<x-plume::dropdown>
+    <x-slot:trigger>Menu</x-slot:trigger>
+    <x-plume::dropdown.item>Item 1</x-plume::dropdown.item>
+</x-plume::dropdown>
+BLADE;
+
+    $view = Blade::render($template);
+    expect($view)
+        ->toContain('Menu')
+        ->toContain('Item 1')
+        ->toContain('x-data="{ open: false }"');
+});
+
+test('dropdown renders with trigger prop', function () {
+    $template = <<<'BLADE'
+<x-plume::dropdown trigger="Options">
+    <x-plume::dropdown.item>Item 1</x-plume::dropdown.item>
+</x-plume::dropdown>
+BLADE;
+
+    $view = Blade::render($template);
+    expect($view)
+        ->toContain('Options')
+        ->toContain('icon-[fluent--chevron-down-12-filled]') // Default icon
+        ->toContain('Item 1');
+});
+
