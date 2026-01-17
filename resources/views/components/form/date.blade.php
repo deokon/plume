@@ -22,6 +22,6 @@
         id="{{ $id }}"
         value="{{ $value }}"
         @if($model) x-model="{{ $model }}" @endif
-        {{ $attributes->merge(['class' => $classes]) }}
+        {{ $attributes->merge(['class' => $classes . ' dark:scheme-dark']) }}
     >
 </x-plume::form.element>
