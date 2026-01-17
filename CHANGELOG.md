@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.2.0] - 2026-01-17
+
+### Added
+- Card: `badge` and `badgeStyle` props for easier header badges.
+- Popover & Dropdown: `trigger` prop for simplified string-based triggers.
+- Navbar: `mobileMenu` slot for better scope management of mobile menus.
+- Edge Case Tests: Comprehensive tests for empty/boundary values across multiple components.
+
+### Changed
+- **BREAKING**: Renamed table sub-components to match standard HTML tags (`x-plume::table.thead`, `x-plume::table.th`, `x-plume::table.tbody`, `x-plume::table.tr`, `x-plume::table.td`).
+- **BREAKING**: Refactored `popover` to use a single component with a `trigger` prop/slot and default slot for content. Removed `popover.trigger` and `popover.content` sub-components.
+- Dropdown: Can now use a `trigger` prop instead of a mandatory slot for simple text triggers.
+- Code style: Applied Prettier and ESLint formatting project-wide.
+
+### Fixed
+- Navbar: Fixed mobile toggle visibility and menu state scoping.
+- Popover: Fixed component file corruption and default trigger styling.
+- Documentation: Corrected multiple syntax errors and layout issues in examples.
+
 ## [v0.1.1] - 2026-01-17
 
 ### Fixed
