@@ -10,13 +10,13 @@
     @if($model) x-init="$watch('{{ $model }}', value => val = value)" @endif
     {{ $attributes->merge(['class' => 'w-full space-y-2']) }}>
     
-    @if ($title || $display !== 'none')
-        <div class="flex items-center justify-between gap-4">
+    @if ($title || ($display && $display !== 'none'))
+        <div class="flex w-full items-center justify-between gap-4">
             @if ($title)
                 <span class="text-sm font-medium text-foreground/70 dark:text-background-400">{{ $title }}</span>
             @endif
             
-            @if ($display !== 'none')
+            @if ($display && $display !== 'none')
                 <span class="text-xs font-semibold text-foreground/50 dark:text-background-500">
                     @if ($display === 'percentage')
                         <span x-text="percent"></span>%

@@ -11,15 +11,15 @@ class ButtonGroup extends Component
 {
     use InteractsWithAttributes;
 
-    public string $groupSize;
-    public string $groupStyle;
-    public string $groupShape;
+    public ?string $groupSize;
+    public ?string $groupStyle;
+    public ?string $groupShape;
 
     public function __construct(
-        public string $size = 'md',
+        public ?string $size = null,
         public bool $stack = true,
-        public string $style = 'default',
-        public string $shape = 'default',
+        public ?string $style = null,
+        public ?string $shape = null,
     ) {
         $this->groupSize = $size;
         $this->groupStyle = $style;
