@@ -1,26 +1,7 @@
-@use('deokon\Plume\Theme')
 {{--
 @component x-plume::drawer
 @description A panel that slides in from the edge of the screen.
 --}}
-@props([
-    'name',
-    'show' => false,
-    'side' => 'right',
-    'title' => null,
-    'description' => null,
-    'header' => null,
-    'footer' => null,
-])
-
-@php
-    $theme = Theme::drawer($side);
-    $sideClasses = $theme['classes'];
-    $transitionClasses = $theme['transition'];
-    $enter = Theme::transitions('overlay-enter');
-    $leave = Theme::transitions('overlay-leave');
-@endphp
-
 <div x-data="drawer('{{ $name }}', @js($show))" x-on:keydown.escape.window="close()" x-show="show" x-cloak
     class="fixed inset-0 z-50 overflow-hidden" style="display: {{ $show ? 'block' : 'none' }};">
     <div x-show="show" x-cloak class="fixed inset-0 transform transition-all" x-on:click="close()"
@@ -32,7 +13,7 @@
 
     <div x-show="show" x-cloak
         class="fixed {{ $sideClasses }} transform bg-background shadow-xl transition-all duration-300 ease-in-out dark:bg-background-800 border-background-600 dark:border-background-200"
-        x-transition:enter="transform transition ease-in-out duration-300" {{ $transitionClasses }}
+        x-transition:enter="transform transition ease-in-out duration-300" {!! $transitionAttributes !!}
         x-transition:leave="transform transition ease-in-out duration-300">
         <div class="flex h-full flex-col">
             {{-- Header --}}

@@ -1,21 +1,7 @@
-@use('deokon\Plume\Theme')
 {{--
 @component x-plume::dropdown
 @description Displays a menu to the user—such as a set of actions or functions—triggered by a button.
 --}}
-@props([
-    'trigger' => null,
-    'align' => 'right',
-    'width' => 'md',
-    'contentClasses' => 'bg-background dark:bg-background-800',
-])
-
-@php
-    $theme = Theme::dropdown($align, $width);
-    $alignmentClasses = $theme['align'];
-    $widthClass = $theme['width'];
-@endphp
-
 <div class="relative" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
     <div @click="open = ! open">
         @if (isset($trigger) && $trigger instanceof \Illuminate\View\ComponentSlot)

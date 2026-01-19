@@ -1,38 +1,7 @@
-@use('deokon\Plume\Theme')
 {{--
 @component x-plume::avatar
 @description An image element with a fallback for representing the user.
-@usage
-<x-plume::avatar 
-    src="https://github.com/shadcn.png" 
-    alt="@shadcn" 
-    fallback="CN" 
-    size="lg" 
-    status="online"
-/>
 --}}
-@props([
-    'src' => null,
-    'alt' => '',
-    'fallback' => '',
-    'size' => 'md',
-    'status' => null,
-])
-
-@php
-    $theme = Theme::avatar($size);
-    $sizeClasses = $theme['container'];
-    $statusSizeClasses = $theme['status'];
-
-    $statusColorClasses = match ($status) {
-        'online' => 'bg-emerald-500 dark:bg-emerald-400',
-        'away' => 'bg-amber-500 dark:bg-amber-400',
-        'busy' => 'bg-rose-500 dark:bg-rose-400',
-        'offline' => 'bg-slate-500 dark:bg-slate-400',
-        default => '',
-    };
-@endphp
-
 <div {{ $attributes->merge(['class' => 'relative inline-flex shrink-0 ' . $sizeClasses]) }}>
     <div
         class="flex h-full w-full items-center justify-center overflow-hidden rounded-full bg-background-200 dark:bg-background-700">

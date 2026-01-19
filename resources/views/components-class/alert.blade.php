@@ -1,37 +1,16 @@
-@use('deokon\Plume\Theme')
 {{--
 @component x-plume::alert
 @description Displays a callout for user attention.
-@usage
-<x-plume::alert style="success" title="Success" closable autoclose="3000">
-    Your changes have been saved.
-</x-plume::alert>
 --}}
-@props([
-    'icon' => null,
-    'style' => 'info',
-    'closable' => false,
-    'autoclose' => null,
-    'title' => null,
-    'onClose' => null,
-])
-
-@php
-    $theme = Theme::alert($style);
-    $styleClass = $theme['container'];
-    $iconStyleClass = $theme['icon'];
-    $icon = $icon ?? $theme['icon_name'];
-@endphp
-
 <div x-data="{ open: true, close() { open = false;
         @if ($onClose) {{ $onClose }} @endif } }" x-show="open" x-transition:leave="transition ease-in duration-200"
     x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
     @if ($autoclose) x-init="setTimeout(() => close(), {{ $autoclose }})" @endif
     class="w-full">
     <div
-        {{ $attributes->merge(['class' => 'w-full flex items-start p-4 border-l-[3px] rounded-md ' . $styleClass]) }}>
-        @if ($icon)
-            <x-plume::icon :i="$icon" class="mr-3 mt-0.5 shrink-0 {{ $iconStyleClass }}" />
+        {{ $attributes->merge(['class' => 'w-full flex items-start p-4 border-l-[3px] rounded-md ' . $containerClasses]) }}>
+        @if ($resolvedIcon)
+            <x-plume::icon :i="$resolvedIcon" class="mr-3 mt-0.5 shrink-0 {{ $iconClasses }}" />
         @endif
         <div class="grow">
             @if ($title)

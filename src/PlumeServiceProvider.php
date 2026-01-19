@@ -17,6 +17,10 @@ class PlumeServiceProvider extends ServiceProvider
         
         // Register View Classes
         Blade::component('plume::button', \deokon\Plume\View\Components\Button::class);
+        Blade::component('plume::alert', \deokon\Plume\View\Components\Alert::class);
+        Blade::component('plume::drawer', \deokon\Plume\View\Components\Drawer::class);
+        Blade::component('plume::avatar', \deokon\Plume\View\Components\Avatar::class);
+        Blade::component('plume::dropdown', \deokon\Plume\View\Components\Dropdown::class);
 
         // Optional: Publish assets so users can modify them
         $this->publishes([
