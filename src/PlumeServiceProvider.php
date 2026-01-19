@@ -19,6 +19,7 @@ class PlumeServiceProvider extends ServiceProvider
         Blade::component('plume::accordion', \deokon\Plume\View\Components\Accordion::class);
         Blade::component('plume::accordion.item', \deokon\Plume\View\Components\AccordionItem::class);
         Blade::component('plume::alert', \deokon\Plume\View\Components\Alert::class);
+        Blade::component('plume::alert-dialog', \deokon\Plume\View\Components\AlertDialog::class);
         Blade::component('plume::aspect', \deokon\Plume\View\Components\Aspect::class);
         Blade::component('plume::audio', \deokon\Plume\View\Components\Audio::class);
         Blade::component('plume::avatar', \deokon\Plume\View\Components\Avatar::class);

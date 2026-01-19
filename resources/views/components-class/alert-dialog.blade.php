@@ -1,16 +1,7 @@
-@use('deokon\Plume\Theme')
 {{--
 @component x-plume::alert-dialog
 @description Modal dialog specifically designed for alerting users to important information or actions.
 --}}
-@props([
-    'name' => 'alert-dialog',
-    'show' => false,
-    'maxWidth' => '2xl',
-    'action' => 'Confirm',
-    'withCancel' => true,
-    'onConfirm' => '',
-])
 <x-plume::modal name="{{ $name }}" :show="$show" :maxWidth="$maxWidth" role="alertdialog"
     aria-modal="true" aria-labelledby="{{ $name }}-title"
     aria-describedby="{{ $name }}-description" {{ $attributes }}>
