@@ -125,3 +125,27 @@ BLADE;
         ->toContain('Item 1');
 });
 
+test('dropdown renders with custom trigger style', function () {
+    $template = <<<'BLADE'
+<x-plume::dropdown trigger="Options" triggerStyle="outline">
+    <x-plume::dropdown.item>Item 1</x-plume::dropdown.item>
+</x-plume::dropdown>
+BLADE;
+
+    $view = Blade::render($template);
+    expect($view)
+        ->toContain('border bg-none shadow-xs'); // Outline style classes
+});
+
+test('dropdown uses outline style by default', function () {
+    $template = <<<'BLADE'
+<x-plume::dropdown trigger="Options">
+    <x-plume::dropdown.item>Item 1</x-plume::dropdown.item>
+</x-plume::dropdown>
+BLADE;
+
+    $view = Blade::render($template);
+    expect($view)
+        ->toContain('border bg-none shadow-xs'); // Outline style classes
+});
+
