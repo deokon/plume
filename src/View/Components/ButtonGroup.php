@@ -40,6 +40,10 @@ class ButtonGroup extends Component
         
         if ($this->stack) {
             $base .= ' -space-x-px';
+            // Strip rounding from interior edges
+            $base .= ' [&>*:not(:first-child):not(:last-child)]:rounded-none';
+            $base .= ' [&>*:first-child:not(:last-child)]:rounded-r-none';
+            $base .= ' [&>*:last-child:not(:first-child)]:rounded-l-none';
         } else {
             $base .= ' gap-2';
         }
