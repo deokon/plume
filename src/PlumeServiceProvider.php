@@ -53,6 +53,12 @@ class PlumeServiceProvider extends ServiceProvider
         Blade::component('plume::stepper', \deokon\Plume\View\Components\Stepper::class);
         Blade::component('plume::stepper.step', \deokon\Plume\View\Components\StepperStep::class);
         Blade::component('plume::stepper.actions', \deokon\Plume\View\Components\StepperActions::class);
+        Blade::component('plume::table', \deokon\Plume\View\Components\Table\Table::class);
+        Blade::component('plume::table.thead', \deokon\Plume\View\Components\Table\Thead::class);
+        Blade::component('plume::table.tbody', \deokon\Plume\View\Components\Table\Tbody::class);
+        Blade::component('plume::table.tr', \deokon\Plume\View\Components\Table\Tr::class);
+        Blade::component('plume::table.th', \deokon\Plume\View\Components\Table\Th::class);
+        Blade::component('plume::table.td', \deokon\Plume\View\Components\Table\Td::class);
         Blade::component('plume::toaster', \deokon\Plume\View\Components\Toaster::class);
         Blade::component('plume::tooltip', \deokon\Plume\View\Components\Tooltip::class);
         

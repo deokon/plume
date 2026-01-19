@@ -1,19 +1,7 @@
-@use('deokon\Plume\Theme')
 {{--
 @component x-plume::table
 @description A responsive table component.
 --}}
-@props([
-    'striped' => false,
-    'hoverable' => false,
-    'stickyHeader' => false,
-    'density' => 'default', // compact, default, loose
-])
-
-@php
-    $densityClasses = Theme::table($density);
-@endphp
-
 <div class="relative w-full overflow-auto {{ $stickyHeader ? 'max-h-[500px]' : '' }}">
     <table
         {{ $attributes->merge([
