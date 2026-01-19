@@ -2,4 +2,4 @@
 @component x-plume::spacer
 @description A utility component that fills available space in a flex container.
 --}}
-<div class="grow"></div>
+<div {{ $attributes->merge(['class' => 'grow']) }}></div>

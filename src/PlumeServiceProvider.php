@@ -62,6 +62,7 @@ class PlumeServiceProvider extends ServiceProvider
         Blade::component('plume::search', \deokon\Plume\View\Components\Search::class);
         Blade::component('plume::search.result', \deokon\Plume\View\Components\SearchResult::class);
         Blade::component('plume::skeleton', \deokon\Plume\View\Components\Skeleton::class);
+        Blade::component('plume::spacer', \deokon\Plume\View\Components\Spacer::class);
         Blade::component('plume::spinner', \deokon\Plume\View\Components\Spinner::class);
         Blade::component('plume::stepper', \deokon\Plume\View\Components\Stepper::class);
         Blade::component('plume::stepper.step', \deokon\Plume\View\Components\StepperStep::class);
