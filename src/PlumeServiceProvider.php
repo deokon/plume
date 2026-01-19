@@ -16,31 +16,29 @@ class PlumeServiceProvider extends ServiceProvider
         Blade::anonymousComponentPath(__DIR__ . '/../resources/views/components', 'plume');
         
         // Register View Classes
-        Blade::component('plume::aspect', \deokon\Plume\View\Components\Aspect::class);
-        Blade::component('plume::button', \deokon\Plume\View\Components\Button::class);
-        Blade::component('plume::alert', \deokon\Plume\View\Components\Alert::class);
-        Blade::component('plume::badge', \deokon\Plume\View\Components\Badge::class);
-        Blade::component('plume::drawer', \deokon\Plume\View\Components\Drawer::class);
-        Blade::component('plume::avatar', \deokon\Plume\View\Components\Avatar::class);
-        Blade::component('plume::dropdown', \deokon\Plume\View\Components\Dropdown::class);
-        Blade::component('plume::card', \deokon\Plume\View\Components\Card::class);
         Blade::component('plume::accordion', \deokon\Plume\View\Components\Accordion::class);
         Blade::component('plume::accordion.item', \deokon\Plume\View\Components\AccordionItem::class);
+        Blade::component('plume::alert', \deokon\Plume\View\Components\Alert::class);
+        Blade::component('plume::aspect', \deokon\Plume\View\Components\Aspect::class);
+        Blade::component('plume::audio', \deokon\Plume\View\Components\Audio::class);
+        Blade::component('plume::avatar', \deokon\Plume\View\Components\Avatar::class);
+        Blade::component('plume::badge', \deokon\Plume\View\Components\Badge::class);
         Blade::component('plume::breadcrumb', \deokon\Plume\View\Components\Breadcrumb::class);
         Blade::component('plume::breadcrumb.item', \deokon\Plume\View\Components\BreadcrumbItem::class);
         Blade::component('plume::breadcrumb.separator', \deokon\Plume\View\Components\BreadcrumbSeparator::class);
+        Blade::component('plume::button', \deokon\Plume\View\Components\Button::class);
+        Blade::component('plume::card', \deokon\Plume\View\Components\Card::class);
         Blade::component('plume::carousel', \deokon\Plume\View\Components\Carousel::class);
         Blade::component('plume::carousel.item', \deokon\Plume\View\Components\CarouselItem::class);
         Blade::component('plume::command', \deokon\Plume\View\Components\Command::class);
         Blade::component('plume::command.group', \deokon\Plume\View\Components\CommandGroup::class);
         Blade::component('plume::command.item', \deokon\Plume\View\Components\CommandItem::class);
         Blade::component('plume::divider', \deokon\Plume\View\Components\Divider::class);
+        Blade::component('plume::drawer', \deokon\Plume\View\Components\Drawer::class);
+        Blade::component('plume::dropdown', \deokon\Plume\View\Components\Dropdown::class);
         Blade::component('plume::empty-state', \deokon\Plume\View\Components\EmptyState::class);
         Blade::component('plume::figure', \deokon\Plume\View\Components\Figure::class);
         Blade::component('plume::gallery', \deokon\Plume\View\Components\Gallery::class);
-        Blade::component('plume::drawer', \deokon\Plume\View\Components\Drawer::class);
-        Blade::component('plume::search', \deokon\Plume\View\Components\Search::class);
-        Blade::component('plume::search.result', \deokon\Plume\View\Components\SearchResult::class);
         Blade::component('plume::icon', \deokon\Plume\View\Components\Icon::class);
         Blade::component('plume::kbd', \deokon\Plume\View\Components\Kbd::class);
         Blade::component('plume::modal', \deokon\Plume\View\Components\Modal::class);
@@ -55,6 +53,8 @@ class PlumeServiceProvider extends ServiceProvider
         Blade::component('plume::popover', \deokon\Plume\View\Components\Popover::class);
         Blade::component('plume::progress', \deokon\Plume\View\Components\Progress::class);
         Blade::component('plume::progress.percent', \deokon\Plume\View\Components\ProgressPercent::class);
+        Blade::component('plume::search', \deokon\Plume\View\Components\Search::class);
+        Blade::component('plume::search.result', \deokon\Plume\View\Components\SearchResult::class);
         Blade::component('plume::skeleton', \deokon\Plume\View\Components\Skeleton::class);
         Blade::component('plume::spinner', \deokon\Plume\View\Components\Spinner::class);
         Blade::component('plume::stepper', \deokon\Plume\View\Components\Stepper::class);
@@ -109,4 +109,3 @@ class PlumeServiceProvider extends ServiceProvider
         ], 'plume-assets');
     }
 }
-
