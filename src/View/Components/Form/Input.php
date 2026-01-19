@@ -23,27 +23,24 @@ class Input extends Component
         public ?string $value = '',
         public string $placeholder = '',
         public ?string $icon = null,
-    ) {
-        $this->name = $this->name ?? $this->model;
-        $this->id = $this->resolveId($this->name, $this->model, $this->id);
-    }
+    ) {}
 
     public function render(): View|Closure|string
     {
         return view('plume::components-class.form.input', [
-            'classes' => $this->inputClasses(),
+            'component' => $this,
         ]);
     }
 
-    protected function inputClasses(): string
+    public function inputClasses(?string $icon = null, bool $hasRightSide = false): string
     {
         $base = 'block w-full px-3 py-2 border rounded-md shadow-sm placeholder-foreground/50 dark:placeholder-background-400 border-background-700/40 dark:border-background-400/20 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm bg-background-50 dark:bg-background-700 transition-colors';
         
-        if ($this->icon) {
+        if ($icon) {
             $base .= ' pl-10';
         }
         
-        if (isset($this->rightSide) && $this->rightSide->isNotEmpty()) {
+        if ($hasRightSide) {
             $base .= ' pr-10';
         }
 

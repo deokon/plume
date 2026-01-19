@@ -6,9 +6,16 @@ use Illuminate\Support\Str;
 
 trait ResolvesId
 {
-    protected function resolveId(?string $name, ?string $model, ?string $id): string
+    public function resolveId(?string $name, ?string $model, ?string $id, ?string $value = null): string
     {
         if ($id) return $id;
-        return Str::slug($name ?? $model ?? 'field', '_');
+        
+        $base = $name ?? $model ?? 'field';
+        
+        if ($value !== null && $value !== '') {
+            $base .= '_' . $value;
+        }
+
+        return Str::slug($base, '_');
     }
 }

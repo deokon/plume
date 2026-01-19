@@ -36,6 +36,8 @@ class Combobox extends Component
 
     public function render(): View|Closure|string
     {
-        return view('plume::components-class.form.combobox');
+        return view('plume::components-class.form.combobox', [
+            'component' => $this,
+        ]);
     }
 }

@@ -18,13 +18,12 @@ class Radio extends Component
         public ?string $model = null,
         public string $value = '',
         public bool $checked = false,
-    ) {
-        $this->name = $this->name ?? $this->model;
-        $this->id = $this->resolveId($this->name, $this->model, $this->id);
-    }
+    ) {}
 
     public function render(): View|Closure|string
     {
-        return view('plume::components-class.form.radio');
+        return view('plume::components-class.form.radio', [
+            'component' => $this,
+        ]);
     }
 }
