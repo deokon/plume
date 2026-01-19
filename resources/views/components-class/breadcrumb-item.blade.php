@@ -1,11 +1,6 @@
 {{--
 @component x-plume::breadcrumb.item
 --}}
-@props([
-    'href' => null,
-    'active' => false,
-])
-
 <li {{ $attributes->merge(['class' => 'inline-flex items-center gap-1.5']) }}>
     @if ($href && !$active)
         <a href="{{ $href }}"

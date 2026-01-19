@@ -2,13 +2,6 @@
 @component x-plume::carousel
 @description A slideshow component for cycling through elements.
 --}}
-@props([
-    'controls' => true,
-    'indicators' => false,
-    'autoplay' => false,
-    'interval' => 5000,
-])
-
 <div x-data="carousel({{ $autoplay ? 'true' : 'false' }}, {{ $interval }})" class="relative group w-full overflow-hidden rounded-xl">
     {{-- Slides --}}
     <div x-ref="content" @scroll.debounce.50ms="updateActive"

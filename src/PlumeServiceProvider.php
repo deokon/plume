@@ -21,6 +21,14 @@ class PlumeServiceProvider extends ServiceProvider
         Blade::component('plume::drawer', \deokon\Plume\View\Components\Drawer::class);
         Blade::component('plume::avatar', \deokon\Plume\View\Components\Avatar::class);
         Blade::component('plume::dropdown', \deokon\Plume\View\Components\Dropdown::class);
+        Blade::component('plume::card', \deokon\Plume\View\Components\Card::class);
+        Blade::component('plume::accordion', \deokon\Plume\View\Components\Accordion::class);
+        Blade::component('plume::accordion.item', \deokon\Plume\View\Components\AccordionItem::class);
+        Blade::component('plume::breadcrumb', \deokon\Plume\View\Components\Breadcrumb::class);
+        Blade::component('plume::breadcrumb.item', \deokon\Plume\View\Components\BreadcrumbItem::class);
+        Blade::component('plume::breadcrumb.separator', \deokon\Plume\View\Components\BreadcrumbSeparator::class);
+        Blade::component('plume::carousel', \deokon\Plume\View\Components\Carousel::class);
+        Blade::component('plume::carousel.item', \deokon\Plume\View\Components\CarouselItem::class);
 
         // Optional: Publish assets so users can modify them
         $this->publishes([

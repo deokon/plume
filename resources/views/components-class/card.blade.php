@@ -1,21 +1,7 @@
 {{--
 @component x-plume::card
 @description Displays a card with header, content, and footer.
-@usage
-<x-plume::card title="Title" description="Description">
-    Content
-    <x-slot:footer>Footer</x-slot:footer>
-</x-plume::card>
 --}}
-@props([
-    'title' => null,
-    'description' => null,
-    'badge' => null,
-    'badgeStyle' => 'default',
-    'header' => null,
-    'footer' => null,
-])
-
 <div
     {{ $attributes->merge(['class' => 'rounded-xl border border-background-700/40 bg-background shadow dark:border-background-400/20 dark:bg-background-800']) }}>
     {{-- Header --}}
