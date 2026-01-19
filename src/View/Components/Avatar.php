@@ -50,7 +50,7 @@ class Avatar extends Component
         $theme = \deokon\Plume\Theme::avatar($size);
 
         $colors = [
-            'online' => 'bg-success-500',
+            'online' => 'bg-primary',
             'offline' => 'bg-background-400',
             'away' => 'bg-secondary-500',
             'busy' => 'bg-destructive-500',
