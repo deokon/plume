@@ -32,10 +32,10 @@ class Button extends Component
             $base .= ' w-full';
         }
 
-        return $base . ' ' . $this->themeClasses();
+        return $base . ' ' . $this->themeStyles();
     }
 
-    protected function themeClasses(): string
+    protected function themeStyles(): string
     {
         $sizes = [
             'sm' => 'text-sm font-medium gap-1.5 px-3 py-1.5',
