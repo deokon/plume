@@ -1,0 +1,68 @@
+<?php
+
+namespace deokon\Plume\View\Components;
+
+use Illuminate\View\Component;
+use Illuminate\View\View;
+use Closure;
+use Illuminate\Support\Str;
+
+class Video extends Component
+{
+    public bool $isEmbed;
+    public string $embedSrc;
+
+    public function __construct(
+        public string $src,
+        public ?string $poster = null,
+        public bool $autoplay = false,
+        public bool $controls = true,
+        public bool $loop = false,
+        public bool $muted = false,
+        public string $aspect = 'video',
+    ) {
+        $this->resolveEmbed();
+    }
+
+    public function render(): View|Closure|string
+    {
+        return view('plume::components-class.video', [
+            'aspectClass' => $this->themeStyles(),
+        ]);
+    }
+
+    protected function themeStyles(): string
+    {
+        return match ($this->aspect) {
+            'video' => 'aspect-video',
+            'square' => 'aspect-square',
+            '21/9' => 'aspect-[21/9]',
+            default => 'aspect-video',
+        };
+    }
+
+    protected function resolveEmbed(): void
+    {
+        $isYoutube = Str::contains($this->src, ['youtube.com', 'youtu.be']);
+        $isVimeo = Str::contains($this->src, ['vimeo.com']);
+        $this->isEmbed = $isYoutube || $isVimeo;
+
+        $this->embedSrc = $this->src;
+        if ($isYoutube) {
+            if (Str::contains($this->src, 'watch?v=')) {
+                parse_str(parse_url($this->src, PHP_URL_QUERY), $args);
+                $id = $args['v'] ?? null;
+                $this->embedSrc = "https://www.youtube.com/embed/$id";
+            } elseif (Str::contains($this->src, 'youtu.be/')) {
+                $parts = explode('/', $this->src);
+                $id = end($parts);
+                $this->embedSrc = "https://www.youtube.com/embed/$id";
+            }
+        } elseif ($isVimeo) {
+            if (preg_match('/vimeo\.com\/(\d+)/', $this->src, $matches)) {
+                $id = $matches[1];
+                $this->embedSrc = "https://player.vimeo.com/video/$id";
+            }
+        }
+    }
+}

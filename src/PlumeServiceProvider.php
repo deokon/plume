@@ -72,6 +72,7 @@ class PlumeServiceProvider extends ServiceProvider
         Blade::component('plume::tabs.panel', \deokon\Plume\View\Components\Tabs\Panel::class);
         Blade::component('plume::toaster', \deokon\Plume\View\Components\Toaster::class);
         Blade::component('plume::tooltip', \deokon\Plume\View\Components\Tooltip::class);
+        Blade::component('plume::video', \deokon\Plume\View\Components\Video::class);
         
         // Form Components
         Blade::component('plume::form', \deokon\Plume\View\Components\Form\Form::class);
