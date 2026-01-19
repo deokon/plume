@@ -2,12 +2,6 @@
 @component x-plume::code
 @description A component for displaying code snippets with a copy-to-clipboard feature.
 --}}
-@props([
-    'language' => null,
-    'title' => null,
-    'code' => null,
-])
-
 <div x-data="clipboard()"
     {{ $attributes->merge(['class' => 'group relative rounded-xl border border-background-700/40 bg-background-800 dark:border-background-400/20 dark:bg-background-900 overflow-hidden']) }}>
     @if ($title || $language)
