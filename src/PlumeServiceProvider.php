@@ -44,6 +44,8 @@ class PlumeServiceProvider extends ServiceProvider
         Blade::component('plume::navbar.mobile-toggle', \deokon\Plume\View\Components\NavbarMobileToggle::class);
         Blade::component('plume::pagination', \deokon\Plume\View\Components\Pagination::class);
         Blade::component('plume::popover', \deokon\Plume\View\Components\Popover::class);
+        Blade::component('plume::progress', \deokon\Plume\View\Components\Progress::class);
+        Blade::component('plume::progress.percent', \deokon\Plume\View\Components\ProgressPercent::class);
         Blade::component('plume::skeleton', \deokon\Plume\View\Components\Skeleton::class);
         Blade::component('plume::spinner', \deokon\Plume\View\Components\Spinner::class);
         Blade::component('plume::stepper', \deokon\Plume\View\Components\Stepper::class);
