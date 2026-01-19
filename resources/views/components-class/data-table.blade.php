@@ -1,26 +1,7 @@
 {{--
 @component x-plume::data-table
 @description Advanced table with sorting, filtering, and pagination. Powered by AlpineJS.
-@usage
-<x-plume::data-table 
-    :data="$users" 
-    :columns="[
-        ['key' => 'id', 'label' => 'ID', 'sortable' => true],
-        ['key' => 'name', 'label' => 'Name', 'sortable' => true],
-    ]" 
-    searchable 
-    paginated 
-/>
 --}}
-@props([
-    'data' => [],
-    'columns' => [],
-    'searchable' => false,
-    'paginated' => false,
-    'perPage' => 10,
-    'sortable' => true,
-])
-
 <div x-data="dataTable({{ $perPage }}, {{ Js::from($paginated) }}, {{ Js::from($sortable) }})" {{ $attributes->merge(['class' => 'space-y-4']) }}
     :data="{{ Js::from($data) }}" :columns="{{ Js::from($columns) }}">
     @if ($searchable)
