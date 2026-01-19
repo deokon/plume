@@ -49,6 +49,30 @@ class PlumeServiceProvider extends ServiceProvider
         Blade::component('plume::stepper.actions', \deokon\Plume\View\Components\StepperActions::class);
         Blade::component('plume::toaster', \deokon\Plume\View\Components\Toaster::class);
         Blade::component('plume::tooltip', \deokon\Plume\View\Components\Tooltip::class);
+        
+        // Form Components
+        Blade::component('plume::form', \deokon\Plume\View\Components\Form\Form::class);
+        Blade::component('plume::form.element', \deokon\Plume\View\Components\Form\Element::class);
+        Blade::component('plume::form.input', \deokon\Plume\View\Components\Form\Input::class);
+        Blade::component('plume::form.textarea', \deokon\Plume\View\Components\Form\Textarea::class);
+        Blade::component('plume::form.select', \deokon\Plume\View\Components\Form\Select::class);
+        Blade::component('plume::form.checkbox', \deokon\Plume\View\Components\Form\Checkbox::class);
+        Blade::component('plume::form.radio', \deokon\Plume\View\Components\Form\Radio::class);
+        Blade::component('plume::form.toggle', \deokon\Plume\View\Components\Form\Toggle::class);
+        Blade::component('plume::form.label', \deokon\Plume\View\Components\Form\Label::class);
+        Blade::component('plume::form.actions', \deokon\Plume\View\Components\Form\Actions::class);
+        Blade::component('plume::form.group', \deokon\Plume\View\Components\Form\Group::class);
+        Blade::component('plume::form.inline', \deokon\Plume\View\Components\Form\Inline::class);
+        Blade::component('plume::form.section', \deokon\Plume\View\Components\Form\Section::class);
+        Blade::component('plume::form.file', \deokon\Plume\View\Components\Form\File::class);
+        Blade::component('plume::form.color', \deokon\Plume\View\Components\Form\Color::class);
+        Blade::component('plume::form.range', \deokon\Plume\View\Components\Form\Range::class);
+        Blade::component('plume::form.combobox', \deokon\Plume\View\Components\Form\Combobox::class);
+        Blade::component('plume::form.date', \deokon\Plume\View\Components\Form\Date::class);
+        Blade::component('plume::form.datetime', \deokon\Plume\View\Components\Form\Datetime::class);
+        Blade::component('plume::form.time', \deokon\Plume\View\Components\Form\Time::class);
+        Blade::component('plume::form.number', \deokon\Plume\View\Components\Form\Number::class);
+        Blade::component('plume::form.password', \deokon\Plume\View\Components\Form\Password::class);
 
         // Optional: Publish assets so users can modify them
         $this->publishes([
