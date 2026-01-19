@@ -1,10 +1,6 @@
 {{--
 @component x-plume::dropdown.item
 --}}
-@props([
-    'style' => 'ghost',
-])
-
 <x-plume::button
     :style="$style"
     {{ $attributes->merge([

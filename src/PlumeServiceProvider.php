@@ -44,6 +44,8 @@ class PlumeServiceProvider extends ServiceProvider
         Blade::component('plume::divider', \deokon\Plume\View\Components\Divider::class);
         Blade::component('plume::drawer', \deokon\Plume\View\Components\Drawer::class);
         Blade::component('plume::dropdown', \deokon\Plume\View\Components\Dropdown::class);
+        Blade::component('plume::dropdown.item', \deokon\Plume\View\Components\Dropdown\DropdownItem::class);
+        Blade::component('plume::dropdown.separator', \deokon\Plume\View\Components\Dropdown\DropdownSeparator::class);
         Blade::component('plume::empty-state', \deokon\Plume\View\Components\EmptyState::class);
         Blade::component('plume::figure', \deokon\Plume\View\Components\Figure::class);
         Blade::component('plume::gallery', \deokon\Plume\View\Components\Gallery::class);
