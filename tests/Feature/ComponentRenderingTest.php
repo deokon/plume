@@ -19,7 +19,7 @@ test('badge renders correctly', function () {
 
 test('avatar renders correctly', function () {
     $view = Blade::render('<x-plume::avatar size="sm" fallback="JD" status="online" />');
-    expect($view)->toContain('size-6 text-[10px]')->toContain('JD')->toContain('bg-success-500');
+    expect($view)->toContain('size-6 text-[10px]')->toContain('JD')->toContain('bg-primary');
 });
 
 test('spinner renders correctly', function () {

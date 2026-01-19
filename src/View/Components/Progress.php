@@ -10,9 +10,13 @@ class Progress extends Component
 {
     public function __construct(
         public int $value = 0,
+        public int $max = 100,
         public string $style = 'default',
+        public ?string $title = null,
+        public ?string $display = 'percentage',
+        public ?string $model = null,
     ) {
-        $this->value = max(0, min(100, $this->value));
+        $this->value = max(0, min($this->max, $this->value));
     }
 
     public function render(): View|Closure|string

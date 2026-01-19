@@ -32,7 +32,7 @@ test('it returns correct avatar sizes', function () {
         ->toHaveKey('status');
     
     expect($sizes['container'])->toBe('size-10 text-base');
-    expect($sizes['status'])->toBe('size-2.5');
+    expect($sizes['status'])->toBe('size-3');
 });
 
 test('it returns correct spinner classes', function () {

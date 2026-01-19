@@ -29,10 +29,10 @@ test('alert renders safely with no content', function () {
 
 test('progress handles out of bounds values', function () {
     $view = Blade::render('<x-plume::progress value="-10" max="100" />');
-    expect($view)->toContain('translateX(-100%)'); // 0% filled
+    expect($view)->toContain('width: 0%'); // 0% filled
 
     $view2 = Blade::render('<x-plume::progress value="150" max="100" />');
-    expect($view2)->toContain('translateX(-0%)'); // 100% filled
+    expect($view2)->toContain('width: 100%'); // 100% filled
 });
 
 test('tabs handle missing default active tab', function () {

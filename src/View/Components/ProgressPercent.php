@@ -10,10 +10,15 @@ class ProgressPercent extends Component
 {
     public function __construct(
         public int $value = 0,
+        public ?string $model = null,
+        public ?string $title = null,
+        public string $style = 'default',
     ) {}
 
     public function render(): View|Closure|string
     {
-        return view('plume::components-class.progress-percent');
+        return view('plume::components-class.progress-percent', [
+            'component' => $this,
+        ]);
     }
 }
