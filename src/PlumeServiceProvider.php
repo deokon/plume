@@ -60,6 +60,10 @@ class PlumeServiceProvider extends ServiceProvider
         Blade::component('plume::table.tr', \deokon\Plume\View\Components\Table\Tr::class);
         Blade::component('plume::table.th', \deokon\Plume\View\Components\Table\Th::class);
         Blade::component('plume::table.td', \deokon\Plume\View\Components\Table\Td::class);
+        Blade::component('plume::tabs', \deokon\Plume\View\Components\Tabs\Tabs::class);
+        Blade::component('plume::tabs.group', \deokon\Plume\View\Components\Tabs\Group::class);
+        Blade::component('plume::tabs.item', \deokon\Plume\View\Components\Tabs\Item::class);
+        Blade::component('plume::tabs.panel', \deokon\Plume\View\Components\Tabs\Panel::class);
         Blade::component('plume::toaster', \deokon\Plume\View\Components\Toaster::class);
         Blade::component('plume::tooltip', \deokon\Plume\View\Components\Tooltip::class);
         

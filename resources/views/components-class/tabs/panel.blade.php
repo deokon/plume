@@ -1,9 +1,6 @@
 {{--
 @component x-plume::tabs.panel
 --}}
-@props([
-    'for' => '1',
-])
 @aware([
     'side' => 'top',
 ])
