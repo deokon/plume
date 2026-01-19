@@ -6,8 +6,8 @@
 ])
 
 <x-plume::button
+    :style="$style"
     {{ $attributes->merge([
-        'style' => $style,
         'class' =>
             'w-full justify-start rounded-none first:rounded-t-md last:rounded-b-md px-4 py-2 text-sm',
     ]) }}
