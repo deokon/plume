@@ -57,5 +57,22 @@ Refactoring to View Classes (`Deokon\Plume\View\Components\Name`) will encapsula
 **Benefit:**
 - Logic for positioning and width classes is perfect for a View Class.
 
+## Other Candidates (Missing from Theme)
+The following components currently rely on hardcoded Tailwind classes within their Blade files. To support a robust, consistent override system, they must also be migrated to View Classes.
+
+- **Card:** Has hardcoded borders, shadows, and padding logic based on the presence of headers/footers.
+- **Accordion:** Uses hardcoded `divide-y` and border utilities.
+- **Breadcrumb:** Separator styles and item opacity logic are hardcoded.
+- **Carousel:** Complex positioning and scroll snap logic should be encapsulated.
+- **Command / Search:** Layout and z-index styling are currently static.
+- **Navbar:** Sticky positioning, borders, and responsive behaviors are hardcoded.
+- **Pagination:** Active/inactive state styling for links is mixed into the template.
+- **Popover:** Position logic is currently partly in Blade, partly in Alpine, but base styles are hardcoded.
+- **Skeleton:** Animation classes and background colors are hardcoded.
+- **Steps / Stepper:** Connectivity lines and active/completed circle styles are complex and hardcoded.
+- **Toast / Toaster:** Positioning logic (top-right vs bottom-right) and animations are hardcoded.
+- **Tooltip:** z-index and background/text colors are hardcoded.
+- **Form Components (Input, Checkbox, etc.):** Currently use a separate `Form` helper class. This should be unified into the View Class system for consistency (e.g., `Deokon\Plume\View\Components\Form\Input`).
+
 ## Recommendation
 Start with **Button** as a pilot. It is the most used component and has the most "logic" (tag switching, many states). Once the pattern is established, proceed to **Alert** and **Drawer**.
