@@ -18,4 +18,9 @@ trait ResolvesId
 
         return Str::slug($base, '_');
     }
+
+    protected function uniqueId(string $prefix = 'plume'): string
+    {
+        return $prefix . '_' . Str::random(8);
+    }
 }

@@ -77,11 +77,11 @@ class Theme
     public static function avatar(string $size = 'md'): array
     {
         $sizes = [
-            'xs' => ['container' => 'size-4 text-[8px]', 'status' => 'size-1'],
-            'sm' => ['container' => 'size-6 text-[10px]', 'status' => 'size-1.5'],
-            'lg' => ['container' => 'size-10 text-base', 'status' => 'size-2.5'],
-            'xl' => ['container' => 'size-12 text-lg', 'status' => 'size-3'],
-            'md' => ['container' => 'size-8 text-xs', 'status' => 'size-2'],
+            'xs' => ['container' => 'size-4 text-[8px]', 'status' => 'size-1.5'],
+            'sm' => ['container' => 'size-6 text-[10px]', 'status' => 'size-2'],
+            'lg' => ['container' => 'size-10 text-base', 'status' => 'size-3'],
+            'xl' => ['container' => 'size-12 text-lg', 'status' => 'size-3.5'],
+            'md' => ['container' => 'size-8 text-xs', 'status' => 'size-2.5'],
         ];
 
         return $sizes[$size] ?? $sizes['md'];

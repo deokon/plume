@@ -1,33 +1,30 @@
 <?php
 
-namespace deokon\Plume\View\Components;
-
 namespace deokon\Plume\View\Components\Form;
 
-use Illuminate\View\Component;
 use Illuminate\View\View;
 use Closure;
-use deokon\Plume\View\Components\Form\Concerns\ResolvesId;
 
-class Textarea extends Component
+class Textarea extends BaseFormComponent
 {
-    use ResolvesId;
+    public $after;
 
     public function __construct(
-        public ?string $label = null,
-        public ?string $name = null,
-        public ?string $id = null,
-        public ?string $model = null,
-        public string $value = '',
-        public string $placeholder = '',
+        ?string $label = null,
+        ?string $name = null,
+        ?string $id = null,
+        ?string $model = null,
+        ?string $value = '',
         public int $rows = 3,
+        public string $placeholder = '',
     ) {
-        $this->name = $this->name ?? $this->model;
-        $this->id = $this->resolveId($this->name, $this->model, $this->id);
+        parent::__construct($label, $name, $id, $model, $value);
     }
 
     public function render(): View|Closure|string
     {
-        return view('plume::components-class.form.textarea');
+        return view('plume::components-class.form.textarea', [
+            'component' => $this,
+        ]);
     }
 }

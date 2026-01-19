@@ -2,16 +2,9 @@
 @component x-plume::form.input
 @description Standard text input fields, including password and number variants.
 --}}
-@aware([
-    'name' => null,
-    'model' => null,
-    'groupName' => null,
-    'groupModel' => null,
-])
+@aware(['groupName' => null, 'groupModel' => null])
 @php
-    $resolvedName = $attributes->get('name', $groupName ?? $name);
-    $resolvedModel = $attributes->get('model', $groupModel ?? $model);
-    $resolvedId = $attributes->get('id', $component->resolveId($resolvedName, $resolvedModel, $id, $value));
+    [$resolvedName, $resolvedModel, $resolvedId] = $component->resolveFormAttributes($attributes->all(), $groupName, $groupModel);
     $classes = $component->inputClasses($icon, isset($rightSide));
 @endphp
 <x-plume::form.element :label="$label ?? $slot" :name="$resolvedName" :id="$resolvedId" :model="$resolvedModel">

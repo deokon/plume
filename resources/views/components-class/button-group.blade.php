@@ -1,6 +1,11 @@
 {{--
 @component x-plume::button-group
 --}}
-<div role="group" {{ $attributes->merge(['class' => $groupClasses]) }}>
+@php
+    $groupSize = $attributes->get('size', $component->groupSize);
+    $groupStyle = $attributes->get('style', $component->groupStyle);
+    $groupShape = $attributes->get('shape', $component->groupShape);
+@endphp
+<div role="group" {{ $attributes->except(['size', 'style', 'shape'])->merge(['class' => $groupClasses]) }}>
     {{ $slot }}
 </div>

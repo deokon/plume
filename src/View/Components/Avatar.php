@@ -5,57 +5,59 @@ namespace deokon\Plume\View\Components;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 use Closure;
+use deokon\Plume\View\Components\Concerns\InteractsWithAttributes;
+use deokon\Plume\View\Components\Concerns\HasStyles;
 
 class Avatar extends Component
 {
+    use InteractsWithAttributes, HasStyles;
+
     public function __construct(
         public ?string $src = null,
         public string $alt = '',
         public string $fallback = '',
         public string $size = 'md',
         public ?string $status = null,
+        public string $shape = 'round',
     ) {}
 
     public function render(): View|Closure|string
     {
         return view('plume::components-class.avatar', [
-            'sizeClasses' => $this->sizeClasses(),
-            'statusSizeClasses' => $this->statusSizeClasses(),
-            'statusColorClasses' => $this->statusColorClasses(),
+            'component' => $this,
         ]);
     }
 
-    protected function themeStyles(): array
+    public function classes(string $size = 'md', string $shape = 'round'): string
     {
-        $sizes = [
-            'xs' => ['container' => 'size-4 text-[8px]', 'status' => 'size-1'],
-            'sm' => ['container' => 'size-6 text-[10px]', 'status' => 'size-1.5'],
-            'lg' => ['container' => 'size-10 text-base', 'status' => 'size-2.5'],
-            'xl' => ['container' => 'size-12 text-lg', 'status' => 'size-3'],
-            'md' => ['container' => 'size-8 text-xs', 'status' => 'size-2'],
+        $base = 'relative flex shrink-0 cursor-pointer';
+        $theme = \deokon\Plume\Theme::avatar($size);
+
+        $shapes = [
+            'round' => 'rounded-full',
+            'pill' => 'rounded-full',
+            'default' => 'rounded-md',
         ];
 
-        return $sizes[$this->size] ?? $sizes['md'];
+        return $base . ' ' . 
+            ($theme['container'] ?? 'size-8 text-xs') . ' ' . 
+            $this->getClasses($shapes, $shape);
     }
 
-    public function sizeClasses(): string
+    public function statusClasses(string $size = 'md'): string
     {
-        return $this->themeStyles()['container'];
-    }
+        $base = 'absolute bottom-0 right-0 block rounded-full ring-2 ring-background';
+        $theme = \deokon\Plume\Theme::avatar($size);
 
-    public function statusSizeClasses(): string
-    {
-        return $this->themeStyles()['status'];
-    }
+        $colors = [
+            'online' => 'bg-success-500',
+            'offline' => 'bg-background-400',
+            'away' => 'bg-secondary-500',
+            'busy' => 'bg-destructive-500',
+        ];
 
-    public function statusColorClasses(): string
-    {
-        return match ($this->status) {
-            'online' => 'bg-emerald-500 dark:bg-emerald-400',
-            'away' => 'bg-amber-500 dark:bg-amber-400',
-            'busy' => 'bg-rose-500 dark:bg-rose-400',
-            'offline' => 'bg-slate-500 dark:bg-slate-400',
-            default => '',
-        };
+        return $base . ' ' . 
+            ($theme['status'] ?? 'size-2') . ' ' . 
+            ($colors[$this->status] ?? 'bg-primary-500');
     }
 }

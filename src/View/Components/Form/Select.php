@@ -2,30 +2,29 @@
 
 namespace deokon\Plume\View\Components\Form;
 
-use Illuminate\View\Component;
 use Illuminate\View\View;
 use Closure;
-use deokon\Plume\View\Components\Form\Concerns\ResolvesId;
 
-class Select extends Component
+class Select extends BaseFormComponent
 {
-    use ResolvesId;
+    public $after;
 
     public function __construct(
-        public ?string $label = null,
-        public ?string $name = null,
-        public ?string $id = null,
-        public ?string $model = null,
+        ?string $label = null,
+        ?string $name = null,
+        ?string $id = null,
+        ?string $model = null,
         public array $options = [],
         public ?string $placeholder = null,
         public bool $multiple = false,
     ) {
-        $this->name = $this->name ?? $this->model;
-        $this->id = $this->resolveId($this->name, $this->model, $this->id);
+        parent::__construct($label, $name, $id, $model, '');
     }
 
     public function render(): View|Closure|string
     {
-        return view('plume::components-class.form.select');
+        return view('plume::components-class.form.select', [
+            'component' => $this,
+        ]);
     }
 }

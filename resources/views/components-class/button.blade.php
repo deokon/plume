@@ -3,24 +3,27 @@
 @description Displays a button or a component that looks like a button.
 --}}
 @aware([
-    'size' => 'md',
-    'style' => 'default',
-    'shape' => 'default',
+    'groupSize' => null,
+    'groupStyle' => null,
+    'groupShape' => null,
 ])
 @php
-    $resolvedSize = $attributes->get('size', $size);
-    $resolvedStyle = $attributes->get('style', $style);
-    $resolvedShape = $attributes->get('shape', $shape);
+    [$resolvedSize, $resolvedStyle, $resolvedShape] = $component->resolveStyleProps($attributes, [
+        'size' => $groupSize,
+        'style' => $groupStyle,
+        'shape' => $groupShape,
+    ]);
+    $cleanAttributes = $component->cleanAttributes($attributes);
 @endphp
 @if ($href === null)
-    <button type="button" {{ $attributes->except(['size', 'style', 'shape'])->merge(['class' => $classes($resolvedSize, $resolvedStyle, $resolvedShape)]) }}>
+    <button type="button" {{ $cleanAttributes->merge(['class' => $component->classes($resolvedSize, $resolvedStyle, $resolvedShape)]) }}>
         @if ($icon)
             <x-plume::icon i="{{ $icon }}" />
         @endif
         {{ $slot }}
     </button>
 @else
-    <a href="{{ $href ?? '#' }}" {{ $attributes->except(['size', 'style', 'shape'])->merge(['class' => $classes($resolvedSize, $resolvedStyle, $resolvedShape)]) }}>
+    <a href="{{ $href ?? '#' }}" {{ $cleanAttributes->merge(['class' => $component->classes($resolvedSize, $resolvedStyle, $resolvedShape)]) }}>
         @if ($icon)
             <x-plume::icon i="{{ $icon }}" />
         @endif

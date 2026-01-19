@@ -2,23 +2,21 @@
 
 namespace deokon\Plume\View\Components\Form;
 
-use Illuminate\View\Component;
 use Illuminate\View\View;
 use Closure;
-use deokon\Plume\View\Components\Form\Concerns\ResolvesId;
 
-class Checkbox extends Component
+class Checkbox extends BaseFormComponent
 {
-    use ResolvesId;
-
     public function __construct(
-        public ?string $label = null,
-        public ?string $name = null,
-        public ?string $id = null,
-        public ?string $model = null,
-        public string $value = '',
+        ?string $label = null,
+        ?string $name = null,
+        ?string $id = null,
+        ?string $model = null,
+        string $value = '',
         public bool $checked = false,
-    ) {}
+    ) {
+        parent::__construct($label, $name, $id, $model, $value);
+    }
 
     public function render(): View|Closure|string
     {

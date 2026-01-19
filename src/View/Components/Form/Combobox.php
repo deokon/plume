@@ -2,25 +2,20 @@
 
 namespace deokon\Plume\View\Components\Form;
 
-use Illuminate\View\Component;
 use Illuminate\View\View;
 use Closure;
-use deokon\Plume\View\Components\Form\Concerns\ResolvesId;
 
-class Combobox extends Component
+class Combobox extends BaseFormComponent
 {
-    use ResolvesId;
-
     public function __construct(
-        public ?string $label = null,
-        public ?string $name = null,
-        public ?string $id = null,
-        public ?string $model = null,
+        ?string $label = null,
+        ?string $name = null,
+        ?string $id = null,
+        ?string $model = null,
         public array $options = [],
         public string $placeholder = 'Select option...',
     ) {
-        $this->name = $this->name ?? $this->model;
-        $this->id = $this->resolveId($this->name, $this->model, $this->id);
+        parent::__construct($label, $name, $id, $model, '');
 
         // Normalize options to [value => label] for easier lookup in Alpine
         if (!empty($this->options) && is_array(reset($this->options))) {

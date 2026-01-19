@@ -5,9 +5,13 @@ namespace deokon\Plume\View\Components;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 use Closure;
+use deokon\Plume\View\Components\Concerns\InteractsWithAttributes;
+use deokon\Plume\View\Components\Concerns\HasStyles;
 
 class Modal extends Component
 {
+    use InteractsWithAttributes, HasStyles;
+
     public $header;
     public $footer;
 
@@ -21,6 +25,7 @@ class Modal extends Component
     public function render(): View|Closure|string
     {
         return view('plume::components-class.modal', [
+            'component' => $this,
             'maxWidthClass' => $this->themeStyles(),
             'enter' => $this->transitions('overlay-enter'),
             'leave' => $this->transitions('overlay-leave'),
@@ -37,19 +42,6 @@ class Modal extends Component
             '2xl' => 'sm:max-w-2xl',
         ];
 
-        return $widths[$this->maxWidth] ?? $widths['2xl'];
-    }
-
-    protected function transitions(string $type = 'default'): string
-    {
-        $durations = [
-            'fast' => 'duration-150',
-            'default' => 'duration-300',
-            'slow' => 'duration-500',
-            'overlay-enter' => 'ease-out duration-300',
-            'overlay-leave' => 'ease-in duration-200',
-        ];
-
-        return $durations[$type] ?? $durations['default'];
+        return $this->getClasses($widths, $this->maxWidth, '2xl');
     }
 }

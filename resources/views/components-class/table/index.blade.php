@@ -6,7 +6,7 @@
     <table
         {{ $attributes->merge([
             'class' =>
-                'w-full caption-bottom text-sm ' .
+                'w-full caption-bottom text-sm border-separate border-spacing-0 ' .
                 $densityClasses .
                 ($hoverable
                     ? ' [&_tbody_tr:hover]:bg-background-200/50 dark:[&_tbody_tr:hover]:bg-background-700/50'

@@ -5,9 +5,13 @@ namespace deokon\Plume\View\Components;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 use Closure;
+use deokon\Plume\View\Components\Concerns\InteractsWithAttributes;
+use deokon\Plume\View\Components\Concerns\HasStyles;
 
 class Drawer extends Component
 {
+    use InteractsWithAttributes, HasStyles;
+
     public function __construct(
         public string $name,
         public bool $show = false,
@@ -19,6 +23,7 @@ class Drawer extends Component
     public function render(): View|Closure|string
     {
         return view('plume::components-class.drawer', [
+            'component' => $this,
             'sideClasses' => $this->sideClasses(),
             'transitionAttributes' => $this->transitionAttributes(),
             'enter' => $this->transitions('overlay-enter'),
@@ -56,18 +61,5 @@ class Drawer extends Component
     public function transitionAttributes(): string
     {
         return $this->themeStyles()['transition'];
-    }
-
-    protected function transitions(string $type = 'default'): string
-    {
-        $durations = [
-            'fast' => 'duration-150',
-            'default' => 'duration-300',
-            'slow' => 'duration-500',
-            'overlay-enter' => 'ease-out duration-300',
-            'overlay-leave' => 'ease-in duration-200',
-        ];
-
-        return $durations[$type] ?? $durations['default'];
     }
 }

@@ -2,28 +2,26 @@
 
 namespace deokon\Plume\View\Components\Form;
 
-use Illuminate\View\Component;
 use Illuminate\View\View;
 use Closure;
-use deokon\Plume\View\Components\Form\Concerns\ResolvesId;
 
-class Input extends Component
+class Input extends BaseFormComponent
 {
-    use ResolvesId;
-
     public $after;
     public $rightSide;
 
     public function __construct(
-        public ?string $label = null,
-        public ?string $name = null,
-        public ?string $id = null,
+        ?string $label = null,
+        ?string $name = null,
+        ?string $id = null,
+        ?string $model = null,
+        ?string $value = '',
         public string $type = 'text',
-        public ?string $model = null,
-        public ?string $value = '',
         public string $placeholder = '',
         public ?string $icon = null,
-    ) {}
+    ) {
+        parent::__construct($label, $name, $id, $model, $value);
+    }
 
     public function render(): View|Closure|string
     {

@@ -6,10 +6,11 @@ use Illuminate\View\Component;
 use Illuminate\View\View;
 use Closure;
 use deokon\Plume\View\Components\Form\Concerns\ResolvesId;
+use deokon\Plume\View\Components\Concerns\InteractsWithAttributes;
 
 class Element extends Component
 {
-    use ResolvesId;
+    use ResolvesId, InteractsWithAttributes;
 
     public $after;
 

@@ -5,18 +5,18 @@ namespace deokon\Plume\View\Components;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 use Closure;
-use Illuminate\Support\Str;
+use deokon\Plume\View\Components\Form\Concerns\ResolvesId;
 
 class AccordionItem extends Component
 {
-    public string $id;
+    use ResolvesId;
 
     public function __construct(
         public string $title,
-        ?string $id = null,
+        public ?string $id = null,
         public bool $open = false,
     ) {
-        $this->id = $id ?? Str::random(8);
+        $this->id = $this->id ?? $this->uniqueId('accordion');
     }
 
     public function render(): View|Closure|string

@@ -4,8 +4,8 @@
 --}}
 <nav x-data="pagination({{ $initialTotal }}, {{ $initialCurrent }}, {{ $onEachSide }})"
     {{ $attributes->merge(['class' => 'flex items-center justify-center gap-1']) }}
-    aria-label="Pagination" :total="{{ is_numeric($total) ? $total : $total }}"
-    :current="{{ is_numeric($current) ? $current : $current }}">
+    aria-label="Pagination" :total="{{ is_numeric($total) ? $total : '0' }}"
+    :current="{{ is_numeric($current) ? $current : '1' }}">
     {{-- Previous Page --}}
     <x-plume::button style="ghost" size="sm" ::disabled="current <= 1" @click="dispatch(current - 1)"
         aria-label="Previous Page">
@@ -26,7 +26,7 @@
                 </template>
                 <template x-if="page !== '...'">
                     <button type="button" @click="dispatch(page)"
-                        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 size-8 hover:bg-primary/20 hover:text-foreground dark:hover:bg-background-700 dark:hover:text-background-200"
+                        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 size-8 hover:bg-primary/20 hover:text-foreground dark:hover:bg-background-700 dark:hover:text-background-200 cursor-pointer"
                         :class="page == current ?
                             'bg-primary text-primary-foreground hover:bg-primary-800 hover:text-primary-foreground' :
                             'text-foreground/70 dark:text-background-400'"

@@ -5,15 +5,23 @@ namespace deokon\Plume\View\Components\Tabs;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 use Closure;
+use deokon\Plume\View\Components\Concerns\InteractsWithAttributes;
 
 class Item extends Component
 {
+    use InteractsWithAttributes;
+
     public function __construct(
         public string $for,
+        public string $size = 'md',
+        public string $style = 'default',
+        public string $shape = 'default',
     ) {}
 
     public function render(): View|Closure|string
     {
-        return view('plume::components-class.tabs.item');
+        return view('plume::components-class.tabs.item', [
+            'component' => $this,
+        ]);
     }
 }

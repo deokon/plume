@@ -5,9 +5,13 @@ namespace deokon\Plume\View\Components\Table;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 use Closure;
+use deokon\Plume\View\Components\Concerns\InteractsWithAttributes;
+use deokon\Plume\View\Components\Concerns\HasStyles;
 
 class Table extends Component
 {
+    use InteractsWithAttributes, HasStyles;
+
     public function __construct(
         public bool $striped = false,
         public bool $hoverable = false,
@@ -18,18 +22,19 @@ class Table extends Component
     public function render(): View|Closure|string
     {
         return view('plume::components-class.table.index', [
-            'densityClasses' => $this->themeStyles(),
+            'component' => $this,
+            'densityClasses' => $this->getDensityStyles($this->density),
         ]);
     }
 
-    protected function themeStyles(): string
+    public function getDensityStyles(string $density = 'default'): string
     {
-        $densities = [
-            'compact' => '[&_td]:p-2 [&_th]:h-8 [&_th]:px-2',
-            'loose' => '[&_td]:p-6 [&_th]:h-16 [&_th]:px-6',
-            'default' => '[&_td]:p-4 [&_th]:h-12 [&_th]:px-4',
+        $map = [
+            'tight' => '[&_td]:p-2 [&_th]:p-2',
+            'relaxed' => '[&_td]:p-6 [&_th]:p-6',
+            'default' => '[&_td]:p-4 [&_th]:p-4',
         ];
 
-        return $densities[$this->density] ?? $densities['default'];
+        return $this->getClasses($map, $density);
     }
 }

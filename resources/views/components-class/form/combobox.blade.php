@@ -1,7 +1,11 @@
 {{--
 @component x-plume::form.combobox
 --}}
-<x-plume::form.element :label="$label ?? $slot" :name="$name" :id="$id" :model="$model">
+@aware(['groupName' => null, 'groupModel' => null])
+@php
+    [$resolvedName, $resolvedModel, $resolvedId] = $component->resolveFormAttributes($attributes->all(), $groupName, $groupModel);
+@endphp
+<x-plume::form.element :label="$label ?? $slot" :name="$resolvedName" :id="$resolvedId" :model="$resolvedModel">
     <div x-data="{
         open: false,
         search: '',
@@ -16,10 +20,11 @@
             }, {});
         }
     }" class="relative">
-        <button type="button" @click="open = !open" id="{{ $id }}"
-            class="relative w-full cursor-default rounded-md bg-background py-2 pl-3 pr-10 text-left border border-background-700/40 dark:border-background-400/20 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm transition-all">
+        <button type="button" @click="open = !open" id="{{ $resolvedId }}"
+            class="relative w-full cursor-default rounded-md bg-background py-2 pl-3 pr-10 text-left border border-background-700/40 dark:border-background-400/20 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm transition-all"
+            {{ $attributes->except(['name', 'model', 'id']) }}>
             <span class="block truncate text-foreground"
-                x-text="options[{{ $model }}] || '{{ $placeholder }}'"></span>
+                x-text="options[{{ $resolvedModel }}] || '{{ $placeholder }}'"></span>
             <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                 <x-plume::icon i="icon-[fluent--chevron-up-down-24-regular]"
                     class="h-5 w-5 text-foreground/40" />
@@ -35,11 +40,11 @@
             </div>
             <ul class="pt-1">
                 <template x-for="(label, val) in filteredOptions" :key="val">
-                    <li @click="{{ $model }} = val; open = false"
+                    <li @click="{{ $resolvedModel }} = val; open = false"
                         class="relative cursor-default select-none py-2 pl-3 pr-9 text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
-                        :class="{ 'bg-primary text-primary-foreground': {{ $model }} == val }">
+                        :class="{ 'bg-primary text-primary-foreground': {{ $resolvedModel }} == val }">
                         <span class="block truncate" x-text="label"></span>
-                        <span x-show="{{ $model }} == val"
+                        <span x-show="{{ $resolvedModel }} == val"
                             class="absolute inset-y-0 right-0 flex items-center pr-4">
                             <x-plume::icon i="icon-[fluent--checkmark-24-regular]" class="h-5 w-5" />
                         </span>

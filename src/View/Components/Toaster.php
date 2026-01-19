@@ -5,9 +5,13 @@ namespace deokon\Plume\View\Components;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 use Closure;
+use deokon\Plume\View\Components\Concerns\InteractsWithAttributes;
+use deokon\Plume\View\Components\Concerns\HasStyles;
 
 class Toaster extends Component
 {
+    use InteractsWithAttributes, HasStyles;
+
     public function __construct(
         public string $position = 'bottom-right',
     ) {}
@@ -17,6 +21,7 @@ class Toaster extends Component
         $styles = $this->themeStyles();
 
         return view('plume::components-class.toaster', [
+            'component' => $this,
             'positionClasses' => $styles['position'],
             'enterStart' => $styles['enter_start'],
             'enter' => $this->transitions('overlay-enter'),
@@ -40,30 +45,15 @@ class Toaster extends Component
 
         if (str_contains($position, 'center')) {
             // Center: keep vertical slide (translate-y-2), no horizontal
-        } elseif (str_contains($position, 'right')) {
-            // Right: Reset Y, slide from right
-            $enterStart .= ' sm:translate-y-0 sm:translate-x-2';
+        } elseif (str_contains($position, 'left')) {
+            $enterStart = '-translate-x-2 opacity-0';
         } else {
-            // Left: Reset Y, slide from left
-            $enterStart .= ' sm:translate-y-0 sm:-translate-x-2';
+            $enterStart = 'translate-x-2 opacity-0';
         }
 
         return [
             'position' => $positions[$position] ?? $positions['bottom-right'],
             'enter_start' => $enterStart,
         ];
-    }
-
-    protected function transitions(string $type = 'default'): string
-    {
-        $durations = [
-            'fast' => 'duration-150',
-            'default' => 'duration-300',
-            'slow' => 'duration-500',
-            'overlay-enter' => 'ease-out duration-300',
-            'overlay-leave' => 'ease-in duration-200',
-        ];
-
-        return $durations[$type] ?? $durations['default'];
     }
 }
