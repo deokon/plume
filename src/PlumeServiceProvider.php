@@ -28,6 +28,7 @@ class PlumeServiceProvider extends ServiceProvider
         Blade::component('plume::breadcrumb.item', \deokon\Plume\View\Components\BreadcrumbItem::class);
         Blade::component('plume::breadcrumb.separator', \deokon\Plume\View\Components\BreadcrumbSeparator::class);
         Blade::component('plume::button', \deokon\Plume\View\Components\Button::class);
+        Blade::component('plume::button-group', \deokon\Plume\View\Components\ButtonGroup::class);
         Blade::component('plume::card', \deokon\Plume\View\Components\Card::class);
         Blade::component('plume::carousel', \deokon\Plume\View\Components\Carousel::class);
         Blade::component('plume::carousel.item', \deokon\Plume\View\Components\CarouselItem::class);
