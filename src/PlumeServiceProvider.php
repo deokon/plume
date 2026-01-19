@@ -35,6 +35,8 @@ class PlumeServiceProvider extends ServiceProvider
         Blade::component('plume::command.item', \deokon\Plume\View\Components\CommandItem::class);
         Blade::component('plume::search', \deokon\Plume\View\Components\Search::class);
         Blade::component('plume::search.result', \deokon\Plume\View\Components\SearchResult::class);
+        Blade::component('plume::icon', \deokon\Plume\View\Components\Icon::class);
+        Blade::component('plume::kbd', \deokon\Plume\View\Components\Kbd::class);
         Blade::component('plume::navbar', \deokon\Plume\View\Components\Navbar::class);
         Blade::component('plume::navbar.item', \deokon\Plume\View\Components\NavbarItem::class);
         Blade::component('plume::navbar.logo', \deokon\Plume\View\Components\NavbarLogo::class);
