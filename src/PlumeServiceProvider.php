@@ -45,6 +45,7 @@ class PlumeServiceProvider extends ServiceProvider
         Blade::component('plume::pagination', \deokon\Plume\View\Components\Pagination::class);
         Blade::component('plume::popover', \deokon\Plume\View\Components\Popover::class);
         Blade::component('plume::skeleton', \deokon\Plume\View\Components\Skeleton::class);
+        Blade::component('plume::spinner', \deokon\Plume\View\Components\Spinner::class);
         Blade::component('plume::stepper', \deokon\Plume\View\Components\Stepper::class);
         Blade::component('plume::stepper.step', \deokon\Plume\View\Components\StepperStep::class);
         Blade::component('plume::stepper.actions', \deokon\Plume\View\Components\StepperActions::class);
