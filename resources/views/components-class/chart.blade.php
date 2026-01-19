@@ -2,24 +2,6 @@
 @component x-plume::chart
 @description Basic chart component for data visualization (bar, line).
 --}}
-@props([
-    'type' => 'bar', // bar, line
-    'data' => [], // Array of numbers or {label, value}
-    'height' => 200,
-    'color' => 'text-primary',
-])
-
-@php
-    $normalizedData = array_map(function ($d) {
-        return is_array($d) ? $d : ['label' => '', 'value' => $d];
-    }, $data);
-
-    $values = array_column($normalizedData, 'value');
-    $labels = array_column($normalizedData, 'label');
-    $max = count($values) > 0 ? max($values) : 0;
-    $count = count($values);
-@endphp
-
 <div class="w-full">
     <div class="relative w-full" style="height: {{ $height }}px">
         {{-- Y-Axis Lines --}}

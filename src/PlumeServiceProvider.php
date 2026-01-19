@@ -31,6 +31,7 @@ class PlumeServiceProvider extends ServiceProvider
         Blade::component('plume::card', \deokon\Plume\View\Components\Card::class);
         Blade::component('plume::carousel', \deokon\Plume\View\Components\Carousel::class);
         Blade::component('plume::carousel.item', \deokon\Plume\View\Components\CarouselItem::class);
+        Blade::component('plume::chart', \deokon\Plume\View\Components\Chart::class);
         Blade::component('plume::command', \deokon\Plume\View\Components\Command::class);
         Blade::component('plume::command.group', \deokon\Plume\View\Components\CommandGroup::class);
         Blade::component('plume::command.item', \deokon\Plume\View\Components\CommandItem::class);
