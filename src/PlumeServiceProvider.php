@@ -14,6 +14,9 @@ class PlumeServiceProvider extends ServiceProvider
 
         // Register the component namespace for anonymous components
         Blade::anonymousComponentPath(__DIR__ . '/../resources/views/components', 'plume');
+        
+        // Register View Classes
+        Blade::component('plume::button', \deokon\Plume\View\Components\Button::class);
 
         // Optional: Publish assets so users can modify them
         $this->publishes([
