@@ -20,8 +20,8 @@ class Group extends Component
     {
         return view('plume::components-class.form.group', [
             'gridClasses' => $this->themeStyles(),
-            'name' => $this->name,
-            'model' => $this->model,
+            'groupName' => $this->name,
+            'groupModel' => $this->model,
         ]);
     }
 

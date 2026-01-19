@@ -2,12 +2,12 @@
 @component x-plume::form.radio
 --}}
 @aware([
-    'name' => null,
-    'model' => null,
+    'groupName' => null,
+    'groupModel' => null,
 ])
 @php
-    $resolvedName = $attributes->get('name', $name);
-    $resolvedModel = $attributes->get('model', $model);
+    $resolvedName = $attributes->get('name', $groupName ?? $name);
+    $resolvedModel = $attributes->get('model', $groupModel ?? $model);
     $resolvedId = $attributes->get('id', $component->resolveId($resolvedName, $resolvedModel, $id, $value));
 @endphp
 <x-plume::form.element :name="$resolvedName" :id="$resolvedId" :model="$resolvedModel">

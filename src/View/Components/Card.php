@@ -5,6 +5,7 @@ namespace deokon\Plume\View\Components;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 use Closure;
+use Illuminate\View\ComponentSlot;
 
 class Card extends Component
 {
@@ -25,14 +26,14 @@ class Card extends Component
 
     public function hasHeader(): bool
     {
-        return $this->title 
+        return ($this->header instanceof ComponentSlot && $this->header->isNotEmpty()) 
+            || $this->title 
             || $this->description 
-            || $this->badge 
-            || (isset($this->header) && $this->header->isNotEmpty());
+            || $this->badge;
     }
 
     public function hasFooter(): bool
     {
-        return isset($this->footer) && $this->footer->isNotEmpty();
+        return $this->footer instanceof ComponentSlot && $this->footer->isNotEmpty();
     }
 }

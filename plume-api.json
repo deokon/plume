@@ -1,7 +1,7 @@
 {
     "components": {
         "x-plume::accordion": {
-            "path": "plume/resources/views/components/accordion/index.blade.php",
+            "path": "plume/src/View/Components/Accordion.php",
             "props": {
                 "alwaysOpen": {
                     "type": "boolean",
@@ -9,15 +9,20 @@
                 }
             },
             "description": "Collapsible content panels for saving vertical space.",
-            "usage": "<x-plume::accordion>\n    <x-plume::accordion.item title=\"Heading\">\n        Content...\n    </x-plume::accordion.item>\n</x-plume::accordion>",
+            "usage": "<x-plume::accordion>\n    <x-plume::accordion.item title=\"Heading\">
+        Content...\n    </x-plume::accordion.item>\n</x-plume::accordion>",
             "doc_url": "https://plume.dennisokon.com/docs/accordion"
         },
         "x-plume::accordion.item": {
-            "path": "plume/resources/views/components/accordion/item.blade.php",
+            "path": "plume/src/View/Components/AccordionItem.php",
             "props": {
+                "title": {
+                    "type": "string",
+                    "required": true
+                },
                 "id": {
                     "type": "string",
-                    "default": "\\Illuminate\\Support\\Str::random(8)"
+                    "default": "null"
                 },
                 "open": {
                     "type": "boolean",
@@ -25,11 +30,12 @@
                 }
             },
             "description": "An individual collapsible item within an accordion.",
-            "usage": "<x-plume::accordion.item title=\"Heading\">\n    Content...\n</x-plume::accordion.item>",
+            "usage": "<x-plume::accordion.item title=\"Heading\">
+    Content...\n</x-plume::accordion.item>",
             "doc_url": "https://plume.dennisokon.com/docs/accordion-item"
         },
         "x-plume::alert-dialog": {
-            "path": "plume/resources/views/components/alert-dialog/index.blade.php",
+            "path": "plume/src/View/Components/AlertDialog.php",
             "props": {
                 "name": {
                     "type": "string",
@@ -57,14 +63,16 @@
                 }
             },
             "description": "Modal dialog specifically designed for alerting users to important information or actions.",
-            "usage": "<x-plume::alert-dialog name=\"confirm\" title=\"Are you sure?\" action=\"Delete\" onConfirm=\"deleteUser()\">\n    This action cannot be undone.\n</x-plume::alert-dialog>",
+            "usage": "<x-plume::alert-dialog name=\"confirm\" title=\"Are you sure?\" action=\"Delete\" onConfirm=\"deleteUser()\">
+    This action cannot be undone.
+</x-plume::alert-dialog>",
             "doc_url": "https://plume.dennisokon.com/docs/alert-dialog"
         },
         "x-plume::alert": {
-            "path": "plume/resources/views/components/alert.blade.php",
+            "path": "plume/src/View/Components/Alert.php",
             "props": {
                 "icon": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "style": {
@@ -76,24 +84,26 @@
                     "default": "false"
                 },
                 "autoclose": {
-                    "type": "any",
+                    "type": "number",
                     "default": "null"
                 },
                 "title": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "onClose": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 }
             },
             "description": "Displays a callout for user attention.",
-            "usage": "<x-plume::alert style=\"success\" title=\"Success\" closable autoclose=\"3000\">\n    Your changes have been saved.\n</x-plume::alert>",
+            "usage": "<x-plume::alert style=\"success\" title=\"Success\" closable autoclose=\"3000\">
+    Your changes have been saved.
+</x-plume::alert>",
             "doc_url": "https://plume.dennisokon.com/docs/alert"
         },
         "x-plume::aspect": {
-            "path": "plume/resources/views/components/aspect.blade.php",
+            "path": "plume/src/View/Components/Aspect.php",
             "props": {
                 "ratio": {
                     "type": "string",
@@ -105,8 +115,12 @@
             "doc_url": "https://plume.dennisokon.com/docs/aspect"
         },
         "x-plume::audio": {
-            "path": "plume/resources/views/components/audio.blade.php",
+            "path": "plume/src/View/Components/Audio.php",
             "props": {
+                "src": {
+                    "type": "string",
+                    "required": true
+                },
                 "autoplay": {
                     "type": "boolean",
                     "default": "false"
@@ -129,10 +143,10 @@
             "doc_url": "https://plume.dennisokon.com/docs/audio"
         },
         "x-plume::avatar": {
-            "path": "plume/resources/views/components/avatar.blade.php",
+            "path": "plume/src/View/Components/Avatar.php",
             "props": {
                 "src": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "alt": {
@@ -148,16 +162,16 @@
                     "default": "md"
                 },
                 "status": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 }
             },
             "description": "An image element with a fallback for representing the user.",
-            "usage": "<x-plume::avatar \n    src=\"https://github.com/shadcn.png\" \n    alt=\"",
+            "usage": "<x-plume::avatar src=\"https://github.com/shadcn.png\" alt=\"@shadcn\" fallback=\"CN\" />",
             "doc_url": "https://plume.dennisokon.com/docs/avatar"
         },
         "x-plume::badge": {
-            "path": "plume/resources/views/components/badge.blade.php",
+            "path": "plume/src/View/Components/Badge.php",
             "props": {
                 "style": {
                     "type": "string",
@@ -165,21 +179,23 @@
                 }
             },
             "description": "Displays a badge or a component that looks like a badge.",
-            "usage": "<x-plume::badge style=\"secondary\">\n    New Feature\n</x-plume::badge>",
+            "usage": "<x-plume::badge style=\"secondary\">
+    New Feature
+</x-plume::badge>",
             "doc_url": "https://plume.dennisokon.com/docs/badge"
         },
         "x-plume::breadcrumb": {
-            "path": "plume/resources/views/components/breadcrumb/index.blade.php",
+            "path": "plume/src/View/Components/Breadcrumb.php",
             "props": {},
             "description": "Displays the path to the current resource using a hierarchy of links.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/breadcrumb"
         },
         "x-plume::breadcrumb.item": {
-            "path": "plume/resources/views/components/breadcrumb/item.blade.php",
+            "path": "plume/src/View/Components/BreadcrumbItem.php",
             "props": {
                 "href": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "active": {
@@ -187,41 +203,38 @@
                     "default": "false"
                 }
             },
-            "description": "No description provided.",
+            "description": "Individual breadcrumb link.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/breadcrumb-item"
         },
         "x-plume::breadcrumb.separator": {
-            "path": "plume/resources/views/components/breadcrumb/separator.blade.php",
+            "path": "plume/src/View/Components/BreadcrumbSeparator.php",
             "props": {},
-            "description": "No description provided.",
+            "description": "Visual separator for breadcrumbs.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/breadcrumb-separator"
         },
         "x-plume::button": {
-            "path": "plume/resources/views/components/button/index.blade.php",
+            "path": "plume/src/View/Components/Button.php",
             "props": {
                 "style": {
                     "type": "string",
-                    "default": "default",
-                    "values": ["default", "secondary", "destructive", "outline", "ghost", "link", "minor"]
+                    "default": "default"
                 },
                 "size": {
                     "type": "string",
-                    "default": "md",
-                    "values": ["sm", "md", "lg"]
+                    "default": "md"
                 },
                 "shape": {
                     "type": "string",
-                    "default": "default",
-                    "values": ["default", "pill", "round"]
+                    "default": "default"
                 },
                 "href": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "icon": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "fullWidth": {
@@ -234,7 +247,7 @@
             "doc_url": "https://plume.dennisokon.com/docs/button"
         },
         "x-plume::button-group": {
-            "path": "plume/resources/views/components/button-group.blade.php",
+            "path": "plume/src/View/Components/ButtonGroup.php",
             "props": {
                 "size": {
                     "type": "string",
@@ -245,19 +258,23 @@
                     "default": "true"
                 }
             },
-            "description": "No description provided.",
+            "description": "Groups a series of buttons together on a single line.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/button-group"
         },
         "x-plume::button.loader": {
-            "path": "plume/resources/views/components/button/loader.blade.php",
+            "path": "plume/src/View/Components/Button/ButtonLoader.php",
             "props": {
+                "var": {
+                    "type": "string",
+                    "required": true
+                },
                 "size": {
                     "type": "string",
                     "default": "md"
                 },
                 "style": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 }
             },
@@ -266,30 +283,34 @@
             "doc_url": "https://plume.dennisokon.com/docs/button-loader"
         },
         "x-plume::button.toggle": {
-            "path": "plume/resources/views/components/button/toggle.blade.php",
+            "path": "plume/src/View/Components/Button/ButtonToggle.php",
             "props": {
+                "var": {
+                    "type": "string",
+                    "required": true
+                },
                 "size": {
                     "type": "string",
                     "default": "md"
                 },
                 "style": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "offStyle": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "on": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "off": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "click": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 }
             },
@@ -298,14 +319,14 @@
             "doc_url": "https://plume.dennisokon.com/docs/button-toggle"
         },
         "x-plume::calendar": {
-            "path": "plume/resources/views/components/calendar.blade.php",
+            "path": "plume/src/View/Components/Calendar.php",
             "props": {
                 "model": {
                     "type": "string",
                     "default": "null"
                 },
                 "value": {
-                    "type": "string",
+                    "type": "any",
                     "default": "null"
                 },
                 "mode": {
@@ -326,7 +347,7 @@
             "doc_url": "https://plume.dennisokon.com/docs/calendar"
         },
         "x-plume::card": {
-            "path": "plume/resources/views/components/card/index.blade.php",
+            "path": "plume/src/View/Components/Card.php",
             "props": {
                 "title": {
                     "type": "string",
@@ -346,46 +367,14 @@
                 }
             },
             "description": "Displays a card with header, content, and footer.",
-            "usage": "<x-plume::card title=\"Title\" description=\"Description\" badge=\"New\">\n    Content\n    <x-slot:footer>Footer</x-slot:footer>\n</x-plume::card>",
+            "usage": "<x-plume::card title=\"Title\" description=\"Description\" badge=\"New\">
+    Content
+    <x-slot:footer>Footer</x-slot:footer>
+</x-plume::card>",
             "doc_url": "https://plume.dennisokon.com/docs/card"
         },
-        "x-plume::card.content": {
-            "path": "plume/resources/views/components/card/content.blade.php",
-            "props": {},
-            "description": "No description provided.",
-            "usage": null,
-            "doc_url": "https://plume.dennisokon.com/docs/card-content"
-        },
-        "x-plume::card.description": {
-            "path": "plume/resources/views/components/card/description.blade.php",
-            "props": {},
-            "description": "No description provided.",
-            "usage": null,
-            "doc_url": "https://plume.dennisokon.com/docs/card-description"
-        },
-        "x-plume::card.footer": {
-            "path": "plume/resources/views/components/card/footer.blade.php",
-            "props": {},
-            "description": "No description provided.",
-            "usage": null,
-            "doc_url": "https://plume.dennisokon.com/docs/card-footer"
-        },
-        "x-plume::card.header": {
-            "path": "plume/resources/views/components/card/header.blade.php",
-            "props": {},
-            "description": "No description provided.",
-            "usage": null,
-            "doc_url": "https://plume.dennisokon.com/docs/card-header"
-        },
-        "x-plume::card.title": {
-            "path": "plume/resources/views/components/card/title.blade.php",
-            "props": {},
-            "description": "No description provided.",
-            "usage": null,
-            "doc_url": "https://plume.dennisokon.com/docs/card-title"
-        },
         "x-plume::carousel": {
-            "path": "plume/resources/views/components/carousel/index.blade.php",
+            "path": "plume/src/View/Components/Carousel.php",
             "props": {
                 "controls": {
                     "type": "boolean",
@@ -405,18 +394,23 @@
                 }
             },
             "description": "A slideshow component for cycling through elements.",
-            "usage": "<x-plume::carousel indicators>\n    <x-plume::carousel.item>Slide 1</x-plume::carousel.item>\n    <x-plume::carousel.item>Slide 2</x-plume::carousel.item>\n</x-plume::carousel>",
+            "usage": "<x-plume::carousel indicators>
+    <x-plume::carousel.item>Slide 1</x-plume::carousel.item>
+    <x-plume::carousel.item>Slide 2</x-plume::carousel.item>
+</x-plume::carousel>",
             "doc_url": "https://plume.dennisokon.com/docs/carousel"
         },
         "x-plume::carousel.item": {
-            "path": "plume/resources/views/components/carousel/item.blade.php",
+            "path": "plume/src/View/Components/CarouselItem.php",
             "props": {},
             "description": "An individual slide within a carousel.",
-            "usage": "<x-plume::carousel.item>\n    <img src=\"...\" alt=\"...\">\n</x-plume::carousel.item>",
+            "usage": "<x-plume::carousel.item>
+    <img src=\"...\" alt=\"...\">
+</x-plume::carousel.item>",
             "doc_url": "https://plume.dennisokon.com/docs/carousel"
         },
         "x-plume::chart": {
-            "path": "plume/resources/views/components/chart/index.blade.php",
+            "path": "plume/src/View/Components/Chart.php",
             "props": {
                 "type": {
                     "type": "string",
@@ -440,18 +434,18 @@
             "doc_url": "https://plume.dennisokon.com/docs/chart"
         },
         "x-plume::code": {
-            "path": "plume/resources/views/components/code.blade.php",
+            "path": "plume/src/View/Components/Code.php",
             "props": {
                 "language": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "title": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "code": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 }
             },
@@ -460,7 +454,7 @@
             "doc_url": "https://plume.dennisokon.com/docs/code"
         },
         "x-plume::command": {
-            "path": "plume/resources/views/components/command/index.blade.php",
+            "path": "plume/src/View/Components/Command.php",
             "props": {
                 "placeholder": {
                     "type": "string",
@@ -468,7 +462,7 @@
                 },
                 "id": {
                     "type": "string",
-                    "default": "\\Illuminate\\Support\\Str::random(8)"
+                    "default": "null"
                 }
             },
             "description": "A powerful search and action interface accessible via keyboard shortcuts.",
@@ -476,35 +470,43 @@
             "doc_url": "https://plume.dennisokon.com/docs/command"
         },
         "x-plume::command.group": {
-            "path": "plume/resources/views/components/command/group.blade.php",
+            "path": "plume/src/View/Components/CommandGroup.php",
             "props": {
                 "title": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 }
             },
-            "description": "No description provided.",
+            "description": "Logical grouping of command items.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/command-group"
         },
         "x-plume::command.item": {
-            "path": "plume/resources/views/components/command/item.blade.php",
+            "path": "plume/src/View/Components/CommandItem.php",
             "props": {
+                "value": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "onSelect": {
+                    "type": "string",
+                    "default": "null"
+                },
                 "icon": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "shortcut": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 }
             },
-            "description": "No description provided.",
+            "description": "An individual action item within a command palette.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/command-item"
         },
         "x-plume::data-table": {
-            "path": "plume/resources/views/components/data-table/index.blade.php",
+            "path": "plume/src/View/Components/DataTable.php",
             "props": {
                 "data": {
                     "type": "array",
@@ -532,14 +534,14 @@
                 }
             },
             "description": "Advanced table with sorting, filtering, and pagination. Powered by AlpineJS.",
-            "usage": "<x-plume::data-table \n    :data=\"$users\" \n    :columns=\"[\n        ['key' => 'id', 'label' => 'ID', 'sortable' => true],\n        ['key' => 'name', 'label' => 'Name', 'sortable' => true],\n    ]\" \n    searchable \n    paginated \n/>",
+            "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/data-table"
         },
         "x-plume::divider": {
-            "path": "plume/resources/views/components/divider.blade.php",
+            "path": "plume/src/View/Components/Divider.php",
             "props": {
                 "label": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 }
             },
@@ -548,8 +550,12 @@
             "doc_url": "https://plume.dennisokon.com/docs/divider"
         },
         "x-plume::drawer": {
-            "path": "plume/resources/views/components/drawer/index.blade.php",
+            "path": "plume/src/View/Components/Drawer.php",
             "props": {
+                "name": {
+                    "type": "string",
+                    "required": true
+                },
                 "show": {
                     "type": "boolean",
                     "default": "false"
@@ -557,6 +563,14 @@
                 "side": {
                     "type": "string",
                     "default": "right"
+                },
+                "title": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "description": {
+                    "type": "string",
+                    "default": "null"
                 }
             },
             "description": "A panel that slides in from the edge of the screen.",
@@ -564,42 +578,42 @@
             "doc_url": "https://plume.dennisokon.com/docs/drawer"
         },
         "x-plume::drawer.content": {
-            "path": "plume/resources/views/components/drawer/content.blade.php",
+            "path": "plume/src/View/Components/DrawerContent.php",
             "props": {},
-            "description": "No description provided.",
+            "description": "Content area of the drawer.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/drawer-content"
         },
         "x-plume::drawer.description": {
-            "path": "plume/resources/views/components/drawer/description.blade.php",
+            "path": "plume/src/View/Components/DrawerDescription.php",
             "props": {},
-            "description": "No description provided.",
+            "description": "Description area of the drawer.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/drawer-description"
         },
         "x-plume::drawer.footer": {
-            "path": "plume/resources/views/components/drawer/footer.blade.php",
+            "path": "plume/src/View/Components/DrawerFooter.php",
             "props": {},
-            "description": "No description provided.",
+            "description": "Footer area of the drawer.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/drawer-footer"
         },
         "x-plume::drawer.header": {
-            "path": "plume/resources/views/components/drawer/header.blade.php",
+            "path": "plume/src/View/Components/DrawerHeader.php",
             "props": {},
-            "description": "No description provided.",
+            "description": "Header area of the drawer.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/drawer-header"
         },
         "x-plume::drawer.title": {
-            "path": "plume/resources/views/components/drawer/title.blade.php",
+            "path": "plume/src/View/Components/DrawerTitle.php",
             "props": {},
-            "description": "No description provided.",
+            "description": "Title area of the drawer.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/drawer-title"
         },
         "x-plume::dropdown": {
-            "path": "plume/resources/views/components/dropdown/index.blade.php",
+            "path": "plume/src/View/Components/Dropdown.php",
             "props": {
                 "trigger": {
                     "type": "string",
@@ -616,40 +630,46 @@
                 "contentClasses": {
                     "type": "string",
                     "default": "bg-background dark:bg-background-800"
+                },
+                "triggerStyle": {
+                    "type": "string",
+                    "default": "outline"
                 }
             },
-            "description": "Displays a menu to the user\u2014such as a set of actions or functions\u2014triggered by a button.",
-            "usage": "<x-plume::dropdown trigger=\"Options\">\n    <x-plume::dropdown.item>Item</x-plume::dropdown.item>\n</x-plume::dropdown>",
+            "description": "Displays a menu to the user—such as a set of actions or functions—triggered by a button.",
+            "usage": "<x-plume::dropdown trigger=\"Options\">
+    <x-plume::dropdown.item>Item</x-plume::dropdown.item>
+</x-plume::dropdown>",
             "doc_url": "https://plume.dennisokon.com/docs/dropdown"
         },
         "x-plume::dropdown.item": {
-            "path": "plume/resources/views/components/dropdown/item.blade.php",
+            "path": "plume/src/View/Components/Dropdown/DropdownItem.php",
             "props": {
                 "style": {
                     "type": "string",
                     "default": "ghost"
                 }
             },
-            "description": "No description provided.",
+            "description": "An individual item within a dropdown menu.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/dropdown-item"
         },
         "x-plume::dropdown.separator": {
-            "path": "plume/resources/views/components/dropdown/separator.blade.php",
+            "path": "plume/src/View/Components/Dropdown/DropdownSeparator.php",
             "props": {},
-            "description": "No description provided.",
+            "description": "A visual separator for dropdown items.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/dropdown-separator"
         },
         "x-plume::empty-state": {
-            "path": "plume/resources/views/components/empty-state.blade.php",
+            "path": "plume/src/View/Components/EmptyState.php",
             "props": {
                 "title": {
                     "type": "string",
                     "default": "No results found"
                 },
                 "description": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "icon": {
@@ -658,22 +678,26 @@
                 }
             },
             "description": "Use this component to show a placeholder when a list or page has no data.",
-            "usage": "<x-plume::empty-state \n    title=\"No items found\" \n    description=\"Get started by creating your first item.\"\n/>",
+            "usage": "<x-plume::empty-state title=\"No items found\" description=\"Get started by creating your first item.\" />",
             "doc_url": "https://plume.dennisokon.com/docs/empty-state"
         },
         "x-plume::figure": {
-            "path": "plume/resources/views/components/figure.blade.php",
+            "path": "plume/src/View/Components/Figure.php",
             "props": {
+                "src": {
+                    "type": "string",
+                    "required": true
+                },
                 "alt": {
                     "type": "string",
                     "default": ""
                 },
                 "caption": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "aspect": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "srcset": {
@@ -690,7 +714,7 @@
             "doc_url": "https://plume.dennisokon.com/docs/figure"
         },
         "x-plume::form": {
-            "path": "plume/resources/views/components/form/index.blade.php",
+            "path": "plume/src/View/Components/Form/Form.php",
             "props": {
                 "action": {
                     "type": "string",
@@ -701,7 +725,7 @@
                     "default": "POST"
                 },
                 "formData": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 }
             },
@@ -710,26 +734,38 @@
             "doc_url": "https://plume.dennisokon.com/docs/form"
         },
         "x-plume::form.actions": {
-            "path": "plume/resources/views/components/form/actions.blade.php",
+            "path": "plume/src/View/Components/Form/Actions.php",
             "props": {},
-            "description": "No description provided.",
+            "description": "Container for form action buttons.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/form-actions"
         },
         "x-plume::form.checkbox": {
-            "path": "plume/resources/views/components/form/checkbox.blade.php",
+            "path": "plume/src/View/Components/Form/Checkbox.php",
             "props": {
                 "label": {
-                    "type": "any",
+                    "type": "string",
+                    "default": "null"
+                },
+                "name": {
+                    "type": "string",
                     "default": "null"
                 },
                 "id": {
-                    "type": "any",
+                    "type": "string",
+                    "default": "null"
+                },
+                "model": {
+                    "type": "string",
                     "default": "null"
                 },
                 "value": {
                     "type": "string",
                     "default": ""
+                },
+                "checked": {
+                    "type": "boolean",
+                    "default": "false"
                 }
             },
             "description": "Checkbox input for binary choices.",
@@ -737,22 +773,22 @@
             "doc_url": "https://plume.dennisokon.com/docs/form-checkbox"
         },
         "x-plume::form.color": {
-            "path": "plume/resources/views/components/form/color.blade.php",
+            "path": "plume/src/View/Components/Form/Color.php",
             "props": {
                 "label": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "name": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "id": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "model": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "value": {
@@ -760,40 +796,36 @@
                     "default": "#000000"
                 }
             },
-            "description": "No description provided.",
+            "description": "Color picker input.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/form-color"
         },
         "x-plume::form.combobox": {
-            "path": "plume/resources/views/components/form/combobox.blade.php",
+            "path": "plume/src/View/Components/Form/Combobox.php",
             "props": {
                 "label": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "name": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "id": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "model": {
-                    "type": "any",
-                    "default": "null"
-                },
-                "placeholder": {
                     "type": "string",
-                    "default": "Select an option..."
+                    "default": "null"
                 },
                 "options": {
                     "type": "array",
                     "default": "[]"
                 },
-                "emptyMessage": {
+                "placeholder": {
                     "type": "string",
-                    "default": "No results found."
+                    "default": "Select option..."
                 }
             },
             "description": "Searchable dropdown for selecting from a list of options.",
@@ -801,169 +833,182 @@
             "doc_url": "https://plume.dennisokon.com/docs/form-combobox"
         },
         "x-plume::form.date": {
-            "path": "plume/resources/views/components/form/date.blade.php",
+            "path": "plume/src/View/Components/Form/Date.php",
             "props": {
                 "label": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "name": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "id": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "model": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "value": {
                     "type": "string",
                     "default": ""
+                },
+                "placeholder": {
+                    "type": "string",
+                    "default": ""
                 }
             },
-            "description": "Date, time, and datetime inputs.",
+            "description": "Date input field.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/form-date"
         },
         "x-plume::form.datetime": {
-            "path": "plume/resources/views/components/form/datetime.blade.php",
+            "path": "plume/src/View/Components/Form/Datetime.php",
             "props": {
                 "label": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "name": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "id": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "model": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "value": {
                     "type": "string",
                     "default": ""
+                },
+                "placeholder": {
+                    "type": "string",
+                    "default": ""
                 }
             },
-            "description": "No description provided.",
+            "description": "Datetime-local input field.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/form-datetime"
         },
         "x-plume::form.element": {
-            "path": "plume/resources/views/components/form/element.blade.php",
+            "path": "plume/src/View/Components/Form/Element.php",
             "props": {
                 "label": {
                     "type": "string",
                     "default": ""
                 },
                 "name": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "id": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "model": {
-                    "type": "any",
-                    "default": "null"
-                },
-                "after": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 }
             },
-            "description": "No description provided.",
+            "description": "Internal wrapper for form elements providing label and error handling.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/form-element"
         },
         "x-plume::form.file": {
-            "path": "plume/resources/views/components/form/file.blade.php",
+            "path": "plume/src/View/Components/Form/File.php",
             "props": {
                 "label": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "name": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "id": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "model": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
-                "helpText": {
-                    "type": "string",
-                    "default": "PNG"
+                "multiple": {
+                    "type": "boolean",
+                    "default": "false"
                 }
             },
-            "description": "Input field for file uploads.",
+            "description": "File upload input field.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/form-file"
         },
         "x-plume::form.group": {
-            "path": "plume/resources/views/components/form/group.blade.php",
+            "path": "plume/src/View/Components/Form/Group.php",
             "props": {
                 "label": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "description": {
                     "type": "string",
-                    "default": ""
-                },
-                "name": {
-                    "type": "any",
-                    "default": "null"
-                },
-                "model": {
-                    "type": "any",
                     "default": "null"
                 },
                 "minCols": {
                     "type": "number",
                     "default": "1"
                 },
-                "maxCols": {
-                    "type": "any",
+                "name": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "model": {
+                    "type": "string",
                     "default": "null"
                 }
             },
-            "description": "No description provided.",
+            "description": "Groups related form elements with a label and description.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/form-group"
         },
         "x-plume::form.inline": {
-            "path": "plume/resources/views/components/form/inline.blade.php",
-            "props": {},
-            "description": "No description provided.",
+            "path": "plume/src/View/Components/Form/Inline.php",
+            "props": {
+                "action": {
+                    "type": "string",
+                    "default": ""
+                },
+                "method": {
+                    "type": "string",
+                    "default": "POST"
+                },
+                "formData": {
+                    "type": "string",
+                    "default": "null"
+                }
+            },
+            "description": "Horizontal form layout container.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/form-inline"
         },
         "x-plume::form.input": {
-            "path": "plume/resources/views/components/form/input.blade.php",
+            "path": "plume/src/View/Components/Form/Input.php",
             "props": {
                 "label": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "name": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "id": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "type": {
@@ -971,7 +1016,7 @@
                     "default": "text"
                 },
                 "model": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "value": {
@@ -983,20 +1028,16 @@
                     "default": ""
                 },
                 "icon": {
-                    "type": "any",
-                    "default": "null"
-                },
-                "after": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 }
             },
-            "description": "Standard text input fields, including password and number variants.",
+            "description": "Standard text input field.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/form-input"
         },
         "x-plume::form.label": {
-            "path": "plume/resources/views/components/form/label.blade.php",
+            "path": "plume/src/View/Components/Form/Label.php",
             "props": {
                 "for": {
                     "type": "string",
@@ -1007,120 +1048,144 @@
                     "default": "false"
                 }
             },
-            "description": "Reusable form label component.",
+            "description": "Standalone form label component.",
             "usage": "<x-plume::form.label for=\"email\">Email</x-plume::form.label>",
             "doc_url": "https://plume.dennisokon.com/docs/form-label"
         },
         "x-plume::form.number": {
-            "path": "plume/resources/views/components/form/number.blade.php",
+            "path": "plume/src/View/Components/Form/Number.php",
             "props": {
                 "label": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "name": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "id": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "model": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "value": {
                     "type": "number",
-                    "default": "0"
+                    "default": "null"
+                },
+                "placeholder": {
+                    "type": "string",
+                    "default": ""
                 },
                 "min": {
                     "type": "number",
-                    "default": "0"
+                    "default": "null"
                 },
                 "max": {
                     "type": "number",
-                    "default": "100"
+                    "default": "null"
                 },
                 "step": {
                     "type": "number",
-                    "default": "1"
-                },
-                "after": {
-                    "type": "any",
                     "default": "null"
                 }
             },
-            "description": "No description provided.",
+            "description": "Numeric input field.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/form-number"
         },
         "x-plume::form.password": {
-            "path": "plume/resources/views/components/form/password.blade.php",
+            "path": "plume/src/View/Components/Form/Password.php",
             "props": {
                 "label": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "name": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "id": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "model": {
-                    "type": "any",
-                    "default": "null"
-                },
-                "after": {
-                    "type": "any",
-                    "default": "null"
-                }
-            },
-            "description": "No description provided.",
-            "usage": null,
-            "doc_url": "https://plume.dennisokon.com/docs/form-password"
-        },
-        "x-plume::form.radio": {
-            "path": "plume/resources/views/components/form/radio.blade.php",
-            "props": {
-                "label": {
-                    "type": "any",
-                    "default": "null"
-                },
-                "id": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "value": {
                     "type": "string",
                     "default": ""
+                },
+                "placeholder": {
+                    "type": "string",
+                    "default": ""
+                },
+                "icon": {
+                    "type": "string",
+                    "default": "null"
                 }
             },
-            "description": "Radio buttons for selecting a single option from a set.",
+            "description": "Password input field with visibility toggle.",
+            "usage": null,
+            "doc_url": "https://plume.dennisokon.com/docs/form-password"
+        },
+        "x-plume::form.radio": {
+            "path": "plume/src/View/Components/Form/Radio.php",
+            "props": {
+                "label": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "name": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "id": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "model": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "value": {
+                    "type": "string",
+                    "default": ""
+                },
+                "checked": {
+                    "type": "boolean",
+                    "default": "false"
+                }
+            },
+            "description": "Radio button input field.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/form-radio"
         },
         "x-plume::form.range": {
-            "path": "plume/resources/views/components/form/range.blade.php",
+            "path": "plume/src/View/Components/Form/Range.php",
             "props": {
                 "label": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "name": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "id": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "model": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
+                },
+                "value": {
+                    "type": "number",
+                    "default": "0"
                 },
                 "min": {
                     "type": "number",
@@ -1133,25 +1198,21 @@
                 "step": {
                     "type": "number",
                     "default": "1"
-                },
-                "value": {
-                    "type": "any",
-                    "default": "null"
                 }
             },
-            "description": "No description provided.",
+            "description": "Range slider input field.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/form-range"
         },
         "x-plume::form.section": {
-            "path": "plume/resources/views/components/form/section.blade.php",
+            "path": "plume/src/View/Components/Form/Section.php",
             "props": {
                 "title": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "description": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "minCols": {
@@ -1159,72 +1220,80 @@
                     "default": "1"
                 },
                 "maxCols": {
-                    "type": "any",
+                    "type": "number",
                     "default": "null"
                 }
             },
-            "description": "No description provided.",
+            "description": "Divides a form into logical sections with a header.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/form-section"
         },
         "x-plume::form.select": {
-            "path": "plume/resources/views/components/form/select.blade.php",
+            "path": "plume/src/View/Components/Form/Select.php",
             "props": {
                 "label": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "name": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "id": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "model": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
-                "after": {
-                    "type": "any",
+                "options": {
+                    "type": "array",
+                    "default": "[]"
+                },
+                "placeholder": {
+                    "type": "string",
                     "default": "null"
+                },
+                "multiple": {
+                    "type": "boolean",
+                    "default": "false"
                 }
             },
-            "description": "Dropdown selection field.",
+            "description": "Standard select dropdown field.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/form-select"
         },
         "x-plume::form.textarea": {
-            "path": "plume/resources/views/components/form/textarea.blade.php",
+            "path": "plume/src/View/Components/Form/Textarea.php",
             "props": {
                 "label": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "name": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "id": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
-                },
-                "rows": {
-                    "type": "number",
-                    "default": "3"
                 },
                 "model": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
+                },
+                "value": {
+                    "type": "string",
+                    "default": ""
                 },
                 "placeholder": {
                     "type": "string",
                     "default": ""
                 },
-                "after": {
-                    "type": "any",
-                    "default": "null"
+                "rows": {
+                    "type": "number",
+                    "default": "3"
                 }
             },
             "description": "Multi-line text input field.",
@@ -1232,67 +1301,67 @@
             "doc_url": "https://plume.dennisokon.com/docs/form-textarea"
         },
         "x-plume::form.time": {
-            "path": "plume/resources/views/components/form/time.blade.php",
+            "path": "plume/src/View/Components/Form/Time.php",
             "props": {
                 "label": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "name": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "id": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "model": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "value": {
                     "type": "string",
                     "default": ""
+                },
+                "placeholder": {
+                    "type": "string",
+                    "default": ""
                 }
             },
-            "description": "No description provided.",
+            "description": "Time input field.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/form-time"
         },
         "x-plume::form.toggle": {
-            "path": "plume/resources/views/components/form/toggle.blade.php",
+            "path": "plume/src/View/Components/Form/Toggle.php",
             "props": {
                 "label": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "name": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "id": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "model": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
-                },
-                "value": {
-                    "type": "number",
-                    "default": "1"
                 },
                 "checked": {
                     "type": "boolean",
                     "default": "false"
                 }
             },
-            "description": "Switch toggle for binary states.",
+            "description": "Switch toggle component.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/form-toggle"
         },
         "x-plume::gallery": {
-            "path": "plume/resources/views/components/gallery.blade.php",
+            "path": "plume/src/View/Components/Gallery.php",
             "props": {
                 "cols": {
                     "type": "number",
@@ -1308,14 +1377,19 @@
             "doc_url": "https://plume.dennisokon.com/docs/gallery"
         },
         "x-plume::icon": {
-            "path": "plume/resources/views/components/icon.blade.php",
-            "props": {},
+            "path": "plume/src/View/Components/Icon.php",
+            "props": {
+                "i": {
+                    "type": "string",
+                    "required": true
+                }
+            },
             "description": "Renders an Iconify icon.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/icon"
         },
         "x-plume::kbd": {
-            "path": "plume/resources/views/components/kbd.blade.php",
+            "path": "plume/src/View/Components/Kbd.php",
             "props": {
                 "size": {
                     "type": "string",
@@ -1327,11 +1401,11 @@
             "doc_url": "https://plume.dennisokon.com/docs/kbd"
         },
         "x-plume::modal": {
-            "path": "plume/resources/views/components/modal/index.blade.php",
+            "path": "plume/src/View/Components/Modal.php",
             "props": {
                 "name": {
-                    "type": "any",
-                    "default": "null"
+                    "type": "string",
+                    "required": true
                 },
                 "show": {
                     "type": "boolean",
@@ -1342,15 +1416,7 @@
                     "default": "2xl"
                 },
                 "title": {
-                    "type": "any",
-                    "default": "null"
-                },
-                "footer": {
-                    "type": "any",
-                    "default": "null"
-                },
-                "header": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 }
             },
@@ -1359,28 +1425,34 @@
             "doc_url": "https://plume.dennisokon.com/docs/modal"
         },
         "x-plume::navbar": {
-            "path": "plume/resources/views/components/navbar/index.blade.php",
+            "path": "plume/src/View/Components/Navbar.php",
             "props": {},
             "description": "A top-level navigation component for site-wide links and actions.",
-            "usage": "<x-plume::navbar>\n    <x-plume::navbar.logo>Logo</x-plume::navbar.logo>\n    <x-plume::navbar.menu>\n        <x-plume::navbar.item>Item</x-plume::navbar.item>\n    </x-plume::navbar.menu>\n    <x-plume::navbar.mobile-toggle />\n</x-plume::navbar>",
+            "usage": "<x-plume::navbar>
+    <x-plume::navbar.logo>Logo</x-plume::navbar.logo>
+    <x-plume::navbar.menu>
+        <x-plume::navbar.item>Item</x-plume::navbar.item>
+    </x-plume::navbar.menu>
+    <x-plume::navbar.mobile-toggle />
+</x-plume::navbar>",
             "doc_url": "https://plume.dennisokon.com/docs/navbar"
         },
         "x-plume::navbar.logo": {
-            "path": "plume/resources/views/components/navbar/logo.blade.php",
+            "path": "plume/src/View/Components/NavbarLogo.php",
             "props": {},
-            "description": "The brand logo or title.",
+            "description": "The brand logo or title container.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/navbar"
         },
         "x-plume::navbar.menu": {
-            "path": "plume/resources/views/components/navbar/menu.blade.php",
+            "path": "plume/src/View/Components/NavbarMenu.php",
             "props": {},
-            "description": "Container for navigation items.",
+            "description": "Desktop navigation items container.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/navbar"
         },
         "x-plume::navbar.item": {
-            "path": "plume/resources/views/components/navbar/item.blade.php",
+            "path": "plume/src/View/Components/NavbarItem.php",
             "props": {
                 "active": {
                     "type": "boolean",
@@ -1396,21 +1468,21 @@
             "doc_url": "https://plume.dennisokon.com/docs/navbar"
         },
         "x-plume::navbar.mobile-toggle": {
-            "path": "plume/resources/views/components/navbar/mobile-toggle.blade.php",
+            "path": "plume/src/View/Components/NavbarMobileToggle.php",
             "props": {},
             "description": "Toggle button for the mobile menu.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/navbar"
         },
         "x-plume::navbar.mobile-menu": {
-            "path": "plume/resources/views/components/navbar/mobile-menu.blade.php",
+            "path": "plume/src/View/Components/NavbarMobileMenu.php",
             "props": {},
             "description": "Responsive mobile menu container.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/navbar"
         },
         "x-plume::navbar.mobile-item": {
-            "path": "plume/resources/views/components/navbar/mobile-item.blade.php",
+            "path": "plume/src/View/Components/NavbarMobileItem.php",
             "props": {
                 "active": {
                     "type": "boolean",
@@ -1421,12 +1493,12 @@
                     "default": "#"
                 }
             },
-            "description": "Individual navigation link for mobile menu.",
+            "description": "Individual mobile navigation link.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/navbar"
         },
         "x-plume::pagination": {
-            "path": "plume/resources/views/components/pagination.blade.php",
+            "path": "plume/src/View/Components/Pagination.php",
             "props": {
                 "total": {
                     "type": "number",
@@ -1442,11 +1514,11 @@
                 }
             },
             "description": "Displays a sequence of links for navigating through a series of related pages. Powered by AlpineJS.",
-            "usage": "<x-plume::pagination :total=\"10\" :current=\"1\"",
+            "usage": "<x-plume::pagination :total=\"10\" :current=\"1\" />",
             "doc_url": "https://plume.dennisokon.com/docs/pagination"
         },
         "x-plume::popover": {
-            "path": "plume/resources/views/components/popover/index.blade.php",
+            "path": "plume/src/View/Components/Popover.php",
             "props": {
                 "trigger": {
                     "type": "string",
@@ -1462,11 +1534,13 @@
                 }
             },
             "description": "Displays rich content in a portal, triggered by a button.",
-            "usage": "<x-plume::popover trigger=\"Open\">\n    Content...\n</x-plume::popover>",
+            "usage": "<x-plume::popover trigger=\"Open\">
+    Content...
+</x-plume::popover>",
             "doc_url": "https://plume.dennisokon.com/docs/popover"
         },
         "x-plume::progress": {
-            "path": "plume/resources/views/components/progress/index.blade.php",
+            "path": "plume/src/View/Components/Progress.php",
             "props": {
                 "value": {
                     "type": "number",
@@ -1498,7 +1572,7 @@
             "doc_url": "https://plume.dennisokon.com/docs/progress"
         },
         "x-plume::progress.percent": {
-            "path": "plume/resources/views/components/progress/percent.blade.php",
+            "path": "plume/src/View/Components/ProgressPercent.php",
             "props": {
                 "value": {
                     "type": "number",
@@ -1522,7 +1596,7 @@
             "doc_url": "https://plume.dennisokon.com/docs/progress-percent"
         },
         "x-plume::search": {
-            "path": "plume/resources/views/components/search/index.blade.php",
+            "path": "plume/src/View/Components/Search.php",
             "props": {
                 "placeholder": {
                     "type": "string",
@@ -1538,7 +1612,7 @@
             "doc_url": "https://plume.dennisokon.com/docs/search"
         },
         "x-plume::search.result": {
-            "path": "plume/resources/views/components/search/result.blade.php",
+            "path": "plume/src/View/Components/SearchResult.php",
             "props": {
                 "href": {
                     "type": "string",
@@ -1554,7 +1628,7 @@
             "doc_url": "https://plume.dennisokon.com/docs/search-result"
         },
         "x-plume::skeleton": {
-            "path": "plume/resources/views/components/skeleton.blade.php",
+            "path": "plume/src/View/Components/Skeleton.php",
             "props": {
                 "shape": {
                     "type": "string",
@@ -1570,14 +1644,14 @@
             "doc_url": "https://plume.dennisokon.com/docs/skeleton"
         },
         "x-plume::spacer": {
-            "path": "plume/resources/views/components/spacer.blade.php",
+            "path": "plume/src/View/Components/Spacer.php",
             "props": {},
             "description": "A utility component that fills available space in a flex container.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/spacer"
         },
         "x-plume::spinner": {
-            "path": "plume/resources/views/components/spinner.blade.php",
+            "path": "plume/src/View/Components/Spinner.php",
             "props": {
                 "size": {
                     "type": "string",
@@ -1593,7 +1667,7 @@
             "doc_url": "https://plume.dennisokon.com/docs/spinner"
         },
         "x-plume::stepper": {
-            "path": "plume/resources/views/components/stepper/index.blade.php",
+            "path": "plume/src/View/Components/Stepper.php",
             "props": {
                 "active": {
                     "type": "number",
@@ -1601,11 +1675,14 @@
                 }
             },
             "description": "Guide users through multi-step processes.",
-            "usage": "<x-plume::stepper :active=\"1\">\n    <x-plume::stepper.step step=\"1\" title=\"Account\" next />\n    <x-plume::stepper.step step=\"2\" title=\"Profile\" prev />\n</x-plume::stepper>",
+            "usage": "<x-plume::stepper :active=\"1\">
+    <x-plume::stepper.step step=\"1\" title=\"Account\" next />
+    <x-plume::stepper.step step=\"2\" title=\"Profile\" prev />
+</x-plume::stepper>",
             "doc_url": "https://plume.dennisokon.com/docs/stepper"
         },
         "x-plume::stepper.actions": {
-            "path": "plume/resources/views/components/stepper/actions.blade.php",
+            "path": "plume/src/View/Components/StepperActions.php",
             "props": {
                 "prev": {
                     "type": "any",
@@ -1621,8 +1698,12 @@
             "doc_url": "https://plume.dennisokon.com/docs/stepper-actions"
         },
         "x-plume::stepper.step": {
-            "path": "plume/resources/views/components/stepper/step.blade.php",
+            "path": "plume/src/View/Components/StepperStep.php",
             "props": {
+                "step": {
+                    "type": "number",
+                    "required": true
+                },
                 "title": {
                     "type": "any",
                     "default": "null"
@@ -1641,11 +1722,13 @@
                 }
             },
             "description": "An individual step within a stepper component.",
-            "usage": "<x-plume::stepper.step step=\"1\" title=\"Initial Step\" next=\"Continue\">\n    <p>Step content goes here...</p>\n</x-plume::stepper.step>",
+            "usage": "<x-plume::stepper.step step=\"1\" title=\"Initial Step\" next=\"Continue\">
+    <p>Step content goes here...</p>
+</x-plume::stepper.step>",
             "doc_url": "https://plume.dennisokon.com/docs/stepper-step"
         },
         "x-plume::table": {
-            "path": "plume/resources/views/components/table/index.blade.php",
+            "path": "plume/src/View/Components/Table/Table.php",
             "props": {
                 "striped": {
                     "type": "boolean",
@@ -1669,14 +1752,14 @@
             "doc_url": "https://plume.dennisokon.com/docs/table"
         },
         "x-plume::table.tbody": {
-            "path": "plume/resources/views/components/table/tbody.blade.php",
+            "path": "plume/src/View/Components/Table/Tbody.php",
             "props": {},
             "description": "No description provided.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/table-body"
         },
         "x-plume::table.td": {
-            "path": "plume/resources/views/components/table/td.blade.php",
+            "path": "plume/src/View/Components/Table/Td.php",
             "props": {
                 "align": {
                     "type": "string",
@@ -1688,7 +1771,7 @@
             "doc_url": "https://plume.dennisokon.com/docs/table-cell"
         },
         "x-plume::table.th": {
-            "path": "plume/resources/views/components/table/th.blade.php",
+            "path": "plume/src/View/Components/Table/Th.php",
             "props": {
                 "align": {
                     "type": "string",
@@ -1700,7 +1783,7 @@
             "doc_url": "https://plume.dennisokon.com/docs/table-head"
         },
         "x-plume::table.thead": {
-            "path": "plume/resources/views/components/table/thead.blade.php",
+            "path": "plume/src/View/Components/Table/Thead.php",
             "props": {
                 "sticky": {
                     "type": "boolean",
@@ -1712,17 +1795,17 @@
             "doc_url": "https://plume.dennisokon.com/docs/table-header"
         },
         "x-plume::table.tr": {
-            "path": "plume/resources/views/components/table/tr.blade.php",
+            "path": "plume/src/View/Components/Table/Tr.php",
             "props": {},
             "description": "No description provided.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/table-row"
         },
         "x-plume::tabs": {
-            "path": "plume/resources/views/components/tabs/index.blade.php",
+            "path": "plume/src/View/Components/Tabs/Tabs.php",
             "props": {
                 "default": {
-                    "type": "number",
+                    "type": "string",
                     "default": "1"
                 },
                 "side": {
@@ -1735,18 +1818,18 @@
             "doc_url": "https://plume.dennisokon.com/docs/tabs"
         },
         "x-plume::tabs.group": {
-            "path": "plume/resources/views/components/tabs/group.blade.php",
+            "path": "plume/src/View/Components/Tabs/Group.php",
             "props": {},
             "description": "No description provided.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/tabs-group"
         },
         "x-plume::tabs.item": {
-            "path": "plume/resources/views/components/tabs/item.blade.php",
+            "path": "plume/src/View/Components/Tabs/Item.php",
             "props": {
                 "for": {
-                    "type": "number",
-                    "default": "1"
+                    "type": "string",
+                    "required": true
                 }
             },
             "description": "No description provided.",
@@ -1754,11 +1837,11 @@
             "doc_url": "https://plume.dennisokon.com/docs/tabs-item"
         },
         "x-plume::tabs.panel": {
-            "path": "plume/resources/views/components/tabs/panel.blade.php",
+            "path": "plume/src/View/Components/Tabs/Panel.php",
             "props": {
                 "for": {
-                    "type": "number",
-                    "default": "1"
+                    "type": "string",
+                    "required": true
                 }
             },
             "description": "No description provided.",
@@ -1766,7 +1849,7 @@
             "doc_url": "https://plume.dennisokon.com/docs/tabs-panel"
         },
         "x-plume::toaster": {
-            "path": "plume/resources/views/components/toaster.blade.php",
+            "path": "plume/src/View/Components/Toaster.php",
             "props": {
                 "position": {
                     "type": "string",
@@ -1778,8 +1861,12 @@
             "doc_url": "https://plume.dennisokon.com/docs/toaster"
         },
         "x-plume::tooltip": {
-            "path": "plume/resources/views/components/tooltip.blade.php",
+            "path": "plume/src/View/Components/Tooltip.php",
             "props": {
+                "text": {
+                    "type": "string",
+                    "required": true
+                },
                 "position": {
                     "type": "string",
                     "default": "top"
@@ -1790,10 +1877,14 @@
             "doc_url": "https://plume.dennisokon.com/docs/tooltip"
         },
         "x-plume::video": {
-            "path": "plume/resources/views/components/video.blade.php",
+            "path": "plume/src/View/Components/Video.php",
             "props": {
+                "src": {
+                    "type": "string",
+                    "required": true
+                },
                 "poster": {
-                    "type": "any",
+                    "type": "string",
                     "default": "null"
                 },
                 "autoplay": {
