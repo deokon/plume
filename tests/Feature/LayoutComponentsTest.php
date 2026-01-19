@@ -96,6 +96,32 @@ BLADE;
         ->toContain('Panel 1');
 });
 
+test('button group passes size to children', function () {
+    $template = <<<'BLADE'
+<x-plume::button-group size="sm">
+    <x-plume::button>Small</x-plume::button>
+</x-plume::button-group>
+BLADE;
+
+    $view = Blade::render($template);
+    // sm size uses 'text-sm font-medium gap-1.5 px-3 py-1.5'
+    expect($view)->toContain('px-3 py-1.5');
+});
+
+test('tabs pass side to children', function () {
+    $template = <<<'BLADE'
+<x-plume::tabs side="left" default="tab1">
+    <x-plume::tabs.group>
+        <x-plume::tabs.item for="tab1">Tab 1</x-plume::tabs.item>
+    </x-plume::tabs.group>
+</x-plume::tabs>
+BLADE;
+
+    $view = Blade::render($template);
+    // side="left" uses 'border-r-3 rounded-l-md' in tabs.item
+    expect($view)->toContain('border-r-3 rounded-l-md');
+});
+
 test('dropdown renders with trigger slot', function () {
     $template = <<<'BLADE'
 <x-plume::dropdown>

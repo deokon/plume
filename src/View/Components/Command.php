@@ -9,10 +9,11 @@ use Illuminate\Support\Str;
 
 class Command extends Component
 {
+    public $content;
+
     public function __construct(
         public string $placeholder = 'Type a command or search...',
         public ?string $id = null,
-        public mixed $content = null,
     ) {
         $this->id = $id ?? Str::random(8);
     }

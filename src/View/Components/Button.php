@@ -12,30 +12,29 @@ class Button extends Component
         public ?string $href = null,
         public ?string $icon = null,
         public bool $fullWidth = false,
-        public string $size = 'md',
-        public string $style = 'default',
-        public string $shape = 'default',
     ) {}
 
     public function render(): View|Closure|string
     {
-        return view('plume::components-class.button', [
-            'classes' => $this->classes(),
-        ]);
+        return view('plume::components-class.button');
     }
 
-    public function classes(): string
+    public function classes(?string $size = null, ?string $style = null, ?string $shape = null): string
     {
-        $base = 'inline-flex items-center justify-center whitespace-nowrap transition-all shrink-0 outline-none focus-visible:border-primary focus-visible:ring-primary/50 focus-visible:ring-[3px] dark:focus-visible:border-primary-200 dark:focus-visible:ring-primary-200/50 hover:cursor-pointer active:scale-95 disabled:pointer-events-none disabled:opacity-70 disabled:cursor-default disabled:saturate-30 [&_span.icon]:pointer-events-none [&_span.icon:not([class*=\'size-\'])]:size-8 [&_span.icon]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive';
+        $size = $size ?? 'md';
+        $style = $style ?? 'default';
+        $shape = $shape ?? 'default';
+
+        $base = 'inline-flex items-center justify-center whitespace-nowrap transition-all shrink-0 outline-none focus-visible:border-primary focus-visible:ring-primary/50 focus-visible:ring-[3px] dark:focus-visible:border-primary-200 dark:focus-visible:ring-primary-200/50 hover:cursor-pointer active:scale-95 disabled:pointer-events-none disabled:opacity-70 disabled:cursor-default disabled:saturate-30 [&_span.icon]:pointer-events-none [&_span.icon:not([class*=\'size-\'})]:size-8 [&_span.icon]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive';
 
         if ($this->fullWidth) {
             $base .= ' w-full';
         }
 
-        return $base . ' ' . $this->themeStyles();
+        return $base . ' ' . $this->themeStyles($size, $style, $shape);
     }
 
-    protected function themeStyles(): string
+    protected function themeStyles(string $size = 'md', string $style = 'default', string $shape = 'default'): string
     {
         $sizes = [
             'sm' => 'text-sm font-medium gap-1.5 px-3 py-1.5',
@@ -59,8 +58,8 @@ class Button extends Component
             'default' => 'rounded-md',
         ];
 
-        return ($sizes[$this->size] ?? $sizes['md']) . ' ' .
-            ($styles[$this->style] ?? $styles['default']) . ' ' .
-            ($shapes[$this->shape] ?? $shapes['default']);
+        return ($sizes[$size] ?? $sizes['md']) . ' ' . 
+            ($styles[$style] ?? $styles['default']) . ' ' . 
+            ($shapes[$shape] ?? $shapes['default']);
     }
 }

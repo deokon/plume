@@ -9,7 +9,7 @@ use Closure;
 class CommandGroup extends Component
 {
     public function __construct(
-        public string $heading,
+        public ?string $title = null,
     ) {}
 
     public function render(): View|Closure|string

@@ -17,6 +17,8 @@ class ButtonGroup extends Component
     {
         return view('plume::components-class.button-group', [
             'groupClasses' => $this->themeStyles(),
+            'size' => $this->size,
+            'stack' => $this->stack,
         ]);
     }
 

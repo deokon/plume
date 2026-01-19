@@ -8,10 +8,11 @@ use Closure;
 
 class Search extends Component
 {
+    public $results;
+
     public function __construct(
         public string $placeholder = 'Search...',
         public ?string $model = null,
-        public mixed $results = null,
     ) {}
 
     public function render(): View|Closure|string

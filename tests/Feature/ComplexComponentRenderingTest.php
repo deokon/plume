@@ -22,3 +22,40 @@ test('data table renders correctly with dynamic attributes', function () {
         ->toContain('x-text="col.label"')
         ->toContain('x-text="row[col.key]"');
 });
+
+test('command renders correctly with slots', function () {
+    $template = <<<'BLADE'
+<x-plume::command>
+    <button>Open</button>
+    <x-slot:content>
+        <x-plume::command.group title="Suggestions">
+            <x-plume::command.item>Item 1</x-plume::command.item>
+        </x-plume::command.group>
+    </x-slot:content>
+</x-plume::command>
+BLADE;
+
+    $view = Blade::render($template);
+    
+    expect($view)
+        ->toContain('x-data="command()"')
+        ->toContain('Open')
+        ->toContain('Suggestions')
+        ->toContain('Item 1');
+});
+
+test('search renders correctly with results slot', function () {
+    $template = <<<'BLADE'
+<x-plume::search placeholder="Search...">
+    <x-slot:results>
+        <x-plume::search.result title="Result 1" />
+    </x-slot:results>
+</x-plume::search>
+BLADE;
+
+    $view = Blade::render($template);
+    
+    expect($view)
+        ->toContain('placeholder="Search..."')
+        ->toContain('Result 1');
+});
