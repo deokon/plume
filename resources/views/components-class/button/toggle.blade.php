@@ -2,15 +2,6 @@
 @component x-plume::button.toggle
 @description Button that toggles between two states.
 --}}
-@props([
-    'var',
-    'size' => 'md',
-    'style' => null,
-    'offStyle' => null,
-    'on' => null,
-    'off' => null,
-    'click' => null,
-])
 <x-plume::button {{ $attributes->merge(['class' => 'relative']) }} style="{{ $style }}"
     x-show="{{ $var }}" x-bind:inert="!{{ $var }}"
     x-on:click="{{ $click ?? $var . ' = !' . $var }}">
