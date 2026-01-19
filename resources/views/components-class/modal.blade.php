@@ -1,34 +1,7 @@
-@use('deokon\Plume\Theme')
 {{--
 @component x-plume::modal
 @description A dialog box or popup window that is displayed on top of the current page.
 --}}
-@props([
-    'name',
-    'show' => false,
-    'maxWidth' => '2xl',
-    'title' => null,
-    'footer' => null,
-    'header' => null,
-])
-
-@php
-    $maxWidthClass = Theme::modal($maxWidth);
-    $enter = Theme::transitions('overlay-enter');
-    $leave = Theme::transitions('overlay-leave');
-
-    // Check if header slot is provided via $header variable (from x-slot:header) or prop
-    $hasHeader = !empty($header) || isset($headerSlot);
-    // Note: 'header' is a reserved slot name in some contexts? No.
-    // Laravel provides $header variable if <x-slot:header> is used?
-    // Actually, simple slots are passed as variables matching the name.
-
-    // We need to check attributes/slots.
-    // If <x-slot:header> is used, $header will be defined in the component scope if we add it to props or if we don't.
-    // If we add it to props, it defaults to null. If slot is present, it might be passed?
-    // Laravel component slots are usually available as $slotName.
-@endphp
-
 <div x-data="modal('{{ $name }}', @js($show), @js($attributes->has('focusable')))" x-on:keydown.escape.window="close()"
     x-on:keydown.tab.prevent="handleTab($event)" x-show="show" x-cloak
     {{ $attributes->merge(['class' => 'fixed inset-0 z-50 overflow-y-auto']) }}
@@ -65,7 +38,7 @@
                 {{ $slot }}
             </div>
 
-            @if ($footer)
+            @if (isset($footer) && $footer->isNotEmpty())
                 <div class="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2 p-6 pt-0">
                     {{ $footer }}
                 </div>
