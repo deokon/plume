@@ -3,9 +3,12 @@
 @description A bar that shows the completion progress of a task.
 --}}
 <div x-data="{ 
-        _val: {{ $value }}, 
+        _val: @if($model) {{ $model }} @else {{ $value }} @endif, 
         _maxVal: {{ $max }},
-        get _percent() { return Math.round((this._val / this._maxVal) * 100) }
+        get _percent() { 
+            if (this._maxVal === 0) return 0;
+            return Math.round((this._val / this._maxVal) * 100);
+        }
     }"
     @if($model) x-init="$watch('{{ $model }}', value => _val = value)" @endif
     {{ $attributes->merge(['class' => 'w-full space-y-2']) }}>
@@ -30,12 +33,12 @@
         </div>
     @endif
 
-    <div class="relative h-4 w-full overflow-hidden rounded-full bg-secondary/20 dark:bg-background-700">
-        <div class="h-full transition-all {{ $styleClass }}"
+    <div class="relative h-4 w-full overflow-hidden rounded-full bg-background-200 dark:bg-background-700">
+        <div x-cloak class="h-full transition-all {{ $styleClass }}"
             :style="'width: ' + _percent + '%; min-width: 2px;'"></div>
         
         @if($display === 'inside')
-            <div class="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-foreground mix-blend-difference pointer-events-none">
+            <div x-cloak class="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-white mix-blend-difference pointer-events-none">
                 <span x-text="_percent"></span>%
             </div>
         @endif

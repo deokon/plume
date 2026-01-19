@@ -14,7 +14,7 @@ class ProgressPercent extends Progress
         ?string $title = null,
         ?string $model = null,
     ) {
-        parent::__construct($value, $max, $style, $title, 'inside', $model);
+        parent::__construct($value, $max, $style, $title, 'percentage', $model);
     }
 
     public function render(): View|Closure|string
