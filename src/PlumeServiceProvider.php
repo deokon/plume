@@ -35,6 +35,7 @@ class PlumeServiceProvider extends ServiceProvider
         Blade::component('plume::command.item', \deokon\Plume\View\Components\CommandItem::class);
         Blade::component('plume::divider', \deokon\Plume\View\Components\Divider::class);
         Blade::component('plume::empty-state', \deokon\Plume\View\Components\EmptyState::class);
+        Blade::component('plume::figure', \deokon\Plume\View\Components\Figure::class);
         Blade::component('plume::drawer', \deokon\Plume\View\Components\Drawer::class);
         Blade::component('plume::search', \deokon\Plume\View\Components\Search::class);
         Blade::component('plume::search.result', \deokon\Plume\View\Components\SearchResult::class);
