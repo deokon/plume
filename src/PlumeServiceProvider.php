@@ -16,6 +16,7 @@ class PlumeServiceProvider extends ServiceProvider
         Blade::anonymousComponentPath(__DIR__ . '/../resources/views/components', 'plume');
         
         // Register View Classes
+        Blade::component('plume::aspect', \deokon\Plume\View\Components\Aspect::class);
         Blade::component('plume::button', \deokon\Plume\View\Components\Button::class);
         Blade::component('plume::alert', \deokon\Plume\View\Components\Alert::class);
         Blade::component('plume::badge', \deokon\Plume\View\Components\Badge::class);
