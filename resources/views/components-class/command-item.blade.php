@@ -1,11 +1,6 @@
 {{--
 @component x-plume::command.item
 --}}
-@props([
-    'icon' => null,
-    'shortcut' => null,
-])
-
 <div x-data="{
     get isVisible() {
         if (this.search === '') return true;

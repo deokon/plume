@@ -1,12 +1,6 @@
 {{--
 @component x-plume::search.result
 --}}
-@props([
-    'href' => '#',
-    'icon' => null,
-    'title',
-])
-
 <a href="{{ $href }}"
     {{ $attributes->merge(['class' => 'flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-background-100 dark:hover:bg-background-800 transition-colors group']) }}>
     @if ($icon)

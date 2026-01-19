@@ -2,11 +2,6 @@
 @component x-plume::search
 @description Styled search input with an integrated results dropdown.
 --}}
-@props([
-    'placeholder' => 'Search...',
-    'model' => null,
-])
-
 <div x-data="{
     open: false,
     query: @if ($model) $wire.entangle('{{ $model }}') @else '' @endif

@@ -2,11 +2,6 @@
 @component x-plume::navbar.mobile-item
 @description Individual navigation link for mobile menu.
 --}}
-@props([
-    'active' => false,
-    'href' => '#',
-])
-
 @php
     $classes = $active
         ? 'block border-l-4 border-primary bg-primary/10 py-2 pl-3 pr-4 text-base font-medium text-primary'

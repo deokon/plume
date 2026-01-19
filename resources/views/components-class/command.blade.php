@@ -1,18 +1,7 @@
-@use('deokon\Plume\Theme')
 {{--
 @component x-plume::command
 @description A powerful search and action interface accessible via keyboard shortcuts.
 --}}
-@props([
-    'placeholder' => 'Type a command or search...',
-    'id' => \Illuminate\Support\Str::random(8),
-])
-
-@php
-    $enter = Theme::transitions('overlay-enter');
-    $leave = Theme::transitions('overlay-leave');
-@endphp
-
 <div x-data="command()" @keydown.window.prevent.cmd.k="toggle()"
     @keydown.window.prevent.ctrl.k="toggle()" @keydown.escape.window="open = false" class="relative"
     {{ $attributes }}>

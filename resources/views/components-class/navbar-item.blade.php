@@ -2,11 +2,6 @@
 @component x-plume::navbar.item
 @description Individual navigation link.
 --}}
-@props([
-    'active' => false,
-    'href' => '#',
-])
-
 @php
     $classes = $active
         ? 'inline-flex items-center border-b-2 border-primary px-1 pt-1 text-sm font-medium text-foreground'

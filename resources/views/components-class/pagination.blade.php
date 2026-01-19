@@ -1,20 +1,7 @@
 {{--
 @component x-plume::pagination
 @description Displays a sequence of links for navigating through a series of related pages. Powered by AlpineJS.
-@usage
-<x-plume::pagination :total="10" :current="1" @change="page = $event.detail.page" />
 --}}
-@props([
-    'total' => 1,
-    'current' => 1,
-    'onEachSide' => 1,
-])
-
-@php
-    $initialTotal = is_numeric($total) ? $total : 1;
-    $initialCurrent = is_numeric($current) ? $current : 1;
-@endphp
-
 <nav x-data="pagination({{ $initialTotal }}, {{ $initialCurrent }}, {{ $onEachSide }})"
     {{ $attributes->merge(['class' => 'flex items-center justify-center gap-1']) }}
     aria-label="Pagination" :total="{{ is_numeric($total) ? $total : $total }}"

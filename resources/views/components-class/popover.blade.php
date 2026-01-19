@@ -2,12 +2,6 @@
 @component x-plume::popover
 @description Displays rich content in a portal, triggered by a button.
 --}}
-@props([
-    'trigger' => null,
-    'position' => 'bottom', // top, bottom, left, right
-    'align' => 'center', // start, center, end
-])
-
 <div x-data="{
     open: false,
     toggle() {
@@ -37,4 +31,3 @@
         {{ $slot }}
     </div>
 </div>
- 

@@ -1,14 +1,7 @@
 {{--
 @component x-plume::stepper.actions
 @description Standard actions layout for stepper components.
-@usage
-<x-plume::stepper.actions prev="Back" next="Continue" />
 --}}
-@props([
-    'prev' => null,
-    'next' => null,
-])
-
 <div {{ $attributes->merge(['class' => 'flex justify-start items-center gap-3 mt-6']) }}>
     @if ($prev)
         <x-plume::button style="outline" size="sm" @click="active = Math.max(1, active - 1)">
