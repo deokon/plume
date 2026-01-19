@@ -22,6 +22,11 @@ class Skeleton extends Component
 
     public function classes(): string
     {
+        return $this->themeStyles();
+    }
+
+    protected function themeStyles(): string
+    {
         $shapes = [
             'rect' => 'rounded-md',
             'circle' => 'rounded-full',
