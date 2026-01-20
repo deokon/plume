@@ -14,6 +14,7 @@ class Command extends Component
     use ResolvesId, InteractsWithAttributes, HasStyles;
 
     public function __construct(
+        public ?string $trigger = null,
         public string $placeholder = 'Type a command or search...',
         public ?string $id = null,
     ) {
@@ -24,6 +25,7 @@ class Command extends Component
     {
         return view('plume::components-class.command', [
             'component' => $this,
+            'trigger' => $this->trigger,
             'enter' => $this->transitions('overlay-enter'),
             'leave' => $this->transitions('overlay-leave'),
         ]);

@@ -5,12 +5,17 @@
 <div x-data="command()" @keydown.window.prevent.cmd.k="toggle()"
     @keydown.window.prevent.ctrl.k="toggle()" @keydown.escape.window="open = false" class="relative"
     {{ $attributes }}>
-    {{-- Trigger Slot (optional) --}}
-    @if ($slot->isNotEmpty())
-        <div @click="toggle()">
-            {{ $slot }}
-        </div>
-    @endif
+    
+    {{-- Trigger Slot or Prop --}}
+    <div @click="toggle()" class="inline-flex cursor-pointer">
+        @if (isset($trigger) && $trigger instanceof \Illuminate\View\ComponentSlot && $trigger->isNotEmpty())
+            {{ $trigger }}
+        @elseif (isset($trigger))
+            <x-plume::button type="button" style="outline">
+                {{ $trigger }}
+            </x-plume::button>
+        @endif
+    </div>
 
     {{-- Modal Overlay --}}
     <template x-teleport="body">
@@ -39,13 +44,12 @@
 
                 {{-- Results List --}}
                 <div x-ref="items" class="flex-1 overflow-y-auto max-h-[60vh] p-2 space-y-4">
-                    {{-- Template for dynamic content or just manual structure --}}
                     <div x-show="search === '' && !$refs.results?.children.length"
                         class="p-4 text-center text-sm text-foreground/40 dark:text-background-500">
                         No recent searches.
                     </div>
                     <div x-ref="results">
-                        {{ $content ?? '' }}
+                        {{ $slot }}
                     </div>
                 </div>
 

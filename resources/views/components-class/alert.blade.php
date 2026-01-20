@@ -2,7 +2,7 @@
 @component x-plume::alert
 @description Displays a callout for user attention.
 --}}
-<div x-data="{ open: true, close() { open = false;
+<div x-data="{ open: true, close() { this.open = false;
         @if ($onClose) {{ $onClose }} @endif } }" x-show="open" x-transition:leave="transition ease-in duration-200"
     x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
     @if ($autoclose) x-init="setTimeout(() => close(), {{ $autoclose }})" @endif
