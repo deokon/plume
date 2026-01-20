@@ -11,6 +11,7 @@ import combobox from './alpine/combobox';
 import command from './alpine/command';
 import fileInput from './alpine/file-input';
 import video from './alpine/video';
+import form from './alpine/form';
 import { accordion, accordionItem } from './alpine/accordion';
 
 export {
@@ -27,6 +28,7 @@ export {
     command,
     fileInput,
     video,
+    form,
     accordion,
     accordionItem,
 };

@@ -29,9 +29,5 @@ export default function (Alpine) {
                 localStorage.removeItem('theme');
             }
         },
-
-        addToast(toast) {
-            Alpine.store('toasts').add(toast);
-        },
     }));
 }
