@@ -39,8 +39,8 @@ class Avatar extends Component
             'default' => 'rounded-md',
         ];
 
-        return $base . ' ' . 
-            ($theme['container'] ?? 'size-8 text-xs') . ' ' . 
+        return $base . ' ' .
+            ($theme['container'] ?? 'size-8 text-xs') . ' ' .
             $this->getClasses($shapes, $shape);
     }
 
@@ -56,8 +56,8 @@ class Avatar extends Component
             'busy' => 'bg-destructive-500',
         ];
 
-        return $base . ' ' . 
-            ($theme['status'] ?? 'size-2') . ' ' . 
-            ($colors[$this->status] ?? 'bg-primary-500');
+        return $base . ' ' .
+            ($theme['status'] ?? 'size-2') . ' ' .
+            ($colors[$this->status] ?? $this->status);
     }
 }
