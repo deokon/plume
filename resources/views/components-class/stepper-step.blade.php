@@ -12,7 +12,7 @@
         <div class="size-10 rounded-full flex items-center justify-center shrink-0 border-2 transition-colors z-10"
             :class="{
                 'bg-primary border-primary text-primary-foreground': isActive || isCompleted,
-                'bg-background border-background-400 dark:border-background-600 text-foreground/50': isUpcoming
+                'bg-background border-background-400 dark:border-background-600 text-foreground/50 dark:text-background-400': isUpcoming
             }">
             <div x-show="isCompleted" style="display: none;">
                 <x-plume::icon i="icon-[fluent--checkmark-24-regular]" class="size-6" />
@@ -26,13 +26,13 @@
                 <p class="text-sm font-bold truncate"
                     :class="{
                         'text-primary': isActive,
-                        'text-foreground/80': isCompleted,
-                        'text-foreground/40': isUpcoming
+                        'text-foreground/80 dark:text-background-200': isCompleted,
+                        'text-foreground/40 dark:text-background-500': isUpcoming
                     }">
                     {{ $title }}</p>
             @endif
             @if ($description)
-                <p class="text-xs text-foreground/40 truncate">{{ $description }}</p>
+                <p class="text-xs text-foreground/40 dark:text-background-500 truncate">{{ $description }}</p>
             @endif
         </div>
     </div>

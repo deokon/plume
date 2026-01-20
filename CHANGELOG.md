@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.3.0] - 2026-01-20
+
+### Added
+- **View Class Migration**: Successfully migrated all core components to dedicated PHP View Classes for better logic encapsulation and property handling.
+
+### Fixed
+- **Progress Bar**: Fixed initialization issues, improved reactivity, and added value clamping (0-100).
+- **Dark Mode**: Audited components and added missing dark mode color variants for `SearchResult`, `StepperStep`, and `CommandItem`.
+- **Command Palette**: Corrected slot handling and improved search result styling.
+- **Table**: Improved sticky header behavior and border consistency.
+- **Button Group**: Refined inheritance and styling for stacked buttons.
+- **Accessibility**: Continued auditing and refining ARIA attributes across complex components.
+
 ## [v0.2.0] - 2026-01-17
 
 ### Added
@@ -37,7 +50,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [v0.1.0] - 2026-01-17
 
 ### Added
-- **Global Alpine Magic Helpers:**
+- **Global Alpine Magic Helpers: **
     - `$openModal(name)` and `$closeModal(name?)` for simplified modal control.
     - `$openDrawer(name)` and `$closeDrawer(name?)` for simplified drawer control.
     - `$toast(msg, options?)`, `$success(msg)`, and `$error(msg)` for quick notifications.

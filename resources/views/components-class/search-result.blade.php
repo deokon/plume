@@ -11,12 +11,12 @@
     @endif
 
     <div class="flex-1 min-w-0">
-        <p class="text-sm font-bold text-foreground truncate">{{ $title }}</p>
+        <p class="text-sm font-bold text-foreground dark:text-background-200 truncate">{{ $title }}</p>
         @if ($slot->isNotEmpty())
-            <p class="text-xs text-foreground/50 truncate">{{ $slot }}</p>
+            <p class="text-xs text-foreground/50 dark:text-background-400 truncate">{{ $slot }}</p>
         @endif
     </div>
 
     <x-plume::icon i="icon-[fluent--arrow-right-24-regular]"
-        class="size-4 text-foreground/20 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0" />
+        class="size-4 text-foreground/20 dark:text-background-600 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0" />
 </a>
