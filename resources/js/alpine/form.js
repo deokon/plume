@@ -23,6 +23,15 @@ export default function (Alpine) {
         },
 
         init() {
+            // Auto-detect action and method from the form element if not provided
+            if (!this._config.url && this.$el.tagName === 'FORM' && this.$el.action) {
+                this._config.url = this.$el.action;
+            }
+            if (this.$el.tagName === 'FORM' && this.$el.method) {
+                // If it's a GET/POST from browser, it might be uppercase
+                this._config.method = this.$el.method.toUpperCase();
+            }
+
             // Watch for changes to calculate dirty state
             this.$watch('$data', () => {
                 const currentData = this.getData();
