@@ -26,12 +26,12 @@ test('data table renders correctly with dynamic attributes', function () {
 test('command renders correctly with slots', function () {
     $template = <<<'BLADE'
 <x-plume::command>
-    <button>Open</button>
-    <x-slot:content>
-        <x-plume::command.group title="Suggestions">
-            <x-plume::command.item>Item 1</x-plume::command.item>
-        </x-plume::command.group>
-    </x-slot:content>
+    <x-slot:trigger>
+        <button>Open</button>
+    </x-slot:trigger>
+    <x-plume::command.group title="Suggestions">
+        <x-plume::command.item>Item 1</x-plume::command.item>
+    </x-plume::command.group>
 </x-plume::command>
 BLADE;
 

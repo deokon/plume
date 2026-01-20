@@ -7,7 +7,7 @@
         _maxVal: {{ $max }},
         get _percent() {
             if (this._maxVal === 0) return 0;
-            return Math.round((this._val / this._maxVal) * 100);
+            return Math.min(100, Math.max(0, Math.round((this._val / this._maxVal) * 100)));
         }
     }"
     @if($model) x-init="$watch('{{ $model }}', value => _val = value)" @endif
@@ -35,6 +35,7 @@
 
     <div class="relative h-4 w-full overflow-hidden rounded-full bg-background-200 dark:bg-background-700">
         <div x-cloak class="h-full transition-all {{ $styleClass }}"
+            style="width: {{ ($max > 0) ? ($value / $max) * 100 : 0 }}%"
             :style="'width: ' + _percent + '%; min-width: 0px;'"></div>
 
         @if($display === 'inside')
