@@ -27,8 +27,15 @@ abstract class BaseFormComponent extends Component
         $name = $attributes['name'] ?? $groupName ?? $this->name;
         $model = $attributes['model'] ?? $groupModel ?? $this->model;
         
-        // If name wasn't provided, use model as name
-        $name = $name ?? $model;
+        // If name wasn't provided, use model as name (strip data. if present for name)
+        if (!$name && $model) {
+            $name = str_replace('data.', '', $model);
+        }
+
+        // Auto-prefix model with data. if not present
+        if ($model && !str_starts_with($model, 'data.')) {
+            $model = 'data.' . $model;
+        }
 
         $id = $attributes['id'] ?? $this->resolveId($name, $model, $this->id, $this->value);
 

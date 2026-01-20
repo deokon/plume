@@ -1,6 +1,6 @@
 export default function (Alpine) {
     Alpine.data('form', (initialData = {}, config = {}) => ({
-        ...initialData,
+        data: initialData,
         
         // Internal tracking of initial state
         _initialData: JSON.parse(JSON.stringify(initialData)),
@@ -28,29 +28,19 @@ export default function (Alpine) {
                 this._config.url = this.$el.action;
             }
             if (this.$el.tagName === 'FORM' && this.$el.method) {
-                // If it's a GET/POST from browser, it might be uppercase
                 this._config.method = this.$el.method.toUpperCase();
             }
 
             // Watch for changes to calculate dirty state
-            this.$watch('$data', () => {
-                const currentData = this.getData();
-                this.isDirty = JSON.stringify(currentData) !== JSON.stringify(this._initialData);
+            this.$watch('data', (value) => {
+                this.isDirty = JSON.stringify(value) !== JSON.stringify(this._initialData);
                 
                 if (this._config.validateOnChange) {
                     // Logic to clear errors on change could go here
                 }
-            });
+            }, { deep: true });
         },
         
-        getData() {
-            const data = {};
-            Object.keys(this._initialData).forEach(key => {
-                data[key] = this[key];
-            });
-            return data;
-        },
-
         async submit(url = null, method = null) {
             this.processing = true;
             this.wasSuccessful = false;
@@ -75,7 +65,7 @@ export default function (Alpine) {
                         'Accept': 'application/json',
                         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '',
                     },
-                    body: JSON.stringify(this.getData()),
+                    body: JSON.stringify(this.data),
                 });
 
                 const result = await response.json();
@@ -98,11 +88,7 @@ export default function (Alpine) {
             
             // Merge response data back into form (e.g. updated fields)
             if (result.data) {
-                Object.keys(result.data).forEach(key => {
-                    if (Object.prototype.hasOwnProperty.call(this._initialData, key)) {
-                        this[key] = result.data[key];
-                    }
-                });
+                this.data = { ...this.data, ...result.data };
             }
             
             if (this._config.resetOnSuccess) {
@@ -127,9 +113,7 @@ export default function (Alpine) {
         },
 
         reset() {
-            Object.keys(this._initialData).forEach(key => {
-                this[key] = this._initialData[key];
-            });
+            this.data = JSON.parse(JSON.stringify(this._initialData));
             this.errors = {};
             this.isDirty = false;
             this.wasSuccessful = false;
@@ -138,12 +122,15 @@ export default function (Alpine) {
         },
 
         hasError(field) {
-            return !!this.errors[field];
+            // Strip 'data.' prefix if present for error lookup
+            const key = field.replace(/^data\./, '');
+            return !!this.errors[key];
         },
         
         getError(field) {
-            if (!this.errors[field]) return null;
-            return Array.isArray(this.errors[field]) ? this.errors[field][0] : this.errors[field];
+            const key = field.replace(/^data\./, '');
+            if (!this.errors[key]) return null;
+            return Array.isArray(this.errors[key]) ? this.errors[key][0] : this.errors[key];
         }
     }));
 }
