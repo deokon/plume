@@ -12,6 +12,8 @@ class Form extends Component
         public string $action = '',
         public string $method = 'POST',
         public ?string $formData = null,
+        public ?string $submitButton = null,
+        public ?string $resetButton = null,
     ) {}
 
     public function render(): View|Closure|string
