@@ -122,6 +122,25 @@ BLADE;
     expect($view)->toContain('border-r-3 rounded-l-md');
 });
 
+test('breadcrumb renders with items correctly', function () {
+    $items = [
+        ['label' => 'Home', 'href' => '/'],
+        ['label' => 'Docs', 'href' => '/docs'],
+        ['label' => 'Current', 'active' => true],
+    ];
+
+    $view = Blade::render('<x-plume::breadcrumb :items="$items" />', ['items' => $items]);
+    
+    expect($view)
+        ->toContain('Home')
+        ->toContain('href="/"')
+        ->toContain('Docs')
+        ->toContain('href="/docs"')
+        ->toContain('Current')
+        ->toContain('aria-current="page"')
+        ->toContain('icon-[fluent--chevron-right-24-regular]'); // Default separator
+});
+
 test('dropdown renders with trigger slot', function () {
     $template = <<<'BLADE'
 <x-plume::dropdown>

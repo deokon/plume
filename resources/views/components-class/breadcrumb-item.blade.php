@@ -1,15 +1,14 @@
 {{--
 @component x-plume::breadcrumb.item
 --}}
-<li {{ $attributes->merge(['class' => 'inline-flex items-center gap-1.5']) }}>
+<li {{ $attributes->merge(['class' => 'inline-flex items-center']) }}>
     @if ($href && !$active)
-        <a href="{{ $href }}"
-            class="transition-colors hover:text-foreground dark:hover:text-background-200">
+        <x-plume::button :href="$href" style="minor" size="sm" class="-mx-1">
             {{ $slot }}
-        </a>
+        </x-plume::button>
     @else
-        <span role="link" aria-disabled="true" aria-current="{{ $active ? 'page' : 'false' }}"
-            class="{{ $active ? 'font-normal text-foreground dark:text-background-200' : '' }}">
+        <span class="px-2 py-1 text-sm font-medium text-foreground dark:text-background-200 {{ $active ? '' : 'opacity-50' }}" 
+              aria-current="{{ $active ? 'page' : 'false' }}">
             {{ $slot }}
         </span>
     @endif
