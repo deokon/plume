@@ -1,10 +1,10 @@
 export default function (Alpine) {
     Alpine.data('form', (initialData = {}, config = {}) => ({
         data: initialData,
-        
+
         // Internal tracking of initial state
         _initialData: JSON.parse(JSON.stringify(initialData)),
-        
+
         // State
         processing: false,
         wasSuccessful: false,
@@ -34,14 +34,16 @@ export default function (Alpine) {
             // Watch for changes to calculate dirty state
             this.$watch('data', (value) => {
                 this.isDirty = JSON.stringify(value) !== JSON.stringify(this._initialData);
-                
+
                 if (this._config.validateOnChange) {
                     // Logic to clear errors on change could go here
                 }
             }, { deep: true });
         },
-        
+
         async submit(url = null, method = null) {
+            console.log('Submitting form...');
+
             this.processing = true;
             this.wasSuccessful = false;
             this.hasFailed = false;
@@ -85,12 +87,12 @@ export default function (Alpine) {
         handleSuccess(result) {
             this.wasSuccessful = true;
             this.message = result.message;
-            
+
             // Merge response data back into form (e.g. updated fields)
             if (result.data) {
                 this.data = { ...this.data, ...result.data };
             }
-            
+
             if (this._config.resetOnSuccess) {
                 this.reset();
             }
@@ -126,7 +128,7 @@ export default function (Alpine) {
             const key = field.replace(/^data\./, '');
             return !!this.errors[key];
         },
-        
+
         getError(field) {
             const key = field.replace(/^data\./, '');
             if (!this.errors[key]) return null;

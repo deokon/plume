@@ -5,7 +5,7 @@
 <form action="{{ $action }}" method="{{ $method === 'GET' ? 'GET' : 'POST' }}"
     {{ $attributes->merge(['class' => 'space-y-6']) }}
     x-data="form({{ $formData ?? '{}' }})"
-    @submit.prevent="submit"
+    @submit.prevent="submit()"
 >
     @if ($method !== 'GET' && $method !== 'POST')
         @method($method)
@@ -17,35 +17,30 @@
 
     {{-- Automatic Feedback Alerts --}}
     <template x-if="wasSuccessful">
-        <div class="mt-4">
-            <x-plume::alert variant="success" title="Success">
-                <span x-text="message"></span>
-            </x-plume::alert>
-        </div>
+        <x-plume::alert style="success" title="Success">
+            <span x-text="message"></span>
+        </x-plume::alert>
     </template>
 
     <template x-if="hasFailed">
-        <div class="mt-4">
-            <x-plume::alert variant="error" title="Error">
-                <span x-text="message"></span>
-            </x-plume::alert>
-        </div>
+        <x-plume::alert style="destructive" title="Error">
+            <span x-text="message"></span>
+        </x-plume::alert>
     </template>
 
     @if ($submitButton || $resetButton)
-        <div class="flex items-center gap-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+        <x-plume::form.actions>
             @if ($submitButton)
-                <x-plume::button type="submit" x-bind:disabled="processing">
-                    <span x-show="!processing">{{ $submitButton }}</span>
-                    <span x-show="processing">Submitting...</span>
-                </x-plume::button>
+                <x-plume::button.loader type="submit" var="processing">
+                    {{ $submitButton }}
+                </x-plume::button.loader>
             @endif
 
             @if ($resetButton)
-                <x-plume::button type="button" @click="reset()" style="minor">
+                <x-plume::button x-on:click="reset()" style="minor">
                     {{ $resetButton }}
                 </x-plume::button>
             @endif
-        </div>
+        </x-plume::form.actions>
     @endif
 </form>

@@ -16,7 +16,7 @@
     $cleanAttributes = $component->cleanAttributes($attributes);
 @endphp
 @if ($href === null)
-    <button type="button" {{ $cleanAttributes->merge(['class' => $component->classes($resolvedSize, $resolvedStyle, $resolvedShape)]) }}>
+    <button {{ $cleanAttributes->merge(['type' => 'button', 'class' => $component->classes($resolvedSize, $resolvedStyle, $resolvedShape)]) }}>
         @if ($icon)
             <x-plume::icon i="{{ $icon }}" />
         @endif
