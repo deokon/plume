@@ -246,7 +246,14 @@
         },
         "x-plume::form": {
             "path": "plume/resources/views/components-class/form/index.blade.php",
-            "props": {},
+            "props": {
+                "action": { "type": "string", "default": "''" },
+                "method": { "type": "string", "default": "'POST'" },
+                "formData": { "type": "string", "default": "null" },
+                "submitButton": { "type": "string", "default": "null" },
+                "resetButton": { "type": "string", "default": "null" },
+                "hideOnSuccess": { "type": "boolean", "default": "false" }
+            },
             "description": "A collection of form components for user input.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/form"

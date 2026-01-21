@@ -311,6 +311,14 @@ Documentation: [https://plume.dennisokon.com/docs/form](https://plume.dennisokon
 
 Path: `plume/resources/views/components-class/form/index.blade.php`
 
+### Properties
+- `action` (string): The form submission URL. Default: `''`.
+- `method` (string): The HTTP method (POST, GET, PUT, etc). Default: `'POST'`.
+- `formData` (string): Initial JS data object for Alpine. Default: `null`.
+- `submitButton` (string): Label for the auto-generated submit button. Default: `null`.
+- `resetButton` (string): Label for the auto-generated reset button. Default: `null`.
+- `hideOnSuccess` (boolean): Whether to hide form fields after success. Default: `false`.
+
 ---
 
 ## x-plume::form.actions
