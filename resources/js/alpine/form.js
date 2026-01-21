@@ -10,6 +10,7 @@ export default function (Alpine) {
         wasSuccessful: false,
         hasFailed: false,
         isDirty: false,
+        isHidden: false,
         errors: {},
         message: null,
 
@@ -17,7 +18,8 @@ export default function (Alpine) {
         _config: {
             method: 'POST',
             url: null,
-            resetOnSuccess: true,
+            resetOnSuccess: false,
+            hideOnSuccess: false,
             validateOnChange: false,
             ...config
         },
@@ -42,8 +44,6 @@ export default function (Alpine) {
         },
 
         async submit(url = null, method = null) {
-            console.log('Submitting form...');
-
             this.processing = true;
             this.wasSuccessful = false;
             this.hasFailed = false;
@@ -59,13 +59,18 @@ export default function (Alpine) {
                 return;
             }
 
+            // Resolve CSRF Token: Meta tag first, then input field
+            const token = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') 
+                       || document.querySelector('input[name="_token"]')?.value 
+                       || '';
+
             try {
                 const response = await fetch(targetUrl, {
                     method: targetMethod,
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json',
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '',
+                        'X-CSRF-TOKEN': token,
                     },
                     body: JSON.stringify(this.data),
                 });
@@ -94,7 +99,11 @@ export default function (Alpine) {
             }
 
             if (this._config.resetOnSuccess) {
-                this.reset();
+                this.resetData();
+            }
+
+            if (this._config.hideOnSuccess) {
+                this.isHidden = true;
             }
 
             if (typeof this.onSuccess === 'function') this.onSuccess(result);
@@ -114,8 +123,12 @@ export default function (Alpine) {
             this.$dispatch('form-error', result);
         },
 
-        reset() {
+        resetData() {
             this.data = JSON.parse(JSON.stringify(this._initialData));
+        },
+
+        reset() {
+            this.resetData();
             this.errors = {};
             this.isDirty = false;
             this.wasSuccessful = false;
