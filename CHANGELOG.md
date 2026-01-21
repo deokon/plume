@@ -5,6 +5,37 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.4.0] - 2026-01-20
+
+### 🚀 Features
+- **Alpine Form Plugin:** Introduced a robust `form()` Alpine plugin for seamless state management, validation error handling (`getError`, `hasError`), and AJAX submissions.
+- **PlumeResponse:** Added a standardized Laravel response class for API consistency.
+- **Form Component:**
+    - Added `x-plume::form` component that auto-initializes the plugin.
+    - Added `hideOnSuccess` prop to optionally hide form fields after successful submission.
+    - Added `submitButton` and `resetButton` props for auto-generating footer actions.
+    - Added `inline` prop to support inline form layouts (replacing the deprecated `form.inline` component).
+- **Accessibility:** Implemented comprehensive ARIA support, focus trapping, and focus recovery for **Modal**, **Drawer**, and **Command** components.
+- **Accessibility:** Added `aria-describedby` and `aria-invalid` attributes to all form inputs, linking them to their error messages.
+
+### 🛠 Refactors & Improvements
+- **Breadcrumbs:** Simplified the API to accept a single `$items` array and automatically handle separators. Defaults to `minor` button style for items.
+- **Tailwind Compliance:** Refactored dynamic CSS class construction (e.g., `grid-cols-{$n}`) to use static lookup tables for better compatibility with the Tailwind JIT compiler.
+- **Structural Refactor:** Standardized directory structures for `Accordion`, `Breadcrumb`, `Carousel`, `Command`, `Navbar`, `Progress`, `Search`, and `Stepper` components (moving them to nested `Component/Item` patterns).
+- **File Input:** Changed the hidden file input to `sr-only` to ensure keyboard accessibility.
+
+### 🐛 Fixes
+- **Button:** Fixed an issue where the `type` attribute could not be overridden (defaulted to `button`).
+- **Form:** Fixed `isDirty` state not resetting correctly after a successful submission.
+- **Form:** Fixed data scoping issues in inline forms.
+- **CSRF:** Improved CSRF token detection to check both meta tags and input fields.
+
+### 🧹 Chores
+- **Documentation:** Added missing `@description` DocBlocks to ~40 components.
+- **Tooling:** Added `sync_metadata.php` script to automate documentation synchronization.
+- **Testing:** Added `ComprehensiveRenderTest` to smoke-test all components.
+- **Community:** Added `CONTRIBUTING.md`, `ISSUE_TEMPLATE`, and `PULL_REQUEST_TEMPLATE`.
+
 ## [v0.3.0] - 2026-01-20
 
 ### Added
