@@ -4,6 +4,7 @@
 --}}
 <div x-data="modal('{{ $name }}', @js($show), @js($attributes->has('focusable')))" x-on:keydown.escape.window="close()"
     x-on:keydown.tab.prevent="handleTab($event)" x-show="show" x-cloak
+    role="dialog" aria-modal="true" aria-labelledby="modal-title-{{ $name }}"
     {{ $attributes->merge(['class' => 'fixed inset-0 z-50 overflow-y-auto']) }}
     style="display: {{ $show ? 'block' : 'none' }};">
     <div x-show="show" x-cloak class="fixed inset-0 transform transition-all" x-on:click="close()"
@@ -24,12 +25,12 @@
             x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
             x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
             @if (isset($header) && $header->isNotEmpty())
-                <div class="flex flex-col space-y-1.5 p-6">
+                <div id="modal-title-{{ $name }}" class="flex flex-col space-y-1.5 p-6">
                     {{ $header }}
                 </div>
             @elseif($title)
                 <div class="flex flex-col space-y-1.5 p-6">
-                    <h3 class="text-lg font-semibold leading-none tracking-tight">
+                    <h3 id="modal-title-{{ $name }}" class="text-lg font-semibold leading-none tracking-tight">
                         {{ $title }}</h3>
                 </div>
             @endif

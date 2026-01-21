@@ -2,7 +2,9 @@
 @component x-plume::drawer
 @description A panel that slides in from the edge of the screen.
 --}}
-<div x-data="drawer('{{ $name }}', @js($show))" x-on:keydown.escape.window="close()" x-show="show" x-cloak
+<div x-data="drawer('{{ $name }}', @js($show))" x-on:keydown.escape.window="close()"
+    x-on:keydown.tab.prevent="handleTab($event)" x-show="show" x-cloak
+    role="dialog" aria-modal="true" aria-labelledby="drawer-title-{{ $name }}"
     class="fixed inset-0 z-50 overflow-hidden" style="display: {{ $show ? 'block' : 'none' }};">
     <div x-show="show" x-cloak class="fixed inset-0 transform transition-all" x-on:click="close()"
         x-transition:enter="{{ $enter }}" x-transition:enter-start="opacity-0"
@@ -21,10 +23,12 @@
                 <div
                     class="flex flex-col space-y-1.5 p-6 border-b border-background-700/40 dark:border-background-400/20">
                     @if (isset($header) && $header->isNotEmpty())
-                        {{ $header }}
+                        <div id="drawer-title-{{ $name }}">
+                            {{ $header }}
+                        </div>
                     @else
                         @if ($title)
-                            <h3 class="text-lg font-semibold leading-none tracking-tight">
+                            <h3 id="drawer-title-{{ $name }}" class="text-lg font-semibold leading-none tracking-tight">
                                 {{ $title }}</h3>
                         @endif
                         @if ($description)
