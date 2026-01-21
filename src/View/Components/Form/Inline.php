@@ -12,6 +12,7 @@ class Inline extends Component
         public string $action = '',
         public string $method = 'POST',
         public ?string $formData = null,
+        public bool $hideOnSuccess = false,
     ) {}
 
     public function render(): View|Closure|string
