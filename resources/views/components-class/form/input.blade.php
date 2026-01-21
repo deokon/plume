@@ -23,7 +23,11 @@
         <input type="{{ $type }}" name="{{ $resolvedName }}" id="{{ $resolvedId }}"
             value="{{ $value }}"
             @if ($placeholder !== '') placeholder="{{ $placeholder }}" @endif
-            @if ($resolvedModel) x-model="{{ $resolvedModel }}" @endif
+            @if ($resolvedModel) 
+                x-model="{{ $resolvedModel }}"
+                :aria-invalid="hasError('{{ $resolvedModel }}')"
+                :aria-describedby="hasError('{{ $resolvedModel }}') ? '{{ $resolvedId }}-error' : null"
+            @endif
             {{ $attributes->except(['name', 'model', 'id'])->merge(['class' => $classes]) }}>
         @if (isset($rightSide) && $rightSide instanceof \Illuminate\View\ComponentSlot && $rightSide->isNotEmpty())
             <div class="absolute inset-y-0 right-0 flex items-center pr-3">

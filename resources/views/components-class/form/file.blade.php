@@ -15,7 +15,11 @@
         x-on:click="$refs.input.click()">
 
         <input type="file" x-ref="input" name="{{ $resolvedName }}" id="{{ $resolvedId }}"
-            @if ($multiple) multiple @endif class="hidden"
+            @if ($multiple) multiple @endif class="sr-only"
+            @if ($resolvedModel)
+                :aria-invalid="hasError('{{ $resolvedModel }}')"
+                :aria-describedby="hasError('{{ $resolvedModel }}') ? '{{ $resolvedId }}-error' : null"
+            @endif
             x-on:change="handleFileSelect($event)">
 
         <template x-if="!file">
