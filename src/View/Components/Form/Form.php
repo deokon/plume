@@ -15,6 +15,7 @@ class Form extends Component
         public ?string $submitButton = null,
         public ?string $resetButton = null,
         public bool $hideOnSuccess = false,
+        public bool $inline = false,
     ) {}
 
     public function render(): View|Closure|string
