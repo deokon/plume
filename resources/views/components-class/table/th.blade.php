@@ -3,10 +3,14 @@
 --}}
 @aware(['align' => null])
 @php
-    $resolvedAlign = $component->resolveAttribute($attributes, 'align', $align, 'left');
+    $alignments = [
+        'left' => 'text-left',
+        'center' => 'text-center',
+        'right' => 'text-right',
+    ];
+    $alignClass = $alignments[$align] ?? 'text-left';
     $cleanAttributes = $component->cleanAttributes($attributes);
 @endphp
-<th
-    {{ $cleanAttributes->merge(['class' => "h-12 px-4 text-$resolvedAlign align-middle uppercase font-medium [&:has([role=checkbox])]:pr-0"]) }}>
+<th {{ $cleanAttributes->merge(['class' => "h-12 px-4 $alignClass align-middle uppercase font-medium [&:has([role=checkbox])]:pr-0"]) }}>
     {{ $slot }}
 </th>
