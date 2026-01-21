@@ -10,7 +10,7 @@
 @prop bool inline Whether to display the form inputs in a single line.
 --}}
 <form action="{{ $action }}" method="{{ $method === 'GET' ? 'GET' : 'POST' }}"
-    {{ $attributes->merge(['class' => $inline ? '' : 'space-y-6']) }}
+    {{ $attributes->merge(['class' => $inline ? 'inline' : 'space-y-6']) }}
     x-data="form({{ $formData ?? '{}' }}, { hideOnSuccess: {{ $hideOnSuccess ? 'true' : 'false' }} })"
     @submit.prevent="submit()"
 >
@@ -21,56 +21,55 @@
         @csrf
     @endif
 
-    <div x-show="!isHidden" class="{{ $inline ? 'flex items-end gap-4' : 'space-y-6' }}" x-bind:class="{ 'opacity-50 pointer-events-none select-none': processing }">
-        {{ $slot }}
+    <div class="{{ $inline ? 'flex items-start gap-4' : '' }}">
+        <div x-show="!isHidden" class="{{ $inline ? 'flex items-start gap-4' : 'space-y-6' }}" x-bind:class="{ 'opacity-50 pointer-events-none select-none': processing }">
+            {{ $slot }}
+        </div>
+
+        @if(!$inline ?? true)
+            {{-- Automatic Feedback Alerts --}}
+            <template x-if="wasSuccessful">
+                <x-plume::alert style="success" title="Success" class="mt-4">
+                    <span x-text="message"></span>
+                </x-plume::alert>
+            </template>
+
+            <template x-if="hasFailed">
+                <x-plume::alert style="destructive" title="Error" class="mt-4">
+                    <span x-text="message"></span>
+                </x-plume::alert>
+            </template>
+        @endif
 
         @if ($submitButton || $resetButton)
-            @if ($inline)
-                <div class="flex items-center gap-2">
-                    @if ($submitButton)
-                        <x-plume::button.loader type="submit" var="processing">
-                            {{ $submitButton }}
-                        </x-plume::button.loader>
-                    @endif
+            <x-plume::form.actions x-show="!isHidden" class="mt-6">
+                @if ($submitButton)
+                    <x-plume::button.loader type="submit" var="processing">
+                        {{ $submitButton }}
+                    </x-plume::button.loader>
+                @endif
 
-                    @if ($resetButton)
-                        <x-plume::button x-on:click="reset()" style="minor">
-                            {{ $resetButton }}
-                        </x-plume::button>
-                    @endif
-                </div>
-            @else
-                <x-plume::form.actions>
-                    @if ($submitButton)
-                        <x-plume::button.loader type="submit" var="processing">
-                            {{ $submitButton }}
-                        </x-plume::button.loader>
-                    @endif
-
-                    @if ($resetButton)
-                        <x-plume::button x-on:click="reset()" style="minor">
-                            {{ $resetButton }}
-                        </x-plume::button>
-                    @endif
-                </x-plume::form.actions>
-            @endif
+                @if ($resetButton)
+                    <x-plume::button x-on:click="reset()" style="minor">
+                        {{ $resetButton }}
+                    </x-plume::button>
+                @endif
+            </x-plume::form.actions>
         @endif
     </div>
 
-    {{-- Automatic Feedback Alerts --}}
-    <template x-if="wasSuccessful">
-        <div class="mt-4">
-            <x-plume::alert style="success" title="Success">
+    @if($inline ?? false)
+        {{-- Automatic Feedback Alerts --}}
+        <template x-if="wasSuccessful">
+            <x-plume::alert style="success" title="Success" class="mt-4">
                 <span x-text="message"></span>
             </x-plume::alert>
-        </div>
-    </template>
+        </template>
 
-    <template x-if="hasFailed">
-        <div class="mt-4">
-            <x-plume::alert style="destructive" title="Error">
+        <template x-if="hasFailed">
+            <x-plume::alert style="destructive" title="Error" class="mt-4">
                 <span x-text="message"></span>
             </x-plume::alert>
-        </div>
-    </template>
+        </template>
+    @endif
 </form>
