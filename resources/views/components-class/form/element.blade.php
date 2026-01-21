@@ -7,7 +7,7 @@
     $resolvedId = $id; // ID is usually passed correctly from parent input
 @endphp
 <div {{ $attributes->merge(['class' => 'space-y-2 rounded-md border border-transparent transition-colors']) }}
-    @if ($resolvedModel) x-bind:class="{ 'bg-destructive/10 border-destructive p-2': hasError('{{ $resolvedModel }}') }" @endif>
+    @if ($resolvedModel) x-bind:class="{ 'bg-destructive-100 dark:bg-destructive-500/30 border-destructive-300 dark:border-destructive-500/50 p-2': hasError('{{ $resolvedModel }}') }" @endif>
     @if ($label)
         <x-plume::form.label :for="$resolvedId">
             {{ $label }}
@@ -21,7 +21,7 @@
     @endif
     @if ($resolvedModel)
         <template x-if="hasError('{{ $resolvedModel }}')">
-            <p class="mt-2 text-sm text-destructive" x-text="getError('{{ $resolvedModel }}')"
+            <p class="mt-2 text-sm text-destructive-800 dark:text-destructive-200" x-text="getError('{{ $resolvedModel }}')"
                 aria-live="assertive"></p>
         </template>
     @endif

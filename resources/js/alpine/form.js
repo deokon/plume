@@ -20,7 +20,6 @@ export default function (Alpine) {
             url: null,
             resetOnSuccess: false,
             hideOnSuccess: false,
-            validateOnChange: false,
             ...config
         },
 
@@ -36,10 +35,6 @@ export default function (Alpine) {
             // Watch for changes to calculate dirty state
             this.$watch('data', (value) => {
                 this.isDirty = JSON.stringify(value) !== JSON.stringify(this._initialData);
-
-                if (this._config.validateOnChange) {
-                    // Logic to clear errors on change could go here
-                }
             }, { deep: true });
         },
 
@@ -60,9 +55,9 @@ export default function (Alpine) {
             }
 
             // Resolve CSRF Token: Meta tag first, then input field
-            const token = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') 
-                       || document.querySelector('input[name="_token"]')?.value 
-                       || '';
+            const token = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content')
+                || document.querySelector('input[name="_token"]')?.value
+                || '';
 
             try {
                 const response = await fetch(targetUrl, {
@@ -97,6 +92,10 @@ export default function (Alpine) {
             if (result.data) {
                 this.data = { ...this.data, ...result.data };
             }
+
+            // Update ground truth so isDirty becomes false
+            this._initialData = JSON.parse(JSON.stringify(this.data));
+            this.isDirty = false;
 
             if (this._config.resetOnSuccess) {
                 this.resetData();
