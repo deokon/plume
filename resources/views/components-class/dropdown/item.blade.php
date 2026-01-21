@@ -1,5 +1,6 @@
 {{--
 @component x-plume::dropdown.item
+@description An actionable item within a dropdown menu.
 --}}
 <x-plume::button
     :style="$style"

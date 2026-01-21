@@ -76,10 +76,22 @@ foreach ($aliases as $className => $tagName) {
     
     // Check nested form paths etc.
     $viewPath = $viewsDir . '/' . $viewName . '.blade.php';
+    
     if (!file_exists($viewPath)) {
-        // Try subfolder: 'form.input' -> form/input
-        $subPath = str_replace('.', '/', str_replace('x-plume::', '', $tagName));
-        $viewPath = $viewsDir . '/' . $subPath . '.blade.php';
+        $cleanTag = str_replace('x-plume::', '', $tagName);
+        $subPath = str_replace('.', '/', $cleanTag);
+        
+        // Try subfolder: 'form.input' -> form/input.blade.php
+        $candidate = $viewsDir . '/' . $subPath . '.blade.php';
+        if (file_exists($candidate)) {
+            $viewPath = $candidate;
+        } else {
+            // Try index: 'form' -> form/index.blade.php
+            $candidate = $viewsDir . '/' . $subPath . '/index.blade.php';
+            if (file_exists($candidate)) {
+                $viewPath = $candidate;
+            }
+        }
     }
 
     $description = "No description provided.";

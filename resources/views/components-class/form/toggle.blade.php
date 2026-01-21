@@ -1,5 +1,6 @@
 {{--
 @component x-plume::form.toggle
+@description A toggle switch for boolean selection.
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php

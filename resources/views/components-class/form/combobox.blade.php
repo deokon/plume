@@ -1,5 +1,6 @@
 {{--
 @component x-plume::form.combobox
+@description A searchable select input.
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php

@@ -1,5 +1,6 @@
 {{--
 @component x-plume::form.element
+@description Base wrapper for form inputs, handling labels and errors.
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php

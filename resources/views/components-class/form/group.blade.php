@@ -1,5 +1,6 @@
 {{--
 @component x-plume::form.group
+@description Groups related form inputs.
 --}}
 <div {{ $attributes->merge(['class' => 'space-y-4']) }}>
     @if ($label)

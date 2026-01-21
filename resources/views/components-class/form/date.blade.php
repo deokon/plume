@@ -1,5 +1,6 @@
 {{--
 @component x-plume::form.date
+@description A date picker input.
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php

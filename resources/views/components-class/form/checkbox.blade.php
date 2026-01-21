@@ -1,5 +1,6 @@
 {{--
 @component x-plume::form.checkbox
+@description A checkbox input for boolean selection.
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php

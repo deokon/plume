@@ -1,5 +1,6 @@
 {{--
 @component x-plume::tabs.group
+@description Container for tab navigation items.
 --}}
 @aware([
     'side' => null,

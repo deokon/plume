@@ -1,5 +1,6 @@
 {{--
 @component x-plume::form.label
+@description A label for a form input.
 --}}
 <label @if ($for) for="{{ $for }}" @endif
     {{ $attributes->merge(['class' => 'block text-sm font-medium text-foreground/70 dark:text-background-400']) }}>

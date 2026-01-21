@@ -1,5 +1,6 @@
 {{--
 @component x-plume::form.select
+@description A dropdown select input.
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php

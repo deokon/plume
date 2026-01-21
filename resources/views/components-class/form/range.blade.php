@@ -1,5 +1,6 @@
 {{--
 @component x-plume::form.range
+@description A slider input for selecting a value within a range.
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php

@@ -1,5 +1,6 @@
 {{--
 @component x-plume::form.radio
+@description A radio button for single selection.
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php

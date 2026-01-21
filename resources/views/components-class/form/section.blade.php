@@ -1,5 +1,6 @@
 {{--
 @component x-plume::form.section
+@description A titled section for organizing form fields.
 --}}
 <div {{ $attributes->merge(['class' => 'space-y-6']) }}>
     @if ($title)

@@ -1,5 +1,6 @@
 {{--
 @component x-plume::form.textarea
+@description A multi-line text input.
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php

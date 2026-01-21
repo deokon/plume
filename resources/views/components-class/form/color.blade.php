@@ -1,5 +1,6 @@
 {{--
 @component x-plume::form.color
+@description A color picker input.
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php

@@ -1,5 +1,6 @@
 {{--
 @component x-plume::tabs.item
+@description Individual tab navigation link.
 --}}
 @aware([
     'side' => null,
