@@ -11,10 +11,12 @@ export default function (Alpine) {
         show: initialShow,
         name: name,
         autofocus: autofocus,
+        lastFocusedElement: null,
 
         init() {
             this.$watch('show', (value) => {
                 if (value) {
+                    this.lastFocusedElement = document.activeElement;
                     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
                     document.body.style.paddingRight = `${scrollbarWidth}px`;
                     document.body.classList.add('overflow-y-hidden');
@@ -24,6 +26,9 @@ export default function (Alpine) {
                 } else {
                     document.body.classList.remove('overflow-y-hidden');
                     document.body.style.paddingRight = null;
+                    if (this.lastFocusedElement) {
+                        this.lastFocusedElement.focus();
+                    }
                 }
             });
 
