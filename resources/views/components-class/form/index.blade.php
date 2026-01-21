@@ -14,40 +14,36 @@
         @csrf
     @endif
 
-    <div x-show="!isHidden" class="space-y-6">
+    <div x-show="!isHidden" class="space-y-6" x-bind:class="{ 'opacity-50 pointer-events-none select-none': processing }">
         {{ $slot }}
-
-        @if ($submitButton || $resetButton)
-            <x-plume::form.actions>
-                @if ($submitButton)
-                    <x-plume::button.loader type="submit" var="processing">
-                        {{ $submitButton }}
-                    </x-plume::button.loader>
-                @endif
-
-                @if ($resetButton)
-                    <x-plume::button x-on:click="reset()" style="minor">
-                        {{ $resetButton }}
-                    </x-plume::button>
-                @endif
-            </x-plume::form.actions>
-        @endif
     </div>
 
     {{-- Automatic Feedback Alerts --}}
     <template x-if="wasSuccessful">
-        <div class="mt-4">
-            <x-plume::alert style="success" title="Success">
-                <span x-text="message"></span>
-            </x-plume::alert>
-        </div>
+        <x-plume::alert style="success" title="Success">
+            <span x-text="message"></span>
+        </x-plume::alert>
     </template>
 
     <template x-if="hasFailed">
-        <div class="mt-4">
-            <x-plume::alert style="destructive" title="Error">
-                <span x-text="message"></span>
-            </x-plume::alert>
-        </div>
+        <x-plume::alert style="destructive" title="Error">
+            <span x-text="message"></span>
+        </x-plume::alert>
     </template>
+
+    @if ($submitButton || $resetButton)
+        <x-plume::form.actions x-show="!isHidden">
+            @if ($submitButton)
+                <x-plume::button.loader type="submit" var="processing">
+                    {{ $submitButton }}
+                </x-plume::button.loader>
+            @endif
+
+            @if ($resetButton)
+                <x-plume::button x-on:click="reset()" style="minor">
+                    {{ $resetButton }}
+                </x-plume::button>
+            @endif
+        </x-plume::form.actions>
+    @endif
 </form>

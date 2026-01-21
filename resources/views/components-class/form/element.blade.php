@@ -21,7 +21,7 @@
     @endif
     @if ($resolvedModel)
         <template x-if="hasError('{{ $resolvedModel }}')">
-            <p class="mt-2 text-sm text-destructive" x-text="errors['{{ $resolvedModel }}']"
+            <p class="mt-2 text-sm text-destructive" x-text="getError('{{ $resolvedModel }}')"
                 aria-live="assertive"></p>
         </template>
     @endif

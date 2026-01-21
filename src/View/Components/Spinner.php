@@ -35,6 +35,7 @@ class Spinner extends Component
             'secondary' => 'text-secondary-foreground',
             'destructive' => 'text-destructive',
             'background' => 'text-background-400',
+            'white' => 'text-white',
         ];
 
         return ($sizes[$this->size] ?? $sizes['md']) . ' ' . ($styles[$this->style] ?? $styles['primary']);
