@@ -1,7 +1,7 @@
 {
     "components": {
         "x-plume::accordion": {
-            "path": "plume/resources/views/components-class/accordion.blade.php",
+            "path": "plume/resources/views/components-class/accordion/index.blade.php",
             "props": {
                 "alwaysOpen": {
                     "type": "bool",
@@ -13,7 +13,7 @@
             "doc_url": "https://plume.dennisokon.com/docs/accordion"
         },
         "x-plume::accordion.item": {
-            "path": "plume/resources/views/components-class/accordion-item.blade.php",
+            "path": "plume/resources/views/components-class/accordion/item.blade.php",
             "props": {
                 "title": {
                     "type": "string",
@@ -189,7 +189,7 @@
             "doc_url": "https://plume.dennisokon.com/docs/badge"
         },
         "x-plume::breadcrumb": {
-            "path": "plume/resources/views/components-class/breadcrumb.blade.php",
+            "path": "plume/resources/views/components-class/breadcrumb/index.blade.php",
             "props": {
                 "items": {
                     "type": "array",
@@ -205,7 +205,7 @@
             "doc_url": "https://plume.dennisokon.com/docs/breadcrumb"
         },
         "x-plume::breadcrumb.item": {
-            "path": "plume/resources/views/components-class/breadcrumb-item.blade.php",
+            "path": "plume/resources/views/components-class/breadcrumb/item.blade.php",
             "props": {
                 "href": {
                     "type": "string",
@@ -221,7 +221,7 @@
             "doc_url": "https://plume.dennisokon.com/docs/breadcrumb-item"
         },
         "x-plume::breadcrumb.separator": {
-            "path": "plume/resources/views/components-class/breadcrumb-separator.blade.php",
+            "path": "plume/resources/views/components-class/breadcrumb/separator.blade.php",
             "props": [],
             "description": "Separator between breadcrumb items.",
             "usage": null,
@@ -392,7 +392,7 @@
             "doc_url": "https://plume.dennisokon.com/docs/card"
         },
         "x-plume::carousel": {
-            "path": "plume/resources/views/components-class/carousel.blade.php",
+            "path": "plume/resources/views/components-class/carousel/index.blade.php",
             "props": {
                 "controls": {
                     "type": "bool",
@@ -416,7 +416,7 @@
             "doc_url": "https://plume.dennisokon.com/docs/carousel"
         },
         "x-plume::carousel.item": {
-            "path": "plume/resources/views/components-class/carousel-item.blade.php",
+            "path": "plume/resources/views/components-class/carousel/item.blade.php",
             "props": [],
             "description": "An individual slide within a carousel.",
             "usage": null,
@@ -467,7 +467,7 @@
             "doc_url": "https://plume.dennisokon.com/docs/code"
         },
         "x-plume::command": {
-            "path": "plume/resources/views/components-class/command.blade.php",
+            "path": "plume/resources/views/components-class/command/index.blade.php",
             "props": {
                 "trigger": {
                     "type": "string",
@@ -487,7 +487,7 @@
             "doc_url": "https://plume.dennisokon.com/docs/command"
         },
         "x-plume::command.group": {
-            "path": "plume/resources/views/components-class/command-group.blade.php",
+            "path": "plume/resources/views/components-class/command/group.blade.php",
             "props": {
                 "title": {
                     "type": "string",
@@ -499,7 +499,7 @@
             "doc_url": "https://plume.dennisokon.com/docs/command-group"
         },
         "x-plume::command.item": {
-            "path": "plume/resources/views/components-class/command-item.blade.php",
+            "path": "plume/resources/views/components-class/command/item.blade.php",
             "props": {
                 "value": {
                     "type": "string",
@@ -1405,14 +1405,14 @@
             "doc_url": "https://plume.dennisokon.com/docs/modal"
         },
         "x-plume::navbar": {
-            "path": "plume/resources/views/components-class/navbar.blade.php",
+            "path": "plume/resources/views/components-class/navbar/index.blade.php",
             "props": [],
             "description": "A top-level navigation component for site-wide links and actions.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/navbar"
         },
         "x-plume::navbar.item": {
-            "path": "plume/resources/views/components-class/navbar-item.blade.php",
+            "path": "plume/resources/views/components-class/navbar/item.blade.php",
             "props": {
                 "active": {
                     "type": "bool",
@@ -1428,21 +1428,21 @@
             "doc_url": "https://plume.dennisokon.com/docs/navbar-item"
         },
         "x-plume::navbar.logo": {
-            "path": "plume/resources/views/components-class/navbar-logo.blade.php",
+            "path": "plume/resources/views/components-class/navbar/logo.blade.php",
             "props": [],
             "description": "The brand logo or title.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/navbar-logo"
         },
         "x-plume::navbar.menu": {
-            "path": "plume/resources/views/components-class/navbar-menu.blade.php",
+            "path": "plume/resources/views/components-class/navbar/menu.blade.php",
             "props": [],
             "description": "Container for navigation items.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/navbar-menu"
         },
         "x-plume::navbar.mobile-item": {
-            "path": "plume/resources/views/components-class/navbar-mobile-item.blade.php",
+            "path": "plume/resources/views/components-class/navbar/mobile-item.blade.php",
             "props": {
                 "active": {
                     "type": "bool",
@@ -1458,14 +1458,14 @@
             "doc_url": "https://plume.dennisokon.com/docs/navbar-mobile-item"
         },
         "x-plume::navbar.mobile-menu": {
-            "path": "plume/resources/views/components-class/navbar-mobile-menu.blade.php",
+            "path": "plume/resources/views/components-class/navbar/mobile-menu.blade.php",
             "props": [],
             "description": "Responsive mobile menu container.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/navbar-mobile-menu"
         },
         "x-plume::navbar.mobile-toggle": {
-            "path": "plume/resources/views/components-class/navbar-mobile-toggle.blade.php",
+            "path": "plume/resources/views/components-class/navbar/mobile-toggle.blade.php",
             "props": [],
             "description": "Toggle button for the mobile menu.",
             "usage": null,
@@ -1512,7 +1512,7 @@
             "doc_url": "https://plume.dennisokon.com/docs/popover"
         },
         "x-plume::progress": {
-            "path": "plume/resources/views/components-class/progress.blade.php",
+            "path": "plume/resources/views/components-class/progress/index.blade.php",
             "props": {
                 "value": {
                     "type": "int",
@@ -1572,7 +1572,7 @@
             "doc_url": "https://plume.dennisokon.com/docs/progress-percent"
         },
         "x-plume::search": {
-            "path": "plume/resources/views/components-class/search.blade.php",
+            "path": "plume/resources/views/components-class/search/index.blade.php",
             "props": {
                 "placeholder": {
                     "type": "string",
@@ -1588,7 +1588,7 @@
             "doc_url": "https://plume.dennisokon.com/docs/search"
         },
         "x-plume::search.result": {
-            "path": "plume/resources/views/components-class/search-result.blade.php",
+            "path": "plume/resources/views/components-class/search/result.blade.php",
             "props": {
                 "title": {
                     "type": "string",
@@ -1647,7 +1647,7 @@
             "doc_url": "https://plume.dennisokon.com/docs/spinner"
         },
         "x-plume::stepper": {
-            "path": "plume/resources/views/components-class/stepper.blade.php",
+            "path": "plume/resources/views/components-class/stepper/index.blade.php",
             "props": {
                 "active": {
                     "type": "int",
@@ -1659,7 +1659,7 @@
             "doc_url": "https://plume.dennisokon.com/docs/stepper"
         },
         "x-plume::stepper.actions": {
-            "path": "plume/resources/views/components-class/stepper-actions.blade.php",
+            "path": "plume/resources/views/components-class/stepper/actions.blade.php",
             "props": {
                 "prev": {
                     "type": "mixed",
@@ -1675,7 +1675,7 @@
             "doc_url": "https://plume.dennisokon.com/docs/stepper-actions"
         },
         "x-plume::stepper.step": {
-            "path": "plume/resources/views/components-class/stepper-step.blade.php",
+            "path": "plume/resources/views/components-class/stepper/step.blade.php",
             "props": {
                 "step": {
                     "type": "int",
