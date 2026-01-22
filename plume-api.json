@@ -190,7 +190,16 @@
         },
         "x-plume::breadcrumb": {
             "path": "plume/resources/views/components-class/breadcrumb.blade.php",
-            "props": [],
+            "props": {
+                "items": {
+                    "type": "array",
+                    "default": "[]"
+                },
+                "separator": {
+                    "type": "string",
+                    "default": "'icon-[fluent--chevron-right-24-regular]'"
+                }
+            },
             "description": "Displays the path to the current resource using a hierarchy of links.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/breadcrumb"
@@ -539,9 +548,13 @@
                 "sortable": {
                     "type": "bool",
                     "default": "true"
+                },
+                "url": {
+                    "type": "string",
+                    "default": "null"
                 }
             },
-            "description": "Advanced table with sorting, filtering, and pagination. Powered by AlpineJS.",
+            "description": "Advanced table with sorting, filtering, and pagination. Powered by AlpineJS. Supports client-side data or server-side fetching via URL.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/data-table"
         },

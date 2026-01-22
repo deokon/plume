@@ -1,4 +1,4 @@
-export default (perPage = 10, paginated = false, sortable = true) => ({
+export default (perPage = 10, paginated = false, sortable = true, url = null) => ({
     data: [],
     columns: [],
     search: '',
@@ -8,12 +8,26 @@ export default (perPage = 10, paginated = false, sortable = true) => ({
     perPage: parseInt(perPage) || 10,
     paginated: !!paginated,
     sortable: !!sortable,
+    url: url,
+    loading: false,
+    total: 0,
 
     init() {
-        this.sync();
-        const observer = new MutationObserver(() => this.sync());
-        observer.observe(this.$el, { attributes: true, attributeFilter: ['data', 'columns'] });
-        this.$watch('search', () => (this.page = 1));
+        if (this.url) {
+            this.fetch();
+            this.$watch('search', () => {
+                this.page = 1;
+                this.fetch();
+            });
+            this.$watch('page', () => this.fetch());
+            this.$watch('sortCol', () => this.fetch());
+            this.$watch('sortDir', () => this.fetch());
+        } else {
+            this.sync();
+            const observer = new MutationObserver(() => this.sync());
+            observer.observe(this.$el, { attributes: true, attributeFilter: ['data', 'columns'] });
+            this.$watch('search', () => (this.page = 1));
+        }
     },
 
     sync() {
@@ -46,7 +60,36 @@ export default (perPage = 10, paginated = false, sortable = true) => ({
         }
     },
 
+    async fetch() {
+        if (!this.url) return;
+        this.loading = true;
+
+        const params = new URLSearchParams({
+            page: this.page,
+            per_page: this.perPage,
+            search: this.search,
+            sort_col: this.sortCol,
+            sort_dir: this.sortDir,
+        });
+
+        try {
+            const response = await fetch(`${this.url}?${params.toString()}`);
+            const result = await response.json();
+
+            if (result.success) {
+                this.data = result.data.items;
+                this.total = result.data.pagination.total;
+            }
+        } catch (e) {
+            console.error('Plume Data Table fetch error:', e);
+        } finally {
+            this.loading = false;
+        }
+    },
+
     get filteredData() {
+        if (this.url) return this.data;
+
         if (!Array.isArray(this.data)) return [];
 
         let filtered = [...this.data];
@@ -73,6 +116,8 @@ export default (perPage = 10, paginated = false, sortable = true) => ({
     },
 
     get pagedData() {
+        if (this.url) return this.data;
+
         const data = this.filteredData;
         if (!this.paginated) return data;
         const start = (this.page - 1) * this.perPage;
@@ -80,7 +125,8 @@ export default (perPage = 10, paginated = false, sortable = true) => ({
     },
 
     get totalPages() {
-        return Math.ceil(this.filteredData.length / this.perPage) || 1;
+        const total = this.url ? this.total : this.filteredData.length;
+        return Math.ceil(total / this.perPage) || 1;
     },
 
     toggleSort(key) {

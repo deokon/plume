@@ -233,7 +233,7 @@ Path: `plume/resources/views/components-class/command-item.blade.php`
 ---
 
 ## x-plume::data-table
-Advanced table with sorting, filtering, and pagination. Powered by AlpineJS.
+Advanced table with sorting, filtering, and pagination. Powered by AlpineJS. Supports client-side data or server-side fetching via URL.
 
 Documentation: [https://plume.dennisokon.com/docs/data-table](https://plume.dennisokon.com/docs/data-table)
 

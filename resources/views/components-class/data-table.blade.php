@@ -1,8 +1,15 @@
 {{--
 @component x-plume::data-table
-@description Advanced table with sorting, filtering, and pagination. Powered by AlpineJS.
+@description Advanced table with sorting, filtering, and pagination. Powered by AlpineJS. Supports client-side data or server-side fetching via URL.
+@prop array data - Static data for client-side mode.
+@prop array columns - Column definitions (key, label, sortable, headerClass, cellClass).
+@prop bool searchable - Enable search input.
+@prop bool paginated - Enable pagination.
+@prop int perPage - Items per page.
+@prop bool sortable - Enable sorting globally.
+@prop string url - API endpoint for server-side fetching.
 --}}
-<div x-data="dataTable({{ $perPage }}, {{ Js::from($paginated) }}, {{ Js::from($sortable) }})" {{ $attributes->merge(['class' => 'space-y-4']) }}
+<div x-data="dataTable({{ $perPage }}, {{ Js::from($paginated) }}, {{ Js::from($sortable) }}, {{ Js::from($url) }})" {{ $attributes->merge(['class' => 'space-y-4']) }}
     :data="{{ Js::from($data) }}" :columns="{{ Js::from($columns) }}">
     @if ($searchable)
         <div class="flex items-center justify-between px-4 pt-4">
@@ -11,7 +18,16 @@
         </div>
     @endif
 
-    <x-plume::table>
+    <div class="relative">
+        <div x-show="loading" x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+            x-transition:leave="transition ease-in duration-100"
+            x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+            class="absolute inset-0 z-10 flex items-center justify-center bg-background/50 backdrop-blur-[1px]">
+            <x-plume::spinner class="size-8 text-primary" />
+        </div>
+
+        <x-plume::table>
         <x-plume::table.thead>
             <x-plume::table.tr>
                 <template x-for="col in columns" :key="col.key">
@@ -59,7 +75,8 @@
                 </x-plume::table.tr>
             </template>
         </x-plume::table.tbody>
-    </x-plume::table>
+        </x-plume::table>
+    </div>
 
     @if ($paginated)
         <div class="flex flex-col items-center gap-4 px-4 pb-4 sm:flex-row sm:justify-between">
