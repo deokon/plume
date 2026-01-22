@@ -1,6 +1,6 @@
-export default (perPage = 10, paginated = false, sortable = true, url = null) => ({
-    data: [],
-    columns: [],
+export default (perPage = 10, paginated = false, sortable = true, url = null, initialData = [], initialColumns = []) => ({
+    data: initialData,
+    columns: initialColumns,
     search: '',
     sortCol: '',
     sortDir: 'asc',
@@ -13,6 +13,8 @@ export default (perPage = 10, paginated = false, sortable = true, url = null) =>
     total: 0,
 
     init() {
+        this.sync();
+
         if (this.url) {
             this.fetch();
             this.$watch('search', () => {
@@ -22,10 +24,12 @@ export default (perPage = 10, paginated = false, sortable = true, url = null) =>
             this.$watch('page', () => this.fetch());
             this.$watch('sortCol', () => this.fetch());
             this.$watch('sortDir', () => this.fetch());
-        } else {
-            this.sync();
-            const observer = new MutationObserver(() => this.sync());
-            observer.observe(this.$el, { attributes: true, attributeFilter: ['data', 'columns'] });
+        }
+
+        const observer = new MutationObserver(() => this.sync());
+        observer.observe(this.$el, { attributes: true, attributeFilter: ['data', 'columns'] });
+
+        if (!this.url) {
             this.$watch('search', () => (this.page = 1));
         }
     },
@@ -35,21 +39,17 @@ export default (perPage = 10, paginated = false, sortable = true, url = null) =>
             const d = this.$el.getAttribute('data');
             const c = this.$el.getAttribute('columns');
 
-            if (d) {
+            if (d && !d.startsWith('[object ')) {
                 const parsedData = JSON.parse(d);
-                if (Array.isArray(parsedData)) {
+                if (Array.isArray(parsedData) && JSON.stringify(parsedData) !== JSON.stringify(this.data)) {
                     this.data = parsedData;
-                } else {
-                    console.warn('Plume Data Table: "data" attribute must be an array.');
                 }
             }
 
-            if (c) {
+            if (c && !c.startsWith('[object ')) {
                 const parsedCols = JSON.parse(c);
-                if (Array.isArray(parsedCols)) {
+                if (Array.isArray(parsedCols) && JSON.stringify(parsedCols) !== JSON.stringify(this.columns)) {
                     this.columns = parsedCols;
-                } else {
-                    console.warn('Plume Data Table: "columns" attribute must be an array.');
                 }
             }
         } catch (e) {
@@ -124,9 +124,12 @@ export default (perPage = 10, paginated = false, sortable = true, url = null) =>
         return data.slice(start, start + this.perPage);
     },
 
+    get totalItems() {
+        return this.url ? this.total : this.filteredData.length;
+    },
+
     get totalPages() {
-        const total = this.url ? this.total : this.filteredData.length;
-        return Math.ceil(total / this.perPage) || 1;
+        return Math.ceil(this.totalItems / this.perPage) || 1;
     },
 
     toggleSort(key) {

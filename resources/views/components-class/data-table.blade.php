@@ -9,7 +9,7 @@
 @prop bool sortable - Enable sorting globally.
 @prop string url - API endpoint for server-side fetching.
 --}}
-<div x-data="dataTable({{ $perPage }}, {{ Js::from($paginated) }}, {{ Js::from($sortable) }}, {{ Js::from($url) }})" {{ $attributes->merge(['class' => 'space-y-4']) }}
+<div x-data="dataTable({{ $perPage }}, {{ Js::from($paginated) }}, {{ Js::from($sortable) }}, {{ Js::from($url) }}, {{ Js::from($data) }}, {{ Js::from($columns) }})" {{ $attributes->merge(['class' => 'space-y-4']) }}
     :data="{{ Js::from($data) }}" :columns="{{ Js::from($columns) }}">
     @if ($searchable)
         <div class="flex items-center justify-between px-4 pt-4">
@@ -82,9 +82,9 @@
         <div class="flex flex-col items-center gap-4 px-4 pb-4 sm:flex-row sm:justify-between">
             <div class="text-xs text-foreground/50 dark:text-background-400">
                 Showing <span
-                    x-text="filteredData.length > 0 ? ((page - 1) * perPage) + 1 : 0"></span> to
-                <span x-text="Math.min(page * perPage, filteredData.length)"></span> of
-                <span x-text="filteredData.length"></span> results
+                    x-text="totalItems > 0 ? ((page - 1) * perPage) + 1 : 0"></span> to
+                <span x-text="Math.min(page * perPage, totalItems)"></span> of
+                <span x-text="totalItems"></span> results
             </div>
             <x-plume::pagination ::total="totalPages" ::current="page"
                 @change="page = $event.detail.page" />
