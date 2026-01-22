@@ -1,5 +1,6 @@
 {{--
 @component x-plume::form.number
+@description A numeric input field.
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php

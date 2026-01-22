@@ -1,5 +1,6 @@
 {{--
 @component x-plume::form.datetime
+@description A date and time picker input.
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php

@@ -1,5 +1,6 @@
 {{--
 @component x-plume::form.password
+@description A secure password input field.
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php

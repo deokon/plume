@@ -1,5 +1,6 @@
 {{--
 @component x-plume::form.combobox
+@description A searchable select input.
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php
@@ -21,6 +22,9 @@
         }
     }" class="relative">
         <button type="button" @click="open = !open" id="{{ $resolvedId }}"
+            role="combobox" aria-haspopup="listbox" :aria-expanded="open"
+            :aria-invalid="hasError('{{ $resolvedModel }}')"
+            :aria-describedby="hasError('{{ $resolvedModel }}') ? '{{ $resolvedId }}-error' : null"
             class="relative w-full cursor-default rounded-md bg-background py-2 pl-3 pr-10 text-left border border-background-700/40 dark:border-background-400/20 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm transition-all"
             {{ $attributes->except(['name', 'model', 'id']) }}>
             <span class="block truncate text-foreground"
