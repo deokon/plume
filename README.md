@@ -2,6 +2,10 @@
 
 A comprehensive, responsive, and beautiful component library for Laravel, built with Blade, Alpine.js, and Tailwind CSS v4.
 
+## 📖 Documentation
+
+For detailed guides and component references, see the **[Documentation Index](docs/README.md)**.
+
 ## Installation
 
 ### 1. Install via Composer
