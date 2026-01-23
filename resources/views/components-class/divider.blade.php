@@ -3,7 +3,7 @@
 @description Visually separates content sections with an optional label.
 @prop string $label (Default: null)
 --}}
-<div {{ $attributes->merge(['class' => 'relative flex items-center py-5']) }}>
+<div {{ $attributes->merge(['class' => 'relative flex items-center py-5 w-full']) }}>
     <div class="flex-grow border-t border-background-700/40 dark:border-background-400/20"></div>
     @if ($label || $slot->isNotEmpty())
         <div

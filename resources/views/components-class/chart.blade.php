@@ -69,7 +69,7 @@
                             $cx = $count > 1 ? $i * (100 / ($count - 1)) : 50;
                             $cy = $max > 0 ? 100 - ($val / $max) * 100 : 100;
                         @endphp
-                        <circle cx="{{ $cx }}" cy="{{ $cy }}" r="3"
+                        <circle cx="{{ $cx }}" cy="{{ $cy }}" r="1"
                             fill="currentColor" vector-effect="non-scaling-stroke"
                             class="hover:scale-150 transition-transform origin-center cursor-pointer">
                             <title>{{ ($labels[$i] ?? '') . ': ' . $val }}</title>

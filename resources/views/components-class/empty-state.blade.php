@@ -6,7 +6,7 @@
 @prop string $icon (Default: 'icon-[fluent--search-info-24-regular]')
 --}}
 <div
-    {{ $attributes->merge(['class' => 'flex flex-col items-center justify-center p-8 text-center']) }}>
+    {{ $attributes->merge(['class' => 'flex flex-col items-center justify-center p-8 text-center w-full']) }}>
     <div class="mb-4 rounded-full bg-background-200 dark:bg-background-700 p-4">
         <x-plume::icon :i="$icon"
             class="size-8 text-foreground/40 dark:text-background-400/60" />
