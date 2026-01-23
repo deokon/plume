@@ -9,6 +9,11 @@ Documentation: [https://plume.dennisokon.com/docs/accordion](https://plume.denni
 
 Path: `plume/resources/views/components-class/accordion.blade.php`
 
+### Use Cases
+- Frequently Asked Questions (FAQ) sections.
+- Managing large amounts of content in a limited space.
+- Grouping related content into collapsible panels.
+
 ---
 
 ## x-plume::accordion-item
@@ -17,6 +22,10 @@ An individual collapsible item within an accordion.
 Documentation: [https://plume.dennisokon.com/docs/accordion-item](https://plume.dennisokon.com/docs/accordion-item)
 
 Path: `plume/resources/views/components-class/accordion-item.blade.php`
+
+### Use Cases
+- Individual FAQ questions.
+- Content sections within a larger grouping.
 
 ---
 
@@ -27,6 +36,11 @@ Documentation: [https://plume.dennisokon.com/docs/alert](https://plume.dennisoko
 
 Path: `plume/resources/views/components-class/alert.blade.php`
 
+### Use Cases
+- Displaying system-level notifications.
+- Warning users about potential destructive actions.
+- Providing success or error feedback for operations.
+
 ---
 
 ## x-plume::alert-dialog
@@ -35,6 +49,11 @@ Modal dialog specifically designed for alerting users to important information o
 Documentation: [https://plume.dennisokon.com/docs/alert-dialog](https://plume.dennisokon.com/docs/alert-dialog)
 
 Path: `plume/resources/views/components-class/alert-dialog.blade.php`
+
+### Use Cases
+- Confirming destructive actions like deleting an account.
+- Notifying users of critical system maintenance.
+- Requiring explicit user acknowledgement before proceeding.
 
 ---
 
@@ -45,6 +64,11 @@ Documentation: [https://plume.dennisokon.com/docs/aspect](https://plume.dennisok
 
 Path: `plume/resources/views/components-class/aspect.blade.php`
 
+### Use Cases
+- Responsive video embeds.
+- Image placeholders with specific ratios (e.g., 16:9, 4:3).
+- Consistent card or tile layouts.
+
 ---
 
 ## x-plume::audio
@@ -53,6 +77,11 @@ A styled wrapper for HTML5 audio content.
 Documentation: [https://plume.dennisokon.com/docs/audio](https://plume.dennisokon.com/docs/audio)
 
 Path: `plume/resources/views/components-class/audio.blade.php`
+
+### Use Cases
+- Embedding podcasts or audio interviews.
+- Adding sound effects or voice snippets to a page.
+- Creating custom audio player interfaces.
 
 ---
 
@@ -63,6 +92,11 @@ Documentation: [https://plume.dennisokon.com/docs/avatar](https://plume.dennisok
 
 Path: `plume/resources/views/components-class/avatar.blade.php`
 
+### Use Cases
+- User profile images in navbars or cards.
+- Author thumbnails in blog posts or comments.
+- Representing entities in a list.
+
 ---
 
 ## x-plume::badge
@@ -72,6 +106,11 @@ Documentation: [https://plume.dennisokon.com/docs/badge](https://plume.dennisoko
 
 Path: `plume/resources/views/components-class/badge.blade.php`
 
+### Use Cases
+- Status indicators (e.g., "Active", "Pending", "Draft").
+- Tagging content or categories.
+- Showing notification counts.
+
 ---
 
 ## x-plume::breadcrumb
@@ -80,6 +119,11 @@ Displays the path to the current resource using a hierarchy of links.
 Documentation: [https://plume.dennisokon.com/docs/breadcrumb](https://plume.dennisokon.com/docs/breadcrumb)
 
 Path: `plume/resources/views/components-class/breadcrumb.blade.php`
+
+### Use Cases
+- Navigating deeply nested hierarchical structures.
+- Providing secondary navigation for complex websites.
+- Indicating user location within a multi-step process.
 
 ---
 
@@ -108,6 +152,11 @@ Documentation: [https://plume.dennisokon.com/docs/button](https://plume.dennisok
 
 Path: `plume/resources/views/components-class/button.blade.php`
 
+### Use Cases
+- Primary call-to-action (CTA).
+- Form submission.
+- Navigation or triggering UI overlays.
+
 ---
 
 ## x-plume::button-group
@@ -116,6 +165,11 @@ No description provided.
 Documentation: [https://plume.dennisokon.com/docs/button-group](https://plume.dennisokon.com/docs/button-group)
 
 Path: `plume/resources/views/components-class/button-group.blade.php`
+
+### Use Cases
+- Grouping related actions (e.g., "Edit", "Delete", "View").
+- Creating toggle-like button bars.
+- Consolidating toolbars.
 
 ---
 
@@ -158,6 +212,11 @@ Documentation: [https://plume.dennisokon.com/docs/calendar](https://plume.dennis
 
 Path: `plume/resources/views/components-class/calendar.blade.php`
 
+### Use Cases
+- Selecting dates for forms.
+- Scheduling events or appointments.
+- Visualizing date-based data.
+
 ---
 
 ## x-plume::card
@@ -167,6 +226,11 @@ Documentation: [https://plume.dennisokon.com/docs/card](https://plume.dennisokon
 
 Path: `plume/resources/views/components-class/card.blade.php`
 
+### Use Cases
+- Grouping related content or tasks.
+- Creating dashboard widgets.
+- Presenting search results or product summaries.
+
 ---
 
 ## x-plume::carousel
@@ -175,6 +239,11 @@ A slideshow component for cycling through elements.
 Documentation: [https://plume.dennisokon.com/docs/carousel](https://plume.dennisokon.com/docs/carousel)
 
 Path: `plume/resources/views/components-class/carousel.blade.php`
+
+### Use Cases
+- Image galleries or hero sliders.
+- Cycling through testimonials or reviews.
+- Presenting featured content prominently.
 
 ---
 
@@ -194,6 +263,11 @@ Documentation: [https://plume.dennisokon.com/docs/chart](https://plume.dennisoko
 
 Path: `plume/resources/views/components-class/chart.blade.php`
 
+### Use Cases
+- Visualizing trends over time.
+- Comparing data across categories.
+- Displaying performance metrics in a dashboard.
+
 ---
 
 ## x-plume::code
@@ -203,6 +277,11 @@ Documentation: [https://plume.dennisokon.com/docs/code](https://plume.dennisokon
 
 Path: `plume/resources/views/components-class/code.blade.php`
 
+### Use Cases
+- Displaying technical documentation.
+- Sharing API endpoints or example payloads.
+- Presenting command-line instructions.
+
 ---
 
 ## x-plume::command
@@ -211,6 +290,11 @@ A powerful search and action interface accessible via keyboard shortcuts.
 Documentation: [https://plume.dennisokon.com/docs/command](https://plume.dennisokon.com/docs/command)
 
 Path: `plume/resources/views/components-class/command.blade.php`
+
+### Use Cases
+- Global site search and navigation (CMD+K style).
+- Quick action menu for application tasks.
+- Filtering complex lists or data.
 
 ---
 
@@ -239,6 +323,11 @@ Documentation: [https://plume.dennisokon.com/docs/data-table](https://plume.denn
 
 Path: `plume/resources/views/components-class/data-table.blade.php`
 
+### Use Cases
+- Managing large sets of administrative data.
+- Creating searchable and sortable reports.
+- Paginated listing of users, products, or transactions.
+
 ---
 
 ## x-plume::divider
@@ -247,6 +336,11 @@ Visually separates content sections with an optional label.
 Documentation: [https://plume.dennisokon.com/docs/divider](https://plume.dennisokon.com/docs/divider)
 
 Path: `plume/resources/views/components-class/divider.blade.php`
+
+### Use Cases
+- Separating logical sections of a long page.
+- Labeling sub-sections within a card.
+- Visual breaks in list items.
 
 ---
 
@@ -257,6 +351,11 @@ Documentation: [https://plume.dennisokon.com/docs/drawer](https://plume.dennisok
 
 Path: `plume/resources/views/components-class/drawer.blade.php`
 
+### Use Cases
+- Navigation menus on mobile devices.
+- Supplementary details or settings for a selected item.
+- Multi-step forms or wizards.
+
 ---
 
 ## x-plume::dropdown
@@ -265,6 +364,11 @@ Displays a menu to the user—such as a set of actions or functions—triggered 
 Documentation: [https://plume.dennisokon.com/docs/dropdown](https://plume.dennisokon.com/docs/dropdown)
 
 Path: `plume/resources/views/components-class/dropdown.blade.php`
+
+### Use Cases
+- "More actions" menu for table rows.
+- Account settings and logout links.
+- Filtering or sorting options.
 
 ---
 
@@ -293,6 +397,11 @@ Documentation: [https://plume.dennisokon.com/docs/empty-state](https://plume.den
 
 Path: `plume/resources/views/components-class/empty-state.blade.php`
 
+### Use Cases
+- Initial setup or onboarding screens.
+- Indicating no search results found.
+- Handling empty lists or dashboards.
+
 ---
 
 ## x-plume::figure
@@ -301,6 +410,11 @@ Enhanced image component with captions, aspect ratio control, and support for mo
 Documentation: [https://plume.dennisokon.com/docs/figure](https://plume.dennisokon.com/docs/figure)
 
 Path: `plume/resources/views/components-class/figure.blade.php`
+
+### Use Cases
+- Displaying images with descriptive captions.
+- Implementing lightbox-style image viewers.
+- Maintaining consistent aspect ratios for thumbnails.
 
 ---
 
@@ -311,13 +425,10 @@ Documentation: [https://plume.dennisokon.com/docs/form](https://plume.dennisokon
 
 Path: `plume/resources/views/components-class/form/index.blade.php`
 
-### Properties
-- `action` (string): The form submission URL. Default: `''`.
-- `method` (string): The HTTP method (POST, GET, PUT, etc). Default: `'POST'`.
-- `formData` (string): Initial JS data object for Alpine. Default: `null`.
-- `submitButton` (string): Label for the auto-generated submit button. Default: `null`.
-- `resetButton` (string): Label for the auto-generated reset button. Default: `null`.
-- `hideOnSuccess` (boolean): Whether to hide form fields after success. Default: `false`.
+### Use Cases
+- User registration and login.
+- Submitting contact or feedback information.
+- Editing complex settings or profiles.
 
 ---
 
@@ -517,6 +628,11 @@ Documentation: [https://plume.dennisokon.com/docs/gallery](https://plume.denniso
 
 Path: `plume/resources/views/components-class/gallery.blade.php`
 
+### Use Cases
+- Photo albums or portfolio layouts.
+- Product listings in an e-commerce site.
+- Grid-based dashboards.
+
 ---
 
 ## x-plume::icon
@@ -525,6 +641,11 @@ Displays an icon from the Iconify library.
 Documentation: [https://plume.dennisokon.com/docs/icon](https://plume.dennisokon.com/docs/icon)
 
 Path: `plume/resources/views/components-class/icon.blade.php`
+
+### Use Cases
+- Providing visual cues for buttons and links.
+- Representing categories or statuses.
+- Enhancing list items or section headers.
 
 ---
 
@@ -535,6 +656,11 @@ Documentation: [https://plume.dennisokon.com/docs/kbd](https://plume.dennisokon.
 
 Path: `plume/resources/views/components-class/kbd.blade.php`
 
+### Use Cases
+- Documenting keyboard shortcuts.
+- Indicating specific keys to press in tutorials.
+- Enhancing accessibility instructions.
+
 ---
 
 ## x-plume::modal
@@ -544,6 +670,11 @@ Documentation: [https://plume.dennisokon.com/docs/modal](https://plume.dennisoko
 
 Path: `plume/resources/views/components-class/modal.blade.php`
 
+### Use Cases
+- Complex forms that need focus.
+- Displaying detailed content without navigating away.
+- Modal confirmations or important notices.
+
 ---
 
 ## x-plume::navbar
@@ -552,6 +683,11 @@ A top-level navigation component for site-wide links and actions.
 Documentation: [https://plume.dennisokon.com/docs/navbar](https://plume.dennisokon.com/docs/navbar)
 
 Path: `plume/resources/views/components-class/navbar.blade.php`
+
+### Use Cases
+- Main application navigation.
+- Marketing site headers with links and CTAs.
+- Dashboard utility bars.
 
 ---
 
@@ -616,6 +752,11 @@ Documentation: [https://plume.dennisokon.com/docs/pagination](https://plume.denn
 
 Path: `plume/resources/views/components-class/pagination.blade.php`
 
+### Use Cases
+- Navigating multi-page search results.
+- Browsing through blog post archives.
+- Paginating large data sets.
+
 ---
 
 ## x-plume::popover
@@ -624,6 +765,11 @@ Displays rich content in a portal, triggered by a button.
 Documentation: [https://plume.dennisokon.com/docs/popover](https://plume.dennisokon.com/docs/popover)
 
 Path: `plume/resources/views/components-class/popover.blade.php`
+
+### Use Cases
+- Displaying additional info on hover or click.
+- Implementing complex tooltips with HTML content.
+- Quick filter menus.
 
 ---
 
@@ -634,6 +780,11 @@ Documentation: [https://plume.dennisokon.com/docs/progress](https://plume.dennis
 
 Path: `plume/resources/views/components-class/progress.blade.php`
 
+### Use Cases
+- Indicating file upload progress.
+- Showing task completion percentage.
+- Visualizing steps completed in a multi-stage process.
+
 ---
 
 ## x-plume::search
@@ -642,6 +793,11 @@ Styled search input with an integrated results dropdown.
 Documentation: [https://plume.dennisokon.com/docs/search](https://plume.dennisokon.com/docs/search)
 
 Path: `plume/resources/views/components-class/search.blade.php`
+
+### Use Cases
+- Instant site or application search.
+- Filtering lists or directories.
+- Auto-complete functionality for form fields.
 
 ---
 
@@ -661,6 +817,11 @@ Documentation: [https://plume.dennisokon.com/docs/skeleton](https://plume.dennis
 
 Path: `plume/resources/views/components-class/skeleton.blade.php`
 
+### Use Cases
+- Loading states for cards or list items.
+- Providing visual structure while content is fetching.
+- Reducing perceived load time.
+
 ---
 
 ## x-plume::spacer
@@ -669,6 +830,11 @@ A utility component that fills available space in a flex container.
 Documentation: [https://plume.dennisokon.com/docs/spacer](https://plume.dennisokon.com/docs/spacer)
 
 Path: `plume/resources/views/components-class/spacer.blade.php`
+
+### Use Cases
+- Pushing items to the ends of a navbar.
+- Creating flexible layouts without fixed margins.
+- Centering items within a container.
 
 ---
 
@@ -679,6 +845,11 @@ Documentation: [https://plume.dennisokon.com/docs/spinner](https://plume.denniso
 
 Path: `plume/resources/views/components-class/spinner.blade.php`
 
+### Use Cases
+- Indicating that a specific element is loading.
+- Button-level loading states.
+- General background processing notification.
+
 ---
 
 ## x-plume::stepper
@@ -687,6 +858,11 @@ Guide users through multi-step processes.
 Documentation: [https://plume.dennisokon.com/docs/stepper](https://plume.dennisokon.com/docs/stepper)
 
 Path: `plume/resources/views/components-class/stepper.blade.php`
+
+### Use Cases
+- Multi-step registration forms.
+- Checkout processes.
+- Onboarding workflows.
 
 ---
 
@@ -714,6 +890,11 @@ A responsive table component.
 Documentation: [https://plume.dennisokon.com/docs/table](https://plume.dennisokon.com/docs/table)
 
 Path: `plume/resources/views/components-class/table/index.blade.php`
+
+### Use Cases
+- Basic data presentation.
+- Layouts for structured information.
+- Summary lists.
 
 ---
 
@@ -769,6 +950,11 @@ Documentation: [https://plume.dennisokon.com/docs/tabs](https://plume.dennisokon
 
 Path: `plume/resources/views/components-class/tabs/index.blade.php`
 
+### Use Cases
+- Toggling between related content views.
+- Settings pages with multiple categories.
+- Dashboard layouts with tabbed data.
+
 ---
 
 ## x-plume::tabs.group
@@ -805,6 +991,11 @@ Documentation: [https://plume.dennisokon.com/docs/toaster](https://plume.denniso
 
 Path: `plume/resources/views/components-class/toaster.blade.php`
 
+### Use Cases
+- Success/Error notifications for user actions.
+- Brief system alerts.
+- Low-priority background task updates.
+
 ---
 
 ## x-plume::tooltip
@@ -813,6 +1004,11 @@ A popup that displays information related to an element when the element receive
 Documentation: [https://plume.dennisokon.com/docs/tooltip](https://plume.dennisokon.com/docs/tooltip)
 
 Path: `plume/resources/views/components-class/tooltip.blade.php`
+
+### Use Cases
+- Explaining icon-only buttons.
+- Providing context for technical terms.
+- Helping users understand specific UI elements.
 
 ---
 
@@ -823,5 +1019,9 @@ Documentation: [https://plume.dennisokon.com/docs/video](https://plume.dennisoko
 
 Path: `plume/resources/views/components-class/video.blade.php`
 
----
+### Use Cases
+- Embedding tutorials or marketing videos.
+- Background video elements.
+- Custom video playback interfaces.
 
+---
