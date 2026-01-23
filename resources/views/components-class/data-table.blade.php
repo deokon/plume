@@ -10,7 +10,7 @@
 @prop string $url (Default: null)
 @prop bool $fixedHeight (Default: false)
 --}}
-<div x-data="dataTable({{ $perPage }}, {{ Js::from($paginated) }}, {{ Js::from($sortable) }}, {{ Js::from($url) }}, {{ Js::from($data) }}, {{ Js::from($columns) }})" {{ $attributes->merge(['class' => 'space-y-4']) }}
+<div x-data="dataTable({{ $perPage }}, {{ Js::from($paginated) }}, {{ Js::from($sortable) }}, {{ Js::from($url) }}, {{ Js::from($data) }}, {{ Js::from($columns) }})" {{ $attributes->merge(['class' => 'space-y-4 w-full']) }}
     :data="{{ Js::from($data) }}" :columns="{{ Js::from($columns) }}">
     @if ($searchable)
         <div class="flex items-center justify-between px-4 pt-4">

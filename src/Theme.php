@@ -99,9 +99,9 @@ class Theme
         ];
 
         $styles = [
-            'primary' => 'text-primary',
-            'secondary' => 'text-secondary-foreground',
-            'error' => 'text-error',
+            'primary' => 'text-primary dark:text-primary-400',
+            'secondary' => 'text-secondary-foreground dark:text-secondary-300',
+            'error' => 'text-error dark:text-error-400',
             'background' => 'text-background-400',
         ];
 
@@ -190,10 +190,10 @@ class Theme
     public static function progress(string $style = 'default'): string
     {
         $styles = [
-            'secondary' => 'bg-secondary',
-            'error' => 'bg-error',
-            'success' => 'bg-primary',
-            'default' => 'bg-primary',
+            'secondary' => 'bg-secondary dark:bg-secondary-800',
+            'error' => 'bg-error dark:bg-error-500',
+            'success' => 'bg-primary dark:bg-primary-500',
+            'default' => 'bg-primary dark:bg-primary-500',
         ];
 
         return $styles[$style] ?? $styles['default'];
