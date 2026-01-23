@@ -12,4 +12,5 @@ A searchable select input.
 | `model` | `string` | `null` | - |
 | `options` | `array` | `[]` | - |
 | `placeholder` | `string` | `'Select option...'` | - |
+| `emptyMessage` | `string` | `'No results found.'` | - |
 

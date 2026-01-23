@@ -1,9 +1,10 @@
-export default function (options, model) {
+export default function (options, model, config = {}) {
     return {
         open: false,
         search: '',
         value: null,
         options: options,
+        emptyMessage: config.emptyMessage || 'No results found.',
         filteredOptions: [],
         activeIndex: -1,
         init() {
@@ -21,7 +22,7 @@ export default function (options, model) {
             this.$watch('search', () => {
                 this.filterOptions();
                 this.activeIndex = -1;
-                if (this.search !== '') {
+                if (this.search !== '' && !this.open) {
                     this.open = true;
                 }
             });

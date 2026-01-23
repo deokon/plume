@@ -14,6 +14,7 @@ class Combobox extends BaseFormComponent
         ?string $model = null,
         public array $options = [],
         public string $placeholder = 'Select option...',
+        public string $emptyMessage = 'No results found.',
     ) {
         parent::__construct($label, $name, $id, $model, '');
 

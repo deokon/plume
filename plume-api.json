@@ -834,6 +834,10 @@
                 "placeholder": {
                     "type": "string",
                     "default": "'Select option...'"
+                },
+                "emptyMessage": {
+                    "type": "string",
+                    "default": "'No results found.'"
                 }
             },
             "description": "A searchable select input.",
