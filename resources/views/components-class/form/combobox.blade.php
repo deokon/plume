@@ -20,7 +20,7 @@
     })->values()->toArray();
 @endphp
 <x-plume::form.element :label="$label ?? $slot" :name="$resolvedName" :id="$resolvedId" :model="$resolvedModel">
-    <div x-data="combobox({{ json_encode($formattedOptions) }}, '{{ $resolvedModel }}', { emptyMessage: '{{ $emptyMessage }}' })" 
+    <div x-data="combobox({{ json_encode($formattedOptions) }}, '{{ $resolvedModel }}', { emptyMessage: '{{ $component->emptyMessage }}' })" 
          class="relative"
          @keydown="onKeydown($event)">
         <button type="button" @click="toggle()" id="{{ $resolvedId }}"
