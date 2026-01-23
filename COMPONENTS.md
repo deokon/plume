@@ -7,16 +7,25 @@ Collapsible content panels for saving vertical space.
 
 Documentation: [https://plume.dennisokon.com/docs/accordion](https://plume.dennisokon.com/docs/accordion)
 
-Path: `plume/resources/views/components-class/accordion.blade.php`
+Path: `plume/resources/views/components-class/accordion/index.blade.php`
+
+### Usage
+```blade
+<x-plume::accordion>
+    <x-plume::accordion.item title="Is it accessible?">
+        Yes. It adheres to the WAI-ARIA design pattern.
+    </x-plume::accordion.item>
+</x-plume::accordion>
+```
 
 ---
 
-## x-plume::accordion-item
+## x-plume::accordion.item
 An individual collapsible item within an accordion.
 
 Documentation: [https://plume.dennisokon.com/docs/accordion-item](https://plume.dennisokon.com/docs/accordion-item)
 
-Path: `plume/resources/views/components-class/accordion-item.blade.php`
+Path: `plume/resources/views/components-class/accordion/item.blade.php`
 
 ---
 
@@ -79,25 +88,25 @@ Displays the path to the current resource using a hierarchy of links.
 
 Documentation: [https://plume.dennisokon.com/docs/breadcrumb](https://plume.dennisokon.com/docs/breadcrumb)
 
-Path: `plume/resources/views/components-class/breadcrumb.blade.php`
+Path: `plume/resources/views/components-class/breadcrumb/index.blade.php`
 
 ---
 
-## x-plume::breadcrumb-item
-No description provided.
+## x-plume::breadcrumb.item
+Individual item in a breadcrumb trail.
 
 Documentation: [https://plume.dennisokon.com/docs/breadcrumb-item](https://plume.dennisokon.com/docs/breadcrumb-item)
 
-Path: `plume/resources/views/components-class/breadcrumb-item.blade.php`
+Path: `plume/resources/views/components-class/breadcrumb/item.blade.php`
 
 ---
 
-## x-plume::breadcrumb-separator
-No description provided.
+## x-plume::breadcrumb.separator
+Separator between breadcrumb items.
 
 Documentation: [https://plume.dennisokon.com/docs/breadcrumb-separator](https://plume.dennisokon.com/docs/breadcrumb-separator)
 
-Path: `plume/resources/views/components-class/breadcrumb-separator.blade.php`
+Path: `plume/resources/views/components-class/breadcrumb/separator.blade.php`
 
 ---
 
@@ -111,7 +120,7 @@ Path: `plume/resources/views/components-class/button.blade.php`
 ---
 
 ## x-plume::button-group
-No description provided.
+Groups related buttons together.
 
 Documentation: [https://plume.dennisokon.com/docs/button-group](https://plume.dennisokon.com/docs/button-group)
 
@@ -174,16 +183,16 @@ A slideshow component for cycling through elements.
 
 Documentation: [https://plume.dennisokon.com/docs/carousel](https://plume.dennisokon.com/docs/carousel)
 
-Path: `plume/resources/views/components-class/carousel.blade.php`
+Path: `plume/resources/views/components-class/carousel/index.blade.php`
 
 ---
 
-## x-plume::carousel-item
+## x-plume::carousel.item
 An individual slide within a carousel.
 
 Documentation: [https://plume.dennisokon.com/docs/carousel-item](https://plume.dennisokon.com/docs/carousel-item)
 
-Path: `plume/resources/views/components-class/carousel-item.blade.php`
+Path: `plume/resources/views/components-class/carousel/item.blade.php`
 
 ---
 
@@ -210,25 +219,25 @@ A powerful search and action interface accessible via keyboard shortcuts.
 
 Documentation: [https://plume.dennisokon.com/docs/command](https://plume.dennisokon.com/docs/command)
 
-Path: `plume/resources/views/components-class/command.blade.php`
+Path: `plume/resources/views/components-class/command/index.blade.php`
 
 ---
 
-## x-plume::command-group
-No description provided.
+## x-plume::command.group
+Groups related items in a command palette.
 
 Documentation: [https://plume.dennisokon.com/docs/command-group](https://plume.dennisokon.com/docs/command-group)
 
-Path: `plume/resources/views/components-class/command-group.blade.php`
+Path: `plume/resources/views/components-class/command/group.blade.php`
 
 ---
 
-## x-plume::command-item
-No description provided.
+## x-plume::command.item
+An actionable item within a command palette.
 
 Documentation: [https://plume.dennisokon.com/docs/command-item](https://plume.dennisokon.com/docs/command-item)
 
-Path: `plume/resources/views/components-class/command-item.blade.php`
+Path: `plume/resources/views/components-class/command/item.blade.php`
 
 ---
 
@@ -269,7 +278,7 @@ Path: `plume/resources/views/components-class/dropdown.blade.php`
 ---
 
 ## x-plume::dropdown.item
-No description provided.
+An actionable item within a dropdown menu.
 
 Documentation: [https://plume.dennisokon.com/docs/dropdown-item](https://plume.dennisokon.com/docs/dropdown-item)
 
@@ -278,7 +287,7 @@ Path: `plume/resources/views/components-class/dropdown/item.blade.php`
 ---
 
 ## x-plume::dropdown.separator
-No description provided.
+Visual separator for dropdown items.
 
 Documentation: [https://plume.dennisokon.com/docs/dropdown-separator](https://plume.dennisokon.com/docs/dropdown-separator)
 
@@ -311,18 +320,10 @@ Documentation: [https://plume.dennisokon.com/docs/form](https://plume.dennisokon
 
 Path: `plume/resources/views/components-class/form/index.blade.php`
 
-### Properties
-- `action` (string): The form submission URL. Default: `''`.
-- `method` (string): The HTTP method (POST, GET, PUT, etc). Default: `'POST'`.
-- `formData` (string): Initial JS data object for Alpine. Default: `null`.
-- `submitButton` (string): Label for the auto-generated submit button. Default: `null`.
-- `resetButton` (string): Label for the auto-generated reset button. Default: `null`.
-- `hideOnSuccess` (boolean): Whether to hide form fields after success. Default: `false`.
-
 ---
 
 ## x-plume::form.actions
-No description provided.
+Container for form action buttons (submit/cancel).
 
 Documentation: [https://plume.dennisokon.com/docs/form-actions](https://plume.dennisokon.com/docs/form-actions)
 
@@ -331,7 +332,7 @@ Path: `plume/resources/views/components-class/form/actions.blade.php`
 ---
 
 ## x-plume::form.checkbox
-No description provided.
+A checkbox input for boolean selection.
 
 Documentation: [https://plume.dennisokon.com/docs/form-checkbox](https://plume.dennisokon.com/docs/form-checkbox)
 
@@ -340,7 +341,7 @@ Path: `plume/resources/views/components-class/form/checkbox.blade.php`
 ---
 
 ## x-plume::form.color
-No description provided.
+A color picker input.
 
 Documentation: [https://plume.dennisokon.com/docs/form-color](https://plume.dennisokon.com/docs/form-color)
 
@@ -349,7 +350,7 @@ Path: `plume/resources/views/components-class/form/color.blade.php`
 ---
 
 ## x-plume::form.combobox
-No description provided.
+A searchable select input.
 
 Documentation: [https://plume.dennisokon.com/docs/form-combobox](https://plume.dennisokon.com/docs/form-combobox)
 
@@ -358,7 +359,7 @@ Path: `plume/resources/views/components-class/form/combobox.blade.php`
 ---
 
 ## x-plume::form.date
-No description provided.
+A date picker input.
 
 Documentation: [https://plume.dennisokon.com/docs/form-date](https://plume.dennisokon.com/docs/form-date)
 
@@ -367,7 +368,7 @@ Path: `plume/resources/views/components-class/form/date.blade.php`
 ---
 
 ## x-plume::form.datetime
-No description provided.
+A date and time picker input.
 
 Documentation: [https://plume.dennisokon.com/docs/form-datetime](https://plume.dennisokon.com/docs/form-datetime)
 
@@ -376,7 +377,7 @@ Path: `plume/resources/views/components-class/form/datetime.blade.php`
 ---
 
 ## x-plume::form.element
-No description provided.
+Base wrapper for form inputs, handling labels and errors.
 
 Documentation: [https://plume.dennisokon.com/docs/form-element](https://plume.dennisokon.com/docs/form-element)
 
@@ -385,7 +386,7 @@ Path: `plume/resources/views/components-class/form/element.blade.php`
 ---
 
 ## x-plume::form.file
-No description provided.
+A file upload input with drag-and-drop support.
 
 Documentation: [https://plume.dennisokon.com/docs/form-file](https://plume.dennisokon.com/docs/form-file)
 
@@ -394,20 +395,11 @@ Path: `plume/resources/views/components-class/form/file.blade.php`
 ---
 
 ## x-plume::form.group
-No description provided.
+Groups related form inputs.
 
 Documentation: [https://plume.dennisokon.com/docs/form-group](https://plume.dennisokon.com/docs/form-group)
 
 Path: `plume/resources/views/components-class/form/group.blade.php`
-
----
-
-## x-plume::form.inline
-No description provided.
-
-Documentation: [https://plume.dennisokon.com/docs/form-inline](https://plume.dennisokon.com/docs/form-inline)
-
-Path: `plume/resources/views/components-class/form/inline.blade.php`
 
 ---
 
@@ -421,7 +413,7 @@ Path: `plume/resources/views/components-class/form/input.blade.php`
 ---
 
 ## x-plume::form.label
-No description provided.
+A label for a form input.
 
 Documentation: [https://plume.dennisokon.com/docs/form-label](https://plume.dennisokon.com/docs/form-label)
 
@@ -430,7 +422,7 @@ Path: `plume/resources/views/components-class/form/label.blade.php`
 ---
 
 ## x-plume::form.number
-No description provided.
+A numeric input field.
 
 Documentation: [https://plume.dennisokon.com/docs/form-number](https://plume.dennisokon.com/docs/form-number)
 
@@ -439,7 +431,7 @@ Path: `plume/resources/views/components-class/form/number.blade.php`
 ---
 
 ## x-plume::form.password
-No description provided.
+A secure password input field.
 
 Documentation: [https://plume.dennisokon.com/docs/form-password](https://plume.dennisokon.com/docs/form-password)
 
@@ -448,7 +440,7 @@ Path: `plume/resources/views/components-class/form/password.blade.php`
 ---
 
 ## x-plume::form.radio
-No description provided.
+A radio button for single selection.
 
 Documentation: [https://plume.dennisokon.com/docs/form-radio](https://plume.dennisokon.com/docs/form-radio)
 
@@ -457,7 +449,7 @@ Path: `plume/resources/views/components-class/form/radio.blade.php`
 ---
 
 ## x-plume::form.range
-No description provided.
+A slider input for selecting a value within a range.
 
 Documentation: [https://plume.dennisokon.com/docs/form-range](https://plume.dennisokon.com/docs/form-range)
 
@@ -466,7 +458,7 @@ Path: `plume/resources/views/components-class/form/range.blade.php`
 ---
 
 ## x-plume::form.section
-No description provided.
+A titled section for organizing form fields.
 
 Documentation: [https://plume.dennisokon.com/docs/form-section](https://plume.dennisokon.com/docs/form-section)
 
@@ -475,7 +467,7 @@ Path: `plume/resources/views/components-class/form/section.blade.php`
 ---
 
 ## x-plume::form.select
-No description provided.
+A dropdown select input.
 
 Documentation: [https://plume.dennisokon.com/docs/form-select](https://plume.dennisokon.com/docs/form-select)
 
@@ -484,7 +476,7 @@ Path: `plume/resources/views/components-class/form/select.blade.php`
 ---
 
 ## x-plume::form.textarea
-No description provided.
+A multi-line text input.
 
 Documentation: [https://plume.dennisokon.com/docs/form-textarea](https://plume.dennisokon.com/docs/form-textarea)
 
@@ -493,7 +485,7 @@ Path: `plume/resources/views/components-class/form/textarea.blade.php`
 ---
 
 ## x-plume::form.time
-No description provided.
+A time picker input.
 
 Documentation: [https://plume.dennisokon.com/docs/form-time](https://plume.dennisokon.com/docs/form-time)
 
@@ -502,7 +494,7 @@ Path: `plume/resources/views/components-class/form/time.blade.php`
 ---
 
 ## x-plume::form.toggle
-No description provided.
+A toggle switch for boolean selection.
 
 Documentation: [https://plume.dennisokon.com/docs/form-toggle](https://plume.dennisokon.com/docs/form-toggle)
 
@@ -551,61 +543,61 @@ A top-level navigation component for site-wide links and actions.
 
 Documentation: [https://plume.dennisokon.com/docs/navbar](https://plume.dennisokon.com/docs/navbar)
 
-Path: `plume/resources/views/components-class/navbar.blade.php`
+Path: `plume/resources/views/components-class/navbar/index.blade.php`
 
 ---
 
-## x-plume::navbar-item
+## x-plume::navbar.item
 Individual navigation link.
 
 Documentation: [https://plume.dennisokon.com/docs/navbar-item](https://plume.dennisokon.com/docs/navbar-item)
 
-Path: `plume/resources/views/components-class/navbar-item.blade.php`
+Path: `plume/resources/views/components-class/navbar/item.blade.php`
 
 ---
 
-## x-plume::navbar-logo
+## x-plume::navbar.logo
 The brand logo or title.
 
 Documentation: [https://plume.dennisokon.com/docs/navbar-logo](https://plume.dennisokon.com/docs/navbar-logo)
 
-Path: `plume/resources/views/components-class/navbar-logo.blade.php`
+Path: `plume/resources/views/components-class/navbar/logo.blade.php`
 
 ---
 
-## x-plume::navbar-menu
+## x-plume::navbar.menu
 Container for navigation items.
 
 Documentation: [https://plume.dennisokon.com/docs/navbar-menu](https://plume.dennisokon.com/docs/navbar-menu)
 
-Path: `plume/resources/views/components-class/navbar-menu.blade.php`
+Path: `plume/resources/views/components-class/navbar/menu.blade.php`
 
 ---
 
-## x-plume::navbar-mobile-item
+## x-plume::navbar.mobile-item
 Individual navigation link for mobile menu.
 
 Documentation: [https://plume.dennisokon.com/docs/navbar-mobile-item](https://plume.dennisokon.com/docs/navbar-mobile-item)
 
-Path: `plume/resources/views/components-class/navbar-mobile-item.blade.php`
+Path: `plume/resources/views/components-class/navbar/mobile-item.blade.php`
 
 ---
 
-## x-plume::navbar-mobile-menu
+## x-plume::navbar.mobile-menu
 Responsive mobile menu container.
 
 Documentation: [https://plume.dennisokon.com/docs/navbar-mobile-menu](https://plume.dennisokon.com/docs/navbar-mobile-menu)
 
-Path: `plume/resources/views/components-class/navbar-mobile-menu.blade.php`
+Path: `plume/resources/views/components-class/navbar/mobile-menu.blade.php`
 
 ---
 
-## x-plume::navbar-mobile-toggle
+## x-plume::navbar.mobile-toggle
 Toggle button for the mobile menu.
 
 Documentation: [https://plume.dennisokon.com/docs/navbar-mobile-toggle](https://plume.dennisokon.com/docs/navbar-mobile-toggle)
 
-Path: `plume/resources/views/components-class/navbar-mobile-toggle.blade.php`
+Path: `plume/resources/views/components-class/navbar/mobile-toggle.blade.php`
 
 ---
 
@@ -632,7 +624,7 @@ A bar that shows the completion progress of a task.
 
 Documentation: [https://plume.dennisokon.com/docs/progress](https://plume.dennisokon.com/docs/progress)
 
-Path: `plume/resources/views/components-class/progress.blade.php`
+Path: `plume/resources/views/components-class/progress/index.blade.php`
 
 ---
 
@@ -641,21 +633,21 @@ Styled search input with an integrated results dropdown.
 
 Documentation: [https://plume.dennisokon.com/docs/search](https://plume.dennisokon.com/docs/search)
 
-Path: `plume/resources/views/components-class/search.blade.php`
+Path: `plume/resources/views/components-class/search/index.blade.php`
 
 ---
 
-## x-plume::search-result
-No description provided.
+## x-plume::search.result
+An individual result item within a search component.
 
 Documentation: [https://plume.dennisokon.com/docs/search-result](https://plume.dennisokon.com/docs/search-result)
 
-Path: `plume/resources/views/components-class/search-result.blade.php`
+Path: `plume/resources/views/components-class/search/result.blade.php`
 
 ---
 
 ## x-plume::skeleton
-No description provided.
+A placeholder for content that is loading.
 
 Documentation: [https://plume.dennisokon.com/docs/skeleton](https://plume.dennisokon.com/docs/skeleton)
 
@@ -686,25 +678,25 @@ Guide users through multi-step processes.
 
 Documentation: [https://plume.dennisokon.com/docs/stepper](https://plume.dennisokon.com/docs/stepper)
 
-Path: `plume/resources/views/components-class/stepper.blade.php`
+Path: `plume/resources/views/components-class/stepper/index.blade.php`
 
 ---
 
-## x-plume::stepper-actions
+## x-plume::stepper.actions
 Standard actions layout for stepper components.
 
 Documentation: [https://plume.dennisokon.com/docs/stepper-actions](https://plume.dennisokon.com/docs/stepper-actions)
 
-Path: `plume/resources/views/components-class/stepper-actions.blade.php`
+Path: `plume/resources/views/components-class/stepper/actions.blade.php`
 
 ---
 
-## x-plume::stepper-step
+## x-plume::stepper.step
 An individual step within a stepper component.
 
 Documentation: [https://plume.dennisokon.com/docs/stepper-step](https://plume.dennisokon.com/docs/stepper-step)
 
-Path: `plume/resources/views/components-class/stepper-step.blade.php`
+Path: `plume/resources/views/components-class/stepper/step.blade.php`
 
 ---
 
@@ -718,7 +710,7 @@ Path: `plume/resources/views/components-class/table/index.blade.php`
 ---
 
 ## x-plume::table.tbody
-No description provided.
+Table body container.
 
 Documentation: [https://plume.dennisokon.com/docs/table-tbody](https://plume.dennisokon.com/docs/table-tbody)
 
@@ -727,7 +719,7 @@ Path: `plume/resources/views/components-class/table/tbody.blade.php`
 ---
 
 ## x-plume::table.td
-No description provided.
+Table data cell.
 
 Documentation: [https://plume.dennisokon.com/docs/table-td](https://plume.dennisokon.com/docs/table-td)
 
@@ -736,7 +728,7 @@ Path: `plume/resources/views/components-class/table/td.blade.php`
 ---
 
 ## x-plume::table.th
-No description provided.
+Table header cell.
 
 Documentation: [https://plume.dennisokon.com/docs/table-th](https://plume.dennisokon.com/docs/table-th)
 
@@ -745,7 +737,7 @@ Path: `plume/resources/views/components-class/table/th.blade.php`
 ---
 
 ## x-plume::table.thead
-No description provided.
+Table header container.
 
 Documentation: [https://plume.dennisokon.com/docs/table-thead](https://plume.dennisokon.com/docs/table-thead)
 
@@ -754,7 +746,7 @@ Path: `plume/resources/views/components-class/table/thead.blade.php`
 ---
 
 ## x-plume::table.tr
-No description provided.
+Table row.
 
 Documentation: [https://plume.dennisokon.com/docs/table-tr](https://plume.dennisokon.com/docs/table-tr)
 
@@ -772,7 +764,7 @@ Path: `plume/resources/views/components-class/tabs/index.blade.php`
 ---
 
 ## x-plume::tabs.group
-No description provided.
+Container for tab navigation items.
 
 Documentation: [https://plume.dennisokon.com/docs/tabs-group](https://plume.dennisokon.com/docs/tabs-group)
 
@@ -781,7 +773,7 @@ Path: `plume/resources/views/components-class/tabs/group.blade.php`
 ---
 
 ## x-plume::tabs.item
-No description provided.
+Individual tab navigation link.
 
 Documentation: [https://plume.dennisokon.com/docs/tabs-item](https://plume.dennisokon.com/docs/tabs-item)
 
@@ -790,7 +782,7 @@ Path: `plume/resources/views/components-class/tabs/item.blade.php`
 ---
 
 ## x-plume::tabs.panel
-No description provided.
+Content panel for a specific tab.
 
 Documentation: [https://plume.dennisokon.com/docs/tabs-panel](https://plume.dennisokon.com/docs/tabs-panel)
 

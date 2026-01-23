@@ -207,5 +207,6 @@ BLADE;
         ->toContain('<a')
         ->toContain('href="https://example.com"')
         ->toContain('Clickable Card')
-        ->toContain('transition-colors hover:bg-background-50');
+        ->toContain('transition-all hover:bg-background-50')
+        ->toContain('hover:scale-[1.01] hover:shadow-lg');
 });
