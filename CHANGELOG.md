@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.5.0] - 2026-01-22
+
+### 🚀 Features
+- **DataTable:** Added server-side fetching support via the `url` property.
+- **DataTable:** Introduced the `fixed-height` property to maintain UI stability during pagination.
+- **API Support:** Created the `DataTableResponse` class for standardized server-side response handling in Laravel.
+
+### 🐛 Fixes
+- **DataTable:** Resolved issues with pagination reactivity and labels when using server-side data.
+- **Pagination:** Improved internal state management using `data-` attributes and custom events for better cross-component communication.
+
+### 📝 Documentation
+- **Restructuring:** Modularized documentation into individual `.md` files within the `docs/` directory for better maintainability and readability.
+- **Enhanced Content:** Added detailed "Use Cases" for all 42+ components and comprehensive guides for Installation, Theming, and Global Helpers.
+
 ## [v0.4.0] - 2026-01-21
 
 ### 🚀 Features
