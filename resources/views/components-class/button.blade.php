@@ -2,6 +2,7 @@
 @component x-plume::button
 @description Displays a button or a component that looks like a button.
 @prop string $href (Default: null)
+@prop string $method (Default: null)
 @prop string $icon (Default: null)
 @prop bool $fullWidth (Default: false)
 @prop string $size (Default: null)

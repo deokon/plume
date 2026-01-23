@@ -11,4 +11,5 @@ A file upload input with drag-and-drop support.
 | `id` | `string` | `null` | - |
 | `model` | `string` | `null` | - |
 | `multiple` | `bool` | `false` | - |
+| `accept` | `string` | `null` | - |
 

@@ -6,5 +6,5 @@ Table header cell.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `align` | `string` | `'left'` | - |
+| `align` | `string` | `null` | - |
 

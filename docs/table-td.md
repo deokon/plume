@@ -6,5 +6,5 @@ Table data cell.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `align` | `string` | `'left'` | - |
+| `align` | `string` | `null` | - |
 
