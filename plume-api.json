@@ -228,7 +228,7 @@
             "doc_url": "https://plume.dennisokon.com/docs/breadcrumb-separator"
         },
         "x-plume::button": {
-            "path": "plume/resources/views/components-class/button.blade.php",
+            "path": "plume/resources/views/components-class/button/index.blade.php",
             "props": {
                 "href": {
                     "type": "string",
@@ -611,7 +611,7 @@
             "doc_url": "https://plume.dennisokon.com/docs/drawer"
         },
         "x-plume::dropdown": {
-            "path": "plume/resources/views/components-class/dropdown.blade.php",
+            "path": "plume/resources/views/components-class/dropdown/index.blade.php",
             "props": {
                 "trigger": {
                     "type": "string",

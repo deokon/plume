@@ -6,7 +6,7 @@ use Illuminate\View\Component;
 use Illuminate\View\View;
 use Closure;
 
-class DropdownSeparator extends Component
+class Separator extends Component
 {
     public function render(): View|Closure|string
     {

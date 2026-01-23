@@ -1,6 +1,6 @@
 <?php
 
-namespace deokon\Plume\View\Components;
+namespace deokon\Plume\View\Components\Dropdown;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
@@ -25,7 +25,7 @@ class Dropdown extends Component
     {
         $theme = Theme::dropdown($this->align, $this->width);
 
-        return view('plume::components-class.dropdown', [
+        return view('plume::components-class.dropdown.index', [
             'component' => $this,
             'alignmentClasses' => $theme['align'],
             'widthClass' => $theme['width'],

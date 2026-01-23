@@ -6,7 +6,7 @@ use Illuminate\View\Component;
 use Illuminate\View\View;
 use Closure;
 
-class ButtonLoader extends Component
+class Loader extends Component
 {
     public function __construct(
         public string $var,

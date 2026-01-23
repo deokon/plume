@@ -6,7 +6,7 @@ use Illuminate\View\Component;
 use Illuminate\View\View;
 use Closure;
 
-class ButtonToggle extends Component
+class Toggle extends Component
 {
     public function __construct(
         public string $var,

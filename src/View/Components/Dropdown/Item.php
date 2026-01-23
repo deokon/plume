@@ -6,7 +6,7 @@ use Illuminate\View\Component;
 use Illuminate\View\View;
 use Closure;
 
-class DropdownItem extends Component
+class Item extends Component
 {
     public function __construct(
         public string $style = 'ghost',

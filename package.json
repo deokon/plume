@@ -11,6 +11,7 @@
   "author": "Dennis Okon",
   "license": "MIT",
   "scripts": {
+    "sync": "php dev-scripts/sync_metadata.php",
     "test:js": "vitest run",
     "lint": "eslint resources/js",
     "format": "prettier --write \"resources/**/*.{js,css,blade.php}\""

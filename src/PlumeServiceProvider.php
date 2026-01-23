@@ -27,9 +27,9 @@ class PlumeServiceProvider extends ServiceProvider
         Blade::component('plume::breadcrumb', \deokon\Plume\View\Components\Breadcrumb\Breadcrumb::class);
         Blade::component('plume::breadcrumb.item', \deokon\Plume\View\Components\Breadcrumb\Item::class);
         Blade::component('plume::breadcrumb.separator', \deokon\Plume\View\Components\Breadcrumb\Separator::class);
-        Blade::component('plume::button', \deokon\Plume\View\Components\Button::class);
-        Blade::component('plume::button.loader', \deokon\Plume\View\Components\Button\ButtonLoader::class);
-        Blade::component('plume::button.toggle', \deokon\Plume\View\Components\Button\ButtonToggle::class);
+        Blade::component('plume::button', \deokon\Plume\View\Components\Button\Button::class);
+        Blade::component('plume::button.loader', \deokon\Plume\View\Components\Button\Loader::class);
+        Blade::component('plume::button.toggle', \deokon\Plume\View\Components\Button\Toggle::class);
         Blade::component('plume::button-group', \deokon\Plume\View\Components\ButtonGroup::class);
         Blade::component('plume::calendar', \deokon\Plume\View\Components\Calendar::class);
         Blade::component('plume::card', \deokon\Plume\View\Components\Card::class);
@@ -43,9 +43,9 @@ class PlumeServiceProvider extends ServiceProvider
         Blade::component('plume::data-table', \deokon\Plume\View\Components\DataTable::class);
         Blade::component('plume::divider', \deokon\Plume\View\Components\Divider::class);
         Blade::component('plume::drawer', \deokon\Plume\View\Components\Drawer::class);
-        Blade::component('plume::dropdown', \deokon\Plume\View\Components\Dropdown::class);
-        Blade::component('plume::dropdown.item', \deokon\Plume\View\Components\Dropdown\DropdownItem::class);
-        Blade::component('plume::dropdown.separator', \deokon\Plume\View\Components\Dropdown\DropdownSeparator::class);
+        Blade::component('plume::dropdown', \deokon\Plume\View\Components\Dropdown\Dropdown::class);
+        Blade::component('plume::dropdown.item', \deokon\Plume\View\Components\Dropdown\Item::class);
+        Blade::component('plume::dropdown.separator', \deokon\Plume\View\Components\Dropdown\Separator::class);
         Blade::component('plume::empty-state', \deokon\Plume\View\Components\EmptyState::class);
         Blade::component('plume::figure', \deokon\Plume\View\Components\Figure::class);
         Blade::component('plume::gallery', \deokon\Plume\View\Components\Gallery::class);
