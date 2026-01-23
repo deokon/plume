@@ -1418,7 +1418,16 @@
         },
         "x-plume::navbar": {
             "path": "plume/resources/views/components-class/navbar/index.blade.php",
-            "props": [],
+            "props": {
+                "sticky": {
+                    "type": "bool",
+                    "default": "false"
+                },
+                "mobileIcon": {
+                    "type": "string",
+                    "default": "'icon-[fluent--line-horizontal-3-20-regular]'"
+                }
+            },
             "description": "A top-level navigation component for site-wide links and actions.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/navbar"
@@ -1441,7 +1450,12 @@
         },
         "x-plume::navbar.logo": {
             "path": "plume/resources/views/components-class/navbar/logo.blade.php",
-            "props": [],
+            "props": {
+                "href": {
+                    "type": "string",
+                    "default": "'/'"
+                }
+            },
             "description": "The brand logo or title.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/navbar-logo"
