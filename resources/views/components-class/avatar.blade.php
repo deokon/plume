@@ -30,8 +30,9 @@
 
         <div class="flex h-full w-full items-center justify-center font-medium uppercase"
             @if ($src) style="display: none;" @endif>
-            {{ $fallback }}
+            {{ trim($slot) !== '' ? $slot : $fallback }}
         </div>
+
     </div>
 
     @if ($status)
