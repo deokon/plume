@@ -4,7 +4,9 @@
 --}}
 <nav x-data="pagination({{ $initialTotal }}, {{ $initialCurrent }}, {{ $onEachSide }})"
     {{ $attributes->merge(['class' => 'flex items-center justify-center gap-1']) }}
-    aria-label="Pagination">
+    aria-label="Pagination"
+    data-total="{{ $initialTotal }}"
+    data-current="{{ $initialCurrent }}">
     {{-- Previous Page --}}
     <x-plume::button style="ghost" size="sm" ::disabled="current <= 1" @click="dispatch(current - 1)"
         aria-label="Previous Page">
