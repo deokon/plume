@@ -11,13 +11,16 @@
   "author": "Dennis Okon",
   "license": "MIT",
   "scripts": {
+    "test:js": "vitest run",
     "lint": "eslint resources/js",
     "format": "prettier --write \"resources/**/*.{js,css,blade.php}\""
   },
   "devDependencies": {
     "@shufo/prettier-plugin-blade": "^1.16.1",
     "eslint": "^9.39.2",
+    "happy-dom": "^20.3.7",
     "prettier": "^3.8.0",
-    "prettier-plugin-tailwindcss": "^0.7.2"
+    "prettier-plugin-tailwindcss": "^0.7.2",
+    "vitest": "^4.0.18"
   }
 }
