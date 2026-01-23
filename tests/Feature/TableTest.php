@@ -24,3 +24,17 @@ test('table cells support alignment', function () {
     ');
     expect($view)->toContain('text-right');
 });
+
+test('table cells inherit alignment from row', function () {
+    $view = Blade::render('
+        <x-plume::table>
+            <x-plume::table.tr align="center">
+                <x-plume::table.td>Center Data</x-plume::table.td>
+                <x-plume::table.th>Center Head</x-plume::table.th>
+            </x-plume::table.tr>
+        </x-plume::table>
+    ');
+    expect($view)->toContain('text-center');
+    // Verify it's applied twice (once for td, once for th)
+    expect(substr_count($view, 'text-center'))->toBe(2);
+});
