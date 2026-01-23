@@ -194,3 +194,19 @@ BLADE;
         ->toContain('border bg-none shadow-xs'); // Outline style classes
 });
 
+
+test('card renders as link when href is provided', function () {
+    $template = <<<'BLADE'
+<x-plume::card href="https://example.com" title="Clickable Card">
+    Content
+</x-plume::card>
+BLADE;
+
+    $view = Blade::render($template);
+    expect($view)
+        ->toContain('<a')
+        ->toContain('href="https://example.com"')
+        ->toContain('Clickable Card')
+        ->toContain('transition-all hover:bg-background-50')
+        ->toContain('hover:scale-[1.01] hover:shadow-lg');
+});
