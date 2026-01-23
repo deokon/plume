@@ -11,7 +11,8 @@
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php
-    [$resolvedName, $resolvedModel, $resolvedId] = $component->resolveFormAttributes($attributes->all(), $groupName, $groupModel);
+    $combobox = $component;
+    [$resolvedName, $resolvedModel, $resolvedId] = $combobox->resolveFormAttributes($attributes->all(), $groupName, $groupModel);
     
     // Ensure options are in [{value, label}] format if they are simple [val => lab]
     $formattedOptions = collect($options)->map(function($label, $value) {
@@ -20,7 +21,7 @@
     })->values()->toArray();
 @endphp
 <x-plume::form.element :label="$label ?? $slot" :name="$resolvedName" :id="$resolvedId" :model="$resolvedModel">
-    <div x-data="combobox({{ json_encode($formattedOptions) }}, '{{ $resolvedModel }}', { emptyMessage: '{{ $component->emptyMessage }}' })" 
+    <div x-data="combobox({{ json_encode($formattedOptions) }}, '{{ $resolvedModel }}', { emptyMessage: '{{ $combobox->emptyMessage }}' })" 
          class="relative"
          @keydown="onKeydown($event)">
         <button type="button" @click="toggle()" id="{{ $resolvedId }}"
