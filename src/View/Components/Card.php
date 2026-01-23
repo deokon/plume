@@ -3,6 +3,7 @@
 namespace deokon\Plume\View\Components;
 
 use Illuminate\View\Component;
+
 use Illuminate\View\View;
 use Closure;
 use Illuminate\View\ComponentSlot;
@@ -17,6 +18,7 @@ class Card extends Component
         public ?string $description = null,
         public ?string $badge = null,
         public string $badgeStyle = 'default',
+        public ?string $href = null,
     ) {}
 
     public function render(): View|Closure|string

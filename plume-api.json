@@ -385,6 +385,10 @@
                 "badgeStyle": {
                     "type": "string",
                     "default": "'default'"
+                },
+                "href": {
+                    "type": "string",
+                    "default": "null"
                 }
             },
             "description": "Displays a card with header, content, and footer.",

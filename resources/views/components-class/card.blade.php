@@ -2,8 +2,12 @@
 @component x-plume::card
 @description Displays a card with header, content, and footer.
 --}}
-<div
-    {{ $attributes->merge(['class' => 'rounded-xl border border-background-700/40 bg-background shadow dark:border-background-400/20 dark:bg-background-800']) }}>
+@php
+    $tag = $href ? 'a' : 'div';
+@endphp
+<{{ $tag }} 
+    @if($href) href="{{ $href }}" @endif
+    {{ $attributes->merge(['class' => 'rounded-xl border border-background-700/40 bg-background shadow dark:border-background-400/20 dark:bg-background-800' . ($href ? ' transition-colors hover:bg-background-50 dark:hover:bg-background-700/50' : '')]) }}>
     {{-- Header --}}
     @if ((isset($header) && $header->isNotEmpty()) || $title || $description || $badge)
         <div class="flex flex-col space-y-1.5 p-6">
@@ -42,4 +46,4 @@
             {{ $footer }}
         </div>
     @endif
-</div>
+</{{ $tag }}>
