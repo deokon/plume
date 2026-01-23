@@ -35,7 +35,7 @@
             </template>
 
             <template x-if="hasFailed">
-                <x-plume::alert style="destructive" title="Error" class="mt-4">
+                <x-plume::alert style="error" title="Error" class="mt-4">
                     <span x-text="message"></span>
                 </x-plume::alert>
             </template>
@@ -67,7 +67,7 @@
         </template>
 
         <template x-if="hasFailed">
-            <x-plume::alert style="destructive" title="Error" class="mt-4">
+            <x-plume::alert style="error" title="Error" class="mt-4">
                 <span x-text="message"></span>
             </x-plume::alert>
         </template>

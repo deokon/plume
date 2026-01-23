@@ -6,6 +6,7 @@
 @prop string $id (Default: null)
 @prop string $model (Default: null)
 @prop bool $multiple (Default: false)
+@prop string $accept (Default: null)
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php
@@ -21,15 +22,17 @@
         x-on:drop.prevent="handleDrop($event)"
         x-on:click="$refs.input.click()">
 
-        <input type="file" x-ref="input" name="{{ $resolvedName }}" id="{{ $resolvedId }}"
-            @if ($multiple) multiple @endif class="sr-only"
+        <input type="file" x-ref="input" name="{{ $resolvedName }}{{ $multiple ? '[]' : '' }}" id="{{ $resolvedId }}"
+            @if ($multiple) multiple @endif 
+            @if ($accept) accept="{{ $accept }}" @endif
+            class="sr-only"
             @if ($resolvedModel)
                 :aria-invalid="hasError('{{ $resolvedModel }}')"
                 :aria-describedby="hasError('{{ $resolvedModel }}') ? '{{ $resolvedId }}-error' : null"
             @endif
             x-on:change="handleFileSelect($event)">
 
-        <template x-if="!file">
+        <template x-if="files.length === 0">
             <div class="flex flex-col items-center justify-center space-y-2 text-center p-6">
                 <div class="rounded-full bg-background-200 p-3 dark:bg-background-700">
                     <x-plume::icon i="icon-[fluent--cloud-arrow-up-24-regular]"
@@ -37,26 +40,47 @@
                 </div>
                 <div class="space-y-1">
                     <p class="text-sm font-medium text-foreground">Click to upload or drag and drop</p>
-                    <p class="text-xs text-foreground/50 dark:text-background-400">Any file type (max. 10MB)
+                    <p class="text-xs text-foreground/50 dark:text-background-400">
+                        @if($accept) 
+                            Accepted files: {{ $accept }}
+                        @else
+                            Any file type (max. 10MB)
+                        @endif
                     </p>
                 </div>
             </div>
         </template>
 
-        <template x-if="file">
-            <div class="flex flex-col items-center justify-center space-y-4 p-6 w-full">
-                <div class="flex items-center gap-3 w-full rounded-lg border border-background-700/40 bg-background p-3 dark:border-background-400/20 dark:bg-background-900">
-                    <div class="rounded-md bg-primary/10 p-2 text-primary">
-                        <x-plume::icon i="icon-[fluent--document-24-regular]" class="size-5" />
+        <template x-if="files.length > 0">
+            <div class="flex flex-wrap items-center justify-center gap-4 p-6 w-full" x-on:click.stop>
+                <template x-for="(file, index) in files" :key="index">
+                    <div class="flex flex-col items-center gap-2 group relative">
+                        <div class="relative size-24 rounded-lg overflow-hidden border border-background-700/40 dark:border-background-400/20 bg-background shadow-sm">
+                            <template x-if="file.preview">
+                                <img :src="file.preview" class="size-full object-cover">
+                            </template>
+                            <template x-if="!file.preview">
+                                <div class="flex size-full items-center justify-center bg-background-100 dark:bg-background-900">
+                                    <x-plume::icon i="icon-[fluent--document-24-regular]" class="size-8 text-primary" />
+                                </div>
+                            </template>
+                            
+                            <div class="absolute inset-0 bg-background-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <x-plume::button style="error" size="sm" shape="round" x-on:click.stop="removeFile(index)">
+                                    <x-plume::icon i="icon-[fluent--dismiss-24-regular]" class="size-4" />
+                                </x-plume::button>
+                            </div>
+                        </div>
+                        <p class="w-24 truncate text-[10px] font-medium text-center text-foreground/70 dark:text-background-400" x-text="file.name"></p>
                     </div>
-                    <div class="flex-1 overflow-hidden">
-                        <p class="truncate text-sm font-medium text-foreground" x-text="file.name"></p>
-                        <p class="text-xs text-foreground/50 dark:text-background-400" x-text="(file.size / 1024 / 1024).toFixed(2) + ' MB'"></p>
+                </template>
+                
+                @if($multiple)
+                    <div class="size-24 rounded-lg border-2 border-dashed border-background-700/40 dark:border-background-400/20 flex items-center justify-center hover:border-primary hover:bg-primary/5 transition-colors cursor-pointer"
+                        x-on:click="$refs.input.click()">
+                        <x-plume::icon i="icon-[fluent--add-24-regular]" class="size-6 text-foreground/40" />
                     </div>
-                    <x-plume::button style="ghost" size="sm" shape="round" x-on:click.stop="removeFile()">
-                        <x-plume::icon i="icon-[fluent--dismiss-24-regular]" class="size-4" />
-                    </x-plume::button>
-                </div>
+                @endif
             </div>
         </template>
     </div>

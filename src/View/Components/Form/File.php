@@ -13,6 +13,7 @@ class File extends BaseFormComponent
         ?string $id = null,
         ?string $model = null,
         public bool $multiple = false,
+        public ?string $accept = null,
     ) {
         parent::__construct($label, $name, $id, $model, '');
     }

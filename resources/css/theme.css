@@ -47,19 +47,35 @@
     --color-background: var(--color-background-50);
     --color-foreground: var(--color-background-950);
 
-    /* DESTRUCTIVE (Red) */
+    /* ERROR (Red) */
+    --color-error-*: initial;
+    --color-error-50: oklch(98% 0.02 25);
+    --color-error-100: oklch(95% 0.05 25);
+    --color-error-200: oklch(90% 0.08 25);
+    --color-error-300: oklch(82% 0.12 25);
+    --color-error-400: oklch(72% 0.16 25);
+    --color-error-500: oklch(63% 0.22 25);
+    --color-error-600: oklch(55% 0.22 25);
+    --color-error-700: oklch(48% 0.2 25);
+    --color-error-800: oklch(38% 0.16 25);
+    --color-error-900: oklch(28% 0.12 25);
+    --color-error-950: oklch(20% 0.08 25);
+    --color-error: var(--color-error-600);
+    --color-error-foreground: oklch(100% 0 0);
+
+    /* ALIASES */
     --color-destructive-*: initial;
-    --color-destructive-50: oklch(98% 0.02 25);
-    --color-destructive-100: oklch(95% 0.05 25);
-    --color-destructive-200: oklch(90% 0.08 25);
-    --color-destructive-300: oklch(82% 0.12 25);
-    --color-destructive-400: oklch(72% 0.16 25);
-    --color-destructive-500: oklch(63% 0.22 25);
-    --color-destructive-600: oklch(55% 0.22 25);
-    --color-destructive-700: oklch(48% 0.2 25);
-    --color-destructive-800: oklch(38% 0.16 25);
-    --color-destructive-900: oklch(28% 0.12 25);
-    --color-destructive-950: oklch(20% 0.08 25);
-    --color-destructive: var(--color-destructive-600);
-    --color-destructive-foreground: oklch(100% 0 0);
+    --color-destructive-50: var(--color-error-50);
+    --color-destructive-100: var(--color-error-100);
+    --color-destructive-200: var(--color-error-200);
+    --color-destructive-300: var(--color-error-300);
+    --color-destructive-400: var(--color-error-400);
+    --color-destructive-500: var(--color-error-500);
+    --color-destructive-600: var(--color-error-600);
+    --color-destructive-700: var(--color-error-700);
+    --color-destructive-800: var(--color-error-800);
+    --color-destructive-900: var(--color-error-900);
+    --color-destructive-950: var(--color-error-950);
+    --color-destructive: var(--color-error);
+    --color-destructive-foreground: var(--color-error-foreground);
 }

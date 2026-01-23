@@ -19,7 +19,7 @@
         @if ($withCancel)
             <x-plume::button style="outline" x-on:click="close()">Cancel</x-plume::button>
         @endif
-        <x-plume::button style="destructive"
+        <x-plume::button style="error"
             x-on:click="close(); {{ $onConfirm }}">{{ $action }}</x-plume::button>
     </x-slot:footer>
 </x-plume::modal>

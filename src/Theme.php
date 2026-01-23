@@ -15,6 +15,7 @@ class Theme
         $styles = [
             'secondary' => 'bg-secondary text-secondary-foreground hover:bg-secondary-300 dark:hover:bg-secondary/80',
             'destructive' => 'bg-destructive text-destructive-foreground hover:bg-destructive-800 dark:hover:bg-destructive/80',
+            'error' => 'bg-destructive text-destructive-foreground hover:bg-destructive-800 dark:hover:bg-destructive/80',
             'outline' => 'border bg-none shadow-xs hover:bg-primary/20 hover:text-foreground dark:hover:bg-background-700 dark:hover:text-background-200',
             'ghost' => 'hover:bg-primary/20 hover:text-foreground dark:hover:bg-background-700 dark:hover:text-background-200',
             'link' => 'underline-offset-4 hover:underline text-primary',
@@ -51,9 +52,9 @@ class Theme
                 'icon' => 'text-secondary-500 dark:text-secondary-300',
                 'icon_name' => 'icon-[fluent--warning-24-regular]',
             ],
-            'destructive' => [
-                'container' => 'bg-destructive-100 dark:bg-destructive-500/30 text-destructive-800 dark:text-destructive-200 border-destructive-300 dark:border-destructive-500/50',
-                'icon' => 'text-destructive-500 dark:text-destructive-300',
+            'error' => [
+                'container' => 'bg-error-100 dark:bg-error-500/30 text-error-800 dark:text-error-200 border-error-300 dark:border-error-500/50',
+                'icon' => 'text-error-500 dark:text-error-300',
                 'icon_name' => 'icon-[fluent--error-circle-24-regular]',
             ],
         ];
@@ -65,7 +66,7 @@ class Theme
     {
         $styles = [
             'secondary' => 'bg-secondary-200 text-secondary-foreground border-secondary-300 dark:bg-secondary-800 dark:text-secondary-100 dark:border-secondary-700',
-            'destructive' => 'bg-destructive-600 text-destructive-foreground border-destructive-700 dark:bg-destructive-800 dark:text-destructive-100 dark:border-destructive-900',
+            'error' => 'bg-error-600 text-white border-error-700 dark:bg-error-800 dark:text-error-100 dark:border-error-900',
             'outline' => 'border text-foreground dark:text-background-200 border-background-200 dark:border-background-700',
             'success' => 'bg-primary text-primary-foreground border-transparent dark:bg-primary-600',
             'default' => 'bg-primary text-primary-foreground border-transparent dark:bg-primary-600',
@@ -100,7 +101,7 @@ class Theme
         $styles = [
             'primary' => 'text-primary',
             'secondary' => 'text-secondary-foreground',
-            'destructive' => 'text-destructive',
+            'error' => 'text-error',
             'background' => 'text-background-400',
         ];
 
@@ -190,7 +191,7 @@ class Theme
     {
         $styles = [
             'secondary' => 'bg-secondary',
-            'destructive' => 'bg-destructive',
+            'error' => 'bg-error',
             'success' => 'bg-primary',
             'default' => 'bg-primary',
         ];
@@ -204,7 +205,7 @@ class Theme
             'left' => 'flex-row',
             'right' => 'flex-row-reverse',
             'top' => 'flex-col',
-            'bottom' => 'flex-col-reverse', // Adding bottom support logically, though main implementation defaults to flex-col
+            'bottom' => 'flex-col-reverse',
         ];
 
         return $directions[$side] ?? 'flex-col';

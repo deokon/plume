@@ -8,6 +8,6 @@
     {{ $attributes->merge(['class' => 'block text-sm font-medium text-foreground/70 dark:text-background-400']) }}>
     {{ $slot }}
     @if ($required)
-        <span class="text-destructive ml-0.5">*</span>
+        <span class="text-error ml-0.5">*</span>
     @endif
 </label>

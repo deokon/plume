@@ -32,7 +32,7 @@
                 </x-plume::alert>
             </template>
             <template x-if="toast.type === 'error'">
-                <x-plume::alert style="destructive" :closable="true"
+                <x-plume::alert style="error" :closable="true"
                     onClose="$store.toasts.remove(toast.id)">
                     <x-slot:title>
                         <span x-text="toast.title"></span>

@@ -23,6 +23,6 @@ test('avatar renders correctly', function () {
 });
 
 test('spinner renders correctly', function () {
-    $view = Blade::render('<x-plume::spinner size="lg" style="destructive" />');
-    expect($view)->toContain('size-8')->toContain('text-destructive');
+    $view = Blade::render('<x-plume::spinner size="lg" style="error" />');
+    expect($view)->toContain('size-8')->toContain('text-error');
 });

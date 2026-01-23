@@ -4,6 +4,6 @@
 @prop int $cols (Default: 3)
 @prop int $gap (Default: 4)
 --}}
-<div {{ $attributes->merge(['class' => 'grid ' . $gridClasses]) }}>
+<div {{ $attributes->merge(['class' => 'w-full grid ' . $gridClasses]) }}>
     {{ $slot }}
 </div>

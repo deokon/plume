@@ -4,7 +4,7 @@
 @prop array $items (Default: [])
 @prop string $separator (Default: 'icon-[fluent--chevron-right-24-regular]')
 --}}
-<nav {{ $attributes->merge(['aria-label' => 'Breadcrumb']) }}>
+<nav {{ $attributes->merge(['class' => 'w-full', 'aria-label' => 'Breadcrumb']) }}>
     <ol class="flex flex-wrap items-center break-words text-sm text-foreground/50 dark:text-background-400">
         @foreach ($items as $item)
             <x-plume::breadcrumb.item :href="$item['href'] ?? null" :active="$item['active'] ?? false">

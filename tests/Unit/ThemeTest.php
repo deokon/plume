@@ -21,8 +21,8 @@ test('it returns correct alert theme array', function () {
 });
 
 test('it returns correct badge style classes', function () {
-    $classes = Theme::badge('destructive');
-    expect($classes)->toContain('bg-destructive-600');
+    $classes = Theme::badge('error');
+    expect($classes)->toContain('bg-error-600');
 });
 
 test('it returns correct avatar sizes', function () {
@@ -36,6 +36,6 @@ test('it returns correct avatar sizes', function () {
 });
 
 test('it returns correct spinner classes', function () {
-    $classes = Theme::spinner('xl', 'destructive');
-    expect($classes)->toContain('size-12')->toContain('text-destructive');
+    $classes = Theme::spinner('xl', 'error');
+    expect($classes)->toContain('size-12')->toContain('text-error');
 });

@@ -5,6 +5,7 @@ namespace deokon\Plume\View\Components;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 use Closure;
+use deokon\Plume\Theme;
 use deokon\Plume\View\Components\Concerns\InteractsWithAttributes;
 use deokon\Plume\View\Components\Concerns\HasStyles;
 
@@ -37,35 +38,6 @@ class Button extends Component
             $base .= ' w-full';
         }
 
-        return $base . ' ' . $this->themeStyles($size, $style, $shape);
-    }
-
-    protected function themeStyles(string $size = 'md', string $style = 'default', string $shape = 'default'): string
-    {
-        $sizes = [
-            'sm' => 'text-sm font-medium gap-1.5 px-3 py-1.5',
-            'lg' => 'text-xl font-medium gap-2.5 px-5 py-3',
-            'md' => 'text-base font-medium gap-2 px-4 py-2.5',
-        ];
-
-        $styles = [
-            'secondary' => 'bg-secondary text-secondary-foreground hover:bg-secondary-300 dark:hover:bg-secondary/80',
-            'destructive' => 'bg-destructive text-destructive-foreground hover:bg-destructive-800 dark:hover:bg-destructive/80',
-            'outline' => 'border bg-none shadow-xs hover:bg-primary/20 hover:text-foreground dark:hover:bg-background-700 dark:hover:text-background-200',
-            'ghost' => 'hover:bg-primary/20 hover:text-foreground dark:hover:bg-background-700 dark:hover:text-background-200',
-            'link' => 'underline-offset-4 hover:underline text-primary',
-            'minor' => 'text-foreground/50 hover:text-primary hover:bg-primary/10 dark:text-background-300 dark:hover:text-primary-400 dark:hover:bg-primary/10 scale-90 transition-all',
-            'default' => 'bg-primary text-primary-foreground hover:bg-primary-800 dark:hover:bg-primary/80',
-        ];
-
-        $shapes = [
-            'pill' => 'rounded-full',
-            'round' => 'rounded-full aspect-square p-0',
-            'default' => 'rounded-md',
-        ];
-
-        return $this->getClasses($sizes, $size) . ' ' .
-            $this->getClasses($styles, $style) . ' ' .
-            $this->getClasses($shapes, $shape);
+        return $base . ' ' . Theme::button($style, $size, $shape);
     }
 }

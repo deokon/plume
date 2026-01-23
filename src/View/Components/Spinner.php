@@ -5,40 +5,25 @@ namespace deokon\Plume\View\Components;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 use Closure;
+use deokon\Plume\Theme;
 
 class Spinner extends Component
 {
     public function __construct(
         public string $size = 'md',
         public string $style = 'primary',
-    ) {}
+    ) {
+        // Alias destructive to error
+        if ($this->style === 'destructive') {
+            $this->style = 'error';
+        }
+    }
 
     public function render(): View|Closure|string
     {
         return view('plume::components-class.spinner', [
             'component' => $this,
-            'styleClass' => $this->themeStyles(),
+            'styleClass' => Theme::spinner($this->size, $this->style),
         ]);
-    }
-
-    protected function themeStyles(): string
-    {
-        $sizes = [
-            'xs' => 'size-3',
-            'sm' => 'size-4',
-            'lg' => 'size-8',
-            'xl' => 'size-12',
-            'md' => 'size-6',
-        ];
-
-        $styles = [
-            'primary' => 'text-primary',
-            'secondary' => 'text-secondary-foreground',
-            'destructive' => 'text-destructive',
-            'background' => 'text-background-400',
-            'white' => 'text-white',
-        ];
-
-        return ($sizes[$this->size] ?? $sizes['md']) . ' ' . ($styles[$this->style] ?? $styles['primary']);
     }
 }
