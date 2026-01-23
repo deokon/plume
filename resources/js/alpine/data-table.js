@@ -41,7 +41,10 @@ export default (perPage = 10, paginated = false, sortable = true, url = null, in
         observer.observe(this.$el, { attributes: true, attributeFilter: ['data', 'columns'] });
 
         if (!this.url) {
-            this.$watch('search', () => (this.page = 1));
+            this.$watch('search', () => {
+                this.page = 1;
+                this.updateTotalPages();
+            });
         }
     },
 
@@ -138,17 +141,18 @@ export default (perPage = 10, paginated = false, sortable = true, url = null, in
     get pagedData() {
         if (this.url) return this.data;
 
-        const data = this.filteredData;
-        if (!this.paginated) return data;
+        if (!this.paginated) return this.filteredData;
+
         const start = (this.page - 1) * this.perPage;
-        return data.slice(start, start + this.perPage);
+        const end = start + this.perPage;
+        return this.filteredData.slice(start, end);
     },
 
-    toggleSort(key) {
-        if (this.sortCol === key) {
+    toggleSort(col) {
+        if (this.sortCol === col) {
             this.sortDir = this.sortDir === 'asc' ? 'desc' : 'asc';
         } else {
-            this.sortCol = key;
+            this.sortCol = col;
             this.sortDir = 'asc';
         }
     },
