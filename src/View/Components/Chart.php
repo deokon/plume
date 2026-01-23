@@ -32,6 +32,7 @@ class Chart extends Component
     public function render(): View|Closure|string
     {
         return view('plume::components-class.chart', [
-            'component' => $this,'component' => $this]);
+            'component' => $this
+        ]);
     }
 }

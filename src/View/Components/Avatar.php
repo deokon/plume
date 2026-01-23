@@ -25,7 +25,6 @@ class Avatar extends Component
     {
         return view('plume::components-class.avatar', [
             'component' => $this,
-            'component' => $this,
         ]);
     }
 

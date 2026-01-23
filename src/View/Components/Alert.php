@@ -21,7 +21,6 @@ class Alert extends Component
     {
         return view('plume::components-class.alert', [
             'component' => $this,
-            'component' => $this,
             'containerClasses' => $this->containerClasses(),
             'iconClasses' => $this->iconClasses(),
             'resolvedIcon' => $this->icon ?? $this->defaultIcon(),

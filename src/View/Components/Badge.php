@@ -22,7 +22,6 @@ class Badge extends Component
     {
         return view('plume::components-class.badge', [
             'component' => $this,
-            'component' => $this,
         ]);
     }
 

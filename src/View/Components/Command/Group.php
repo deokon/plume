@@ -15,6 +15,7 @@ class Group extends Component
     public function render(): View|Closure|string
     {
         return view('plume::components-class.command.group', [
-            'component' => $this,'component' => $this]);
+            'component' => $this
+        ]);
     }
 }

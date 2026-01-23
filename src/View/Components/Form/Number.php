@@ -27,7 +27,6 @@ class Number extends BaseFormComponent
     {
         return view('plume::components-class.form.number', [
             'component' => $this,
-            'component' => $this,
         ]);
     }
 }

@@ -22,7 +22,6 @@ class Toggle extends BaseFormComponent
     {
         return view('plume::components-class.form.toggle', [
             'component' => $this,
-            'component' => $this,
         ]);
     }
 }

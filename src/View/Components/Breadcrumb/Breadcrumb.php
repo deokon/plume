@@ -16,6 +16,7 @@ class Breadcrumb extends Component
     public function render(): View|Closure|string
     {
         return view('plume::components-class.breadcrumb.index', [
-            'component' => $this,'component' => $this]);
+            'component' => $this
+        ]);
     }
 }

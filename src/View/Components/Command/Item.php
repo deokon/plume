@@ -18,6 +18,7 @@ class Item extends Component
     public function render(): View|Closure|string
     {
         return view('plume::components-class.command.item', [
-            'component' => $this,'component' => $this]);
+            'component' => $this
+        ]);
     }
 }

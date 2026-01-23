@@ -25,7 +25,6 @@ class Textarea extends BaseFormComponent
     {
         return view('plume::components-class.form.textarea', [
             'component' => $this,
-            'component' => $this,
         ]);
     }
 }

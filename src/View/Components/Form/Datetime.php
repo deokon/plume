@@ -22,7 +22,6 @@ class Datetime extends BaseFormComponent
     {
         return view('plume::components-class.form.datetime', [
             'component' => $this,
-            'component' => $this,
         ]);
     }
 }

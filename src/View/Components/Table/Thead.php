@@ -15,6 +15,7 @@ class Thead extends Component
     public function render(): View|Closure|string
     {
         return view('plume::components-class.table.thead', [
-            'component' => $this,'component' => $this]);
+            'component' => $this
+        ]);
     }
 }

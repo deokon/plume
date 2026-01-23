@@ -25,7 +25,6 @@ class Tabs extends Component
     {
         return view('plume::components-class.tabs.index', [
             'component' => $this,
-            'component' => $this,
             'directionClass' => $this->directionClasses(),
             'groupSize' => $this->size,
             'groupStyle' => $this->style,

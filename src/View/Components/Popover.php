@@ -22,7 +22,6 @@ class Popover extends Component
     {
         return view('plume::components-class.popover', [
             'component' => $this,
-            'component' => $this,
             'contentClasses' => $this->themeStyles(),
             'enter' => $this->transitions('overlay-enter'),
             'leave' => $this->transitions('overlay-leave'),
@@ -44,7 +43,7 @@ class Popover extends Component
             'end' => 'right-0',
         ];
 
-        return ($positions[$this->position] ?? $positions['bottom']) . ' ' . 
+        return ($positions[$this->position] ?? $positions['bottom']) . ' ' .
             ($aligns[$this->align] ?? $aligns['center']);
     }
 }

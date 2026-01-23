@@ -22,7 +22,6 @@ class Checkbox extends BaseFormComponent
     {
         return view('plume::components-class.form.checkbox', [
             'component' => $this,
-            'component' => $this,
         ]);
     }
 }

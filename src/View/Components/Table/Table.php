@@ -23,7 +23,6 @@ class Table extends Component
     {
         return view('plume::components-class.table.index', [
             'component' => $this,
-            'component' => $this,
             'densityClasses' => $this->getDensityStyles($this->density),
         ]);
     }

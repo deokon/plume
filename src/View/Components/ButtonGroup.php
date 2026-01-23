@@ -30,7 +30,6 @@ class ButtonGroup extends Component
     {
         return view('plume::components-class.button-group', [
             'component' => $this,
-            'component' => $this,
             'groupClasses' => $this->groupClasses(),
         ]);
     }
@@ -38,7 +37,7 @@ class ButtonGroup extends Component
     public function groupClasses(): string
     {
         $base = 'inline-flex';
-        
+
         if ($this->stack) {
             $base .= ' -space-x-px';
             // Strip rounding from interior edges

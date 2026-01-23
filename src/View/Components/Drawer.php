@@ -24,7 +24,6 @@ class Drawer extends Component
     {
         return view('plume::components-class.drawer', [
             'component' => $this,
-            'component' => $this,
             'sideClasses' => $this->sideClasses(),
             'transitionAttributes' => $this->transitionAttributes(),
             'enter' => $this->transitions('overlay-enter'),

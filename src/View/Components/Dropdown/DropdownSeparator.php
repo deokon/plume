@@ -11,6 +11,7 @@ class DropdownSeparator extends Component
     public function render(): View|Closure|string
     {
         return view('plume::components-class.dropdown.separator', [
-            'component' => $this,'component' => $this]);
+            'component' => $this
+        ]);
     }
 }

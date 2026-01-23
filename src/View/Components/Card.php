@@ -24,14 +24,15 @@ class Card extends Component
     public function render(): View|Closure|string
     {
         return view('plume::components-class.card', [
-            'component' => $this,'component' => $this]);
+            'component' => $this
+        ]);
     }
 
     public function hasHeader(): bool
     {
-        return ($this->header instanceof ComponentSlot && $this->header->isNotEmpty()) 
-            || $this->title 
-            || $this->description 
+        return ($this->header instanceof ComponentSlot && $this->header->isNotEmpty())
+            || $this->title
+            || $this->description
             || $this->badge;
     }
 

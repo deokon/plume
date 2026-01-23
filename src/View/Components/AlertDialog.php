@@ -20,6 +20,7 @@ class AlertDialog extends Component
     public function render(): View|Closure|string
     {
         return view('plume::components-class.alert-dialog', [
-            'component' => $this,'component' => $this]);
+            'component' => $this
+        ]);
     }
 }

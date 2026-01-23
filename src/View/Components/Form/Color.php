@@ -21,7 +21,6 @@ class Color extends BaseFormComponent
     {
         return view('plume::components-class.form.color', [
             'component' => $this,
-            'component' => $this,
         ]);
     }
 }

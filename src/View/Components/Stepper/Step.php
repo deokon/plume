@@ -19,6 +19,7 @@ class Step extends Component
     public function render(): View|Closure|string
     {
         return view('plume::components-class.stepper.step', [
-            'component' => $this,'component' => $this]);
+            'component' => $this
+        ]);
     }
 }

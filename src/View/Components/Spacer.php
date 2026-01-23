@@ -11,6 +11,7 @@ class Spacer extends Component
     public function render(): View|Closure|string
     {
         return view('plume::components-class.spacer', [
-            'component' => $this,'component' => $this]);
+            'component' => $this
+        ]);
     }
 }

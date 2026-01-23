@@ -16,6 +16,7 @@ class Search extends Component
     public function render(): View|Closure|string
     {
         return view('plume::components-class.search.index', [
-            'component' => $this,'component' => $this]);
+            'component' => $this
+        ]);
     }
 }

@@ -22,7 +22,6 @@ class Radio extends BaseFormComponent
     {
         return view('plume::components-class.form.radio', [
             'component' => $this,
-            'component' => $this,
         ]);
     }
 }

@@ -25,7 +25,6 @@ class Select extends BaseFormComponent
     {
         return view('plume::components-class.form.select', [
             'component' => $this,
-            'component' => $this,
         ]);
     }
 }

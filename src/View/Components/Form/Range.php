@@ -24,7 +24,6 @@ class Range extends BaseFormComponent
     {
         return view('plume::components-class.form.range', [
             'component' => $this,
-            'component' => $this,
         ]);
     }
 }

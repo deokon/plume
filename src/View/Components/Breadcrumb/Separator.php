@@ -11,6 +11,7 @@ class Separator extends Component
     public function render(): View|Closure|string
     {
         return view('plume::components-class.breadcrumb.separator', [
-            'component' => $this,'component' => $this]);
+            'component' => $this
+        ]);
     }
 }

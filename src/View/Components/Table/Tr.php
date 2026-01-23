@@ -11,6 +11,7 @@ class Tr extends Component
     public function render(): View|Closure|string
     {
         return view('plume::components-class.table.tr', [
-            'component' => $this,'component' => $this]);
+            'component' => $this
+        ]);
     }
 }
