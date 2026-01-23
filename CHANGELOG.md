@@ -5,6 +5,36 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.6.0] - 2026-01-23
+
+### 🚀 Features
+- **Metadata:** Added `ide.json` for better IDE autocompletion support.
+- **Testing:** Integrated Vitest for isolated Alpine.js plugin testing.
+- **Card:** Added support for clickable cards via `href` prop with visual feedback.
+- **Navbar:** Added support for `sticky` positioning and simplified layout.
+- **Architecture:** Implemented component aliasing to prevent scope shadowing (e.g., in Combobox).
+
+### 🛠 Refactors & Improvements
+- **Structure:** Standardized sub-component file structures for consistency.
+- **Theme:** Centralized theme configuration and extracted transition logic.
+- **Naming:** Renamed `destructive` style to `error` for clarity.
+
+### 🐛 Fixes
+- **DataTable:** Fixed pagination reset when searching in client-side mode.
+- **Accordion:** Fixed state management bug.
+- **Combobox:** Fixed undefined variable errors and scope shadowing issues.
+- **Navbar:** Prevented slot content from collapsing/squishing.
+- **Table:** Fixed cell alignment inheritance from parent rows.
+
+### 🧪 Tests
+- **Coverage:** Added comprehensive unit tests for all Alpine.js plugins (Accordion, Calendar, Carousel, Combobox, Command, DataTable, Drawer, FileInput, Form, Modal, Page, Pagination, Toaster, Video).
+- **Accessibility:** Systematic ARIA attribute verification for all components.
+- **Context:** Added tests for context-aware rendering of sub-components.
+
+### 📝 Documentation
+- **Sync:** Automated metadata synchronization.
+- **Coverage:** Replaced `COMPONENTS.md` with Workbench documentation source of truth.
+
 ## [v0.5.0] - 2026-01-22
 
 ### 🚀 Features
