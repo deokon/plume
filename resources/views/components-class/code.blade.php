@@ -6,7 +6,7 @@
 @prop string $code (Default: null)
 --}}
 <div x-data="clipboard()"
-    {{ $attributes->merge(['class' => 'group relative rounded-xl border border-background-700/40 bg-background-800 dark:border-background-400/20 dark:bg-background-900 overflow-hidden']) }}>
+    {{ $attributes->merge(['class' => 'group relative rounded-xl border border-background-700/40 bg-background-800 dark:border-background-400/20 dark:bg-background-900 overflow-hidden w-full']) }}>
     @if ($title || $language)
         <div
             class="flex items-center justify-between border-b border-background-700/40 px-4 py-2 dark:border-background-400/20 bg-background-700/50 dark:bg-background-800/50">
