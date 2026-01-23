@@ -24,16 +24,39 @@ abstract class BaseFormComponent extends Component
      */
     public function resolveFormAttributes(array $attributes, ?string $groupName = null, ?string $groupModel = null): array
     {
-        $name = $attributes['name'] ?? $groupName ?? $this->name;
-        $model = $attributes['model'] ?? $groupModel ?? $this->model;
-        
-        // If name wasn't provided, use model as name (strip data. if present for name)
-        if (!$name && $model) {
-            $name = str_replace('data.', '', $model);
+        $originalName = $attributes['name'] ?? $this->name;
+        $originalModel = $attributes['model'] ?? $this->model;
+
+        $name = $originalName;
+        $model = $originalModel;
+
+        // Name resolution
+        if ($groupName && $originalName && $originalName !== $groupName) {
+            $name = "{$groupName}[{$originalName}]";
+        } elseif (!$originalName && $groupName) {
+            $name = $groupName;
         }
 
-        // Auto-prefix model with data. if not present
-        if ($model && !str_starts_with($model, 'data.')) {
+        // Model resolution
+        if ($groupModel && !$originalModel) {
+            // Inherit and build path from name if available
+            if ($originalName) {
+                $model = "{$groupModel}.{$originalName}";
+            } else {
+                $model = $groupModel;
+            }
+        }
+        
+        // If name still empty, derive from model
+        if (!$name && $model) {
+            $name = str_replace(['data.', 'form.'], '', $model);
+            $name = str_replace(['.', '[', ']'], '_', $name);
+            $name = rtrim($name, '_');
+        }
+
+        // Final fallback for model: if no dots and not starting with data., prefix with data.
+        // Skip if we just built it from groupModel (which likely already has prefix)
+        if ($model && !str_contains($model, '.') && !str_starts_with($model, 'data.')) {
             $model = 'data.' . $model;
         }
 

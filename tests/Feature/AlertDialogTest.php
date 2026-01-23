@@ -10,6 +10,7 @@ test('alert dialog renders with correct attributes', function () {
     ');
 
     expect($view)
+        ->toContain('x-data="modal(\'test-dialog\'')
         ->toContain('role="alertdialog"')
         ->toContain('aria-modal="true"')
         ->toContain('aria-labelledby="test-dialog-title"')
