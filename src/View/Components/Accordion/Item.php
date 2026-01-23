@@ -16,7 +16,12 @@ class Item extends Component
 
     public function render(): View|Closure|string
     {
+        // if id is not set, generate a unique id
+        if (!$this->id) {
+            $this->id = 'accordion-item-' . uniqid();
+        }
         return view('plume::components-class.accordion.item', [
-            'component' => $this]);
+            'component' => $this
+        ]);
     }
 }
