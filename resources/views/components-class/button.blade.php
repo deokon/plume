@@ -28,6 +28,17 @@
         @endif
         {{ $slot }}
     </button>
+@elseif($method)
+    <form action="{{ $href }}" method="POST" class="inline">
+        @csrf
+        @method($method)
+        <button type="submit" {{ $cleanAttributes->merge(['class' => $component->classes($resolvedSize, $resolvedStyle, $resolvedShape)]) }}>
+            @if ($icon)
+                <x-plume::icon i="{{ $icon }}" />
+            @endif
+            {{ $slot }}
+        </button>
+    </form>
 @else
     <a href="{{ $href ?? '#' }}" {{ $cleanAttributes->merge(['class' => $component->classes($resolvedSize, $resolvedStyle, $resolvedShape)]) }}>
         @if ($icon)

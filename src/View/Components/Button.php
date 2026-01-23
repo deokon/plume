@@ -14,6 +14,7 @@ class Button extends Component
 
     public function __construct(
         public ?string $href = null,
+        public ?string $method = null,
         public ?string $icon = null,
         public bool $fullWidth = false,
         public ?string $size = null,
@@ -24,7 +25,6 @@ class Button extends Component
     public function render(): View|Closure|string
     {
         return view('plume::components-class.button', [
-            'component' => $this,
             'component' => $this,
         ]);
     }
@@ -64,8 +64,8 @@ class Button extends Component
             'default' => 'rounded-md',
         ];
 
-        return $this->getClasses($sizes, $size) . ' ' . 
-            $this->getClasses($styles, $style) . ' ' . 
+        return $this->getClasses($sizes, $size) . ' ' .
+            $this->getClasses($styles, $style) . ' ' .
             $this->getClasses($shapes, $shape);
     }
 }
