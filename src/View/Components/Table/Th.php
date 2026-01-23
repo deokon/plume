@@ -12,7 +12,7 @@ class Th extends Component
     use InteractsWithAttributes;
 
     public function __construct(
-        public string $align = 'left',
+        public ?string $align = null,
     ) {}
 
     public function render(): View|Closure|string
