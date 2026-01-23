@@ -552,6 +552,10 @@
                 "url": {
                     "type": "string",
                     "default": "null"
+                },
+                "fixedHeight": {
+                    "type": "bool",
+                    "default": "false"
                 }
             },
             "description": "Advanced table with sorting, filtering, and pagination. Powered by AlpineJS. Supports client-side data or server-side fetching via URL.",

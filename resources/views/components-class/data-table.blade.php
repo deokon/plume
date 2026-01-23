@@ -8,6 +8,7 @@
 @prop int perPage - Items per page.
 @prop bool sortable - Enable sorting globally.
 @prop string url - API endpoint for server-side fetching.
+@prop bool fixedHeight - Maintain a stable height regardless of row count.
 --}}
 <div x-data="dataTable({{ $perPage }}, {{ Js::from($paginated) }}, {{ Js::from($sortable) }}, {{ Js::from($url) }}, {{ Js::from($data) }}, {{ Js::from($columns) }})" {{ $attributes->merge(['class' => 'space-y-4']) }}
     :data="{{ Js::from($data) }}" :columns="{{ Js::from($columns) }}">
@@ -18,7 +19,7 @@
         </div>
     @endif
 
-    <div class="relative">
+    <div class="relative" @if($fixedHeight) style="min-height: calc(({{ $perPage }} * 53px) + 45px)" @endif>
         <div x-show="loading" x-transition:enter="transition ease-out duration-200"
             x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
             x-transition:leave="transition ease-in duration-100"

@@ -107,6 +107,43 @@ export default (perPage = 10, paginated = false, sortable = true, url = null, in
         return this.url ? this.total : this.filteredData.length;
     },
 
+    get filteredData() {
+        if (this.url) return this.data;
+
+        if (!Array.isArray(this.data)) return [];
+
+        let filtered = [...this.data];
+
+        if (this.search) {
+            const query = this.search.toLowerCase();
+            filtered = filtered.filter((row) => {
+                return Object.values(row).some((val) => String(val).toLowerCase().includes(query));
+            });
+        }
+
+        if (this.sortCol) {
+            filtered.sort((a, b) => {
+                let valA = a[this.sortCol];
+                let valB = b[this.sortCol];
+
+                if (valA < valB) return this.sortDir === 'asc' ? -1 : 1;
+                if (valA > valB) return this.sortDir === 'asc' ? 1 : -1;
+                return 0;
+            });
+        }
+
+        return filtered;
+    },
+
+    get pagedData() {
+        if (this.url) return this.data;
+
+        const data = this.filteredData;
+        if (!this.paginated) return data;
+        const start = (this.page - 1) * this.perPage;
+        return data.slice(start, start + this.perPage);
+    },
+
     toggleSort(key) {
         if (this.sortCol === key) {
             this.sortDir = this.sortDir === 'asc' ? 'desc' : 'asc';

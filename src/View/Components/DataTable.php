@@ -16,6 +16,7 @@ class DataTable extends Component
         public int $perPage = 10,
         public bool $sortable = true,
         public ?string $url = null,
+        public bool $fixedHeight = false,
     ) {}
 
     public function render(): View|Closure|string
@@ -28,6 +29,7 @@ class DataTable extends Component
             'perPage' => $this->perPage,
             'sortable' => $this->sortable,
             'url' => $this->url,
+            'fixedHeight' => $this->fixedHeight,
         ]);
     }
 }
