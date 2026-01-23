@@ -1,0 +1,1787 @@
+{
+    "namespaces": {
+        "x-plume": "deokon\\Plume\\View\\Components"
+    },
+    "components": {
+        "accordion": {
+            "props": {
+                "alwaysOpen": {
+                    "type": "bool",
+                    "default": "false"
+                }
+            },
+            "description": "Collapsible content panels for saving vertical space.",
+            "doc_url": "https://plume.dennisokon.com/docs/accordion"
+        },
+        "accordion.item": {
+            "props": {
+                "title": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "id": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "open": {
+                    "type": "bool",
+                    "default": "false"
+                }
+            },
+            "description": "An individual collapsible item within an accordion.",
+            "doc_url": "https://plume.dennisokon.com/docs/accordion-item"
+        },
+        "alert": {
+            "props": {
+                "icon": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "style": {
+                    "type": "string",
+                    "default": "'info'"
+                },
+                "closable": {
+                    "type": "bool",
+                    "default": "false"
+                },
+                "autoclose": {
+                    "type": "int",
+                    "default": "null"
+                },
+                "title": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "onClose": {
+                    "type": "string",
+                    "default": "null"
+                }
+            },
+            "description": "Displays a callout for user attention.",
+            "doc_url": "https://plume.dennisokon.com/docs/alert"
+        },
+        "alert-dialog": {
+            "props": {
+                "name": {
+                    "type": "string",
+                    "default": "'alert-dialog'"
+                },
+                "show": {
+                    "type": "bool",
+                    "default": "false"
+                },
+                "maxWidth": {
+                    "type": "string",
+                    "default": "'2xl'"
+                },
+                "action": {
+                    "type": "string",
+                    "default": "'Confirm'"
+                },
+                "withCancel": {
+                    "type": "bool",
+                    "default": "true"
+                },
+                "onConfirm": {
+                    "type": "string",
+                    "default": "''"
+                }
+            },
+            "description": "Modal dialog specifically designed for alerting users to important information or actions.",
+            "doc_url": "https://plume.dennisokon.com/docs/alert-dialog"
+        },
+        "aspect": {
+            "props": {
+                "ratio": {
+                    "type": "string",
+                    "default": "'video'"
+                }
+            },
+            "description": "A container component to maintain consistent proportions for media and content.",
+            "doc_url": "https://plume.dennisokon.com/docs/aspect"
+        },
+        "audio": {
+            "props": {
+                "src": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "autoplay": {
+                    "type": "bool",
+                    "default": "false"
+                },
+                "controls": {
+                    "type": "bool",
+                    "default": "true"
+                },
+                "loop": {
+                    "type": "bool",
+                    "default": "false"
+                },
+                "muted": {
+                    "type": "bool",
+                    "default": "false"
+                }
+            },
+            "description": "A styled wrapper for HTML5 audio content.",
+            "doc_url": "https://plume.dennisokon.com/docs/audio"
+        },
+        "avatar": {
+            "props": {
+                "src": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "alt": {
+                    "type": "string",
+                    "default": "''"
+                },
+                "fallback": {
+                    "type": "string",
+                    "default": "''"
+                },
+                "size": {
+                    "type": "string",
+                    "default": "'md'"
+                },
+                "status": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "shape": {
+                    "type": "string",
+                    "default": "'round'"
+                }
+            },
+            "description": "An image element with a fallback for representing the user.",
+            "doc_url": "https://plume.dennisokon.com/docs/avatar"
+        },
+        "badge": {
+            "props": {
+                "style": {
+                    "type": "string",
+                    "default": "'default'"
+                },
+                "size": {
+                    "type": "string",
+                    "default": "'md'"
+                },
+                "shape": {
+                    "type": "string",
+                    "default": "'default'"
+                }
+            },
+            "description": "Displays a badge or a component that looks like a badge.",
+            "doc_url": "https://plume.dennisokon.com/docs/badge"
+        },
+        "breadcrumb": {
+            "props": {
+                "items": {
+                    "type": "array",
+                    "default": "[]"
+                },
+                "separator": {
+                    "type": "string",
+                    "default": "'icon-[fluent--chevron-right-24-regular]'"
+                }
+            },
+            "description": "Displays the path to the current resource using a hierarchy of links.",
+            "doc_url": "https://plume.dennisokon.com/docs/breadcrumb"
+        },
+        "breadcrumb.item": {
+            "props": {
+                "href": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "active": {
+                    "type": "bool",
+                    "default": "false"
+                }
+            },
+            "description": "Individual item in a breadcrumb trail.",
+            "doc_url": "https://plume.dennisokon.com/docs/breadcrumb-item"
+        },
+        "breadcrumb.separator": {
+            "props": [],
+            "description": "Separator between breadcrumb items.",
+            "doc_url": "https://plume.dennisokon.com/docs/breadcrumb-separator"
+        },
+        "button": {
+            "props": {
+                "href": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "method": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "icon": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "fullWidth": {
+                    "type": "bool",
+                    "default": "false"
+                },
+                "size": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "style": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "shape": {
+                    "type": "string",
+                    "default": "null"
+                }
+            },
+            "description": "Displays a button or a component that looks like a button.",
+            "doc_url": "https://plume.dennisokon.com/docs/button"
+        },
+        "button-group": {
+            "props": {
+                "size": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "stack": {
+                    "type": "bool",
+                    "default": "true"
+                },
+                "style": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "shape": {
+                    "type": "string",
+                    "default": "null"
+                }
+            },
+            "description": "Groups related buttons together.",
+            "doc_url": "https://plume.dennisokon.com/docs/button-group"
+        },
+        "button.loader": {
+            "props": {
+                "var": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "size": {
+                    "type": "string",
+                    "default": "'md'"
+                },
+                "style": {
+                    "type": "string",
+                    "default": "null"
+                }
+            },
+            "description": "Button with built-in loading state management.",
+            "doc_url": "https://plume.dennisokon.com/docs/button-loader"
+        },
+        "button.toggle": {
+            "props": {
+                "var": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "size": {
+                    "type": "string",
+                    "default": "'md'"
+                },
+                "style": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "offStyle": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "on": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "off": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "click": {
+                    "type": "string",
+                    "default": "null"
+                }
+            },
+            "description": "Button that toggles between two states.",
+            "doc_url": "https://plume.dennisokon.com/docs/button-toggle"
+        },
+        "calendar": {
+            "props": {
+                "model": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "value": {
+                    "type": "mixed",
+                    "default": "null"
+                },
+                "min": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "max": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "mode": {
+                    "type": "string",
+                    "default": "'single'"
+                }
+            },
+            "description": "A visual calendar interface for selecting dates.",
+            "doc_url": "https://plume.dennisokon.com/docs/calendar"
+        },
+        "card": {
+            "props": {
+                "title": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "description": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "badge": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "badgeStyle": {
+                    "type": "string",
+                    "default": "'default'"
+                },
+                "href": {
+                    "type": "string",
+                    "default": "null"
+                }
+            },
+            "description": "Displays a card with header, content, and footer.",
+            "doc_url": "https://plume.dennisokon.com/docs/card"
+        },
+        "carousel": {
+            "props": {
+                "controls": {
+                    "type": "bool",
+                    "default": "true"
+                },
+                "indicators": {
+                    "type": "bool",
+                    "default": "false"
+                },
+                "autoplay": {
+                    "type": "bool",
+                    "default": "false"
+                },
+                "interval": {
+                    "type": "int",
+                    "default": "5000"
+                }
+            },
+            "description": "A slideshow component for cycling through elements.",
+            "doc_url": "https://plume.dennisokon.com/docs/carousel"
+        },
+        "carousel.item": {
+            "props": [],
+            "description": "An individual slide within a carousel.",
+            "doc_url": "https://plume.dennisokon.com/docs/carousel-item"
+        },
+        "chart": {
+            "props": {
+                "type": {
+                    "type": "string",
+                    "default": "'bar'"
+                },
+                "data": {
+                    "type": "array",
+                    "default": "[]"
+                },
+                "height": {
+                    "type": "int",
+                    "default": "200"
+                },
+                "color": {
+                    "type": "string",
+                    "default": "'text-primary'"
+                }
+            },
+            "description": "Basic chart component for data visualization (bar, line).",
+            "doc_url": "https://plume.dennisokon.com/docs/chart"
+        },
+        "code": {
+            "props": {
+                "language": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "title": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "code": {
+                    "type": "string",
+                    "default": "null"
+                }
+            },
+            "description": "A component for displaying code snippets with a copy-to-clipboard feature.",
+            "doc_url": "https://plume.dennisokon.com/docs/code"
+        },
+        "command": {
+            "props": {
+                "trigger": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "placeholder": {
+                    "type": "string",
+                    "default": "'Type a command or search...'"
+                },
+                "id": {
+                    "type": "string",
+                    "default": "null"
+                }
+            },
+            "description": "A powerful search and action interface accessible via keyboard shortcuts.",
+            "doc_url": "https://plume.dennisokon.com/docs/command"
+        },
+        "command.group": {
+            "props": {
+                "title": {
+                    "type": "string",
+                    "default": "null"
+                }
+            },
+            "description": "Groups related items in a command palette.",
+            "doc_url": "https://plume.dennisokon.com/docs/command-group"
+        },
+        "command.item": {
+            "props": {
+                "value": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "onSelect": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "icon": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "shortcut": {
+                    "type": "string",
+                    "default": "null"
+                }
+            },
+            "description": "An actionable item within a command palette.",
+            "doc_url": "https://plume.dennisokon.com/docs/command-item"
+        },
+        "data-table": {
+            "props": {
+                "data": {
+                    "type": "array",
+                    "default": "[]"
+                },
+                "columns": {
+                    "type": "array",
+                    "default": "[]"
+                },
+                "searchable": {
+                    "type": "bool",
+                    "default": "false"
+                },
+                "paginated": {
+                    "type": "bool",
+                    "default": "false"
+                },
+                "perPage": {
+                    "type": "int",
+                    "default": "10"
+                },
+                "sortable": {
+                    "type": "bool",
+                    "default": "true"
+                },
+                "url": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "fixedHeight": {
+                    "type": "bool",
+                    "default": "false"
+                }
+            },
+            "description": "Advanced table with sorting, filtering, and pagination. Powered by AlpineJS. Supports client-side data or server-side fetching via URL.",
+            "doc_url": "https://plume.dennisokon.com/docs/data-table"
+        },
+        "divider": {
+            "props": {
+                "label": {
+                    "type": "string",
+                    "default": "null"
+                }
+            },
+            "description": "Visually separates content sections with an optional label.",
+            "doc_url": "https://plume.dennisokon.com/docs/divider"
+        },
+        "drawer": {
+            "props": {
+                "name": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "show": {
+                    "type": "bool",
+                    "default": "false"
+                },
+                "side": {
+                    "type": "string",
+                    "default": "'right'"
+                },
+                "title": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "description": {
+                    "type": "string",
+                    "default": "null"
+                }
+            },
+            "description": "A panel that slides in from the edge of the screen.",
+            "doc_url": "https://plume.dennisokon.com/docs/drawer"
+        },
+        "dropdown": {
+            "props": {
+                "trigger": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "align": {
+                    "type": "string",
+                    "default": "'right'"
+                },
+                "width": {
+                    "type": "string",
+                    "default": "'md'"
+                },
+                "contentClasses": {
+                    "type": "string",
+                    "default": "'bg-background dark:bg-background-800'"
+                },
+                "triggerStyle": {
+                    "type": "string",
+                    "default": "'outline'"
+                }
+            },
+            "description": "Displays a menu to the user\u2014such as a set of actions or functions\u2014triggered by a button.",
+            "doc_url": "https://plume.dennisokon.com/docs/dropdown"
+        },
+        "dropdown.item": {
+            "props": {
+                "style": {
+                    "type": "string",
+                    "default": "'ghost'"
+                }
+            },
+            "description": "An actionable item within a dropdown menu.",
+            "doc_url": "https://plume.dennisokon.com/docs/dropdown-item"
+        },
+        "dropdown.separator": {
+            "props": [],
+            "description": "Visual separator for dropdown items.",
+            "doc_url": "https://plume.dennisokon.com/docs/dropdown-separator"
+        },
+        "empty-state": {
+            "props": {
+                "title": {
+                    "type": "string",
+                    "default": "'No results found'"
+                },
+                "description": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "icon": {
+                    "type": "string",
+                    "default": "'icon-[fluent--search-info-24-regular]'"
+                }
+            },
+            "description": "Use this component to show a placeholder when a list or page has no data.",
+            "doc_url": "https://plume.dennisokon.com/docs/empty-state"
+        },
+        "figure": {
+            "props": {
+                "src": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "alt": {
+                    "type": "string",
+                    "default": "''"
+                },
+                "caption": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "aspect": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "srcset": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "sizes": {
+                    "type": "string",
+                    "default": "null"
+                }
+            },
+            "description": "Enhanced image component with captions, aspect ratio control, and support for modern image formats.",
+            "doc_url": "https://plume.dennisokon.com/docs/figure"
+        },
+        "form": {
+            "props": {
+                "action": {
+                    "type": "string",
+                    "default": "''"
+                },
+                "method": {
+                    "type": "string",
+                    "default": "'POST'"
+                },
+                "formData": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "submitButton": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "resetButton": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "hideOnSuccess": {
+                    "type": "bool",
+                    "default": "false"
+                },
+                "inline": {
+                    "type": "bool",
+                    "default": "false"
+                }
+            },
+            "description": "A collection of form components for user input.",
+            "doc_url": "https://plume.dennisokon.com/docs/form"
+        },
+        "form.actions": {
+            "props": [],
+            "description": "Container for form action buttons (submit/cancel).",
+            "doc_url": "https://plume.dennisokon.com/docs/form-actions"
+        },
+        "form.checkbox": {
+            "props": {
+                "label": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "name": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "id": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "model": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "value": {
+                    "type": "string",
+                    "default": "''"
+                },
+                "checked": {
+                    "type": "bool",
+                    "default": "false"
+                }
+            },
+            "description": "A checkbox input for boolean selection.",
+            "doc_url": "https://plume.dennisokon.com/docs/form-checkbox"
+        },
+        "form.color": {
+            "props": {
+                "label": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "name": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "id": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "model": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "value": {
+                    "type": "string",
+                    "default": "'#000000'"
+                }
+            },
+            "description": "A color picker input.",
+            "doc_url": "https://plume.dennisokon.com/docs/form-color"
+        },
+        "form.combobox": {
+            "props": {
+                "label": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "name": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "id": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "model": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "options": {
+                    "type": "array",
+                    "default": "[]"
+                },
+                "placeholder": {
+                    "type": "string",
+                    "default": "'Select option...'"
+                },
+                "emptyMessage": {
+                    "type": "string",
+                    "default": "'No results found.'"
+                }
+            },
+            "description": "A searchable select input.",
+            "doc_url": "https://plume.dennisokon.com/docs/form-combobox"
+        },
+        "form.date": {
+            "props": {
+                "label": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "name": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "id": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "model": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "value": {
+                    "type": "string",
+                    "default": "''"
+                },
+                "placeholder": {
+                    "type": "string",
+                    "default": "''"
+                }
+            },
+            "description": "A date picker input.",
+            "doc_url": "https://plume.dennisokon.com/docs/form-date"
+        },
+        "form.datetime": {
+            "props": {
+                "label": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "name": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "id": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "model": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "value": {
+                    "type": "string",
+                    "default": "''"
+                },
+                "placeholder": {
+                    "type": "string",
+                    "default": "''"
+                }
+            },
+            "description": "A date and time picker input.",
+            "doc_url": "https://plume.dennisokon.com/docs/form-datetime"
+        },
+        "form.element": {
+            "props": {
+                "label": {
+                    "type": "string",
+                    "default": "''"
+                },
+                "name": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "id": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "model": {
+                    "type": "string",
+                    "default": "null"
+                }
+            },
+            "description": "Base wrapper for form inputs, handling labels and errors.",
+            "doc_url": "https://plume.dennisokon.com/docs/form-element"
+        },
+        "form.file": {
+            "props": {
+                "label": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "name": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "id": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "model": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "multiple": {
+                    "type": "bool",
+                    "default": "false"
+                },
+                "accept": {
+                    "type": "string",
+                    "default": "null"
+                }
+            },
+            "description": "A file upload input with drag-and-drop support.",
+            "doc_url": "https://plume.dennisokon.com/docs/form-file"
+        },
+        "form.group": {
+            "props": {
+                "label": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "description": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "minCols": {
+                    "type": "int",
+                    "default": "1"
+                },
+                "name": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "model": {
+                    "type": "string",
+                    "default": "null"
+                }
+            },
+            "description": "Groups related form inputs.",
+            "doc_url": "https://plume.dennisokon.com/docs/form-group"
+        },
+        "form.input": {
+            "props": {
+                "label": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "name": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "id": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "model": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "value": {
+                    "type": "string",
+                    "default": "''"
+                },
+                "type": {
+                    "type": "string",
+                    "default": "'text'"
+                },
+                "placeholder": {
+                    "type": "string",
+                    "default": "''"
+                },
+                "icon": {
+                    "type": "string",
+                    "default": "null"
+                }
+            },
+            "description": "Standard text input fields, including password and number variants.",
+            "doc_url": "https://plume.dennisokon.com/docs/form-input"
+        },
+        "form.label": {
+            "props": {
+                "for": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "required": {
+                    "type": "bool",
+                    "default": "false"
+                }
+            },
+            "description": "A label for a form input.",
+            "doc_url": "https://plume.dennisokon.com/docs/form-label"
+        },
+        "form.number": {
+            "props": {
+                "label": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "name": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "id": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "model": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "value": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "min": {
+                    "type": "int",
+                    "default": "null"
+                },
+                "max": {
+                    "type": "int",
+                    "default": "null"
+                },
+                "step": {
+                    "type": "int",
+                    "default": "null"
+                },
+                "placeholder": {
+                    "type": "string",
+                    "default": "''"
+                }
+            },
+            "description": "A numeric input field.",
+            "doc_url": "https://plume.dennisokon.com/docs/form-number"
+        },
+        "form.password": {
+            "props": {
+                "label": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "name": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "id": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "model": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "value": {
+                    "type": "string",
+                    "default": "''"
+                },
+                "placeholder": {
+                    "type": "string",
+                    "default": "''"
+                },
+                "icon": {
+                    "type": "string",
+                    "default": "'icon-[fluent--lock-closed-24-regular]'"
+                }
+            },
+            "description": "A secure password input field.",
+            "doc_url": "https://plume.dennisokon.com/docs/form-password"
+        },
+        "form.radio": {
+            "props": {
+                "label": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "name": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "id": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "model": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "value": {
+                    "type": "string",
+                    "default": "''"
+                },
+                "checked": {
+                    "type": "bool",
+                    "default": "false"
+                }
+            },
+            "description": "A radio button for single selection.",
+            "doc_url": "https://plume.dennisokon.com/docs/form-radio"
+        },
+        "form.range": {
+            "props": {
+                "label": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "name": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "id": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "model": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "value": {
+                    "type": "string",
+                    "default": "'0'"
+                },
+                "min": {
+                    "type": "int",
+                    "default": "0"
+                },
+                "max": {
+                    "type": "int",
+                    "default": "100"
+                },
+                "step": {
+                    "type": "int",
+                    "default": "1"
+                }
+            },
+            "description": "A slider input for selecting a value within a range.",
+            "doc_url": "https://plume.dennisokon.com/docs/form-range"
+        },
+        "form.section": {
+            "props": {
+                "title": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "description": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "minCols": {
+                    "type": "int",
+                    "default": "1"
+                },
+                "maxCols": {
+                    "type": "int",
+                    "default": "null"
+                }
+            },
+            "description": "A titled section for organizing form fields.",
+            "doc_url": "https://plume.dennisokon.com/docs/form-section"
+        },
+        "form.select": {
+            "props": {
+                "label": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "name": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "id": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "model": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "options": {
+                    "type": "array",
+                    "default": "[]"
+                },
+                "placeholder": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "multiple": {
+                    "type": "bool",
+                    "default": "false"
+                }
+            },
+            "description": "A dropdown select input.",
+            "doc_url": "https://plume.dennisokon.com/docs/form-select"
+        },
+        "form.textarea": {
+            "props": {
+                "label": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "name": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "id": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "model": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "value": {
+                    "type": "string",
+                    "default": "''"
+                },
+                "rows": {
+                    "type": "int",
+                    "default": "3"
+                },
+                "placeholder": {
+                    "type": "string",
+                    "default": "''"
+                }
+            },
+            "description": "A multi-line text input.",
+            "doc_url": "https://plume.dennisokon.com/docs/form-textarea"
+        },
+        "form.time": {
+            "props": {
+                "label": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "name": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "id": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "model": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "value": {
+                    "type": "string",
+                    "default": "''"
+                },
+                "placeholder": {
+                    "type": "string",
+                    "default": "''"
+                }
+            },
+            "description": "A time picker input.",
+            "doc_url": "https://plume.dennisokon.com/docs/form-time"
+        },
+        "form.toggle": {
+            "props": {
+                "label": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "name": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "id": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "model": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "value": {
+                    "type": "string",
+                    "default": "'1'"
+                },
+                "checked": {
+                    "type": "bool",
+                    "default": "false"
+                }
+            },
+            "description": "A toggle switch for boolean selection.",
+            "doc_url": "https://plume.dennisokon.com/docs/form-toggle"
+        },
+        "gallery": {
+            "props": {
+                "cols": {
+                    "type": "int",
+                    "default": "3"
+                },
+                "gap": {
+                    "type": "int",
+                    "default": "4"
+                }
+            },
+            "description": "Responsive grid layout for images and figures.",
+            "doc_url": "https://plume.dennisokon.com/docs/gallery"
+        },
+        "icon": {
+            "props": {
+                "i": {
+                    "type": "string",
+                    "default": "null"
+                }
+            },
+            "description": "Displays an icon from the Iconify library.",
+            "doc_url": "https://plume.dennisokon.com/docs/icon"
+        },
+        "kbd": {
+            "props": {
+                "size": {
+                    "type": "string",
+                    "default": "'md'"
+                }
+            },
+            "description": "Displays keyboard input.",
+            "doc_url": "https://plume.dennisokon.com/docs/kbd"
+        },
+        "modal": {
+            "props": {
+                "name": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "show": {
+                    "type": "bool",
+                    "default": "false"
+                },
+                "maxWidth": {
+                    "type": "string",
+                    "default": "'2xl'"
+                },
+                "title": {
+                    "type": "string",
+                    "default": "null"
+                }
+            },
+            "description": "A dialog box or popup window that is displayed on top of the current page.",
+            "doc_url": "https://plume.dennisokon.com/docs/modal"
+        },
+        "navbar": {
+            "props": {
+                "sticky": {
+                    "type": "bool",
+                    "default": "false"
+                },
+                "mobileIcon": {
+                    "type": "string",
+                    "default": "'icon-[fluent--line-horizontal-3-20-regular]'"
+                }
+            },
+            "description": "A top-level navigation component for site-wide links and actions.",
+            "doc_url": "https://plume.dennisokon.com/docs/navbar"
+        },
+        "navbar.item": {
+            "props": {
+                "active": {
+                    "type": "bool",
+                    "default": "false"
+                },
+                "href": {
+                    "type": "string",
+                    "default": "'#'"
+                }
+            },
+            "description": "Individual navigation link.",
+            "doc_url": "https://plume.dennisokon.com/docs/navbar-item"
+        },
+        "navbar.logo": {
+            "props": {
+                "href": {
+                    "type": "string",
+                    "default": "'/'"
+                }
+            },
+            "description": "The brand logo or title.",
+            "doc_url": "https://plume.dennisokon.com/docs/navbar-logo"
+        },
+        "navbar.menu": {
+            "props": [],
+            "description": "Container for navigation items.",
+            "doc_url": "https://plume.dennisokon.com/docs/navbar-menu"
+        },
+        "navbar.mobile-item": {
+            "props": {
+                "active": {
+                    "type": "bool",
+                    "default": "false"
+                },
+                "href": {
+                    "type": "string",
+                    "default": "'#'"
+                }
+            },
+            "description": "Individual navigation link for mobile menu.",
+            "doc_url": "https://plume.dennisokon.com/docs/navbar-mobile-item"
+        },
+        "navbar.mobile-menu": {
+            "props": [],
+            "description": "Responsive mobile menu container.",
+            "doc_url": "https://plume.dennisokon.com/docs/navbar-mobile-menu"
+        },
+        "navbar.mobile-toggle": {
+            "props": [],
+            "description": "Toggle button for the mobile menu.",
+            "doc_url": "https://plume.dennisokon.com/docs/navbar-mobile-toggle"
+        },
+        "pagination": {
+            "props": {
+                "total": {
+                    "type": "int",
+                    "default": "1"
+                },
+                "current": {
+                    "type": "int",
+                    "default": "1"
+                },
+                "onEachSide": {
+                    "type": "int",
+                    "default": "1"
+                }
+            },
+            "description": "Displays a sequence of links for navigating through a series of related pages. Powered by AlpineJS.",
+            "doc_url": "https://plume.dennisokon.com/docs/pagination"
+        },
+        "popover": {
+            "props": {
+                "trigger": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "position": {
+                    "type": "string",
+                    "default": "'bottom'"
+                },
+                "align": {
+                    "type": "string",
+                    "default": "'center'"
+                }
+            },
+            "description": "Displays rich content in a portal, triggered by a button.",
+            "doc_url": "https://plume.dennisokon.com/docs/popover"
+        },
+        "progress": {
+            "props": {
+                "value": {
+                    "type": "int",
+                    "default": "0"
+                },
+                "max": {
+                    "type": "int",
+                    "default": "100"
+                },
+                "style": {
+                    "type": "string",
+                    "default": "'default'"
+                },
+                "title": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "display": {
+                    "type": "string",
+                    "default": "'percentage'"
+                },
+                "model": {
+                    "type": "string",
+                    "default": "null"
+                }
+            },
+            "description": "A bar that shows the completion progress of a task.",
+            "doc_url": "https://plume.dennisokon.com/docs/progress"
+        },
+        "progress.percent": {
+            "props": {
+                "value": {
+                    "type": "int",
+                    "default": "0"
+                },
+                "max": {
+                    "type": "int",
+                    "default": "100"
+                },
+                "style": {
+                    "type": "string",
+                    "default": "'default'"
+                },
+                "title": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "model": {
+                    "type": "string",
+                    "default": "null"
+                }
+            },
+            "description": "No description provided.",
+            "doc_url": "https://plume.dennisokon.com/docs/progress-percent"
+        },
+        "search": {
+            "props": {
+                "placeholder": {
+                    "type": "string",
+                    "default": "'Search...'"
+                },
+                "model": {
+                    "type": "string",
+                    "default": "null"
+                }
+            },
+            "description": "Styled search input with an integrated results dropdown.",
+            "doc_url": "https://plume.dennisokon.com/docs/search"
+        },
+        "search.result": {
+            "props": {
+                "title": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "href": {
+                    "type": "string",
+                    "default": "'#'"
+                },
+                "icon": {
+                    "type": "string",
+                    "default": "null"
+                }
+            },
+            "description": "An individual result item within a search component.",
+            "doc_url": "https://plume.dennisokon.com/docs/search-result"
+        },
+        "skeleton": {
+            "props": {
+                "shape": {
+                    "type": "string",
+                    "default": "'rect'"
+                },
+                "animation": {
+                    "type": "string",
+                    "default": "'pulse'"
+                }
+            },
+            "description": "A placeholder for content that is loading.",
+            "doc_url": "https://plume.dennisokon.com/docs/skeleton"
+        },
+        "spacer": {
+            "props": [],
+            "description": "A utility component that fills available space in a flex container.",
+            "doc_url": "https://plume.dennisokon.com/docs/spacer"
+        },
+        "spinner": {
+            "props": {
+                "size": {
+                    "type": "string",
+                    "default": "'md'"
+                },
+                "style": {
+                    "type": "string",
+                    "default": "'primary'"
+                }
+            },
+            "description": "A loading indicator.",
+            "doc_url": "https://plume.dennisokon.com/docs/spinner"
+        },
+        "stepper": {
+            "props": {
+                "active": {
+                    "type": "int",
+                    "default": "1"
+                }
+            },
+            "description": "Guide users through multi-step processes.",
+            "doc_url": "https://plume.dennisokon.com/docs/stepper"
+        },
+        "stepper.actions": {
+            "props": {
+                "prev": {
+                    "type": "mixed",
+                    "default": "null"
+                },
+                "next": {
+                    "type": "mixed",
+                    "default": "null"
+                }
+            },
+            "description": "Standard actions layout for stepper components.",
+            "doc_url": "https://plume.dennisokon.com/docs/stepper-actions"
+        },
+        "stepper.step": {
+            "props": {
+                "step": {
+                    "type": "int",
+                    "default": "null"
+                },
+                "title": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "description": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "prev": {
+                    "type": "mixed",
+                    "default": "null"
+                },
+                "next": {
+                    "type": "mixed",
+                    "default": "null"
+                }
+            },
+            "description": "An individual step within a stepper component.",
+            "doc_url": "https://plume.dennisokon.com/docs/stepper-step"
+        },
+        "table": {
+            "props": {
+                "striped": {
+                    "type": "bool",
+                    "default": "false"
+                },
+                "hoverable": {
+                    "type": "bool",
+                    "default": "false"
+                },
+                "stickyHeader": {
+                    "type": "bool",
+                    "default": "false"
+                },
+                "density": {
+                    "type": "string",
+                    "default": "'default'"
+                }
+            },
+            "description": "A responsive table component.",
+            "doc_url": "https://plume.dennisokon.com/docs/table"
+        },
+        "table.tbody": {
+            "props": [],
+            "description": "Table body container.",
+            "doc_url": "https://plume.dennisokon.com/docs/table-tbody"
+        },
+        "table.td": {
+            "props": {
+                "align": {
+                    "type": "string",
+                    "default": "null"
+                }
+            },
+            "description": "Table data cell.",
+            "doc_url": "https://plume.dennisokon.com/docs/table-td"
+        },
+        "table.th": {
+            "props": {
+                "align": {
+                    "type": "string",
+                    "default": "null"
+                }
+            },
+            "description": "Table header cell.",
+            "doc_url": "https://plume.dennisokon.com/docs/table-th"
+        },
+        "table.thead": {
+            "props": {
+                "sticky": {
+                    "type": "bool",
+                    "default": "false"
+                }
+            },
+            "description": "Table header container.",
+            "doc_url": "https://plume.dennisokon.com/docs/table-thead"
+        },
+        "table.tr": {
+            "props": {
+                "rowAlign": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "align": {
+                    "type": "string",
+                    "default": "null"
+                }
+            },
+            "description": "Table row.",
+            "doc_url": "https://plume.dennisokon.com/docs/table-tr"
+        },
+        "tabs": {
+            "props": {
+                "default": {
+                    "type": "string",
+                    "default": "'1'"
+                },
+                "side": {
+                    "type": "string",
+                    "default": "'top'"
+                },
+                "size": {
+                    "type": "string",
+                    "default": "'md'"
+                },
+                "style": {
+                    "type": "string",
+                    "default": "'default'"
+                },
+                "shape": {
+                    "type": "string",
+                    "default": "'default'"
+                }
+            },
+            "description": "A set of layered sections of content, known as tab panels, that are displayed one at a time.",
+            "doc_url": "https://plume.dennisokon.com/docs/tabs"
+        },
+        "tabs.group": {
+            "props": [],
+            "description": "Container for tab navigation items.",
+            "doc_url": "https://plume.dennisokon.com/docs/tabs-group"
+        },
+        "tabs.item": {
+            "props": {
+                "for": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "size": {
+                    "type": "string",
+                    "default": "'md'"
+                },
+                "style": {
+                    "type": "string",
+                    "default": "'default'"
+                },
+                "shape": {
+                    "type": "string",
+                    "default": "'default'"
+                }
+            },
+            "description": "Individual tab navigation link.",
+            "doc_url": "https://plume.dennisokon.com/docs/tabs-item"
+        },
+        "tabs.panel": {
+            "props": {
+                "for": {
+                    "type": "string",
+                    "default": "null"
+                }
+            },
+            "description": "Content panel for a specific tab.",
+            "doc_url": "https://plume.dennisokon.com/docs/tabs-panel"
+        },
+        "toaster": {
+            "props": {
+                "position": {
+                    "type": "string",
+                    "default": "'bottom-right'"
+                }
+            },
+            "description": "A succinct message that is displayed temporarily.",
+            "doc_url": "https://plume.dennisokon.com/docs/toaster"
+        },
+        "tooltip": {
+            "props": {
+                "text": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "position": {
+                    "type": "string",
+                    "default": "'top'"
+                }
+            },
+            "description": "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
+            "doc_url": "https://plume.dennisokon.com/docs/tooltip"
+        },
+        "video": {
+            "props": {
+                "src": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "poster": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "autoplay": {
+                    "type": "bool",
+                    "default": "false"
+                },
+                "controls": {
+                    "type": "bool",
+                    "default": "true"
+                },
+                "loop": {
+                    "type": "bool",
+                    "default": "false"
+                },
+                "muted": {
+                    "type": "bool",
+                    "default": "false"
+                },
+                "aspect": {
+                    "type": "string",
+                    "default": "'video'"
+                }
+            },
+            "description": "A styled wrapper for HTML5 video, YouTube, and Vimeo content.",
+            "doc_url": "https://plume.dennisokon.com/docs/video"
+        }
+    }
+}
