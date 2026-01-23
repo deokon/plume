@@ -15,6 +15,12 @@ test('table supports sticky header', function () {
 });
 
 test('table cells support alignment', function () {
-    $view = Blade::render('<x-plume::table.td align="right">Data</x-plume::table.td>');
+    $view = Blade::render('
+        <x-plume::table>
+            <x-plume::table.tr>
+                <x-plume::table.td align="right">Data</x-plume::table.td>
+            </x-plume::table.tr>
+        </x-plume::table>
+    ');
     expect($view)->toContain('text-right');
 });
