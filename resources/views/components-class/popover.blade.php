@@ -1,6 +1,9 @@
 {{--
 @component x-plume::popover
 @description Displays rich content in a portal, triggered by a button.
+@prop string $trigger (Default: null)
+@prop string $position (Default: 'bottom')
+@prop string $align (Default: 'center')
 --}}
 <div x-data="{
     open: false,

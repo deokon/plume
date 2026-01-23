@@ -1,6 +1,7 @@
 {{--
 @component x-plume::command.group
 @description Groups related items in a command palette.
+@prop string $title (Default: null)
 --}}
 <div {{ $attributes->merge(['class' => 'space-y-1']) }}>
     @if ($title)

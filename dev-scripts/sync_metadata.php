@@ -5,9 +5,10 @@ require __DIR__ . '/../vendor/autoload.php';
 use Illuminate\Support\Str;
 use ReflectionClass;
 
-$baseDir = realpath(__DIR__ . '/..'); // The 'plume' directory
+$baseDir = realpath(__DIR__ . '/..');
 $serviceProvider = $baseDir . '/src/PlumeServiceProvider.php';
-$viewsDir = $baseDir . '/resources/views/components-class';
+$viewsDir = $baseDir . '/resources/views';
+$docsDir = $baseDir . '/docs';
 $outputFile = $baseDir . '/plume-api.json';
 
 if (!file_exists($serviceProvider)) {
@@ -15,23 +16,21 @@ if (!file_exists($serviceProvider)) {
 }
 
 $content = file_get_contents($serviceProvider);
-// Match Blade::component('plume::alias', \Class\Path::class)
-// and Blade::component('plume::alias', Class::class)
 preg_match_all("/Blade::component\('plume::(.*?)', (.*?)::class\)/", $content, $matches);
 
-$aliases = [];
+$classAliases = [];
 foreach ($matches[1] as $index => $alias) {
     $className = trim($matches[2][$index], '\\');
-    // Handle relative classes if any (Plume uses full paths usually)
     if (!str_starts_with($className, 'deokon')) {
         $className = 'deokon\\Plume\\View\\Components\\' . $className;
     }
-    $aliases[$className] = 'x-plume::' . $alias;
+    $classAliases[$className] = 'x-plume::' . $alias;
 }
 
 $components = [];
 
-foreach ($aliases as $className => $tagName) {
+// 1. Process Class-Based Components
+foreach ($classAliases as $className => $tagName) {
     if (!class_exists($className)) {
         echo "Skipping $className (not found)\n";
         continue;
@@ -68,26 +67,17 @@ foreach ($aliases as $className => $tagName) {
         }
     }
 
-    // Resolve View Path from Alias
-    // Alias 'accordion.item' -> views/components-class/accordion-item.blade.php ?
-    // Or maybe it matches the directory structure?
-    // Let's guess based on common patterns in this project.
-    $viewName = str_replace('.', '-', str_replace('x-plume::', '', $tagName));
-    
-    // Check nested form paths etc.
-    $viewPath = $viewsDir . '/' . $viewName . '.blade.php';
+    $alias = str_replace('x-plume::', '', $tagName);
+    $viewName = str_replace('.', '-', $alias);
+    $viewPath = $viewsDir . '/components-class/' . $viewName . '.blade.php';
     
     if (!file_exists($viewPath)) {
-        $cleanTag = str_replace('x-plume::', '', $tagName);
-        $subPath = str_replace('.', '/', $cleanTag);
-        
-        // Try subfolder: 'form.input' -> form/input.blade.php
-        $candidate = $viewsDir . '/' . $subPath . '.blade.php';
+        $subPath = str_replace('.', '/', $alias);
+        $candidate = $viewsDir . '/components-class/' . $subPath . '.blade.php';
         if (file_exists($candidate)) {
             $viewPath = $candidate;
         } else {
-            // Try index: 'form' -> form/index.blade.php
-            $candidate = $viewsDir . '/' . $subPath . '/index.blade.php';
+            $candidate = $viewsDir . '/components-class/' . $subPath . '/index.blade.php';
             if (file_exists($candidate)) {
                 $viewPath = $candidate;
             }
@@ -95,26 +85,148 @@ foreach ($aliases as $className => $tagName) {
     }
 
     $description = "No description provided.";
+    $usage = null;
     if (file_exists($viewPath)) {
-        $content = file_get_contents($viewPath);
-        if (preg_match('/@description\s+(.*?)(\*\/|\n)/s', $content, $matches)) {
-            $description = trim($matches[1]);
+        $viewContent = file_get_contents($viewPath);
+        if (preg_match('/@description\s+(.+?)(?=\s*@|\s*--}})/s', $viewContent, $descMatch)) {
+            $description = trim($descMatch[1]);
         }
+        if (preg_match('/@usage\s*(.+?)(?=\s*@|\s*--}})/s', $viewContent, $usageMatch)) {
+            $usage = trim($usageMatch[1]);
+        }
+        
+        // Update Blade Header
+        updateBladeHeader($viewPath, $tagName, $description, $props, $usage);
     }
 
     $components[$tagName] = [
-        'path' => 'plume' . str_replace($baseDir, '', $viewPath),
+        'path' => 'plume/' . str_replace($baseDir . '/', '', $viewPath),
         'props' => $props,
         'description' => $description,
-        'usage' => null,
-        'doc_url' => 'https://plume.dennisokon.com/docs/' . basename($viewName)
+        'usage' => $usage,
+        'doc_url' => 'https://plume.dennisokon.com/docs/' . str_replace('.', '-', $alias)
     ];
 }
 
-$existing = file_exists($outputFile) ? json_decode(file_get_contents($outputFile), true) : ['components' => []];
-$existing['components'] = $components; // Overwrite with truth from ServiceProvider
-ksort($existing['components']);
+// 2. Process Anonymous Components
+if (file_exists($viewsDir . '/components')) {
+    $anonFiles = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($viewsDir . '/components'));
+    foreach ($anonFiles as $file) {
+        if ($file->isDir() || $file->getExtension() !== 'blade') continue;
 
-file_put_contents($outputFile, json_encode($existing, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+        $relativePath = str_replace($viewsDir . '/components/', '', $file->getPathname());
+        $alias = str_replace(['/index.blade.php', '.blade.php', '/'], ['', '', '.'], $relativePath);
+        $tagName = 'x-plume::' . $alias;
 
-echo "Synced " . count($components) . " components from ServiceProvider to plume-api.json\n";
+        if (isset($components[$tagName])) continue;
+
+        $viewContent = file_get_contents($file->getPathname());
+        $props = [];
+        if (preg_match('/@props\(\[\s*(.*?)\s*\]\)/s', $viewContent, $propBlock)) {
+            foreach (explode("\n", $propBlock[1]) as $line) {
+                $line = trim($line);
+                if (preg_match("/\'(.+?)\'\s*=>\s*(.+?)(?:,|$)/", $line, $propMatch)) {
+                    $key = trim($propMatch[1], "'\" ");
+                    $default = trim($propMatch[2], "'\" ,");
+                    $type = 'mixed';
+                    if ($default === 'true' || $default === 'false') $type = 'bool';
+                    if (is_numeric($default)) $type = 'int';
+                    if ($default === '[]') $type = 'array';
+                    $props[$key] = ['type' => $type, 'default' => $default];
+                }
+            }
+        }
+
+        $description = "No description provided.";
+        $usage = null;
+        if (preg_match('/@description\s+(.+?)(?=\s*@|\s*--}})/s', $viewContent, $descMatch)) {
+            $description = trim($descMatch[1]);
+        }
+        if (preg_match('/@usage\s*(.+?)(?=\s*@|\s*--}})/s', $viewContent, $usageMatch)) {
+            $usage = trim($usageMatch[1]);
+        }
+
+        // Update Blade Header
+        updateBladeHeader($file->getPathname(), $tagName, $description, $props, $usage);
+
+        $components[$tagName] = [
+            'path' => 'plume/' . str_replace($baseDir . '/', '', $file->getPathname()),
+            'props' => $props,
+            'description' => $description,
+            'usage' => $usage,
+            'doc_url' => 'https://plume.dennisokon.com/docs/' . str_replace('.', '-', $alias)
+        ];
+    }
+}
+
+ksort($components);
+
+// 3. Update plume-api.json
+file_put_contents($outputFile, json_encode(['components' => $components], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+echo "Updated plume-api.json\n";
+
+// 4. Update plume/docs/*.md
+if (!file_exists($docsDir)) {
+    mkdir($docsDir, 0755, true);
+}
+
+foreach ($components as $tagName => $data) {
+    $slug = str_replace('.', '-', str_replace('x-plume::', '', $tagName));
+    $mdFile = $docsDir . '/' . $slug . '.md';
+    
+    $title = Str::title(str_replace('-', ' ', $slug));
+    $md = "# {$title}\n\n";
+    $md .= $data['description'] . "\n\n";
+    
+    if (!empty($data['props'])) {
+        $md .= "## Properties\n\n";
+        $md .= "| Prop | Type | Default | Description |\n";
+        $md .= "| :--- | :--- | :--- | :--- |\n";
+        foreach ($data['props'] as $name => $info) {
+            $md .= "| `{$name}` | `{$info['type']}` | `{$info['default']}` | - |\n";
+        }
+        $md .= "\n";
+    }
+
+    if ($data['usage']) {
+        $md .= "## Usage\n\n";
+        $md .= "```blade\n" . $data['usage'] . "\n```\n";
+    }
+
+    file_put_contents($mdFile, $md);
+}
+echo "Updated " . count($components) . " documentation files in plume/docs/\n";
+echo "Synced total " . count($components) . " components.\n";
+
+/**
+ * Updates or injects the documentation header in a Blade file.
+ */
+function updateBladeHeader($path, $tagName, $description, $props, $usage) {
+    $content = file_get_contents($path);
+    
+    $header = "{{--\n";
+    $header .= "@component {$tagName}\n";
+    $header .= "@description {$description}\n";
+    
+    foreach ($props as $name => $info) {
+        $header .= "@prop {$info['type']} \\\${$name} (Default: {$info['default']})\n";
+    }
+    
+    if ($usage) {
+        $header .= "@usage\n{$usage}\n";
+    }
+    $header .= "--}}\n";
+
+    // Check if a header already exists
+    if (preg_match('/^{{--.*?--}}/s', $content, $match)) {
+        // Only update if it changed to avoid unnecessary git noise
+        if ($match[0] !== $header) {
+            $newContent = preg_replace('/^{{--.*?--}}/s', trim($header), $content);
+            file_put_contents($path, $newContent);
+        }
+    } else {
+        // Prepend new header
+        file_put_contents($path, $header . $content);
+    }
+}
+

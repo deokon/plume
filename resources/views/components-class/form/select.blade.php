@@ -1,6 +1,13 @@
 {{--
 @component x-plume::form.select
 @description A dropdown select input.
+@prop string $label (Default: null)
+@prop string $name (Default: null)
+@prop string $id (Default: null)
+@prop string $model (Default: null)
+@prop array $options (Default: [])
+@prop string $placeholder (Default: null)
+@prop bool $multiple (Default: false)
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php

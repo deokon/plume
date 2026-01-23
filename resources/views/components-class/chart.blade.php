@@ -1,6 +1,10 @@
 {{--
 @component x-plume::chart
 @description Basic chart component for data visualization (bar, line).
+@prop string $type (Default: 'bar')
+@prop array $data (Default: [])
+@prop int $height (Default: 200)
+@prop string $color (Default: 'text-primary')
 --}}
 <div class="w-full">
     <div class="relative w-full" style="height: {{ $height }}px">

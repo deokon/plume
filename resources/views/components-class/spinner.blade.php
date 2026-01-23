@@ -1,6 +1,8 @@
 {{--
 @component x-plume::spinner
 @description A loading indicator.
+@prop string $size (Default: 'md')
+@prop string $style (Default: 'primary')
 --}}
 <div role="status" aria-label="loading">
     <svg {{ $attributes->merge(['class' => 'animate-spin ' . $styleClass]) }} xmlns="http://www.w3.org/2000/svg"

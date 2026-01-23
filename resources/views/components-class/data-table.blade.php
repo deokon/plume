@@ -1,14 +1,14 @@
 {{--
 @component x-plume::data-table
 @description Advanced table with sorting, filtering, and pagination. Powered by AlpineJS. Supports client-side data or server-side fetching via URL.
-@prop array data - Static data for client-side mode.
-@prop array columns - Column definitions (key, label, sortable, headerClass, cellClass).
-@prop bool searchable - Enable search input.
-@prop bool paginated - Enable pagination.
-@prop int perPage - Items per page.
-@prop bool sortable - Enable sorting globally.
-@prop string url - API endpoint for server-side fetching.
-@prop bool fixedHeight - Maintain a stable height regardless of row count.
+@prop array $data (Default: [])
+@prop array $columns (Default: [])
+@prop bool $searchable (Default: false)
+@prop bool $paginated (Default: false)
+@prop int $perPage (Default: 10)
+@prop bool $sortable (Default: true)
+@prop string $url (Default: null)
+@prop bool $fixedHeight (Default: false)
 --}}
 <div x-data="dataTable({{ $perPage }}, {{ Js::from($paginated) }}, {{ Js::from($sortable) }}, {{ Js::from($url) }}, {{ Js::from($data) }}, {{ Js::from($columns) }})" {{ $attributes->merge(['class' => 'space-y-4']) }}
     :data="{{ Js::from($data) }}" :columns="{{ Js::from($columns) }}">

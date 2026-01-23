@@ -1,6 +1,8 @@
 {{--
 @component x-plume::search
 @description Styled search input with an integrated results dropdown.
+@prop string $placeholder (Default: 'Search...')
+@prop string $model (Default: null)
 --}}
 <div x-data="{
     open: false,

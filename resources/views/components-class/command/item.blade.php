@@ -1,6 +1,10 @@
 {{--
 @component x-plume::command.item
 @description An actionable item within a command palette.
+@prop string $value (Default: null)
+@prop string $onSelect (Default: null)
+@prop string $icon (Default: null)
+@prop string $shortcut (Default: null)
 --}}
 <div x-data="{
     get isVisible() {

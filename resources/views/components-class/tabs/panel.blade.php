@@ -1,6 +1,7 @@
 {{--
 @component x-plume::tabs.panel
 @description Content panel for a specific tab.
+@prop string $for (Default: null)
 --}}
 @aware([
     'side' => 'top',

@@ -1,6 +1,10 @@
 {{--
 @component x-plume::carousel
 @description A slideshow component for cycling through elements.
+@prop bool $controls (Default: true)
+@prop bool $indicators (Default: false)
+@prop bool $autoplay (Default: false)
+@prop int $interval (Default: 5000)
 --}}
 <div x-data="carousel({{ $autoplay ? 'true' : 'false' }}, {{ $interval }})" class="relative group w-full overflow-hidden rounded-xl">
     {{-- Slides --}}

@@ -1,6 +1,12 @@
 {{--
 @component x-plume::figure
 @description Enhanced image component with captions, aspect ratio control, and support for modern image formats.
+@prop string $src (Default: null)
+@prop string $alt (Default: '')
+@prop string $caption (Default: null)
+@prop string $aspect (Default: null)
+@prop string $srcset (Default: null)
+@prop string $sizes (Default: null)
 --}}
 <figure
     {{ $attributes->merge(['class' => 'overflow-hidden rounded-lg bg-background-100 dark:bg-background-900/50']) }}>

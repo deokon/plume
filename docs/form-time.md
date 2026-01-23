@@ -1,28 +1,15 @@
-# Time Picker
+# Form Time
 
-A simple time selection input.
-
-## Overview
-
-The Time Picker component allows users to select a time using the native browser interface, styled to match the Plume design system.
+A time picker input.
 
 ## Properties
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `label` | `string` | `null` | Header label text. |
-| `name` | `string` | `null` | HTML name attribute. |
-| `model` | `string` | `null` | AlpineJS model name. |
-| `placeholder` | `string` | `''` | Input placeholder. |
+| `label` | `string` | `null` | - |
+| `name` | `string` | `null` | - |
+| `id` | `string` | `null` | - |
+| `model` | `string` | `null` | - |
+| `value` | `string` | `''` | - |
+| `placeholder` | `string` | `''` | - |
 
-## Usage
-
-### Basic Usage
-
-```blade
-<x-plume::form.time 
-    label="Meeting Time" 
-    model="meetingTime" 
-    name="start_time" 
-/>
-```

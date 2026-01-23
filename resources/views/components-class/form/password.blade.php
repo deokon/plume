@@ -1,6 +1,13 @@
 {{--
 @component x-plume::form.password
 @description A secure password input field.
+@prop string $label (Default: null)
+@prop string $name (Default: null)
+@prop string $id (Default: null)
+@prop string $model (Default: null)
+@prop string $value (Default: '')
+@prop string $placeholder (Default: '')
+@prop string $icon (Default: 'icon-[fluent--lock-closed-24-regular]')
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php

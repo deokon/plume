@@ -1,6 +1,9 @@
 {{--
 @component x-plume::accordion.item
 @description An individual collapsible item within an accordion.
+@prop string $title (Default: null)
+@prop string $id (Default: null)
+@prop bool $open (Default: false)
 --}}
 <div x-data="accordionItem('{{ $id }}', {{ $open ? 'true' : 'false' }})" x-init="if (localOpen && !alwaysOpen) active = id" {{ $attributes->merge(['class' => 'group']) }}>
     <h3>

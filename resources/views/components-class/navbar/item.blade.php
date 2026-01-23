@@ -1,6 +1,8 @@
 {{--
 @component x-plume::navbar.item
 @description Individual navigation link.
+@prop bool $active (Default: false)
+@prop string $href (Default: '#')
 --}}
 @php
     $classes = $active

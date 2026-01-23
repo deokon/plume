@@ -1,6 +1,14 @@
 {{--
 @component x-plume::avatar
 @description An image element with a fallback for representing the user.
+@prop string $src (Default: null)
+@prop string $alt (Default: '')
+@prop string $fallback (Default: '')
+@prop string $size (Default: 'md')
+@prop string $status (Default: null)
+@prop string $shape (Default: 'round')
+@usage
+<x-plume::avatar src="https://github.com/shadcn.png" fallback="JD" />
 --}}
 @aware([
     'size' => null,

@@ -1,6 +1,9 @@
 {{--
 @component x-plume::empty-state
 @description Use this component to show a placeholder when a list or page has no data.
+@prop string $title (Default: 'No results found')
+@prop string $description (Default: null)
+@prop string $icon (Default: 'icon-[fluent--search-info-24-regular]')
 --}}
 <div
     {{ $attributes->merge(['class' => 'flex flex-col items-center justify-center p-8 text-center']) }}>

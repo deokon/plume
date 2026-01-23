@@ -1,6 +1,8 @@
 {{--
 @component x-plume::skeleton
 @description A placeholder for content that is loading.
+@prop string $shape (Default: 'rect')
+@prop string $animation (Default: 'pulse')
 --}}
 <div {{ $attributes->class($classes) }}>
     @if ($slot->isNotEmpty())

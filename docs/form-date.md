@@ -1,28 +1,15 @@
-# Date Picker
+# Form Date
 
-A simple date picker input.
-
-## Overview
-
-The Date Picker component provides a consistent interface for selecting dates, wrapping the native browser date input with Plume styling.
+A date picker input.
 
 ## Properties
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `label` | `string` | `null` | Header label text. |
-| `name` | `string` | `null` | HTML name attribute. |
-| `model` | `string` | `null` | AlpineJS model name. |
-| `placeholder` | `string` | `''` | Input placeholder. |
+| `label` | `string` | `null` | - |
+| `name` | `string` | `null` | - |
+| `id` | `string` | `null` | - |
+| `model` | `string` | `null` | - |
+| `value` | `string` | `''` | - |
+| `placeholder` | `string` | `''` | - |
 
-## Usage
-
-### Basic Usage
-
-```blade
-<x-plume::form.date 
-    label="Birth Date" 
-    model="birthDate" 
-    name="dob" 
-/>
-```

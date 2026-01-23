@@ -1,6 +1,14 @@
 {{--
 @component x-plume::form.range
 @description A slider input for selecting a value within a range.
+@prop string $label (Default: null)
+@prop string $name (Default: null)
+@prop string $id (Default: null)
+@prop string $model (Default: null)
+@prop string $value (Default: '0')
+@prop int $min (Default: 0)
+@prop int $max (Default: 100)
+@prop int $step (Default: 1)
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php

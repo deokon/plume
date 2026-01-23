@@ -1,6 +1,12 @@
 {{--
 @component x-plume::form.combobox
 @description A searchable select input.
+@prop string $label (Default: null)
+@prop string $name (Default: null)
+@prop string $id (Default: null)
+@prop string $model (Default: null)
+@prop array $options (Default: [])
+@prop string $placeholder (Default: 'Select option...')
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php

@@ -1,6 +1,11 @@
 {{--
 @component x-plume::form.file
 @description A file upload input with drag-and-drop support.
+@prop string $label (Default: null)
+@prop string $name (Default: null)
+@prop string $id (Default: null)
+@prop string $model (Default: null)
+@prop bool $multiple (Default: false)
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php

@@ -1,6 +1,11 @@
 {{--
 @component x-plume::audio
 @description A styled wrapper for HTML5 audio content.
+@prop string $src (Default: null)
+@prop bool $autoplay (Default: false)
+@prop bool $controls (Default: true)
+@prop bool $loop (Default: false)
+@prop bool $muted (Default: false)
 --}}
 <div
     {{ $attributes->merge(['class' => 'inline-block w-full rounded-full bg-background-100 dark:bg-background-800 p-1']) }}>

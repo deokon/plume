@@ -1,13 +1,13 @@
 {{--
 @component x-plume::form
 @description A collection of form components for user input.
-@prop string action The form submission URL.
-@prop string method The HTTP method (POST, GET, PUT, etc).
-@prop string formData Initial JS data object for Alpine.
-@prop string submitButton Label for the auto-generated submit button.
-@prop string resetButton Label for the auto-generated reset button.
-@prop bool hideOnSuccess Whether to hide form fields after success.
-@prop bool inline Whether to display the form inputs in a single line.
+@prop string $action (Default: '')
+@prop string $method (Default: 'POST')
+@prop string $formData (Default: null)
+@prop string $submitButton (Default: null)
+@prop string $resetButton (Default: null)
+@prop bool $hideOnSuccess (Default: false)
+@prop bool $inline (Default: false)
 --}}
 <form action="{{ $action }}" method="{{ $method === 'GET' ? 'GET' : 'POST' }}"
     {{ $attributes->merge(['class' => $inline ? 'inline' : 'space-y-6']) }}

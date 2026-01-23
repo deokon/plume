@@ -1,6 +1,8 @@
 {{--
 @component x-plume::tooltip
 @description A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
+@prop string $text (Default: null)
+@prop string $position (Default: 'top')
 --}}
 <div {{ $attributes->merge(['class' => 'relative group inline-block']) }}>
     {{ $slot }}

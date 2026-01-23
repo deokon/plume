@@ -1,6 +1,8 @@
 {{--
 @component x-plume::breadcrumb.item
 @description Individual item in a breadcrumb trail.
+@prop string $href (Default: null)
+@prop bool $active (Default: false)
 --}}
 <li {{ $attributes->merge(['class' => 'inline-flex items-center']) }}>
     @if ($href && !$active)

@@ -1,6 +1,12 @@
 {{--
 @component x-plume::progress
 @description A bar that shows the completion progress of a task.
+@prop int $value (Default: 0)
+@prop int $max (Default: 100)
+@prop string $style (Default: 'default')
+@prop string $title (Default: null)
+@prop string $display (Default: 'percentage')
+@prop string $model (Default: null)
 --}}
 <div x-data="{
         _val: @if($model) {{ $model }} @else {{ $value }} @endif,

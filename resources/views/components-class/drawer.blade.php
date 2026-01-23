@@ -1,6 +1,11 @@
 {{--
 @component x-plume::drawer
 @description A panel that slides in from the edge of the screen.
+@prop string $name (Default: null)
+@prop bool $show (Default: false)
+@prop string $side (Default: 'right')
+@prop string $title (Default: null)
+@prop string $description (Default: null)
 --}}
 <div x-data="drawer('{{ $name }}', @js($show))" x-on:keydown.escape.window="close()"
     x-on:keydown.tab.prevent="handleTab($event)" x-show="show" x-cloak

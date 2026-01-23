@@ -1,6 +1,9 @@
 {{--
 @component x-plume::pagination
 @description Displays a sequence of links for navigating through a series of related pages. Powered by AlpineJS.
+@prop int $total (Default: 1)
+@prop int $current (Default: 1)
+@prop int $onEachSide (Default: 1)
 --}}
 <nav x-data="pagination({{ $initialTotal }}, {{ $initialCurrent }}, {{ $onEachSide }})"
     {{ $attributes->merge(['class' => 'flex items-center justify-center gap-1']) }}

@@ -1,6 +1,8 @@
 {{--
 @component x-plume::breadcrumb
 @description Displays the path to the current resource using a hierarchy of links.
+@prop array $items (Default: [])
+@prop string $separator (Default: 'icon-[fluent--chevron-right-24-regular]')
 --}}
 <nav {{ $attributes->merge(['aria-label' => 'Breadcrumb']) }}>
     <ol class="flex flex-wrap items-center break-words text-sm text-foreground/50 dark:text-background-400">

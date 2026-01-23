@@ -1,6 +1,8 @@
 {{--
 @component x-plume::navbar
 @description A top-level navigation component for site-wide links and actions.
+@prop bool $sticky (Default: false)
+@prop string $mobileIcon (Default: 'icon-[fluent--line-horizontal-3-20-regular]')
 --}}
 <nav x-data="{ mobileOpen: false }"
     {{ $attributes->merge(['class' => 'bg-background border-b border-background-200 dark:border-background-800' . ($sticky ? ' sticky top-0 z-50' : '')]) }}>

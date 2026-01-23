@@ -1,6 +1,11 @@
 {{--
 @component x-plume::calendar
 @description A visual calendar interface for selecting dates.
+@prop string $model (Default: null)
+@prop mixed $value (Default: null)
+@prop string $min (Default: null)
+@prop string $max (Default: null)
+@prop string $mode (Default: 'single')
 --}}
 <div x-data="calendar(
     {{ $initialValue }},

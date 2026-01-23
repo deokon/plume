@@ -1,6 +1,7 @@
 {{--
 @component x-plume::table.td
 @description Table data cell.
+@prop string $align (Default: 'left')
 --}}
 @aware(['align' => null])
 @php

@@ -1,6 +1,10 @@
 {{--
 @component x-plume::button-group
 @description Groups related buttons together.
+@prop string $size (Default: null)
+@prop bool $stack (Default: true)
+@prop string $style (Default: null)
+@prop string $shape (Default: null)
 --}}
 @php
     $groupSize = $attributes->get('size', $component->groupSize);

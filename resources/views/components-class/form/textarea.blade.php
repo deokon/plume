@@ -1,6 +1,13 @@
 {{--
 @component x-plume::form.textarea
 @description A multi-line text input.
+@prop string $label (Default: null)
+@prop string $name (Default: null)
+@prop string $id (Default: null)
+@prop string $model (Default: null)
+@prop string $value (Default: '')
+@prop int $rows (Default: 3)
+@prop string $placeholder (Default: '')
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php

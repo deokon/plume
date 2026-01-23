@@ -1,6 +1,12 @@
 {{--
 @component x-plume::form.date
 @description A date picker input.
+@prop string $label (Default: null)
+@prop string $name (Default: null)
+@prop string $id (Default: null)
+@prop string $model (Default: null)
+@prop string $value (Default: '')
+@prop string $placeholder (Default: '')
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php

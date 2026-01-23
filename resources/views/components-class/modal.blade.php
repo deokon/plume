@@ -1,6 +1,10 @@
 {{--
 @component x-plume::modal
 @description A dialog box or popup window that is displayed on top of the current page.
+@prop string $name (Default: null)
+@prop bool $show (Default: false)
+@prop string $maxWidth (Default: '2xl')
+@prop string $title (Default: null)
 --}}
 <div x-data="modal('{{ $name }}', @js($show), @js($attributes->has('focusable')))" x-on:keydown.escape.window="close()"
     x-on:keydown.tab.prevent="handleTab($event)" x-show="show" x-cloak

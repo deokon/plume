@@ -1,6 +1,13 @@
 {{--
 @component x-plume::video
 @description A styled wrapper for HTML5 video, YouTube, and Vimeo content.
+@prop string $src (Default: null)
+@prop string $poster (Default: null)
+@prop bool $autoplay (Default: false)
+@prop bool $controls (Default: true)
+@prop bool $loop (Default: false)
+@prop bool $muted (Default: false)
+@prop string $aspect (Default: 'video')
 --}}
 <div {{ $attributes->merge(['class' => 'overflow-hidden rounded-lg bg-black']) }}>
     <div @class(['relative w-full group', $aspectClass])

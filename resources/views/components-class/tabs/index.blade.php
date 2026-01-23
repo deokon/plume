@@ -1,6 +1,11 @@
 {{--
 @component x-plume::tabs
 @description A set of layered sections of content, known as tab panels, that are displayed one at a time.
+@prop string $default (Default: '1')
+@prop string $side (Default: 'top')
+@prop string $size (Default: 'md')
+@prop string $style (Default: 'default')
+@prop string $shape (Default: 'default')
 --}}
 @aware([
     'groupSize' => null,

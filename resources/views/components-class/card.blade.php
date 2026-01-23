@@ -1,6 +1,11 @@
 {{--
 @component x-plume::card
 @description Displays a card with header, content, and footer.
+@prop string $title (Default: null)
+@prop string $description (Default: null)
+@prop string $badge (Default: null)
+@prop string $badgeStyle (Default: 'default')
+@prop string $href (Default: null)
 --}}
 @php
     $tag = $href ? 'a' : 'div';

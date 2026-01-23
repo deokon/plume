@@ -1,6 +1,8 @@
 {{--
 @component x-plume::navbar.mobile-item
 @description Individual navigation link for mobile menu.
+@prop bool $active (Default: false)
+@prop string $href (Default: '#')
 --}}
 @php
     $classes = $active

@@ -1,6 +1,10 @@
 {{--
 @component x-plume::table
 @description A responsive table component.
+@prop bool $striped (Default: false)
+@prop bool $hoverable (Default: false)
+@prop bool $stickyHeader (Default: false)
+@prop string $density (Default: 'default')
 --}}
 <div class="relative w-full overflow-auto {{ $stickyHeader ? 'max-h-[500px]' : '' }}">
     <table

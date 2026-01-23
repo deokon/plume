@@ -1,6 +1,16 @@
 {{--
 @component x-plume::alert
 @description Displays a callout for user attention.
+@prop string $icon (Default: null)
+@prop string $style (Default: 'info')
+@prop bool $closable (Default: false)
+@prop int $autoclose (Default: null)
+@prop string $title (Default: null)
+@prop string $onClose (Default: null)
+@usage
+<x-plume::alert style="success" title="Success">
+    Operation completed successfully.
+</x-plume::alert>
 --}}
 <div x-data="{ open: true, close() { this.open = false;
         @if ($onClose) {{ $onClose }} @endif } }" x-show="open" x-transition:leave="transition ease-in duration-200"

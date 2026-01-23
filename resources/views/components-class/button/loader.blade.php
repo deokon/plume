@@ -1,6 +1,9 @@
 {{--
 @component x-plume::button.loader
 @description Button with built-in loading state management.
+@prop string $var (Default: null)
+@prop string $size (Default: 'md')
+@prop string $style (Default: null)
 --}}
 <x-plume::button {{ $attributes->merge(['class' => 'relative']) }} style="{{ $style }}"
     x-bind:class="{ '[&>:not(:last-child)]:invisible': {{ $var }} }">

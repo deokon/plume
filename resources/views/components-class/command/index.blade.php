@@ -1,6 +1,9 @@
 {{--
 @component x-plume::command
 @description A powerful search and action interface accessible via keyboard shortcuts.
+@prop string $trigger (Default: null)
+@prop string $placeholder (Default: 'Type a command or search...')
+@prop string $id (Default: null)
 --}}
 <div x-data="command()" @keydown.window.prevent.cmd.k="toggle()"
     @keydown.window.prevent.ctrl.k="toggle()" @keydown.escape.window="open = false" 

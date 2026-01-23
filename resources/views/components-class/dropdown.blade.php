@@ -1,6 +1,11 @@
 {{--
 @component x-plume::dropdown
 @description Displays a menu to the user—such as a set of actions or functions—triggered by a button.
+@prop string $trigger (Default: null)
+@prop string $align (Default: 'right')
+@prop string $width (Default: 'md')
+@prop string $contentClasses (Default: 'bg-background dark:bg-background-800')
+@prop string $triggerStyle (Default: 'outline')
 --}}
 <div class="relative" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
     <div @click="open = ! open">

@@ -1,6 +1,11 @@
 {{--
 @component x-plume::form.color
 @description A color picker input.
+@prop string $label (Default: null)
+@prop string $name (Default: null)
+@prop string $id (Default: null)
+@prop string $model (Default: null)
+@prop string $value (Default: '#000000')
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php
