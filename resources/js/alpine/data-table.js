@@ -11,9 +11,11 @@ export default (perPage = 10, paginated = false, sortable = true, url = null, in
     url: url,
     loading: false,
     total: 0,
+    totalPages: 1,
 
     init() {
         this.sync();
+        this.updateTotalPages();
 
         if (this.url) {
             this.fetch();
@@ -21,12 +23,21 @@ export default (perPage = 10, paginated = false, sortable = true, url = null, in
                 this.page = 1;
                 this.fetch();
             });
-            this.$watch('page', () => this.fetch());
-            this.$watch('sortCol', () => this.fetch());
-            this.$watch('sortDir', () => this.fetch());
+            this.$watch('page', (value) => {
+                if (this.url) this.fetch();
+            });
+            this.$watch('sortCol', () => {
+                if (this.url) this.fetch();
+            });
+            this.$watch('sortDir', () => {
+                if (this.url) this.fetch();
+            });
         }
 
-        const observer = new MutationObserver(() => this.sync());
+        const observer = new MutationObserver(() => {
+            this.sync();
+            this.updateTotalPages();
+        });
         observer.observe(this.$el, { attributes: true, attributeFilter: ['data', 'columns'] });
 
         if (!this.url) {
@@ -34,12 +45,16 @@ export default (perPage = 10, paginated = false, sortable = true, url = null, in
         }
     },
 
+    updateTotalPages() {
+        this.totalPages = Math.ceil(this.totalItems / this.perPage) || 1;
+    },
+
     sync() {
         try {
             const d = this.$el.getAttribute('data');
             const c = this.$el.getAttribute('columns');
 
-            if (d && !d.startsWith('[object ')) {
+            if (!this.url && d && !d.startsWith('[object ')) {
                 const parsedData = JSON.parse(d);
                 if (Array.isArray(parsedData) && JSON.stringify(parsedData) !== JSON.stringify(this.data)) {
                     this.data = parsedData;
@@ -79,6 +94,7 @@ export default (perPage = 10, paginated = false, sortable = true, url = null, in
             if (result.success) {
                 this.data = result.data.items;
                 this.total = result.data.pagination.total;
+                this.updateTotalPages();
             }
         } catch (e) {
             console.error('Plume Data Table fetch error:', e);
@@ -87,49 +103,8 @@ export default (perPage = 10, paginated = false, sortable = true, url = null, in
         }
     },
 
-    get filteredData() {
-        if (this.url) return this.data;
-
-        if (!Array.isArray(this.data)) return [];
-
-        let filtered = [...this.data];
-
-        if (this.search) {
-            const query = this.search.toLowerCase();
-            filtered = filtered.filter((row) => {
-                return Object.values(row).some((val) => String(val).toLowerCase().includes(query));
-            });
-        }
-
-        if (this.sortCol) {
-            filtered.sort((a, b) => {
-                let valA = a[this.sortCol];
-                let valB = b[this.sortCol];
-
-                if (valA < valB) return this.sortDir === 'asc' ? -1 : 1;
-                if (valA > valB) return this.sortDir === 'asc' ? 1 : -1;
-                return 0;
-            });
-        }
-
-        return filtered;
-    },
-
-    get pagedData() {
-        if (this.url) return this.data;
-
-        const data = this.filteredData;
-        if (!this.paginated) return data;
-        const start = (this.page - 1) * this.perPage;
-        return data.slice(start, start + this.perPage);
-    },
-
     get totalItems() {
         return this.url ? this.total : this.filteredData.length;
-    },
-
-    get totalPages() {
-        return Math.ceil(this.totalItems / this.perPage) || 1;
     },
 
     toggleSort(key) {

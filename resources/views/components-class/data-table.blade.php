@@ -86,8 +86,8 @@
                 <span x-text="Math.min(page * perPage, totalItems)"></span> of
                 <span x-text="totalItems"></span> results
             </div>
-            <x-plume::pagination ::total="totalPages" ::current="page"
-                @change="page = $event.detail.page" />
+            <x-plume::pagination x-bind:data-total="totalPages" x-bind:data-current="page"
+                @plume-page-change="page = $event.detail.page" />
         </div>
     @endif
 </div>
