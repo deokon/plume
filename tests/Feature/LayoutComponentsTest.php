@@ -69,7 +69,8 @@ test('drawer renders correctly', function () {
 test('accordion renders items correctly', function () {
     $template = <<<'BLADE'
 <x-plume::accordion>
-    <x-plume::accordion.item title="Section 1">Content 1</x-plume::accordion.item>
+    <x-plume::accordion.item title="Section 1" id="s1">Content 1</x-plume::accordion.item>
+    <x-plume::accordion.item title="Section 2" id="s2">Content 2</x-plume::accordion.item>
 </x-plume::accordion>
 BLADE;
 
@@ -77,7 +78,11 @@ BLADE;
     expect($view)
         ->toContain('Section 1')
         ->toContain('Content 1')
-        ->toContain('x-data="accordion(false)"');
+        ->toContain('Section 2')
+        ->toContain('Content 2')
+        ->toContain('x-data="accordion(false)"')
+        ->toContain('x-data="accordionItem(\'s1\', false)"')
+        ->toContain('x-data="accordionItem(\'s2\', false)"');
 });
 
 test('tabs render correctly', function () {
@@ -210,3 +215,4 @@ BLADE;
         ->toContain('transition-all hover:bg-background-50')
         ->toContain('hover:scale-[1.01] hover:shadow-lg');
 });
+
