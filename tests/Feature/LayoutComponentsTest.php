@@ -69,7 +69,8 @@ test('drawer renders correctly', function () {
 test('accordion renders items correctly', function () {
     $template = <<<'BLADE'
 <x-plume::accordion>
-    <x-plume::accordion.item title="Section 1">Content 1</x-plume::accordion.item>
+    <x-plume::accordion.item title="Section 1" id="s1">Content 1</x-plume::accordion.item>
+    <x-plume::accordion.item title="Section 2" id="s2">Content 2</x-plume::accordion.item>
 </x-plume::accordion>
 BLADE;
 
@@ -77,7 +78,11 @@ BLADE;
     expect($view)
         ->toContain('Section 1')
         ->toContain('Content 1')
-        ->toContain('x-data="accordion(false)"');
+        ->toContain('Section 2')
+        ->toContain('Content 2')
+        ->toContain('x-data="accordion(false)"')
+        ->toContain('x-data="accordionItem(\'s1\', false)"')
+        ->toContain('x-data="accordionItem(\'s2\', false)"');
 });
 
 test('tabs render correctly', function () {
@@ -108,9 +113,28 @@ BLADE;
     expect($view)->toContain('px-3 py-1.5');
 });
 
-test('tabs pass side to children', function () {
+test('tabs pass size and side to children', function () {
     $template = <<<'BLADE'
-<x-plume::tabs side="left" default="tab1">
+<x-plume::tabs side="left" size="sm" default="tab1">
+    <x-plume::tabs.group>
+        <x-plume::tabs.item for="tab1">Tab 1</x-plume::tabs.item>
+    </x-plume::tabs.group>
+    <x-plume::tabs.panel for="tab1">Panel 1</x-plume::tabs.panel>
+</x-plume::tabs>
+BLADE;
+
+    $view = Blade::render($template);
+    // side="left" uses 'border-r-3 rounded-l-md' in tabs.item
+    expect($view)->toContain('border-r-3 rounded-l-md');
+    // size="sm" passes to button inside tabs.item: 'px-3 py-1.5'
+    expect($view)->toContain('px-3 py-1.5');
+    // side="left" passes to tabs.panel: 'border-r rounded-r-md'
+    expect($view)->toContain('border-r rounded-r-md');
+});
+
+test('tabs pass style and shape to children', function () {
+    $template = <<<'BLADE'
+<x-plume::tabs style="outline" shape="pill" default="tab1">
     <x-plume::tabs.group>
         <x-plume::tabs.item for="tab1">Tab 1</x-plume::tabs.item>
     </x-plume::tabs.group>
@@ -118,8 +142,10 @@ test('tabs pass side to children', function () {
 BLADE;
 
     $view = Blade::render($template);
-    // side="left" uses 'border-r-3 rounded-l-md' in tabs.item
-    expect($view)->toContain('border-r-3 rounded-l-md');
+    // shape="pill" uses 'rounded-full' in button
+    expect($view)->toContain('rounded-full');
+    // style="outline" uses 'border bg-none' in button
+    expect($view)->toContain('border bg-none');
 });
 
 test('breadcrumb renders with items correctly', function () {

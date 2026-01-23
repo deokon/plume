@@ -75,7 +75,11 @@ BLADE;
 });
 
 test('navbar logo takes href', function () {
-    $view = Blade::render('<x-plume::navbar.logo href="/home">Brand</x-plume::navbar.logo>');
+    $view = Blade::render('
+        <x-plume::navbar>
+            <x-plume::navbar.logo href="/home">Brand</x-plume::navbar.logo>
+        </x-plume::navbar>
+    ');
     expect($view)
         ->toContain('href="/home"')
         ->toContain('Brand');

@@ -13,23 +13,29 @@ class Tabs extends Component
 {
     use ResolvesId, InteractsWithAttributes, HasStyles;
 
+    public string $groupSize;
+    public string $groupStyle;
+    public string $groupShape;
+    public string $groupSide;
+
     public function __construct(
         public string $default = '1',
         public string $side = 'top',
         public string $size = 'md',
         public string $style = 'default',
         public string $shape = 'default',
-    ) {}
+    ) {
+        $this->groupSize = $size;
+        $this->groupStyle = $style;
+        $this->groupShape = $shape;
+        $this->groupSide = $side;
+    }
 
     public function render(): View|Closure|string
     {
         return view('plume::components-class.tabs.index', [
             'component' => $this,
             'directionClass' => $this->directionClasses(),
-            'groupSize' => $this->size,
-            'groupStyle' => $this->style,
-            'groupShape' => $this->shape,
-            'groupSide' => $this->side,
         ]);
     }
 
