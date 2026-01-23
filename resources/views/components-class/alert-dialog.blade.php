@@ -8,6 +8,7 @@
 @prop bool $withCancel (Default: true)
 @prop string $onConfirm (Default: '')
 --}}
+@php $alertDialog = $component; @endphp
 <x-plume::modal name="{{ $name }}" :show="$show" :maxWidth="$maxWidth" role="alertdialog"
     aria-modal="true" aria-labelledby="{{ $name }}-title"
     aria-describedby="{{ $name }}-description" {{ $attributes }}>

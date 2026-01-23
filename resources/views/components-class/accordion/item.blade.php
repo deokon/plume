@@ -5,6 +5,7 @@
 @prop string $id (Default: null)
 @prop bool $open (Default: false)
 --}}
+@php $accordionItem = $component; @endphp
 <div x-data="accordionItem('{{ $id }}', {{ $open ? 'true' : 'false' }})" x-init="if (localOpen && !alwaysOpen) active = id" {{ $attributes->merge(['class' => 'group']) }}>
     <h3>
         <button type="button"

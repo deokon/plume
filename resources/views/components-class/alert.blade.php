@@ -12,6 +12,7 @@
     Operation completed successfully.
 </x-plume::alert>
 --}}
+@php $alert = $component; @endphp
 <div x-data="{ open: true, close() { this.open = false;
         @if ($onClose) {{ $onClose }} @endif } }" x-show="open" x-transition:leave="transition ease-in duration-200"
     x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"

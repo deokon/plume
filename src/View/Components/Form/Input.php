@@ -27,6 +27,7 @@ class Input extends BaseFormComponent
     {
         return view('plume::components-class.form.input', [
             'component' => $this,
+            'component' => $this,
         ]);
     }
 

@@ -16,6 +16,7 @@ class Gallery extends Component
     public function render(): View|Closure|string
     {
         return view('plume::components-class.gallery', [
+            'component' => $this,
             'gridClasses' => $this->themeStyles(),
         ]);
     }

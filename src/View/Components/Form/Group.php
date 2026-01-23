@@ -25,6 +25,7 @@ class Group extends Component
     public function render(): View|Closure|string
     {
         return view('plume::components-class.form.group', [
+            'component' => $this,
             'gridClasses' => $this->themeStyles(),
         ]);
     }

@@ -22,6 +22,7 @@ class Item extends Component
     {
         return view('plume::components-class.tabs.item', [
             'component' => $this,
+            'component' => $this,
         ]);
     }
 }

@@ -23,7 +23,8 @@ class Card extends Component
 
     public function render(): View|Closure|string
     {
-        return view('plume::components-class.card');
+        return view('plume::components-class.card', [
+            'component' => $this,'component' => $this]);
     }
 
     public function hasHeader(): bool

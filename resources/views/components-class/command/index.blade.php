@@ -5,6 +5,7 @@
 @prop string $placeholder (Default: 'Type a command or search...')
 @prop string $id (Default: null)
 --}}
+@php $command = $component; @endphp
 <div x-data="command()" @keydown.window.prevent.cmd.k="toggle()"
     @keydown.window.prevent.ctrl.k="toggle()" @keydown.escape.window="open = false" 
     x-on:keydown.tab="if(open) { handleTab($event) }"
@@ -12,6 +13,7 @@
     {{ $attributes }}>
     
     {{-- Trigger Slot or Prop --}}
+@php $command = $component; @endphp
     <div @click="toggle()" class="inline-flex cursor-pointer" role="button" aria-haspopup="listbox" :aria-expanded="open">
         @if (isset($trigger) && $trigger instanceof \Illuminate\View\ComponentSlot && $trigger->isNotEmpty())
             {{ $trigger }}
@@ -23,6 +25,7 @@
     </div>
 
     {{-- Modal Overlay --}}
+@php $command = $component; @endphp
     <template x-teleport="body">
         <div x-show="open" x-cloak x-transition:enter="{{ $enter }}"
             x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
@@ -37,6 +40,7 @@
                 class="w-full max-w-2xl bg-background dark:bg-background-800 rounded-xl shadow-2xl border border-background-700/40 dark:border-background-400/20 overflow-hidden flex flex-col"
                 role="combobox" aria-haspopup="listbox" :aria-expanded="open" :aria-owns="$id('command-list')">
                 {{-- Input Header --}}
+@php $command = $component; @endphp
                 <div
                     class="flex items-center px-4 border-b border-background-700/40 dark:border-background-400/20">
                     <x-plume::icon i="icon-[fluent--search-24-regular]"
@@ -51,6 +55,7 @@
                 </div>
 
                 {{-- Results List --}}
+@php $command = $component; @endphp
                 <div x-ref="items" class="flex-1 overflow-y-auto max-h-[60vh] p-2 space-y-4" 
                      role="listbox" :id="$id('command-list')">
                     <div x-show="search === '' && !$refs.results?.children.length"
@@ -64,6 +69,7 @@
                 </div>
 
                 {{-- Footer --}}
+@php $command = $component; @endphp
                 <div
                     class="px-4 py-3 bg-background-50 dark:bg-background-900 border-t border-background-700/40 dark:border-background-400/20 flex items-center gap-6 text-[10px] text-foreground/60 dark:text-background-400 uppercase font-semibold">
                     <div class="flex items-center gap-1.5">

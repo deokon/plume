@@ -25,6 +25,7 @@ class Button extends Component
     {
         return view('plume::components-class.button', [
             'component' => $this,
+            'component' => $this,
         ]);
     }
 

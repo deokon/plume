@@ -20,6 +20,7 @@ class ButtonToggle extends Component
 
     public function render(): View|Closure|string
     {
-        return view('plume::components-class.button.toggle');
+        return view('plume::components-class.button.toggle', [
+            'component' => $this,'component' => $this]);
     }
 }

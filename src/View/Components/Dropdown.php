@@ -19,6 +19,7 @@ class Dropdown extends Component
     public function render(): View|Closure|string
     {
         return view('plume::components-class.dropdown', [
+            'component' => $this,
             'alignmentClasses' => $this->alignmentClasses(),
             'widthClass' => $this->widthClass(),
         ]);

@@ -30,6 +30,7 @@ class ButtonGroup extends Component
     {
         return view('plume::components-class.button-group', [
             'component' => $this,
+            'component' => $this,
             'groupClasses' => $this->groupClasses(),
         ]);
     }

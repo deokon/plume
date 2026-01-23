@@ -17,6 +17,7 @@ class Carousel extends Component
 
     public function render(): View|Closure|string
     {
-        return view('plume::components-class.carousel.index');
+        return view('plume::components-class.carousel.index', [
+            'component' => $this,'component' => $this]);
     }
 }

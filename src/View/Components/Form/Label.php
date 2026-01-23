@@ -15,6 +15,7 @@ class Label extends Component
 
     public function render(): View|Closure|string
     {
-        return view('plume::components-class.form.label');
+        return view('plume::components-class.form.label', [
+            'component' => $this,'component' => $this]);
     }
 }

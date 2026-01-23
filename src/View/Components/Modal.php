@@ -26,6 +26,7 @@ class Modal extends Component
     {
         return view('plume::components-class.modal', [
             'component' => $this,
+            'component' => $this,
             'maxWidthClass' => $this->themeStyles(),
             'enter' => $this->transitions('overlay-enter'),
             'leave' => $this->transitions('overlay-leave'),

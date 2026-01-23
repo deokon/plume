@@ -27,6 +27,7 @@ class Video extends Component
     public function render(): View|Closure|string
     {
         return view('plume::components-class.video', [
+            'component' => $this,
             'aspectClass' => $this->themeStyles(),
         ]);
     }

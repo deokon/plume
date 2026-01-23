@@ -16,6 +16,7 @@ class EmptyState extends Component
 
     public function render(): View|Closure|string
     {
-        return view('plume::components-class.empty-state');
+        return view('plume::components-class.empty-state', [
+            'component' => $this,'component' => $this]);
     }
 }

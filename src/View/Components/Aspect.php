@@ -15,6 +15,7 @@ class Aspect extends Component
     public function render(): View|Closure|string
     {
         return view('plume::components-class.aspect', [
+            'component' => $this,
             'ratioClass' => $this->themeStyles(),
         ]);
     }

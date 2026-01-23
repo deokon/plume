@@ -22,6 +22,7 @@ class Progress extends Component
     public function render(): View|Closure|string
     {
         return view('plume::components-class.progress.index', [
+            'component' => $this,
             'styleClass' => \deokon\Plume\Theme::progress($this->style),
         ]);
     }

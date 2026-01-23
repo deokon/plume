@@ -5,6 +5,7 @@
 @prop string $position (Default: 'bottom')
 @prop string $align (Default: 'center')
 --}}
+@php $popover = $component; @endphp
 <div x-data="{
     open: false,
     toggle() {

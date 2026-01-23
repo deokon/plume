@@ -5,12 +5,14 @@
 @prop int $current (Default: 1)
 @prop int $onEachSide (Default: 1)
 --}}
+@php $pagination = $component; @endphp
 <nav x-data="pagination({{ $initialTotal }}, {{ $initialCurrent }}, {{ $onEachSide }})"
     {{ $attributes->merge(['class' => 'flex items-center justify-center gap-1']) }}
     aria-label="Pagination"
     data-total="{{ $initialTotal }}"
     data-current="{{ $initialCurrent }}">
     {{-- Previous Page --}}
+@php $pagination = $component; @endphp
     <x-plume::button style="ghost" size="sm" ::disabled="current <= 1" @click="dispatch(current - 1)"
         aria-label="Previous Page">
         <x-plume::icon i="icon-[fluent--chevron-left-24-regular]" class="size-4" />
@@ -18,6 +20,7 @@
     </x-plume::button>
 
     {{-- Page Numbers (Desktop) --}}
+@php $pagination = $component; @endphp
     <div class="hidden sm:flex items-center gap-1">
         <template x-for="(page, index) in pages" :key="index + '-' + page">
             <div class="flex items-center">
@@ -44,11 +47,13 @@
     </div>
 
     {{-- Page Info (Mobile) --}}
+@php $pagination = $component; @endphp
     <div class="sm:hidden px-4 text-sm font-medium text-foreground/70 dark:text-background-400">
         <span x-text="current"></span> / <span x-text="total"></span>
     </div>
 
     {{-- Next Page --}}
+@php $pagination = $component; @endphp
     <x-plume::button style="ghost" size="sm" ::disabled="current >= total" @click="dispatch(current + 1)"
         aria-label="Next Page">
         <span class="hidden sm:inline-block mr-1">Next</span>

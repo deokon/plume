@@ -25,6 +25,7 @@ class Password extends BaseFormComponent
     {
         return view('plume::components-class.form.password', [
             'component' => $this,
+            'component' => $this,
         ]);
     }
 }

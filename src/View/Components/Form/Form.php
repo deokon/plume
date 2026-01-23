@@ -20,6 +20,7 @@ class Form extends Component
 
     public function render(): View|Closure|string
     {
-        return view('plume::components-class.form.index');
+        return view('plume::components-class.form.index', [
+            'component' => $this,'component' => $this]);
     }
 }

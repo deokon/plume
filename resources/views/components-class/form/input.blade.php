@@ -12,8 +12,9 @@
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php
-    [$resolvedName, $resolvedModel, $resolvedId] = $component->resolveFormAttributes($attributes->all(), $groupName, $groupModel);
-    $classes = $component->inputClasses($icon, isset($rightSide));
+    $input = $component;
+    [$resolvedName, $resolvedModel, $resolvedId] = $input->resolveFormAttributes($attributes->all(), $groupName, $groupModel);
+    $classes = $input->inputClasses($icon, isset($rightSide));
 @endphp
 <x-plume::form.element :label="$label ?? $slot" :name="$resolvedName" :id="$resolvedId" :model="$resolvedModel">
     @if (isset($after) && $after instanceof \Illuminate\View\ComponentSlot && $after->isNotEmpty())

@@ -22,6 +22,7 @@ class Figure extends Component
     public function render(): View|Closure|string
     {
         return view('plume::components-class.figure', [
+            'component' => $this,
             'aspectClass' => $this->themeStyles(),
         ]);
     }

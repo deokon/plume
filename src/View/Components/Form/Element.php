@@ -26,6 +26,7 @@ class Element extends Component
 
     public function render(): View|Closure|string
     {
-        return view('plume::components-class.form.element');
+        return view('plume::components-class.form.element', [
+            'component' => $this,'component' => $this]);
     }
 }

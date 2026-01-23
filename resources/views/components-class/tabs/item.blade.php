@@ -17,8 +17,9 @@
     'groupShape' => null,
 ])
 @php
-    $resolvedSide = $component->resolveAttribute($attributes, 'side', $groupSide ?? $side, 'top');
-    [$resolvedSize, $resolvedStyle, $resolvedShape] = $component->resolveStyleProps($attributes, [
+    $tabsItem = $component;
+    $resolvedSide = $tabsItem->resolveAttribute($attributes, 'side', $groupSide ?? $side, 'top');
+    [$resolvedSize, $resolvedStyle, $resolvedShape] = $tabsItem->resolveStyleProps($attributes, [
         'size' => $groupSize ?? $size, 
         'style' => $groupStyle ?? $style, 
         'shape' => $groupShape ?? $shape

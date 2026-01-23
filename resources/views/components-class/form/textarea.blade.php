@@ -11,7 +11,8 @@
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php
-    [$resolvedName, $resolvedModel, $resolvedId] = $component->resolveFormAttributes($attributes->all(), $groupName, $groupModel);
+    $textarea = $component;
+    [$resolvedName, $resolvedModel, $resolvedId] = $textarea->resolveFormAttributes($attributes->all(), $groupName, $groupModel);
 @endphp
 <x-plume::form.element :label="$label ?? $slot" :name="$resolvedName" :id="$resolvedId" :model="$resolvedModel">
     <textarea name="{{ $resolvedName }}" id="{{ $resolvedId }}" rows="{{ $rows }}"

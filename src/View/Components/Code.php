@@ -16,6 +16,7 @@ class Code extends Component
 
     public function render(): View|Closure|string
     {
-        return view('plume::components-class.code');
+        return view('plume::components-class.code', [
+            'component' => $this,'component' => $this]);
     }
 }

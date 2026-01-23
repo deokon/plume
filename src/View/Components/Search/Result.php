@@ -16,6 +16,7 @@ class Result extends Component
 
     public function render(): View|Closure|string
     {
-        return view('plume::components-class.search.result');
+        return view('plume::components-class.search.result', [
+            'component' => $this,'component' => $this]);
     }
 }

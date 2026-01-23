@@ -10,6 +10,7 @@ class MobileToggle extends Component
 {
     public function render(): View|Closure|string
     {
-        return view('plume::components-class.navbar.mobile-toggle');
+        return view('plume::components-class.navbar.mobile-toggle', [
+            'component' => $this,'component' => $this]);
     }
 }

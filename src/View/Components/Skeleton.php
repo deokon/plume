@@ -16,6 +16,7 @@ class Skeleton extends Component
     public function render(): View|Closure|string
     {
         return view('plume::components-class.skeleton', [
+            'component' => $this,
             'classes' => $this->classes(),
         ]);
     }

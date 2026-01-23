@@ -14,6 +14,7 @@ class DropdownItem extends Component
 
     public function render(): View|Closure|string
     {
-        return view('plume::components-class.dropdown.item');
+        return view('plume::components-class.dropdown.item', [
+            'component' => $this,'component' => $this]);
     }
 }

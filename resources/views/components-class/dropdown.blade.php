@@ -7,6 +7,7 @@
 @prop string $contentClasses (Default: 'bg-background dark:bg-background-800')
 @prop string $triggerStyle (Default: 'outline')
 --}}
+@php $dropdown = $component; @endphp
 <div class="relative" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
     <div @click="open = ! open">
         @if (isset($trigger) && $trigger instanceof \Illuminate\View\ComponentSlot)

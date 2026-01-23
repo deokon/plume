@@ -22,6 +22,7 @@ class Popover extends Component
     {
         return view('plume::components-class.popover', [
             'component' => $this,
+            'component' => $this,
             'contentClasses' => $this->themeStyles(),
             'enter' => $this->transitions('overlay-enter'),
             'leave' => $this->transitions('overlay-leave'),

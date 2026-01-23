@@ -19,6 +19,7 @@ class Td extends Component
     {
         return view('plume::components-class.table.td', [
             'component' => $this,
+            'component' => $this,
         ]);
     }
 }

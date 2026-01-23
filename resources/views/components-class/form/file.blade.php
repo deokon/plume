@@ -9,7 +9,8 @@
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php
-    [$resolvedName, $resolvedModel, $resolvedId] = $component->resolveFormAttributes($attributes->all(), $groupName, $groupModel);
+    $fileInput = $component;
+    [$resolvedName, $resolvedModel, $resolvedId] = $fileInput->resolveFormAttributes($attributes->all(), $groupName, $groupModel);
 @endphp
 <x-plume::form.element :label="$label ?? $slot" :name="$resolvedName" :id="$resolvedId" :model="$resolvedModel">
     <div x-data="fileInput()"

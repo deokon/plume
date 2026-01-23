@@ -15,6 +15,7 @@ class Kbd extends Component
     public function render(): View|Closure|string
     {
         return view('plume::components-class.kbd', [
+            'component' => $this,
             'styleClass' => $this->themeStyles(),
         ]);
     }

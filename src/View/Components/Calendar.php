@@ -19,6 +19,7 @@ class Calendar extends Component
     public function render(): View|Closure|string
     {
         return view('plume::components-class.calendar', [
+            'component' => $this,
             'initialValue' => $this->initialValue(),
         ]);
     }

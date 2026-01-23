@@ -15,6 +15,7 @@ class Item extends Component
 
     public function render(): View|Closure|string
     {
-        return view('plume::components-class.breadcrumb.item');
+        return view('plume::components-class.breadcrumb.item', [
+            'component' => $this,'component' => $this]);
     }
 }

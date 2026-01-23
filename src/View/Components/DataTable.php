@@ -22,6 +22,7 @@ class DataTable extends Component
     public function render(): View|Closure|string
     {
         return view('plume::components-class.data-table', [
+            'component' => $this,
             'data' => $this->data,
             'columns' => $this->columns,
             'searchable' => $this->searchable,

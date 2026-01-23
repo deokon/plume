@@ -14,6 +14,7 @@ class Logo extends Component
 
     public function render(): View|Closure|string
     {
-        return view('plume::components-class.navbar.logo');
+        return view('plume::components-class.navbar.logo', [
+            'component' => $this,'component' => $this]);
     }
 }

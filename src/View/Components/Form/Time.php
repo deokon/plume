@@ -22,6 +22,7 @@ class Time extends BaseFormComponent
     {
         return view('plume::components-class.form.time', [
             'component' => $this,
+            'component' => $this,
         ]);
     }
 }

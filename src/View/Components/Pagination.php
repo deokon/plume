@@ -22,6 +22,7 @@ class Pagination extends Component
     {
         return view('plume::components-class.pagination', [
             'component' => $this,
+            'component' => $this,
             'initialTotal' => $this->total,
             'initialCurrent' => $this->current,
         ]);

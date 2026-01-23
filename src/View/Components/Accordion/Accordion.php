@@ -14,6 +14,7 @@ class Accordion extends Component
 
     public function render(): View|Closure|string
     {
-        return view('plume::components-class.accordion.index');
+        return view('plume::components-class.accordion.index', [
+            'component' => $this,'component' => $this]);
     }
 }

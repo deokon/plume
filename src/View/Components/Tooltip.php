@@ -18,6 +18,7 @@ class Tooltip extends Component
         $styles = $this->themeStyles();
 
         return view('plume::components-class.tooltip', [
+            'component' => $this,
             'positionClasses' => $styles['position'],
             'arrowClasses' => $styles['arrow'],
         ]);

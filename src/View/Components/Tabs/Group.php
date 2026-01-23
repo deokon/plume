@@ -15,6 +15,7 @@ class Group extends Component
     {
         return view('plume::components-class.tabs.group', [
             'component' => $this,
+            'component' => $this,
         ]);
     }
 }

@@ -15,6 +15,7 @@ class Actions extends Component
 
     public function render(): View|Closure|string
     {
-        return view('plume::components-class.stepper.actions');
+        return view('plume::components-class.stepper.actions', [
+            'component' => $this,'component' => $this]);
     }
 }

@@ -21,6 +21,7 @@ class File extends BaseFormComponent
     {
         return view('plume::components-class.form.file', [
             'component' => $this,
+            'component' => $this,
         ]);
     }
 }

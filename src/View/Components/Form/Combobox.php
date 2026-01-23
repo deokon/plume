@@ -34,6 +34,7 @@ class Combobox extends BaseFormComponent
     {
         return view('plume::components-class.form.combobox', [
             'component' => $this,
+            'component' => $this,
         ]);
     }
 }

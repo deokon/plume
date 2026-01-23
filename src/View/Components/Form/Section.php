@@ -18,6 +18,7 @@ class Section extends Component
     public function render(): View|Closure|string
     {
         return view('plume::components-class.form.section', [
+            'component' => $this,
             'gridClasses' => $this->themeStyles(),
         ]);
     }

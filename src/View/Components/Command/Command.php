@@ -21,6 +21,7 @@ class Command extends Component
     public function render(): View|Closure|string
     {
         return view('plume::components-class.command.index', [
+            'component' => $this,
             'enter' => $this->transitions('overlay-enter'),
             'leave' => $this->transitions('overlay-leave'),
         ]);

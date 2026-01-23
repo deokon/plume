@@ -20,6 +20,8 @@ class Alert extends Component
     public function render(): View|Closure|string
     {
         return view('plume::components-class.alert', [
+            'component' => $this,
+            'component' => $this,
             'containerClasses' => $this->containerClasses(),
             'iconClasses' => $this->iconClasses(),
             'resolvedIcon' => $this->icon ?? $this->defaultIcon(),

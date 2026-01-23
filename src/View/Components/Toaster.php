@@ -22,6 +22,7 @@ class Toaster extends Component
 
         return view('plume::components-class.toaster', [
             'component' => $this,
+            'component' => $this,
             'positionClasses' => $styles['position'],
             'enterStart' => $styles['enter_start'],
             'enter' => $this->transitions('overlay-enter'),

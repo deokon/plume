@@ -14,6 +14,7 @@ class Panel extends Component
 
     public function render(): View|Closure|string
     {
-        return view('plume::components-class.tabs.panel');
+        return view('plume::components-class.tabs.panel', [
+            'component' => $this,'component' => $this]);
     }
 }

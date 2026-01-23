@@ -16,6 +16,7 @@ class Item extends Component
 
     public function render(): View|Closure|string
     {
-        return view('plume::components-class.accordion.item');
+        return view('plume::components-class.accordion.item', [
+            'component' => $this]);
     }
 }
