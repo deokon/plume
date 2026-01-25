@@ -94,15 +94,12 @@ describe('FileInput Plugin', () => {
         vi.stubGlobal('XMLHttpRequest', MockXHR);
 
         instance = createInstance(false, 'data.avatar', '/upload')
-        instance.data = { avatar: null } // Mock parent data object
+        instance.data = { avatar: null } 
         const file = new File(['content'], 'test.txt')
         
         const uploadPromise = instance.addFiles([file])
         
-        // Wait for addFiles to create XHR
         await vi.waitFor(() => capturedXhr !== undefined);
-        
-        // Trigger onload manually
         capturedXhr.onload();
         await uploadPromise;
 
@@ -130,38 +127,19 @@ describe('FileInput Plugin', () => {
         }
         vi.stubGlobal('XMLHttpRequest', MockXHR);
 
-                instance = createInstance(false, 'data.avatar', '/upload')
-
-                instance.data = { avatar: null }
-
-                const file = new File(['content'], 'test.txt')
-
-                
-
-                const uploadPromise = instance.addFiles([file])
-
-                
-
-                await vi.waitFor(() => capturedXhr !== undefined);
-
-                capturedXhr.onload();
-
-                await uploadPromise;
-
+        instance = createInstance(false, 'data.avatar', '/upload')
+        instance.data = { avatar: null }
+        const file = new File(['content'], 'test.txt')
         
-
-                expect(instance.files[0].error).toBe('Upload failed')
-
-                expect(instance.data.avatar).toBeNull()
-
-                expect(instance.$dispatch).toHaveBeenCalledWith('plume-busy')
-
-                expect(instance.$dispatch).toHaveBeenCalledWith('plume-idle')
-
-            })
-
-        })
-
+        const uploadPromise = instance.addFiles([file])
         
+        await vi.waitFor(() => capturedXhr !== undefined);
+        capturedXhr.onload();
+        await uploadPromise;
 
-        
+        expect(instance.files[0].error).toBe('Upload failed')
+        expect(instance.data.avatar).toBeNull()
+        expect(instance.$dispatch).toHaveBeenCalledWith('plume-busy')
+        expect(instance.$dispatch).toHaveBeenCalledWith('plume-idle')
+    })
+})

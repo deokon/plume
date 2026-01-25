@@ -66,12 +66,13 @@
                                 </div>
                             </template>
 
-                            <template x-if="file.progress < 100 && !file.error">
+                            <template x-if="uploadUrl && !file.id && !file.error">
                                 <div class="absolute inset-0 flex flex-col items-center justify-center bg-background/60 p-2">
                                     <div class="w-full bg-background-200 rounded-full h-1.5 mb-1 dark:bg-background-700">
                                         <div class="bg-primary h-1.5 rounded-full transition-all duration-300" :style="`width: ${file.progress}%`"></div>
                                     </div>
-                                    <span class="text-[8px] font-bold text-foreground" x-text="`${file.progress}%`"></span>
+                                    <span class="text-[8px] font-bold text-foreground" 
+                                        x-text="file.progress < 100 ? `${file.progress}%` : 'Processing...'"></span>
                                 </div>
                             </template>
 

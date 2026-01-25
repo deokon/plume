@@ -67,6 +67,9 @@ export default function (model = null, uploadUrl = null) {
         },
         async uploadFile(fileObj) {
             return new Promise((resolve) => {
+                // Ensure UI reflects 0% state
+                this.updateFileInArray(fileObj, { progress: 0 });
+
                 const formData = new FormData();
                 formData.append('file', fileObj.raw);
 
@@ -83,30 +86,39 @@ export default function (model = null, uploadUrl = null) {
 
                 xhr.upload.onprogress = (e) => {
                     if (e.lengthComputable) {
-                        fileObj.progress = Math.round((e.loaded / e.total) * 100);
+                        const progress = Math.round((e.loaded / e.total) * 100);
+                        this.updateFileInArray(fileObj, { progress });
                     }
                 };
 
                 xhr.onload = () => {
                     if (xhr.status >= 200 && xhr.status < 300) {
                         const response = JSON.parse(xhr.responseText);
-                        fileObj.id = response.id;
-                        fileObj.progress = 100;
+                        this.updateFileInArray(fileObj, { id: response.id, progress: 100 });
                     } else {
-                        fileObj.error = 'Upload failed';
+                        this.updateFileInArray(fileObj, { error: 'Upload failed' });
                     }
                     this.syncModel();
                     resolve();
                 };
 
                 xhr.onerror = () => {
-                    fileObj.error = 'Network error';
+                    this.updateFileInArray(fileObj, { error: 'Network error' });
                     this.syncModel();
                     resolve();
                 };
 
                 xhr.send(formData);
             });
+        },
+        updateFileInArray(fileObj, updates) {
+            const index = this.files.findIndex((f) => f.name === fileObj.name && f.size === fileObj.size);
+            if (index !== -1) {
+                // Merge updates into the object
+                Object.assign(fileObj, updates);
+                // Trigger reactivity by replacing the object in the array using splice
+                this.files.splice(index, 1, { ...fileObj });
+            }
         },
         removeFile(index) {
             const file = this.files[index];
