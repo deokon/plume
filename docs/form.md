@@ -8,9 +8,10 @@ A collection of form components for user input.
 | :--- | :--- | :--- | :--- |
 | `action` | `string` | `''` | - |
 | `method` | `string` | `'POST'` | - |
-| `formData` | `string` | `null` | - |
+| `formData` | `array|string|null` | `null` | - |
 | `submitButton` | `string` | `null` | - |
 | `resetButton` | `string` | `null` | - |
 | `hideOnSuccess` | `bool` | `false` | - |
+| `resetOnSuccess` | `bool` | `false` | - |
 | `inline` | `bool` | `false` | - |
 

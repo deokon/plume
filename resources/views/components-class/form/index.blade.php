@@ -3,7 +3,7 @@
 @description A collection of form components for user input.
 @prop string $action (Default: '')
 @prop string $method (Default: 'POST')
-@prop string $formData (Default: null)
+@prop array|string|null $formData (Default: null)
 @prop string $submitButton (Default: null)
 @prop string $resetButton (Default: null)
 @prop bool $hideOnSuccess (Default: false)
