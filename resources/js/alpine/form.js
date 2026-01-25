@@ -45,7 +45,7 @@ export default function (Alpine) {
         },
 
         async submit(url = null, method = null) {
-            if (this.busy) return;
+            if (this.busy || this.processing) return;
             this.processing = true;
             this.wasSuccessful = false;
             this.hasFailed = false;

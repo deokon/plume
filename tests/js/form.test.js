@@ -101,13 +101,20 @@ describe('Form Plugin', () => {
         expect(instance.data.name).toBe('Original')
     })
 
-    it('prevents submission when busy', async () => {
+    it('prevents submission when busy or already processing', async () => {
         instance = createInstance({ name: 'Test' }, { url: '/api/test' })
         instance.init()
-        instance.busy = true
         
+        // Test busy
+        instance.busy = true
         await instance.submit()
         expect(instance.processing).toBe(false)
+        expect(fetch).not.toHaveBeenCalled()
+
+        // Test already processing
+        instance.busy = false
+        instance.processing = true
+        await instance.submit()
         expect(fetch).not.toHaveBeenCalled()
     })
 
