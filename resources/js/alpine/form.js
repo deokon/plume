@@ -29,8 +29,9 @@ export default function (Alpine) {
             if (!this._config.url && this.$el.tagName === 'FORM' && this.$el.action) {
                 this._config.url = this.$el.action;
             }
-            if (this.$el.tagName === 'FORM' && this.$el.method) {
-                this._config.method = this.$el.method.toUpperCase();
+            if (this.$el.tagName === 'FORM') {
+                const spoofedMethod = this.$el.querySelector('input[name="_method"]')?.value;
+                this._config.method = (spoofedMethod || this.$el.method || 'POST').toUpperCase();
             }
 
             // Watch for changes to calculate dirty state

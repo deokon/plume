@@ -138,7 +138,16 @@ describe('FileInput Plugin', () => {
         capturedXhr.onload();
         await uploadPromise;
 
-        expect(instance.files[0].error).toBe('Upload failed')
-        expect(instance.$data['avatar']).toBeNull()
-    })
-})
+                expect(instance.files[0].error).toBe('Upload failed')
+
+                expect(instance.$data['avatar']).toBeNull()
+
+                expect(instance.$dispatch).toHaveBeenCalledWith('plume-busy')
+
+                expect(instance.$dispatch).toHaveBeenCalledWith('plume-idle')
+
+            })
+
+        })
+
+        

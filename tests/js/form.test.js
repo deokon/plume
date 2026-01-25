@@ -99,13 +99,54 @@ describe('Form Plugin', () => {
         expect(instance.data.name).toBe('Original')
     })
 
-    it('prevents submission when busy', async () => {
-        instance = createInstance({ name: 'Test' }, { url: '/api/test' })
-        instance.init()
-        instance.busy = true
-        
-        await instance.submit()
-        expect(instance.processing).toBe(false)
-        expect(fetch).not.toHaveBeenCalled()
+        it('prevents submission when busy', async () => {
+
+            instance = createInstance({ name: 'Test' }, { url: '/api/test' })
+
+            instance.init()
+
+            instance.busy = true
+
+            
+
+            await instance.submit()
+
+            expect(instance.processing).toBe(false)
+
+            expect(fetch).not.toHaveBeenCalled()
+
+        })
+
+    
+
+        it('detects spoofed methods from _method input', () => {
+
+            instance = createInstance({ name: 'Test' })
+
+            instance.$el.tagName = 'FORM'
+
+            instance.$el.method = 'POST'
+
+            instance.$el.querySelector = vi.fn((selector) => {
+
+                if (selector === 'input[name="_method"]') {
+
+                    return { value: 'PUT' }
+
+                }
+
+                return null
+
+            })
+
+            
+
+            instance.init()
+
+            expect(instance._config.method).toBe('PUT')
+
+        })
+
     })
-})
+
+    

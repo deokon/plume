@@ -54,9 +54,12 @@ export default function (model = null, uploadUrl = null) {
             if (this.uploadUrl) {
                 this.uploading = true;
                 this.$dispatch('plume-busy');
-                await Promise.all(updatedFiles.map((f) => this.uploadFile(f)));
-                this.uploading = this.files.some((f) => f.progress < 100 && !f.error);
-                if (!this.uploading) this.$dispatch('plume-idle');
+                try {
+                    await Promise.all(updatedFiles.map((f) => this.uploadFile(f)));
+                } finally {
+                    this.uploading = this.files.some((f) => f.progress < 100 && !f.error);
+                    if (!this.uploading) this.$dispatch('plume-idle');
+                }
             }
 
             this.updateInput();
@@ -73,6 +76,7 @@ export default function (model = null, uploadUrl = null) {
                 const token =
                     document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') ||
                     document.querySelector('input[name="_token"]')?.value ||
+                    window.Laravel?.csrfToken ||
                     '';
                 xhr.setRequestHeader('X-CSRF-TOKEN', token);
                 xhr.setRequestHeader('Accept', 'application/json');
