@@ -2020,6 +2020,18 @@
                 "aspect": {
                     "type": "string",
                     "default": "'video'"
+                },
+                "onPlay": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "onPause": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "onEnded": {
+                    "type": "string",
+                    "default": "null"
                 }
             },
             "description": "A styled wrapper for HTML5 video, YouTube, and Vimeo content.",

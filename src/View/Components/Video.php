@@ -20,6 +20,9 @@ class Video extends Component
         public bool $loop = false,
         public bool $muted = false,
         public string $aspect = 'video',
+        public ?string $onPlay = null,
+        public ?string $onPause = null,
+        public ?string $onEnded = null,
     ) {
         $this->resolveEmbed();
     }

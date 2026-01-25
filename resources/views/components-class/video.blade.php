@@ -8,10 +8,17 @@
 @prop bool $loop (Default: false)
 @prop bool $muted (Default: false)
 @prop string $aspect (Default: 'video')
+@prop string $onPlay (Default: null)
+@prop string $onPause (Default: null)
+@prop string $onEnded (Default: null)
 --}}
 <div {{ $attributes->merge(['class' => 'overflow-hidden rounded-lg bg-black']) }}>
     <div @class(['relative w-full group', $aspectClass])
-        @if (!$isEmbed) x-data="video({{ $autoplay ? 'true' : 'false' }})" @endif>
+        @if (!$isEmbed) x-data="video({{ $autoplay ? 'true' : 'false' }}, { 
+            onPlay: {{ Js::from($onPlay) }}, 
+            onPause: {{ Js::from($onPause) }}, 
+            onEnded: {{ Js::from($onEnded) }} 
+        })" @endif>
         @if ($isEmbed)
             <iframe src="{{ $embedSrc }}" class="h-full w-full" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -23,7 +30,10 @@
                 @if ($controls) controls @endif
                 @if ($loop) loop @endif
                 @if ($muted) muted @endif class="h-full w-full object-cover"
-                @play="playing = true" @pause="playing = false" @click="toggle">
+                @play="playing = true; triggerCallback('onPlay')" 
+                @pause="playing = false; triggerCallback('onPause')" 
+                @ended="triggerCallback('onEnded')"
+                @click="toggle">
                 Your browser does not support the video tag.
             </video>
 
