@@ -22,8 +22,8 @@
         'shape' => $groupShape,
     ]);
     $cleanAttributes = $component->cleanAttributes($attributes);
-    $confirmSlot = $__laravel_slots['confirm'] ?? null;
-    $hasConfirm = $confirm || $confirmSlot;
+    $confirmSlot = (isset($confirm) && $confirm instanceof \Illuminate\View\ComponentSlot && $confirm->isNotEmpty()) ? $confirm : null;
+    $hasConfirm = $confirm && is_string($confirm) || $confirmSlot;
     $confirmId = 'confirm-' . \Illuminate\Support\Str::random(8);
 @endphp
 

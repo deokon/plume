@@ -88,7 +88,9 @@
                                 </div>
                             </template>
                             
-                            <div class="absolute inset-0 bg-background-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <div x-data="{ hover: false }" x-on:mouseenter="hover = true" x-on:mouseleave="hover = false"
+                                class="absolute inset-0 bg-background-950/40 transition-opacity flex items-center justify-center"
+                                x-show="hover" x-cloak x-transition>
                                 <x-plume::button style="error" size="sm" shape="round" x-on:click.stop="removeFile(index)">
                                     <x-plume::icon i="icon-[fluent--dismiss-24-regular]" class="size-4" />
                                 </x-plume::button>

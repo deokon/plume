@@ -139,7 +139,18 @@ describe('FileInput Plugin', () => {
 
         expect(instance.files[0].error).toBe('Upload failed')
         expect(instance.data.avatar).toBeNull()
-        expect(instance.$dispatch).toHaveBeenCalledWith('plume-busy')
-        expect(instance.$dispatch).toHaveBeenCalledWith('plume-idle')
-    })
-})
+                expect(instance.$dispatch).toHaveBeenCalledWith('plume-busy')
+                expect(instance.$dispatch).toHaveBeenCalledWith('plume-idle')
+            })
+        
+            it('syncs model with deeply nested paths', () => {
+                instance = createInstance(false, 'form.data.settings.profile_image', '/upload')
+                instance.form = { data: { settings: { profile_image: null } } }
+                
+                instance.files = [{ id: 'img_999', name: 'p.png', size: 100 }]
+                instance.syncModel()
+                
+                expect(instance.form.data.settings.profile_image).toBe('img_999')
+            })
+        })
+        
