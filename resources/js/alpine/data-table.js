@@ -1,6 +1,7 @@
-export default (perPage = 10, paginated = false, sortable = true, url = null, initialData = [], initialColumns = []) => ({
+export default (perPage = 10, paginated = false, sortable = true, url = null, initialData = [], initialColumns = [], initialSlots = {}) => ({
     data: initialData,
     columns: initialColumns,
+    slots: initialSlots,
     search: '',
     sortCol: '',
     sortDir: 'asc',
@@ -155,5 +156,24 @@ export default (perPage = 10, paginated = false, sortable = true, url = null, in
             this.sortCol = col;
             this.sortDir = 'asc';
         }
+    },
+
+    renderConstructed(template, row) {
+        if (!template) return '';
+        
+        // First resolve slots: {slot:name}
+        let rendered = template.replace(/{slot:([\w.]+)}/g, (match, slotName) => {
+            return this.slots[slotName] !== undefined ? this.slots[slotName] : '';
+        });
+
+        // Then resolve keys: {key}
+        return rendered.replace(/{([\w.]+)}/g, (match, key) => {
+            const keys = key.split('.');
+            let value = row;
+            for (const k of keys) {
+                value = value ? value[k] : undefined;
+            }
+            return value !== undefined ? value : '';
+        });
     },
 });

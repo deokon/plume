@@ -10,7 +10,7 @@
 @prop string $url (Default: null)
 @prop bool $fixedHeight (Default: false)
 --}}
-<div x-data="dataTable({{ $perPage }}, {{ Js::from($paginated) }}, {{ Js::from($sortable) }}, {{ Js::from($url) }}, {{ Js::from($data) }}, {{ Js::from($columns) }})" {{ $attributes->merge(['class' => 'space-y-4 w-full']) }}
+<div x-data="dataTable({{ $perPage }}, {{ Js::from($paginated) }}, {{ Js::from($sortable) }}, {{ Js::from($url) }}, {{ Js::from($data) }}, {{ Js::from($columns) }}, {{ Js::from(collect($__laravel_slots ?? [])->map(fn($s) => (string) $s)) }})" {{ $attributes->merge(['class' => 'space-y-4 w-full']) }}
     :data="{{ Js::from($data) }}" :columns="{{ Js::from($columns) }}">
     @if ($searchable)
         <div class="flex items-center justify-between px-4 pt-4">
@@ -62,7 +62,12 @@
                 <x-plume::table.tr>
                     <template x-for="col in columns" :key="col.key">
                         <x-plume::table.td ::class="col.cellClass">
-                            <span x-text="row[col.key]"></span>
+                            <template x-if="col.constructed">
+                                <div x-html="renderConstructed(col.constructed, row)"></div>
+                            </template>
+                            <template x-if="!col.constructed">
+                                <span x-text="row[col.key]"></span>
+                            </template>
                         </x-plume::table.td>
                     </template>
                 </x-plume::table.tr>

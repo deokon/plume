@@ -17,8 +17,8 @@ describe('DataTable Plugin', () => {
         vi.stubGlobal('MutationObserver', MockObserver);
     })
 
-    const createInstance = (perPage = 10, paginated = false, sortable = true, url = null, initialData = testData) => {
-        const data = dataTable(perPage, paginated, sortable, url, initialData)
+    const createInstance = (perPage = 10, paginated = false, sortable = true, url = null, initialData = testData, slots = {}) => {
+        const data = dataTable(perPage, paginated, sortable, url, initialData, [], slots)
         data.$el = {
             getAttribute: vi.fn((attr) => {
                 if (attr === 'data') return JSON.stringify(initialData)
@@ -90,5 +90,37 @@ describe('DataTable Plugin', () => {
         expect(instance.data[0].name).toBe('Server Item')
         expect(instance.total).toBe(100)
         expect(instance.loading).toBe(false)
+    })
+
+    it('renders constructed columns', () => {
+        instance = createInstance()
+        const row = { name: 'John', url: 'https://example.com', profile: { bio: 'Engineer' } }
+        
+        expect(instance.renderConstructed('<a href="{url}">{name}</a>', row))
+            .toBe('<a href="https://example.com">John</a>')
+        
+        expect(instance.renderConstructed('Bio: {profile.bio}', row))
+            .toBe('Bio: Engineer')
+        
+        expect(instance.renderConstructed('Unknown: {missing}', row))
+            .toBe('Unknown: ')
+    })
+
+    it('renders constructed columns with slots', () => {
+        const slots = {
+            badge: '<span class="badge">{status}</span>',
+            link: '<a href="/{id}">{name}</a>'
+        }
+        instance = createInstance(10, false, true, null, testData, slots)
+        const row = { id: 1, name: 'John', status: 'active' }
+        
+        expect(instance.renderConstructed('{slot:badge}', row))
+            .toBe('<span class="badge">active</span>')
+        
+        expect(instance.renderConstructed('{slot:link} - {status}', row))
+            .toBe('<a href="/1">John</a> - active')
+        
+        expect(instance.renderConstructed('Missing {slot:none}', row))
+            .toBe('Missing ')
     })
 })
