@@ -20,6 +20,8 @@ class Modal extends Component
         public bool $show = false,
         public string $maxWidth = '2xl',
         public ?string $title = null,
+        public ?string $onOpen = null,
+        public ?string $onClose = null,
     ) {}
 
     public function render(): View|Closure|string

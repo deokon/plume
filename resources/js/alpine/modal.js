@@ -7,11 +7,16 @@ export default function (Alpine) {
         window.dispatchEvent(new CustomEvent('close-modal', { detail: name }));
     });
 
-    Alpine.data('modal', (name, initialShow = false, autofocus = false) => ({
+    Alpine.data('modal', (name, initialShow = false, autofocus = false, config = {}) => ({
         show: initialShow,
         name: name,
         autofocus: autofocus,
         lastFocusedElement: null,
+        _config: {
+            onOpen: null,
+            onClose: null,
+            ...config,
+        },
 
         init() {
             this.$watch('show', (value) => {
@@ -23,12 +28,16 @@ export default function (Alpine) {
                     if (this.autofocus) {
                         setTimeout(() => this.firstFocusable().focus(), 100);
                     }
+
+                    this.triggerCallback('onOpen');
                 } else {
                     document.body.classList.remove('overflow-y-hidden');
                     document.body.style.paddingRight = null;
                     if (this.lastFocusedElement) {
                         this.lastFocusedElement.focus();
                     }
+
+                    this.triggerCallback('onClose');
                 }
             });
 
@@ -90,6 +99,17 @@ export default function (Alpine) {
                 this.prevFocusable().focus();
             } else {
                 this.nextFocusable().focus();
+            }
+        },
+
+        triggerCallback(name) {
+            const callback = this._config[name];
+            if (!callback) return;
+
+            if (typeof callback === 'function') {
+                callback();
+            } else if (typeof callback === 'string') {
+                Alpine.evaluate(this.$el, callback);
             }
         },
     }));

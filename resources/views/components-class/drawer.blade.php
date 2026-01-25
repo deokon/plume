@@ -6,8 +6,10 @@
 @prop string $side (Default: 'right')
 @prop string $title (Default: null)
 @prop string $description (Default: null)
+@prop string $onOpen (Default: null)
+@prop string $onClose (Default: null)
 --}}
-<div x-data="drawer('{{ $name }}', @js($show))" x-on:keydown.escape.window="close()"
+<div x-data="drawer('{{ $name }}', @js($show), { onOpen: {{ Js::from($onOpen) }}, onClose: {{ Js::from($onClose) }} })" x-on:keydown.escape.window="close()"
     x-on:keydown.tab.prevent="handleTab($event)" x-show="show" x-cloak
     role="dialog" aria-modal="true" aria-labelledby="drawer-title-{{ $name }}"
     class="fixed inset-0 z-50 overflow-hidden" style="display: {{ $show ? 'block' : 'none' }};">

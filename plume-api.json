@@ -608,6 +608,14 @@
                 "description": {
                     "type": "string",
                     "default": "null"
+                },
+                "onOpen": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "onClose": {
+                    "type": "string",
+                    "default": "null"
                 }
             },
             "description": "A panel that slides in from the edge of the screen.",
@@ -1440,6 +1448,14 @@
                     "default": "'2xl'"
                 },
                 "title": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "onOpen": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "onClose": {
                     "type": "string",
                     "default": "null"
                 }

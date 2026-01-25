@@ -7,10 +7,15 @@ export default function (Alpine) {
         window.dispatchEvent(new CustomEvent('close-drawer', { detail: name }));
     });
 
-    Alpine.data('drawer', (name, initialShow = false) => ({
+    Alpine.data('drawer', (name, initialShow = false, config = {}) => ({
         show: initialShow,
         name: name,
         lastFocusedElement: null,
+        _config: {
+            onOpen: null,
+            onClose: null,
+            ...config,
+        },
 
         init() {
             this.$watch('show', (value) => {
@@ -19,11 +24,15 @@ export default function (Alpine) {
                     document.body.classList.add('overflow-y-hidden');
                     // Optional: autofocus first element after animation
                     setTimeout(() => this.firstFocusable().focus(), 300);
+
+                    this.triggerCallback('onOpen');
                 } else {
                     document.body.classList.remove('overflow-y-hidden');
                     if (this.lastFocusedElement) {
                         this.lastFocusedElement.focus();
                     }
+
+                    this.triggerCallback('onClose');
                 }
             });
 
@@ -78,12 +87,44 @@ export default function (Alpine) {
             return Math.max(0, this.focusables().indexOf(document.activeElement)) - 1;
         },
 
-        handleTab(event) {
-            if (event.shiftKey) {
-                this.prevFocusable().focus();
-            } else {
-                this.nextFocusable().focus();
-            }
-        },
-    }));
-}
+                handleTab(event) {
+
+                    if (event.shiftKey) {
+
+                        this.prevFocusable().focus();
+
+                    } else {
+
+                        this.nextFocusable().focus();
+
+                    }
+
+                },
+
+        
+
+                triggerCallback(name) {
+
+                    const callback = this._config[name];
+
+                    if (!callback) return;
+
+        
+
+                    if (typeof callback === 'function') {
+
+                        callback();
+
+                    } else if (typeof callback === 'string') {
+
+                        Alpine.evaluate(this.$el, callback);
+
+                    }
+
+                },
+
+            }));
+
+        }
+
+        

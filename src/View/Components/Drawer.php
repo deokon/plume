@@ -18,6 +18,8 @@ class Drawer extends Component
         public string $side = 'right',
         public ?string $title = null,
         public ?string $description = null,
+        public ?string $onOpen = null,
+        public ?string $onClose = null,
     ) {}
 
     public function render(): View|Closure|string

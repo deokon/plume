@@ -5,8 +5,10 @@
 @prop bool $show (Default: false)
 @prop string $maxWidth (Default: '2xl')
 @prop string $title (Default: null)
+@prop string $onOpen (Default: null)
+@prop string $onClose (Default: null)
 --}}
-<div x-data="modal('{{ $name }}', @js($show), @js($attributes->has('focusable')))" x-on:keydown.escape.window="close()"
+<div x-data="modal('{{ $name }}', @js($show), @js($attributes->has('focusable')), { onOpen: {{ Js::from($onOpen) }}, onClose: {{ Js::from($onClose) }} })" x-on:keydown.escape.window="close()"
     x-on:keydown.tab.prevent="handleTab($event)" x-show="show" x-cloak
     role="dialog" aria-modal="true" aria-labelledby="modal-title-{{ $name }}"
     {{ $attributes->merge(['class' => 'fixed inset-0 z-50 overflow-y-auto']) }}
