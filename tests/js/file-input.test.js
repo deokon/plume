@@ -93,7 +93,8 @@ describe('FileInput Plugin', () => {
         }
         vi.stubGlobal('XMLHttpRequest', MockXHR);
 
-        instance = createInstance(false, 'avatar', '/upload')
+        instance = createInstance(false, 'data.avatar', '/upload')
+        instance.data = { avatar: null } // Mock parent data object
         const file = new File(['content'], 'test.txt')
         
         const uploadPromise = instance.addFiles([file])
@@ -107,7 +108,7 @@ describe('FileInput Plugin', () => {
 
         expect(capturedXhr.open).toHaveBeenCalledWith('POST', '/upload')
         expect(instance.files[0].id).toBe('file_123')
-        expect(instance.$data['avatar']).toBe('file_123')
+        expect(instance.data.avatar).toBe('file_123')
         expect(instance.$dispatch).toHaveBeenCalledWith('plume-busy')
         expect(instance.$dispatch).toHaveBeenCalledWith('plume-idle')
     })
@@ -129,18 +130,29 @@ describe('FileInput Plugin', () => {
         }
         vi.stubGlobal('XMLHttpRequest', MockXHR);
 
-        instance = createInstance(false, 'avatar', '/upload')
-        const file = new File(['content'], 'test.txt')
+                instance = createInstance(false, 'data.avatar', '/upload')
+
+                instance.data = { avatar: null }
+
+                const file = new File(['content'], 'test.txt')
+
+                
+
+                const uploadPromise = instance.addFiles([file])
+
+                
+
+                await vi.waitFor(() => capturedXhr !== undefined);
+
+                capturedXhr.onload();
+
+                await uploadPromise;
+
         
-        const uploadPromise = instance.addFiles([file])
-        
-        await vi.waitFor(() => capturedXhr !== undefined);
-        capturedXhr.onload();
-        await uploadPromise;
 
                 expect(instance.files[0].error).toBe('Upload failed')
 
-                expect(instance.$data['avatar']).toBeNull()
+                expect(instance.data.avatar).toBeNull()
 
                 expect(instance.$dispatch).toHaveBeenCalledWith('plume-busy')
 
@@ -149,5 +161,7 @@ describe('FileInput Plugin', () => {
             })
 
         })
+
+        
 
         

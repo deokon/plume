@@ -127,9 +127,20 @@ export default function (model = null, uploadUrl = null) {
             if (!this.model || !this.uploadUrl) return;
 
             const ids = this.files.map((f) => f.id).filter((id) => id !== null);
+            const value = this.$refs.input.multiple ? ids : ids[0] || null;
 
-            if (typeof this.$data[this.model] !== 'undefined') {
-                this.$data[this.model] = this.$refs.input.multiple ? ids : ids[0] || null;
+            // Resolve nested path on the component proxy
+            const parts = this.model.split('.');
+            let obj = this;
+            
+            while (parts.length > 1) {
+                const part = parts.shift();
+                if (obj[part] === undefined) return;
+                obj = obj[part];
+            }
+            
+            if (obj) {
+                obj[parts[0]] = value;
             }
         },
     };
