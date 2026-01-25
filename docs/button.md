@@ -13,4 +13,5 @@ Displays a button or a component that looks like a button.
 | `size` | `string` | `null` | - |
 | `style` | `string` | `null` | - |
 | `shape` | `string` | `null` | - |
+| `confirm` | `string` | `null` | - |
 

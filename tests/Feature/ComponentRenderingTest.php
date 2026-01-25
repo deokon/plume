@@ -7,6 +7,14 @@ test('button renders correctly', function () {
     expect($view)->toContain('border bg-none')->toContain('Click Me');
 });
 
+test('button renders with confirmation', function () {
+    $view = Blade::render('<x-plume::button confirm="Are you sure?">Delete</x-plume::button>');
+    expect($view)->toContain('x-data="{ confirmed: false }"')
+        ->toContain('x-on:click="if (!confirmed) { $event.preventDefault(); $openModal(\'confirm-')
+        ->toContain('Are you sure?')
+        ->toContain('role="alertdialog"');
+});
+
 test('alert renders correctly', function () {
     $view = Blade::render('<x-plume::alert style="success" title="Success!">Done</x-plume::alert>');
     expect($view)->toContain('bg-primary-100')->toContain('Success!')->toContain('Done');

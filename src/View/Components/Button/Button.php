@@ -21,6 +21,7 @@ class Button extends Component
         public ?string $size = null,
         public ?string $style = null,
         public ?string $shape = null,
+        public ?string $confirm = null,
     ) {}
 
     public function render(): View|Closure|string
