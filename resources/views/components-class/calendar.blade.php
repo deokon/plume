@@ -6,13 +6,15 @@
 @prop string $min (Default: null)
 @prop string $max (Default: null)
 @prop string $mode (Default: 'single')
+@prop string $onDateSelect (Default: null)
 --}}
 <div x-data="calendar(
     {{ $initialValue }},
     '{{ $mode }}',
     '{{ $min }}',
     '{{ $max }}',
-    '{{ $model }}'
+    '{{ $model }}',
+    { onDateSelect: {{ Js::from($onDateSelect) }} }
 )" x-modelable="value"
     {{ $attributes->merge(['class' => 'w-full max-w-[280px] bg-background dark:bg-background-800 border border-background-700/40 dark:border-background-400/20 rounded-xl shadow-sm p-4']) }}>
     {{-- Header --}}

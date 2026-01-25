@@ -14,6 +14,7 @@ class Calendar extends Component
         public ?string $min = null,
         public ?string $max = null,
         public string $mode = 'single',
+        public ?string $onDateSelect = null,
     ) {}
 
     public function render(): View|Closure|string

@@ -369,6 +369,10 @@
                 "mode": {
                     "type": "string",
                     "default": "'single'"
+                },
+                "onDateSelect": {
+                    "type": "string",
+                    "default": "null"
                 }
             },
             "description": "A visual calendar interface for selecting dates.",

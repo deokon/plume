@@ -3,13 +3,18 @@ export default (
     mode = 'single',
     minDateStr = null,
     maxDateStr = null,
-    modelName = null
+    modelName = null,
+    config = {}
 ) => ({
     value: initialValue,
     selectedDate: null,
     rangeStart: null,
     rangeEnd: null,
     currDate: new Date(),
+    _config: {
+        onDateSelect: null,
+        ...config,
+    },
     days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
     monthNames: [
         'January',
@@ -151,6 +156,20 @@ export default (
             }
         }
         this.$dispatch('input', this.value);
+        this.triggerCallback('onDateSelect', this.value);
+    },
+
+    triggerCallback(name, value) {
+        const callback = this._config[name];
+        if (!callback) return;
+
+        if (typeof callback === 'function') {
+            callback(value);
+        } else if (typeof callback === 'string') {
+            window.Alpine.evaluate(this.$el, callback, {
+                scope: { value },
+            });
+        }
     },
 
     isSelected(day) {

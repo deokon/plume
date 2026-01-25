@@ -4,12 +4,18 @@ import calendar from '../../resources/js/alpine/calendar.js'
 describe('Calendar Plugin', () => {
     let instance
     
-    const createInstance = (initialValue = null, mode = 'single', minDate = null, maxDate = null, modelName = null) => {
-        const data = calendar(initialValue, mode, minDate, maxDate, modelName)
+    beforeEach(() => {
+        vi.stubGlobal('Alpine', {
+            evaluate: vi.fn()
+        })
+    })
+
+    const createInstance = (initialValue = null, mode = 'single', minDate = null, maxDate = null, modelName = null, config = {}) => {
+        const data = calendar(initialValue, mode, minDate, maxDate, modelName, config)
         data.$nextTick = vi.fn(cb => cb())
         data.$watch = vi.fn()
         data.$dispatch = vi.fn()
-        data.$el = {}
+        data.$el = { tagName: 'DIV' }
         data.$data = {}
         return data
     }
@@ -91,5 +97,26 @@ describe('Calendar Plugin', () => {
         if (earlyDay) expect(earlyDay.disabled).toBe(true)
         if (lateDay) expect(lateDay.disabled).toBe(true)
         if (validDay) expect(validDay.disabled).toBe(false)
+    })
+
+    it('triggers onDateSelect callback', () => {
+        const onDateSelect = vi.fn()
+        instance = createInstance(null, 'single', null, null, null, { onDateSelect })
+        instance.init()
+
+        const testDate = new Date(2023, 5, 15)
+        instance.selectDate({ day: 15, disabled: false, date: testDate })
+        expect(onDateSelect).toHaveBeenCalledWith('2023-06-15')
+    })
+
+    it('evaluates string expression for onDateSelect', () => {
+        instance = createInstance(null, 'single', null, null, null, { onDateSelect: 'console.log(value)' })
+        instance.init()
+
+        const testDate = new Date(2023, 5, 15)
+        instance.selectDate({ day: 15, disabled: false, date: testDate })
+        expect(window.Alpine.evaluate).toHaveBeenCalledWith(instance.$el, 'console.log(value)', {
+            scope: { value: '2023-06-15' }
+        })
     })
 })

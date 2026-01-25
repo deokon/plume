@@ -11,4 +11,5 @@ A visual calendar interface for selecting dates.
 | `min` | `string` | `null` | - |
 | `max` | `string` | `null` | - |
 | `mode` | `string` | `'single'` | - |
+| `onDateSelect` | `string` | `null` | AlpineJS expression to evaluate when a date is selected. Access selected value via `value`. |
 
