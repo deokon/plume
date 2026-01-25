@@ -12,6 +12,7 @@ import command from './alpine/command';
 import fileInput from './alpine/file-input';
 import video from './alpine/video';
 import form from './alpine/form';
+import tabs from './alpine/tabs';
 import { accordion, accordionItem } from './alpine/accordion';
 
 export {
@@ -29,6 +30,7 @@ export {
     fileInput,
     video,
     form,
+    tabs,
     accordion,
     accordionItem,
 };

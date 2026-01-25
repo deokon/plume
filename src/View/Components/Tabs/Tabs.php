@@ -24,6 +24,7 @@ class Tabs extends Component
         public string $size = 'md',
         public string $style = 'default',
         public string $shape = 'default',
+        public ?string $onTabChange = null,
     ) {
         $this->groupSize = $size;
         $this->groupStyle = $style;

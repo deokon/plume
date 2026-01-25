@@ -6,6 +6,7 @@
 @prop string $size (Default: 'md')
 @prop string $style (Default: 'default')
 @prop string $shape (Default: 'default')
+@prop string $onTabChange (Default: null)
 --}}
 @aware([
     'groupSize' => null,
@@ -19,7 +20,7 @@
     $groupShape = $groupShape ?? $shape ?? $component->shape;
     $groupSide = $groupSide ?? $side ?? $component->side;
 @endphp
-<div x-data="{ activeTab: '{{ $default }}' }" {{ $attributes->merge(['class' => 'w-full']) }}>
+<div x-data="tabs('{{ $default }}', { onTabChange: {{ Js::from($onTabChange) }} })" {{ $attributes->merge(['class' => 'w-full']) }}>
     <div class="flex {{ $directionClass }}">
         {{ $slot }}
     </div>
