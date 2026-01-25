@@ -10,6 +10,7 @@ class Accordion extends Component
 {
     public function __construct(
         public bool $alwaysOpen = false,
+        public ?string $onToggle = null,
     ) {}
 
     public function render(): View|Closure|string

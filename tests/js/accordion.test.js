@@ -1,7 +1,13 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { accordion, accordionItem } from '../../resources/js/alpine/accordion.js'
 
 describe('Accordion Plugin', () => {
+    beforeEach(() => {
+        vi.stubGlobal('Alpine', {
+            evaluate: vi.fn()
+        })
+    })
+
     describe('accordion function', () => {
         it('initializes with default state', () => {
             const data = accordion(false)
@@ -32,10 +38,11 @@ describe('Accordion Plugin', () => {
     })
 
     describe('accordionItem function', () => {
-        const createMergedItem = (id, open, alwaysOpen = false) => {
-            const parent = accordion(alwaysOpen)
+        const createMergedItem = (id, open, alwaysOpen = false, config = {}) => {
+            const parent = accordion(alwaysOpen, config)
             const item = accordionItem(id, open)
             const merged = { ...parent, ...item }
+            merged.$el = { tagName: 'DIV' }
             
             // Manually define the getter and setter on the merged object
             // because spread operator doesn't copy them properly
@@ -78,6 +85,26 @@ describe('Accordion Plugin', () => {
             item.isOpen = true
             expect(item.localOpen).toBe(true)
             expect(item.active).toBeNull()
+        })
+
+        it('triggers onToggle callback', () => {
+            const onToggle = vi.fn()
+            const item = createMergedItem('test-id', false, false, { onToggle })
+            
+            item.isOpen = true
+            expect(onToggle).toHaveBeenCalledWith('test-id', true)
+
+            item.isOpen = false
+            expect(onToggle).toHaveBeenCalledWith('test-id', false)
+        })
+
+        it('evaluates string expression for onToggle', () => {
+            const item = createMergedItem('test-id', false, true, { onToggle: 'console.log(id, isOpen)' })
+            
+            item.isOpen = true
+            expect(window.Alpine.evaluate).toHaveBeenCalledWith(item.$el, 'console.log(id, isOpen)', {
+                scope: { id: 'test-id', isOpen: true }
+            })
         })
     })
 })

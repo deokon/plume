@@ -6,6 +6,10 @@
                 "alwaysOpen": {
                     "type": "bool",
                     "default": "false"
+                },
+                "onToggle": {
+                    "type": "string",
+                    "default": "null"
                 }
             },
             "description": "Collapsible content panels for saving vertical space.",

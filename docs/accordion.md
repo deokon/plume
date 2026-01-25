@@ -7,6 +7,7 @@ Collapsible content panels for saving vertical space.
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
 | `alwaysOpen` | `bool` | `false` | - |
+| `onToggle` | `string` | `null` | AlpineJS expression to evaluate when an item is toggled. Access item ID via `id` and state via `isOpen`. |
 
 ## Usage
 
