@@ -9,4 +9,5 @@ An individual result item within a search component.
 | `title` | `string` | `null` | - |
 | `href` | `string` | `'#'` | - |
 | `icon` | `string` | `null` | - |
+| `payload` | `mixed` | `null` | - |
 
