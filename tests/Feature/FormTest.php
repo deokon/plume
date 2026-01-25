@@ -19,11 +19,18 @@ test('form passes config to alpine plugin', function () {
         ->toContain('resetOnSuccess: true');
 });
 
-test('form renders with initial data', function () {
+test('form renders with initial data from array', function () {
     $data = ['name' => 'John', 'email' => 'john@example.com'];
     $view = Blade::render('<x-plume::form :formData="$data">Content</x-plume::form>', ['data' => $data]);
     
     expect($view)->toContain('JSON.parse')
         ->toContain('John')
         ->toContain('john@example.com');
+});
+
+test('form renders with initial data from string', function () {
+    $data = "{ name: 'Jane' }";
+    $view = Blade::render('<x-plume::form :formData="$data">Content</x-plume::form>', ['data' => $data]);
+    
+    expect($view)->toContain("form({ name: 'Jane' }");
 });

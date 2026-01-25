@@ -14,7 +14,7 @@
 --}}
 <form action="{{ $action }}" method="{{ $method === 'GET' ? 'GET' : 'POST' }}"
     {{ $attributes->merge(['class' => $inline ? 'inline' : 'space-y-6']) }}
-    x-data="form({{ Js::from($formData ?? (object)[]) }}, { 
+    x-data="form({!! is_array($formData) ? Js::from($formData) : ($formData ?? '{}') !!}, { 
         hideOnSuccess: {{ Js::from($hideOnSuccess) }}, 
         resetOnSuccess: {{ Js::from($resetOnSuccess) }},
         onSuccess: {{ Js::from($onSuccess) }},
