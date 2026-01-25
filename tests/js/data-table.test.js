@@ -92,6 +92,38 @@ describe('DataTable Plugin', () => {
         expect(instance.loading).toBe(false)
     })
 
+    it('ignores stale fetch responses', async () => {
+        let resolve1, resolve2;
+        const promise1 = new Promise(resolve => resolve1 = resolve);
+        const promise2 = new Promise(resolve => resolve2 = resolve);
+
+        vi.stubGlobal('fetch', vi.fn()
+            .mockReturnValueOnce(promise1.then(() => ({ json: () => Promise.resolve({ success: true, data: { items: [{ name: 'Stale' }], pagination: { total: 1 } } }) })))
+            .mockReturnValueOnce(promise2.then(() => ({ json: () => Promise.resolve({ success: true, data: { items: [{ name: 'Fresh' }], pagination: { total: 1 } } }) })))
+        );
+
+        instance = createInstance(10, true, true, '/api/data')
+        
+        const fetch1 = instance.fetch()
+        const fetch2 = instance.fetch()
+
+        expect(instance.loading).toBe(true)
+
+        // Resolve second request first
+        resolve2();
+        await fetch2;
+        expect(instance.data[0].name).toBe('Fresh')
+        expect(instance.loading).toBe(false)
+
+        // Resolve first request later
+        resolve1();
+        await fetch1;
+        // Data should still be 'Fresh', not overwritten by 'Stale'
+        expect(instance.data[0].name).toBe('Fresh')
+        // Loading should remain false (since fetch2 already cleared it)
+        expect(instance.loading).toBe(false)
+    })
+
     it('renders constructed columns', () => {
         instance = createInstance()
         const row = { name: 'John', url: 'https://example.com', profile: { bio: 'Engineer' } }

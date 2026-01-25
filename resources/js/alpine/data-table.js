@@ -11,6 +11,7 @@ export default (perPage = 10, paginated = false, sortable = true, url = null, in
     sortable: !!sortable,
     url: url,
     loading: false,
+    latestRequestId: 0,
     total: 0,
     totalPages: 1,
 
@@ -82,6 +83,7 @@ export default (perPage = 10, paginated = false, sortable = true, url = null, in
     async fetch() {
         if (!this.url) return;
         this.loading = true;
+        const requestId = ++this.latestRequestId;
 
         const params = new URLSearchParams({
             page: this.page,
@@ -95,15 +97,24 @@ export default (perPage = 10, paginated = false, sortable = true, url = null, in
             const response = await fetch(`${this.url}?${params.toString()}`);
             const result = await response.json();
 
+            // Ignore if a newer request has been started
+            if (requestId !== this.latestRequestId) return;
+
             if (result.success) {
                 this.data = result.data.items;
                 this.total = result.data.pagination.total;
                 this.updateTotalPages();
             }
         } catch (e) {
-            console.error('Plume Data Table fetch error:', e);
+            // Only log and clear loading if it's the latest request
+            if (requestId === this.latestRequestId) {
+                console.error('Plume Data Table fetch error:', e);
+            }
         } finally {
-            this.loading = false;
+            // Only clear loading if it's the latest request
+            if (requestId === this.latestRequestId) {
+                this.loading = false;
+            }
         }
     },
 
