@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.7.0] - 2026-01-25
+
+### 🚀 Features
+- **Standardized Callbacks:** Implemented optional callback props across the entire library (Modal, Drawer, Tabs, Combobox, Search, Calendar, Stepper, Carousel, Video, Accordion).
+- **Form Enhancements:** Added `onSuccess`, `onError`, and `resetOnSuccess` props.
+- **Architecture:** Extracted logic for `Tabs`, `Search`, and `Stepper` into dedicated AlpineJS plugins and standardized `x-data` initialization.
+
 ## [v0.6.5] - 2026-01-25
 
 ### 🐛 Fixes
