@@ -1742,6 +1742,14 @@
                 "active": {
                     "type": "int",
                     "default": "1"
+                },
+                "onStepChange": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "onFinish": {
+                    "type": "string",
+                    "default": "null"
                 }
             },
             "description": "Guide users through multi-step processes.",

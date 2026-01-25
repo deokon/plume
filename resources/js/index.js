@@ -14,6 +14,7 @@ import video from './alpine/video';
 import form from './alpine/form';
 import tabs from './alpine/tabs';
 import search from './alpine/search';
+import stepper from './alpine/stepper';
 import { accordion, accordionItem } from './alpine/accordion';
 
 export {
@@ -33,6 +34,7 @@ export {
     form,
     tabs,
     search,
+    stepper,
     accordion,
     accordionItem,
 };
