@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.6.5] - 2026-01-25
+
+### 🐛 Fixes
+- **Form File:** Fixed reactivity issue with progress bar updates by ensuring object replacement in the files array.
+- **Form File:** Fixed a 'ghost' removal button that could sometimes appear even when hidden by switching to `x-show`.
+- **Button:** Refined `confirm` slot detection to be more robust by verifying it is an instance of `ComponentSlot`.
+- **Button:** Fixed a typo in the Tailwind icon selector.
+
 ## [v0.6.4] - 2026-01-25
 
 ### 🐛 Fixes
