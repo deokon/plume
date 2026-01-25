@@ -10,5 +10,5 @@ A slideshow component for cycling through elements.
 | `indicators` | `bool` | `false` | - |
 | `autoplay` | `bool` | `false` | - |
 | `interval` | `int` | `5000` | - |
-| `onSlideChange` | `string` | `null` | AlpineJS expression to evaluate when the active slide changes. Access slide index via `index`. |
+| `onSlideChange` | `string` | `null` | - |
 
