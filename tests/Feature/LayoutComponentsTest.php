@@ -34,7 +34,7 @@ BLADE;
 
 test('modal renders with required attributes', function () {
     $view = Blade::render('<x-plume::modal name="test-modal">Modal Content</x-plume::modal>');
-    expect($view)->toContain('x-data="modal(\'test-modal\'')
+    expect($view)->toContain('x-data="modal(\'test-modal\', false, false, { onOpen: null, onClose: null })"')
         ->toContain('x-show="show"')
         ->toContain('Modal Content');
 });
@@ -59,7 +59,7 @@ test('drawer renders correctly', function () {
             <x-slot:footer>Drawer Footer</x-slot:footer>
         </x-plume::drawer>
     ');
-    expect($view)->toContain('x-data="drawer(\'test-drawer\'')
+    expect($view)->toContain('x-data="drawer(\'test-drawer\', false, { onOpen: null, onClose: null })"')
         ->toContain('-translate-x-full')
         ->toContain('Drawer Title')
         ->toContain('Drawer Content')
@@ -80,7 +80,7 @@ BLADE;
         ->toContain('Content 1')
         ->toContain('Section 2')
         ->toContain('Content 2')
-        ->toContain('x-data="accordion(false)"')
+        ->toContain('x-data="accordion(false, { onToggle: null })"')
         ->toContain('x-data="accordionItem(\'s1\', false)"')
         ->toContain('x-data="accordionItem(\'s2\', false)"');
 });
@@ -96,7 +96,7 @@ test('tabs render correctly', function () {
 BLADE;
 
     $view = Blade::render($template);
-    expect($view)->toContain('x-data="{ activeTab: \'tab1\' }"')
+    expect($view)->toContain('x-data="tabs(\'tab1\', { onTabChange: null })"')
         ->toContain('Tab 1')
         ->toContain('Panel 1');
 });

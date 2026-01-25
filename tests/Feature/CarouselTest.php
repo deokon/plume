@@ -11,7 +11,7 @@ test('carousel renders correctly', function () {
     ');
 
     expect($view)
-        ->toContain('x-data="carousel(false, 5000)"')
+        ->toContain('x-data="carousel(false, 5000, { onSlideChange: null })"')
         ->toContain('snap-x')
         ->toContain('Slide 1')
         ->toContain('Slide 2');

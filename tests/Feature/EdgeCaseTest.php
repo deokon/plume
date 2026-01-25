@@ -46,6 +46,6 @@ test('tabs handle missing default active tab', function () {
     ');
     // It should default to first tab or handle it gracefully?
     // Current implementation defaults 'default' prop to '1'.
-    expect($view)->toContain('x-data="{ activeTab: \'1\' }"');
+    expect($view)->toContain('x-data="tabs(\'1\', { onTabChange: null })"');
 });
 
