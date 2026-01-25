@@ -425,6 +425,10 @@
                 "interval": {
                     "type": "int",
                     "default": "5000"
+                },
+                "onSlideChange": {
+                    "type": "string",
+                    "default": "null"
                 }
             },
             "description": "A slideshow component for cycling through elements.",

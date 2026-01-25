@@ -5,8 +5,9 @@
 @prop bool $indicators (Default: false)
 @prop bool $autoplay (Default: false)
 @prop int $interval (Default: 5000)
+@prop string $onSlideChange (Default: null)
 --}}
-<div x-data="carousel({{ $autoplay ? 'true' : 'false' }}, {{ $interval }})" class="relative group w-full overflow-hidden rounded-xl">
+<div x-data="carousel({{ $autoplay ? 'true' : 'false' }}, {{ $interval }}, { onSlideChange: {{ Js::from($onSlideChange) }} })" class="relative group w-full overflow-hidden rounded-xl">
     {{-- Slides --}}
     <div x-ref="content" @scroll.debounce.50ms="updateActive"
         class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide w-full"

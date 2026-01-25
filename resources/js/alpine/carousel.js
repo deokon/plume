@@ -1,14 +1,22 @@
-export default function (autoplay, interval) {
+export default function (autoplay, interval, config = {}) {
     return {
         activeSlide: 0,
         slideCount: 0,
         autoplayInterval: null,
+        _config: {
+            onSlideChange: null,
+            ...config,
+        },
 
         init() {
             // Wait for children to render
             this.$nextTick(() => {
                 this.slideCount = this.$refs.content.children.length;
                 this.updateActive();
+            });
+
+            this.$watch('activeSlide', (value) => {
+                this.triggerCallback('onSlideChange', value);
             });
 
             if (autoplay) {
@@ -55,6 +63,19 @@ export default function (autoplay, interval) {
                 this.scrollTo(this.slideCount - 1);
             } else {
                 this.scrollTo(this.activeSlide - 1);
+            }
+        },
+
+        triggerCallback(name, value) {
+            const callback = this._config[name];
+            if (!callback) return;
+
+            if (typeof callback === 'function') {
+                callback(value);
+            } else if (typeof callback === 'string') {
+                window.Alpine.evaluate(this.$el, callback, {
+                    scope: { index: value },
+                });
             }
         },
     };

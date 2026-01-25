@@ -13,6 +13,7 @@ class Carousel extends Component
         public bool $indicators = false,
         public bool $autoplay = false,
         public int $interval = 5000,
+        public ?string $onSlideChange = null,
     ) {}
 
     public function render(): View|Closure|string

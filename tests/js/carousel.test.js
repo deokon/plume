@@ -6,6 +6,9 @@ describe('Carousel Plugin', () => {
 
     beforeEach(() => {
         vi.useFakeTimers()
+        vi.stubGlobal('Alpine', {
+            evaluate: vi.fn()
+        })
     })
 
     afterEach(() => {
@@ -13,13 +16,18 @@ describe('Carousel Plugin', () => {
         vi.useRealTimers()
     })
 
-    const createInstance = (autoplay = false, interval = 3000) => {
-        const data = carousel(autoplay, interval)
+    const createInstance = (autoplay = false, interval = 3000, config = {}) => {
+        const data = carousel(autoplay, interval, config)
         data.$nextTick = vi.fn(cb => cb())
+        data.$watch = vi.fn((key, cb) => {
+            data._watches = data._watches || {}
+            data._watches[key] = cb
+        })
         data.$dispatch = vi.fn()
         data.$el = {
             addEventListener: vi.fn(),
-            removeEventListener: vi.fn()
+            removeEventListener: vi.fn(),
+            tagName: 'DIV'
         }
         data.$refs = {
             content: {
@@ -93,5 +101,26 @@ describe('Carousel Plugin', () => {
         mouseLeaveHandler()
         vi.advanceTimersByTime(3000)
         expect(instance.$refs.content.scrollTo).toHaveBeenCalled()
+    })
+
+    it('triggers onSlideChange callback', () => {
+        const onSlideChange = vi.fn()
+        instance = createInstance(false, 3000, { onSlideChange })
+        instance.init()
+
+        instance.activeSlide = 1
+        instance._watches['activeSlide'](1)
+        expect(onSlideChange).toHaveBeenCalledWith(1)
+    })
+
+    it('evaluates string expression for onSlideChange', () => {
+        instance = createInstance(false, 3000, { onSlideChange: 'console.log(index)' })
+        instance.init()
+
+        instance.activeSlide = 2
+        instance._watches['activeSlide'](2)
+        expect(window.Alpine.evaluate).toHaveBeenCalledWith(instance.$el, 'console.log(index)', {
+            scope: { index: 2 }
+        })
     })
 })
