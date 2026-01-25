@@ -10,7 +10,8 @@ describe('Form Plugin', () => {
             data: vi.fn((name, callback) => {
                 Alpine.components = Alpine.components || {}
                 Alpine.components[name] = callback
-            })
+            }),
+            evaluate: vi.fn()
         }
         vi.stubGlobal('fetch', vi.fn())
         vi.stubGlobal('document', {
@@ -23,7 +24,8 @@ describe('Form Plugin', () => {
         const data = Alpine.components['form'](initialData, config)
         data.$el = { 
             tagName: 'DIV',
-            addEventListener: vi.fn()
+            addEventListener: vi.fn(),
+            querySelector: vi.fn()
         }
         data.$watch = vi.fn((key, cb) => {
             data._watches = data._watches || {}
@@ -99,54 +101,66 @@ describe('Form Plugin', () => {
         expect(instance.data.name).toBe('Original')
     })
 
-        it('prevents submission when busy', async () => {
-
-            instance = createInstance({ name: 'Test' }, { url: '/api/test' })
-
-            instance.init()
-
-            instance.busy = true
-
-            
-
-            await instance.submit()
-
-            expect(instance.processing).toBe(false)
-
-            expect(fetch).not.toHaveBeenCalled()
-
-        })
-
-    
-
-        it('detects spoofed methods from _method input', () => {
-
-            instance = createInstance({ name: 'Test' })
-
-            instance.$el.tagName = 'FORM'
-
-            instance.$el.method = 'POST'
-
-            instance.$el.querySelector = vi.fn((selector) => {
-
-                if (selector === 'input[name="_method"]') {
-
-                    return { value: 'PUT' }
-
-                }
-
-                return null
-
-            })
-
-            
-
-            instance.init()
-
-            expect(instance._config.method).toBe('PUT')
-
-        })
-
+    it('prevents submission when busy', async () => {
+        instance = createInstance({ name: 'Test' }, { url: '/api/test' })
+        instance.init()
+        instance.busy = true
+        
+        await instance.submit()
+        expect(instance.processing).toBe(false)
+        expect(fetch).not.toHaveBeenCalled()
     })
 
-    
+    it('detects spoofed methods from _method input', () => {
+        instance = createInstance({ name: 'Test' })
+        instance.$el.tagName = 'FORM'
+        instance.$el.method = 'POST'
+        instance.$el.querySelector = vi.fn((selector) => {
+            if (selector === 'input[name="_method"]') {
+                return { value: 'PUT' }
+            }
+            return null
+        })
+        
+        instance.init()
+        expect(instance._config.method).toBe('PUT')
+    })
+
+    it('triggers onSuccess callbacks', async () => {
+        const successCallback = vi.fn()
+        const mockResult = { success: true, message: 'Ok' }
+        fetch.mockResolvedValue({
+            ok: true,
+            json: () => Promise.resolve(mockResult)
+        })
+
+        // Function callback
+        instance = createInstance({}, { url: '/api', onSuccess: successCallback })
+        await instance.submit()
+        expect(successCallback).toHaveBeenCalledWith(mockResult)
+
+        // String expression callback
+        instance = createInstance({}, { url: '/api', onSuccess: 'alert("Ok")' })
+        await instance.submit()
+        expect(Alpine.evaluate).toHaveBeenCalledWith(instance.$el, 'alert("Ok")', { scope: { result: mockResult } })
+    })
+
+    it('triggers onError callbacks', async () => {
+        const errorCallback = vi.fn()
+        const mockResult = { success: false, message: 'Fail' }
+        fetch.mockResolvedValue({
+            ok: false,
+            json: () => Promise.resolve(mockResult)
+        })
+
+        // Function callback
+        instance = createInstance({}, { url: '/api', onError: errorCallback })
+        await instance.submit()
+        expect(errorCallback).toHaveBeenCalledWith(mockResult)
+
+        // String expression callback
+        instance = createInstance({}, { url: '/api', onError: 'console.error("Fail")' })
+        await instance.submit()
+        expect(Alpine.evaluate).toHaveBeenCalledWith(instance.$el, 'console.error("Fail")', { scope: { result: mockResult } })
+    })
+})

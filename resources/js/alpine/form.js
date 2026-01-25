@@ -112,7 +112,17 @@ export default function (Alpine) {
                 this.isHidden = true;
             }
 
+            // Call optional success callbacks
             if (typeof this.onSuccess === 'function') this.onSuccess(result);
+            
+            if (this._config.onSuccess) {
+                if (typeof this._config.onSuccess === 'function') {
+                    this._config.onSuccess(result);
+                } else if (typeof this._config.onSuccess === 'string') {
+                    Alpine.evaluate(this.$el, this._config.onSuccess, { scope: { result } });
+                }
+            }
+
             this.$dispatch('form-success', result);
 
             if (result.redirect) {
@@ -125,7 +135,17 @@ export default function (Alpine) {
             this.message = result.message || 'Validation failed or server error.';
             this.errors = result.errors || {};
 
+            // Call optional error callbacks
             if (typeof this.onError === 'function') this.onError(result);
+
+            if (this._config.onError) {
+                if (typeof this._config.onError === 'function') {
+                    this._config.onError(result);
+                } else if (typeof this._config.onError === 'string') {
+                    Alpine.evaluate(this.$el, this._config.onError, { scope: { result } });
+                }
+            }
+
             this.$dispatch('form-error', result);
         },
 

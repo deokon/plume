@@ -744,6 +744,14 @@
                     "type": "bool",
                     "default": "false"
                 },
+                "onSuccess": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "onError": {
+                    "type": "string",
+                    "default": "null"
+                },
                 "inline": {
                     "type": "bool",
                     "default": "false"

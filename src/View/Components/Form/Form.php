@@ -16,6 +16,8 @@ class Form extends Component
         public ?string $resetButton = null,
         public bool $hideOnSuccess = false,
         public bool $resetOnSuccess = false,
+        public ?string $onSuccess = null,
+        public ?string $onError = null,
         public bool $inline = false,
     ) {}
 

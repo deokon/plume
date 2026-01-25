@@ -8,11 +8,18 @@
 @prop string $resetButton (Default: null)
 @prop bool $hideOnSuccess (Default: false)
 @prop bool $resetOnSuccess (Default: false)
+@prop string $onSuccess (Default: null)
+@prop string $onError (Default: null)
 @prop bool $inline (Default: false)
 --}}
 <form action="{{ $action }}" method="{{ $method === 'GET' ? 'GET' : 'POST' }}"
     {{ $attributes->merge(['class' => $inline ? 'inline' : 'space-y-6']) }}
-    x-data="form({{ Js::from($formData ?? (object)[]) }}, { hideOnSuccess: {{ Js::from($hideOnSuccess) }}, resetOnSuccess: {{ Js::from($resetOnSuccess) }} })"
+    x-data="form({{ Js::from($formData ?? (object)[]) }}, { 
+        hideOnSuccess: {{ Js::from($hideOnSuccess) }}, 
+        resetOnSuccess: {{ Js::from($resetOnSuccess) }},
+        onSuccess: {{ Js::from($onSuccess) }},
+        onError: {{ Js::from($onError) }}
+    })"
     @submit.prevent="submit()"
 >
     @if ($method !== 'GET' && $method !== 'POST')
