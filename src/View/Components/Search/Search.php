@@ -11,6 +11,7 @@ class Search extends Component
     public function __construct(
         public string $placeholder = 'Search...',
         public ?string $model = null,
+        public ?string $onSelect = null,
     ) {}
 
     public function render(): View|Closure|string

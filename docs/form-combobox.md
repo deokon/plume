@@ -13,4 +13,5 @@ A searchable select input.
 | `options` | `array` | `[]` | - |
 | `placeholder` | `string` | `'Select option...'` | - |
 | `emptyMessage` | `string` | `'No results found.'` | - |
+| `onSelect` | `string` | `null` | AlpineJS expression to evaluate when an option is selected. Access selected value via `value`. |
 

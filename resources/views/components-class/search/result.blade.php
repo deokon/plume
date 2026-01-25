@@ -4,8 +4,10 @@
 @prop string $title (Default: null)
 @prop string $href (Default: '#')
 @prop string $icon (Default: null)
+@prop mixed $payload (Default: null)
 --}}
 <a href="{{ $href }}"
+    x-on:click="$dispatch('plume-search-select', {{ Js::from($payload) }})"
     {{ $attributes->merge(['class' => 'flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-background-100 dark:hover:bg-background-800 transition-colors group']) }}>
     @if ($icon)
         <div

@@ -9,6 +9,12 @@ describe('Combobox Plugin', () => {
         { value: 3, label: 'Apple' }
     ]
 
+    beforeEach(() => {
+        vi.stubGlobal('Alpine', {
+            evaluate: vi.fn()
+        })
+    })
+
     const createInstance = (opts = options, model = null, config = {}) => {
         const data = combobox(opts, model, config)
         data.$nextTick = vi.fn(cb => cb())
@@ -18,6 +24,7 @@ describe('Combobox Plugin', () => {
         })
         data.$dispatch = vi.fn()
         data.$data = {}
+        data.$el = { tagName: 'DIV' }
         data.$refs = {
             searchInput: { focus: vi.fn() },
             list: { children: [{ scrollIntoView: vi.fn() }, { scrollIntoView: vi.fn() }, { scrollIntoView: vi.fn() }] }
@@ -64,6 +71,25 @@ describe('Combobox Plugin', () => {
         
         instance.toggle()
         expect(instance.open).toBe(false)
+    })
+
+    it('triggers onSelect callback', () => {
+        const onSelect = vi.fn()
+        instance = createInstance(options, null, { onSelect })
+        instance.init()
+
+        instance.select(options[1])
+        expect(onSelect).toHaveBeenCalledWith(2)
+    })
+
+    it('evaluates string expression for onSelect', () => {
+        instance = createInstance(options, null, { onSelect: 'console.log(value)' })
+        instance.init()
+
+        instance.select(options[2])
+        expect(window.Alpine.evaluate).toHaveBeenCalledWith(instance.$el, 'console.log(value)', {
+            scope: { value: 3 }
+        })
     })
 
     describe('keyboard navigation', () => {

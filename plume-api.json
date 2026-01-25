@@ -866,6 +866,10 @@
                 "emptyMessage": {
                     "type": "string",
                     "default": "'No results found.'"
+                },
+                "onSelect": {
+                    "type": "string",
+                    "default": "null"
                 }
             },
             "description": "A searchable select input.",
@@ -1655,6 +1659,10 @@
                 "model": {
                     "type": "string",
                     "default": "null"
+                },
+                "onSelect": {
+                    "type": "string",
+                    "default": "null"
                 }
             },
             "description": "Styled search input with an integrated results dropdown.",
@@ -1674,6 +1682,10 @@
                 },
                 "icon": {
                     "type": "string",
+                    "default": "null"
+                },
+                "payload": {
+                    "type": "mixed",
                     "default": "null"
                 }
             },

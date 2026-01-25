@@ -3,11 +3,12 @@
 @description Styled search input with an integrated results dropdown.
 @prop string $placeholder (Default: 'Search...')
 @prop string $model (Default: null)
+@prop string $onSelect (Default: null)
 --}}
-<div x-data="{
-    open: false,
-    query: @if ($model) $wire.entangle('{{ $model }}') @else '' @endif
-}" class="relative w-full" @click.away="open = false">
+<div x-data="search({ onSelect: {{ Js::from($onSelect) }} })" 
+    @if ($model) x-init="query = $wire.entangle('{{ $model }}')" @endif
+    class="relative w-full" @click.away="open = false"
+    @plume-search-select.stop="handleSelect($event.detail)">
     {{-- Search Input --}}
     <div class="relative">
         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">

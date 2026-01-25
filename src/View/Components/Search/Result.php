@@ -12,6 +12,7 @@ class Result extends Component
         public ?string $title = null,
         public string $href = '#',
         public ?string $icon = null,
+        public mixed $payload = null,
     ) {}
 
     public function render(): View|Closure|string

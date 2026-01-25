@@ -8,6 +8,7 @@
 @prop array $options (Default: [])
 @prop string $placeholder (Default: 'Select option...')
 @prop string $emptyMessage (Default: 'No results found.')
+@prop string $onSelect (Default: null)
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php
@@ -21,7 +22,10 @@
     })->values()->toArray();
 @endphp
 <x-plume::form.element :label="$label ?? $slot" :name="$resolvedName" :id="$resolvedId" :model="$resolvedModel">
-    <div x-data="combobox({{ json_encode($formattedOptions) }}, '{{ $resolvedModel }}', { emptyMessage: '{{ $combobox->emptyMessage }}' })" 
+    <div x-data="combobox({{ json_encode($formattedOptions) }}, '{{ $resolvedModel }}', { 
+            emptyMessage: '{{ $combobox->emptyMessage }}',
+            onSelect: {{ Js::from($onSelect) }}
+         })" 
          class="relative"
          @keydown="onKeydown($event)">
         <button type="button" @click="toggle()" id="{{ $resolvedId }}"

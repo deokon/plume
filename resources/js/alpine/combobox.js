@@ -5,6 +5,10 @@ export default function (options, model, config = {}) {
         value: null,
         options: options,
         emptyMessage: config.emptyMessage || 'No results found.',
+        _config: {
+            onSelect: null,
+            ...config,
+        },
         filteredOptions: [],
         activeIndex: -1,
         init() {
@@ -45,6 +49,8 @@ export default function (options, model, config = {}) {
             this.search = '';
             this.open = false;
             this.activeIndex = -1;
+
+            this.triggerCallback('onSelect', option.value);
         },
         toggle() {
             this.open = !this.open;
@@ -87,6 +93,19 @@ export default function (options, model, config = {}) {
                 const activeEl = this.$refs.list.children[this.activeIndex];
                 if (activeEl) activeEl.scrollIntoView({ block: 'nearest' });
             });
+        },
+
+        triggerCallback(name, value) {
+            const callback = this._config[name];
+            if (!callback) return;
+
+            if (typeof callback === 'function') {
+                callback(value);
+            } else if (typeof callback === 'string') {
+                window.Alpine.evaluate(this.$el, callback, {
+                    scope: { value },
+                });
+            }
         },
     };
 }
