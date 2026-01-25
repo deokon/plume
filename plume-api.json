@@ -725,7 +725,7 @@
                     "default": "'POST'"
                 },
                 "formData": {
-                    "type": "string",
+                    "type": "array|string|null",
                     "default": "null"
                 },
                 "submitButton": {
@@ -737,6 +737,10 @@
                     "default": "null"
                 },
                 "hideOnSuccess": {
+                    "type": "bool",
+                    "default": "false"
+                },
+                "resetOnSuccess": {
                     "type": "bool",
                     "default": "false"
                 },
