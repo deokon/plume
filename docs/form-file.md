@@ -1,6 +1,6 @@
 # Form File
 
-A file upload input with drag-and-drop support.
+A file upload input with drag-and-drop support. Supports immediate pre-upload if uploadUrl is provided.
 
 ## Properties
 
@@ -12,4 +12,5 @@ A file upload input with drag-and-drop support.
 | `model` | `string` | `null` | - |
 | `multiple` | `bool` | `false` | - |
 | `accept` | `string` | `null` | - |
+| `uploadUrl` | `string` | `null` | - |
 

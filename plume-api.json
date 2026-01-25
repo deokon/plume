@@ -966,9 +966,13 @@
                 "accept": {
                     "type": "string",
                     "default": "null"
+                },
+                "uploadUrl": {
+                    "type": "string",
+                    "default": "null"
                 }
             },
-            "description": "A file upload input with drag-and-drop support.",
+            "description": "A file upload input with drag-and-drop support. Supports immediate pre-upload if uploadUrl is provided.",
             "usage": null,
             "doc_url": "https://plume.dennisokon.com/docs/form-file"
         },

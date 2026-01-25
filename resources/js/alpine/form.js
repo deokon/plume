@@ -7,6 +7,7 @@ export default function (Alpine) {
 
         // State
         processing: false,
+        busy: false,
         wasSuccessful: false,
         hasFailed: false,
         isDirty: false,
@@ -36,9 +37,14 @@ export default function (Alpine) {
             this.$watch('data', (value) => {
                 this.isDirty = JSON.stringify(value) !== JSON.stringify(this._initialData);
             }, { deep: true });
+
+            // Busy state listeners
+            this.$el.addEventListener('plume-busy', () => { this.busy = true; });
+            this.$el.addEventListener('plume-idle', () => { this.busy = false; });
         },
 
         async submit(url = null, method = null) {
+            if (this.busy) return;
             this.processing = true;
             this.wasSuccessful = false;
             this.hasFailed = false;

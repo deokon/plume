@@ -1,12 +1,13 @@
 {{--
 @component x-plume::form.file
-@description A file upload input with drag-and-drop support.
+@description A file upload input with drag-and-drop support. Supports immediate pre-upload if uploadUrl is provided.
 @prop string $label (Default: null)
 @prop string $name (Default: null)
 @prop string $id (Default: null)
 @prop string $model (Default: null)
 @prop bool $multiple (Default: false)
 @prop string $accept (Default: null)
+@prop string $uploadUrl (Default: null)
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php
@@ -14,7 +15,7 @@
     [$resolvedName, $resolvedModel, $resolvedId] = $fileInput->resolveFormAttributes($attributes->all(), $groupName, $groupModel);
 @endphp
 <x-plume::form.element :label="$label ?? $slot" :name="$resolvedName" :id="$resolvedId" :model="$resolvedModel">
-    <div x-data="fileInput()"
+    <div x-data="fileInput('{{ $resolvedModel }}', {{ Js::from($uploadUrl) }})"
         class="relative flex min-h-[150px] cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed transition-all"
         :class="isDropping ? 'border-primary bg-primary/5' : 'border-background-700/40 bg-background-50 dark:border-background-400/20 dark:bg-background-800'"
         x-on:dragover.prevent="isDropping = true"
@@ -57,11 +58,32 @@
                     <div class="flex flex-col items-center gap-2 group relative">
                         <div class="relative size-24 rounded-lg overflow-hidden border border-background-700/40 dark:border-background-400/20 bg-background shadow-sm">
                             <template x-if="file.preview">
-                                <img :src="file.preview" class="size-full object-cover">
+                                <img :src="file.preview" class="size-full object-cover" :class="file.progress < 100 ? 'opacity-50 grayscale' : ''">
                             </template>
                             <template x-if="!file.preview">
                                 <div class="flex size-full items-center justify-center bg-background-100 dark:bg-background-900">
                                     <x-plume::icon i="icon-[fluent--document-24-regular]" class="size-8 text-primary" />
+                                </div>
+                            </template>
+
+                            <template x-if="file.progress < 100 && !file.error">
+                                <div class="absolute inset-0 flex flex-col items-center justify-center bg-background/60 p-2">
+                                    <div class="w-full bg-background-200 rounded-full h-1.5 mb-1 dark:bg-background-700">
+                                        <div class="bg-primary h-1.5 rounded-full transition-all duration-300" :style="`width: ${file.progress}%`"></div>
+                                    </div>
+                                    <span class="text-[8px] font-bold text-foreground" x-text="`${file.progress}%`"></span>
+                                </div>
+                            </template>
+
+                            <template x-if="file.error">
+                                <div class="absolute inset-0 flex items-center justify-center bg-error/10">
+                                    <x-plume::icon i="icon-[fluent--error-circle-24-regular]" class="size-8 text-error" />
+                                </div>
+                            </template>
+
+                            <template x-if="file.id">
+                                <div class="absolute top-1 right-1">
+                                    <x-plume::icon i="icon-[fluent--checkmark-circle-24-filled]" class="size-4 text-success shadow-sm rounded-full bg-white dark:bg-background-900" />
                                 </div>
                             </template>
                             

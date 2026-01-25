@@ -17,14 +17,19 @@ describe('FileInput Plugin', () => {
         vi.stubGlobal('DataTransfer', MockDataTransfer)
     })
 
-    const createInstance = (multiple = false) => {
-        const data = fileInput()
+    const createInstance = (multiple = false, model = null, uploadUrl = null) => {
+        const data = fileInput(model, uploadUrl)
         data.$refs = {
             input: { 
                 multiple: multiple,
                 files: []
             }
         }
+        data.$data = {}
+        if (model) {
+            data.$data[model] = multiple ? [] : null
+        }
+        data.$dispatch = vi.fn()
         return data
     }
 
@@ -71,17 +76,69 @@ describe('FileInput Plugin', () => {
         expect(URL.revokeObjectURL).toHaveBeenCalledWith('blob:url')
     })
 
-    it('handles drop events', () => {
-        instance = createInstance()
-        const file = new File(['content'], 'dropped.txt')
-        const event = {
-            dataTransfer: { files: [file] },
-            preventDefault: vi.fn()
+    it('uploads files immediately if uploadUrl is provided', async () => {
+        let capturedXhr;
+        class MockXHR {
+            constructor() {
+                this.open = vi.fn();
+                this.send = vi.fn();
+                this.setRequestHeader = vi.fn();
+                this.upload = {};
+                this.status = 200;
+                this.responseText = JSON.stringify({ id: 'file_123' });
+                this.onload = null;
+                this.onerror = null;
+                capturedXhr = this;
+            }
         }
+        vi.stubGlobal('XMLHttpRequest', MockXHR);
+
+        instance = createInstance(false, 'avatar', '/upload')
+        const file = new File(['content'], 'test.txt')
         
-        instance.handleDrop(event)
-        expect(instance.files).toHaveLength(1)
-        expect(instance.files[0].name).toBe('dropped.txt')
-        expect(instance.isDropping).toBe(false)
+        const uploadPromise = instance.addFiles([file])
+        
+        // Wait for addFiles to create XHR
+        await vi.waitFor(() => capturedXhr !== undefined);
+        
+        // Trigger onload manually
+        capturedXhr.onload();
+        await uploadPromise;
+
+        expect(capturedXhr.open).toHaveBeenCalledWith('POST', '/upload')
+        expect(instance.files[0].id).toBe('file_123')
+        expect(instance.$data['avatar']).toBe('file_123')
+        expect(instance.$dispatch).toHaveBeenCalledWith('plume-busy')
+        expect(instance.$dispatch).toHaveBeenCalledWith('plume-idle')
+    })
+
+    it('handles upload errors', async () => {
+        let capturedXhr;
+        class MockXHR {
+            constructor() {
+                this.open = vi.fn();
+                this.send = vi.fn();
+                this.setRequestHeader = vi.fn();
+                this.upload = {};
+                this.status = 500;
+                this.responseText = 'Error';
+                this.onload = null;
+                this.onerror = null;
+                capturedXhr = this;
+            }
+        }
+        vi.stubGlobal('XMLHttpRequest', MockXHR);
+
+        instance = createInstance(false, 'avatar', '/upload')
+        const file = new File(['content'], 'test.txt')
+        
+        const uploadPromise = instance.addFiles([file])
+        
+        await vi.waitFor(() => capturedXhr !== undefined);
+        capturedXhr.onload();
+        await uploadPromise;
+
+        expect(instance.files[0].error).toBe('Upload failed')
+        expect(instance.$data['avatar']).toBeNull()
     })
 })
