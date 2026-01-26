@@ -189,7 +189,11 @@ foreach ($components as $tagName => $data) {
 
     if ($data['usage']) {
         $md .= "## Usage\n\n";
-        $md .= "```blade\n" . $data['usage'] . "\n```\n";
+        if (str_contains($data['usage'], '```') || str_starts_with($data['usage'], '#')) {
+            $md .= $data['usage'] . "\n";
+        } else {
+            $md .= "```blade\n" . $data['usage'] . "\n```\n";
+        }
     }
 
     file_put_contents($mdFile, $md);

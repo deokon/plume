@@ -6,8 +6,8 @@ Base wrapper for form inputs, handling labels and errors.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `label` | `string` | `''` |  |
-| `name` | `string` | `null` |  |
-| `id` | `string` | `null` |  |
-| `model` | `string` | `null` |  |
+| `label` | `string` | `''` | The label text for the form element. |
+| `name` | `string` | `null` | HTML name attribute. |
+| `id` | `string` | `null` | HTML id attribute. |
+| `model` | `string` | `null` | AlpineJS model name for validation and state binding. |
 

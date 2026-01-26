@@ -37,3 +37,36 @@ Your API should return a JSON response with the following structure (you can use
     }
 }
 ```
+
+## Laravel Implementation Example
+
+In your controller, you can use the `DataTableResponse` helper to format the output correctly:
+
+```php
+public function index(Request $request)
+{
+    $query = User::query();
+
+    if ($search = $request->input('search')) {
+        $query->where('name', 'like', "%{$search}%");
+    }
+
+    if ($sort = $request->input('sort_col')) {
+        $query->orderBy($sort, $request->input('sort_dir', 'asc'));
+    }
+
+    $users = $query->paginate($request->input('per_page', 10));
+
+    return response()->json([
+        'success' => true,
+        'data' => [
+            'items' => $users->items(),
+            'pagination' => [
+                'total' => $users->total(),
+                'per_page' => $users->perPage(),
+                'current_page' => $users->currentPage(),
+            ]
+        ]
+    ]);
+}
+```

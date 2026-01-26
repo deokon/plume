@@ -13,14 +13,17 @@ A titled section for organizing form fields into semantic groups with optional g
 
 ## Usage
 
+### Multi-column Layout
+Create complex layouts without writing custom grid classes for every field:
 ```blade
 <x-plume::form.section 
-    title="Security" 
-    description="Update your password and login settings."
+    title="Personal Information" 
+    description="This information will be displayed on your profile."
     :min-cols="1"
     :max-cols="2"
 >
-    <x-plume::form.input name="password" type="password" label="New Password" />
-    <x-plume::form.input name="password_confirmation" type="password" label="Confirm Password" />
+    <x-plume::form.input name="first_name" label="First Name" />
+    <x-plume::form.input name="last_name" label="Last Name" />
+    <x-plume::form.input name="email" label="Email" class="sm:col-span-2" />
 </x-plume::form.section>
 ```

@@ -10,6 +10,8 @@
 @prop string $url (Default: null) API endpoint URL for server-side fetching.
 @prop bool $fixedHeight (Default: false) If true, maintains a minimum height based on perPage to prevent layout shifts.
 @usage
+### Basic Usage
+```blade
 @php
     $cols = [
         ['key' => 'name', 'label' => 'Name', 'sortable' => true],
@@ -25,6 +27,33 @@
     paginated 
     :per-page="15" 
 />
+```
+
+### Server-side Data
+When a `url` is provided, the table automatically handles fetching data from your API:
+```blade
+<x-plume::data-table 
+    url="/api/users" 
+    :columns="$cols"
+    paginated 
+    searchable 
+/>
+```
+
+### Refreshing Data
+Call `fetch()` from any interactive element within the table to refresh its content:
+```blade
+<x-plume::button 
+    method="DELETE" 
+    :href="route('users.destroy', $user)" 
+    onSuccess="fetch()"
+>
+    Delete
+</x-plume::button>
+```
+
+### Performance Tip
+Use **Constructed Columns** for simple HTML formatting to keep the table snappy. Use **Slots** only when you need complex Blade components in your cells.
 --}}
 <div x-data="dataTable({{ $perPage }}, {{ Js::from($paginated) }}, {{ Js::from($sortable) }}, {{ Js::from($url) }}, {{ Js::from($data) }}, {{ Js::from($columns) }}, {{ Js::from(collect($__laravel_slots ?? [])->map(fn($s) => (string) $s)) }})" {{ $attributes->merge(['class' => 'space-y-4 w-full']) }}
     :data="{{ Js::from($data) }}" :columns="{{ Js::from($columns) }}">

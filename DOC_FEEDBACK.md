@@ -1,360 +1,143 @@
-# Plume UI Documentation Gaps & Confusing Points
+# Plume UI Remaining Documentation Gaps - Plume 0.9.1
 
 **Last Updated**: January 26, 2026
-**Plume Version**: 0.9.0
+**Plume Version**: 0.9.1
 
-This document catalogs remaining documentation gaps and confusing areas in the Plume UI library. These should be addressed in future releases or via community contributions.
-
----
-
-## Critical Gaps (High Priority)
-
-### 1. Form Input Properties Missing Descriptions
-
-**File**: `docs/form-input.md`
-**Status**: ❌ Not Fixed
-
-Properties like `model`, `required`, `readonly` are listed but have no descriptions:
-
-```markdown
-| `model` | `string` | `null` |  |  # ← EMPTY DESCRIPTION
-| `value` | `string` | `''` |  |  # ← EMPTY DESCRIPTION
-```
-
-**Missing Documentation**:
-- What does `model` do? (How it syncs with form state?)
-- What is the difference between `model` and `value`?
-- How to mark fields as required?
-- How do validation errors display?
-- Support for readonly/disabled states?
-
-**Suggested Fix**: Add examples showing form state binding and error handling.
+> This document lists only **genuine remaining gaps**. Most gaps from earlier analysis have been fixed in 0.9.1.
 
 ---
 
-### 2. Form File Upload Behavior Undocumented
+## Genuine Remaining Gaps
 
-**File**: `docs/form-file.md`
-**Status**: ⚠️ Partially Fixed
+### 1. Form State Management - Advanced Patterns
 
-Still unclear:
-- **Immediate Upload vs Form Submit**: Does `uploadUrl` trigger immediate upload or wait for form submission?
-- **Response Format**: What structure must the server return? (Currently only shows it accepts `id` field implicitly)
-- **Error Handling**: How are upload errors displayed to the user?
-- **File Storage**: Is storage path configurable? Where are files stored by default?
-- **Multiple Files**: The `multiple` prop exists but no example of handling multiple files
+**Files**: `docs/form.md`, `docs/forms.md`
 
-**Current Usage in Shop-Front**:
-```blade
-<x-plume::form.file label="Product Image" model="image" :uploadUrl="route('admin.upload')" accept="image/*" />
-```
-
-But how the response with `id` field gets bound to form `image` model is undocumented.
-
-**Suggested Fix**: Document upload lifecycle and show full controller-to-form example.
-
----
-
-### 3. Individual Form Field Components Missing Descriptions
-
-**Files**: `docs/form-checkbox.md`, `docs/form-select.md`, `docs/form-textarea.md`, `docs/form-radio.md`, `docs/form-date.md`, `docs/form-datetime.md`, `docs/form-time.md`, `docs/form-number.md`, `docs/form-password.md`, `docs/form-color.md`, `docs/form-range.md`, `docs/form-toggle.md`, `docs/form-combobox.md`
-
-**Status**: ⚠️ Incomplete
-
-All form field component docs show bare property tables with empty descriptions:
-
-```markdown
-| Prop | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `label` | `string` | `null` |  |  # ← EMPTY
-| `name` | `string` | `null` |  |  # ← EMPTY
-| `model` | `string` | `null` |  |  # ← EMPTY
-```
-
-**Missing for Each**:
-- What does each property do?
-- Usage examples for each field type
-- How validation errors display
-- How to mark required
-- Default values and constraints
-- Support for disabled/readonly states
-
----
-
-### 4. Pagination Documentation Completely Bare
-
-**File**: `docs/pagination.md`
-**Status**: ⚠️ Not Fixed
-
-Properties have no descriptions:
-
-```markdown
-| `total` | `int` | `1` |  |  # ← EMPTY
-| `current` | `int` | `1` |  |  # ← EMPTY
-| `onEachSide` | `int` | `1` |  |  # ← EMPTY
-```
-
-**Missing**:
-- What do these properties actually control?
-- How does pagination link to data fetching?
-- Usage example
-- How to style pagination
-- Mobile-responsive behavior
-
----
-
-## Medium Priority Gaps
-
-### 5. Data Table `fetch()` Method Scope Unclear
-
-**File**: `docs/data-table.md`, `docs/data-table-actions.md`
-**Status**: ⚠️ Partially Documented
-
-Code uses `fetch()` to refresh table:
-
-```blade
-<x-plume::button method="DELETE" :href="..." onSuccess="fetch()">
-    Delete
-</x-plume::button>
-```
-
-**Missing Documentation**:
-- Is `fetch()` a global function or component method?
-- How does it know which table to refresh? (component scope?)
-- Can you refresh multiple tables?
-- What triggers the refresh? (Component instance? Alpine store?)
-
-**Suggested Fix**: Clarify that `fetch()` is scoped to the component and show nested/multiple table examples.
-
----
-
-### 6. Form Validation Error Display Not Documented
-
-**Files**: `docs/form.md`, `docs/form-input.md`, etc.
-**Status**: ❌ Not Documented
-
-**Missing**:
-- How are validation errors from the server displayed?
-- What error format does Laravel validator return? (422 response?)
-- How to show field-level vs form-level errors?
-- Can you customize error messages?
-- How long do errors display?
-
-**Current Shop-Front Code** uses validation but doesn't show how errors appear:
-```blade
-<x-plume::form.input name="sku" label="SKU" required />
-```
-
----
-
-### 7. Form State & Data Binding Not Clearly Explained
-
-**File**: `docs/forms.md`, `docs/form.md`
-**Status**: ⚠️ Vague
-
-**Missing**:
-- How does `formData` bind to field `model` attributes?
-- Relationship between `formData` array keys and `model` names?
-- Can you dynamically add/remove form fields?
-- Does form state persist across page navigation?
+**What's Missing**:
 - How to reset form state programmatically?
-- How to initialize form with existing data?
+- State persistence across page navigation?
+- Handling state with dynamic field addition/removal?
 
-**Example from Shop-Front**:
-```blade
-<x-plume::form
-    action="/admin/products/store"
-    :formData="Js::from(['sku' => '', 'name' => '', ...])"
->
-    <x-plume::form.input model="sku" ... />
-</x-plume::form>
-```
-
-Why use `Js::from()`? Can you pass PHP arrays directly? Undocumented.
+**Impact**: Edit forms work, but advanced state patterns are undocumented.
 
 ---
 
-### 8. Toast Component Properties Undocumented
-
-**File**: `docs/toast.md`
-**Status**: ⚠️ Incomplete
-
-No properties table for the Toast component itself. Properties like `position` are documented but unclear:
-- What exactly does each value do?
-- How to customize colors/styling?
-- Can you set timeout globally?
-
----
-
-### 9. Modal/Drawer Closing Behavior Unclear
-
-**Files**: `docs/modal.md`, `docs/drawer.md`
-**Status**: ⚠️ Partial
-
-**Missing**:
-- Does clicking the background close the modal/drawer?
-- Does ESC key close it?
-- Can you prevent closing? (Unsaved changes?)
-- What happens with nested modals?
-- Scroll behavior when modal is open?
-
----
-
-### 10. Data Table Combined Slots & Constructed Columns
-
-**File**: `docs/data-table-columns.md`
-**Status**: ⚠️ Incomplete
-
-Docs show slots OR constructed columns, but:
-
-**Missing**:
-- Can you mix slots and constructed columns in same table?
-- Performance implications of slots vs constructed?
-- When to use which approach?
-- Can constructed columns call functions?
-
----
-
-## Low Priority Gaps
-
-### 11. Global Helpers - Advanced Usage
-
-**File**: `docs/global-helpers.md`
-**Status**: ⚠️ Basic Examples Only
-
-**Missing**:
-- Can you chain multiple helpers?
-- Promise/async patterns?
-- Error handling for `$copy()` if clipboard access denied?
-- Toast options: what all options exist beyond `type`, `title`, `description`, `timeout`?
-
----
-
-### 12. Form Inline Mode Not Explained
+### 2. Form Inline Mode - Usage Guidance
 
 **File**: `docs/form.md`
-**Status**: ⚠️ Mentioned but Not Explained
 
-Property exists: `inline` | `bool` | `false`
+**What's Missing**:
+- When to use inline vs vertical layout?
+- Visual example showing the difference?
+- Responsive behavior on mobile?
 
-**Missing**:
-- What does inline mode do exactly?
-- When to use it vs default?
-- Example of inline form
-
----
-
-### 13. Button Loading State & `button.loader` Component
-
-**File**: `docs/button-loader.md`
-**Status**: ⚠️ Minimal
-
-Component exists but barely documented:
-- How does button loader work?
-- When to use vs regular button?
-- Relationship to form submission loaders?
+**Impact**: Property exists but developers don't know when to use it.
 
 ---
 
-### 14. Form Actions Component
+### 3. Data Table - Performance Trade-offs
 
-**File**: `docs/form-actions.md`
-**Status**: ⚠️ Exists but Undocumented
+**Files**: `docs/data-table-columns.md`, `docs/data-table-server-side.md`
 
-File exists but no content visible. Should document:
-- Purpose of form-actions
-- When to use vs manual button placement
-- Props and styling
+**What's Missing**:
+- When to use slot-based vs constructed columns (performance)?
+- Client-side vs server-side pagination trade-offs?
+- Optimization tips for large datasets?
 
----
-
-### 15. Form Group & Form Section
-
-**Files**: `docs/form-group.md`, `docs/form-section.md`
-**Status**: ⚠️ Minimal/Undocumented
-
-These organizational components need:
-- Examples of when to use
-- How they affect form layout
-- Props and customization
+**Impact**: Developers might choose wrong approach for their use case.
 
 ---
 
-## Documentation Quality Issues
+### 4. Component Styling & Customization
 
-### 16. Inconsistent Property Descriptions
+**Across All Components**
 
-**Status**: ⚠️ Ongoing
+**What's Missing**:
+- How to override component CSS?
+- CSS class structure for theming?
+- Tailwind customization details?
+- Dark mode support?
 
-Some components have detailed descriptions, others are bare:
+**Impact**: Developers can't customize beyond default styling.
 
-**Good** (Button):
-```markdown
-| `confirm` | `string` | `null` | Native confirmation message to display before action. |
-```
+---
 
-**Bad** (Pagination, many form fields):
-```markdown
-| `total` | `int` | `1` |  |
-```
+### 5. Real-World Usage Examples
 
-### 17. Missing Real-World Examples
+**Across Documentation**
 
-**Status**: ⚠️ Most docs lack context
-
-Current docs show minimal, abstract examples. **Missing**:
-- Common use-case examples
-- Full workflow examples (upload → preview → submit)
+**What's Missing**:
+- Multi-step form workflows
+- File upload with preview
+- Server-side data table with search/sort
+- Modal form validation patterns
 - Error handling in context
-- Integration with Laravel validations
-- Multi-step form examples
 
-### 18. No Performance or Best Practices Guide
+**Impact**: Developers must figure out common patterns by trial and error.
 
-**Status**: ❌ Not Documented
+---
 
-**Missing**:
-- When to use client-side vs server-side data tables?
-- Performance implications of different approaches?
-- Best practices for form validation (client vs server)?
-- Optimizing large data tables?
-- Memory management with modals/drawers?
+### 6. Accessibility Documentation
+
+**Across All Components**
+
+**What's Missing**:
+- ARIA attributes and roles?
+- Keyboard navigation support?
+- Screen reader compatibility?
+- Focus management in modals?
+
+**Impact**: Plume components accessibility story unknown.
+
+---
+
+### 7. Advanced Modal/Drawer Scenarios
+
+**Files**: `docs/modal.md`, `docs/drawer.md`
+
+**What's Missing**:
+- Preventing close on unsaved changes?
+- Nested modal behavior?
+- Scroll locking details?
+
+**Impact**: Advanced use cases require diving into source code.
+
+---
+
+### 8. Form Utility Components
+
+**Files**: `docs/form-element.md`, `docs/form-label.md`
+
+**What's Missing**:
+- Property descriptions (currently empty)
+- Purpose and use cases?
+- When to use vs form.input?
+
+**Impact**: Low-level components have no documentation.
 
 ---
 
 ## Recommendations
 
-### For Users
-1. Always check source code (`vendor/deokon/plume/resources/views/components-class/`) for detailed prop usage
-2. Use browser dev tools to inspect Alpine.js component state
-3. Refer to shop-front implementation as practical examples
+### High Impact (Should Fix)
+1. Document form state reset/persistence patterns
+2. Add usage guidance for form inline mode
+3. Document component styling/CSS customization
+4. Add real-world workflow examples
 
-### For Plume Maintainers
-1. **Priority 1** (Do First):
-   - Add descriptions to all form field component properties
-   - Document form validation error handling
-   - Clarify form state binding and data flow
-   - Fix file upload docs with complete lifecycle
+### Medium Impact
+5. Document data table performance trade-offs
+6. Fill in form-element and form-label descriptions
+7. Document advanced modal scenarios
 
-2. **Priority 2** (Do Soon):
-   - Complete pagination documentation
-   - Clarify global helper behaviors
-   - Document modal/drawer closing behavior
-   - Add real-world examples for common patterns
-
-3. **Priority 3** (Nice to Have):
-   - Performance guide
-   - Best practices documentation
-   - Advanced usage patterns
-   - Migration guides
+### Lower Priority
+8. Add accessibility documentation
+9. Add Tailwind dark mode details
 
 ---
 
-## Contributing
+## Summary
 
-To improve Plume documentation, contributors should:
-1. Add property descriptions for all components
-2. Include practical code examples
-3. Document error states and edge cases
-4. Add integration examples with Laravel
-5. Include accessibility notes where relevant
+**Major Progress in 0.9.1**: File upload, form validation, forms overview, pagination, most form fields, toast customization, button loader, form actions, and global helpers advanced patterns.
+
+**Remaining Work**: ~8 genuine gaps, mostly around advanced usage patterns and guidance rather than basic documentation.

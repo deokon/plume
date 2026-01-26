@@ -18,6 +18,7 @@ class Modal extends Component
     public function __construct(
         public string $name,
         public bool $show = false,
+        public bool $persistent = false,
         public string $maxWidth = '2xl',
         public ?string $title = null,
         public ?string $onOpen = null,

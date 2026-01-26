@@ -7,10 +7,24 @@
 @prop string $name (Default: null) Shared name attribute for child inputs.
 @prop string $model (Default: null) Shared AlpineJS model name for child inputs.
 @usage
-<x-plume::form.group label="Notification Preferences" model="prefs">
-    <x-plume::form.checkbox value="email" label="Email" />
-    <x-plume::form.checkbox value="sms" label="SMS" />
+### Grouping Checkboxes
+The `model` prop on the group will be automatically shared with all child inputs, ideal for binding multiple values to an array:
+```blade
+<x-plume::form.group label="Interests" model="interests" description="Select all that apply">
+    <x-plume::form.checkbox value="tech" label="Technology" />
+    <x-plume::form.checkbox value="design" label="Design" />
+    <x-plume::form.checkbox value="marketing" label="Marketing" />
 </x-plume::form.group>
+```
+
+### Grid Layout
+Use `minCols` to arrange children in a responsive grid:
+```blade
+<x-plume::form.group label="Options" :minCols="2">
+    <x-plume::form.radio value="1" label="Option 1" />
+    <x-plume::form.radio value="2" label="Option 2" />
+</x-plume::form.group>
+```
 --}}
 <div {{ $attributes->merge(['class' => 'space-y-4']) }}>
     @if ($label)

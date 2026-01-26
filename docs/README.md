@@ -6,6 +6,8 @@ Welcome to the Plume UI documentation. Plume is a comprehensive UI library for L
 
 - [Installation](installation.md)
 - [Theming](theming.md)
+- [Accessibility](accessibility.md)
+- [Best Practices](best-practices.md)
 - [Global Helpers](global-helpers.md)
 
 ## Components

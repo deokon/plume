@@ -29,11 +29,40 @@ $columns = [
 ];
 @endphp
 
-<x-plume::data-table :data="$users" :columns="$columns">
-    <x-slot:actions>
-        <x-plume::button size="xs">Edit</x-plume::button>
-    </x-slot:actions>
-</x-plume::data-table>
-```
+## Choosing an Approach
+
+
+
+### Constructed Columns
+
+**Best for:** Simple HTML wrapping, concatenation, or conditional classes based on row values.
+
+- **Pros:** Extremely fast (handled entirely in JS), easy to define in PHP arrays.
+
+- **Cons:** Limited to basic string replacement, no access to Blade directives or complex PHP logic.
+
+
+
+### Slot-based Columns
+
+**Best for:** Complex UI components (like Buttons, Avatars, or nested Forms) that require Blade logic.
+
+- **Pros:** Full power of Blade, access to component helpers, easier to read for complex layouts.
+
+- **Cons:** Slightly more overhead as the slot content is rendered once and passed to the component.
+
+
+
+### Mixing Approaches
+
+You can mix both in the same table. For example, use constructed columns for simple links and slots for complex action menus.
+
+
+
+## Performance Considerations
+
+For very large tables (hundreds of rows), **Constructed Columns** are significantly more performant as they avoid the overhead of Blade rendering for every cell. However, for standard paginated views (10-50 rows), the difference is negligible, and you should choose based on developer convenience and code clarity.
+
+
 
 ```

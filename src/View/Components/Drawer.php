@@ -15,6 +15,7 @@ class Drawer extends Component
     public function __construct(
         public string $name,
         public bool $show = false,
+        public bool $persistent = false,
         public string $side = 'right',
         public ?string $title = null,
         public ?string $description = null,

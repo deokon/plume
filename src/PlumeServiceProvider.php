@@ -97,7 +97,6 @@ class PlumeServiceProvider extends ServiceProvider
         Blade::component('plume::form.label', \deokon\Plume\View\Components\Form\Label::class);
         Blade::component('plume::form.actions', \deokon\Plume\View\Components\Form\Actions::class);
         Blade::component('plume::form.group', \deokon\Plume\View\Components\Form\Group::class);
-        Blade::component('plume::form.inline', \deokon\Plume\View\Components\Form\Inline::class);
         Blade::component('plume::form.section', \deokon\Plume\View\Components\Form\Section::class);
         Blade::component('plume::form.file', \deokon\Plume\View\Components\Form\File::class);
         Blade::component('plume::form.color', \deokon\Plume\View\Components\Form\Color::class);

@@ -1,13 +1,16 @@
 {{--
 @component x-plume::modal
-@description A dialog box or popup window that is displayed on top of the current page. Closes when clicking the backdrop or pressing the ESC key.
+@description A dialog box or popup window that is displayed on top of the current page. Closes when clicking the backdrop or pressing the ESC key unless 'persistent' is true.
 @prop string $name (Default: null) Unique identifier for the modal, used with $openModal(name).
 @prop bool $show (Default: false) Whether to show the modal by default on page load.
+@prop bool $persistent (Default: false) Whether to prevent closing when clicking the backdrop or pressing the ESC key.
 @prop string $maxWidth (Default: '2xl') Maximum width: 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl', '7xl', 'full'.
 @prop string $title (Default: null) Simple title string. For complex headers, use the 'header' slot.
 @prop string $onOpen (Default: null) AlpineJS expression or function to call when the modal opens.
 @prop string $onClose (Default: null) AlpineJS expression or function to call when the modal closes.
 @usage
+### Basic Usage
+```blade
 <x-plume::modal name="login-modal" title="Welcome Back">
     <x-plume::form ...>
         ...
@@ -15,14 +18,36 @@
 </x-plume::modal>
 
 <x-plume::button @click="$openModal('login-modal')">Login</x-plume::button>
+```
+
+### Persistent Modal (Prevent accidental closing)
+```blade
+<x-plume::modal name="unsaved-changes" title="Unsaved Changes" persistent>
+    <p>You have unsaved changes. Are you sure you want to leave?</p>
+    <x-slot:footer>
+        <x-plume::button @click="$closeModal()">Stay</x-plume::button>
+        <x-plume::button style="error" href="/dashboard">Leave Page</x-plume::button>
+    </x-slot:footer>
+</x-plume::modal>
+```
+
+### Lazy Loading Content
+For modals with heavy content, use a template to delay rendering until the modal is opened:
+```blade
+<x-plume::modal name="heavy-report">
+    <template x-if="show">
+        <livewire:detailed-report />
+    </template>
+</x-plume::modal>
+```
 --}}
-<div x-data="modal('{{ $name }}', @js($show), @js($attributes->has('focusable')), { onOpen: {{ Js::from($onOpen) }}, onClose: {{ Js::from($onClose) }} })" x-on:keydown.escape.window="close()"
-    x-on:keydown.tab.prevent="handleTab($event)" x-show="show" x-cloak role="dialog" aria-modal="true"
-    aria-labelledby="modal-title-{{ $name }}"
+<div x-data="modal('{{ $name }}', @js($show), @js($attributes->has('focusable')), { onOpen: {{ Js::from($onOpen) }}, onClose: {{ Js::from($onClose) }} })"
+    x-on:keydown.escape.window="!@js($persistent) && close()" x-on:keydown.tab.prevent="handleTab($event)"
+    x-show="show" x-cloak role="dialog" aria-modal="true" aria-labelledby="modal-title-{{ $name }}"
     {{ $attributes->merge(['class' => 'fixed inset-0 z-50 overflow-y-auto']) }}
     style="display: {{ $show ? 'block' : 'none' }};">
-    <div x-show="show" x-cloak class="fixed inset-0 transform transition-all" x-on:click="close()"
-        x-transition:enter="{{ $enter }}" x-transition:enter-start="opacity-0"
+    <div x-show="show" x-cloak class="fixed inset-0 transform transition-all"
+        x-on:click="!@js($persistent) && close()" x-transition:enter="{{ $enter }}" x-transition:enter-start="opacity-0"
         x-transition:enter-end="opacity-100" x-transition:leave="{{ $leave }}"
         x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
         <div class="absolute inset-0 bg-background-950/80 backdrop-blur-sm"></div>

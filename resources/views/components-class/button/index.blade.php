@@ -54,11 +54,18 @@
 @if ($method && $href)
     <x-plume::form :action="$href" :method="$method" :onSuccess="$onSuccess" :onError="$onError" :showAlerts="false" inline>
         <button type="submit" @if ($clickAction) x-on:click="{{ $clickAction }}" @endif
-            {{ $cleanAttributes->merge(['class' => $buttonComponent->classes($resolvedSize, $resolvedStyle, $resolvedShape)]) }}>
-            @if ($icon)
-                <x-plume::icon i="{{ $icon }}" />
-            @endif
-            {{ $slot }}
+            {{ $cleanAttributes->merge(['class' => $buttonComponent->classes($resolvedSize, $resolvedStyle, $resolvedShape) . ' relative']) }}
+            x-bind:class="{ '[&>:not(:last-child)]:invisible': processing }">
+            <span>
+                @if ($icon)
+                    <x-plume::icon i="{{ $icon }}" />
+                @endif
+                {{ $slot }}
+            </span>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 grayscale"
+                x-show="processing" x-cloak>
+                <x-plume::spinner size="sm" style="white" />
+            </div>
         </button>
     </x-plume::form>
 @elseif($href)

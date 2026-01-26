@@ -1,6 +1,6 @@
 # Drawer
 
-A panel that slides in from the edge of the screen. Closes when clicking the backdrop or pressing the ESC key.
+A panel that slides in from the edge of the screen. Closes when clicking the backdrop or pressing the ESC key unless 'persistent' is true.
 
 ## Properties
 
@@ -8,6 +8,7 @@ A panel that slides in from the edge of the screen. Closes when clicking the bac
 | :--- | :--- | :--- | :--- |
 | `name` | `string` | `null` | Unique identifier for the drawer, used with $openDrawer(name). |
 | `show` | `bool` | `false` | Whether to show the drawer by default on page load. |
+| `persistent` | `bool` | `false` | Whether to prevent closing when clicking the backdrop or pressing the ESC key. |
 | `side` | `string` | `'right'` | Side to slide in from: 'left', 'right', 'top', 'bottom'. |
 | `title` | `string` | `null` | Simple title string. For complex headers, use the 'header' slot. |
 | `description` | `string` | `null` | Optional subtitle or description. |
@@ -16,6 +17,7 @@ A panel that slides in from the edge of the screen. Closes when clicking the bac
 
 ## Usage
 
+### Basic Usage
 ```blade
 <x-plume::drawer name="settings" title="User Settings" side="right">
     <x-plume::form ...>
@@ -24,4 +26,12 @@ A panel that slides in from the edge of the screen. Closes when clicking the bac
 </x-plume::drawer>
 
 <x-plume::button @click="$openDrawer('settings')">Open Settings</x-plume::button>
+```
+
+### Multi-step Workflows
+Drawers are ideal for side-panel workflows that don't want to lose page context:
+```blade
+<x-plume::drawer name="add-item" title="Add New Item">
+    <x-plume::stepper ... />
+</x-plume::drawer>
 ```

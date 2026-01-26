@@ -32,6 +32,10 @@ export default (
             this.sync();
             this.updateTotalPages();
 
+            this.$el.addEventListener('plume-refresh', () => {
+                if (this.url) this.fetch();
+            });
+
             if (this.url) {
                 this.fetch();
                 this.$watch('search', () => {

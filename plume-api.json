@@ -690,7 +690,7 @@
                 }
             },
             "description": "Advanced table with sorting, filtering, and pagination. Powered by AlpineJS. Supports client-side data or server-side fetching via URL.",
-            "usage": "@php\n    $cols = [\n        ['key' => 'name', 'label' => 'Name', 'sortable' => true],\n        ['key' => 'email', 'label' => 'Email', 'sortable' => true],\n        ['key' => 'role', 'label' => 'Role', 'constructed' => '<span class=\"badge text-xs uppercase\">{role}</span>']\n    ];\n@endphp\n\n<x-plume::data-table \n    :columns=\"$cols\" \n    :data=\"$users\" \n    searchable \n    paginated \n    :per-page=\"15\" \n/>",
+            "usage": "### Basic Usage\n```blade\n@php\n    $cols = [\n        ['key' => 'name', 'label' => 'Name', 'sortable' => true],\n        ['key' => 'email', 'label' => 'Email', 'sortable' => true],\n        ['key' => 'role', 'label' => 'Role', 'constructed' => '<span class=\"badge text-xs uppercase\">{role}</span>']\n    ];\n@endphp\n\n<x-plume::data-table \n    :columns=\"$cols\" \n    :data=\"$users\" \n    searchable \n    paginated \n    :per-page=\"15\" \n/>\n```\n\n### Server-side Data\nWhen a `url` is provided, the table automatically handles fetching data from your API:\n```blade\n<x-plume::data-table \n    url=\"/api/users\" \n    :columns=\"$cols\"\n    paginated \n    searchable \n/>\n```\n\n### Refreshing Data\nCall `fetch()` from any interactive element within the table to refresh its content:\n```blade\n<x-plume::button \n    method=\"DELETE\" \n    :href=\"route('users.destroy', $user)\" \n    onSuccess=\"fetch()\"\n>\n    Delete\n</x-plume::button>\n```\n\n### Performance Tip\nUse **Constructed Columns** for simple HTML formatting to keep the table snappy. Use **Slots** only when you need complex Blade components in your cells.",
             "doc_url": "https://plume.dennisokon.com/docs/data-table"
         },
         "x-plume::divider": {
@@ -719,6 +719,11 @@
                     "default": "false",
                     "description": "Whether to show the drawer by default on page load."
                 },
+                "persistent": {
+                    "type": "bool",
+                    "default": "false",
+                    "description": "Whether to prevent closing when clicking the backdrop or pressing the ESC key."
+                },
                 "side": {
                     "type": "string",
                     "default": "'right'",
@@ -745,8 +750,8 @@
                     "description": "AlpineJS expression or function to call when the drawer closes."
                 }
             },
-            "description": "A panel that slides in from the edge of the screen. Closes when clicking the backdrop or pressing the ESC key.",
-            "usage": "<x-plume::drawer name=\"settings\" title=\"User Settings\" side=\"right\">\n    <x-plume::form ...>\n        ...\n    </x-plume::form>\n</x-plume::drawer>\n\n<x-plume::button @click=\"$openDrawer('settings')\">Open Settings</x-plume::button>",
+            "description": "A panel that slides in from the edge of the screen. Closes when clicking the backdrop or pressing the ESC key unless 'persistent' is true.",
+            "usage": "### Basic Usage\n```blade\n<x-plume::drawer name=\"settings\" title=\"User Settings\" side=\"right\">\n    <x-plume::form ...>\n        ...\n    </x-plume::form>\n</x-plume::drawer>\n\n<x-plume::button @click=\"$openDrawer('settings')\">Open Settings</x-plume::button>\n```\n\n### Multi-step Workflows\nDrawers are ideal for side-panel workflows that don't want to lose page context:\n```blade\n<x-plume::drawer name=\"add-item\" title=\"Add New Item\">\n    <x-plume::stepper ... />\n</x-plume::drawer>\n```",
             "doc_url": "https://plume.dennisokon.com/docs/drawer"
         },
         "x-plume::dropdown": {
@@ -923,14 +928,14 @@
                 }
             },
             "description": "A robust form container with AJAX submission, validation error handling, and reactive state binding.",
-            "usage": "Usage with automatic buttons:\n<x-plume::form \n    action=\"/profile\" \n    method=\"PUT\" \n    :form-data=\"['name' => 'John', 'email' => 'john@example.com']\"\n    submit-button=\"Save Changes\"\n>\n    <x-plume::form.input name=\"name\" model=\"name\" label=\"Name\" />\n    <x-plume::form.input name=\"email\" model=\"email\" label=\"Email\" />\n</x-plume::form>\n\nValidation Error Handling:\nWhen the server returns a 422 response with an 'errors' object, \nPlume automatically populates the form's error bag. \nFields with matching 'model' names will display their respective error messages.",
+            "usage": "### Basic Usage\n```blade\n<x-plume::form \n    action=\"/profile\" \n    method=\"PUT\" \n    :form-data=\"['name' => 'John', 'email' => 'john@example.com']\"\n    submit-button=\"Save Changes\"\n>\n    <x-plume::form.input name=\"name\" model=\"name\" label=\"Name\" />\n    <x-plume::form.input name=\"email\" model=\"email\" label=\"Email\" />\n</x-plume::form>\n```\n\n### Initializing with Data\nTo populate a form with existing data (e.g., for an edit screen), use the `formData` prop. The keys in the array should match the `model` names of your input fields.\nUsing `Js::from()` is recommended for complex objects or to ensure correct JSON encoding:\n```blade\n<x-plume::form \n    :formData=\"Js::from($user->only(['name', 'email', 'bio']))\"\n    action=\"{{ route('users.update', $user) }}\"\n    method=\"PUT\"\n    submit-button=\"Update Profile\"\n>\n    <x-plume::form.input model=\"name\" label=\"Name\" />\n    <x-plume::form.input model=\"email\" label=\"Email\" />\n</x-plume::form>\n```\n\n### Resetting Form State\nYou can programmatically reset the form to its initial `formData` state by calling the `reset()` method from within the form:\n```blade\n<x-plume::button @click=\"reset()\">Discard Changes</x-plume::button>\n```\n\n### Inline Mode\nThe `inline` prop renders form elements in a horizontal flex layout, ideal for search bars or single-field subscriptions:\n```blade\n<x-plume::form action=\"/search\" method=\"GET\" inline>\n    <x-plume::form.input name=\"q\" placeholder=\"Search...\" />\n    <x-plume::button type=\"submit\">Search</x-plume::button>\n</x-plume::form>\n```\n\n### Validation Error Handling\nWhen the server returns a 422 response with an 'errors' object, Plume automatically populates the form's error bag. Fields with matching 'model' names will display their respective error messages.",
             "doc_url": "https://plume.dennisokon.com/docs/form"
         },
         "x-plume::form.actions": {
             "path": "plume/resources/views/components-class/form/actions.blade.php",
             "props": [],
             "description": "A flex container for form-level action buttons (typically Submit and Cancel).",
-            "usage": "<x-plume::form.actions>\n    <x-plume::button style=\"minor\">Cancel</x-plume::button>\n    <x-plume::button type=\"submit\">Save Changes</x-plume::button>\n</x-plume::form.actions>",
+            "usage": "Standardized layout for form buttons, typically used at the bottom of a form:\n```blade\n<x-plume::form.actions>\n    <x-plume::button style=\"minor\" @click=\"window.history.back()\">\n        Cancel\n    </x-plume::button>\n    <x-plume::button type=\"submit\">\n        Save Changes\n    </x-plume::button>\n</x-plume::form.actions>\n```",
             "doc_url": "https://plume.dennisokon.com/docs/form-actions"
         },
         "x-plume::form.checkbox": {
@@ -1134,22 +1139,22 @@
                 "label": {
                     "type": "string",
                     "default": "''",
-                    "description": ""
+                    "description": "The label text for the form element."
                 },
                 "name": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "HTML name attribute."
                 },
                 "id": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "HTML id attribute."
                 },
                 "model": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "AlpineJS model name for validation and state binding."
                 }
             },
             "description": "Base wrapper for form inputs, handling labels and errors.",
@@ -1196,7 +1201,7 @@
                 }
             },
             "description": "A file upload input with drag-and-drop support and automatic pre-uploading.",
-            "usage": "Basic Usage (Standard Form Submit):\n<x-plume::form.file label=\"Resume\" name=\"resume\" accept=\".pdf,.doc\" />\n\nImmediate AJAX Pre-upload (Recommended):\nThe server must return JSON like: {\"id\": \"file_uuid\"}\n<x-plume::form.file \n    label=\"Gallery\" \n    model=\"images\" \n    multiple \n    :uploadUrl=\"route('api.upload')\" \n    accept=\"image/*\" \n/>\n\nWhen using uploadUrl, the 'images' model in formData will be updated \nautomatically with the IDs returned from the server.",
+            "usage": "### Basic Usage\n```blade\n<x-plume::form.file label=\"Resume\" name=\"resume\" accept=\".pdf,.doc\" />\n```\n\n### Immediate AJAX Pre-upload (Recommended)\nThe server must return JSON like: `{\"id\": \"file_uuid\"}`. The 'images' model in formData will be updated automatically with the IDs returned from the server.\n```blade\n<x-plume::form.file \n    label=\"Gallery\" \n    model=\"images\" \n    multiple \n    :uploadUrl=\"route('api.upload')\" \n    accept=\"image/*\" \n/>\n```\n\n### Image Upload with Preview\nCombine `uploadUrl` with a simple AlpineJS template to show previews:\n```blade\n<div x-data=\"{ previews: [] }\">\n    <x-plume::form.file \n        label=\"Avatar\" \n        model=\"avatar_id\" \n        accept=\"image/*\"\n        :uploadUrl=\"route('api.upload')\"\n        onSuccess=\"previews.push($event.detail.preview_url)\"\n    />\n\n    <template x-if=\"previews.length\">\n        <div class=\"mt-4 flex gap-4\">\n            <template x-for=\"url in previews\">\n                <img :src=\"url\" class=\"size-20 rounded-lg object-cover border\" />\n            </template>\n        </div>\n    </template>\n</div>\n```",
             "doc_url": "https://plume.dennisokon.com/docs/form-file"
         },
         "x-plume::form.group": {
@@ -1229,7 +1234,7 @@
                 }
             },
             "description": "Groups related form inputs (like radios or checkboxes) under a single label.",
-            "usage": "<x-plume::form.group label=\"Notification Preferences\" model=\"prefs\">\n    <x-plume::form.checkbox value=\"email\" label=\"Email\" />\n    <x-plume::form.checkbox value=\"sms\" label=\"SMS\" />\n</x-plume::form.group>",
+            "usage": "### Grouping Checkboxes\nThe `model` prop on the group will be automatically shared with all child inputs, ideal for binding multiple values to an array:\n```blade\n<x-plume::form.group label=\"Interests\" model=\"interests\" description=\"Select all that apply\">\n    <x-plume::form.checkbox value=\"tech\" label=\"Technology\" />\n    <x-plume::form.checkbox value=\"design\" label=\"Design\" />\n    <x-plume::form.checkbox value=\"marketing\" label=\"Marketing\" />\n</x-plume::form.group>\n```\n\n### Grid Layout\nUse `minCols` to arrange children in a responsive grid:\n```blade\n<x-plume::form.group label=\"Options\" :minCols=\"2\">\n    <x-plume::form.radio value=\"1\" label=\"Option 1\" />\n    <x-plume::form.radio value=\"2\" label=\"Option 2\" />\n</x-plume::form.group>\n```",
             "doc_url": "https://plume.dennisokon.com/docs/form-group"
         },
         "x-plume::form.input": {
@@ -1286,12 +1291,12 @@
                 "for": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The ID of the input this label is for."
                 },
                 "required": {
                     "type": "bool",
                     "default": "false",
-                    "description": ""
+                    "description": "Whether to display a required indicator (asterisk)."
                 }
             },
             "description": "A label for a form input.",
@@ -1505,7 +1510,7 @@
                 }
             },
             "description": "A titled section for organizing form fields into semantic groups with optional grid layout.",
-            "usage": "<x-plume::form.section \n    title=\"Security\" \n    description=\"Update your password and login settings.\"\n    :min-cols=\"1\"\n    :max-cols=\"2\"\n>\n    <x-plume::form.input name=\"password\" type=\"password\" label=\"New Password\" />\n    <x-plume::form.input name=\"password_confirmation\" type=\"password\" label=\"Confirm Password\" />\n</x-plume::form.section>",
+            "usage": "### Multi-column Layout\nCreate complex layouts without writing custom grid classes for every field:\n```blade\n<x-plume::form.section \n    title=\"Personal Information\" \n    description=\"This information will be displayed on your profile.\"\n    :min-cols=\"1\"\n    :max-cols=\"2\"\n>\n    <x-plume::form.input name=\"first_name\" label=\"First Name\" />\n    <x-plume::form.input name=\"last_name\" label=\"Last Name\" />\n    <x-plume::form.input name=\"email\" label=\"Email\" class=\"sm:col-span-2\" />\n</x-plume::form.section>\n```",
             "doc_url": "https://plume.dennisokon.com/docs/form-section"
         },
         "x-plume::form.select": {
@@ -1727,6 +1732,11 @@
                     "default": "false",
                     "description": "Whether to show the modal by default on page load."
                 },
+                "persistent": {
+                    "type": "bool",
+                    "default": "false",
+                    "description": "Whether to prevent closing when clicking the backdrop or pressing the ESC key."
+                },
                 "maxWidth": {
                     "type": "string",
                     "default": "'2xl'",
@@ -1748,8 +1758,8 @@
                     "description": "AlpineJS expression or function to call when the modal closes."
                 }
             },
-            "description": "A dialog box or popup window that is displayed on top of the current page. Closes when clicking the backdrop or pressing the ESC key.",
-            "usage": "<x-plume::modal name=\"login-modal\" title=\"Welcome Back\">\n    <x-plume::form ...>\n        ...\n    </x-plume::form>\n</x-plume::modal>\n\n<x-plume::button @click=\"$openModal('login-modal')\">Login</x-plume::button>",
+            "description": "A dialog box or popup window that is displayed on top of the current page. Closes when clicking the backdrop or pressing the ESC key unless 'persistent' is true.",
+            "usage": "### Basic Usage\n```blade\n<x-plume::modal name=\"login-modal\" title=\"Welcome Back\">\n    <x-plume::form ...>\n        ...\n    </x-plume::form>\n</x-plume::modal>\n\n<x-plume::button @click=\"$openModal('login-modal')\">Login</x-plume::button>\n```\n\n### Persistent Modal (Prevent accidental closing)\n```blade\n<x-plume::modal name=\"unsaved-changes\" title=\"Unsaved Changes\" persistent>\n    <p>You have unsaved changes. Are you sure you want to leave?</p>\n    <x-slot:footer>\n        <x-plume::button @click=\"$closeModal()\">Stay</x-plume::button>\n        <x-plume::button style=\"error\" href=\"/dashboard\">Leave Page</x-plume::button>\n    </x-slot:footer>\n</x-plume::modal>\n```\n\n### Lazy Loading Content\nFor modals with heavy content, use a template to delay rendering until the modal is opened:\n```blade\n<x-plume::modal name=\"heavy-report\">\n    <template x-if=\"show\">\n        <livewire:detailed-report />\n    </template>\n</x-plume::modal>\n```",
             "doc_url": "https://plume.dennisokon.com/docs/modal"
         },
         "x-plume::navbar": {

@@ -17,6 +17,7 @@ Advanced table with sorting, filtering, and pagination. Powered by AlpineJS. Sup
 
 ## Usage
 
+### Basic Usage
 ```blade
 @php
     $cols = [
@@ -34,3 +35,29 @@ Advanced table with sorting, filtering, and pagination. Powered by AlpineJS. Sup
     :per-page="15" 
 />
 ```
+
+### Server-side Data
+When a `url` is provided, the table automatically handles fetching data from your API:
+```blade
+<x-plume::data-table 
+    url="/api/users" 
+    :columns="$cols"
+    paginated 
+    searchable 
+/>
+```
+
+### Refreshing Data
+Call `fetch()` from any interactive element within the table to refresh its content:
+```blade
+<x-plume::button 
+    method="DELETE" 
+    :href="route('users.destroy', $user)" 
+    onSuccess="fetch()"
+>
+    Delete
+</x-plume::button>
+```
+
+### Performance Tip
+Use **Constructed Columns** for simple HTML formatting to keep the table snappy. Use **Slots** only when you need complex Blade components in your cells.

@@ -1,14 +1,17 @@
 {{--
 @component x-plume::drawer
-@description A panel that slides in from the edge of the screen. Closes when clicking the backdrop or pressing the ESC key.
+@description A panel that slides in from the edge of the screen. Closes when clicking the backdrop or pressing the ESC key unless 'persistent' is true.
 @prop string $name (Default: null) Unique identifier for the drawer, used with $openDrawer(name).
 @prop bool $show (Default: false) Whether to show the drawer by default on page load.
+@prop bool $persistent (Default: false) Whether to prevent closing when clicking the backdrop or pressing the ESC key.
 @prop string $side (Default: 'right') Side to slide in from: 'left', 'right', 'top', 'bottom'.
 @prop string $title (Default: null) Simple title string. For complex headers, use the 'header' slot.
 @prop string $description (Default: null) Optional subtitle or description.
 @prop string $onOpen (Default: null) AlpineJS expression or function to call when the drawer opens.
 @prop string $onClose (Default: null) AlpineJS expression or function to call when the drawer closes.
 @usage
+### Basic Usage
+```blade
 <x-plume::drawer name="settings" title="User Settings" side="right">
     <x-plume::form ...>
         ...
@@ -16,13 +19,22 @@
 </x-plume::drawer>
 
 <x-plume::button @click="$openDrawer('settings')">Open Settings</x-plume::button>
+```
+
+### Multi-step Workflows
+Drawers are ideal for side-panel workflows that don't want to lose page context:
+```blade
+<x-plume::drawer name="add-item" title="Add New Item">
+    <x-plume::stepper ... />
+</x-plume::drawer>
+```
 --}}
-<div x-data="drawer('{{ $name }}', @js($show), { onOpen: {{ Js::from($onOpen) }}, onClose: {{ Js::from($onClose) }} })" x-on:keydown.escape.window="close()"
-    x-on:keydown.tab.prevent="handleTab($event)" x-show="show" x-cloak role="dialog" aria-modal="true"
-    aria-labelledby="drawer-title-{{ $name }}" class="fixed inset-0 z-50 overflow-hidden"
-    style="display: {{ $show ? 'block' : 'none' }};">
-    <div x-show="show" x-cloak class="fixed inset-0 transform transition-all" x-on:click="close()"
-        x-transition:enter="{{ $enter }}" x-transition:enter-start="opacity-0"
+<div x-data="drawer('{{ $name }}', @js($show), { onOpen: {{ Js::from($onOpen) }}, onClose: {{ Js::from($onClose) }} })"
+    x-on:keydown.escape.window="!@js($persistent) && close()" x-on:keydown.tab.prevent="handleTab($event)"
+    x-show="show" x-cloak role="dialog" aria-modal="true" aria-labelledby="drawer-title-{{ $name }}"
+    class="fixed inset-0 z-50 overflow-hidden" style="display: {{ $show ? 'block' : 'none' }};">
+    <div x-show="show" x-cloak class="fixed inset-0 transform transition-all"
+        x-on:click="!@js($persistent) && close()" x-transition:enter="{{ $enter }}" x-transition:enter-start="opacity-0"
         x-transition:enter-end="opacity-100" x-transition:leave="{{ $leave }}"
         x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
         <div class="absolute inset-0 bg-background-950/80 backdrop-blur-sm"></div>

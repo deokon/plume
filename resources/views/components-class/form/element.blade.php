@@ -1,10 +1,10 @@
 {{--
 @component x-plume::form.element
 @description Base wrapper for form inputs, handling labels and errors.
-@prop string $label (Default: '')
-@prop string $name (Default: null)
-@prop string $id (Default: null)
-@prop string $model (Default: null)
+@prop string $label (Default: '') The label text for the form element.
+@prop string $name (Default: null) HTML name attribute.
+@prop string $id (Default: null) HTML id attribute.
+@prop string $model (Default: null) AlpineJS model name for validation and state binding.
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php

@@ -55,21 +55,39 @@ Programmatic access to the system clipboard.
 
 | Helper | Description |
 | :--- | :--- |
-| `$copy(text)` | Copies the provided string to the clipboard. |
+| `$copy(text)` | Copies the provided string to the clipboard. Returns a Promise. |
 
 ### Usage Example
 
 ```blade
 <div x-data="{ coupon: 'SAVE20' }">
-    <code x-text="coupon"></code>
     {{-- Simple usage --}}
     <x-plume::button @click="$copy(coupon); $success('Code copied!')">
         Copy
     </x-plume::button>
-    
-    {{-- Advanced usage with callback --}}
-    <button @click="$copy(coupon).then(() => $success('Copied')).catch(() => $error('Failed'))">
-        Copy
-    </button>
 </div>
 ```
+
+### Advanced Patterns & Error Handling
+Since `$copy()` returns a Promise, you can chain it to handle success or failure (e.g., if the user denies clipboard permissions):
+
+```blade
+<button @click="$copy(text).then(() => $success('Copied')).catch(() => $error('Copy failed'))">
+    Copy
+</button>
+```
+
+## Async Patterns
+Most magic helpers that perform actions (like `$copy()` or `$openModal()`) can be used in async sequences. While `$openModal` is synchronous in its execution, it triggers transitions that you may want to wait for if performing further DOM manipulations.
+
+```blade
+<button @click="
+    await $copy(text);
+    $success('Text Copied');
+    $closeModal('copy-dialog');
+">
+    Confirm Copy
+</button>
+```
+
+> **Note:** Chaining multiple helpers with semicolons works fine for most cases. Use `.then()` or `await` only when you need to ensure the previous action (like an async clipboard operation) has completed before proceeding.
