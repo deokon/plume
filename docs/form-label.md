@@ -6,6 +6,6 @@ A label for a form input.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `for` | `string` | `null` | - |
-| `required` | `bool` | `false` | - |
+| `for` | `string` | `null` |  |
+| `required` | `bool` | `false` |  |
 

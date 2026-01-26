@@ -1,12 +1,20 @@
 {{--
 @component x-plume::modal
 @description A dialog box or popup window that is displayed on top of the current page.
-@prop string $name (Default: null)
-@prop bool $show (Default: false)
-@prop string $maxWidth (Default: '2xl')
-@prop string $title (Default: null)
-@prop string $onOpen (Default: null)
-@prop string $onClose (Default: null)
+@prop string $name (Default: null) Unique identifier for the modal, used with $openModal(name).
+@prop bool $show (Default: false) Whether to show the modal by default on page load.
+@prop string $maxWidth (Default: '2xl') Maximum width: 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl', '7xl', 'full'.
+@prop string $title (Default: null) Simple title string. For complex headers, use the 'header' slot.
+@prop string $onOpen (Default: null) AlpineJS expression or function to call when the modal opens.
+@prop string $onClose (Default: null) AlpineJS expression or function to call when the modal closes.
+@usage
+<x-plume::modal name="login-modal" title="Welcome Back">
+    <x-plume::form ...>
+        ...
+    </x-plume::form>
+</x-plume::modal>
+
+<x-plume::button @click="$openModal('login-modal')">Login</x-plume::button>
 --}}
 <div x-data="modal('{{ $name }}', @js($show), @js($attributes->has('focusable')), { onOpen: {{ Js::from($onOpen) }}, onClose: {{ Js::from($onClose) }} })" x-on:keydown.escape.window="close()"
     x-on:keydown.tab.prevent="handleTab($event)" x-show="show" x-cloak role="dialog" aria-modal="true"

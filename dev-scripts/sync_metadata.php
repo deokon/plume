@@ -62,7 +62,8 @@ foreach ($classAliases as $className => $tagName) {
 
             $props[$name] = [
                 'type' => $typeStr,
-                'default' => $default
+                'default' => $default,
+                'description' => '-'
             ];
         }
     }
@@ -84,19 +85,15 @@ foreach ($classAliases as $className => $tagName) {
         }
     }
 
-    $description = "No description provided.";
-    $usage = null;
-    if (file_exists($viewPath)) {
-        $viewContent = file_get_contents($viewPath);
-        if (preg_match('/@description\s+(.+?)(?=\s*@|\s*--}})/s', $viewContent, $descMatch)) {
-            $description = trim($descMatch[1]);
+    $docData = parseBladeDocBlock($viewPath);
+    
+    $description = $docData['description'] ?: "No description provided.";
+    $usage = $docData['usage'];
+
+    foreach ($props as $name => &$info) {
+        if (isset($docData['props'][$name])) {
+            $info['description'] = $docData['props'][$name];
         }
-        if (preg_match('/@usage\s*(.+?)(?=\s*@|\s*--}})/s', $viewContent, $usageMatch)) {
-            $usage = trim($usageMatch[1]);
-        }
-        
-        // Update Blade Header
-        updateBladeHeader($viewPath, $tagName, $description, $props, $usage);
     }
 
     $components[$tagName] = [
@@ -122,7 +119,7 @@ if (file_exists($viewsDir . '/components')) {
 
         $viewContent = file_get_contents($file->getPathname());
         $props = [];
-        if (preg_match('/@props\(\[\s*(.*?)\s*\]\)/s', $viewContent, $propBlock)) {
+        if (preg_match('/@props\(\s*(.*?)\s*\)/s', $viewContent, $propBlock)) {
             foreach (explode("\n", $propBlock[1]) as $line) {
                 $line = trim($line);
                 if (preg_match("/\'(.+?)\'\s*=>\s*(.+?)(?:,|$)/", $line, $propMatch)) {
@@ -132,22 +129,24 @@ if (file_exists($viewsDir . '/components')) {
                     if ($default === 'true' || $default === 'false') $type = 'bool';
                     if (is_numeric($default)) $type = 'int';
                     if ($default === '[]') $type = 'array';
-                    $props[$key] = ['type' => $type, 'default' => $default];
+                    $props[$key] = [
+                        'type' => $type, 
+                        'default' => $default,
+                        'description' => '-'
+                    ];
                 }
             }
         }
 
-        $description = "No description provided.";
-        $usage = null;
-        if (preg_match('/@description\s+(.+?)(?=\s*@|\s*--}})/s', $viewContent, $descMatch)) {
-            $description = trim($descMatch[1]);
-        }
-        if (preg_match('/@usage\s*(.+?)(?=\s*@|\s*--}})/s', $viewContent, $usageMatch)) {
-            $usage = trim($usageMatch[1]);
-        }
+        $docData = parseBladeDocBlock($file->getPathname());
+        $description = $docData['description'] ?: "No description provided.";
+        $usage = $docData['usage'];
 
-        // Update Blade Header
-        updateBladeHeader($file->getPathname(), $tagName, $description, $props, $usage);
+        foreach ($props as $name => &$info) {
+            if (isset($docData['props'][$name])) {
+                $info['description'] = $docData['props'][$name];
+            }
+        }
 
         $components[$tagName] = [
             'path' => 'plume/' . str_replace($baseDir . '/', '', $file->getPathname()),
@@ -183,7 +182,7 @@ foreach ($components as $tagName => $data) {
         $md .= "| Prop | Type | Default | Description |\n";
         $md .= "| :--- | :--- | :--- | :--- |\n";
         foreach ($data['props'] as $name => $info) {
-            $md .= "| `{$name}` | `{$info['type']}` | `{$info['default']}` | - |\n";
+            $md .= "| `{$name}` | `{$info['type']}` | `{$info['default']}` | {$info['description']} |\n";
         }
         $md .= "\n";
     }
@@ -199,34 +198,60 @@ echo "Updated " . count($components) . " documentation files in plume/docs/\n";
 echo "Synced total " . count($components) . " components.\n";
 
 /**
- * Updates or injects the documentation header in a Blade file.
+ * Parses the custom DocBlock in a Blade file.
  */
-function updateBladeHeader($path, $tagName, $description, $props, $usage) {
+function parseBladeDocBlock($path) {
+    $data = [
+        'description' => '',
+        'usage' => '',
+        'props' => []
+    ];
+
+    if (!file_exists($path)) return $data;
+
     $content = file_get_contents($path);
-    
-    $header = "{{--\n";
-    $header .= "@component {$tagName}\n";
-    $header .= "@description {$description}\n";
-    
-    foreach ($props as $name => $info) {
-        $header .= "@prop {$info['type']} \\\${$name} (Default: {$info['default']})\n";
+    if (!preg_match('/{{--\s*(.*?)\s*--}}/s', $content, $match)) {
+        return $data;
     }
-    
-    if ($usage) {
-        $header .= "@usage\n{$usage}\n";
-    }
-    $header .= "--}}\n";
 
-    // Check if a header already exists
-    if (preg_match('/^{{--.*?--}}/s', $content, $match)) {
-        // Only update if it changed to avoid unnecessary git noise
-        if ($match[0] !== $header) {
-            $newContent = preg_replace('/^{{--.*?--}}/s', trim($header), $content);
-            file_put_contents($path, $newContent);
+    $block = $match[1];
+    $lines = explode("\n", $block);
+    
+    $currentTag = null;
+
+    foreach ($lines as $line) {
+        $trimmedLine = trim($line);
+        
+        if (preg_match('/^@(description|usage|prop)\s*(.*)/', $trimmedLine, $tagMatch)) {
+            $currentTag = $tagMatch[1];
+            $tagValue = $tagMatch[2];
+            
+            if ($currentTag === 'description') {
+                $data['description'] = $tagValue;
+            } elseif ($currentTag === 'usage') {
+                $data['usage'] = $tagValue;
+            } elseif ($currentTag === 'prop') {
+                // Extract name and description
+                if (preg_match('/\$(\\w+)/', $tagValue, $m)) {
+                    $name = $m[1];
+                    $parenPos = strpos($tagValue, ')');
+                    if ($parenPos !== false) {
+                        $data['props'][$name] = trim(substr($tagValue, $parenPos + 1));
+                    }
+                }
+            }
+        } elseif ($currentTag) {
+            if ($currentTag === 'description') {
+                $data['description'] .= ($data['description'] ? "\n" : "") . $line;
+            } elseif ($currentTag === 'usage') {
+                $data['usage'] .= ($data['usage'] ? "\n" : "") . $line;
+            }
+            // Props usually don't span multiple lines in our format
         }
-    } else {
-        // Prepend new header
-        file_put_contents($path, $header . $content);
     }
-}
 
+    $data['description'] = trim($data['description']);
+    $data['usage'] = trim($data['usage']);
+
+    return $data;
+}

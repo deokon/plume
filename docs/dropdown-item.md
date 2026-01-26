@@ -6,5 +6,5 @@ An actionable item within a dropdown menu.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `style` | `string` | `'ghost'` | - |
+| `style` | `string` | `'ghost'` |  |
 

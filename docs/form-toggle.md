@@ -6,10 +6,10 @@ A toggle switch for boolean selection.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `label` | `string` | `null` | - |
-| `name` | `string` | `null` | - |
-| `id` | `string` | `null` | - |
-| `model` | `string` | `null` | - |
-| `value` | `string` | `'1'` | - |
-| `checked` | `bool` | `false` | - |
+| `label` | `string` | `null` |  |
+| `name` | `string` | `null` |  |
+| `id` | `string` | `null` |  |
+| `model` | `string` | `null` |  |
+| `value` | `string` | `'1'` |  |
+| `checked` | `bool` | `false` |  |
 

@@ -1,9 +1,21 @@
 {{--
 @component x-plume::search
 @description Styled search input with an integrated results dropdown.
-@prop string $placeholder (Default: 'Search...')
-@prop string $model (Default: null)
-@prop string $onSelect (Default: null)
+@prop string $placeholder (Default: 'Search...') Placeholder text for the search input.
+@prop string $model (Default: null) AlpineJS model name for the search query.
+@prop string $onSelect (Default: null) AlpineJS expression or function to call when a result is selected.
+@usage
+<x-plume::search model="searchQuery" placeholder="Find users...">
+    <x-slot:results>
+        <template x-for="user in filteredUsers">
+            <x-plume::search.result 
+                ::title="user.name" 
+                ::href="'/users/' + user.id" 
+                ::payload="user"
+            />
+        </template>
+    </x-slot:results>
+</x-plume::search>
 --}}
 <div x-data="search({ onSelect: {{ Js::from($onSelect) }} })"
     @if ($model) x-init="query = $wire.entangle('{{ $model }}')" @endif

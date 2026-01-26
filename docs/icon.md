@@ -6,5 +6,5 @@ Displays an icon from the Iconify library.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `i` | `string` | `null` | - |
+| `i` | `string` | `null` |  |
 

@@ -6,5 +6,5 @@ The brand logo or title.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `href` | `string` | `'/'` | - |
+| `href` | `string` | `'/'` |  |
 

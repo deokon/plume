@@ -6,8 +6,8 @@ Basic chart component for data visualization (bar, line).
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `type` | `string` | `'bar'` | - |
-| `data` | `array` | `[]` | - |
-| `height` | `int` | `200` | - |
-| `color` | `string` | `'text-primary'` | - |
+| `type` | `string` | `'bar'` |  |
+| `data` | `array` | `[]` |  |
+| `height` | `int` | `200` |  |
+| `color` | `string` | `'text-primary'` |  |
 

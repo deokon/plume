@@ -1,11 +1,16 @@
 {{--
 @component x-plume::carousel
 @description A slideshow component for cycling through elements.
-@prop bool $controls (Default: true)
-@prop bool $indicators (Default: false)
-@prop bool $autoplay (Default: false)
-@prop int $interval (Default: 5000)
-@prop string $onSlideChange (Default: null)
+@prop bool $controls (Default: true) Whether to show previous/next arrows.
+@prop bool $indicators (Default: false) Whether to show dots indicating current slide.
+@prop bool $autoplay (Default: false) Whether to automatically cycle through slides.
+@prop int $interval (Default: 5000) Duration in milliseconds between slide changes when autoplay is on.
+@prop string $onSlideChange (Default: null) AlpineJS expression or function to call when the active slide changes.
+@usage
+<x-plume::carousel indicators autoplay>
+    <x-plume::carousel.item>Slide 1</x-plume::carousel.item>
+    <x-plume::carousel.item>Slide 2</x-plume::carousel.item>
+</x-plume::carousel>
 --}}
 <div x-data="carousel({{ $autoplay ? 'true' : 'false' }}, {{ $interval }}, { onSlideChange: {{ Js::from($onSlideChange) }} })" class="relative group w-full overflow-hidden rounded-xl">
     {{-- Slides --}}

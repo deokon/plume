@@ -6,6 +6,6 @@ A loading indicator.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `size` | `string` | `'md'` | - |
-| `style` | `string` | `'primary'` | - |
+| `size` | `string` | `'md'` |  |
+| `style` | `string` | `'primary'` |  |
 

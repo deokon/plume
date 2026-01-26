@@ -6,6 +6,6 @@ Table row.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `rowAlign` | `string` | `null` | - |
-| `align` | `string` | `null` | - |
+| `rowAlign` | `string` | `null` |  |
+| `align` | `string` | `null` |  |
 

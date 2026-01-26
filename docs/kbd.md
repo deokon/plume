@@ -6,5 +6,5 @@ Displays keyboard input.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `size` | `string` | `'md'` | - |
+| `size` | `string` | `'md'` |  |
 

@@ -1,17 +1,28 @@
 {{--
 @component x-plume::form
-@description A collection of form components for user input.
-@prop string $action (Default: '')
-@prop string $method (Default: 'POST')
-@prop array|string|null $formData (Default: null)
-@prop string $submitButton (Default: null)
-@prop string $resetButton (Default: null)
-@prop bool $hideOnSuccess (Default: false)
-@prop bool $resetOnSuccess (Default: false)
-@prop string $onSuccess (Default: null)
-@prop string $onError (Default: null)
-@prop bool $showAlerts (Default: true)
-@prop bool $inline (Default: false)
+@description A robust form container with AJAX submission, validation error handling, and success feedback.
+@prop string $action (Default: '') Submission URL. Auto-detected if empty and using a <form> tag.
+@prop string $method (Default: 'POST') HTTP method (GET, POST, PUT, PATCH, DELETE).
+@prop array|string|null $formData (Default: null) Initial data for the form. Can be a PHP array or a JS object string.
+@prop string $submitButton (Default: null) Label for an automatic primary submit button with a loader.
+@prop string $resetButton (Default: null) Label for an automatic reset button.
+@prop bool $hideOnSuccess (Default: false) Whether to hide the form content after a successful submission.
+@prop bool $resetOnSuccess (Default: false) Whether to reset the form data to initial state after success.
+@prop string $onSuccess (Default: null) AlpineJS expression or callback function to execute on success.
+@prop string $onError (Default: null) AlpineJS expression or callback function to execute on error.
+@prop bool $showAlerts (Default: true) Whether to automatically show success/error alerts.
+@prop bool $inline (Default: false) Renders form elements in a horizontal flex layout.
+@usage
+<x-plume::form 
+    action="/profile" 
+    method="PUT" 
+    :form-data="$user"
+    submit-button="Update Profile"
+    onSuccess="$success('Profile saved!')"
+>
+    <x-plume::form.input name="name" label="Full Name" />
+    <x-plume::form.input name="email" label="Email Address" />
+</x-plume::form>
 --}}
 <form action="{{ $action }}" method="{{ $method === 'GET' ? 'GET' : 'POST' }}"
     {{ $attributes->merge(['class' => $inline ? 'inline' : 'space-y-6']) }} x-data="form({!! is_array($formData) ? Js::from($formData) : $formData ?? '{}' !!}, {

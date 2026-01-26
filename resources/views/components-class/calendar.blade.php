@@ -1,12 +1,19 @@
 {{--
 @component x-plume::calendar
 @description A visual calendar interface for selecting dates.
-@prop string $model (Default: null)
-@prop mixed $value (Default: null)
-@prop string $min (Default: null)
-@prop string $max (Default: null)
-@prop string $mode (Default: 'single')
-@prop string $onDateSelect (Default: null)
+@prop string $model (Default: null) AlpineJS model name for the selected date(s).
+@prop mixed $value (Default: null) Initial value for the calendar.
+@prop string $min (Default: null) Minimum selectable date (YYYY-MM-DD).
+@prop string $max (Default: null) Maximum selectable date (YYYY-MM-DD).
+@prop string $mode (Default: 'single') Selection mode: 'single' or 'range'.
+@prop string $onDateSelect (Default: null) AlpineJS expression or function to call when a date is selected.
+@usage
+<x-plume::calendar 
+    model="bookingDate" 
+    min="2024-01-01" 
+    max="2024-12-31" 
+    mode="range" 
+/>
 --}}
 <div x-data="calendar(
     {{ $initialValue }},

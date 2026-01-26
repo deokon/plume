@@ -6,9 +6,9 @@ Displays a card with header, content, and footer.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `title` | `string` | `null` | - |
-| `description` | `string` | `null` | - |
-| `badge` | `string` | `null` | - |
-| `badgeStyle` | `string` | `'default'` | - |
-| `href` | `string` | `null` | - |
+| `title` | `string` | `null` |  |
+| `description` | `string` | `null` |  |
+| `badge` | `string` | `null` |  |
+| `badgeStyle` | `string` | `'default'` |  |
+| `href` | `string` | `null` |  |
 

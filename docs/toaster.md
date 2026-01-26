@@ -6,5 +6,5 @@ A succinct message that is displayed temporarily.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `position` | `string` | `'bottom-right'` | - |
+| `position` | `string` | `'bottom-right'` |  |
 

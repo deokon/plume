@@ -6,5 +6,5 @@ Table header container.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `sticky` | `bool` | `false` | - |
+| `sticky` | `bool` | `false` |  |
 

@@ -61,19 +61,55 @@ Then import the required files in your `app.css`. It is recommended to import th
 
 ### Alpine.js
 
-Register the provided plugins in your `app.js`:
+Register the provided plugins and data components in your `app.js`:
 
 ```javascript
 // resources/js/app.js
 import Alpine from "alpinejs";
-import { modal, toaster, page, clipboard, pagination, dataTable } from "../../vendor/deokon/plume/resources/js";
+import { 
+    modal, 
+    drawer, 
+    toaster, 
+    page, 
+    clipboard, 
+    form,
+    pagination, 
+    dataTable, 
+    calendar,
+    carousel,
+    combobox,
+    command,
+    fileInput,
+    video,
+    accordion,
+    accordionItem,
+    tabs,
+    search,
+    stepper
+} from "../../vendor/deokon/plume/resources/js";
 
+// Register core plugins
 Alpine.plugin(modal);
+Alpine.plugin(drawer);
 Alpine.plugin(toaster);
 Alpine.plugin(page);
 Alpine.plugin(clipboard);
-Alpine.plugin(pagination);
-Alpine.plugin(dataTable);
+Alpine.plugin(form);
+
+// Register data components manually to ensure they are available in expressions
+Alpine.data('pagination', pagination);
+Alpine.data('dataTable', dataTable);
+Alpine.data('calendar', calendar);
+Alpine.data('carousel', carousel);
+Alpine.data('combobox', combobox);
+Alpine.data('command', command);
+Alpine.data('fileInput', fileInput);
+Alpine.data('video', video);
+Alpine.data('accordion', accordion);
+Alpine.data('accordionItem', accordionItem);
+Alpine.data('tabs', tabs);
+Alpine.data('search', search);
+Alpine.data('stepper', stepper);
 
 window.Alpine = Alpine;
 Alpine.start();

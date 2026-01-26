@@ -6,6 +6,6 @@ Individual navigation link for mobile menu.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `active` | `bool` | `false` | - |
-| `href` | `string` | `'#'` | - |
+| `active` | `bool` | `false` |  |
+| `href` | `string` | `'#'` |  |
 

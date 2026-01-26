@@ -6,6 +6,6 @@ Displays the path to the current resource using a hierarchy of links.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `items` | `array` | `[]` | - |
-| `separator` | `string` | `'icon-[fluent--chevron-right-24-regular]'` | - |
+| `items` | `array` | `[]` |  |
+| `separator` | `string` | `'icon-[fluent--chevron-right-24-regular]'` |  |
 

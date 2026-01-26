@@ -6,10 +6,10 @@ A radio button for single selection.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `label` | `string` | `null` | - |
-| `name` | `string` | `null` | - |
-| `id` | `string` | `null` | - |
-| `model` | `string` | `null` | - |
-| `value` | `string` | `''` | - |
-| `checked` | `bool` | `false` | - |
+| `label` | `string` | `null` |  |
+| `name` | `string` | `null` |  |
+| `id` | `string` | `null` |  |
+| `model` | `string` | `null` |  |
+| `value` | `string` | `''` |  |
+| `checked` | `bool` | `false` |  |
 

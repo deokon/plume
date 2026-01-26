@@ -1,13 +1,21 @@
 {{--
 @component x-plume::drawer
 @description A panel that slides in from the edge of the screen.
-@prop string $name (Default: null)
-@prop bool $show (Default: false)
-@prop string $side (Default: 'right')
-@prop string $title (Default: null)
-@prop string $description (Default: null)
-@prop string $onOpen (Default: null)
-@prop string $onClose (Default: null)
+@prop string $name (Default: null) Unique identifier for the drawer, used with $openDrawer(name).
+@prop bool $show (Default: false) Whether to show the drawer by default on page load.
+@prop string $side (Default: 'right') Side to slide in from: 'left', 'right', 'top', 'bottom'.
+@prop string $title (Default: null) Simple title string. For complex headers, use the 'header' slot.
+@prop string $description (Default: null) Optional subtitle or description.
+@prop string $onOpen (Default: null) AlpineJS expression or function to call when the drawer opens.
+@prop string $onClose (Default: null) AlpineJS expression or function to call when the drawer closes.
+@usage
+<x-plume::drawer name="settings" title="User Settings" side="right">
+    <x-plume::form ...>
+        ...
+    </x-plume::form>
+</x-plume::drawer>
+
+<x-plume::button @click="$openDrawer('settings')">Open Settings</x-plume::button>
 --}}
 <div x-data="drawer('{{ $name }}', @js($show), { onOpen: {{ Js::from($onOpen) }}, onClose: {{ Js::from($onClose) }} })" x-on:keydown.escape.window="close()"
     x-on:keydown.tab.prevent="handleTab($event)" x-show="show" x-cloak role="dialog" aria-modal="true"

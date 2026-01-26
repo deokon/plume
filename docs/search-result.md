@@ -6,8 +6,8 @@ An individual result item within a search component.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `title` | `string` | `null` | - |
-| `href` | `string` | `'#'` | - |
-| `icon` | `string` | `null` | - |
-| `payload` | `mixed` | `null` | - |
+| `title` | `string` | `null` |  |
+| `href` | `string` | `'#'` |  |
+| `icon` | `string` | `null` |  |
+| `payload` | `mixed` | `null` |  |
 

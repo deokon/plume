@@ -6,8 +6,8 @@ A responsive table component.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `striped` | `bool` | `false` | - |
-| `hoverable` | `bool` | `false` | - |
-| `stickyHeader` | `bool` | `false` | - |
-| `density` | `string` | `'default'` | - |
+| `striped` | `bool` | `false` |  |
+| `hoverable` | `bool` | `false` |  |
+| `stickyHeader` | `bool` | `false` |  |
+| `density` | `string` | `'default'` |  |
 

@@ -6,7 +6,7 @@ Displays a badge or a component that looks like a badge.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `style` | `string` | `'default'` | - |
-| `size` | `string` | `'md'` | - |
-| `shape` | `string` | `'default'` | - |
+| `style` | `string` | `'default'` |  |
+| `size` | `string` | `'md'` |  |
+| `shape` | `string` | `'default'` |  |
 

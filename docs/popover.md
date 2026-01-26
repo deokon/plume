@@ -6,7 +6,7 @@ Displays rich content in a portal, triggered by a button.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `trigger` | `string` | `null` | - |
-| `position` | `string` | `'bottom'` | - |
-| `align` | `string` | `'center'` | - |
+| `trigger` | `string` | `null` |  |
+| `position` | `string` | `'bottom'` |  |
+| `align` | `string` | `'center'` |  |
 

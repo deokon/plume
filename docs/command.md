@@ -6,7 +6,7 @@ A powerful search and action interface accessible via keyboard shortcuts.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `trigger` | `string` | `null` | - |
-| `placeholder` | `string` | `'Type a command or search...'` | - |
-| `id` | `string` | `null` | - |
+| `trigger` | `string` | `null` |  |
+| `placeholder` | `string` | `'Type a command or search...'` |  |
+| `id` | `string` | `null` |  |
 

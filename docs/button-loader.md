@@ -6,7 +6,7 @@ Button with built-in loading state management.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `var` | `string` | `null` | - |
-| `size` | `string` | `'md'` | - |
-| `style` | `string` | `null` | - |
+| `var` | `string` | `null` |  |
+| `size` | `string` | `'md'` |  |
+| `style` | `string` | `null` |  |
 

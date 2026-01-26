@@ -6,9 +6,9 @@ Groups related form inputs.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `label` | `string` | `null` | - |
-| `description` | `string` | `null` | - |
-| `minCols` | `int` | `1` | - |
-| `name` | `string` | `null` | - |
-| `model` | `string` | `null` | - |
+| `label` | `string` | `null` |  |
+| `description` | `string` | `null` |  |
+| `minCols` | `int` | `1` |  |
+| `name` | `string` | `null` |  |
+| `model` | `string` | `null` |  |
 

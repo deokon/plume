@@ -6,7 +6,7 @@ An individual collapsible item within an accordion.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `title` | `string` | `null` | - |
-| `id` | `string` | `null` | - |
-| `open` | `bool` | `false` | - |
+| `title` | `string` | `null` |  |
+| `id` | `string` | `null` |  |
+| `open` | `bool` | `false` |  |
 

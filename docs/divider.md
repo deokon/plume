@@ -6,5 +6,5 @@ Visually separates content sections with an optional label.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `label` | `string` | `null` | - |
+| `label` | `string` | `null` |  |
 

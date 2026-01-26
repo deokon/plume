@@ -6,5 +6,5 @@ A container component to maintain consistent proportions for media and content.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `ratio` | `string` | `'video'` | - |
+| `ratio` | `string` | `'video'` |  |
 

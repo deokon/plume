@@ -1,14 +1,30 @@
 {{--
 @component x-plume::data-table
 @description Advanced table with sorting, filtering, and pagination. Powered by AlpineJS. Supports client-side data or server-side fetching via URL.
-@prop array $data (Default: [])
-@prop array $columns (Default: [])
-@prop bool $searchable (Default: false)
-@prop bool $paginated (Default: false)
-@prop int $perPage (Default: 10)
-@prop bool $sortable (Default: true)
-@prop string $url (Default: null)
-@prop bool $fixedHeight (Default: false)
+@prop array $data (Default: []) Array of objects to display (client-side data).
+@prop array $columns (Default: []) Column definitions: [{key: 'name', label: 'Name', sortable: true, cellClass: '...', headerClass: '...', constructed: '...'}].
+@prop bool $searchable (Default: false) Whether to show a search input for filtering.
+@prop bool $paginated (Default: false) Whether to enable pagination.
+@prop int $perPage (Default: 10) Number of items per page.
+@prop bool $sortable (Default: true) Whether to enable column sorting globally.
+@prop string $url (Default: null) API endpoint URL for server-side fetching.
+@prop bool $fixedHeight (Default: false) If true, maintains a minimum height based on perPage to prevent layout shifts.
+@usage
+@php
+    $cols = [
+        ['key' => 'name', 'label' => 'Name', 'sortable' => true],
+        ['key' => 'email', 'label' => 'Email', 'sortable' => true],
+        ['key' => 'role', 'label' => 'Role', 'constructed' => '<span class="badge text-xs uppercase">{role}</span>']
+    ];
+@endphp
+
+<x-plume::data-table 
+    :columns="$cols" 
+    :data="$users" 
+    searchable 
+    paginated 
+    :per-page="15" 
+/>
 --}}
 <div x-data="dataTable({{ $perPage }}, {{ Js::from($paginated) }}, {{ Js::from($sortable) }}, {{ Js::from($url) }}, {{ Js::from($data) }}, {{ Js::from($columns) }}, {{ Js::from(collect($__laravel_slots ?? [])->map(fn($s) => (string) $s)) }})" {{ $attributes->merge(['class' => 'space-y-4 w-full']) }}
     :data="{{ Js::from($data) }}" :columns="{{ Js::from($columns) }}">

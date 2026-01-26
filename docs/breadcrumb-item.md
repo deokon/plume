@@ -6,6 +6,6 @@ Individual item in a breadcrumb trail.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `href` | `string` | `null` | - |
-| `active` | `bool` | `false` | - |
+| `href` | `string` | `null` |  |
+| `active` | `bool` | `false` |  |
 

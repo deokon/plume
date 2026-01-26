@@ -6,12 +6,12 @@ An image element with a fallback for representing the user.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `src` | `string` | `null` | - |
-| `alt` | `string` | `''` | - |
-| `fallback` | `string` | `''` | - |
-| `size` | `string` | `'md'` | - |
-| `status` | `string` | `null` | - |
-| `shape` | `string` | `'round'` | - |
+| `src` | `string` | `null` |  |
+| `alt` | `string` | `''` |  |
+| `fallback` | `string` | `''` |  |
+| `size` | `string` | `'md'` |  |
+| `status` | `string` | `null` |  |
+| `shape` | `string` | `'round'` |  |
 
 ## Usage
 

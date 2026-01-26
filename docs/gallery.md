@@ -6,6 +6,6 @@ Responsive grid layout for images and figures.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `cols` | `int` | `3` | - |
-| `gap` | `int` | `4` | - |
+| `cols` | `int` | `3` |  |
+| `gap` | `int` | `4` |  |
 

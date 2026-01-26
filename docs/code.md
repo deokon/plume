@@ -6,7 +6,7 @@ A component for displaying code snippets with a copy-to-clipboard feature.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `language` | `string` | `null` | - |
-| `title` | `string` | `null` | - |
-| `code` | `string` | `null` | - |
+| `language` | `string` | `null` |  |
+| `title` | `string` | `null` |  |
+| `code` | `string` | `null` |  |
 

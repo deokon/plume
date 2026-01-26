@@ -41,7 +41,7 @@ npm install -D @iconify/tailwind4 @iconify-json/fluent
 
 #### Alpine.js
 
-Register the provided plugins in your `app.js`:
+Register the provided plugins and data components in your `app.js`:
 
 ```javascript
 // resources/js/app.js
@@ -52,6 +52,7 @@ import {
     toaster, 
     page, 
     clipboard, 
+    form,
     pagination, 
     dataTable, 
     calendar,
@@ -60,19 +61,35 @@ import {
     command,
     fileInput,
     video,
-    accordion
+    accordion,
+    accordionItem,
+    tabs,
+    search,
+    stepper
 } from "../../vendor/deokon/plume/resources/js";
 
+// Register core plugins
 Alpine.plugin(modal);
 Alpine.plugin(drawer);
 Alpine.plugin(toaster);
 Alpine.plugin(page);
 Alpine.plugin(clipboard);
+Alpine.plugin(form);
 
-// Data components
+// Register data components manually to ensure they are available in expressions
 Alpine.data('pagination', pagination);
 Alpine.data('dataTable', dataTable);
-// ... register others as needed
+Alpine.data('calendar', calendar);
+Alpine.data('carousel', carousel);
+Alpine.data('combobox', combobox);
+Alpine.data('command', command);
+Alpine.data('fileInput', fileInput);
+Alpine.data('video', video);
+Alpine.data('accordion', accordion);
+Alpine.data('accordionItem', accordionItem);
+Alpine.data('tabs', tabs);
+Alpine.data('search', search);
+Alpine.data('stepper', stepper);
 
 window.Alpine = Alpine;
 Alpine.start();

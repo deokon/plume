@@ -6,7 +6,7 @@ Displays a sequence of links for navigating through a series of related pages. P
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `total` | `int` | `1` | - |
-| `current` | `int` | `1` | - |
-| `onEachSide` | `int` | `1` | - |
+| `total` | `int` | `1` |  |
+| `current` | `int` | `1` |  |
+| `onEachSide` | `int` | `1` |  |
 

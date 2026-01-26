@@ -1,16 +1,26 @@
 {{--
 @component x-plume::button
 @description Displays a button or a component that looks like a button.
-@prop string $href (Default: null)
-@prop string $method (Default: null)
-@prop string $icon (Default: null)
-@prop bool $fullWidth (Default: false)
-@prop string $size (Default: null)
-@prop string $style (Default: null)
-@prop string $shape (Default: null)
-@prop string $confirm (Default: null)
-@prop string $onSuccess (Default: null)
-@prop string $onError (Default: null)
+@prop string $href (Default: null) URL to navigate to or submit to. Renders as an <a> tag unless $method is provided.
+@prop string $method (Default: null) HTTP method for AJAX submission (POST, PUT, PATCH, DELETE).
+@prop string $icon (Default: null) Iconify icon name (e.g., 'icon-[fluent--add-24-regular]').
+@prop bool $fullWidth (Default: false) Whether the button should take up the full width of its container.
+@prop string $size (Default: null) Size of the button: 'sm', 'md', 'lg'.
+@prop string $style (Default: null) Visual style: 'default', 'secondary', 'error', 'outline', 'ghost', 'link', 'minor'.
+@prop string $shape (Default: null) Shape: 'default', 'pill', 'round'.
+@prop string $confirm (Default: null) Native confirmation message to display before action.
+@prop string $onSuccess (Default: null) AlpineJS expression or callback function to execute on success.
+@prop string $onError (Default: null) AlpineJS expression or callback function to execute on error.
+@usage
+<x-plume::button style="primary" icon="icon-[fluent--save-24-regular]">Save Changes</x-plume::button>
+
+<x-plume::button 
+    href="/users/1" 
+    method="DELETE" 
+    confirm="Are you sure you want to delete this user?"
+    onSuccess="$success('User deleted')">
+    Delete User
+</x-plume::button>
 --}}
 @aware([
     'groupSize' => null,

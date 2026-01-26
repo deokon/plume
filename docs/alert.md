@@ -6,12 +6,12 @@ Displays a callout for user attention.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `icon` | `string` | `null` | - |
-| `style` | `string` | `'info'` | - |
-| `closable` | `bool` | `false` | - |
-| `autoclose` | `int` | `null` | - |
-| `title` | `string` | `null` | - |
-| `onClose` | `string` | `null` | - |
+| `icon` | `string` | `null` |  |
+| `style` | `string` | `'info'` |  |
+| `closable` | `bool` | `false` |  |
+| `autoclose` | `int` | `null` |  |
+| `title` | `string` | `null` |  |
+| `onClose` | `string` | `null` |  |
 
 ## Usage
 

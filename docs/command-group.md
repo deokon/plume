@@ -6,5 +6,5 @@ Groups related items in a command palette.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `title` | `string` | `null` | - |
+| `title` | `string` | `null` |  |
 

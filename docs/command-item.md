@@ -6,8 +6,8 @@ An actionable item within a command palette.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `value` | `string` | `null` | - |
-| `onSelect` | `string` | `null` | - |
-| `icon` | `string` | `null` | - |
-| `shortcut` | `string` | `null` | - |
+| `value` | `string` | `null` |  |
+| `onSelect` | `string` | `null` |  |
+| `icon` | `string` | `null` |  |
+| `shortcut` | `string` | `null` |  |
 

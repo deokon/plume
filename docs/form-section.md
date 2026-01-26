@@ -6,8 +6,8 @@ A titled section for organizing form fields.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `title` | `string` | `null` | - |
-| `description` | `string` | `null` | - |
-| `minCols` | `int` | `1` | - |
-| `maxCols` | `int` | `null` | - |
+| `title` | `string` | `null` |  |
+| `description` | `string` | `null` |  |
+| `minCols` | `int` | `1` |  |
+| `maxCols` | `int` | `null` |  |
 

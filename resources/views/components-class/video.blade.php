@@ -1,16 +1,28 @@
 {{--
 @component x-plume::video
 @description A styled wrapper for HTML5 video, YouTube, and Vimeo content.
-@prop string $src (Default: null)
-@prop string $poster (Default: null)
-@prop bool $autoplay (Default: false)
-@prop bool $controls (Default: true)
-@prop bool $loop (Default: false)
-@prop bool $muted (Default: false)
-@prop string $aspect (Default: 'video')
-@prop string $onPlay (Default: null)
-@prop string $onPause (Default: null)
-@prop string $onEnded (Default: null)
+@prop string $src (Default: null) Video URL (Direct file, YouTube, or Vimeo).
+@prop string $poster (Default: null) Poster image URL for native videos.
+@prop bool $autoplay (Default: false) Whether to start playing automatically.
+@prop bool $controls (Default: true) Whether to show native player controls.
+@prop bool $loop (Default: false) Whether to restart automatically after ending.
+@prop bool $muted (Default: false) Whether to start with audio disabled.
+@prop string $aspect (Default: 'video') Aspect ratio: 'video' (16:9), 'square' (1:1), 'cinema' (21:9).
+@prop string $onPlay (Default: null) AlpineJS expression or function to call when playback starts.
+@prop string $onPause (Default: null) AlpineJS expression or function to call when playback pauses.
+@prop string $onEnded (Default: null) AlpineJS expression or function to call when playback ends.
+@usage
+<x-plume::video 
+    src="https://www.youtube.com/watch?v=dQw4w9WgXcQ" 
+    aspect="video" 
+/>
+
+<x-plume::video 
+    src="/assets/promo.mp4" 
+    poster="/assets/promo-thumb.jpg" 
+    autoplay 
+    muted 
+/>
 --}}
 <div {{ $attributes->merge(['class' => 'overflow-hidden rounded-lg bg-black']) }}>
     <div @class(['relative w-full group', $aspectClass])

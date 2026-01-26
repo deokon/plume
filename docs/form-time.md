@@ -6,10 +6,10 @@ A time picker input.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `label` | `string` | `null` | - |
-| `name` | `string` | `null` | - |
-| `id` | `string` | `null` | - |
-| `model` | `string` | `null` | - |
-| `value` | `string` | `''` | - |
-| `placeholder` | `string` | `''` | - |
+| `label` | `string` | `null` |  |
+| `name` | `string` | `null` |  |
+| `id` | `string` | `null` |  |
+| `model` | `string` | `null` |  |
+| `value` | `string` | `''` |  |
+| `placeholder` | `string` | `''` |  |
 
