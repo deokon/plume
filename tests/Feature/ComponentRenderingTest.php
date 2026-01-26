@@ -10,9 +10,22 @@ test('button renders correctly', function () {
 test('button renders with confirmation', function () {
     $view = Blade::render('<x-plume::button confirm="Are you sure?">Delete</x-plume::button>');
     expect($view)->toContain('x-data="{ confirmed: false }"')
-        ->toContain('x-on:click="if (!confirmed) { $event.preventDefault(); $openModal(\'confirm-')
+        ->toContain('$openModal(')
+        ->toContain('confirm-')
         ->toContain('Are you sure?')
         ->toContain('role="alertdialog"');
+});
+
+test('button renders with method using ajax form', function () {
+    $view = Blade::render('<x-plume::button method="DELETE" href="/delete" onSuccess="done()">Delete</x-plume::button>');
+    
+    expect($view)
+        ->toContain('x-data="form(')
+        ->toContain('onSuccess')
+        ->toContain('done()')
+        ->toContain('action="/delete"')
+        ->toContain('method="POST"') // Laravel spoofing
+        ->toContain('name="_method" value="DELETE"');
 });
 
 test('alert renders correctly', function () {

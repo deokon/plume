@@ -265,6 +265,14 @@
                 "confirm": {
                     "type": "string",
                     "default": "null"
+                },
+                "onSuccess": {
+                    "type": "string",
+                    "default": "null"
+                },
+                "onError": {
+                    "type": "string",
+                    "default": "null"
                 }
             },
             "description": "Displays a button or a component that looks like a button.",

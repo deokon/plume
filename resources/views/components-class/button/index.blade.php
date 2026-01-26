@@ -16,12 +16,13 @@
     'groupShape' => null,
 ])
 @php
-    [$resolvedSize, $resolvedStyle, $resolvedShape] = $component->resolveStyleProps($attributes, [
+    $buttonComponent = $component;
+    [$resolvedSize, $resolvedStyle, $resolvedShape] = $buttonComponent->resolveStyleProps($attributes, [
         'size' => $groupSize,
         'style' => $groupStyle,
         'shape' => $groupShape,
     ]);
-    $cleanAttributes = $component->cleanAttributes($attributes);
+    $cleanAttributes = $buttonComponent->cleanAttributes($attributes);
     $confirmSlot = (isset($confirm) && $confirm instanceof \Illuminate\View\ComponentSlot && $confirm->isNotEmpty()) ? $confirm : null;
     $hasConfirm = $confirm && is_string($confirm) || $confirmSlot;
     $confirmId = 'confirm-' . \Illuminate\Support\Str::random(8);
@@ -35,30 +36,28 @@
 
         @if ($href === null)
             <button x-ref="btn"
-                x-on:click="if (!confirmed) { $event.preventDefault(); $openModal('{{ $confirmId }}'); }"
-                {{ $cleanAttributes->merge(['type' => 'button', 'class' => $component->classes($resolvedSize, $resolvedStyle, $resolvedShape)]) }}>
+                x-on:click="if (!confirmed) { $event.preventDefault(); $openModal(\'{{ $confirmId }}\'); }"
+                {{ $cleanAttributes->merge(['type' => 'button', 'class' => $buttonComponent->classes($resolvedSize, $resolvedStyle, $resolvedShape)]) }}>
                 @if ($icon)
                     <x-plume::icon i="{{ $icon }}" />
                 @endif
                 {{ $slot }}
             </button>
         @elseif($method)
-            <form action="{{ $href }}" method="POST" class="inline">
-                @csrf
-                @method($method)
+            <x-plume::form :action="$href" :method="$method" :onSuccess="$onSuccess" :onError="$onError" inline>
                 <button x-ref="btn" type="submit"
-                    x-on:click="if (!confirmed) { $event.preventDefault(); $openModal('{{ $confirmId }}'); }"
-                    {{ $cleanAttributes->merge(['class' => $component->classes($resolvedSize, $resolvedStyle, $resolvedShape)]) }}>
+                    x-on:click="if (!confirmed) { $event.preventDefault(); $openModal(\'{{ $confirmId }}\'); }"
+                    {{ $cleanAttributes->merge(['class' => $buttonComponent->classes($resolvedSize, $resolvedStyle, $resolvedShape)]) }}>
                     @if ($icon)
                         <x-plume::icon i="{{ $icon }}" />
                     @endif
                     {{ $slot }}
                 </button>
-            </form>
+            </x-plume::form>
         @else
             <a x-ref="btn" href="{{ $href ?? '#' }}"
-                x-on:click="if (!confirmed) { $event.preventDefault(); $openModal('{{ $confirmId }}'); }"
-                {{ $cleanAttributes->merge(['class' => $component->classes($resolvedSize, $resolvedStyle, $resolvedShape)]) }}>
+                x-on:click="if (!confirmed) { $event.preventDefault(); $openModal(\'{{ $confirmId }}\'); }"
+                {{ $cleanAttributes->merge(['class' => $buttonComponent->classes($resolvedSize, $resolvedStyle, $resolvedShape)]) }}>
                 @if ($icon)
                     <x-plume::icon i="{{ $icon }}" />
                 @endif
@@ -68,25 +67,23 @@
     </div>
 @else
     @if ($href === null)
-        <button {{ $cleanAttributes->merge(['type' => 'button', 'class' => $component->classes($resolvedSize, $resolvedStyle, $resolvedShape)]) }}>
+        <button {{ $cleanAttributes->merge(['type' => 'button', 'class' => $buttonComponent->classes($resolvedSize, $resolvedStyle, $resolvedShape)]) }}>
             @if ($icon)
                 <x-plume::icon i="{{ $icon }}" />
             @endif
             {{ $slot }}
         </button>
     @elseif($method)
-        <form action="{{ $href }}" method="POST" class="inline">
-            @csrf
-            @method($method)
-            <button type="submit" {{ $cleanAttributes->merge(['class' => $component->classes($resolvedSize, $resolvedStyle, $resolvedShape)]) }}>
+        <x-plume::form :action="$href" :method="$method" :onSuccess="$onSuccess" :onError="$onError" inline>
+            <button type="submit" {{ $cleanAttributes->merge(['class' => $buttonComponent->classes($resolvedSize, $resolvedStyle, $resolvedShape)]) }}>
                 @if ($icon)
                     <x-plume::icon i="{{ $icon }}" />
                 @endif
                 {{ $slot }}
             </button>
-        </form>
+        </x-plume::form>
     @else
-        <a href="{{ $href ?? '#' }}" {{ $cleanAttributes->merge(['class' => $component->classes($resolvedSize, $resolvedStyle, $resolvedShape)]) }}>
+        <a href="{{ $href ?? '#' }}" {{ $cleanAttributes->merge(['class' => $buttonComponent->classes($resolvedSize, $resolvedStyle, $resolvedShape)]) }}>
             @if ($icon)
                 <x-plume::icon i="{{ $icon }}" />
             @endif

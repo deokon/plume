@@ -14,4 +14,6 @@ Displays a button or a component that looks like a button.
 | `style` | `string` | `null` | - |
 | `shape` | `string` | `null` | - |
 | `confirm` | `string` | `null` | - |
+| `onSuccess` | `string` | `null` | AlpineJS expression to evaluate after a successful AJAX submission (when `method` is provided). |
+| `onError` | `string` | `null` | AlpineJS expression to evaluate after a failed AJAX submission (when `method` is provided). |
 
