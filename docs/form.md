@@ -13,8 +13,8 @@ A collection of form components for user input.
 | `resetButton` | `string` | `null` | - |
 | `hideOnSuccess` | `bool` | `false` | - |
 | `resetOnSuccess` | `bool` | `false` | - |
-| `onSuccess` | `string` | `null` | AlpineJS expression to evaluate after a successful submission. Access the response via `result`. |
-| `onError` | `string` | `null` | AlpineJS expression to evaluate after a failed submission. Access the error via `result`. |
-| `showAlerts` | `bool` | `true` | Show or hide automatic success/error alerts. |
-| `inline` | `bool` | `false` | Use a compact, single-line layout for the form. |
+| `onSuccess` | `string` | `null` | - |
+| `onError` | `string` | `null` | - |
+| `showAlerts` | `bool` | `true` | - |
+| `inline` | `bool` | `false` | - |
 
