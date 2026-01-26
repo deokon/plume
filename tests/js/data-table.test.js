@@ -90,6 +90,13 @@ describe('DataTable Plugin', () => {
         expect(instance.data[0].name).toBe('Server Item')
         expect(instance.total).toBe(100)
         expect(instance.loading).toBe(false)
+
+        // Verify reactivity: pagedData should be a copy, not the same reference
+        const data1 = instance.pagedData
+        const data2 = instance.pagedData
+        expect(data1).toEqual(data2)
+        expect(data1).not.toBe(data2)
+        expect(data1).not.toBe(instance.data)
     })
 
     it('ignores stale fetch responses', async () => {
