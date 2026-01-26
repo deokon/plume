@@ -113,14 +113,15 @@ describe('DataTable Plugin', () => {
         resolve2();
         await fetch2;
         expect(instance.data[0].name).toBe('Fresh')
-        expect(instance.loading).toBe(false)
+        // Loading should still be true because fetch1 is still pending
+        expect(instance.loading).toBe(true)
 
         // Resolve first request later
         resolve1();
         await fetch1;
         // Data should still be 'Fresh', not overwritten by 'Stale'
         expect(instance.data[0].name).toBe('Fresh')
-        // Loading should remain false (since fetch2 already cleared it)
+        // Loading should now be false as all requests are finished
         expect(instance.loading).toBe(false)
     })
 
