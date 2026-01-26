@@ -9,6 +9,8 @@
 @prop string $style (Default: null)
 @prop string $shape (Default: null)
 @prop string $confirm (Default: null)
+@prop string $onSuccess (Default: null)
+@prop string $onError (Default: null)
 --}}
 @aware([
     'groupSize' => null,
