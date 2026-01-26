@@ -51,6 +51,9 @@ export default function (model = null, uploadUrl = null) {
                 this.files = [updatedFiles[0]];
             }
 
+            // Clear any previous errors when new files are added
+            this.syncErrors(null);
+
             if (this.uploadUrl) {
                 this.uploading = true;
                 this.$dispatch('plume-busy');
@@ -139,6 +142,10 @@ export default function (model = null, uploadUrl = null) {
                 URL.revokeObjectURL(file.preview);
             }
             this.files.splice(index, 1);
+            
+            // Clear errors when files are removed
+            this.syncErrors(null);
+            
             this.updateInput();
             this.syncModel();
         },
@@ -168,16 +175,42 @@ export default function (model = null, uploadUrl = null) {
                 obj[parts[0]] = value;
             }
         },
-        syncErrors() {
-            if (!this.model || typeof this.errors === 'undefined') return;
+        syncErrors(errorMessage = undefined) {
+            if (!this.model) return;
 
-            const firstError = this.files.find((f) => f.error)?.error || null;
+            // Get the field key by stripping the 'data.' prefix
             const key = this.model.replace(/^data\./, '');
 
-            if (firstError) {
-                this.errors[key] = firstError;
-            } else if (this.errors[key]) {
-                delete this.errors[key];
+            // Access the parent form's error bag.
+            // In Alpine, nested components can often access parent data directly.
+            // We search for an 'errors' object in the scope.
+            let errorBag = null;
+
+            // Use 'this.errors' which Alpine will look up the chain if it's not on this component.
+            if (this.errors && typeof this.errors === 'object') {
+                errorBag = this.errors;
+            } else if (this.$data && typeof this.$data.errors === 'object') {
+                errorBag = this.$data.errors;
+            }
+
+            // If we couldn't find an error bag, silently return
+            if (!errorBag) return;
+
+            // If errorMessage is provided, set it; if null, clear it; if undefined, use current file errors
+            if (errorMessage !== undefined) {
+                if (errorMessage) {
+                    errorBag[key] = errorMessage;
+                } else {
+                    delete errorBag[key];
+                }
+            } else {
+                // Default behavior: check files for errors
+                const firstError = this.files.find((f) => f.error)?.error || null;
+                if (firstError) {
+                    errorBag[key] = firstError;
+                } else if (errorBag[key]) {
+                    delete errorBag[key];
+                }
             }
         },
     };

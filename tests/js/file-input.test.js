@@ -152,5 +152,121 @@ describe('FileInput Plugin', () => {
                 
                 expect(instance.form.data.settings.profile_image).toBe('img_999')
             })
+
+            it('syncs errors to parent form error bag through $data', () => {
+                instance = createInstance(false, 'data.avatar', '/upload')
+                instance.$data.errors = {}
+                
+                // Simulate file with error
+                instance.files = [{ name: 'test.txt', error: 'File too large' }]
+                instance.syncErrors()
+                
+                expect(instance.$data.errors.avatar).toBe('File too large')
+            })
+
+            it('clears errors from parent form when file is added', async () => {
+                let capturedXhr;
+                class MockXHR {
+                    constructor() {
+                        this.open = vi.fn();
+                        this.send = vi.fn();
+                        this.setRequestHeader = vi.fn();
+                        this.upload = {};
+                        this.status = 200;
+                        this.responseText = JSON.stringify({ id: 'file_123' });
+                        this.onload = null;
+                        this.onerror = null;
+                        capturedXhr = this;
+                    }
+                }
+                vi.stubGlobal('XMLHttpRequest', MockXHR);
+
+                instance = createInstance(false, 'data.avatar', '/upload')
+                instance.$data.errors = { avatar: 'Previous error' }
+                
+                const file = new File(['content'], 'test.txt')
+                const uploadPromise = instance.addFiles([file])
+                
+                // Error should be cleared when new file is added (syncErrors(null) is called in addFiles)
+                expect(instance.$data.errors.avatar).toBeUndefined()
+                
+                await vi.waitFor(() => capturedXhr !== undefined);
+                capturedXhr.onload();
+                await uploadPromise;
+            })
+
+            it('clears errors from parent form when file is removed', () => {
+                instance = createInstance(false, 'data.avatar', '/upload')
+                instance.$data.errors = { avatar: 'Upload failed' }
+                
+                const file = new File(['content'], 'test.png', { type: 'image/png' })
+                instance.addFiles([file])
+                instance.removeFile(0)
+                
+                expect(instance.$data.errors.avatar).toBeUndefined()
+            })
+
+            it('strips data. prefix when syncing errors', () => {
+                instance = createInstance(false, 'data.profile_picture', '/upload')
+                instance.$data.errors = {}
+                
+                instance.files = [{ name: 'test.png', error: 'Invalid format' }]
+                instance.syncErrors()
+                
+                // Should use 'profile_picture' as key, not 'data.profile_picture'
+                expect(instance.$data.errors.profile_picture).toBe('Invalid format')
+                expect(instance.$data.errors['data.profile_picture']).toBeUndefined()
+            })
+
+            it('syncs error message when explicitly provided', () => {
+                instance = createInstance(false, 'data.file', '/upload')
+                instance.$data.errors = {}
+                
+                instance.syncErrors('Custom error message')
+                
+                expect(instance.$data.errors.file).toBe('Custom error message')
+            })
+
+            it('clears error when null is explicitly provided', () => {
+                instance = createInstance(false, 'data.file', '/upload')
+                instance.$data.errors = { file: 'Some error' }
+                
+                instance.syncErrors(null)
+                
+                expect(instance.$data.errors.file).toBeUndefined()
+            })
+
+            it('propagates validation errors from failed upload to parent form', async () => {
+                let capturedXhr;
+                class MockXHR {
+                    constructor() {
+                        this.open = vi.fn();
+                        this.send = vi.fn();
+                        this.setRequestHeader = vi.fn();
+                        this.upload = {};
+                        this.status = 422;
+                        this.responseText = JSON.stringify({ 
+                            error: 'File must be an image'
+                        });
+                        this.onload = null;
+                        this.onerror = null;
+                        capturedXhr = this;
+                    }
+                }
+                vi.stubGlobal('XMLHttpRequest', MockXHR);
+
+                instance = createInstance(false, 'data.image', '/upload')
+                instance.$data.errors = {}
+                
+                const file = new File(['content'], 'test.txt')
+                const uploadPromise = instance.addFiles([file])
+                
+                await vi.waitFor(() => capturedXhr !== undefined);
+                capturedXhr.onload();
+                await uploadPromise;
+                
+                // Error should be propagated to parent form
+                expect(instance.$data.errors.image).toBe('File must be an image')
+            })
         })
         
