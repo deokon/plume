@@ -59,7 +59,7 @@
                 </x-plume::table.tr>
             </x-plume::table.thead>
             <x-plume::table.tbody>
-                <template x-for="(row, index) in pagedData" :key="index">
+                <template x-for="(row, index) in pagedData" :key="row.id || row.uuid || index">
                     <x-plume::table.tr>
                         <template x-for="col in columns" :key="col.key">
                             <x-plume::table.td ::class="col.cellClass">

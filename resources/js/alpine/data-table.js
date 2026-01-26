@@ -139,7 +139,7 @@ export default (
         },
 
         get filteredData() {
-            if (this.url) return this.data;
+            if (this.url) return [...this.data];
 
             if (!Array.isArray(this.data)) return [];
 
@@ -169,7 +169,7 @@ export default (
         },
 
         get pagedData() {
-            if (this.url) return this.data;
+            if (this.url) return [...this.data];
 
             if (!this.paginated) return this.filteredData;
 

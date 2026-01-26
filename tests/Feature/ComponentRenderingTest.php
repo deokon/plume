@@ -9,11 +9,9 @@ test('button renders correctly', function () {
 
 test('button renders with confirmation', function () {
     $view = Blade::render('<x-plume::button confirm="Are you sure?">Delete</x-plume::button>');
-    expect($view)->toContain('x-data="{ confirmed: false }"')
-        ->toContain('$openModal(')
-        ->toContain('confirm-')
-        ->toContain('Are you sure?')
-        ->toContain('role="alertdialog"');
+    expect($view)
+        ->toContain('if (!confirm(&#039;Are you sure?&#039;))')
+        ->toContain('Delete');
 });
 
 test('button renders with method using ajax form', function () {
