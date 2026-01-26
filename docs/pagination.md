@@ -13,5 +13,15 @@ A standalone pagination component that dispatches events on change.
 ## Usage
 
 ```blade
-{{-- Simple Usage
+Simple Usage:
+<x-plume::pagination :total="10" :current="1" />
+
+Listening for changes in AlpineJS:
+<div x-data="{ page: 1 }">
+    <x-plume::pagination 
+        :total="20" 
+        x-bind:data-current="page" 
+        @plume-page-change="page = $event.detail.page; fetchNewData()" 
+    />
+</div>
 ```

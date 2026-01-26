@@ -10,7 +10,7 @@
 @usage
 <x-plume::progress title="Uploading..." :value="45" :max="100" style="success" />
 
-{{-- Reactive usage --}}
+Reactive usage:
 <div x-data="{ uploadProgress: 0 }">
     <x-plume::progress 
         title="Syncing" 

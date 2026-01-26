@@ -5,10 +5,10 @@
 @prop int $current (Default: 1) Currently active page.
 @prop int $onEachSide (Default: 1) Number of page links to show on each side of the current page.
 @usage
-{{-- Simple Usage --}}
+Simple Usage:
 <x-plume::pagination :total="10" :current="1" />
 
-{{-- Listening for changes in AlpineJS --}}
+Listening for changes in AlpineJS:
 <div x-data="{ page: 1 }">
     <x-plume::pagination 
         :total="20" 

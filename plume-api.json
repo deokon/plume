@@ -1196,7 +1196,7 @@
                 }
             },
             "description": "A file upload input with drag-and-drop support and automatic pre-uploading.",
-            "usage": "{{-- Basic Usage (Standard Form Submit)",
+            "usage": "Basic Usage (Standard Form Submit):\n<x-plume::form.file label=\"Resume\" name=\"resume\" accept=\".pdf,.doc\" />\n\nImmediate AJAX Pre-upload (Recommended):\nThe server must return JSON like: {\"id\": \"file_uuid\"}\n<x-plume::form.file \n    label=\"Gallery\" \n    model=\"images\" \n    multiple \n    :uploadUrl=\"route('api.upload')\" \n    accept=\"image/*\" \n/>\n\nWhen using uploadUrl, the 'images' model in formData will be updated \nautomatically with the IDs returned from the server.",
             "doc_url": "https://plume.dennisokon.com/docs/form-file"
         },
         "x-plume::form.group": {
@@ -1860,7 +1860,7 @@
                 }
             },
             "description": "A standalone pagination component that dispatches events on change.",
-            "usage": "{{-- Simple Usage",
+            "usage": "Simple Usage:\n<x-plume::pagination :total=\"10\" :current=\"1\" />\n\nListening for changes in AlpineJS:\n<div x-data=\"{ page: 1 }\">\n    <x-plume::pagination \n        :total=\"20\" \n        x-bind:data-current=\"page\" \n        @plume-page-change=\"page = $event.detail.page; fetchNewData()\" \n    />\n</div>",
             "doc_url": "https://plume.dennisokon.com/docs/pagination"
         },
         "x-plume::popover": {
@@ -1921,7 +1921,7 @@
                 }
             },
             "description": "A visual indicator of task completion or value within a range. Supports reactive AlpineJS binding.",
-            "usage": "<x-plume::progress title=\"Uploading...\" :value=\"45\" :max=\"100\" style=\"success\" />\n\n{{-- Reactive usage",
+            "usage": "<x-plume::progress title=\"Uploading...\" :value=\"45\" :max=\"100\" style=\"success\" />\n\nReactive usage:\n<div x-data=\"{ uploadProgress: 0 }\">\n    <x-plume::progress \n        title=\"Syncing\" \n        model=\"uploadProgress\" \n        display=\"inside\" \n    />\n</div>",
             "doc_url": "https://plume.dennisokon.com/docs/progress"
         },
         "x-plume::progress.percent": {
@@ -2023,7 +2023,7 @@
                 }
             },
             "description": "A placeholder component to indicate loading state for specific shapes or content blocks.",
-            "usage": "{{-- Profile Placeholder",
+            "usage": "Profile Placeholder:\n<div class=\"flex items-center gap-4\">\n    <x-plume::skeleton shape=\"circle\" class=\"size-12\" />\n    <div class=\"space-y-2\">\n        <x-plume::skeleton shape=\"text\" class=\"w-24 h-4\" />\n        <x-plume::skeleton shape=\"text\" class=\"w-32 h-3\" />\n    </div>\n</div>",
             "doc_url": "https://plume.dennisokon.com/docs/skeleton"
         },
         "x-plume::spacer": {
@@ -2313,7 +2313,7 @@
                 }
             },
             "description": "A container for temporary notification messages (Toasts). Triggered via global magic helpers.",
-            "usage": "{{-- Place once in your main layout file",
+            "usage": "Place once in your main layout file\n<x-plume::toaster position=\"top-right\" />\n\nTrigger from anywhere using global helpers\n<button @click=\"$success('Profile Saved!')\">Save</button>\n<button @click=\"$error('Action failed')\">Delete</button>\n<button @click=\"$toast('New message', { type: 'info', timeout: 3000 })\">Notify</button>",
             "doc_url": "https://plume.dennisokon.com/docs/toaster"
         },
         "x-plume::tooltip": {

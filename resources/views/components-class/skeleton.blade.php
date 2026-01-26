@@ -4,7 +4,7 @@
 @prop string $shape (Default: 'rect') The shape of the skeleton: 'rect', 'circle', 'text'.
 @prop string $animation (Default: 'pulse') The animation style: 'pulse', 'wave', 'none'.
 @usage
-{{-- Profile Placeholder --}}
+Profile Placeholder:
 <div class="flex items-center gap-4">
     <x-plume::skeleton shape="circle" class="size-12" />
     <div class="space-y-2">

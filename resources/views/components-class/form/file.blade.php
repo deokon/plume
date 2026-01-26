@@ -9,11 +9,11 @@
 @prop string $accept (Default: null) Accepted file types (e.g., 'image/*', '.pdf').
 @prop string $uploadUrl (Default: null) API endpoint for immediate pre-upload. If provided, files are uploaded as soon as they are selected.
 @usage
-{{-- Basic Usage (Standard Form Submit) --}}
+Basic Usage (Standard Form Submit):
 <x-plume::form.file label="Resume" name="resume" accept=".pdf,.doc" />
 
-{{-- Immediate AJAX Pre-upload (Recommended) --}}
-{{-- The server must return JSON like: {"id": "file_uuid"} --}}
+Immediate AJAX Pre-upload (Recommended):
+The server must return JSON like: {"id": "file_uuid"}
 <x-plume::form.file 
     label="Gallery" 
     model="images" 
@@ -22,8 +22,8 @@
     accept="image/*" 
 />
 
-{{-- When using uploadUrl, the 'images' model in formData will be updated 
-     automatically with the IDs returned from the server. --}}
+When using uploadUrl, the 'images' model in formData will be updated 
+automatically with the IDs returned from the server.
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php

@@ -12,5 +12,12 @@ A placeholder component to indicate loading state for specific shapes or content
 ## Usage
 
 ```blade
-{{-- Profile Placeholder
+Profile Placeholder:
+<div class="flex items-center gap-4">
+    <x-plume::skeleton shape="circle" class="size-12" />
+    <div class="space-y-2">
+        <x-plume::skeleton shape="text" class="w-24 h-4" />
+        <x-plume::skeleton shape="text" class="w-32 h-3" />
+    </div>
+</div>
 ```

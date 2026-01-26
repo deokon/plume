@@ -11,5 +11,11 @@ A container for temporary notification messages (Toasts). Triggered via global m
 ## Usage
 
 ```blade
-{{-- Place once in your main layout file
+Place once in your main layout file
+<x-plume::toaster position="top-right" />
+
+Trigger from anywhere using global helpers
+<button @click="$success('Profile Saved!')">Save</button>
+<button @click="$error('Action failed')">Delete</button>
+<button @click="$toast('New message', { type: 'info', timeout: 3000 })">Notify</button>
 ```
