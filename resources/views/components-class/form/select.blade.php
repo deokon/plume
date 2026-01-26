@@ -1,13 +1,25 @@
 {{--
 @component x-plume::form.select
-@description A dropdown select input.
-@prop string $label (Default: null)
-@prop string $name (Default: null)
-@prop string $id (Default: null)
-@prop string $model (Default: null)
-@prop array $options (Default: [])
-@prop string $placeholder (Default: null)
-@prop bool $multiple (Default: false)
+@description A standard dropdown select input with multi-select support.
+@prop string $label (Default: null) The label for the select input.
+@prop string $name (Default: null) HTML name attribute.
+@prop string $id (Default: null) HTML id attribute. Auto-generated from name if not provided.
+@prop string $model (Default: null) AlpineJS model name for two-way binding.
+@prop array $options (Default: []) Associative array of options: [value => label].
+@prop string $placeholder (Default: null) Placeholder text for the first disabled option.
+@prop bool $multiple (Default: false) Whether to allow multiple selections.
+@usage
+<x-plume::form.select 
+    label="Category" 
+    model="category_id" 
+    :options="['1' => 'Technology', '2' => 'Design']" 
+    placeholder="Select a category"
+/>
+
+<x-plume::form.select label="Tags" model="tags" multiple>
+    <option value="php">PHP</option>
+    <option value="laravel">Laravel</option>
+</x-plume::form.select>
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php

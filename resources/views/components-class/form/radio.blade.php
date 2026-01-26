@@ -1,12 +1,17 @@
 {{--
 @component x-plume::form.radio
-@description A radio button for single selection.
-@prop string $label (Default: null)
-@prop string $name (Default: null)
-@prop string $id (Default: null)
-@prop string $model (Default: null)
-@prop string $value (Default: '')
-@prop bool $checked (Default: false)
+@description A radio button for single selection from a group of options.
+@prop string $label (Default: null) The label text for the radio button.
+@prop string $name (Default: null) HTML name attribute. Must be the same for all radios in a group.
+@prop string $id (Default: null) HTML id attribute. Auto-generated if not provided.
+@prop string $model (Default: null) AlpineJS model name for two-way binding.
+@prop string $value (Default: '') The value submitted when this radio is selected.
+@prop bool $checked (Default: false) Whether this radio is initially selected.
+@usage
+<x-plume::form.group label="Plan">
+    <x-plume::form.radio name="plan" value="basic" label="Basic" model="selectedPlan" />
+    <x-plume::form.radio name="plan" value="pro" label="Pro" model="selectedPlan" />
+</x-plume::form.group>
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php

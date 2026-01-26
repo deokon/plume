@@ -24,21 +24,21 @@
                 "title": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The text displayed in the accordion header."
                 },
                 "id": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Unique identifier for the item. Auto-generated if not provided."
                 },
                 "open": {
                     "type": "bool",
                     "default": "false",
-                    "description": ""
+                    "description": "Whether the item should be open by default."
                 }
             },
             "description": "An individual collapsible item within an accordion.",
-            "usage": "",
+            "usage": "<x-plume::accordion>\n    <x-plume::accordion.item title=\"What is Plume?\" id=\"faq-1\" open>\n        Plume is a UI library for Laravel and Alpine.js.\n    </x-plume::accordion.item>\n</x-plume::accordion>",
             "doc_url": "https://plume.dennisokon.com/docs/accordion-item"
         },
         "x-plume::alert": {
@@ -47,36 +47,36 @@
                 "icon": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Iconify icon name. Auto-selected based on style if not provided."
                 },
                 "style": {
                     "type": "string",
                     "default": "'info'",
-                    "description": ""
+                    "description": "Semantic style: 'info', 'success', 'warning', 'error'."
                 },
                 "closable": {
                     "type": "bool",
                     "default": "false",
-                    "description": ""
+                    "description": "Whether to show a close button."
                 },
                 "autoclose": {
                     "type": "int",
                     "default": "null",
-                    "description": ""
+                    "description": "Delay in milliseconds before automatically closing."
                 },
                 "title": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Bold title text for the alert."
                 },
                 "onClose": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "AlpineJS expression or function to call when the alert is closed."
                 }
             },
-            "description": "Displays a callout for user attention.",
-            "usage": "<x-plume::alert style=\"success\" title=\"Success\">\n    Operation completed successfully.\n</x-plume::alert>",
+            "description": "Displays a callout for user attention with semantic styling and optional dismissibility.",
+            "usage": "<x-plume::alert style=\"success\" title=\"Settings Updated\" closable autoclose=\"5000\">\n    Your profile settings have been saved successfully.\n</x-plume::alert>",
             "doc_url": "https://plume.dennisokon.com/docs/alert"
         },
         "x-plume::alert-dialog": {
@@ -123,11 +123,11 @@
                 "ratio": {
                     "type": "string",
                     "default": "'video'",
-                    "description": ""
+                    "description": "The aspect ratio: 'video' (16:9), 'square' (1:1), 'cinema' (21:9)."
                 }
             },
             "description": "A container component to maintain consistent proportions for media and content.",
-            "usage": "",
+            "usage": "<x-plume::aspect ratio=\"square\" class=\"max-w-xs\">\n    <img src=\"/photo.jpg\" class=\"object-cover w-full h-full\" />\n</x-plume::aspect>",
             "doc_url": "https://plume.dennisokon.com/docs/aspect"
         },
         "x-plume::audio": {
@@ -136,31 +136,31 @@
                 "src": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The URL of the audio file."
                 },
                 "autoplay": {
                     "type": "bool",
                     "default": "false",
-                    "description": ""
+                    "description": "Whether to start playing automatically."
                 },
                 "controls": {
                     "type": "bool",
                     "default": "true",
-                    "description": ""
+                    "description": "Whether to show the audio controls."
                 },
                 "loop": {
                     "type": "bool",
                     "default": "false",
-                    "description": ""
+                    "description": "Whether to restart the audio automatically when it ends."
                 },
                 "muted": {
                     "type": "bool",
                     "default": "false",
-                    "description": ""
+                    "description": "Whether the audio should be muted by default."
                 }
             },
-            "description": "A styled wrapper for HTML5 audio content.",
-            "usage": "",
+            "description": "A styled native HTML5 audio player wrapper.",
+            "usage": "<x-plume::audio src=\"/assets/podcast.mp3\" />",
             "doc_url": "https://plume.dennisokon.com/docs/audio"
         },
         "x-plume::avatar": {
@@ -169,36 +169,36 @@
                 "src": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The URL of the avatar image."
                 },
                 "alt": {
                     "type": "string",
                     "default": "''",
-                    "description": ""
+                    "description": "Accessibility text for the image."
                 },
                 "fallback": {
                     "type": "string",
                     "default": "''",
-                    "description": ""
+                    "description": "Text to display if image fails to load (e.g., 'JD')."
                 },
                 "size": {
                     "type": "string",
                     "default": "'md'",
-                    "description": ""
+                    "description": "Size of the avatar: 'xs', 'sm', 'md', 'lg', 'xl'."
                 },
                 "status": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Color for the status indicator: 'success', 'warning', 'error', 'info'."
                 },
                 "shape": {
                     "type": "string",
                     "default": "'round'",
-                    "description": ""
+                    "description": "Shape of the avatar: 'round' (circle) or 'default' (rounded-md)."
                 }
             },
-            "description": "An image element with a fallback for representing the user.",
-            "usage": "<x-plume::avatar src=\"https://github.com/shadcn.png\" fallback=\"JD\" />",
+            "description": "A circular or square image element with text fallback and optional status indicator.",
+            "usage": "<x-plume::avatar \n    src=\"https://example.com/user.jpg\" \n    fallback=\"JD\" \n    status=\"success\" \n    size=\"lg\" \n/>",
             "doc_url": "https://plume.dennisokon.com/docs/avatar"
         },
         "x-plume::badge": {
@@ -207,21 +207,21 @@
                 "style": {
                     "type": "string",
                     "default": "'default'",
-                    "description": ""
+                    "description": "Visual style: 'default', 'secondary', 'error', 'outline', 'success'."
                 },
                 "size": {
                     "type": "string",
                     "default": "'md'",
-                    "description": ""
+                    "description": "Size of the badge: 'sm', 'md', 'lg'."
                 },
                 "shape": {
                     "type": "string",
                     "default": "'default'",
-                    "description": ""
+                    "description": "Shape: 'default' (rounded), 'pill', 'square'."
                 }
             },
-            "description": "Displays a badge or a component that looks like a badge.",
-            "usage": "",
+            "description": "Displays a small, styled label for status, counts, or categorization.",
+            "usage": "<x-plume::badge style=\"success\" shape=\"pill\">Active</x-plume::badge>\n<x-plume::badge style=\"outline\" size=\"sm\">v1.0.0</x-plume::badge>",
             "doc_url": "https://plume.dennisokon.com/docs/badge"
         },
         "x-plume::breadcrumb": {
@@ -230,16 +230,16 @@
                 "items": {
                     "type": "array",
                     "default": "[]",
-                    "description": ""
+                    "description": "Array of link items: [['label' => 'Home', 'href' => '/', 'active' => false]]."
                 },
                 "separator": {
                     "type": "string",
                     "default": "'icon-[fluent--chevron-right-24-regular]'",
-                    "description": ""
+                    "description": "The character or icon name to use as a separator."
                 }
             },
             "description": "Displays the path to the current resource using a hierarchy of links.",
-            "usage": "",
+            "usage": "<x-plume::breadcrumb \n    :items=\"[\n        ['label' => 'Dashboard', 'href' => '/admin'],\n        ['label' => 'Users', 'href' => '/admin/users'],\n        ['label' => 'Edit User', 'active' => true]\n    ]\" \n/>",
             "doc_url": "https://plume.dennisokon.com/docs/breadcrumb"
         },
         "x-plume::breadcrumb.item": {
@@ -248,23 +248,23 @@
                 "href": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The destination URL for the link. If null, the item renders as a span."
                 },
                 "active": {
                     "type": "bool",
                     "default": "false",
-                    "description": ""
+                    "description": "Whether the item represents the current page."
                 }
             },
-            "description": "Individual item in a breadcrumb trail.",
-            "usage": "",
+            "description": "An individual link or active label within a breadcrumb trail.",
+            "usage": "<x-plume::breadcrumb.item href=\"/dashboard\">Dashboard</x-plume::breadcrumb.item>\n<x-plume::breadcrumb.item active>Settings</x-plume::breadcrumb.item>",
             "doc_url": "https://plume.dennisokon.com/docs/breadcrumb-item"
         },
         "x-plume::breadcrumb.separator": {
             "path": "plume/resources/views/components-class/breadcrumb/separator.blade.php",
             "props": [],
-            "description": "Separator between breadcrumb items.",
-            "usage": "",
+            "description": "Visual separator between breadcrumb items. Auto-generated by x-plume::breadcrumb but can be used manually.",
+            "usage": "<x-plume::breadcrumb.separator>\n    <span class=\"text-xs\">/</span>\n</x-plume::breadcrumb.separator>",
             "doc_url": "https://plume.dennisokon.com/docs/breadcrumb-separator"
         },
         "x-plume::button": {
@@ -359,21 +359,21 @@
                 "var": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The name of the AlpineJS boolean variable that controls the loading state."
                 },
                 "size": {
                     "type": "string",
                     "default": "'md'",
-                    "description": ""
+                    "description": "Size of the button: 'sm', 'md', 'lg'."
                 },
                 "style": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Visual style of the button."
                 }
             },
-            "description": "Button with built-in loading state management.",
-            "usage": "",
+            "description": "A button that displays a loading spinner based on an AlpineJS boolean state.",
+            "usage": "<div x-data=\"{ isBusy: false }\">\n    <x-plume::button.loader \n        var=\"isBusy\" \n        @click=\"isBusy = true; setTimeout(() => isBusy = false, 2000)\"\n    >\n        Submit Process\n    </x-plume::button.loader>\n</div>",
             "doc_url": "https://plume.dennisokon.com/docs/button-loader"
         },
         "x-plume::button.toggle": {
@@ -463,31 +463,31 @@
                 "title": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The main title for the card."
                 },
                 "description": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "A brief description or subtitle."
                 },
                 "badge": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Text for an optional status badge in the header."
                 },
                 "badgeStyle": {
                     "type": "string",
                     "default": "'default'",
-                    "description": ""
+                    "description": "The visual style of the badge."
                 },
                 "href": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "If provided, renders the card as a clickable link."
                 }
             },
-            "description": "Displays a card with header, content, and footer.",
-            "usage": "",
+            "description": "A versatile container for related content and actions, featuring semantic sections.",
+            "usage": "<x-plume::card title=\"Project Alpha\" description=\"Updated 2 hours ago\" badge=\"In Progress\">\n    <p>Card content goes here.</p>\n    <x-slot:footer>\n        <x-plume::button size=\"sm\">View Project</x-plume::button>\n    </x-slot:footer>\n</x-plume::card>",
             "doc_url": "https://plume.dennisokon.com/docs/card"
         },
         "x-plume::carousel": {
@@ -526,8 +526,8 @@
         "x-plume::carousel.item": {
             "path": "plume/resources/views/components-class/carousel/item.blade.php",
             "props": [],
-            "description": "An individual slide within a carousel.",
-            "usage": "",
+            "description": "An individual slide within a carousel slideshow.",
+            "usage": "<x-plume::carousel>\n    <x-plume::carousel.item>\n        <img src=\"/slide1.jpg\" alt=\"Slide 1\">\n    </x-plume::carousel.item>\n</x-plume::carousel>",
             "doc_url": "https://plume.dennisokon.com/docs/carousel-item"
         },
         "x-plume::chart": {
@@ -564,21 +564,21 @@
                 "language": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Programming language name for label and CSS class."
                 },
                 "title": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Optional filename or title for the code block."
                 },
                 "code": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The code content. If not provided, the slot will be used."
                 }
             },
-            "description": "A component for displaying code snippets with a copy-to-clipboard feature.",
-            "usage": "",
+            "description": "A component for displaying code snippets with optional syntax highlighting label and a copy-to-clipboard feature.",
+            "usage": "<x-plume::code language=\"javascript\" title=\"app.js\">\n    console.log('Hello Plume!');\n</x-plume::code>",
             "doc_url": "https://plume.dennisokon.com/docs/code"
         },
         "x-plume::command": {
@@ -610,11 +610,11 @@
                 "title": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The label for the group."
                 }
             },
-            "description": "Groups related items in a command palette.",
-            "usage": "",
+            "description": "A container for grouping related command items within a command palette.",
+            "usage": "<x-plume::command>\n    <x-plume::command.group title=\"Actions\">\n        <x-plume::command.item>Save File</x-plume::command.item>\n    </x-plume::command.group>\n</x-plume::command>",
             "doc_url": "https://plume.dennisokon.com/docs/command-group"
         },
         "x-plume::command.item": {
@@ -623,26 +623,26 @@
                 "value": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The underlying value associated with the item."
                 },
                 "onSelect": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "AlpineJS expression or function to call when the item is activated."
                 },
                 "icon": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Iconify icon name."
                 },
                 "shortcut": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Keyboard shortcut text to display (e.g., '\u2318K')."
                 }
             },
-            "description": "An actionable item within a command palette.",
-            "usage": "",
+            "description": "An individual command or selection within a command palette group.",
+            "usage": "<x-plume::command.item \n    icon=\"icon-[fluent--save-24-regular]\" \n    shortcut=\"\u2318S\"\n    @click=\"$success('Saved!')\"\n>\n    Save Document\n</x-plume::command.item>",
             "doc_url": "https://plume.dennisokon.com/docs/command-item"
         },
         "x-plume::data-table": {
@@ -699,11 +699,11 @@
                 "label": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Text label to display in the center of the divider."
                 }
             },
-            "description": "Visually separates content sections with an optional label.",
-            "usage": "",
+            "description": "A horizontal rule used to visually separate content sections, with optional text or icon labels.",
+            "usage": "<x-plume::divider />\n<x-plume::divider label=\"OR\" />\n<x-plume::divider>\n    <x-plume::icon i=\"icon-[fluent--star-24-regular]\" />\n</x-plume::divider>",
             "doc_url": "https://plume.dennisokon.com/docs/divider"
         },
         "x-plume::drawer": {
@@ -745,7 +745,7 @@
                     "description": "AlpineJS expression or function to call when the drawer closes."
                 }
             },
-            "description": "A panel that slides in from the edge of the screen.",
+            "description": "A panel that slides in from the edge of the screen. Closes when clicking the backdrop or pressing the ESC key.",
             "usage": "<x-plume::drawer name=\"settings\" title=\"User Settings\" side=\"right\">\n    <x-plume::form ...>\n        ...\n    </x-plume::form>\n</x-plume::drawer>\n\n<x-plume::button @click=\"$openDrawer('settings')\">Open Settings</x-plume::button>",
             "doc_url": "https://plume.dennisokon.com/docs/drawer"
         },
@@ -755,31 +755,31 @@
                 "trigger": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The text or slot content for the dropdown trigger button."
                 },
                 "align": {
                     "type": "string",
                     "default": "'right'",
-                    "description": ""
+                    "description": "Alignment of the dropdown menu: 'left', 'right', 'top'."
                 },
                 "width": {
                     "type": "string",
                     "default": "'md'",
-                    "description": ""
+                    "description": "Width of the menu: 'xs', 'sm', 'md', 'lg', 'xl', or custom class."
                 },
                 "contentClasses": {
                     "type": "string",
                     "default": "'bg-background dark:bg-background-800'",
-                    "description": ""
+                    "description": "Additional classes for the menu container."
                 },
                 "triggerStyle": {
                     "type": "string",
                     "default": "'outline'",
-                    "description": ""
+                    "description": "Visual style of the automatic trigger button."
                 }
             },
             "description": "Displays a menu to the user\u2014such as a set of actions or functions\u2014triggered by a button.",
-            "usage": "",
+            "usage": "<x-plume::dropdown trigger=\"Actions\" align=\"right\" width=\"sm\">\n    <x-plume::dropdown.item href=\"/edit\">Edit</x-plume::dropdown.item>\n    <x-plume::dropdown.item href=\"/delete\" class=\"text-error\">Delete</x-plume::dropdown.item>\n</x-plume::dropdown>",
             "doc_url": "https://plume.dennisokon.com/docs/dropdown"
         },
         "x-plume::dropdown.item": {
@@ -808,21 +808,21 @@
                 "title": {
                     "type": "string",
                     "default": "'No results found'",
-                    "description": ""
+                    "description": "The main heading text."
                 },
                 "description": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Helpful text or instructions for the user."
                 },
                 "icon": {
                     "type": "string",
                     "default": "'icon-[fluent--search-info-24-regular]'",
-                    "description": ""
+                    "description": "Iconify icon name."
                 }
             },
-            "description": "Use this component to show a placeholder when a list or page has no data.",
-            "usage": "",
+            "description": "A placeholder component to show when a list, table, or page has no data.",
+            "usage": "<x-plume::empty-state \n    title=\"No items in cart\" \n    description=\"Your shopping cart is currently empty. Start adding some products!\"\n    icon=\"icon-[fluent--cart-24-regular]\"\n>\n    <x-plume::button href=\"/shop\">Browse Products</x-plume::button>\n</x-plume::empty-state>",
             "doc_url": "https://plume.dennisokon.com/docs/empty-state"
         },
         "x-plume::figure": {
@@ -869,7 +869,7 @@
                 "action": {
                     "type": "string",
                     "default": "''",
-                    "description": "Submission URL. Auto-detected if empty and using a <form> tag."
+                    "description": "Submission URL. Auto-detected if using a <form> tag."
                 },
                 "method": {
                     "type": "string",
@@ -879,7 +879,7 @@
                 "formData": {
                     "type": "array|string|null",
                     "default": "null",
-                    "description": "Initial data for the form. Can be a PHP array or a JS object string."
+                    "description": "Initial reactive data. Pass a PHP array or use Js::from()."
                 },
                 "submitButton": {
                     "type": "string",
@@ -922,15 +922,15 @@
                     "description": "Renders form elements in a horizontal flex layout."
                 }
             },
-            "description": "A robust form container with AJAX submission, validation error handling, and success feedback.",
-            "usage": "<x-plume::form \n    action=\"/profile\" \n    method=\"PUT\" \n    :form-data=\"$user\"\n    submit-button=\"Update Profile\"\n    onSuccess=\"$success('Profile saved!')\"\n>\n    <x-plume::form.input name=\"name\" label=\"Full Name\" />\n    <x-plume::form.input name=\"email\" label=\"Email Address\" />\n</x-plume::form>",
+            "description": "A robust form container with AJAX submission, validation error handling, and reactive state binding.",
+            "usage": "Usage with automatic buttons:\n<x-plume::form \n    action=\"/profile\" \n    method=\"PUT\" \n    :form-data=\"['name' => 'John', 'email' => 'john@example.com']\"\n    submit-button=\"Save Changes\"\n>\n    <x-plume::form.input name=\"name\" model=\"name\" label=\"Name\" />\n    <x-plume::form.input name=\"email\" model=\"email\" label=\"Email\" />\n</x-plume::form>\n\nValidation Error Handling:\nWhen the server returns a 422 response with an 'errors' object, \nPlume automatically populates the form's error bag. \nFields with matching 'model' names will display their respective error messages.",
             "doc_url": "https://plume.dennisokon.com/docs/form"
         },
         "x-plume::form.actions": {
             "path": "plume/resources/views/components-class/form/actions.blade.php",
             "props": [],
-            "description": "Container for form action buttons (submit/cancel).",
-            "usage": "",
+            "description": "A flex container for form-level action buttons (typically Submit and Cancel).",
+            "usage": "<x-plume::form.actions>\n    <x-plume::button style=\"minor\">Cancel</x-plume::button>\n    <x-plume::button type=\"submit\">Save Changes</x-plume::button>\n</x-plume::form.actions>",
             "doc_url": "https://plume.dennisokon.com/docs/form-actions"
         },
         "x-plume::form.checkbox": {
@@ -939,78 +939,7 @@
                 "label": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
-                },
-                "name": {
-                    "type": "string",
-                    "default": "null",
-                    "description": ""
-                },
-                "id": {
-                    "type": "string",
-                    "default": "null",
-                    "description": ""
-                },
-                "model": {
-                    "type": "string",
-                    "default": "null",
-                    "description": ""
-                },
-                "value": {
-                    "type": "string",
-                    "default": "''",
-                    "description": ""
-                },
-                "checked": {
-                    "type": "bool",
-                    "default": "false",
-                    "description": ""
-                }
-            },
-            "description": "A checkbox input for boolean selection.",
-            "usage": "",
-            "doc_url": "https://plume.dennisokon.com/docs/form-checkbox"
-        },
-        "x-plume::form.color": {
-            "path": "plume/resources/views/components-class/form/color.blade.php",
-            "props": {
-                "label": {
-                    "type": "string",
-                    "default": "null",
-                    "description": ""
-                },
-                "name": {
-                    "type": "string",
-                    "default": "null",
-                    "description": ""
-                },
-                "id": {
-                    "type": "string",
-                    "default": "null",
-                    "description": ""
-                },
-                "model": {
-                    "type": "string",
-                    "default": "null",
-                    "description": ""
-                },
-                "value": {
-                    "type": "string",
-                    "default": "'#000000'",
-                    "description": ""
-                }
-            },
-            "description": "A color picker input.",
-            "usage": "",
-            "doc_url": "https://plume.dennisokon.com/docs/form-color"
-        },
-        "x-plume::form.combobox": {
-            "path": "plume/resources/views/components-class/form/combobox.blade.php",
-            "props": {
-                "label": {
-                    "type": "string",
-                    "default": "null",
-                    "description": "Label for the input."
+                    "description": "The label text for the checkbox."
                 },
                 "name": {
                     "type": "string",
@@ -1025,7 +954,78 @@
                 "model": {
                     "type": "string",
                     "default": "null",
-                    "description": "AlpineJS model name."
+                    "description": "AlpineJS model name for two-way binding."
+                },
+                "value": {
+                    "type": "string",
+                    "default": "''",
+                    "description": "The value submitted when the checkbox is checked."
+                },
+                "checked": {
+                    "type": "bool",
+                    "default": "false",
+                    "description": "Whether the checkbox is initially checked."
+                }
+            },
+            "description": "A checkbox input for binary selection or boolean state.",
+            "usage": "<x-plume::form.checkbox \n    label=\"Accept Terms\" \n    name=\"terms\" \n    model=\"accept_terms\" \n    required \n/>\n\n<x-plume::form.checkbox name=\"remember\" model=\"remember\">\n    Remember me\n</x-plume::form.checkbox>",
+            "doc_url": "https://plume.dennisokon.com/docs/form-checkbox"
+        },
+        "x-plume::form.color": {
+            "path": "plume/resources/views/components-class/form/color.blade.php",
+            "props": {
+                "label": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "The label for the color input."
+                },
+                "name": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "HTML name attribute."
+                },
+                "id": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "HTML id attribute. Auto-generated if not provided."
+                },
+                "model": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "AlpineJS model name for two-way binding."
+                },
+                "value": {
+                    "type": "string",
+                    "default": "'#000000'",
+                    "description": "Initial hex color value. Ignored if $model is used."
+                }
+            },
+            "description": "A native color picker input with hex value display.",
+            "usage": "<x-plume::form.color \n    label=\"Brand Color\" \n    model=\"brand_hex\" \n    value=\"#3b82f6\" \n/>",
+            "doc_url": "https://plume.dennisokon.com/docs/form-color"
+        },
+        "x-plume::form.combobox": {
+            "path": "plume/resources/views/components-class/form/combobox.blade.php",
+            "props": {
+                "label": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "The label for the combobox."
+                },
+                "name": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "HTML name attribute."
+                },
+                "id": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "HTML id attribute. Auto-generated from name if not provided."
+                },
+                "model": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "AlpineJS model name for two-way binding."
                 },
                 "options": {
                     "type": "array",
@@ -1048,8 +1048,8 @@
                     "description": "AlpineJS expression or function to call when an option is selected."
                 }
             },
-            "description": "A searchable select input with filtering capabilities.",
-            "usage": "<x-plume::form.combobox \n    label=\"Country\" \n    model=\"country_id\" \n    :options=\"['US' => 'United States', 'CA' => 'Canada']\" \n    searchable\n/>",
+            "description": "A searchable select input with filtering capabilities, integrated label, and validation support.",
+            "usage": "<x-plume::form.combobox \n    label=\"Country\" \n    model=\"country_id\" \n    :options=\"['US' => 'United States', 'CA' => 'Canada', 'GB' => 'United Kingdom']\" \n    placeholder=\"Choose a country...\"\n    onSelect=\"$toast('Selected country: ' + result.label)\"\n/>",
             "doc_url": "https://plume.dennisokon.com/docs/form-combobox"
         },
         "x-plume::form.date": {
@@ -1058,36 +1058,36 @@
                 "label": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The label for the date input."
                 },
                 "name": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "HTML name attribute."
                 },
                 "id": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "HTML id attribute. Auto-generated from name if not provided."
                 },
                 "model": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "AlpineJS model name for two-way binding."
                 },
                 "value": {
                     "type": "string",
                     "default": "''",
-                    "description": ""
+                    "description": "Initial date value (YYYY-MM-DD). Ignored if $model is used."
                 },
                 "placeholder": {
                     "type": "string",
                     "default": "''",
-                    "description": ""
+                    "description": "Placeholder text (browser support varies for type=\"date\")."
                 }
             },
-            "description": "A date picker input.",
-            "usage": "",
+            "description": "A native date picker input with integrated label and validation support.",
+            "usage": "<x-plume::form.date \n    label=\"Birthday\" \n    model=\"profile.birthday\" \n    required \n/>",
             "doc_url": "https://plume.dennisokon.com/docs/form-date"
         },
         "x-plume::form.datetime": {
@@ -1096,36 +1096,36 @@
                 "label": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The label for the input."
                 },
                 "name": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "HTML name attribute."
                 },
                 "id": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "HTML id attribute. Auto-generated from name if not provided."
                 },
                 "model": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "AlpineJS model name for two-way binding."
                 },
                 "value": {
                     "type": "string",
                     "default": "''",
-                    "description": ""
+                    "description": "Initial value (YYYY-MM-DDTHH:mm). Ignored if $model is used."
                 },
                 "placeholder": {
                     "type": "string",
                     "default": "''",
-                    "description": ""
+                    "description": "Placeholder text."
                 }
             },
-            "description": "A date and time picker input.",
-            "usage": "",
+            "description": "A native date and time picker input with integrated label and validation support.",
+            "usage": "<x-plume::form.datetime \n    label=\"Event Start\" \n    model=\"event.starts_at\" \n    required \n/>",
             "doc_url": "https://plume.dennisokon.com/docs/form-datetime"
         },
         "x-plume::form.element": {
@@ -1162,41 +1162,41 @@
                 "label": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The label for the file input."
                 },
                 "name": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "HTML name attribute."
                 },
                 "id": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "HTML id attribute. Auto-generated if not provided."
                 },
                 "model": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "AlpineJS model name. Stores the uploaded file ID(s)."
                 },
                 "multiple": {
                     "type": "bool",
                     "default": "false",
-                    "description": ""
+                    "description": "Allow selecting and uploading multiple files."
                 },
                 "accept": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Accepted file types (e.g., 'image/*', '.pdf')."
                 },
                 "uploadUrl": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "API endpoint for immediate pre-upload. If provided, files are uploaded as soon as they are selected."
                 }
             },
-            "description": "A file upload input with drag-and-drop support. Supports immediate pre-upload if uploadUrl is provided.",
-            "usage": "",
+            "description": "A file upload input with drag-and-drop support and automatic pre-uploading.",
+            "usage": "{{-- Basic Usage (Standard Form Submit)",
             "doc_url": "https://plume.dennisokon.com/docs/form-file"
         },
         "x-plume::form.group": {
@@ -1205,31 +1205,31 @@
                 "label": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Label for the group of inputs."
                 },
                 "description": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Help text for the group."
                 },
                 "minCols": {
                     "type": "int",
                     "default": "1",
-                    "description": ""
+                    "description": "Grid columns for the inner inputs."
                 },
                 "name": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Shared name attribute for child inputs."
                 },
                 "model": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Shared AlpineJS model name for child inputs."
                 }
             },
-            "description": "Groups related form inputs.",
-            "usage": "",
+            "description": "Groups related form inputs (like radios or checkboxes) under a single label.",
+            "usage": "<x-plume::form.group label=\"Notification Preferences\" model=\"prefs\">\n    <x-plume::form.checkbox value=\"email\" label=\"Email\" />\n    <x-plume::form.checkbox value=\"sms\" label=\"SMS\" />\n</x-plume::form.group>",
             "doc_url": "https://plume.dennisokon.com/docs/form-group"
         },
         "x-plume::form.input": {
@@ -1238,46 +1238,46 @@
                 "label": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The label for the input field."
                 },
                 "name": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "HTML name attribute. Auto-prefixed if using x-plume::form."
                 },
                 "id": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "HTML id attribute. Auto-generated from name if not provided."
                 },
                 "model": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "AlpineJS model name (relative to formData). Enables two-way binding."
                 },
                 "value": {
                     "type": "string",
                     "default": "''",
-                    "description": ""
+                    "description": "Initial value for the input. Ignored if $model is used."
                 },
                 "type": {
                     "type": "string",
                     "default": "'text'",
-                    "description": ""
+                    "description": "HTML input type (text, email, tel, etc.)."
                 },
                 "placeholder": {
                     "type": "string",
                     "default": "''",
-                    "description": ""
+                    "description": "Placeholder text."
                 },
                 "icon": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Iconify icon name to display inside the input."
                 }
             },
-            "description": "Standard text input fields, including password and number variants.",
-            "usage": "",
+            "description": "Standard text input fields with integrated label, validation errors, and icon support.",
+            "usage": "<x-plume::form.input \n    label=\"Email Address\" \n    name=\"email\" \n    model=\"email\" \n    type=\"email\" \n    icon=\"icon-[fluent--mail-24-regular]\"\n    placeholder=\"you@example.com\"\n    required\n/>\n\n<x-plume::form.input label=\"Username\" model=\"username\">\n    <x-slot:right-side>\n        <x-plume::button style=\"ghost\" size=\"sm\">Check Availability</x-plume::button>\n    </x-slot:right-side>\n</x-plume::form.input>",
             "doc_url": "https://plume.dennisokon.com/docs/form-input"
         },
         "x-plume::form.label": {
@@ -1304,51 +1304,51 @@
                 "label": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The label for the number input."
                 },
                 "name": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "HTML name attribute."
                 },
                 "id": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "HTML id attribute. Auto-generated from name if not provided."
                 },
                 "model": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "AlpineJS model name for two-way binding."
                 },
                 "value": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Initial numeric value. Ignored if $model is used."
                 },
                 "min": {
                     "type": "int",
                     "default": "null",
-                    "description": ""
+                    "description": "Minimum allowed value."
                 },
                 "max": {
                     "type": "int",
                     "default": "null",
-                    "description": ""
+                    "description": "Maximum allowed value."
                 },
                 "step": {
                     "type": "int",
                     "default": "null",
-                    "description": ""
+                    "description": "Incremental step value."
                 },
                 "placeholder": {
                     "type": "string",
                     "default": "''",
-                    "description": ""
+                    "description": "Placeholder text."
                 }
             },
-            "description": "A numeric input field.",
-            "usage": "",
+            "description": "A numeric input field with min, max, and step constraints.",
+            "usage": "<x-plume::form.number \n    label=\"Quantity\" \n    model=\"cart.qty\" \n    min=\"1\" \n    max=\"10\" \n    step=\"1\"\n    required\n/>",
             "doc_url": "https://plume.dennisokon.com/docs/form-number"
         },
         "x-plume::form.password": {
@@ -1357,41 +1357,41 @@
                 "label": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The label for the password input."
                 },
                 "name": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "HTML name attribute."
                 },
                 "id": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "HTML id attribute. Auto-generated if not provided."
                 },
                 "model": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "AlpineJS model name for two-way binding."
                 },
                 "value": {
                     "type": "string",
                     "default": "''",
-                    "description": ""
+                    "description": "Initial password value. Ignored if $model is used."
                 },
                 "placeholder": {
                     "type": "string",
                     "default": "''",
-                    "description": ""
+                    "description": "Placeholder text."
                 },
                 "icon": {
                     "type": "string",
                     "default": "'icon-[fluent--lock-closed-24-regular]'",
-                    "description": ""
+                    "description": "Iconify icon name."
                 }
             },
-            "description": "A secure password input field.",
-            "usage": "",
+            "description": "A secure password input field with a built-in visibility toggle.",
+            "usage": "<x-plume::form.password \n    label=\"New Password\" \n    model=\"password\" \n    placeholder=\"Choose a strong password\"\n    required\n/>",
             "doc_url": "https://plume.dennisokon.com/docs/form-password"
         },
         "x-plume::form.radio": {
@@ -1400,36 +1400,36 @@
                 "label": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The label text for the radio button."
                 },
                 "name": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "HTML name attribute. Must be the same for all radios in a group."
                 },
                 "id": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "HTML id attribute. Auto-generated if not provided."
                 },
                 "model": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "AlpineJS model name for two-way binding."
                 },
                 "value": {
                     "type": "string",
                     "default": "''",
-                    "description": ""
+                    "description": "The value submitted when this radio is selected."
                 },
                 "checked": {
                     "type": "bool",
                     "default": "false",
-                    "description": ""
+                    "description": "Whether this radio is initially selected."
                 }
             },
-            "description": "A radio button for single selection.",
-            "usage": "",
+            "description": "A radio button for single selection from a group of options.",
+            "usage": "<x-plume::form.group label=\"Plan\">\n    <x-plume::form.radio name=\"plan\" value=\"basic\" label=\"Basic\" model=\"selectedPlan\" />\n    <x-plume::form.radio name=\"plan\" value=\"pro\" label=\"Pro\" model=\"selectedPlan\" />\n</x-plume::form.group>",
             "doc_url": "https://plume.dennisokon.com/docs/form-radio"
         },
         "x-plume::form.range": {
@@ -1438,46 +1438,46 @@
                 "label": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The label for the range input."
                 },
                 "name": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "HTML name attribute."
                 },
                 "id": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "HTML id attribute. Auto-generated if not provided."
                 },
                 "model": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "AlpineJS model name for two-way binding."
                 },
                 "value": {
                     "type": "string",
                     "default": "'0'",
-                    "description": ""
+                    "description": "Initial range value. Ignored if $model is used."
                 },
                 "min": {
                     "type": "int",
                     "default": "0",
-                    "description": ""
+                    "description": "Minimum allowed value."
                 },
                 "max": {
                     "type": "int",
                     "default": "100",
-                    "description": ""
+                    "description": "Maximum allowed value."
                 },
                 "step": {
                     "type": "int",
                     "default": "1",
-                    "description": ""
+                    "description": "Incremental step value."
                 }
             },
-            "description": "A slider input for selecting a value within a range.",
-            "usage": "",
+            "description": "A slider input for selecting a numeric value from a range with dynamic value display.",
+            "usage": "<x-plume::form.range \n    label=\"Volume\" \n    model=\"settings.volume\" \n    min=\"0\" \n    max=\"100\" \n    step=\"5\"\n/>",
             "doc_url": "https://plume.dennisokon.com/docs/form-range"
         },
         "x-plume::form.section": {
@@ -1486,26 +1486,26 @@
                 "title": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The section title."
                 },
                 "description": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Optional text to describe the section's purpose."
                 },
                 "minCols": {
                     "type": "int",
                     "default": "1",
-                    "description": ""
+                    "description": "Number of columns on small screens."
                 },
                 "maxCols": {
                     "type": "int",
                     "default": "null",
-                    "description": ""
+                    "description": "Number of columns on large screens. Defaults to minCols if not set."
                 }
             },
-            "description": "A titled section for organizing form fields.",
-            "usage": "",
+            "description": "A titled section for organizing form fields into semantic groups with optional grid layout.",
+            "usage": "<x-plume::form.section \n    title=\"Security\" \n    description=\"Update your password and login settings.\"\n    :min-cols=\"1\"\n    :max-cols=\"2\"\n>\n    <x-plume::form.input name=\"password\" type=\"password\" label=\"New Password\" />\n    <x-plume::form.input name=\"password_confirmation\" type=\"password\" label=\"Confirm Password\" />\n</x-plume::form.section>",
             "doc_url": "https://plume.dennisokon.com/docs/form-section"
         },
         "x-plume::form.select": {
@@ -1514,41 +1514,41 @@
                 "label": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The label for the select input."
                 },
                 "name": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "HTML name attribute."
                 },
                 "id": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "HTML id attribute. Auto-generated from name if not provided."
                 },
                 "model": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "AlpineJS model name for two-way binding."
                 },
                 "options": {
                     "type": "array",
                     "default": "[]",
-                    "description": ""
+                    "description": "Associative array of options: [value => label]."
                 },
                 "placeholder": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Placeholder text for the first disabled option."
                 },
                 "multiple": {
                     "type": "bool",
                     "default": "false",
-                    "description": ""
+                    "description": "Whether to allow multiple selections."
                 }
             },
-            "description": "A dropdown select input.",
-            "usage": "",
+            "description": "A standard dropdown select input with multi-select support.",
+            "usage": "<x-plume::form.select \n    label=\"Category\" \n    model=\"category_id\" \n    :options=\"['1' => 'Technology', '2' => 'Design']\" \n    placeholder=\"Select a category\"\n/>\n\n<x-plume::form.select label=\"Tags\" model=\"tags\" multiple>\n    <option value=\"php\">PHP</option>\n    <option value=\"laravel\">Laravel</option>\n</x-plume::form.select>",
             "doc_url": "https://plume.dennisokon.com/docs/form-select"
         },
         "x-plume::form.textarea": {
@@ -1557,41 +1557,41 @@
                 "label": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The label for the textarea."
                 },
                 "name": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "HTML name attribute."
                 },
                 "id": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "HTML id attribute. Auto-generated if not provided."
                 },
                 "model": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "AlpineJS model name for two-way binding."
                 },
                 "value": {
                     "type": "string",
                     "default": "''",
-                    "description": ""
+                    "description": "Initial content for the textarea. Ignored if $model is used."
                 },
                 "rows": {
                     "type": "int",
                     "default": "3",
-                    "description": ""
+                    "description": "The number of visible text lines."
                 },
                 "placeholder": {
                     "type": "string",
                     "default": "''",
-                    "description": ""
+                    "description": "Placeholder text."
                 }
             },
-            "description": "A multi-line text input.",
-            "usage": "",
+            "description": "A multi-line text input for longer content.",
+            "usage": "<x-plume::form.textarea \n    label=\"Biography\" \n    model=\"bio\" \n    rows=\"5\" \n    placeholder=\"Tell us about yourself...\" \n/>",
             "doc_url": "https://plume.dennisokon.com/docs/form-textarea"
         },
         "x-plume::form.time": {
@@ -1600,36 +1600,36 @@
                 "label": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The label for the time input."
                 },
                 "name": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "HTML name attribute."
                 },
                 "id": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "HTML id attribute. Auto-generated from name if not provided."
                 },
                 "model": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "AlpineJS model name for two-way binding."
                 },
                 "value": {
                     "type": "string",
                     "default": "''",
-                    "description": ""
+                    "description": "Initial time value (HH:mm). Ignored if $model is used."
                 },
                 "placeholder": {
                     "type": "string",
                     "default": "''",
-                    "description": ""
+                    "description": "Placeholder text."
                 }
             },
-            "description": "A time picker input.",
-            "usage": "",
+            "description": "A native time picker input with integrated label and validation support.",
+            "usage": "<x-plume::form.time \n    label=\"Preferred Time\" \n    model=\"booking.time\" \n    required \n/>",
             "doc_url": "https://plume.dennisokon.com/docs/form-time"
         },
         "x-plume::form.toggle": {
@@ -1638,36 +1638,36 @@
                 "label": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The label text for the toggle."
                 },
                 "name": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "HTML name attribute."
                 },
                 "id": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "HTML id attribute. Auto-generated if not provided."
                 },
                 "model": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "AlpineJS model name for two-way binding."
                 },
                 "value": {
                     "type": "string",
                     "default": "'1'",
-                    "description": ""
+                    "description": "The value submitted when the toggle is on."
                 },
                 "checked": {
                     "type": "bool",
                     "default": "false",
-                    "description": ""
+                    "description": "Whether the toggle is initially on."
                 }
             },
-            "description": "A toggle switch for boolean selection.",
-            "usage": "",
+            "description": "A toggle switch for boolean selection or binary states.",
+            "usage": "<x-plume::form.toggle \n    label=\"Enable Notifications\" \n    model=\"notifications_enabled\" \n/>",
             "doc_url": "https://plume.dennisokon.com/docs/form-toggle"
         },
         "x-plume::gallery": {
@@ -1694,11 +1694,11 @@
                 "i": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The full icon name (e.g., 'icon-[fluent--save-24-regular]')."
                 }
             },
-            "description": "Displays an icon from the Iconify library.",
-            "usage": "",
+            "description": "Displays an icon using the Iconify library (specifically the Fluent set by default).",
+            "usage": "<x-plume::icon i=\"icon-[fluent--home-24-filled]\" class=\"size-6 text-primary\" />",
             "doc_url": "https://plume.dennisokon.com/docs/icon"
         },
         "x-plume::kbd": {
@@ -1707,11 +1707,11 @@
                 "size": {
                     "type": "string",
                     "default": "'md'",
-                    "description": ""
+                    "description": "Size of the component: 'sm', 'md', 'lg'."
                 }
             },
-            "description": "Displays keyboard input.",
-            "usage": "",
+            "description": "Displays keyboard shortcuts or input keys with semantic styling.",
+            "usage": "<p>Press <x-plume::kbd>Ctrl</x-plume::kbd> + <x-plume::kbd>K</x-plume::kbd> to search.</p>",
             "doc_url": "https://plume.dennisokon.com/docs/kbd"
         },
         "x-plume::modal": {
@@ -1748,7 +1748,7 @@
                     "description": "AlpineJS expression or function to call when the modal closes."
                 }
             },
-            "description": "A dialog box or popup window that is displayed on top of the current page.",
+            "description": "A dialog box or popup window that is displayed on top of the current page. Closes when clicking the backdrop or pressing the ESC key.",
             "usage": "<x-plume::modal name=\"login-modal\" title=\"Welcome Back\">\n    <x-plume::form ...>\n        ...\n    </x-plume::form>\n</x-plume::modal>\n\n<x-plume::button @click=\"$openModal('login-modal')\">Login</x-plume::button>",
             "doc_url": "https://plume.dennisokon.com/docs/modal"
         },
@@ -1846,21 +1846,21 @@
                 "total": {
                     "type": "int",
                     "default": "1",
-                    "description": ""
+                    "description": "Total number of pages."
                 },
                 "current": {
                     "type": "int",
                     "default": "1",
-                    "description": ""
+                    "description": "Currently active page."
                 },
                 "onEachSide": {
                     "type": "int",
                     "default": "1",
-                    "description": ""
+                    "description": "Number of page links to show on each side of the current page."
                 }
             },
-            "description": "Displays a sequence of links for navigating through a series of related pages. Powered by AlpineJS.",
-            "usage": "",
+            "description": "A standalone pagination component that dispatches events on change.",
+            "usage": "{{-- Simple Usage",
             "doc_url": "https://plume.dennisokon.com/docs/pagination"
         },
         "x-plume::popover": {
@@ -1869,21 +1869,21 @@
                 "trigger": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The text or slot content for the popover trigger."
                 },
                 "position": {
                     "type": "string",
                     "default": "'bottom'",
-                    "description": ""
+                    "description": "The primary position: 'top', 'bottom', 'left', 'right'."
                 },
                 "align": {
                     "type": "string",
                     "default": "'center'",
-                    "description": ""
+                    "description": "Alignment relative to position: 'start', 'center', 'end'."
                 }
             },
-            "description": "Displays rich content in a portal, triggered by a button.",
-            "usage": "",
+            "description": "Displays rich content in a small overlay, triggered by clicking a button or element.",
+            "usage": "<x-plume::popover trigger=\"Help Info\" position=\"top\">\n    <div class=\"space-y-2\">\n        <h4 class=\"font-bold\">Information</h4>\n        <p class=\"text-sm\">This is a helpful popover with some detailed explanation.</p>\n    </div>\n</x-plume::popover>",
             "doc_url": "https://plume.dennisokon.com/docs/popover"
         },
         "x-plume::progress": {
@@ -1892,36 +1892,36 @@
                 "value": {
                     "type": "int",
                     "default": "0",
-                    "description": ""
+                    "description": "The current completion value. Ignored if $model is provided."
                 },
                 "max": {
                     "type": "int",
                     "default": "100",
-                    "description": ""
+                    "description": "The maximum value representing 100% completion."
                 },
                 "style": {
                     "type": "string",
                     "default": "'default'",
-                    "description": ""
+                    "description": "Color style: 'default', 'secondary', 'error', 'success'."
                 },
                 "title": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Optional label text displayed above the bar."
                 },
                 "display": {
                     "type": "string",
                     "default": "'percentage'",
-                    "description": ""
+                    "description": "How to display the value: 'percentage', 'number', 'outof', 'inside' (centered), or 'none'."
                 },
                 "model": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "AlpineJS model name for dynamic progress updates."
                 }
             },
-            "description": "A bar that shows the completion progress of a task.",
-            "usage": "",
+            "description": "A visual indicator of task completion or value within a range. Supports reactive AlpineJS binding.",
+            "usage": "<x-plume::progress title=\"Uploading...\" :value=\"45\" :max=\"100\" style=\"success\" />\n\n{{-- Reactive usage",
             "doc_url": "https://plume.dennisokon.com/docs/progress"
         },
         "x-plume::progress.percent": {
@@ -2014,23 +2014,23 @@
                 "shape": {
                     "type": "string",
                     "default": "'rect'",
-                    "description": ""
+                    "description": "The shape of the skeleton: 'rect', 'circle', 'text'."
                 },
                 "animation": {
                     "type": "string",
                     "default": "'pulse'",
-                    "description": ""
+                    "description": "The animation style: 'pulse', 'wave', 'none'."
                 }
             },
-            "description": "A placeholder for content that is loading.",
-            "usage": "",
+            "description": "A placeholder component to indicate loading state for specific shapes or content blocks.",
+            "usage": "{{-- Profile Placeholder",
             "doc_url": "https://plume.dennisokon.com/docs/skeleton"
         },
         "x-plume::spacer": {
             "path": "plume/resources/views/components-class/spacer.blade.php",
             "props": [],
-            "description": "A utility component that fills available space in a flex container.",
-            "usage": "",
+            "description": "A utility component that fills available space in a flex container (using flex-grow).",
+            "usage": "<div class=\"flex items-center\">\n    <span>Left</span>\n    <x-plume::spacer />\n    <span>Right</span>\n</div>",
             "doc_url": "https://plume.dennisokon.com/docs/spacer"
         },
         "x-plume::spinner": {
@@ -2039,16 +2039,16 @@
                 "size": {
                     "type": "string",
                     "default": "'md'",
-                    "description": ""
+                    "description": "Size of the spinner: 'xs', 'sm', 'md', 'lg', 'xl'."
                 },
                 "style": {
                     "type": "string",
                     "default": "'primary'",
-                    "description": ""
+                    "description": "Color style: 'primary', 'secondary', 'error', 'white'."
                 }
             },
-            "description": "A loading indicator.",
-            "usage": "",
+            "description": "A CSS-animated loading indicator for indicating background processes or data fetching.",
+            "usage": "<x-plume::spinner size=\"lg\" style=\"primary\" />\n<x-plume::button disabled>\n    <x-plume::spinner size=\"xs\" style=\"white\" class=\"mr-2\" />\n    Processing...\n</x-plume::button>",
             "doc_url": "https://plume.dennisokon.com/docs/spinner"
         },
         "x-plume::stepper": {
@@ -2131,26 +2131,26 @@
                 "striped": {
                     "type": "bool",
                     "default": "false",
-                    "description": ""
+                    "description": "Whether to alternate row colors."
                 },
                 "hoverable": {
                     "type": "bool",
                     "default": "false",
-                    "description": ""
+                    "description": "Whether to highlight rows on hover."
                 },
                 "stickyHeader": {
                     "type": "bool",
                     "default": "false",
-                    "description": ""
+                    "description": "Whether to keep the header visible when scrolling."
                 },
                 "density": {
                     "type": "string",
                     "default": "'default'",
-                    "description": ""
+                    "description": "Spacing density: 'compact', 'default', 'loose'."
                 }
             },
-            "description": "A responsive table component.",
-            "usage": "",
+            "description": "A standard HTML table with semantic styling and responsive overflow support.",
+            "usage": "<x-plume::table striped hoverable>\n    <x-plume::table.thead>\n        <x-plume::table.tr>\n            <x-plume::table.th>Name</x-plume::table.th>\n            <x-plume::table.th>Email</x-plume::table.th>\n        </x-plume::table.tr>\n    </x-plume::table.thead>\n    <x-plume::table.tbody>\n        <x-plume::table.tr>\n            <x-plume::table.td>John Doe</x-plume::table.td>\n            <x-plume::table.td>john@example.com</x-plume::table.td>\n        </x-plume::table.tr>\n    </x-plume::table.tbody>\n</x-plume::table>",
             "doc_url": "https://plume.dennisokon.com/docs/table"
         },
         "x-plume::table.tbody": {
@@ -2309,11 +2309,11 @@
                 "position": {
                     "type": "string",
                     "default": "'bottom-right'",
-                    "description": ""
+                    "description": "Position of the toast stack: 'top-left', 'top-right', 'top-center', 'bottom-left', 'bottom-right', 'bottom-center'."
                 }
             },
-            "description": "A succinct message that is displayed temporarily.",
-            "usage": "",
+            "description": "A container for temporary notification messages (Toasts). Triggered via global magic helpers.",
+            "usage": "{{-- Place once in your main layout file",
             "doc_url": "https://plume.dennisokon.com/docs/toaster"
         },
         "x-plume::tooltip": {

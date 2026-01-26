@@ -1,11 +1,16 @@
 {{--
 @component x-plume::dropdown
 @description Displays a menu to the user—such as a set of actions or functions—triggered by a button.
-@prop string $trigger (Default: null)
-@prop string $align (Default: 'right')
-@prop string $width (Default: 'md')
-@prop string $contentClasses (Default: 'bg-background dark:bg-background-800')
-@prop string $triggerStyle (Default: 'outline')
+@prop string $trigger (Default: null) The text or slot content for the dropdown trigger button.
+@prop string $align (Default: 'right') Alignment of the dropdown menu: 'left', 'right', 'top'.
+@prop string $width (Default: 'md') Width of the menu: 'xs', 'sm', 'md', 'lg', 'xl', or custom class.
+@prop string $contentClasses (Default: 'bg-background dark:bg-background-800') Additional classes for the menu container.
+@prop string $triggerStyle (Default: 'outline') Visual style of the automatic trigger button.
+@usage
+<x-plume::dropdown trigger="Actions" align="right" width="sm">
+    <x-plume::dropdown.item href="/edit">Edit</x-plume::dropdown.item>
+    <x-plume::dropdown.item href="/delete" class="text-error">Delete</x-plume::dropdown.item>
+</x-plume::dropdown>
 --}}
 @php $dropdown = $component; @endphp
 <div class="relative" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">

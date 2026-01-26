@@ -1,9 +1,15 @@
 {{--
 @component x-plume::accordion.item
 @description An individual collapsible item within an accordion.
-@prop string $title (Default: null)
-@prop string $id (Default: null)
-@prop bool $open (Default: false)
+@prop string $title (Default: null) The text displayed in the accordion header.
+@prop string $id (Default: null) Unique identifier for the item. Auto-generated if not provided.
+@prop bool $open (Default: false) Whether the item should be open by default.
+@usage
+<x-plume::accordion>
+    <x-plume::accordion.item title="What is Plume?" id="faq-1" open>
+        Plume is a UI library for Laravel and Alpine.js.
+    </x-plume::accordion.item>
+</x-plume::accordion>
 --}}
 @php $accordionItem = $component; @endphp
 <div x-data="accordionItem('{{ $id }}', {{ $open ? 'true' : 'false' }})" x-init="if (localOpen && !alwaysOpen) active = id" {{ $attributes->merge(['class' => 'group']) }}>

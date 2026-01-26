@@ -1,13 +1,20 @@
 {{--
 @component x-plume::form.textarea
-@description A multi-line text input.
-@prop string $label (Default: null)
-@prop string $name (Default: null)
-@prop string $id (Default: null)
-@prop string $model (Default: null)
-@prop string $value (Default: '')
-@prop int $rows (Default: 3)
-@prop string $placeholder (Default: '')
+@description A multi-line text input for longer content.
+@prop string $label (Default: null) The label for the textarea.
+@prop string $name (Default: null) HTML name attribute.
+@prop string $id (Default: null) HTML id attribute. Auto-generated if not provided.
+@prop string $model (Default: null) AlpineJS model name for two-way binding.
+@prop string $value (Default: '') Initial content for the textarea. Ignored if $model is used.
+@prop int $rows (Default: 3) The number of visible text lines.
+@prop string $placeholder (Default: '') Placeholder text.
+@usage
+<x-plume::form.textarea 
+    label="Biography" 
+    model="bio" 
+    rows="5" 
+    placeholder="Tell us about yourself..." 
+/>
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php

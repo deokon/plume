@@ -1,7 +1,13 @@
 {{--
 @component x-plume::command.group
-@description Groups related items in a command palette.
-@prop string $title (Default: null)
+@description A container for grouping related command items within a command palette.
+@prop string $title (Default: null) The label for the group.
+@usage
+<x-plume::command>
+    <x-plume::command.group title="Actions">
+        <x-plume::command.item>Save File</x-plume::command.item>
+    </x-plume::command.group>
+</x-plume::command>
 --}}
 <div {{ $attributes->merge(['class' => 'space-y-1']) }}>
     @if ($title)

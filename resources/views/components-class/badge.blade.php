@@ -1,9 +1,12 @@
 {{--
 @component x-plume::badge
-@description Displays a badge or a component that looks like a badge.
-@prop string $style (Default: 'default')
-@prop string $size (Default: 'md')
-@prop string $shape (Default: 'default')
+@description Displays a small, styled label for status, counts, or categorization.
+@prop string $style (Default: 'default') Visual style: 'default', 'secondary', 'error', 'outline', 'success'.
+@prop string $size (Default: 'md') Size of the badge: 'sm', 'md', 'lg'.
+@prop string $shape (Default: 'default') Shape: 'default' (rounded), 'pill', 'square'.
+@usage
+<x-plume::badge style="success" shape="pill">Active</x-plume::badge>
+<x-plume::badge style="outline" size="sm">v1.0.0</x-plume::badge>
 --}}
 @aware([
     'style' => null,

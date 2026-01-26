@@ -1,9 +1,13 @@
 {{--
 @component x-plume::code
-@description A component for displaying code snippets with a copy-to-clipboard feature.
-@prop string $language (Default: null)
-@prop string $title (Default: null)
-@prop string $code (Default: null)
+@description A component for displaying code snippets with optional syntax highlighting label and a copy-to-clipboard feature.
+@prop string $language (Default: null) Programming language name for label and CSS class.
+@prop string $title (Default: null) Optional filename or title for the code block.
+@prop string $code (Default: null) The code content. If not provided, the slot will be used.
+@usage
+<x-plume::code language="javascript" title="app.js">
+    console.log('Hello Plume!');
+</x-plume::code>
 --}}
 <div x-data="clipboard()"
     {{ $attributes->merge(['class' => 'group relative rounded-xl border border-background-700/40 bg-background-800 dark:border-background-400/20 dark:bg-background-900 overflow-hidden w-full']) }}>

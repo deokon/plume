@@ -1,9 +1,9 @@
 {{--
 @component x-plume::form
-@description A robust form container with AJAX submission, validation error handling, and success feedback.
-@prop string $action (Default: '') Submission URL. Auto-detected if empty and using a <form> tag.
+@description A robust form container with AJAX submission, validation error handling, and reactive state binding.
+@prop string $action (Default: '') Submission URL. Auto-detected if using a <form> tag.
 @prop string $method (Default: 'POST') HTTP method (GET, POST, PUT, PATCH, DELETE).
-@prop array|string|null $formData (Default: null) Initial data for the form. Can be a PHP array or a JS object string.
+@prop array|string|null $formData (Default: null) Initial reactive data. Pass a PHP array or use Js::from().
 @prop string $submitButton (Default: null) Label for an automatic primary submit button with a loader.
 @prop string $resetButton (Default: null) Label for an automatic reset button.
 @prop bool $hideOnSuccess (Default: false) Whether to hide the form content after a successful submission.
@@ -13,16 +13,21 @@
 @prop bool $showAlerts (Default: true) Whether to automatically show success/error alerts.
 @prop bool $inline (Default: false) Renders form elements in a horizontal flex layout.
 @usage
+Usage with automatic buttons:
 <x-plume::form 
     action="/profile" 
     method="PUT" 
-    :form-data="$user"
-    submit-button="Update Profile"
-    onSuccess="$success('Profile saved!')"
+    :form-data="['name' => 'John', 'email' => 'john@example.com']"
+    submit-button="Save Changes"
 >
-    <x-plume::form.input name="name" label="Full Name" />
-    <x-plume::form.input name="email" label="Email Address" />
+    <x-plume::form.input name="name" model="name" label="Name" />
+    <x-plume::form.input name="email" model="email" label="Email" />
 </x-plume::form>
+
+Validation Error Handling:
+When the server returns a 422 response with an 'errors' object, 
+Plume automatically populates the form's error bag. 
+Fields with matching 'model' names will display their respective error messages.
 --}}
 <form action="{{ $action }}" method="{{ $method === 'GET' ? 'GET' : 'POST' }}"
     {{ $attributes->merge(['class' => $inline ? 'inline' : 'space-y-6']) }} x-data="form({!! is_array($formData) ? Js::from($formData) : $formData ?? '{}' !!}, {

@@ -1,6 +1,6 @@
 # Modal
 
-A dialog box or popup window that is displayed on top of the current page.
+A dialog box or popup window that is displayed on top of the current page. Closes when clicking the backdrop or pressing the ESC key.
 
 ## Properties
 

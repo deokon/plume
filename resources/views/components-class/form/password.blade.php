@@ -1,13 +1,20 @@
 {{--
 @component x-plume::form.password
-@description A secure password input field.
-@prop string $label (Default: null)
-@prop string $name (Default: null)
-@prop string $id (Default: null)
-@prop string $model (Default: null)
-@prop string $value (Default: '')
-@prop string $placeholder (Default: '')
-@prop string $icon (Default: 'icon-[fluent--lock-closed-24-regular]')
+@description A secure password input field with a built-in visibility toggle.
+@prop string $label (Default: null) The label for the password input.
+@prop string $name (Default: null) HTML name attribute.
+@prop string $id (Default: null) HTML id attribute. Auto-generated if not provided.
+@prop string $model (Default: null) AlpineJS model name for two-way binding.
+@prop string $value (Default: '') Initial password value. Ignored if $model is used.
+@prop string $placeholder (Default: '') Placeholder text.
+@prop string $icon (Default: 'icon-[fluent--lock-closed-24-regular]') Iconify icon name.
+@usage
+<x-plume::form.password 
+    label="New Password" 
+    model="password" 
+    placeholder="Choose a strong password"
+    required
+/>
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php

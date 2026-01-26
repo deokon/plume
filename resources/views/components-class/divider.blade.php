@@ -1,7 +1,13 @@
 {{--
 @component x-plume::divider
-@description Visually separates content sections with an optional label.
-@prop string $label (Default: null)
+@description A horizontal rule used to visually separate content sections, with optional text or icon labels.
+@prop string $label (Default: null) Text label to display in the center of the divider.
+@usage
+<x-plume::divider />
+<x-plume::divider label="OR" />
+<x-plume::divider>
+    <x-plume::icon i="icon-[fluent--star-24-regular]" />
+</x-plume::divider>
 --}}
 <div {{ $attributes->merge(['class' => 'relative flex items-center py-5 w-full']) }}>
     <div class="flex-grow border-t border-background-700/40 dark:border-background-400/20"></div>

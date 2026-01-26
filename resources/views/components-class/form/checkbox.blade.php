@@ -1,12 +1,23 @@
 {{--
 @component x-plume::form.checkbox
-@description A checkbox input for boolean selection.
-@prop string $label (Default: null)
-@prop string $name (Default: null)
-@prop string $id (Default: null)
-@prop string $model (Default: null)
-@prop string $value (Default: '')
-@prop bool $checked (Default: false)
+@description A checkbox input for binary selection or boolean state.
+@prop string $label (Default: null) The label text for the checkbox.
+@prop string $name (Default: null) HTML name attribute.
+@prop string $id (Default: null) HTML id attribute. Auto-generated if not provided.
+@prop string $model (Default: null) AlpineJS model name for two-way binding.
+@prop string $value (Default: '') The value submitted when the checkbox is checked.
+@prop bool $checked (Default: false) Whether the checkbox is initially checked.
+@usage
+<x-plume::form.checkbox 
+    label="Accept Terms" 
+    name="terms" 
+    model="accept_terms" 
+    required 
+/>
+
+<x-plume::form.checkbox name="remember" model="remember">
+    Remember me
+</x-plume::form.checkbox>
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php

@@ -1,10 +1,18 @@
 {{--
 @component x-plume::command.item
-@description An actionable item within a command palette.
-@prop string $value (Default: null)
-@prop string $onSelect (Default: null)
-@prop string $icon (Default: null)
-@prop string $shortcut (Default: null)
+@description An individual command or selection within a command palette group.
+@prop string $value (Default: null) The underlying value associated with the item.
+@prop string $onSelect (Default: null) AlpineJS expression or function to call when the item is activated.
+@prop string $icon (Default: null) Iconify icon name.
+@prop string $shortcut (Default: null) Keyboard shortcut text to display (e.g., '⌘K').
+@usage
+<x-plume::command.item 
+    icon="icon-[fluent--save-24-regular]" 
+    shortcut="⌘S"
+    @click="$success('Saved!')"
+>
+    Save Document
+</x-plume::command.item>
 --}}
 <div x-data="{
     get isVisible() {

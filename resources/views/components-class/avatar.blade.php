@@ -1,14 +1,19 @@
 {{--
 @component x-plume::avatar
-@description An image element with a fallback for representing the user.
-@prop string $src (Default: null)
-@prop string $alt (Default: '')
-@prop string $fallback (Default: '')
-@prop string $size (Default: 'md')
-@prop string $status (Default: null)
-@prop string $shape (Default: 'round')
+@description A circular or square image element with text fallback and optional status indicator.
+@prop string $src (Default: null) The URL of the avatar image.
+@prop string $alt (Default: '') Accessibility text for the image.
+@prop string $fallback (Default: '') Text to display if image fails to load (e.g., 'JD').
+@prop string $size (Default: 'md') Size of the avatar: 'xs', 'sm', 'md', 'lg', 'xl'.
+@prop string $status (Default: null) Color for the status indicator: 'success', 'warning', 'error', 'info'.
+@prop string $shape (Default: 'round') Shape of the avatar: 'round' (circle) or 'default' (rounded-md).
 @usage
-<x-plume::avatar src="https://github.com/shadcn.png" fallback="JD" />
+<x-plume::avatar 
+    src="https://example.com/user.jpg" 
+    fallback="JD" 
+    status="success" 
+    size="lg" 
+/>
 --}}
 @aware([
     'size' => null,

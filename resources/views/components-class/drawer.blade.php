@@ -1,6 +1,6 @@
 {{--
 @component x-plume::drawer
-@description A panel that slides in from the edge of the screen.
+@description A panel that slides in from the edge of the screen. Closes when clicking the backdrop or pressing the ESC key.
 @prop string $name (Default: null) Unique identifier for the drawer, used with $openDrawer(name).
 @prop bool $show (Default: false) Whether to show the drawer by default on page load.
 @prop string $side (Default: 'right') Side to slide in from: 'left', 'right', 'top', 'bottom'.

@@ -1,15 +1,15 @@
 {{--
 @component x-plume::alert
-@description Displays a callout for user attention.
-@prop string $icon (Default: null)
-@prop string $style (Default: 'info')
-@prop bool $closable (Default: false)
-@prop int $autoclose (Default: null)
-@prop string $title (Default: null)
-@prop string $onClose (Default: null)
+@description Displays a callout for user attention with semantic styling and optional dismissibility.
+@prop string $icon (Default: null) Iconify icon name. Auto-selected based on style if not provided.
+@prop string $style (Default: 'info') Semantic style: 'info', 'success', 'warning', 'error'.
+@prop bool $closable (Default: false) Whether to show a close button.
+@prop int $autoclose (Default: null) Delay in milliseconds before automatically closing.
+@prop string $title (Default: null) Bold title text for the alert.
+@prop string $onClose (Default: null) AlpineJS expression or function to call when the alert is closed.
 @usage
-<x-plume::alert style="success" title="Success">
-    Operation completed successfully.
+<x-plume::alert style="success" title="Settings Updated" closable autoclose="5000">
+    Your profile settings have been saved successfully.
 </x-plume::alert>
 --}}
 @php $alert = $component; @endphp

@@ -27,15 +27,25 @@ Quickly trigger notifications without accessing the store directly.
 
 | Helper | Description |
 | :--- | :--- |
-| `$toast(msg, options?)` | Add a new toast. Options: `type`, `title`, `description`, `timeout`. |
+| `$toast(msg, options?)` | Add a new toast. |
 | `$success(msg)` | Shorthand for a success-styled toast. |
 | `$error(msg)` | Shorthand for a destructive-styled toast. |
+
+### Toast Options
+
+The second argument to `$toast()` is an optional object:
+
+| Option | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `type` | `string` | `'info'` | One of: `'info'`, `'success'`, `'warning'`, `'error'`. |
+| `title` | `string` | `null` | A bold heading for the toast. |
+| `timeout` | `int` | `5000` | Duration in milliseconds before it auto-closes. |
 
 ### Usage Example
 
 ```blade
-<x-plume::button @click="$success('Settings saved successfully!')">
-    Save
+<x-plume::button @click="$toast('File uploaded', { type: 'success', title: 'Upload Complete' })">
+    Upload
 </x-plume::button>
 ```
 
@@ -52,8 +62,14 @@ Programmatic access to the system clipboard.
 ```blade
 <div x-data="{ coupon: 'SAVE20' }">
     <code x-text="coupon"></code>
+    {{-- Simple usage --}}
     <x-plume::button @click="$copy(coupon); $success('Code copied!')">
         Copy
     </x-plume::button>
+    
+    {{-- Advanced usage with callback --}}
+    <button @click="$copy(coupon).then(() => $success('Copied')).catch(() => $error('Failed'))">
+        Copy
+    </button>
 </div>
 ```

@@ -1,8 +1,11 @@
 {{--
 @component x-plume::breadcrumb.item
-@description Individual item in a breadcrumb trail.
-@prop string $href (Default: null)
-@prop bool $active (Default: false)
+@description An individual link or active label within a breadcrumb trail.
+@prop string $href (Default: null) The destination URL for the link. If null, the item renders as a span.
+@prop bool $active (Default: false) Whether the item represents the current page.
+@usage
+<x-plume::breadcrumb.item href="/dashboard">Dashboard</x-plume::breadcrumb.item>
+<x-plume::breadcrumb.item active>Settings</x-plume::breadcrumb.item>
 --}}
 <li {{ $attributes->merge(['class' => 'inline-flex items-center']) }}>
     @if ($href && !$active)

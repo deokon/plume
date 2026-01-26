@@ -1,14 +1,14 @@
 # Form
 
-A robust form container with AJAX submission, validation error handling, and success feedback.
+A robust form container with AJAX submission, validation error handling, and reactive state binding.
 
 ## Properties
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `action` | `string` | `''` | Submission URL. Auto-detected if empty and using a <form> tag. |
+| `action` | `string` | `''` | Submission URL. Auto-detected if using a <form> tag. |
 | `method` | `string` | `'POST'` | HTTP method (GET, POST, PUT, PATCH, DELETE). |
-| `formData` | `array|string|null` | `null` | Initial data for the form. Can be a PHP array or a JS object string. |
+| `formData` | `array|string|null` | `null` | Initial reactive data. Pass a PHP array or use Js::from(). |
 | `submitButton` | `string` | `null` | Label for an automatic primary submit button with a loader. |
 | `resetButton` | `string` | `null` | Label for an automatic reset button. |
 | `hideOnSuccess` | `bool` | `false` | Whether to hide the form content after a successful submission. |
@@ -21,14 +21,19 @@ A robust form container with AJAX submission, validation error handling, and suc
 ## Usage
 
 ```blade
+Usage with automatic buttons:
 <x-plume::form 
     action="/profile" 
     method="PUT" 
-    :form-data="$user"
-    submit-button="Update Profile"
-    onSuccess="$success('Profile saved!')"
+    :form-data="['name' => 'John', 'email' => 'john@example.com']"
+    submit-button="Save Changes"
 >
-    <x-plume::form.input name="name" label="Full Name" />
-    <x-plume::form.input name="email" label="Email Address" />
+    <x-plume::form.input name="name" model="name" label="Name" />
+    <x-plume::form.input name="email" model="email" label="Email" />
 </x-plume::form>
+
+Validation Error Handling:
+When the server returns a 422 response with an 'errors' object, 
+Plume automatically populates the form's error bag. 
+Fields with matching 'model' names will display their respective error messages.
 ```

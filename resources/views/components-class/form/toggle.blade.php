@@ -1,12 +1,17 @@
 {{--
 @component x-plume::form.toggle
-@description A toggle switch for boolean selection.
-@prop string $label (Default: null)
-@prop string $name (Default: null)
-@prop string $id (Default: null)
-@prop string $model (Default: null)
-@prop string $value (Default: '1')
-@prop bool $checked (Default: false)
+@description A toggle switch for boolean selection or binary states.
+@prop string $label (Default: null) The label text for the toggle.
+@prop string $name (Default: null) HTML name attribute.
+@prop string $id (Default: null) HTML id attribute. Auto-generated if not provided.
+@prop string $model (Default: null) AlpineJS model name for two-way binding.
+@prop string $value (Default: '1') The value submitted when the toggle is on.
+@prop bool $checked (Default: false) Whether the toggle is initially on.
+@usage
+<x-plume::form.toggle 
+    label="Enable Notifications" 
+    model="notifications_enabled" 
+/>
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php

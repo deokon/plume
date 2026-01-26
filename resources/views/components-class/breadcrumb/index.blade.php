@@ -1,8 +1,16 @@
 {{--
 @component x-plume::breadcrumb
 @description Displays the path to the current resource using a hierarchy of links.
-@prop array $items (Default: [])
-@prop string $separator (Default: 'icon-[fluent--chevron-right-24-regular]')
+@prop array $items (Default: []) Array of link items: [['label' => 'Home', 'href' => '/', 'active' => false]].
+@prop string $separator (Default: 'icon-[fluent--chevron-right-24-regular]') The character or icon name to use as a separator.
+@usage
+<x-plume::breadcrumb 
+    :items="[
+        ['label' => 'Dashboard', 'href' => '/admin'],
+        ['label' => 'Users', 'href' => '/admin/users'],
+        ['label' => 'Edit User', 'active' => true]
+    ]" 
+/>
 --}}
 <nav {{ $attributes->merge(['class' => 'w-full', 'aria-label' => 'Breadcrumb']) }}>
     <ol

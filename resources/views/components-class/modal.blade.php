@@ -1,6 +1,6 @@
 {{--
 @component x-plume::modal
-@description A dialog box or popup window that is displayed on top of the current page.
+@description A dialog box or popup window that is displayed on top of the current page. Closes when clicking the backdrop or pressing the ESC key.
 @prop string $name (Default: null) Unique identifier for the modal, used with $openModal(name).
 @prop bool $show (Default: false) Whether to show the modal by default on page load.
 @prop string $maxWidth (Default: '2xl') Maximum width: 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl', '7xl', 'full'.

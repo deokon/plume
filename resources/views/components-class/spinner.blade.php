@@ -1,8 +1,14 @@
 {{--
 @component x-plume::spinner
-@description A loading indicator.
-@prop string $size (Default: 'md')
-@prop string $style (Default: 'primary')
+@description A CSS-animated loading indicator for indicating background processes or data fetching.
+@prop string $size (Default: 'md') Size of the spinner: 'xs', 'sm', 'md', 'lg', 'xl'.
+@prop string $style (Default: 'primary') Color style: 'primary', 'secondary', 'error', 'white'.
+@usage
+<x-plume::spinner size="lg" style="primary" />
+<x-plume::button disabled>
+    <x-plume::spinner size="xs" style="white" class="mr-2" />
+    Processing...
+</x-plume::button>
 --}}
 <div role="status" aria-label="loading">
     <svg {{ $attributes->merge(['class' => 'animate-spin ' . $styleClass]) }}

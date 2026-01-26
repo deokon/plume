@@ -1,6 +1,6 @@
 # Drawer
 
-A panel that slides in from the edge of the screen.
+A panel that slides in from the edge of the screen. Closes when clicking the backdrop or pressing the ESC key.
 
 ## Properties
 

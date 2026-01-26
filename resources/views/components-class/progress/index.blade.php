@@ -1,12 +1,23 @@
 {{--
 @component x-plume::progress
-@description A bar that shows the completion progress of a task.
-@prop int $value (Default: 0)
-@prop int $max (Default: 100)
-@prop string $style (Default: 'default')
-@prop string $title (Default: null)
-@prop string $display (Default: 'percentage')
-@prop string $model (Default: null)
+@description A visual indicator of task completion or value within a range. Supports reactive AlpineJS binding.
+@prop int $value (Default: 0) The current completion value. Ignored if $model is provided.
+@prop int $max (Default: 100) The maximum value representing 100% completion.
+@prop string $style (Default: 'default') Color style: 'default', 'secondary', 'error', 'success'.
+@prop string $title (Default: null) Optional label text displayed above the bar.
+@prop string $display (Default: 'percentage') How to display the value: 'percentage', 'number', 'outof', 'inside' (centered), or 'none'.
+@prop string $model (Default: null) AlpineJS model name for dynamic progress updates.
+@usage
+<x-plume::progress title="Uploading..." :value="45" :max="100" style="success" />
+
+{{-- Reactive usage --}}
+<div x-data="{ uploadProgress: 0 }">
+    <x-plume::progress 
+        title="Syncing" 
+        model="uploadProgress" 
+        display="inside" 
+    />
+</div>
 --}}
 <div x-data="{
     _val: @if ($model) {{ $model }} @else {{ $value }} @endif,

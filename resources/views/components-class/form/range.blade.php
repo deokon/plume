@@ -1,14 +1,22 @@
 {{--
 @component x-plume::form.range
-@description A slider input for selecting a value within a range.
-@prop string $label (Default: null)
-@prop string $name (Default: null)
-@prop string $id (Default: null)
-@prop string $model (Default: null)
-@prop string $value (Default: '0')
-@prop int $min (Default: 0)
-@prop int $max (Default: 100)
-@prop int $step (Default: 1)
+@description A slider input for selecting a numeric value from a range with dynamic value display.
+@prop string $label (Default: null) The label for the range input.
+@prop string $name (Default: null) HTML name attribute.
+@prop string $id (Default: null) HTML id attribute. Auto-generated if not provided.
+@prop string $model (Default: null) AlpineJS model name for two-way binding.
+@prop string $value (Default: '0') Initial range value. Ignored if $model is used.
+@prop int $min (Default: 0) Minimum allowed value.
+@prop int $max (Default: 100) Maximum allowed value.
+@prop int $step (Default: 1) Incremental step value.
+@usage
+<x-plume::form.range 
+    label="Volume" 
+    model="settings.volume" 
+    min="0" 
+    max="100" 
+    step="5"
+/>
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php

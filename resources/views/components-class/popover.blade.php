@@ -1,9 +1,16 @@
 {{--
 @component x-plume::popover
-@description Displays rich content in a portal, triggered by a button.
-@prop string $trigger (Default: null)
-@prop string $position (Default: 'bottom')
-@prop string $align (Default: 'center')
+@description Displays rich content in a small overlay, triggered by clicking a button or element.
+@prop string $trigger (Default: null) The text or slot content for the popover trigger.
+@prop string $position (Default: 'bottom') The primary position: 'top', 'bottom', 'left', 'right'.
+@prop string $align (Default: 'center') Alignment relative to position: 'start', 'center', 'end'.
+@usage
+<x-plume::popover trigger="Help Info" position="top">
+    <div class="space-y-2">
+        <h4 class="font-bold">Information</h4>
+        <p class="text-sm">This is a helpful popover with some detailed explanation.</p>
+    </div>
+</x-plume::popover>
 --}}
 @php $popover = $component; @endphp
 <div x-data="{

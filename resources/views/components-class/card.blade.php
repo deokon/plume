@@ -1,11 +1,18 @@
 {{--
 @component x-plume::card
-@description Displays a card with header, content, and footer.
-@prop string $title (Default: null)
-@prop string $description (Default: null)
-@prop string $badge (Default: null)
-@prop string $badgeStyle (Default: 'default')
-@prop string $href (Default: null)
+@description A versatile container for related content and actions, featuring semantic sections.
+@prop string $title (Default: null) The main title for the card.
+@prop string $description (Default: null) A brief description or subtitle.
+@prop string $badge (Default: null) Text for an optional status badge in the header.
+@prop string $badgeStyle (Default: 'default') The visual style of the badge.
+@prop string $href (Default: null) If provided, renders the card as a clickable link.
+@usage
+<x-plume::card title="Project Alpha" description="Updated 2 hours ago" badge="In Progress">
+    <p>Card content goes here.</p>
+    <x-slot:footer>
+        <x-plume::button size="sm">View Project</x-plume::button>
+    </x-slot:footer>
+</x-plume::card>
 --}}
 @php
     $tag = $href ? 'a' : 'div';

@@ -1,12 +1,17 @@
 # Pagination
 
-Displays a sequence of links for navigating through a series of related pages. Powered by AlpineJS.
+A standalone pagination component that dispatches events on change.
 
 ## Properties
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `total` | `int` | `1` |  |
-| `current` | `int` | `1` |  |
-| `onEachSide` | `int` | `1` |  |
+| `total` | `int` | `1` | Total number of pages. |
+| `current` | `int` | `1` | Currently active page. |
+| `onEachSide` | `int` | `1` | Number of page links to show on each side of the current page. |
 
+## Usage
+
+```blade
+{{-- Simple Usage
+```

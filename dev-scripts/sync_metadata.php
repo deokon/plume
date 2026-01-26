@@ -210,48 +210,59 @@ function parseBladeDocBlock($path) {
     if (!file_exists($path)) return $data;
 
     $content = file_get_contents($path);
-    if (!preg_match('/{{--\s*(.*?)\s*--}}/s', $content, $match)) {
-        return $data;
-    }
-
-    $block = $match[1];
-    $lines = explode("\n", $block);
     
-    $currentTag = null;
+    // Find the first occurrence of {{-- and the FIRST occurrence of --}} after it
+    $startMarker = '{{--';
+    $endMarker = '--}}';
+    
+    $startPos = strpos($content, $startMarker);
+    if ($startPos === false) return $data;
+    
+    $endPos = strpos($content, $endMarker, $startPos);
+    if ($endPos === false) return $data;
 
-    foreach ($lines as $line) {
-        $trimmedLine = trim($line);
-        
-        if (preg_match('/^@(description|usage|prop)\s*(.*)/', $trimmedLine, $tagMatch)) {
-            $currentTag = $tagMatch[1];
-            $tagValue = $tagMatch[2];
-            
-            if ($currentTag === 'description') {
-                $data['description'] = $tagValue;
-            } elseif ($currentTag === 'usage') {
-                $data['usage'] = $tagValue;
-            } elseif ($currentTag === 'prop') {
-                // Extract name and description
-                if (preg_match('/\$(\\w+)/', $tagValue, $m)) {
-                    $name = $m[1];
-                    $parenPos = strpos($tagValue, ')');
-                    if ($parenPos !== false) {
-                        $data['props'][$name] = trim(substr($tagValue, $parenPos + 1));
-                    }
-                }
+    $block = trim(substr($content, $startPos + strlen($startMarker), $endPos - ($startPos + strlen($startMarker))));
+    
+    // Improved logic: Identify all @tags and their positions
+    $tags = ['description', 'usage', 'prop', 'component'];
+    $tagPositions = [];
+    
+    foreach ($tags as $tag) {
+        $pattern = '/^@' . $tag . '/m';
+        if (preg_match_all($pattern, $block, $matches, PREG_OFFSET_CAPTURE)) {
+            foreach ($matches[0] as $matchInfo) {
+                $tagPositions[] = [
+                    'tag' => $tag,
+                    'pos' => $matchInfo[1]
+                ];
             }
-        } elseif ($currentTag) {
-            if ($currentTag === 'description') {
-                $data['description'] .= ($data['description'] ? "\n" : "") . $line;
-            } elseif ($currentTag === 'usage') {
-                $data['usage'] .= ($data['usage'] ? "\n" : "") . $line;
-            }
-            // Props usually don't span multiple lines in our format
         }
     }
-
-    $data['description'] = trim($data['description']);
-    $data['usage'] = trim($data['usage']);
+    
+    // Sort positions to process in order
+    usort($tagPositions, fn($a, $b) => $a['pos'] <=> $b['pos']);
+    
+    for ($i = 0; $i < count($tagPositions); $i++) {
+        $current = $tagPositions[$i];
+        $start = $current['pos'] + strlen($current['tag']) + 1; // +1 for the @
+        $end = ($i + 1 < count($tagPositions)) ? $tagPositions[$i + 1]['pos'] : strlen($block);
+        
+        $value = trim(substr($block, $start, $end - $start));
+        
+        if ($current['tag'] === 'description') {
+            $data['description'] = $value;
+        } elseif ($current['tag'] === 'usage') {
+            $data['usage'] = $value;
+        } elseif ($current['tag'] === 'prop') {
+            if (preg_match('/\$(\\w+)/', $value, $m)) {
+                $name = $m[1];
+                $parenPos = strpos($value, ')');
+                if ($parenPos !== false) {
+                    $data['props'][$name] = trim(substr($value, $parenPos + 1));
+                }
+            }
+        }
+    }
 
     return $data;
 }

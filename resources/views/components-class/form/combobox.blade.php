@@ -1,10 +1,10 @@
 {{--
 @component x-plume::form.combobox
-@description A searchable select input with filtering capabilities.
-@prop string $label (Default: null) Label for the input.
+@description A searchable select input with filtering capabilities, integrated label, and validation support.
+@prop string $label (Default: null) The label for the combobox.
 @prop string $name (Default: null) HTML name attribute.
-@prop string $id (Default: null) HTML id attribute. Auto-generated if not provided.
-@prop string $model (Default: null) AlpineJS model name.
+@prop string $id (Default: null) HTML id attribute. Auto-generated from name if not provided.
+@prop string $model (Default: null) AlpineJS model name for two-way binding.
 @prop array $options (Default: []) Array of options: [{value: 1, label: 'One'}] or [1 => 'One'].
 @prop string $placeholder (Default: 'Select option...') Placeholder text when no value is selected.
 @prop string $emptyMessage (Default: 'No results found.') Message to show when filtering returns no results.
@@ -13,8 +13,9 @@
 <x-plume::form.combobox 
     label="Country" 
     model="country_id" 
-    :options="['US' => 'United States', 'CA' => 'Canada']" 
-    searchable
+    :options="['US' => 'United States', 'CA' => 'Canada', 'GB' => 'United Kingdom']" 
+    placeholder="Choose a country..."
+    onSelect="$toast('Selected country: ' + result.label)"
 />
 --}}
 @aware(['groupName' => null, 'groupModel' => null])

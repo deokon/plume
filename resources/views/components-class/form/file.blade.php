@@ -1,13 +1,29 @@
 {{--
 @component x-plume::form.file
-@description A file upload input with drag-and-drop support. Supports immediate pre-upload if uploadUrl is provided.
-@prop string $label (Default: null)
-@prop string $name (Default: null)
-@prop string $id (Default: null)
-@prop string $model (Default: null)
-@prop bool $multiple (Default: false)
-@prop string $accept (Default: null)
-@prop string $uploadUrl (Default: null)
+@description A file upload input with drag-and-drop support and automatic pre-uploading.
+@prop string $label (Default: null) The label for the file input.
+@prop string $name (Default: null) HTML name attribute.
+@prop string $id (Default: null) HTML id attribute. Auto-generated if not provided.
+@prop string $model (Default: null) AlpineJS model name. Stores the uploaded file ID(s).
+@prop bool $multiple (Default: false) Allow selecting and uploading multiple files.
+@prop string $accept (Default: null) Accepted file types (e.g., 'image/*', '.pdf').
+@prop string $uploadUrl (Default: null) API endpoint for immediate pre-upload. If provided, files are uploaded as soon as they are selected.
+@usage
+{{-- Basic Usage (Standard Form Submit) --}}
+<x-plume::form.file label="Resume" name="resume" accept=".pdf,.doc" />
+
+{{-- Immediate AJAX Pre-upload (Recommended) --}}
+{{-- The server must return JSON like: {"id": "file_uuid"} --}}
+<x-plume::form.file 
+    label="Gallery" 
+    model="images" 
+    multiple 
+    :uploadUrl="route('api.upload')" 
+    accept="image/*" 
+/>
+
+{{-- When using uploadUrl, the 'images' model in formData will be updated 
+     automatically with the IDs returned from the server. --}}
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php

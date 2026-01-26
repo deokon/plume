@@ -1,11 +1,17 @@
 {{--
 @component x-plume::form.color
-@description A color picker input.
-@prop string $label (Default: null)
-@prop string $name (Default: null)
-@prop string $id (Default: null)
-@prop string $model (Default: null)
-@prop string $value (Default: '#000000')
+@description A native color picker input with hex value display.
+@prop string $label (Default: null) The label for the color input.
+@prop string $name (Default: null) HTML name attribute.
+@prop string $id (Default: null) HTML id attribute. Auto-generated if not provided.
+@prop string $model (Default: null) AlpineJS model name for two-way binding.
+@prop string $value (Default: '#000000') Initial hex color value. Ignored if $model is used.
+@usage
+<x-plume::form.color 
+    label="Brand Color" 
+    model="brand_hex" 
+    value="#3b82f6" 
+/>
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php
