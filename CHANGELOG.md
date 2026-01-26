@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.9.1] - 2026-01-26
+
+### 🐛 Fixes
+- **Blade Compiler:** Resolved a critical infinite recursion issue (PHP status 139) caused by nested Blade comments (`{{-- --}}`) in component DocBlocks.
+- **Toaster:** Removed nested comments in the `Toaster` component header that triggered compilation errors.
+- **Workbench:** Eliminated stray control characters (`\x01`, `\x02`) that were appearing before and after property tables across all documentation pages.
+
+### 📝 Documentation & Metadata
+- **DocBlocks:** Standardized usage examples in component headers to avoid nested comment markers.
+- **Metadata:** Synchronized `plume-api.json` and Markdown docs to reflect the latest DocBlock improvements.
+
 ## [v0.9.0] - 2026-01-26
 
 ### 🚀 Features
