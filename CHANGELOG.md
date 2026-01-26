@@ -3,7 +3,26 @@
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+and this project adheres to [Semantic Versioning](https://keepachangelog.com/en/1.0.0/).
+
+## [v0.10.0] - 2026-01-26
+
+### 🚀 Features
+- **Button:** Added automatic loading spinner for AJAX-based buttons (`method` + `href`).
+- **Modal/Drawer:** Added `persistent` prop to prevent accidental closing via backdrop click or ESC key.
+- **Data Table:** Added `plume-refresh` event listener for external table refreshing.
+
+### 🐛 Fixes
+- **Modal/Drawer:** Fixed "Undefined variable" error in by adding the `persistent` property to the component classes.
+- **Button:** Fixed infinite recursion in `x-plume::button` when using AJAX path.
+- **Form:** Removed non-existent `form.inline` component registration from `PlumeServiceProvider`.
+
+### 📝 Documentation & Metadata
+- **New Guides:** Added **Accessibility** (`docs/accessibility.md`) and **Best Practices & Performance** (`docs/best-practices.md`) documentation.
+- **Forms:** Backfilled missing property descriptions for all Form components.
+- **Enriched Content:** Added advanced usage patterns and real-world examples for Form, Data Table, Modal, Drawer, Toast, and Global Helpers.
+- **Tooling:** Improved `sync_metadata.php` to handle complex DocBlocks with markdown and code fences.
+- **Cleanup:** Decommissioned `COMPONENTS.md` in favor of more comprehensive markdown documentation.
 
 ## [v0.9.1] - 2026-01-26
 

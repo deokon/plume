@@ -1,6 +1,6 @@
 {
   "name": "@deokon/plume",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "description": "A comprehensive UI library for Laravel and Alpine.js",
   "main": "resources/js/index.js",
   "files": [
