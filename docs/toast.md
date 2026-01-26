@@ -10,7 +10,11 @@ Toasts provide non-intrusive feedback about an operation. They are managed via a
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `position` | `string` | `'bottom-right'` | Position: `top-left`, `top-right`, `bottom-left`, `bottom-right`. |
+| `type` | `string` | `'info'` | Style: `info`, `success`, `error`, `warning`. |
+| `title` | `string` | `null` | Optional title for the toast. |
+| `message` | `string` | `null` | The message content of the toast. |
+| `duration` | `int` | `3000` | Duration in milliseconds before the toast auto-closes. |
+| `autoclose`| `bool` | `true` | Whether the toast should automatically close. |
 
 ## Usage
 
@@ -43,6 +47,6 @@ Alpine.store('toasts').add({
     type: 'success',
     title: 'Profile Updated',
     message: 'Your changes have been saved.',
-    timeout: 5000
+    duration: 5000
 });
 ```
