@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.8.0] - 2026-01-25
+
+### 🚀 Features
+- **Form:** Added `showAlerts` prop to optionally hide automatic feedback alerts.
+
+### 🐛 Fixes
+- **DataTable:** Fixed async race condition using `latestRequestId` counter.
+- **DataTable:** Resolved `RangeError` (Maximum call stack size exceeded) in Alpine.js DevTools by moving slots to a private closure.
+- **FileInput:** Fixed validation errors not propagating to parent form by implementing `syncErrors`.
+- **Figure:** Added attribute splitting to correctly route Alpine.js bindings (e.g., `:src`) to the inner `img` tag instead of the `figure` container.
+- **Button:** Fixed `SyntaxError: Invalid or unexpected token` in Blade templates by removing unnecessary backslash escaping.
+- **Button:** Resolved `TypeError: Cannot read properties of undefined (reading 'click')` by implementing a global event-based confirmation system (`@confirm-[id]`).
+
+### 🧹 Chores
+- **Metadata:** Synchronized component API definitions and documentation.
+- **Formatting:** Applied Prettier and ESLint formatting across the library.
+
 ## [v0.7.3] - 2026-01-25
 
 ### 🚀 Features
