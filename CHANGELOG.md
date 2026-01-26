@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.9.0] - 2026-01-26
+
+### 🚀 Features
+- **Button:** Switched to native `confirm()` for better stability and simpler implementation.
+
+### 🐛 Fixes
+- **FileInput:** Refactored error synchronization to be idiomatic Alpine.js, removing brittle `__x` usage.
+- **DataTable:** Improved reactivity after fetch operations by ensuring unique keys and data copying.
+
+### 📝 Documentation & Metadata
+- **DataTable:** Split comprehensive documentation into multiple manageable pages (Columns, Server-side, Actions).
+- **Toaster:** Updated `Toaster` and `Toast` documentation.
+- **Library-wide:** Synchronized all DocBlocks, `plume-api.json`, and installation instructions across the library and workbench.
+- **Metadata:** Enhanced `sync_metadata.php` script for robust parsing of property descriptions and usage examples.
+
+### 🧹 Chores
+- **Audit:** Completed a pre-release consistency audit for Dark Mode, icon naming, and prop casing.
+
 ## [v0.8.0] - 2026-01-25
 
 ### 🚀 Features
