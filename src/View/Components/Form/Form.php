@@ -18,6 +18,7 @@ class Form extends Component
         public bool $resetOnSuccess = false,
         public ?string $onSuccess = null,
         public ?string $onError = null,
+        public bool $showAlerts = true,
         public bool $inline = false,
     ) {}
 

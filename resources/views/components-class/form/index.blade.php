@@ -10,6 +10,7 @@
 @prop bool $resetOnSuccess (Default: false)
 @prop string $onSuccess (Default: null)
 @prop string $onError (Default: null)
+@prop bool $showAlerts (Default: true)
 @prop bool $inline (Default: false)
 --}}
 <form action="{{ $action }}" method="{{ $method === 'GET' ? 'GET' : 'POST' }}"
@@ -34,7 +35,7 @@
             {{ $slot }}
         </div>
 
-        @if(!$inline ?? true)
+        @if(($showAlerts) && (!$inline ?? true))
             {{-- Automatic Feedback Alerts --}}
             <template x-if="wasSuccessful">
                 <x-plume::alert style="success" title="Success" class="mt-4">
@@ -66,7 +67,7 @@
         @endif
     </div>
 
-    @if($inline ?? false)
+    @if(($showAlerts) && ($inline ?? false))
         {{-- Automatic Feedback Alerts --}}
         <template x-if="wasSuccessful">
             <x-plume::alert style="success" title="Success" class="mt-4">

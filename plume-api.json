@@ -780,6 +780,10 @@
                     "type": "string",
                     "default": "null"
                 },
+                "showAlerts": {
+                    "type": "bool",
+                    "default": "true"
+                },
                 "inline": {
                     "type": "bool",
                     "default": "false"

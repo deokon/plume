@@ -34,3 +34,8 @@ test('form renders with initial data from string', function () {
     
     expect($view)->toContain("form({ name: 'Jane' }");
 });
+
+test('form can hide feedback alerts', function () {
+    $view = Blade::render('<x-plume::form :showAlerts="false">Content</x-plume::form>');
+    expect($view)->not->toContain('x-plume::alert');
+});

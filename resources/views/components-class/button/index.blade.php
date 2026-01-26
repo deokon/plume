@@ -46,7 +46,7 @@
                 {{ $slot }}
             </button>
         @elseif($method)
-            <x-plume::form :action="$href" :method="$method" :onSuccess="$onSuccess" :onError="$onError" inline>
+            <x-plume::form :action="$href" :method="$method" :onSuccess="$onSuccess" :onError="$onError" :showAlerts="false" inline>
                 <button x-ref="btn" type="submit"
                     x-on:click="if (!confirmed) { $event.preventDefault(); $openModal(\'{{ $confirmId }}\'); }"
                     {{ $cleanAttributes->merge(['class' => $buttonComponent->classes($resolvedSize, $resolvedStyle, $resolvedShape)]) }}>
@@ -76,7 +76,7 @@
             {{ $slot }}
         </button>
     @elseif($method)
-        <x-plume::form :action="$href" :method="$method" :onSuccess="$onSuccess" :onError="$onError" inline>
+        <x-plume::form :action="$href" :method="$method" :onSuccess="$onSuccess" :onError="$onError" :showAlerts="false" inline>
             <button type="submit" {{ $cleanAttributes->merge(['class' => $buttonComponent->classes($resolvedSize, $resolvedStyle, $resolvedShape)]) }}>
                 @if ($icon)
                     <x-plume::icon i="{{ $icon }}" />
