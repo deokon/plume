@@ -32,18 +32,35 @@ export default (initialTotal = 1, initialCurrent = 1, onEachSide = 1) => ({
         });
 
         const observer = new MutationObserver(() => this.sync());
-        observer.observe(this.$el, { 
-            attributes: true, 
-            attributeFilter: ['total', 'current', 'data-total', 'data-current', ':total', ':current', 'x-bind:total', 'x-bind:current'] 
+        observer.observe(this.$el, {
+            attributes: true,
+            attributeFilter: [
+                'total',
+                'current',
+                'data-total',
+                'data-current',
+                ':total',
+                ':current',
+                'x-bind:total',
+                'x-bind:current',
+            ],
         });
-        
+
         // Initial sync after a short tick to ensure Alpine attributes are processed
         this.$nextTick(() => this.sync());
     },
 
     sync() {
-        const tAttr = this.$el.getAttribute('data-total') || this.$el.getAttribute('total') || this.$el.getAttribute(':total') || this.$el.getAttribute('x-bind:total');
-        const cAttr = this.$el.getAttribute('data-current') || this.$el.getAttribute('current') || this.$el.getAttribute(':current') || this.$el.getAttribute('x-bind:current');
+        const tAttr =
+            this.$el.getAttribute('data-total') ||
+            this.$el.getAttribute('total') ||
+            this.$el.getAttribute(':total') ||
+            this.$el.getAttribute('x-bind:total');
+        const cAttr =
+            this.$el.getAttribute('data-current') ||
+            this.$el.getAttribute('current') ||
+            this.$el.getAttribute(':current') ||
+            this.$el.getAttribute('x-bind:current');
 
         const t = parseInt(tAttr);
         const c = parseInt(cAttr);

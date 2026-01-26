@@ -15,10 +15,10 @@
     'groupSide' => null,
 ])
 @php
-    $groupSize = $groupSize ?? $size ?? $component->size;
-    $groupStyle = $groupStyle ?? $style ?? $component->style;
-    $groupShape = $groupShape ?? $shape ?? $component->shape;
-    $groupSide = $groupSide ?? $side ?? $component->side;
+    $groupSize = $groupSize ?? ($size ?? $component->size);
+    $groupStyle = $groupStyle ?? ($style ?? $component->style);
+    $groupShape = $groupShape ?? ($shape ?? $component->shape);
+    $groupSide = $groupSide ?? ($side ?? $component->side);
 @endphp
 <div x-data="tabs('{{ $default }}', { onTabChange: {{ Js::from($onTabChange) }} })" {{ $attributes->merge(['class' => 'w-full']) }}>
     <div class="flex {{ $directionClass }}">

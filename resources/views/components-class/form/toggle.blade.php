@@ -11,7 +11,11 @@
 @aware(['groupName' => null, 'groupModel' => null])
 @php
     $toggle = $component;
-    [$resolvedName, $resolvedModel, $resolvedId] = $toggle->resolveFormAttributes($attributes->all(), $groupName, $groupModel);
+    [$resolvedName, $resolvedModel, $resolvedId] = $toggle->resolveFormAttributes(
+        $attributes->all(),
+        $groupName,
+        $groupModel,
+    );
 @endphp
 <x-plume::form.element :name="$resolvedName" :id="$resolvedId" :model="$resolvedModel">
     <div class="flex items-center gap-3">

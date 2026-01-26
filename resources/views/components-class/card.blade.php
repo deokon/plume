@@ -10,8 +10,7 @@
 @php
     $tag = $href ? 'a' : 'div';
 @endphp
-<{{ $tag }} 
-    @if($href) href="{{ $href }}" @endif
+<{{ $tag }} @if ($href) href="{{ $href }}" @endif
     {{ $attributes->merge(['class' => 'w-full rounded-xl border border-background-700/40 bg-background shadow dark:border-background-400/20 dark:bg-background-800' . ($href ? ' transition-all hover:bg-background-50 dark:hover:bg-background-700/50 hover:scale-[1.01] hover:shadow-lg' : '')]) }}>
     {{-- Header --}}
     @if ((isset($header) && $header->isNotEmpty()) || $title || $description || $badge)
@@ -51,4 +50,4 @@
             {{ $footer }}
         </div>
     @endif
-</{{ $tag }}>
+    </{{ $tag }}>

@@ -8,12 +8,12 @@
     {{ $attributes->merge(['class' => 'bg-background border-b border-background-200 dark:border-background-800' . ($sticky ? ' sticky top-0 z-50' : '')]) }}>
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex h-16 justify-between items-center gap-4">
-            @if(isset($left) || isset($center) || isset($right))
+            @if (isset($left) || isset($center) || isset($right))
                 <div class="flex shrink-0 items-center justify-start h-full">
                     {{ $left ?? '' }}
                 </div>
 
-                @if(isset($center))
+                @if (isset($center))
                     <div class="flex flex-1 items-center justify-center h-full text-center">
                         {{ $center }}
                     </div>
@@ -23,7 +23,7 @@
 
                 <div class="flex shrink-0 items-center justify-end h-full gap-2">
                     {{ $right ?? '' }}
-                    @if(isset($mobile))
+                    @if (isset($mobile))
                         <x-plume::navbar.mobile-toggle :icon="$mobileIcon" class="ml-2" />
                     @endif
                 </div>

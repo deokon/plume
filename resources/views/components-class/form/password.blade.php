@@ -11,11 +11,16 @@
 --}}
 @aware(['groupName' => null, 'groupModel' => null])
 @php
-    [$resolvedName, $resolvedModel, $resolvedId] = $component->resolveFormAttributes($attributes->all(), $groupName, $groupModel);
+    [$resolvedName, $resolvedModel, $resolvedId] = $component->resolveFormAttributes(
+        $attributes->all(),
+        $groupName,
+        $groupModel,
+    );
 @endphp
 <div x-data="{ show: false }">
-    <x-plume::form.input type="password" ::type="show ? 'text' : 'password'" :label="$label ?? $slot" :name="$resolvedName" :id="$resolvedId"
-        :model="$resolvedModel" :value="$value" :placeholder="$placeholder" :icon="$icon" {{ $attributes->except(['name', 'model', 'id']) }}>
+    <x-plume::form.input type="password" ::type="show ? 'text' : 'password'" :label="$label ?? $slot" :name="$resolvedName"
+        :id="$resolvedId" :model="$resolvedModel" :value="$value" :placeholder="$placeholder" :icon="$icon"
+        {{ $attributes->except(['name', 'model', 'id']) }}>
         @if (isset($after) && $after instanceof \Illuminate\View\ComponentSlot && $after->isNotEmpty())
             <x-slot:after>{{ $after }}</x-slot:after>
         @elseif(isset($after))

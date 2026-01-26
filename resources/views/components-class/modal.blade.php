@@ -9,8 +9,8 @@
 @prop string $onClose (Default: null)
 --}}
 <div x-data="modal('{{ $name }}', @js($show), @js($attributes->has('focusable')), { onOpen: {{ Js::from($onOpen) }}, onClose: {{ Js::from($onClose) }} })" x-on:keydown.escape.window="close()"
-    x-on:keydown.tab.prevent="handleTab($event)" x-show="show" x-cloak
-    role="dialog" aria-modal="true" aria-labelledby="modal-title-{{ $name }}"
+    x-on:keydown.tab.prevent="handleTab($event)" x-show="show" x-cloak role="dialog" aria-modal="true"
+    aria-labelledby="modal-title-{{ $name }}"
     {{ $attributes->merge(['class' => 'fixed inset-0 z-50 overflow-y-auto']) }}
     style="display: {{ $show ? 'block' : 'none' }};">
     <div x-show="show" x-cloak class="fixed inset-0 transform transition-all" x-on:click="close()"
@@ -36,7 +36,8 @@
                 </div>
             @elseif($title)
                 <div class="flex flex-col space-y-1.5 p-6">
-                    <h3 id="modal-title-{{ $name }}" class="text-lg font-semibold leading-none tracking-tight">
+                    <h3 id="modal-title-{{ $name }}"
+                        class="text-lg font-semibold leading-none tracking-tight">
                         {{ $title }}</h3>
                 </div>
             @endif

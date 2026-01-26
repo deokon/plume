@@ -15,11 +15,13 @@
     'shape' => null,
 ])
 @php
-    [$resolvedSize, $resolvedStyle, $resolvedShape] = $component->resolveStyleProps($attributes, ['size' => $size, 'shape' => $shape]);
+    [$resolvedSize, $resolvedStyle, $resolvedShape] = $component->resolveStyleProps($attributes, [
+        'size' => $size,
+        'shape' => $shape,
+    ]);
     $cleanAttributes = $component->cleanAttributes($attributes);
 @endphp
-<div
-    {{ $cleanAttributes->merge(['class' => $component->classes($resolvedSize, $resolvedShape)]) }}>
+<div {{ $cleanAttributes->merge(['class' => $component->classes($resolvedSize, $resolvedShape)]) }}>
     <div
         class="flex h-full w-full items-center justify-center overflow-hidden @if ($resolvedShape === 'default') rounded-md @else rounded-full @endif bg-background-200 dark:bg-background-700">
         @if ($src)

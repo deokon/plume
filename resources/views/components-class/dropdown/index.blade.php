@@ -13,9 +13,11 @@
         @if (isset($trigger) && $trigger instanceof \Illuminate\View\ComponentSlot)
             {{ $trigger }}
         @elseif (isset($trigger))
-            <x-plume::button type="button" style="{{ $triggerStyle }}" class="justify-between" ::class="{ 'bg-background-100 dark:bg-background-700': open }">
+            <x-plume::button type="button" style="{{ $triggerStyle }}" class="justify-between"
+                ::class="{ 'bg-background-100 dark:bg-background-700': open }">
                 {{ $trigger }}
-                <x-plume::icon i="icon-[fluent--chevron-down-12-filled]" class="size-4 ml-2 transition-transform duration-200" ::class="{ 'rotate-180': open }" />
+                <x-plume::icon i="icon-[fluent--chevron-down-12-filled]"
+                    class="size-4 ml-2 transition-transform duration-200" ::class="{ 'rotate-180': open }" />
             </x-plume::button>
         @endif
     </div>

@@ -26,8 +26,8 @@
     @endif
     @if ($resolvedModel)
         <template x-if="hasError('{{ $resolvedModel }}')">
-            <p id="{{ $resolvedId }}-error" class="mt-2 text-sm text-error-800 dark:text-error-200" x-text="getError('{{ $resolvedModel }}')"
-                aria-live="assertive"></p>
+            <p id="{{ $resolvedId }}-error" class="mt-2 text-sm text-error-800 dark:text-error-200"
+                x-text="getError('{{ $resolvedModel }}')" aria-live="assertive"></p>
         </template>
     @endif
 </div>

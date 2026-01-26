@@ -94,17 +94,28 @@ export default function (model = null, uploadUrl = null) {
                 xhr.onload = () => {
                     if (xhr.status >= 200 && xhr.status < 300) {
                         const response = JSON.parse(xhr.responseText);
-                        this.updateFileInArray(fileObj, { id: response.id, progress: 100 });
+                        this.updateFileInArray(fileObj, {
+                            id: response.id,
+                            progress: 100,
+                            error: null,
+                        });
                     } else {
-                        this.updateFileInArray(fileObj, { error: 'Upload failed' });
+                        let errorMessage = 'Upload failed';
+                        try {
+                            const response = JSON.parse(xhr.responseText);
+                            errorMessage = response.message || response.error || errorMessage;
+                        } catch (e) {}
+                        this.updateFileInArray(fileObj, { error: errorMessage });
                     }
                     this.syncModel();
+                    this.syncErrors();
                     resolve();
                 };
 
                 xhr.onerror = () => {
                     this.updateFileInArray(fileObj, { error: 'Network error' });
                     this.syncModel();
+                    this.syncErrors();
                     resolve();
                 };
 
@@ -112,7 +123,9 @@ export default function (model = null, uploadUrl = null) {
             });
         },
         updateFileInArray(fileObj, updates) {
-            const index = this.files.findIndex((f) => f.name === fileObj.name && f.size === fileObj.size);
+            const index = this.files.findIndex(
+                (f) => f.name === fileObj.name && f.size === fileObj.size
+            );
             if (index !== -1) {
                 // Merge updates into the object
                 Object.assign(fileObj, updates);
@@ -144,15 +157,27 @@ export default function (model = null, uploadUrl = null) {
             // Resolve nested path on the component proxy
             const parts = this.model.split('.');
             let obj = this;
-            
+
             while (parts.length > 1) {
                 const part = parts.shift();
                 if (obj[part] === undefined) return;
                 obj = obj[part];
             }
-            
+
             if (obj) {
                 obj[parts[0]] = value;
+            }
+        },
+        syncErrors() {
+            if (!this.model || typeof this.errors === 'undefined') return;
+
+            const firstError = this.files.find((f) => f.error)?.error || null;
+            const key = this.model.replace(/^data\./, '');
+
+            if (firstError) {
+                this.errors[key] = firstError;
+            } else if (this.errors[key]) {
+                delete this.errors[key];
             }
         },
     };

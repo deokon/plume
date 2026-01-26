@@ -9,18 +9,20 @@
 @prop string $sizes (Default: null)
 --}}
 <figure
-    {{ $attributes->merge(['class' => 'overflow-hidden rounded-lg bg-background-100 dark:bg-background-900/50']) }}>
+    {{ $attributes->whereDoesntStartWith(['x-', ':', '@', 'x-bind'])->merge(['class' => 'overflow-hidden rounded-lg bg-background-100 dark:bg-background-900/50']) }}>
     <div @class(['relative w-full', $aspectClass])>
         @if (isset($sources) && $sources->isNotEmpty())
             <picture>
                 {{ $sources }}
-                <img src="{{ $src }}" alt="{{ $alt }}"
+                <img {{ $attributes->whereStartsWith(['x-', ':', '@', 'x-bind']) }}
+                    src="{{ $src }}" alt="{{ $alt }}"
                     @if ($srcset) srcset="{{ $srcset }}" @endif
                     @if ($sizes) sizes="{{ $sizes }}" @endif
                     class="h-full w-full object-cover" loading="lazy">
             </picture>
         @else
-            <img src="{{ $src }}" alt="{{ $alt }}"
+            <img {{ $attributes->whereStartsWith(['x-', ':', '@', 'x-bind']) }}
+                src="{{ $src }}" alt="{{ $alt }}"
                 @if ($srcset) srcset="{{ $srcset }}" @endif
                 @if ($sizes) sizes="{{ $sizes }}" @endif
                 class="h-full w-full object-cover" loading="lazy">

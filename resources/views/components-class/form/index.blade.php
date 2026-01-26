@@ -14,15 +14,13 @@
 @prop bool $inline (Default: false)
 --}}
 <form action="{{ $action }}" method="{{ $method === 'GET' ? 'GET' : 'POST' }}"
-    {{ $attributes->merge(['class' => $inline ? 'inline' : 'space-y-6']) }}
-    x-data="form({!! is_array($formData) ? Js::from($formData) : ($formData ?? '{}') !!}, { 
-        hideOnSuccess: {{ Js::from($hideOnSuccess) }}, 
+    {{ $attributes->merge(['class' => $inline ? 'inline' : 'space-y-6']) }} x-data="form({!! is_array($formData) ? Js::from($formData) : $formData ?? '{}' !!}, {
+        hideOnSuccess: {{ Js::from($hideOnSuccess) }},
         resetOnSuccess: {{ Js::from($resetOnSuccess) }},
         onSuccess: {{ Js::from($onSuccess) }},
         onError: {{ Js::from($onError) }}
     })"
-    @submit.prevent="submit()"
->
+    @submit.prevent="submit()">
     @if ($method !== 'GET' && $method !== 'POST')
         @method($method)
     @endif
@@ -31,11 +29,12 @@
     @endif
 
     <div class="{{ $inline ? 'flex items-start gap-4' : '' }}">
-        <div x-show="!isHidden" class="{{ $inline ? 'flex items-start gap-4' : 'space-y-6' }}" x-bind:class="{ 'opacity-50 pointer-events-none select-none': processing }">
+        <div x-show="!isHidden" class="{{ $inline ? 'flex items-start gap-4' : 'space-y-6' }}"
+            x-bind:class="{ 'opacity-50 pointer-events-none select-none': processing }">
             {{ $slot }}
         </div>
 
-        @if(($showAlerts) && (!$inline ?? true))
+        @if ($showAlerts && (!$inline ?? true))
             {{-- Automatic Feedback Alerts --}}
             <template x-if="wasSuccessful">
                 <x-plume::alert style="success" title="Success" class="mt-4">
@@ -67,7 +66,7 @@
         @endif
     </div>
 
-    @if(($showAlerts) && ($inline ?? false))
+    @if ($showAlerts && ($inline ?? false))
         {{-- Automatic Feedback Alerts --}}
         <template x-if="wasSuccessful">
             <x-plume::alert style="success" title="Success" class="mt-4">

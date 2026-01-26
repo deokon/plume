@@ -6,8 +6,7 @@
 @prop string $icon (Default: null)
 @prop mixed $payload (Default: null)
 --}}
-<a href="{{ $href }}"
-    x-on:click="$dispatch('plume-search-select', {{ Js::from($payload) }})"
+<a href="{{ $href }}" x-on:click="$dispatch('plume-search-select', {{ Js::from($payload) }})"
     {{ $attributes->merge(['class' => 'flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-background-100 dark:hover:bg-background-800 transition-colors group']) }}>
     @if ($icon)
         <div
@@ -17,9 +16,11 @@
     @endif
 
     <div class="flex-1 min-w-0">
-        <p class="text-sm font-bold text-foreground dark:text-background-200 truncate">{{ $title }}</p>
+        <p class="text-sm font-bold text-foreground dark:text-background-200 truncate">
+            {{ $title }}</p>
         @if ($slot->isNotEmpty())
-            <p class="text-xs text-foreground/50 dark:text-background-400 truncate">{{ $slot }}</p>
+            <p class="text-xs text-foreground/50 dark:text-background-400 truncate">
+                {{ $slot }}</p>
         @endif
     </div>
 

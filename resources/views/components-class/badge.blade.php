@@ -11,7 +11,11 @@
     'shape' => null,
 ])
 @php
-    [$resolvedSize, $resolvedStyle, $resolvedShape] = $component->resolveStyleProps($attributes, ['size' => $size, 'style' => $style, 'shape' => $shape]);
+    [$resolvedSize, $resolvedStyle, $resolvedShape] = $component->resolveStyleProps($attributes, [
+        'size' => $size,
+        'style' => $style,
+        'shape' => $shape,
+    ]);
     $cleanAttributes = $component->cleanAttributes($attributes);
 @endphp
 <div

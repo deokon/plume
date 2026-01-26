@@ -13,8 +13,7 @@
     '{{ $mode }}',
     '{{ $min }}',
     '{{ $max }}',
-    '{{ $model }}',
-    { onDateSelect: {{ Js::from($onDateSelect) }} }
+    '{{ $model }}', { onDateSelect: {{ Js::from($onDateSelect) }} }
 )" x-modelable="value"
     {{ $attributes->merge(['class' => 'w-full max-w-[280px] bg-background dark:bg-background-800 border border-background-700/40 dark:border-background-400/20 rounded-xl shadow-sm p-4']) }}>
     {{-- Header --}}

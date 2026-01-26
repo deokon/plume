@@ -21,7 +21,7 @@ export default function (Alpine) {
             url: null,
             resetOnSuccess: false,
             hideOnSuccess: false,
-            ...config
+            ...config,
         },
 
         init() {
@@ -35,13 +35,21 @@ export default function (Alpine) {
             }
 
             // Watch for changes to calculate dirty state
-            this.$watch('data', (value) => {
-                this.isDirty = JSON.stringify(value) !== JSON.stringify(this._initialData);
-            }, { deep: true });
+            this.$watch(
+                'data',
+                (value) => {
+                    this.isDirty = JSON.stringify(value) !== JSON.stringify(this._initialData);
+                },
+                { deep: true }
+            );
 
             // Busy state listeners
-            this.$el.addEventListener('plume-busy', () => { this.busy = true; });
-            this.$el.addEventListener('plume-idle', () => { this.busy = false; });
+            this.$el.addEventListener('plume-busy', () => {
+                this.busy = true;
+            });
+            this.$el.addEventListener('plume-idle', () => {
+                this.busy = false;
+            });
         },
 
         async submit(url = null, method = null) {
@@ -62,16 +70,17 @@ export default function (Alpine) {
             }
 
             // Resolve CSRF Token: Meta tag first, then input field
-            const token = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content')
-                || document.querySelector('input[name="_token"]')?.value
-                || '';
+            const token =
+                document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') ||
+                document.querySelector('input[name="_token"]')?.value ||
+                '';
 
             try {
                 const response = await fetch(targetUrl, {
                     method: targetMethod,
                     headers: {
                         'Content-Type': 'application/json',
-                        'Accept': 'application/json',
+                        Accept: 'application/json',
                         'X-CSRF-TOKEN': token,
                     },
                     body: JSON.stringify(this.data),
@@ -85,7 +94,10 @@ export default function (Alpine) {
                     this.handleFailure(result, response.status);
                 }
             } catch (error) {
-                this.handleFailure({ message: error.message || 'An unexpected error occurred.' }, 500);
+                this.handleFailure(
+                    { message: error.message || 'An unexpected error occurred.' },
+                    500
+                );
             } finally {
                 this.processing = false;
             }
@@ -114,7 +126,7 @@ export default function (Alpine) {
 
             // Call optional success callbacks
             if (typeof this.onSuccess === 'function') this.onSuccess(result);
-            
+
             if (this._config.onSuccess) {
                 if (typeof this._config.onSuccess === 'function') {
                     this._config.onSuccess(result);
@@ -172,6 +184,6 @@ export default function (Alpine) {
             const key = field.replace(/^data\./, '');
             if (!this.errors[key]) return null;
             return Array.isArray(this.errors[key]) ? this.errors[key][0] : this.errors[key];
-        }
+        },
     }));
 }

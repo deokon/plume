@@ -29,8 +29,9 @@ export default function () {
         focusables() {
             // Include input and any role=option
             let selector = 'input, [role=option]';
-            return Array.from(this.$el.querySelectorAll(selector))
-                .filter(el => !el.hasAttribute('disabled') && getComputedStyle(el).display !== 'none');
+            return Array.from(this.$el.querySelectorAll(selector)).filter(
+                (el) => !el.hasAttribute('disabled') && getComputedStyle(el).display !== 'none'
+            );
         },
 
         handleTab(event) {

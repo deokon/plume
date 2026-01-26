@@ -5,7 +5,7 @@
 @prop string $model (Default: null)
 @prop string $onSelect (Default: null)
 --}}
-<div x-data="search({ onSelect: {{ Js::from($onSelect) }} })" 
+<div x-data="search({ onSelect: {{ Js::from($onSelect) }} })"
     @if ($model) x-init="query = $wire.entangle('{{ $model }}')" @endif
     class="relative w-full" @click.away="open = false"
     @plume-search-select.stop="handleSelect($event.detail)">

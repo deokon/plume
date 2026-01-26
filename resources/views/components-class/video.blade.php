@@ -30,10 +30,9 @@
                 @if ($controls) controls @endif
                 @if ($loop) loop @endif
                 @if ($muted) muted @endif class="h-full w-full object-cover"
-                @play="playing = true; triggerCallback('onPlay')" 
-                @pause="playing = false; triggerCallback('onPause')" 
-                @ended="triggerCallback('onEnded')"
-                @click="toggle">
+                @play="playing = true; triggerCallback('onPlay')"
+                @pause="playing = false; triggerCallback('onPause')"
+                @ended="triggerCallback('onEnded')" @click="toggle">
                 Your browser does not support the video tag.
             </video>
 

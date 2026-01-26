@@ -37,7 +37,8 @@
                     {{ $title }}</p>
             @endif
             @if ($description)
-                <p class="text-xs text-foreground/40 dark:text-background-500 truncate">{{ $description }}</p>
+                <p class="text-xs text-foreground/40 dark:text-background-500 truncate">
+                    {{ $description }}</p>
             @endif
         </div>
     </div>

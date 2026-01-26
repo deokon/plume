@@ -56,12 +56,8 @@ export default function (Alpine) {
         focusables() {
             let selector =
                 'a, button, input:not([type="hidden"]), textarea, select, details, [tabindex]:not([tabindex="-1"])';
-            return (
-                [...this.$el.querySelectorAll(selector)]
-                    .filter(
-                        (el) =>
-                            !el.hasAttribute('disabled') && getComputedStyle(el).display !== 'none'
-                    )
+            return [...this.$el.querySelectorAll(selector)].filter(
+                (el) => !el.hasAttribute('disabled') && getComputedStyle(el).display !== 'none'
             );
         },
 
@@ -87,44 +83,24 @@ export default function (Alpine) {
             return Math.max(0, this.focusables().indexOf(document.activeElement)) - 1;
         },
 
-                handleTab(event) {
+        handleTab(event) {
+            if (event.shiftKey) {
+                this.prevFocusable().focus();
+            } else {
+                this.nextFocusable().focus();
+            }
+        },
 
-                    if (event.shiftKey) {
+        triggerCallback(name) {
+            const callback = this._config[name];
 
-                        this.prevFocusable().focus();
+            if (!callback) return;
 
-                    } else {
-
-                        this.nextFocusable().focus();
-
-                    }
-
-                },
-
-        
-
-                triggerCallback(name) {
-
-                    const callback = this._config[name];
-
-                    if (!callback) return;
-
-        
-
-                    if (typeof callback === 'function') {
-
-                        callback();
-
-                    } else if (typeof callback === 'string') {
-
-                        Alpine.evaluate(this.$el, callback);
-
-                    }
-
-                },
-
-            }));
-
-        }
-
-        
+            if (typeof callback === 'function') {
+                callback();
+            } else if (typeof callback === 'string') {
+                Alpine.evaluate(this.$el, callback);
+            }
+        },
+    }));
+}

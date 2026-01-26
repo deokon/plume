@@ -13,23 +13,30 @@
 @aware(['groupName' => null, 'groupModel' => null])
 @php
     $combobox = $component;
-    [$resolvedName, $resolvedModel, $resolvedId] = $combobox->resolveFormAttributes($attributes->all(), $groupName, $groupModel);
-    
+    [$resolvedName, $resolvedModel, $resolvedId] = $combobox->resolveFormAttributes(
+        $attributes->all(),
+        $groupName,
+        $groupModel,
+    );
+
     // Ensure options are in [{value, label}] format if they are simple [val => lab]
-    $formattedOptions = collect($options)->map(function($label, $value) {
-        if (is_array($label) && isset($label['value'])) return $label;
-        return ['value' => $value, 'label' => $label];
-    })->values()->toArray();
+    $formattedOptions = collect($options)
+        ->map(function ($label, $value) {
+            if (is_array($label) && isset($label['value'])) {
+                return $label;
+            }
+            return ['value' => $value, 'label' => $label];
+        })
+        ->values()
+        ->toArray();
 @endphp
 <x-plume::form.element :label="$label ?? $slot" :name="$resolvedName" :id="$resolvedId" :model="$resolvedModel">
-    <div x-data="combobox({{ json_encode($formattedOptions) }}, '{{ $resolvedModel }}', { 
-            emptyMessage: '{{ $combobox->emptyMessage }}',
-            onSelect: {{ Js::from($onSelect) }}
-         })" 
-         class="relative"
-         @keydown="onKeydown($event)">
-        <button type="button" @click="toggle()" id="{{ $resolvedId }}"
-            role="combobox" aria-haspopup="listbox" :aria-expanded="open"
+    <div x-data="combobox({{ json_encode($formattedOptions) }}, '{{ $resolvedModel }}', {
+        emptyMessage: '{{ $combobox->emptyMessage }}',
+        onSelect: {{ Js::from($onSelect) }}
+    })" class="relative" @keydown="onKeydown($event)">
+        <button type="button" @click="toggle()" id="{{ $resolvedId }}" role="combobox"
+            aria-haspopup="listbox" :aria-expanded="open"
             :aria-invalid="hasError('{{ $resolvedModel }}')"
             :aria-describedby="hasError('{{ $resolvedModel }}') ? '{{ $resolvedId }}-error' : null"
             class="relative w-full cursor-default rounded-md bg-background py-2 pl-3 pr-10 text-left border border-background-700/40 dark:border-background-400/20 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm transition-all"
@@ -53,18 +60,20 @@
                 <template x-for="(option, index) in filteredOptions" :key="option.value">
                     <li @click="select(option)"
                         class="relative cursor-default select-none py-2 pl-3 pr-9 text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
-                        :class="{ 
+                        :class="{
                             'bg-primary text-primary-foreground': value == option.value,
-                            'bg-background-100 dark:bg-background-700': activeIndex === index 
+                            'bg-background-100 dark:bg-background-700': activeIndex === index
                         }">
                         <span class="block truncate" x-text="option.label"></span>
                         <span x-show="value == option.value"
                             class="absolute inset-y-0 right-0 flex items-center pr-4">
-                            <x-plume::icon i="icon-[fluent--checkmark-24-regular]" class="h-5 w-5" />
+                            <x-plume::icon i="icon-[fluent--checkmark-24-regular]"
+                                class="h-5 w-5" />
                         </span>
                     </li>
                 </template>
-                <div x-show="filteredOptions.length === 0" class="px-3 py-2 text-sm text-foreground/50" x-text="emptyMessage">
+                <div x-show="filteredOptions.length === 0"
+                    class="px-3 py-2 text-sm text-foreground/50" x-text="emptyMessage">
                 </div>
             </ul>
         </div>
