@@ -645,6 +645,49 @@
             "usage": "<x-plume::command.item \n    icon=\"icon-[fluent--save-24-regular]\" \n    shortcut=\"\u2318S\"\n    @click=\"$success('Saved!')\"\n>\n    Save Document\n</x-plume::command.item>",
             "doc_url": "https://plume.dennisokon.com/docs/command-item"
         },
+        "x-plume::data-gallery": {
+            "path": "plume/resources/views/components-class/data-gallery.blade.php",
+            "props": {
+                "data": {
+                    "type": "array",
+                    "default": "[]",
+                    "description": "Array of objects to display (client-side data)."
+                },
+                "searchable": {
+                    "type": "bool",
+                    "default": "false",
+                    "description": "Whether to show a search input for filtering."
+                },
+                "paginated": {
+                    "type": "bool",
+                    "default": "false",
+                    "description": "Whether to enable pagination."
+                },
+                "perPage": {
+                    "type": "int",
+                    "default": "12",
+                    "description": "Number of items per page."
+                },
+                "url": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "API endpoint URL for server-side fetching."
+                },
+                "cols": {
+                    "type": "int",
+                    "default": "3",
+                    "description": "Number of grid columns (1, 2, 3, or 4)."
+                },
+                "gap": {
+                    "type": "int",
+                    "default": "4",
+                    "description": "Gap spacing between items."
+                }
+            },
+            "description": "Gallery grid layout for displaying collections of items with dynamic content via slots. Powered by AlpineJS. Supports client-side data or server-side fetching via URL.",
+            "usage": "### Basic Usage\n```blade\n<x-plume::data-gallery :data=\"$products\" paginated searchable :per-page=\"12\">\n    <x-slot:default>\n        <x-plume::card>\n            <img :src=\"item.image\" class=\"w-full h-48 object-cover\" />\n            <div class=\"p-4\">\n                <h3 x-text=\"item.name\" class=\"font-semibold\"></h3>\n                <p x-text=\"item.description\" class=\"text-sm text-foreground/60\"></p>\n                <span x-text=\"`$${item.price}`\" class=\"font-bold text-primary mt-2 block\"></span>\n            </div>\n        </x-plume::card>\n    </x-slot:default>\n</x-plume::data-gallery>\n```\n\n### Server-side Data\nWhen a `url` is provided, the gallery automatically handles fetching data from your API:\n```blade\n<x-plume::data-gallery\n    url=\"/api/products\"\n    paginated\n    searchable\n    :per-page=\"15\"\n    cols=\"4\"\n>\n    <x-slot:default>\n        <!-- item content here -->\n    </x-slot:default>\n</x-plume::data-gallery>\n```\n\n### Refreshing Data\nCall `fetch()` from any interactive element within the gallery to refresh its content:\n```blade\n<x-plume::button\n    @click=\"fetch()\"\n>\n    Refresh\n</x-plume::button>\n```",
+            "doc_url": "https://plume.dennisokon.com/docs/data-gallery"
+        },
         "x-plume::data-table": {
             "path": "plume/resources/views/components-class/data-table.blade.php",
             "props": {

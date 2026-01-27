@@ -5,6 +5,7 @@ import page from './alpine/page';
 import clipboard from './alpine/clipboard';
 import pagination from './alpine/pagination';
 import dataTable from './alpine/data-table';
+import dataGallery from './alpine/data-gallery';
 import calendar from './alpine/calendar';
 import carousel from './alpine/carousel';
 import combobox from './alpine/combobox';
@@ -25,6 +26,7 @@ export {
     clipboard,
     pagination,
     dataTable,
+    dataGallery,
     calendar,
     carousel,
     combobox,

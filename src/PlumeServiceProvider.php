@@ -14,7 +14,7 @@ class PlumeServiceProvider extends ServiceProvider
 
         // Register the component namespace for anonymous components
         Blade::anonymousComponentPath(__DIR__ . '/../resources/views/components', 'plume');
-        
+
         // Register View Classes
         Blade::component('plume::accordion', \deokon\Plume\View\Components\Accordion\Accordion::class);
         Blade::component('plume::accordion.item', \deokon\Plume\View\Components\Accordion\Item::class);
@@ -40,6 +40,7 @@ class PlumeServiceProvider extends ServiceProvider
         Blade::component('plume::command', \deokon\Plume\View\Components\Command\Command::class);
         Blade::component('plume::command.group', \deokon\Plume\View\Components\Command\Group::class);
         Blade::component('plume::command.item', \deokon\Plume\View\Components\Command\Item::class);
+        Blade::component('plume::data-gallery', \deokon\Plume\View\Components\DataGallery::class);
         Blade::component('plume::data-table', \deokon\Plume\View\Components\DataTable::class);
         Blade::component('plume::divider', \deokon\Plume\View\Components\Divider::class);
         Blade::component('plume::drawer', \deokon\Plume\View\Components\Drawer::class);
@@ -84,7 +85,7 @@ class PlumeServiceProvider extends ServiceProvider
         Blade::component('plume::toaster', \deokon\Plume\View\Components\Toaster::class);
         Blade::component('plume::tooltip', \deokon\Plume\View\Components\Tooltip::class);
         Blade::component('plume::video', \deokon\Plume\View\Components\Video::class);
-        
+
         // Form Components
         Blade::component('plume::form', \deokon\Plume\View\Components\Form\Form::class);
         Blade::component('plume::form.element', \deokon\Plume\View\Components\Form\Element::class);
