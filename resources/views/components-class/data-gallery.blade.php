@@ -11,7 +11,7 @@
 @usage
 ### Basic Usage
 ```blade
-<x-plume::data-gallery :data="$products" paginated searchable :per-page="12">
+<x-plume::data-gallery :data="$products" paginated searchable :per-page="10">
     <x-slot:default>
         <x-plume::card>
             <img :src="item.image" class="w-full h-48 object-cover" />
@@ -32,7 +32,7 @@ When a `url` is provided, the gallery automatically handles fetching data from y
     url="/api/products"
     paginated
     searchable
-    :per-page="15"
+    :per-page="10"
     cols="4"
 >
     <x-slot:default>
