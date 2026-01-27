@@ -6,6 +6,6 @@ Standard actions layout for stepper components.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `prev` | `mixed` | `null` |  |
-| `next` | `mixed` | `null` |  |
+| `prev` | `mixed` | `null` | Text or boolean for the previous button. |
+| `next` | `mixed` | `null` | Text or boolean for the next button. |
 

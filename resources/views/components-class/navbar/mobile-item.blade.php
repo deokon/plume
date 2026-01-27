@@ -1,8 +1,8 @@
 {{--
 @component x-plume::navbar.mobile-item
 @description Individual navigation link for mobile menu.
-@prop bool $active (Default: false)
-@prop string $href (Default: '#')
+@prop bool $active (Default: false) Whether this mobile menu item is currently active.
+@prop string $href (Default: '#') The URL the item links to.
 --}}
 @php
     $classes = $active

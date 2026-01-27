@@ -1,8 +1,8 @@
 {{--
 @component x-plume::navbar.item
-@description Individual navigation link.
-@prop bool $active (Default: false)
-@prop string $href (Default: '#')
+@description Navigation link within the navbar.
+@prop bool $active (Default: false) Whether this item is currently active.
+@prop string $href (Default: '#') The URL the item links to.
 --}}
 @php
     $classes = $active

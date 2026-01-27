@@ -6,5 +6,5 @@ Content panel for a specific tab.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `for` | `string` | `null` |  |
+| `for` | `string` | `null` | The unique identifier of the tab this panel belongs to. |
 

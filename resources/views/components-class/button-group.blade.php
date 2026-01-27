@@ -1,10 +1,10 @@
 {{--
 @component x-plume::button-group
 @description Groups related buttons together.
-@prop string $size (Default: null)
-@prop bool $stack (Default: true)
-@prop string $style (Default: null)
-@prop string $shape (Default: null)
+@prop string $size (Default: null) The size of buttons in the group (xs, sm, md, lg, xl).
+@prop bool $stack (Default: true) Whether buttons should stack on mobile screens.
+@prop string $style (Default: null) The visual style of buttons in the group (primary, secondary, success, error, warning, info, ghost, outline).
+@prop string $shape (Default: null) The shape of buttons in the group (default, pill, square).
 --}}
 @php
     $groupSize = $attributes->get('size', $component->groupSize);

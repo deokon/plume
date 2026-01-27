@@ -6,6 +6,6 @@ A popup that displays information related to an element when the element receive
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `text` | `string` | `null` |  |
-| `position` | `string` | `'top'` |  |
+| `text` | `string` | `null` | The text to display in the tooltip. |
+| `position` | `string` | `'top'` | Tooltip position (top, bottom, left, right). |
 

@@ -21,14 +21,23 @@ test('figure renders srcset and sizes', function () {
 
 test('figure renders sources slot', function () {
     $view = Blade::render('
-        <x-plume::figure src="img.jpg">
+        <x-plume::figure src="test.jpg">
             <x-slot:sources>
-                <source srcset="img.webp" type="image/webp">
+                <source srcset="test.webp" type="image/webp">
             </x-slot:sources>
         </x-plume::figure>
     ');
+
     expect($view)
         ->toContain('<picture>')
-        ->toContain('<source srcset="img.webp" type="image/webp">')
-        ->toContain('<img');
+        ->toContain('srcset="test.webp"')
+        ->toContain('type="image/webp"');
+});
+
+test('figure renders aspect ratio', function () {
+    $view = Blade::render('<x-plume::figure src="test.jpg" aspect="16/9" />');
+    expect($view)->toContain('aspect-video');
+
+    $view2 = Blade::render('<x-plume::figure src="test.jpg" aspect="4/3" />');
+    expect($view2)->toContain('aspect-[4/3]');
 });

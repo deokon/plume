@@ -1,8 +1,8 @@
 {{--
 @component x-plume::stepper.actions
 @description Standard actions layout for stepper components.
-@prop mixed $prev (Default: null)
-@prop mixed $next (Default: null)
+@prop mixed $prev (Default: null) Text or boolean for the previous button.
+@prop mixed $next (Default: null) Text or boolean for the next button.
 --}}
 @php $stepperActions = $component; @endphp
 <div {{ $attributes->merge(['class' => 'flex justify-start items-center gap-3 mt-6']) }}>

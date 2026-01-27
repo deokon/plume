@@ -23,12 +23,14 @@ class Aspect extends Component
     protected function themeStyles(): string
     {
         return match ($this->ratio) {
-            'square' => 'aspect-square',
-            'video' => 'aspect-video',
+            'square', '1/1' => 'aspect-square',
+            'video', '16/9' => 'aspect-video',
             '4/3' => 'aspect-[4/3]',
+            '3/4' => 'aspect-[3/4]',
             '3/2' => 'aspect-[3/2]',
+            '2/3' => 'aspect-[2/3]',
             '21/9' => 'aspect-[21/9]',
-            '1/1' => 'aspect-square',
+            '9/16' => 'aspect-[9/16]',
             default => str_starts_with($this->ratio, 'aspect-') ? $this->ratio : 'aspect-[' . $this->ratio . ']',
         };
     }

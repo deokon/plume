@@ -1,10 +1,10 @@
 # Dropdown Item
 
-An actionable item within a dropdown menu.
+Interactive item within a dropdown menu.
 
 ## Properties
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `style` | `string` | `'ghost'` |  |
+| `style` | `string` | `'ghost'` | Visual style of the item (e.g., 'ghost', 'error', 'success'). |
 

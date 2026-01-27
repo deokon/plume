@@ -1,10 +1,10 @@
 {{--
 @component x-plume::tabs.item
 @description Individual tab navigation link.
-@prop string $for (Default: null)
-@prop string $size (Default: 'md')
-@prop string $style (Default: 'default')
-@prop string $shape (Default: 'default')
+@prop string $for (Default: null) The unique identifier of the tab this item activates.
+@prop string $size (Default: 'md') The size of the tab (sm, md, lg).
+@prop string $style (Default: 'default') The visual style of the tab.
+@prop string $shape (Default: 'default') The shape of the tab button.
 --}}
 @aware([
     'side' => null,

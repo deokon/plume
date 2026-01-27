@@ -1,7 +1,7 @@
 {{--
 @component x-plume::table.th
 @description Table header cell.
-@prop string $align (Default: null)
+@prop string $align (Default: null) Horizontal alignment of the header cell (left, center, right).
 --}}
 @aware(['rowAlign' => null])
 @php

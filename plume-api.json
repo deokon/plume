@@ -85,32 +85,32 @@
                 "name": {
                     "type": "string",
                     "default": "'alert-dialog'",
-                    "description": ""
+                    "description": "Unique name for the dialog, used by x-plume::button to target it."
                 },
                 "show": {
                     "type": "bool",
                     "default": "false",
-                    "description": ""
+                    "description": "Whether the dialog is visible by default."
                 },
                 "maxWidth": {
                     "type": "string",
                     "default": "'2xl'",
-                    "description": ""
+                    "description": "Maximum width of the dialog (sm, md, lg, xl, 2xl, etc.)."
                 },
                 "action": {
                     "type": "string",
                     "default": "'Confirm'",
-                    "description": ""
+                    "description": "Text for the primary action button."
                 },
                 "withCancel": {
                     "type": "bool",
                     "default": "true",
-                    "description": ""
+                    "description": "Whether to show a cancel button."
                 },
                 "onConfirm": {
                     "type": "string",
                     "default": "''",
-                    "description": ""
+                    "description": "JavaScript action to execute when the primary button is clicked."
                 }
             },
             "description": "Modal dialog specifically designed for alerting users to important information or actions.",
@@ -331,22 +331,22 @@
                 "size": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The size of buttons in the group (xs, sm, md, lg, xl)."
                 },
                 "stack": {
                     "type": "bool",
                     "default": "true",
-                    "description": ""
+                    "description": "Whether buttons should stack on mobile screens."
                 },
                 "style": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The visual style of buttons in the group (primary, secondary, success, error, warning, info, ghost, outline)."
                 },
                 "shape": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The shape of buttons in the group (default, pill, square)."
                 }
             },
             "description": "Groups related buttons together.",
@@ -382,37 +382,37 @@
                 "var": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "AlpineJS variable name that controls the toggle state."
                 },
                 "size": {
                     "type": "string",
                     "default": "'md'",
-                    "description": ""
+                    "description": "Size of the buttons (xs, sm, md, lg, xl)."
                 },
                 "style": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Style of the 'on' button (primary, outline, etc.)."
                 },
                 "offStyle": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Style of the 'off' button."
                 },
                 "on": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Text or HTML for the 'on' state."
                 },
                 "off": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Text or HTML for the 'off' state."
                 },
                 "click": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Custom JavaScript to execute on click instead of default toggle logic."
                 }
             },
             "description": "Button that toggles between two states.",
@@ -536,22 +536,22 @@
                 "type": {
                     "type": "string",
                     "default": "'bar'",
-                    "description": ""
+                    "description": "Type of chart to render (bar, line)."
                 },
                 "data": {
                     "type": "array",
                     "default": "[]",
-                    "description": ""
+                    "description": "Data to visualize. Array of values or associative array for labeled data."
                 },
                 "height": {
                     "type": "int",
                     "default": "200",
-                    "description": ""
+                    "description": "Height of the chart in pixels."
                 },
                 "color": {
                     "type": "string",
                     "default": "'text-primary'",
-                    "description": ""
+                    "description": "Tailwind text color class for the chart elements."
                 }
             },
             "description": "Basic chart component for data visualization (bar, line).",
@@ -587,17 +587,17 @@
                 "trigger": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Text or slot for the element that opens the command palette."
                 },
                 "placeholder": {
                     "type": "string",
                     "default": "'Type a command or search...'",
-                    "description": ""
+                    "description": "Placeholder text for the search input."
                 },
                 "id": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Optional unique ID for the command palette."
                 }
             },
             "description": "A powerful search and action interface accessible via keyboard shortcuts.",
@@ -676,7 +676,7 @@
                 "cols": {
                     "type": "int",
                     "default": "3",
-                    "description": "Number of grid columns (1, 2, 3, or 4)."
+                    "description": "Shortcut to set responsive column distribution."
                 },
                 "gap": {
                     "type": "int",
@@ -846,10 +846,10 @@
                 "style": {
                     "type": "string",
                     "default": "'ghost'",
-                    "description": ""
+                    "description": "Visual style of the item (e.g., 'ghost', 'error', 'success')."
                 }
             },
-            "description": "An actionable item within a dropdown menu.",
+            "description": "Interactive item within a dropdown menu.",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/dropdown-item"
         },
@@ -889,32 +889,32 @@
                 "src": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The image source URL."
                 },
                 "alt": {
                     "type": "string",
                     "default": "''",
-                    "description": ""
+                    "description": "Alternative text for accessibility."
                 },
                 "caption": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Text caption displayed below the image."
                 },
                 "aspect": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Desired aspect ratio (e.g., '16/9', '4/3', 'square')."
                 },
                 "srcset": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Responsive image sources."
                 },
                 "sizes": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Responsive image sizes."
                 }
             },
             "description": "Enhanced image component with captions, aspect ratio control, and support for modern image formats.",
@@ -1734,22 +1734,22 @@
                 "cols": {
                     "type": "int",
                     "default": "3",
-                    "description": ""
+                    "description": "Shortcut to set responsive column distribution."
                 },
                 "gap": {
                     "type": "int",
                     "default": "4",
-                    "description": ""
+                    "description": "Gap between grid items."
                 },
                 "minCols": {
                     "type": "int",
                     "default": "null",
-                    "description": ""
+                    "description": "Minimum number of grid columns on mobile."
                 },
                 "maxCols": {
                     "type": "int",
                     "default": "null",
-                    "description": ""
+                    "description": "Maximum number of grid columns on large screens."
                 }
             },
             "description": "Responsive grid layout for images and figures.",
@@ -1831,12 +1831,12 @@
                 "sticky": {
                     "type": "bool",
                     "default": "false",
-                    "description": ""
+                    "description": "Whether the navbar should be sticky to the top of the page."
                 },
                 "mobileIcon": {
                     "type": "string",
                     "default": "'icon-[fluent--line-horizontal-3-20-regular]'",
-                    "description": ""
+                    "description": "Iconify class for the mobile menu toggle."
                 }
             },
             "description": "A top-level navigation component for site-wide links and actions.",
@@ -1849,15 +1849,15 @@
                 "active": {
                     "type": "bool",
                     "default": "false",
-                    "description": ""
+                    "description": "Whether this item is currently active."
                 },
                 "href": {
                     "type": "string",
                     "default": "'#'",
-                    "description": ""
+                    "description": "The URL the item links to."
                 }
             },
-            "description": "Individual navigation link.",
+            "description": "Navigation link within the navbar.",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/navbar-item"
         },
@@ -1867,7 +1867,7 @@
                 "href": {
                     "type": "string",
                     "default": "'/'",
-                    "description": ""
+                    "description": "The URL the logo links to."
                 }
             },
             "description": "The brand logo or title.",
@@ -1887,12 +1887,12 @@
                 "active": {
                     "type": "bool",
                     "default": "false",
-                    "description": ""
+                    "description": "Whether this mobile menu item is currently active."
                 },
                 "href": {
                     "type": "string",
                     "default": "'#'",
-                    "description": ""
+                    "description": "The URL the item links to."
                 }
             },
             "description": "Individual navigation link for mobile menu.",
@@ -2059,22 +2059,22 @@
                 "title": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Title of the search result."
                 },
                 "href": {
                     "type": "string",
                     "default": "'#'",
-                    "description": ""
+                    "description": "URL the result links to."
                 },
                 "icon": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Iconify class for the result icon."
                 },
                 "payload": {
                     "type": "mixed",
                     "default": "null",
-                    "description": ""
+                    "description": "Data passed to the plume-search-select event."
                 }
             },
             "description": "An individual result item within a search component.",
@@ -2153,12 +2153,12 @@
                 "prev": {
                     "type": "mixed",
                     "default": "null",
-                    "description": ""
+                    "description": "Text or boolean for the previous button."
                 },
                 "next": {
                     "type": "mixed",
                     "default": "null",
-                    "description": ""
+                    "description": "Text or boolean for the next button."
                 }
             },
             "description": "Standard actions layout for stepper components.",
@@ -2171,27 +2171,27 @@
                 "step": {
                     "type": "int",
                     "default": "null",
-                    "description": ""
+                    "description": "The step number (e.g., 1, 2, 3)."
                 },
                 "title": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Primary title of the step."
                 },
                 "description": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Optional secondary description."
                 },
                 "prev": {
                     "type": "mixed",
                     "default": "null",
-                    "description": ""
+                    "description": "Text for the previous button."
                 },
                 "next": {
                     "type": "mixed",
                     "default": "null",
-                    "description": ""
+                    "description": "Text for the next button."
                 }
             },
             "description": "An individual step within a stepper component.",
@@ -2239,7 +2239,7 @@
                 "align": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Horizontal alignment of the cell (left, center, right)."
                 }
             },
             "description": "Table data cell.",
@@ -2252,7 +2252,7 @@
                 "align": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Horizontal alignment of the header cell (left, center, right)."
                 }
             },
             "description": "Table header cell.",
@@ -2265,7 +2265,7 @@
                 "sticky": {
                     "type": "bool",
                     "default": "false",
-                    "description": ""
+                    "description": "Whether to make the header sticky to the top of the container during scroll."
                 }
             },
             "description": "Table header container.",
@@ -2278,12 +2278,12 @@
                 "rowAlign": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Vertical alignment of cells in the row (top, middle, bottom)."
                 },
                 "align": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "Horizontal alignment of cells in the row (left, center, right)."
                 }
             },
             "description": "Table row.",
@@ -2341,22 +2341,22 @@
                 "for": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The unique identifier of the tab this item activates."
                 },
                 "size": {
                     "type": "string",
                     "default": "'md'",
-                    "description": ""
+                    "description": "The size of the tab (sm, md, lg)."
                 },
                 "style": {
                     "type": "string",
                     "default": "'default'",
-                    "description": ""
+                    "description": "The visual style of the tab."
                 },
                 "shape": {
                     "type": "string",
                     "default": "'default'",
-                    "description": ""
+                    "description": "The shape of the tab button."
                 }
             },
             "description": "Individual tab navigation link.",
@@ -2369,7 +2369,7 @@
                 "for": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The unique identifier of the tab this panel belongs to."
                 }
             },
             "description": "Content panel for a specific tab.",
@@ -2395,12 +2395,12 @@
                 "text": {
                     "type": "string",
                     "default": "null",
-                    "description": ""
+                    "description": "The text to display in the tooltip."
                 },
                 "position": {
                     "type": "string",
                     "default": "'top'",
-                    "description": ""
+                    "description": "Tooltip position (top, bottom, left, right)."
                 }
             },
             "description": "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",

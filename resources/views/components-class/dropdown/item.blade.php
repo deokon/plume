@@ -1,7 +1,7 @@
 {{--
 @component x-plume::dropdown.item
-@description An actionable item within a dropdown menu.
-@prop string $style (Default: 'ghost')
+@description Interactive item within a dropdown menu.
+@prop string $style (Default: 'ghost') Visual style of the item (e.g., 'ghost', 'error', 'success').
 --}}
 <x-plume::button :style="$style"
     {{ $attributes->merge([

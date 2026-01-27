@@ -6,8 +6,8 @@ An individual result item within a search component.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `title` | `string` | `null` |  |
-| `href` | `string` | `'#'` |  |
-| `icon` | `string` | `null` |  |
-| `payload` | `mixed` | `null` |  |
+| `title` | `string` | `null` | Title of the search result. |
+| `href` | `string` | `'#'` | URL the result links to. |
+| `icon` | `string` | `null` | Iconify class for the result icon. |
+| `payload` | `mixed` | `null` | Data passed to the plume-search-select event. |
 

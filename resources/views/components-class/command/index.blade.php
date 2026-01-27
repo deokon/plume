@@ -1,9 +1,9 @@
 {{--
 @component x-plume::command
 @description A powerful search and action interface accessible via keyboard shortcuts.
-@prop string $trigger (Default: null)
-@prop string $placeholder (Default: 'Type a command or search...')
-@prop string $id (Default: null)
+@prop string $trigger (Default: null) Text or slot for the element that opens the command palette.
+@prop string $placeholder (Default: 'Type a command or search...') Placeholder text for the search input.
+@prop string $id (Default: null) Optional unique ID for the command palette.
 --}}
 @php $command = $component; @endphp
 <div x-data="command()" @keydown.window.prevent.cmd.k="toggle()"

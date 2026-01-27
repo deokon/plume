@@ -1,11 +1,11 @@
 {{--
 @component x-plume::stepper.step
 @description An individual step within a stepper component.
-@prop int $step (Default: null)
-@prop string $title (Default: null)
-@prop string $description (Default: null)
-@prop mixed $prev (Default: null)
-@prop mixed $next (Default: null)
+@prop int $step (Default: null) The step number (e.g., 1, 2, 3).
+@prop string $title (Default: null) Primary title of the step.
+@prop string $description (Default: null) Optional secondary description.
+@prop mixed $prev (Default: null) Text for the previous button.
+@prop mixed $next (Default: null) Text for the next button.
 --}}
 <div x-data="{
     step: {{ $step }},

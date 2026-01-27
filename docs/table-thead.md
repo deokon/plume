@@ -6,5 +6,5 @@ Table header container.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `sticky` | `bool` | `false` |  |
+| `sticky` | `bool` | `false` | Whether to make the header sticky to the top of the container during scroll. |
 

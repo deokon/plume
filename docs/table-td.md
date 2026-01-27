@@ -6,5 +6,5 @@ Table data cell.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `align` | `string` | `null` |  |
+| `align` | `string` | `null` | Horizontal alignment of the cell (left, center, right). |
 

@@ -1,12 +1,12 @@
 {{--
 @component x-plume::figure
 @description Enhanced image component with captions, aspect ratio control, and support for modern image formats.
-@prop string $src (Default: null)
-@prop string $alt (Default: '')
-@prop string $caption (Default: null)
-@prop string $aspect (Default: null)
-@prop string $srcset (Default: null)
-@prop string $sizes (Default: null)
+@prop string $src (Default: null) The image source URL.
+@prop string $alt (Default: '') Alternative text for accessibility.
+@prop string $caption (Default: null) Text caption displayed below the image.
+@prop string $aspect (Default: null) Desired aspect ratio (e.g., '16/9', '4/3', 'square').
+@prop string $srcset (Default: null) Responsive image sources.
+@prop string $sizes (Default: null) Responsive image sizes.
 --}}
 <figure
     {{ $attributes->whereDoesntStartWith(['x-', ':', '@', 'x-bind'])->merge(['class' => 'overflow-hidden rounded-lg bg-background-100 dark:bg-background-900/50']) }}>

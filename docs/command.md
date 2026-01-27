@@ -6,7 +6,7 @@ A powerful search and action interface accessible via keyboard shortcuts.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `trigger` | `string` | `null` |  |
-| `placeholder` | `string` | `'Type a command or search...'` |  |
-| `id` | `string` | `null` |  |
+| `trigger` | `string` | `null` | Text or slot for the element that opens the command palette. |
+| `placeholder` | `string` | `'Type a command or search...'` | Placeholder text for the search input. |
+| `id` | `string` | `null` | Optional unique ID for the command palette. |
 

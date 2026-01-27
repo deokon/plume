@@ -38,9 +38,12 @@ class Video extends Component
     protected function themeStyles(): string
     {
         return match ($this->aspect) {
-            'video' => 'aspect-video',
-            'square' => 'aspect-square',
+            'square', '1/1' => 'aspect-square',
+            'video', '16/9' => 'aspect-video',
+            '4/3' => 'aspect-[4/3]',
+            '3/4' => 'aspect-[3/4]',
             '21/9' => 'aspect-[21/9]',
+            '9/16' => 'aspect-[9/16]',
             default => 'aspect-video',
         };
     }
