@@ -26,7 +26,7 @@ export default (
     const component = Object.create(base);
     component.sortable = !!sortable;
 
-    component.init = function() {
+    component.init = function () {
         base.init.call(this);
 
         // Add columns mutation observation
@@ -39,7 +39,7 @@ export default (
         }
     };
 
-    component.toggleSort = function(col) {
+    component.toggleSort = function (col) {
         if (this.sortCol === col) {
             this.sortDir = this.sortDir === 'asc' ? 'desc' : 'asc';
         } else {
@@ -48,12 +48,7 @@ export default (
         }
     };
 
-    component.getSortIcon = function(column) {
-        if (this.sortCol !== column) return 'sort';
-        return this.sortDir === 'asc' ? 'chevron-up' : 'chevron-down';
-    };
-
-    component.renderConstructed = function(template, row) {
+    component.renderConstructed = function (template, row) {
         if (!template) return '';
 
         // First resolve slots: {slot:name}
