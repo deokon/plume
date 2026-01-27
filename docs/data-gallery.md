@@ -9,7 +9,7 @@ Gallery grid layout for displaying collections of items with dynamic content via
 | `data` | `array` | `[]` | Array of objects to display (client-side data). |
 | `searchable` | `bool` | `false` | Whether to show a search input for filtering. |
 | `paginated` | `bool` | `false` | Whether to enable pagination. |
-| `perPage` | `int` | `12` | Number of items per page. |
+| `perPage` | `int` | `10` | Number of items per page. |
 | `url` | `string` | `null` | API endpoint URL for server-side fetching. |
 | `cols` | `int` | `3` | Number of grid columns (1, 2, 3, or 4). |
 | `gap` | `int` | `4` | Gap spacing between items. |
