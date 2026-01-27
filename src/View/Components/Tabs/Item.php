@@ -6,10 +6,11 @@ use Illuminate\View\Component;
 use Illuminate\View\View;
 use Closure;
 use deokon\Plume\View\Components\Concerns\InteractsWithAttributes;
+use deokon\Plume\View\Components\Concerns\HasStyles;
 
 class Item extends Component
 {
-    use InteractsWithAttributes;
+    use InteractsWithAttributes, HasStyles;
 
     public function __construct(
         public string $for,

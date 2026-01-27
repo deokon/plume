@@ -26,14 +26,33 @@ When a `url` is provided, the gallery automatically handles fetching data from y
 
 ## API Response Format
 
-The server should return a JSON object with a `data` key containing the array of items. If paginated, it should also include pagination metadata.
+The server should return a JSON object compatible with `DataTableResponse`. This includes an `items` key for the data and a `pagination` object.
 
 ```json
 {
-    "data": [...],
-    "current_page": 1,
-    "last_page": 5,
-    "total": 50
+    "success": true,
+    "data": {
+        "items": [...],
+        "pagination": {
+            "total": 50,
+            "current_page": 1,
+            "per_page": 10,
+            "last_page": 5
+        }
+    }
+}
+```
+
+You can use the `deokon\Plume\Http\Responses\DataTableResponse` class to easily generate this response:
+
+```php
+use deokon\Plume\Http\Responses\DataTableResponse;
+
+public function index(Request $request)
+{
+    $query = Product::query();
+    // ... filtering ...
+    return DataTableResponse::fromPaginator($query->paginate($request->per_page));
 }
 ```
 
