@@ -14,16 +14,14 @@
 ### Basic Usage
 ```blade
 <x-plume::data-gallery :data="$products" paginated searchable :per-page="10">
-    <x-slot:default>
-        <x-plume::card>
-            <img :src="item.image" class="w-full h-48 object-cover" />
-            <div class="p-4">
-                <h3 x-text="item.name" class="font-semibold"></h3>
-                <p x-text="item.description" class="text-sm text-foreground/60"></p>
-                <span x-text="`$${item.price}`" class="font-bold text-primary mt-2 block"></span>
-            </div>
-        </x-plume::card>
-    </x-slot:default>
+    <x-plume::card>
+        <img :src="item.image" class="w-full h-48 object-cover" />
+        <div class="p-4">
+            <h3 x-text="item.name" class="font-semibold"></h3>
+            <p x-text="item.description" class="text-sm text-foreground/60"></p>
+            <span x-text="`$${item.price}`" class="font-bold text-primary mt-2 block"></span>
+        </div>
+    </x-plume::card>
 </x-plume::data-gallery>
 ```
 
@@ -37,9 +35,7 @@ When a `url` is provided, the gallery automatically handles fetching data from y
     :per-page="10"
     cols="4"
 >
-    <x-slot:default>
-        <!-- item content here -->
-    </x-slot:default>
+    <!-- item content here -->
 </x-plume::data-gallery>
 ```
 

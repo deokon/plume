@@ -14,15 +14,13 @@ When a `url` is provided, the gallery automatically handles fetching data from y
     :per-page="10"
     cols="4"
 >
-    <x-slot:default>
-        <x-plume::card>
-            <img :src="item.image" class="w-full h-48 object-cover" />
-            <div class="p-4">
-                <h3 x-text="item.name" class="font-semibold"></h3>
-                <span x-text="`$${item.price}`" class="font-bold text-primary mt-2 block"></span>
-            </div>
-        </x-plume::card>
-    </x-slot:default>
+    <x-plume::card>
+        <img :src="item.image" class="w-full h-48 object-cover" />
+        <div class="p-4">
+            <h3 x-text="item.name" class="font-semibold"></h3>
+            <span x-text="`$${item.price}`" class="font-bold text-primary mt-2 block"></span>
+        </div>
+    </x-plume::card>
 </x-plume::data-gallery>
 ```
 
@@ -57,13 +55,11 @@ Since items in the slot have access to the gallery context, you can call `fetch(
 
 ```blade
 <x-plume::data-gallery url="/api/products">
-    <x-slot:default>
-        <x-plume::card>
-            <h3 x-text="item.name"></h3>
-            <x-plume::button @click="fetch()">
-                Reload This Gallery
-            </x-plume::button>
-        </x-plume::card>
-    </x-slot:default>
+    <x-plume::card>
+        <h3 x-text="item.name"></h3>
+        <x-plume::button @click="fetch()">
+            Reload This Gallery
+        </x-plume::button>
+    </x-plume::card>
 </x-plume::data-gallery>
 ```
