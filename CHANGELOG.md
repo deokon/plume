@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.11.0] - 2026-01-27
+
+### 🚀 Features
+- **Data Gallery:** New component for displaying collections in a responsive grid layout with support for search and pagination.
+- **Shared Data Factory:** Extracted common Alpine.js logic into a reusable `base-data-component` factory for both Data Table and Data Gallery.
+- **Pagination Trait:** Introduced `HasPagination` trait to standardize pagination properties and initialization across PHP components.
+
+### 🛠 Refactors & Improvements
+- **Performance:** Optimized client-side search indexing in the shared data factory to avoid redundant iterations.
+- **Style:** Standardized `perPage` defaults to `10` across Data Table, Data Gallery, and the pagination trait.
+- **Tailwind CSS:** Refactored dynamic grid and gap classes in Data Gallery to use literal values for reliable JIT compiler discovery.
+- **Clean Code:** Refactored `DataTable` and `DataGallery` constructors to leverage the new `initializePagination` trait method.
+- **DataTable:** Updated to use the shared `base-data-component` factory, reducing presentation code by over 200 lines.
+
+### 📝 Documentation & Metadata
+- **New Docs:** Added comprehensive documentation for the Data Gallery component.
+- **Audit:** Added missing DocBlock documentation for the `DataTable` component class.
+- **Instructions:** Updated installation guides with `dataGallery` Alpine.js registration details.
+- **Metadata:** Synchronized `plume-api.json` and refreshed documentation files.
+
 ## [v0.10.0] - 2026-01-26
 
 ### 🚀 Features
