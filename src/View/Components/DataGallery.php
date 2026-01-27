@@ -20,11 +20,7 @@ class DataGallery extends Component
         public int $cols = 3,
         public int $gap = 4,
     ) {
-        $this->data = $data;
-        $this->searchable = $searchable;
-        $this->paginated = $paginated;
-        $this->perPage = $perPage;
-        $this->url = $url;
+        $this->initializePagination($data, $searchable, $paginated, $perPage, $url);
     }
 
     public function render(): View|Closure|string

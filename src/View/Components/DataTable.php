@@ -21,11 +21,7 @@ class DataTable extends Component
         ?string $url = null,
         public bool $fixedHeight = false,
     ) {
-        $this->data = $data;
-        $this->searchable = $searchable;
-        $this->paginated = $paginated;
-        $this->perPage = $perPage;
-        $this->url = $url;
+        $this->initializePagination($data, $searchable, $paginated, $perPage, $url);
     }
 
     public function render(): View|Closure|string

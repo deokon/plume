@@ -10,6 +10,20 @@ trait HasPagination
     public int $perPage = 10;
     public ?string $url = null;
 
+    protected function initializePagination(
+        array $data = [],
+        bool $searchable = false,
+        bool $paginated = false,
+        int $perPage = 10,
+        ?string $url = null,
+    ): void {
+        $this->data = $data;
+        $this->searchable = $searchable;
+        $this->paginated = $paginated;
+        $this->perPage = $perPage;
+        $this->url = $url;
+    }
+
     protected function preparePaginationData(): array
     {
         return [
