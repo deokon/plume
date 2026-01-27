@@ -6,21 +6,20 @@ use Illuminate\View\Component;
 use Illuminate\View\View;
 use Closure;
 
+use deokon
+Plume\View\Components\Concerns\HasGrid;
+
 class Group extends Component
 {
-    public ?string $groupName;
-    public ?string $groupModel;
+    use HasGrid;
 
     public function __construct(
         public ?string $label = null,
         public ?string $description = null,
         public int $minCols = 1,
-        public ?string $name = null,
         public ?string $model = null,
-    ) {
-        $this->groupName = $name;
-        $this->groupModel = $model;
-    }
+        public ?string $name = null,
+    ) {}
 
     public function render(): View|Closure|string
     {
@@ -32,18 +31,6 @@ class Group extends Component
 
     protected function themeStyles(): string
     {
-        $cols = [
-            1 => 'grid-cols-1',
-            2 => 'grid-cols-2',
-            3 => 'grid-cols-3',
-            4 => 'grid-cols-4',
-            5 => 'grid-cols-5',
-            6 => 'grid-cols-6',
-            12 => 'grid-cols-12',
-        ];
-
-        $colClass = $cols[$this->minCols] ?? 'grid-cols-1';
-
-        return "grid {$colClass} gap-4";
+        return $this->gridClasses($this->minCols, 4, $this->minCols);
     }
 }
