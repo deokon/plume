@@ -6,5 +6,7 @@ export default (perPage = 12, paginated = false, url = null, initialData = []) =
         paginated,
         url,
         initialData,
+        columns: [],
+        sortableColumns: [],
     });
 };

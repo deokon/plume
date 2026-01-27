@@ -7,6 +7,8 @@
  * @param {boolean} options.paginated - Enable pagination
  * @param {string|null} options.url - Server-side URL
  * @param {Array} options.initialData - Initial data array
+ * @param {Array} options.columns - Column definitions (for data-table)
+ * @param {Array} options.sortableColumns - Columns that support sorting
  * @param {Object} options.onSync - Custom sync handler
  * @param {Object} options.onFetch - Custom fetch parameters builder
  * @returns {Object} Alpine component object
@@ -17,13 +19,18 @@ export function createDataComponent(options) {
         paginated = false,
         url = null,
         initialData = [],
+        columns = [],
+        sortableColumns = [],
         onSync = null,
         onFetch = null,
     } = options;
 
     return {
         data: initialData,
+        columns: columns,
         search: '',
+        sortCol: sortableColumns.length > 0 ? sortableColumns[0] : '',
+        sortDir: 'asc',
         page: 1,
         perPage: parseInt(perPage) || 10,
         paginated: !!paginated,
@@ -57,6 +64,12 @@ export function createDataComponent(options) {
                 this.$watch('page', () => {
                     if (this.url) this.fetch();
                 });
+                this.$watch('sortCol', () => {
+                    if (this.url) this.fetch();
+                });
+                this.$watch('sortDir', () => {
+                    if (this.url) this.fetch();
+                });
             }
 
             if (this.$el && typeof MutationObserver !== 'undefined') {
@@ -64,7 +77,7 @@ export function createDataComponent(options) {
                     this.sync();
                     this.updateTotalPages();
                 });
-                observer.observe(this.$el, { attributes: true, attributeFilter: ['data'] });
+                observer.observe(this.$el, { attributes: true, attributeFilter: ['data', 'columns'] });
             }
 
             if (!this.url) {
@@ -84,6 +97,7 @@ export function createDataComponent(options) {
                 if (!this.$el) return;
 
                 const d = this.$el.getAttribute('data');
+                const c = this.$el.getAttribute('columns');
 
                 if (!this.url && d && !d.startsWith('[object ')) {
                     const parsedData = JSON.parse(d);
@@ -95,11 +109,21 @@ export function createDataComponent(options) {
                     }
                 }
 
+                if (c && !c.startsWith('[object ')) {
+                    const parsedCols = JSON.parse(c);
+                    if (
+                        Array.isArray(parsedCols) &&
+                        JSON.stringify(parsedCols) !== JSON.stringify(this.columns)
+                    ) {
+                        this.columns = parsedCols;
+                    }
+                }
+
                 if (onSync) {
                     onSync.call(this, d);
                 }
             } catch (e) {
-                console.error('Plume Data Component sync error: Invalid JSON provided to data.', e);
+                console.error('Plume Data Component sync error: Invalid JSON provided to data or columns.', e);
             }
         },
 
@@ -155,6 +179,17 @@ export function createDataComponent(options) {
                     return Object.values(item).some((val) =>
                         String(val).toLowerCase().includes(query)
                     );
+                });
+            }
+
+            if (this.sortCol) {
+                filtered.sort((a, b) => {
+                    let valA = a[this.sortCol];
+                    let valB = b[this.sortCol];
+
+                    if (valA < valB) return this.sortDir === 'asc' ? -1 : 1;
+                    if (valA > valB) return this.sortDir === 'asc' ? 1 : -1;
+                    return 0;
                 });
             }
 
