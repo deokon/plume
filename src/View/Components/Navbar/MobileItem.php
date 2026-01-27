@@ -6,12 +6,18 @@ use Illuminate\View\Component;
 use Illuminate\View\View;
 use Closure;
 
+use deokon\Plume\View\Components\Concerns\HasLink;
+
 class MobileItem extends Component
 {
+    use HasLink;
+
     public function __construct(
-        public bool $active = false,
-        public string $href = '#',
-    ) {}
+        bool $active = false,
+        string $href = '#',
+    ) {
+        $this->initializeLink($href, $active);
+    }
 
     public function render(): View|Closure|string
     {

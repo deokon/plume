@@ -6,12 +6,18 @@ use Illuminate\View\Component;
 use Illuminate\View\View;
 use Closure;
 
+use deokon\Plume\View\Components\Concerns\HasLink;
+
 class Item extends Component
 {
+    use HasLink;
+
     public function __construct(
-        public ?string $href = null,
-        public bool $active = false,
-    ) {}
+        ?string $href = null,
+        bool $active = false,
+    ) {
+        $this->initializeLink($href, $active);
+    }
 
     public function render(): View|Closure|string
     {
