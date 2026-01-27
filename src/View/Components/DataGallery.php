@@ -5,18 +5,27 @@ namespace deokon\Plume\View\Components;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 use Closure;
+use deokon\Plume\View\Components\Concerns\HasPagination;
 
 class DataGallery extends Component
 {
+    use HasPagination;
+
     public function __construct(
-        public array $data = [],
-        public bool $searchable = false,
-        public bool $paginated = false,
-        public int $perPage = 12,
-        public ?string $url = null,
+        array $data = [],
+        bool $searchable = false,
+        bool $paginated = false,
+        int $perPage = 12,
+        ?string $url = null,
         public int $cols = 3,
         public int $gap = 4,
-    ) {}
+    ) {
+        $this->data = $data;
+        $this->searchable = $searchable;
+        $this->paginated = $paginated;
+        $this->perPage = $perPage;
+        $this->url = $url;
+    }
 
     public function render(): View|Closure|string
     {

@@ -5,19 +5,28 @@ namespace deokon\Plume\View\Components;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 use Closure;
+use deokon\Plume\View\Components\Concerns\HasPagination;
 
 class DataTable extends Component
 {
+    use HasPagination;
+
     public function __construct(
-        public array $data = [],
+        array $data = [],
         public array $columns = [],
-        public bool $searchable = false,
-        public bool $paginated = false,
-        public int $perPage = 10,
+        bool $searchable = false,
+        bool $paginated = false,
+        int $perPage = 10,
         public bool $sortable = true,
-        public ?string $url = null,
+        ?string $url = null,
         public bool $fixedHeight = false,
-    ) {}
+    ) {
+        $this->data = $data;
+        $this->searchable = $searchable;
+        $this->paginated = $paginated;
+        $this->perPage = $perPage;
+        $this->url = $url;
+    }
 
     public function render(): View|Closure|string
     {

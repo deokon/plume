@@ -1,29 +1,39 @@
-export default (
-    perPage = 10,
-    paginated = false,
-    sortable = true,
-    url = null,
-    initialData = [],
-    initialColumns = [],
-    initialSlots = {}
-) => {
-    let _slots = initialSlots;
+/**
+ * Factory function for creating shared pagination/data-list Alpine components
+ * Used by both data-table and data-gallery components
+ *
+ * @param {Object} options - Configuration options
+ * @param {number} options.perPage - Items per page
+ * @param {boolean} options.paginated - Enable pagination
+ * @param {string|null} options.url - Server-side URL
+ * @param {Array} options.initialData - Initial data array
+ * @param {Object} options.onSync - Custom sync handler
+ * @param {Object} options.onFetch - Custom fetch parameters builder
+ * @returns {Object} Alpine component object
+ */
+export function createDataComponent(options) {
+    const {
+        perPage = 10,
+        paginated = false,
+        url = null,
+        initialData = [],
+        onSync = null,
+        onFetch = null,
+    } = options;
 
     return {
         data: initialData,
-        columns: initialColumns,
         search: '',
-        sortCol: '',
-        sortDir: 'asc',
         page: 1,
         perPage: parseInt(perPage) || 10,
         paginated: !!paginated,
-        sortable: !!sortable,
         url: url,
         loadingCount: 0,
+
         get loading() {
             return this.loadingCount > 0;
         },
+
         latestRequestId: 0,
         total: 0,
         totalPages: 1,
@@ -44,13 +54,7 @@ export default (
                     this.page = 1;
                     this.fetch();
                 });
-                this.$watch('page', (value) => {
-                    if (this.url) this.fetch();
-                });
-                this.$watch('sortCol', () => {
-                    if (this.url) this.fetch();
-                });
-                this.$watch('sortDir', () => {
+                this.$watch('page', () => {
                     if (this.url) this.fetch();
                 });
             }
@@ -60,7 +64,7 @@ export default (
                     this.sync();
                     this.updateTotalPages();
                 });
-                observer.observe(this.$el, { attributes: true, attributeFilter: ['data', 'columns'] });
+                observer.observe(this.$el, { attributes: true, attributeFilter: ['data'] });
             }
 
             if (!this.url) {
@@ -80,7 +84,6 @@ export default (
                 if (!this.$el) return;
 
                 const d = this.$el.getAttribute('data');
-                const c = this.$el.getAttribute('columns');
 
                 if (!this.url && d && !d.startsWith('[object ')) {
                     const parsedData = JSON.parse(d);
@@ -92,20 +95,11 @@ export default (
                     }
                 }
 
-                if (c && !c.startsWith('[object ')) {
-                    const parsedCols = JSON.parse(c);
-                    if (
-                        Array.isArray(parsedCols) &&
-                        JSON.stringify(parsedCols) !== JSON.stringify(this.columns)
-                    ) {
-                        this.columns = parsedCols;
-                    }
+                if (onSync) {
+                    onSync.call(this, d);
                 }
             } catch (e) {
-                console.error(
-                    'Plume Data Table sync error: Invalid JSON provided to data or columns.',
-                    e
-                );
+                console.error('Plume Data Component sync error: Invalid JSON provided to data.', e);
             }
         },
 
@@ -118,15 +112,16 @@ export default (
                 page: this.page,
                 per_page: this.perPage,
                 search: this.search,
-                sort_col: this.sortCol,
-                sort_dir: this.sortDir,
             });
+
+            if (onFetch) {
+                onFetch.call(this, params);
+            }
 
             try {
                 const response = await fetch(`${this.url}?${params.toString()}`);
                 const result = await response.json();
 
-                // Ignore if a newer request has been started
                 if (requestId !== this.latestRequestId) return;
 
                 if (result.success) {
@@ -135,9 +130,8 @@ export default (
                     this.updateTotalPages();
                 }
             } catch (e) {
-                // Only log if it's the latest request
                 if (requestId === this.latestRequestId) {
-                    console.error('Plume Data Table fetch error:', e);
+                    console.error('Plume Data Component fetch error:', e);
                 }
             } finally {
                 this.loadingCount--;
@@ -157,21 +151,10 @@ export default (
 
             if (this.search) {
                 const query = this.search.toLowerCase();
-                filtered = filtered.filter((row) => {
-                    return Object.values(row).some((val) =>
+                filtered = filtered.filter((item) => {
+                    return Object.values(item).some((val) =>
                         String(val).toLowerCase().includes(query)
                     );
-                });
-            }
-
-            if (this.sortCol) {
-                filtered.sort((a, b) => {
-                    let valA = a[this.sortCol];
-                    let valB = b[this.sortCol];
-
-                    if (valA < valB) return this.sortDir === 'asc' ? -1 : 1;
-                    if (valA > valB) return this.sortDir === 'asc' ? 1 : -1;
-                    return 0;
                 });
             }
 
@@ -187,33 +170,5 @@ export default (
             const end = start + this.perPage;
             return this.filteredData.slice(start, end);
         },
-
-        toggleSort(col) {
-            if (this.sortCol === col) {
-                this.sortDir = this.sortDir === 'asc' ? 'desc' : 'asc';
-            } else {
-                this.sortCol = col;
-                this.sortDir = 'asc';
-            }
-        },
-
-        renderConstructed(template, row) {
-            if (!template) return '';
-
-            // First resolve slots: {slot:name}
-            let rendered = template.replace(/{slot:([\w.]+)}/g, (match, slotName) => {
-                return _slots[slotName] !== undefined ? _slots[slotName] : '';
-            });
-
-            // Then resolve keys: {key}
-            return rendered.replace(/{([\w.]+)}/g, (match, key) => {
-                const keys = key.split('.');
-                let value = row;
-                for (const k of keys) {
-                    value = value ? value[k] : undefined;
-                }
-                return value !== undefined ? value : '';
-            });
-        },
     };
-};
+}
