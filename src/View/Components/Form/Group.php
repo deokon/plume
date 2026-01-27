@@ -6,8 +6,7 @@ use Illuminate\View\Component;
 use Illuminate\View\View;
 use Closure;
 
-use deokon
-Plume\View\Components\Concerns\HasGrid;
+use deokon\Plume\View\Components\Concerns\HasGrid;
 
 class Group extends Component
 {

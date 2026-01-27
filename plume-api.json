@@ -1275,15 +1275,15 @@
                     "default": "1",
                     "description": "Grid columns for the inner inputs."
                 },
-                "name": {
-                    "type": "string",
-                    "default": "null",
-                    "description": "Shared name attribute for child inputs."
-                },
                 "model": {
                     "type": "string",
                     "default": "null",
                     "description": "Shared AlpineJS model name for child inputs."
+                },
+                "name": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "Shared name attribute for child inputs."
                 }
             },
             "description": "Groups related form inputs (like radios or checkboxes) under a single label.",
