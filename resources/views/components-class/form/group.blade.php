@@ -38,6 +38,8 @@ Use `minCols` to arrange children in a responsive grid:
         </div>
     @endif
     <div class="{{ $gridClasses }}">
-        {{ $slot }}
+        <x-plume::form-group-context :groupName="$groupName" :groupModel="$groupModel">
+            {{ $slot }}
+        </x-plume::form-group-context>
     </div>
 </div>

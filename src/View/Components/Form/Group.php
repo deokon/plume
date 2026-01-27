@@ -12,13 +12,19 @@ class Group extends Component
 {
     use HasGrid;
 
+    public ?string $groupName;
+    public ?string $groupModel;
+
     public function __construct(
         public ?string $label = null,
         public ?string $description = null,
         public int $minCols = 1,
-        public ?string $model = null,
-        public ?string $name = null,
-    ) {}
+        ?string $model = null,
+        ?string $name = null,
+    ) {
+        $this->groupName = $name;
+        $this->groupModel = $model;
+    }
 
     public function render(): View|Closure|string
     {
