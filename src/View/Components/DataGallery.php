@@ -39,4 +39,3 @@ class DataGallery extends Component
         ]);
     }
 }
-}
