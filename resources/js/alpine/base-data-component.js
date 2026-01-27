@@ -21,6 +21,7 @@ export function createDataComponent(options) {
         initialData = [],
         columns = [],
         sortableColumns = [],
+        searchableColumns = [],
         onSync = null,
         onFetch = null,
     } = options;
@@ -28,6 +29,7 @@ export function createDataComponent(options) {
     return {
         data: initialData,
         columns: columns,
+        searchableColumns: searchableColumns,
         search: '',
         sortCol: sortableColumns.length > 0 ? sortableColumns[0] : '',
         sortDir: 'asc',
@@ -180,10 +182,21 @@ export function createDataComponent(options) {
 
             if (this.search) {
                 const query = this.search.toLowerCase();
+                const hasSearchableCols =
+                    Array.isArray(this.searchableColumns) && this.searchableColumns.length > 0;
+
                 filtered = filtered.filter((item) => {
-                    return Object.values(item).some((val) =>
-                        String(val).toLowerCase().includes(query)
-                    );
+                    if (hasSearchableCols) {
+                        return this.searchableColumns.some((col) =>
+                            String(item[col] || '')
+                                .toLowerCase()
+                                .includes(query)
+                        );
+                    }
+
+                    // Fallback to searching all values if no columns specified
+                    // We join values to avoid multiple some() iterations on small strings
+                    return Object.values(item).join(' ').toLowerCase().includes(query);
                 });
             }
 
