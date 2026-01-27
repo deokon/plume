@@ -75,6 +75,7 @@ import {
     form,
     pagination, 
     dataTable, 
+    dataGallery,
     calendar,
     carousel,
     combobox,
@@ -99,6 +100,7 @@ Alpine.plugin(form);
 // Register data components manually to ensure they are available in expressions
 Alpine.data('pagination', pagination);
 Alpine.data('dataTable', dataTable);
+Alpine.data('dataGallery', dataGallery);
 Alpine.data('calendar', calendar);
 Alpine.data('carousel', carousel);
 Alpine.data('combobox', combobox);
