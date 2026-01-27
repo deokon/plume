@@ -574,11 +574,11 @@
                 "code": {
                     "type": "string",
                     "default": "null",
-                    "description": "The code content. If not provided, the slot will be used."
+                    "description": "The code content. If provided as a prop, content is NOT parsed by Blade."
                 }
             },
             "description": "A component for displaying code snippets with optional syntax highlighting label and a copy-to-clipboard feature.",
-            "usage": "<x-plume::code language=\"javascript\" title=\"app.js\">\n    console.log('Hello Plume!');\n</x-plume::code>",
+            "usage": "### Basic Usage\n```blade\n<x-plume::code language=\"javascript\" title=\"app.js\">\n    console.log('Hello Plume!');\n</x-plume::code>\n```\n\n### Displaying Blade/HTML\nImportant: Blade components inside the slot will be rendered by Laravel. To display literal tags, wrap them in `@verbatim` or use the `code` prop:\n\n```blade\n<x-plume::code language=\"blade\">\n    @verbatim\n    <x-plume::button>Literal Tag</x-plume::button>\n    @endverbatim\n</x-plume::code>\n```",
             "doc_url": "https://plume.dennisokon.com/docs/code"
         },
         "x-plume::command": {

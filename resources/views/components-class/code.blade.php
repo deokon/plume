@@ -3,11 +3,25 @@
 @description A component for displaying code snippets with optional syntax highlighting label and a copy-to-clipboard feature.
 @prop string $language (Default: null) Programming language name for label and CSS class.
 @prop string $title (Default: null) Optional filename or title for the code block.
-@prop string $code (Default: null) The code content. If not provided, the slot will be used.
+@prop string $code (Default: null) The code content. If provided as a prop, content is NOT parsed by Blade.
 @usage
+### Basic Usage
+```blade
 <x-plume::code language="javascript" title="app.js">
     console.log('Hello Plume!');
 </x-plume::code>
+```
+
+### Displaying Blade/HTML
+Important: Blade components inside the slot will be rendered by Laravel. To display literal tags, wrap them in `@verbatim` or use the `code` prop:
+
+```blade
+<x-plume::code language="blade">
+    @verbatim
+    <x-plume::button>Literal Tag</x-plume::button>
+    @endverbatim
+</x-plume::code>
+```
 --}}
 <div x-data="clipboard()"
     {{ $attributes->merge(['class' => 'group relative rounded-xl border border-background-700/40 bg-background-800 dark:border-background-400/20 dark:bg-background-900 overflow-hidden w-full']) }}>
