@@ -13,18 +13,6 @@ trait HasStyles
     }
 
     /**
-     * Resolve size, style, and shape props from attributes or defaults.
-     */
-    public function resolveStyleProps(\Illuminate\View\ComponentAttributeBag $attributes, array $defaults = []): array
-    {
-        return [
-            $attributes->get('size', $defaults['size'] ?? 'md'),
-            $attributes->get('style', $defaults['style'] ?? 'default'),
-            $attributes->get('shape', $defaults['shape'] ?? 'default'),
-        ];
-    }
-
-    /**
      * Common transition classes for overlays and interactive elements.
      */
     public function transitions(string $type = 'fade'): string
