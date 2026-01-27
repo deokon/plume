@@ -64,6 +64,17 @@ test('data gallery supports responsive columns', function () {
     expect($view4col)->toContain('grid-cols-2 sm:grid-cols-3 lg:grid-cols-4');
 });
 
+test('data gallery supports minCols and maxCols', function () {
+    $data = [['id' => 1, 'name' => 'Item']];
+
+    $view = Blade::render('<x-plume::data-gallery :data="$data" minCols="2" maxCols="4" />', ['data' => $data]);
+    
+    expect($view)
+        ->toContain('grid-cols-2')
+        ->toContain('sm:grid-cols-3')
+        ->toContain('lg:grid-cols-4');
+});
+
 test('data gallery supports custom gap', function () {
     $data = [['id' => 1, 'name' => 'Item']];
 

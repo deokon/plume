@@ -682,6 +682,16 @@
                     "type": "int",
                     "default": "4",
                     "description": "Gap spacing between items."
+                },
+                "minCols": {
+                    "type": "int",
+                    "default": "null",
+                    "description": "Minimum number of grid columns on mobile."
+                },
+                "maxCols": {
+                    "type": "int",
+                    "default": "null",
+                    "description": "Maximum number of grid columns on large screens."
                 }
             },
             "description": "Gallery grid layout for displaying collections of items with dynamic content via slots. Powered by AlpineJS. Supports client-side data or server-side fetching via URL.",
@@ -1729,6 +1739,16 @@
                 "gap": {
                     "type": "int",
                     "default": "4",
+                    "description": ""
+                },
+                "minCols": {
+                    "type": "int",
+                    "default": "null",
+                    "description": ""
+                },
+                "maxCols": {
+                    "type": "int",
+                    "default": "null",
                     "description": ""
                 }
             },

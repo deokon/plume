@@ -7,6 +7,8 @@
 @prop int $perPage (Default: 10) Number of items per page.
 @prop string $url (Default: null) API endpoint URL for server-side fetching.
 @prop int $cols (Default: 3) Number of grid columns (1, 2, 3, or 4).
+@prop int $minCols (Default: 1) Minimum number of grid columns on mobile.
+@prop int $maxCols (Default: null) Maximum number of grid columns on large screens.
 @prop int $gap (Default: 4) Gap spacing between items.
 @usage
 ### Basic Usage

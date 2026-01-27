@@ -13,6 +13,8 @@ Gallery grid layout for displaying collections of items with dynamic content via
 | `url` | `string` | `null` | API endpoint URL for server-side fetching. |
 | `cols` | `int` | `3` | Number of grid columns (1, 2, 3, or 4). |
 | `gap` | `int` | `4` | Gap spacing between items. |
+| `minCols` | `int` | `null` | Minimum number of grid columns on mobile. |
+| `maxCols` | `int` | `null` | Maximum number of grid columns on large screens. |
 
 ## Usage
 
