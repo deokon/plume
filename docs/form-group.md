@@ -9,8 +9,8 @@ Groups related form inputs (like radios or checkboxes) under a single label.
 | `label` | `string` | `null` | Label for the group of inputs. |
 | `description` | `string` | `null` | Help text for the group. |
 | `minCols` | `int` | `1` | Grid columns for the inner inputs. |
-| `name` | `string` | `null` | Shared name attribute for child inputs. |
 | `model` | `string` | `null` | Shared AlpineJS model name for child inputs. |
+| `name` | `string` | `null` | Shared name attribute for child inputs. |
 
 ## Usage
 
