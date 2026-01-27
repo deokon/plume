@@ -4,7 +4,7 @@
 @prop array $data (Default: []) Array of objects to display (client-side data).
 @prop bool $searchable (Default: false) Whether to show a search input for filtering.
 @prop bool $paginated (Default: false) Whether to enable pagination.
-@prop int $perPage (Default: 12) Number of items per page.
+@prop int $perPage (Default: 10) Number of items per page.
 @prop string $url (Default: null) API endpoint URL for server-side fetching.
 @prop int $cols (Default: 3) Number of grid columns (1, 2, 3, or 4).
 @prop int $gap (Default: 4) Gap spacing between items.

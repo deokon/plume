@@ -17,7 +17,7 @@ describe('DataGallery Plugin', () => {
         vi.stubGlobal('MutationObserver', MockObserver);
     })
 
-    const createInstance = (perPage = 12, paginated = false, url = null, initialData = testData) => {
+    const createInstance = (perPage = 10, paginated = false, url = null, initialData = testData) => {
         const data = dataGallery(perPage, paginated, url, initialData)
         data.$el = {
             getAttribute: vi.fn((attr) => {
@@ -65,7 +65,7 @@ describe('DataGallery Plugin', () => {
     })
 
     it('returns all data when not paginated', () => {
-        instance = createInstance(12, false)
+        instance = createInstance(10, false)
         instance.init()
         expect(instance.pagedData).toEqual(testData)
     })
@@ -95,7 +95,7 @@ describe('DataGallery Plugin', () => {
     })
 
     it('handles empty data array', () => {
-        instance = createInstance(12, false, null, [])
+        instance = createInstance(10, false, null, [])
         instance.init()
         expect(instance.data).toEqual([])
         expect(instance.totalItems).toBe(0)
@@ -140,7 +140,7 @@ describe('DataGallery Plugin', () => {
             })
         ))
 
-        instance = createInstance(12, true, '/api/products', [])
+        instance = createInstance(10, true, '/api/products', [])
         instance.init()
 
         await vi.waitFor(() => {
@@ -155,7 +155,7 @@ describe('DataGallery Plugin', () => {
             Promise.reject(new Error('Network error'))
         ))
 
-        instance = createInstance(12, true, '/api/products', [])
+        instance = createInstance(10, true, '/api/products', [])
         instance.init()
 
         await vi.waitFor(() => {
@@ -169,7 +169,7 @@ describe('DataGallery Plugin', () => {
         const fetchSpy = vi.fn()
         vi.stubGlobal('fetch', fetchSpy)
 
-        instance = createInstance(12, false, null, testData)
+        instance = createInstance(10, false, null, testData)
         instance.init()
 
         expect(fetchSpy).not.toHaveBeenCalled()
@@ -182,7 +182,7 @@ describe('DataGallery Plugin', () => {
             }), 10))
         ))
 
-        instance = createInstance(12, false, '/api/products', [])
+        instance = createInstance(10, false, '/api/products', [])
         instance.init()
 
         expect(instance.loading).toBe(true)

@@ -15,7 +15,7 @@ class DataGallery extends Component
         array $data = [],
         bool $searchable = false,
         bool $paginated = false,
-        int $perPage = 12,
+        int $perPage = 10,
         ?string $url = null,
         public int $cols = 3,
         public int $gap = 4,
