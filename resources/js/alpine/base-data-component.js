@@ -138,6 +138,11 @@ export function createDataComponent(options) {
                 search: this.search,
             });
 
+            if (this.sortCol) {
+                params.append('sort_col', this.sortCol);
+                params.append('sort_dir', this.sortDir);
+            }
+
             if (onFetch) {
                 onFetch.call(this, params);
             }

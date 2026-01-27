@@ -39,39 +39,6 @@ export default (
         }
     };
 
-    component.fetch = async function() {
-        if (!this.url) return;
-        this.loadingCount++;
-        const requestId = ++this.latestRequestId;
-
-        const params = new URLSearchParams({
-            page: this.page,
-            per_page: this.perPage,
-            search: this.search,
-            sort_col: this.sortCol,
-            sort_dir: this.sortDir,
-        });
-
-        try {
-            const response = await fetch(`${this.url}?${params.toString()}`);
-            const result = await response.json();
-
-            if (requestId !== this.latestRequestId) return;
-
-            if (result.success) {
-                this.data = result.data.items;
-                this.total = result.data.pagination.total;
-                this.updateTotalPages();
-            }
-        } catch (e) {
-            if (requestId === this.latestRequestId) {
-                console.error('Plume Data Table fetch error:', e);
-            }
-        } finally {
-            this.loadingCount--;
-        }
-    };
-
     component.toggleSort = function(col) {
         if (this.sortCol === col) {
             this.sortDir = this.sortDir === 'asc' ? 'desc' : 'asc';
