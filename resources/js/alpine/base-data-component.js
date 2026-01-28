@@ -83,6 +83,9 @@ export function createDataComponent(options) {
             }
 
             if (!this.url) {
+                this.$watch('data', () => {
+                    this.updateTotalPages();
+                });
                 this.$watch('search', () => {
                     this.page = 1;
                     this.updateTotalPages();
@@ -103,6 +106,7 @@ export function createDataComponent(options) {
 
                 if (!this.url && d && !d.startsWith('[object ')) {
                     const parsedData = JSON.parse(d);
+                    // Only update if current data is empty or different, and not just stringified object
                     if (
                         Array.isArray(parsedData) &&
                         JSON.stringify(parsedData) !== JSON.stringify(this.data)
@@ -125,7 +129,8 @@ export function createDataComponent(options) {
                     onSync.call(this, d);
                 }
             } catch (e) {
-                console.error('Plume Data Component sync error: Invalid JSON provided to data or columns.', e);
+                // If parsing fails, it might be because the attribute is already a JS array (Alpine bound)
+                // We ignore the error in that case.
             }
         },
 
@@ -151,6 +156,9 @@ export function createDataComponent(options) {
 
             try {
                 const response = await fetch(`${this.url}?${params.toString()}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
                 const result = await response.json();
 
                 if (requestId !== this.latestRequestId) return;
@@ -159,6 +167,8 @@ export function createDataComponent(options) {
                     this.data = result.data.items;
                     this.total = result.data.pagination.total;
                     this.updateTotalPages();
+                } else {
+                    console.error('Plume Data Component fetch error: result.success is false', result);
                 }
             } catch (e) {
                 if (requestId === this.latestRequestId) {
