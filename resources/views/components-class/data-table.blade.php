@@ -75,60 +75,63 @@ Use **Constructed Columns** for simple HTML formatting to keep the table snappy.
             <x-plume::spinner class="size-8 text-primary" />
         </div>
 
-        <x-plume::table>
-            <x-plume::table.thead>
-                <x-plume::table.tr>
-                    <template x-for="col in columns" :key="col.key">
-                        <x-plume::table.th ::class="(col.sortable !== false && sortable ?
-                            'cursor-pointer select-none hover:bg-background-200/50 dark:hover:bg-background-700/50 ' :
-                            '') + (col.headerClass || '')"
-                            @click="col.sortable !== false && sortable && toggleSort(col.key)">
-                            <div class="flex items-center gap-2">
-                                <span x-text="col.label"></span>
-
-                                <template x-if="col.sortable !== false && sortable">
-                                    <div
-                                        class="flex flex-col text-foreground/40 dark:text-background-400/50 shrink-0 gap-y-1.5">
-                                        <span
-                                            class="icon icon-[fluent--caret-up-24-filled] size-3.5 -mb-1.5 transition-colors"
-                                            :class="sortCol === col.key && sortDir === 'asc' ?
-                                                'text-primary opacity-100' : ''"></span>
-                                        <span
-                                            class="icon icon-[fluent--caret-down-24-filled] size-3.5 -mt-1.5 transition-colors"
-                                            :class="sortCol === col.key && sortDir === 'desc' ?
-                                                'text-primary opacity-100' : ''"></span>
-                                    </div>
-                                </template>
-                            </div>
-                        </x-plume::table.th>
-                    </template>
-                </x-plume::table.tr>
-            </x-plume::table.thead>
-            <x-plume::table.tbody>
-                <template x-for="(row, index) in pagedData" :key="row.id || row.uuid || index">
-                    <x-plume::table.tr>
+        <div class="relative w-full overflow-auto">
+            <table class="w-full caption-bottom text-sm border-collapse">
+                <thead class="border-b border-background-700/40 dark:border-background-400/20">
+                    <tr class="border-b border-background-700/40 data-[state=selected]:bg-background-600 dark:border-background-400/40 dark:data-[state=selected]:bg-background-700">
                         <template x-for="col in columns" :key="col.key">
-                            <x-plume::table.td ::class="col.cellClass">
-                                <template x-if="col.constructed">
-                                    <div x-html="renderConstructed(col.constructed, row)"></div>
-                                </template>
-                                <template x-if="!col.constructed">
-                                    <span x-text="row[col.key]"></span>
-                                </template>
-                            </x-plume::table.td>
+                            <th class="h-12 px-4 text-left align-middle uppercase font-medium text-foreground/70 dark:text-background-400"
+                                :class="(col.sortable !== false && sortable ?
+                                    'cursor-pointer select-none hover:bg-background-200/50 dark:hover:bg-background-700/50 ' :
+                                    '') + (col.headerClass || '')"
+                                @click="col.sortable !== false && sortable && toggleSort(col.key)">
+                                <div class="flex items-center gap-2">
+                                    <span x-text="col.label"></span>
+
+                                    <template x-if="col.sortable !== false && sortable">
+                                        <div
+                                            class="flex flex-col text-foreground/40 dark:text-background-400/50 shrink-0 gap-y-1.5">
+                                            <span
+                                                class="icon icon-[fluent--caret-up-24-filled] size-3.5 -mb-1.5 transition-colors"
+                                                :class="sortCol === col.key && sortDir === 'asc' ?
+                                                    'text-primary opacity-100' : ''"></span>
+                                            <span
+                                                class="icon icon-[fluent--caret-down-24-filled] size-3.5 -mt-1.5 transition-colors"
+                                                :class="sortCol === col.key && sortDir === 'desc' ?
+                                                    'text-primary opacity-100' : ''"></span>
+                                        </div>
+                                    </template>
+                                </div>
+                            </th>
                         </template>
-                    </x-plume::table.tr>
-                </template>
-                <template x-if="filteredData.length === 0">
-                    <x-plume::table.tr>
-                        <x-plume::table.td ::colspan="columns.length" class="text-center py-12">
-                            <x-plume::empty-state title="No results found"
-                                description="Try adjusting your search or filters." />
-                        </x-plume::table.td>
-                    </x-plume::table.tr>
-                </template>
-            </x-plume::table.tbody>
-        </x-plume::table>
+                    </tr>
+                </thead>
+                <tbody class="[&_tr:last-child]:border-0">
+                    <template x-for="(row, index) in pagedData" :key="row.id || row.uuid || index">
+                        <tr class="border-b border-background-700/40 hover:bg-background-100/50 dark:border-background-400/20 dark:hover:bg-background-800/50 transition-colors">
+                            <template x-for="col in columns" :key="col.key">
+                                <td class="p-4 align-middle" :class="col.cellClass">
+                                    <template x-if="col.constructed">
+                                        <div x-html="renderConstructed(col.constructed, row)"></div>
+                                    </template>
+                                    <template x-if="!col.constructed">
+                                        <span x-text="row[col.key]"></span>
+                                    </template>
+                                </td>
+                            </template>
+                        </tr>
+                    </template>
+                    <template x-if="filteredData.length === 0">
+                        <tr>
+                            <td :colspan="columns.length" class="text-center py-12">
+                                <x-plume::empty-state title="No results found"
+                                    description="Try adjusting your search or filters." />
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     @if ($paginated)
