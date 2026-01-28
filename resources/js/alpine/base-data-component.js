@@ -175,6 +175,7 @@ export function createDataComponent(options) {
                 if (result.success) {
                     this.data = result.data.items;
                     this.total = result.data.pagination.total;
+                    console.log('Plume Data Component data set to length:', this.data.length);
                     this.updateTotalPages();
                 } else {
                     console.error('Plume Data Component fetch error: result.success is false', result);
