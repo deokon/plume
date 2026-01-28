@@ -49,7 +49,11 @@ Call `fetch()` from any interactive element within the gallery to refresh its co
 </x-plume::button>
 ```
 --}}
-<div x-data="dataGallery({{ $perPage }}, {{ Js::from($paginated) }}, {{ Js::from($url) }}, {{ Js::from($data) }})" {{ $attributes->merge(['class' => 'space-y-4 w-full']) }}>
+<div x-data="dataGallery({{ $perPage }}, {{ Js::from($paginated) }}, {{ Js::from($url) }}, {{ Js::from($data) }})"
+    {{ $attributes->merge([
+        'class' => 'space-y-4 w-full',
+        ':data' => Js::from($data),
+    ]) }}>
     @if ($searchable)
         <div class="flex items-center justify-between px-4 pt-4">
             <x-plume::form.input x-model.debounce.300ms="search" placeholder="Search..."

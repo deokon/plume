@@ -55,8 +55,12 @@ Call `fetch()` from any interactive element within the table to refresh its cont
 ### Performance Tip
 Use **Constructed Columns** for simple HTML formatting to keep the table snappy. Use **Slots** only when you need complex Blade components in your cells.
 --}}
-<div x-data="dataTable({{ $perPage }}, {{ Js::from($paginated) }}, {{ Js::from($sortable) }}, {{ Js::from($url) }}, {{ Js::from($data) }}, {{ Js::from($columns) }}, {{ Js::from(collect($__laravel_slots ?? [])->map(fn($s) => (string) $s)) }})" {{ $attributes->merge(['class' => 'space-y-4 w-full']) }}
-    :data="{{ Js::from($data) }}" :columns="{{ Js::from($columns) }}">
+<div x-data="dataTable({{ $perPage }}, {{ Js::from($paginated) }}, {{ Js::from($sortable) }}, {{ Js::from($url) }}, {{ Js::from($data) }}, {{ Js::from($columns) }}, {{ Js::from(collect($__laravel_slots ?? [])->map(fn($s) => (string) $s)) }})"
+    {{ $attributes->merge([
+        'class' => 'space-y-4 w-full',
+        ':data' => Js::from($data),
+        ':columns' => Js::from($columns),
+    ]) }}>
     @if ($searchable)
         <div class="flex items-center justify-between px-4 pt-4">
             <x-plume::form.input x-model.debounce.300ms="search" placeholder="Search..."
