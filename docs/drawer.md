@@ -10,6 +10,7 @@ A panel that slides in from the edge of the screen. Closes when clicking the bac
 | `show` | `bool` | `false` | Whether to show the drawer by default on page load. |
 | `persistent` | `bool` | `false` | Whether to prevent closing when clicking the backdrop or pressing the ESC key. |
 | `side` | `string` | `'right'` | Side to slide in from: 'left', 'right', 'top', 'bottom'. |
+| `maxWidth` | `string` | `'sm'` | - |
 | `title` | `string` | `null` | Simple title string. For complex headers, use the 'header' slot. |
 | `description` | `string` | `null` | Optional subtitle or description. |
 | `onOpen` | `string` | `null` | AlpineJS expression or function to call when the drawer opens. |
