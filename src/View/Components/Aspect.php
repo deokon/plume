@@ -6,8 +6,12 @@ use Illuminate\View\Component;
 use Illuminate\View\View;
 use Closure;
 
+use deokon\Plume\View\Components\Concerns\HasMediaAspectRatio;
+
 class Aspect extends Component
 {
+    use HasMediaAspectRatio;
+
     public function __construct(
         public string $ratio = 'video',
     ) {}
@@ -16,22 +20,7 @@ class Aspect extends Component
     {
         return view('plume::components-class.aspect', [
             'component' => $this,
-            'ratioClass' => $this->themeStyles(),
+            'ratioClass' => $this->resolveAspectRatio($this->ratio, 'aspect-video'),
         ]);
-    }
-
-    protected function themeStyles(): string
-    {
-        return match ($this->ratio) {
-            'square', '1/1' => 'aspect-square',
-            'video', '16/9' => 'aspect-video',
-            '4/3' => 'aspect-[4/3]',
-            '3/4' => 'aspect-[3/4]',
-            '3/2' => 'aspect-[3/2]',
-            '2/3' => 'aspect-[2/3]',
-            '21/9' => 'aspect-[21/9]',
-            '9/16' => 'aspect-[9/16]',
-            default => str_starts_with($this->ratio, 'aspect-') ? $this->ratio : 'aspect-[' . $this->ratio . ']',
-        };
     }
 }

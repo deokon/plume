@@ -7,8 +7,12 @@ use Illuminate\View\View;
 use Closure;
 use Illuminate\Support\Str;
 
+use deokon\Plume\View\Components\Concerns\HasMediaAspectRatio;
+
 class Video extends Component
 {
+    use HasMediaAspectRatio;
+
     public bool $isEmbed;
     public string $embedSrc;
 
@@ -31,21 +35,8 @@ class Video extends Component
     {
         return view('plume::components-class.video', [
             'component' => $this,
-            'aspectClass' => $this->themeStyles(),
+            'aspectClass' => $this->resolveAspectRatio($this->aspect, 'aspect-video'),
         ]);
-    }
-
-    protected function themeStyles(): string
-    {
-        return match ($this->aspect) {
-            'square', '1/1' => 'aspect-square',
-            'video', '16/9' => 'aspect-video',
-            '4/3' => 'aspect-[4/3]',
-            '3/4' => 'aspect-[3/4]',
-            '21/9' => 'aspect-[21/9]',
-            '9/16' => 'aspect-[9/16]',
-            default => 'aspect-video',
-        };
     }
 
     protected function resolveEmbed(): void
