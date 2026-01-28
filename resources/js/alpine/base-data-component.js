@@ -59,6 +59,10 @@ export function createDataComponent(options) {
 
             if (this.url) {
                 this.fetch();
+                this.$watch('data', (val) => {
+                    console.log('Plume Data Component data WATCHER triggered, length:', val.length);
+                    this.updateTotalPages();
+                });
                 this.$watch('search', () => {
                     this.page = 1;
                     this.fetch();
