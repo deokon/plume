@@ -22,50 +22,49 @@ export default (
         sortableColumns: sortableColumns,
     });
 
-    // Return a new object that delegates to base but adds data-table specific features
-    const component = Object.create(base);
-    component.sortable = !!sortable;
+    return {
+        ...base,
+        sortable: !!sortable,
 
-    component.init = function () {
-        base.init.call(this);
+        init() {
+            base.init.call(this);
 
-        // Add columns mutation observation
-        if (this.$el && typeof MutationObserver !== 'undefined') {
-            const observer = new MutationObserver(() => {
-                this.sync.call(this);
-                this.updateTotalPages.call(this);
-            });
-            observer.observe(this.$el, { attributes: true, attributeFilter: ['data', 'columns'] });
-        }
-    };
-
-    component.toggleSort = function (col) {
-        if (this.sortCol === col) {
-            this.sortDir = this.sortDir === 'asc' ? 'desc' : 'asc';
-        } else {
-            this.sortCol = col;
-            this.sortDir = 'asc';
-        }
-    };
-
-    component.renderConstructed = function (template, row) {
-        if (!template) return '';
-
-        // First resolve slots: {slot:name}
-        let rendered = template.replace(/{slot:([\w.]+)}/g, (match, slotName) => {
-            return _slots[slotName] !== undefined ? _slots[slotName] : '';
-        });
-
-        // Then resolve keys: {key}
-        return rendered.replace(/{([\w.]+)}/g, (match, key) => {
-            const keys = key.split('.');
-            let value = row;
-            for (const k of keys) {
-                value = value ? value[k] : undefined;
+            // Add columns mutation observation
+            if (this.$el && typeof MutationObserver !== 'undefined') {
+                const observer = new MutationObserver(() => {
+                    this.sync();
+                    this.updateTotalPages();
+                });
+                observer.observe(this.$el, { attributes: true, attributeFilter: ['data', 'columns'] });
             }
-            return value !== undefined ? value : '';
-        });
-    };
+        },
 
-    return component;
+        toggleSort(col) {
+            if (this.sortCol === col) {
+                this.sortDir = this.sortDir === 'asc' ? 'desc' : 'asc';
+            } else {
+                this.sortCol = col;
+                this.sortDir = 'asc';
+            }
+        },
+
+        renderConstructed(template, row) {
+            if (!template) return '';
+
+            // First resolve slots: {slot:name}
+            let rendered = template.replace(/{slot:([\w.]+)}/g, (match, slotName) => {
+                return _slots[slotName] !== undefined ? _slots[slotName] : '';
+            });
+
+            // Then resolve keys: {key}
+            return rendered.replace(/{([\w.]+)}/g, (match, key) => {
+                const keys = key.split('.');
+                let value = row;
+                for (const k of keys) {
+                    value = value ? value[k] : undefined;
+                }
+                return value !== undefined ? value : '';
+            });
+        }
+    };
 };
