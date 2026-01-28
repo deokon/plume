@@ -42,7 +42,7 @@
     <div x-data="combobox({{ json_encode($formattedOptions) }}, '{{ $resolvedModel }}', {
         emptyMessage: '{{ $combobox->emptyMessage }}',
         onSelect: {{ Js::from($onSelect) }}
-    })" class="relative w-full" @keydown="onKeydown($event)">
+    })" class="relative w-full min-w-40" @keydown="onKeydown($event)">
         <button type="button" @click="toggle()" id="{{ $resolvedId }}" role="combobox"
             aria-haspopup="listbox" :aria-expanded="open"
             :aria-invalid="hasError('{{ $resolvedModel }}')"
@@ -65,7 +65,7 @@
             x-transition:leave="transition ease-in duration-75"
             x-transition:leave-start="opacity-100 scale-100"
             x-transition:leave-end="opacity-0 scale-95"
-            class="absolute z-50 mt-1 max-h-60 min-w-full min-w-40 w-max max-w-[100vw] overflow-hidden rounded-md bg-background dark:bg-background-800 text-base shadow-xl ring-1 ring-black/5 focus:outline-none sm:text-sm border border-background-700/40 dark:border-background-400/20">
+            class="absolute z-50 mt-1 max-h-60 min-w-full w-max max-w-[100vw] overflow-hidden rounded-md bg-background dark:bg-background-800 text-base shadow-xl ring-1 ring-black/5 focus:outline-none sm:text-sm border border-background-700/40 dark:border-background-400/20">
             <div class="px-2 py-2 bg-background-50 dark:bg-background-900/50 border-b border-background-700/20 dark:border-background-400/10">
                 <div class="relative flex items-center">
                     <x-plume::icon i="icon-[fluent--search-24-regular]" class="absolute left-2 size-3.5 text-foreground/40" />
