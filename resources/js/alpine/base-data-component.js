@@ -59,10 +59,6 @@ export function createDataComponent(options) {
 
             if (this.url) {
                 this.fetch();
-                this.$watch('data', (val) => {
-                    console.log('Plume Data Component data WATCHER triggered, length:', val.length);
-                    this.updateTotalPages();
-                });
                 this.$watch('search', () => {
                     this.page = 1;
                     this.fetch();
@@ -163,8 +159,6 @@ export function createDataComponent(options) {
                     ? `${this.url}?${params.toString()}`
                     : `${window.location.origin}${this.url.startsWith('/') ? '' : '/'}${this.url}?${params.toString()}`;
 
-                console.log('Plume Data Component fetching:', fetchUrl);
-
                 const response = await fetch(fetchUrl);
                 if (!response.ok) {
                     const errorBody = await response.text();
@@ -172,14 +166,11 @@ export function createDataComponent(options) {
                 }
                 const result = await response.json();
 
-                console.log('Plume Data Component result:', result);
-
                 if (requestId !== this.latestRequestId) return;
 
                 if (result.success) {
                     this.data = result.data.items;
                     this.total = result.data.pagination.total;
-                    console.log('Plume Data Component data set to length:', this.data.length);
                     this.updateTotalPages();
                 } else {
                     console.error('Plume Data Component fetch error: result.success is false', result);
@@ -194,9 +185,7 @@ export function createDataComponent(options) {
         },
 
         get totalItems() {
-            const total = this.url ? this.total : this.filteredData.length;
-            console.log('Plume Data Component totalItems:', total, 'url:', this.url, 'this.total:', this.total);
-            return total;
+            return this.url ? this.total : this.filteredData.length;
         },
 
         get filteredData() {
@@ -245,7 +234,6 @@ export function createDataComponent(options) {
 
         get pagedData() {
             if (this.url) {
-                console.log('Plume Data Component pagedData (url mode) length:', this.data.length);
                 return [...this.data];
             }
 
@@ -253,9 +241,7 @@ export function createDataComponent(options) {
 
             const start = (this.page - 1) * this.perPage;
             const end = start + this.perPage;
-            const paged = this.filteredData.slice(start, end);
-            console.log('Plume Data Component pagedData length:', paged.length, 'start:', start, 'end:', end);
-            return paged;
+            return this.filteredData.slice(start, end);
         },
     };
 }
