@@ -4,14 +4,14 @@ namespace deokon\Plume\View\Components\Concerns;
 
 trait HasPagination
 {
-    public array $data = [];
+    public array|string $data = [];
     public bool $searchable = false;
     public bool $paginated = false;
     public int $perPage = 10;
     public ?string $url = null;
 
     protected function initializePagination(
-        array $data = [],
+        array|string $data = [],
         bool $searchable = false,
         bool $paginated = false,
         int $perPage = 10,

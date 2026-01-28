@@ -77,7 +77,7 @@
         {{ $slot }}
     </a>
 @else
-    <button type="button" @if ($clickAction) x-on:click="{{ $clickAction }}" @endif
+    <button type="{{ $attributes->get('type', 'button') }}" @if ($clickAction) x-on:click="{{ $clickAction }}" @endif
         {{ $cleanAttributes->merge(['class' => $buttonComponent->classes($resolvedSize, $resolvedStyle, $resolvedShape)]) }}>
         @if ($icon)
             <x-plume::icon i="{{ $icon }}" />

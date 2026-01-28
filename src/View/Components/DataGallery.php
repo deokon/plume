@@ -13,7 +13,7 @@ class DataGallery extends Component
     use HasPagination, HasGrid;
 
     public function __construct(
-        array $data = [],
+        array|string $data = [],
         bool $searchable = false,
         bool $paginated = false,
         int $perPage = 10,

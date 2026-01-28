@@ -6,7 +6,7 @@ Advanced table with sorting, filtering, and pagination. Powered by AlpineJS. Sup
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `data` | `array` | `[]` | Array of objects to display (client-side data). |
+| `data` | `array|string` | `[]` | Array of objects to display (client-side data). |
 | `columns` | `array` | `[]` | Column definitions: [{key: 'name', label: 'Name', sortable: true, cellClass: '...', headerClass: '...', constructed: '...'}]. |
 | `searchable` | `bool` | `false` | Whether to show a search input for filtering. |
 | `paginated` | `bool` | `false` | Whether to enable pagination. |

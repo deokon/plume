@@ -24,7 +24,7 @@ class DataTable extends Component
     use HasPagination;
 
     public function __construct(
-        array $data = [],
+        array|string $data = [],
         public array $columns = [],
         bool $searchable = false,
         bool $paginated = false,

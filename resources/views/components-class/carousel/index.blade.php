@@ -22,12 +22,12 @@
 
     {{-- Controls --}}
     @if ($controls)
-        <button @click="prev"
+        <button @click="prev" dusk="prev-slide"
             class="absolute top-1/2 left-4 -translate-y-1/2 p-2 rounded-full bg-background/80 dark:bg-background-800/80 backdrop-blur-sm shadow-sm opacity-0 group-hover:opacity-100 transition-opacity hover:bg-background dark:hover:bg-background-700 text-foreground/80 dark:text-background-200 z-10"
             aria-label="Previous slide">
             <x-plume::icon i="icon-[fluent--chevron-left-24-regular]" class="size-6" />
         </button>
-        <button @click="next"
+        <button @click="next" dusk="next-slide"
             class="absolute top-1/2 right-4 -translate-y-1/2 p-2 rounded-full bg-background/80 dark:bg-background-800/80 backdrop-blur-sm shadow-sm opacity-0 group-hover:opacity-100 transition-opacity hover:bg-background dark:hover:bg-background-700 text-foreground/80 dark:text-background-200 z-10"
             aria-label="Next slide">
             <x-plume::icon i="icon-[fluent--chevron-right-24-regular]" class="size-6" />

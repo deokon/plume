@@ -6,7 +6,7 @@ Gallery grid layout for displaying collections of items with dynamic content via
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `data` | `array` | `[]` | Array of objects to display (client-side data). |
+| `data` | `array|string` | `[]` | Array of objects to display (client-side data). |
 | `searchable` | `bool` | `false` | Whether to show a search input for filtering. |
 | `paginated` | `bool` | `false` | Whether to enable pagination. |
 | `perPage` | `int` | `10` | Number of items per page. |
