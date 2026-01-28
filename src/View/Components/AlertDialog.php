@@ -6,21 +6,26 @@ use Illuminate\View\Component;
 use Illuminate\View\View;
 use Closure;
 
-class AlertDialog extends Component
+use deokon\Plume\Theme;
+
+class AlertDialog extends BaseOverlayComponent
 {
     public function __construct(
-        public string $name = 'alert-dialog',
-        public bool $show = false,
+        string $name = 'alert-dialog',
+        bool $show = false,
         public string $maxWidth = '2xl',
         public string $action = 'Confirm',
         public bool $withCancel = true,
         public string $onConfirm = '',
-    ) {}
+    ) {
+        parent::__construct($name, $show, false, null, null, null);
+    }
 
     public function render(): View|Closure|string
     {
         return view('plume::components-class.alert-dialog', [
-            'component' => $this
+            'component' => $this,
+            'maxWidthClass' => Theme::modal($this->maxWidth),
         ]);
     }
 }

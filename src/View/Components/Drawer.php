@@ -17,6 +17,7 @@ class Drawer extends BaseOverlayComponent
         bool $show = false,
         bool $persistent = false,
         public string $side = 'right',
+        public string $maxWidth = 'sm',
         ?string $title = null,
         public ?string $description = null,
         ?string $onOpen = null,
@@ -27,7 +28,7 @@ class Drawer extends BaseOverlayComponent
 
     public function render(): View|Closure|string
     {
-        $drawerStyles = Theme::drawer($this->side);
+        $drawerStyles = Theme::drawer($this->side, $this->maxWidth);
 
         return view('plume::components-class.drawer', [
             'component' => $this,

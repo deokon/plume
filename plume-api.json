@@ -782,6 +782,11 @@
                     "default": "'right'",
                     "description": "Side to slide in from: 'left', 'right', 'top', 'bottom'."
                 },
+                "maxWidth": {
+                    "type": "string",
+                    "default": "'sm'",
+                    "description": "-"
+                },
                 "title": {
                     "type": "string",
                     "default": "null",

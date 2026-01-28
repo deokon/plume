@@ -11,8 +11,8 @@ Standard text input fields with integrated label, validation errors, and icon su
 | `id` | `string` | `null` | HTML id attribute. Auto-generated from name if not provided. |
 | `model` | `string` | `null` | AlpineJS model name (relative to formData). Enables two-way binding. |
 | `value` | `string` | `''` | Initial value for the input. Ignored if $model is used. |
-| `type` | `string` | `'text'` | HTML input type (text, email, tel, etc.). |
 | `placeholder` | `string` | `''` | Placeholder text. |
+| `type` | `string` | `'text'` | HTML input type (text, email, tel, etc.). |
 | `icon` | `string` | `null` | Iconify icon name to display inside the input. |
 
 ## Usage

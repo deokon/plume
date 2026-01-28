@@ -9,7 +9,7 @@
 @prop string $onConfirm (Default: '') JavaScript action to execute when the primary button is clicked.
 --}}
 @php $alertDialog = $component; @endphp
-<x-plume::modal name="{{ $name }}" :show="$show" :maxWidth="$maxWidth" role="alertdialog"
+<x-plume::modal name="{{ $name }}" :show="$show" :maxWidth="$maxWidthClass" role="alertdialog"
     aria-modal="true" aria-labelledby="{{ $name }}-title"
     aria-describedby="{{ $name }}-description" {{ $attributes }}>
     <div id="{{ $name }}-description">

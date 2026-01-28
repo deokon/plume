@@ -121,13 +121,24 @@ class Theme
         return $widths[$maxWidth] ?? $widths['2xl'];
     }
 
-    public static function drawer(string $side = 'right'): array
+    public static function drawer(string $side = 'right', string $maxWidth = 'sm'): array
     {
+        $widths = [
+            'sm' => 'max-w-sm',
+            'md' => 'max-w-md',
+            'lg' => 'max-w-lg',
+            'xl' => 'max-w-xl',
+            '2xl' => 'max-w-2xl',
+            'full' => 'max-w-full',
+        ];
+
+        $widthClass = $widths[$maxWidth] ?? $widths['sm'];
+
         $classes = [
-            'left' => 'left-0 h-full w-full max-w-sm border-r',
+            'left' => "left-0 h-full w-full {$widthClass} border-r",
             'top' => 'top-0 w-full h-auto max-h-[80vh] border-b',
             'bottom' => 'bottom-0 w-full h-auto max-h-[80vh] border-t',
-            'right' => 'right-0 h-full w-full max-w-sm border-l',
+            'right' => "right-0 h-full w-full {$widthClass} border-l",
         ];
 
         $transitions = [
