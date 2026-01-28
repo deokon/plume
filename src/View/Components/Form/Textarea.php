@@ -16,9 +16,9 @@ class Textarea extends BaseFormComponent
         ?string $model = null,
         ?string $value = '',
         public int $rows = 3,
-        public string $placeholder = '',
+        string $placeholder = '',
     ) {
-        parent::__construct($label, $name, $id, $model, $value);
+        parent::__construct($label, $name, $id, $model, $value, $placeholder);
     }
 
     public function render(): View|Closure|string

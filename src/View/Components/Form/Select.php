@@ -15,10 +15,10 @@ class Select extends BaseFormComponent
         ?string $id = null,
         ?string $model = null,
         public array $options = [],
-        public ?string $placeholder = null,
+        ?string $placeholder = null,
         public bool $multiple = false,
     ) {
-        parent::__construct($label, $name, $id, $model, '');
+        parent::__construct($label, $name, $id, $model, '', $placeholder ?? '');
     }
 
     public function render(): View|Closure|string

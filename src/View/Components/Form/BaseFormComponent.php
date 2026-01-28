@@ -17,6 +17,7 @@ abstract class BaseFormComponent extends Component
         public ?string $id = null,
         public ?string $model = null,
         public ?string $value = '',
+        public string $placeholder = '',
     ) {}
 
     /**

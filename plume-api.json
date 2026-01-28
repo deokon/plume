@@ -1318,15 +1318,15 @@
                     "default": "''",
                     "description": "Initial value for the input. Ignored if $model is used."
                 },
-                "type": {
-                    "type": "string",
-                    "default": "'text'",
-                    "description": "HTML input type (text, email, tel, etc.)."
-                },
                 "placeholder": {
                     "type": "string",
                     "default": "''",
                     "description": "Placeholder text."
+                },
+                "type": {
+                    "type": "string",
+                    "default": "'text'",
+                    "description": "HTML input type (text, email, tel, etc.)."
                 },
                 "icon": {
                     "type": "string",

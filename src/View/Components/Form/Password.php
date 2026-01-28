@@ -5,8 +5,7 @@ namespace deokon\Plume\View\Components\Form;
 use Illuminate\View\View;
 use Closure;
 
-use deokon
-Plume\View\Components\Concerns\HasIcon;
+use deokon\Plume\View\Components\Concerns\HasIcon;
 
 class Password extends BaseFormComponent
 {
@@ -18,10 +17,10 @@ class Password extends BaseFormComponent
         ?string $id = null,
         ?string $model = null,
         ?string $value = '',
-        public string $placeholder = '',
+        string $placeholder = '',
         ?string $icon = 'icon-[fluent--lock-closed-24-regular]',
     ) {
-        parent::__construct($label, $name, $id, $model, $value);
+        parent::__construct($label, $name, $id, $model, $value, $placeholder);
         $this->initializeIcon($icon);
     }
 

@@ -20,11 +20,11 @@ class Input extends BaseFormComponent
         ?string $id = null,
         ?string $model = null,
         ?string $value = '',
+        string $placeholder = '',
         public string $type = 'text',
-        public string $placeholder = '',
         ?string $icon = null,
     ) {
-        parent::__construct($label, $name, $id, $model, $value);
+        parent::__construct($label, $name, $id, $model, $value, $placeholder);
         $this->initializeIcon($icon);
     }
 

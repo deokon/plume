@@ -13,9 +13,9 @@ class Date extends BaseFormComponent
         ?string $id = null,
         ?string $model = null,
         ?string $value = '',
-        public string $placeholder = '',
+        string $placeholder = '',
     ) {
-        parent::__construct($label, $name, $id, $model, $value);
+        parent::__construct($label, $name, $id, $model, $value, $placeholder);
     }
 
     public function render(): View|Closure|string
