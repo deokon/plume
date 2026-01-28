@@ -7,7 +7,7 @@ A CSS-animated loading indicator for indicating background processes or data fet
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
 | `size` | `string` | `'md'` | Size of the spinner: 'xs', 'sm', 'md', 'lg', 'xl'. |
-| `style` | `string` | `'primary'` | Color style: 'primary', 'secondary', 'error', 'white'. |
+| `style` | `string` | `'primary'` | Color style: 'primary', 'secondary', 'error', 'background', 'white'. |
 
 ## Usage
 

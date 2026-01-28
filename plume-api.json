@@ -123,7 +123,7 @@
                 "ratio": {
                     "type": "string",
                     "default": "'video'",
-                    "description": "The aspect ratio: 'video' (16:9), 'square' (1:1), 'cinema' (21:9)."
+                    "description": "The aspect ratio: 'video' (16:9), 'square' (1:1), 'cinema' (21:9), '4/3', '3/4', '3/2', '2/3', '9/16'. Also accepts custom values like '2/1'."
                 }
             },
             "description": "A container component to maintain consistent proportions for media and content.",
@@ -823,7 +823,7 @@
                 "width": {
                     "type": "string",
                     "default": "'md'",
-                    "description": "Width of the menu: 'xs', 'sm', 'md', 'lg', 'xl', or custom class."
+                    "description": "Width of the menu: 'xs', 'sm', 'md', 'lg', 'xl', or custom CSS width class."
                 },
                 "contentClasses": {
                     "type": "string",
@@ -833,7 +833,7 @@
                 "triggerStyle": {
                     "type": "string",
                     "default": "'outline'",
-                    "description": "Visual style of the automatic trigger button."
+                    "description": "Visual style of the automatic trigger button: 'primary', 'secondary', 'error', 'outline', 'ghost', 'link', 'minor'."
                 }
             },
             "description": "Displays a menu to the user\u2014such as a set of actions or functions\u2014triggered by a button.",
@@ -904,7 +904,7 @@
                 "aspect": {
                     "type": "string",
                     "default": "null",
-                    "description": "Desired aspect ratio (e.g., '16/9', '4/3', 'square')."
+                    "description": "Desired aspect ratio: 'video' (16:9), 'square' (1:1), '21/9', '4/3', '3/4', '3/2', '2/3', '9/16'."
                 },
                 "srcset": {
                     "type": "string",
@@ -1985,7 +1985,7 @@
                 "display": {
                     "type": "string",
                     "default": "'percentage'",
-                    "description": "How to display the value: 'percentage', 'number', 'outof', 'inside' (centered), or 'none'."
+                    "description": "How to display the value: 'percentage', 'number', 'outof', 'inside', 'none'."
                 },
                 "model": {
                     "type": "string",
@@ -2117,7 +2117,7 @@
                 "style": {
                     "type": "string",
                     "default": "'primary'",
-                    "description": "Color style: 'primary', 'secondary', 'error', 'white'."
+                    "description": "Color style: 'primary', 'secondary', 'error', 'background', 'white'."
                 }
             },
             "description": "A CSS-animated loading indicator for indicating background processes or data fetching.",
@@ -2346,17 +2346,17 @@
                 "size": {
                     "type": "string",
                     "default": "'md'",
-                    "description": "The size of the tab (sm, md, lg)."
+                    "description": "The size of the tab: 'sm', 'md', 'lg'."
                 },
                 "style": {
                     "type": "string",
                     "default": "'default'",
-                    "description": "The visual style of the tab."
+                    "description": "The visual style: 'default', 'secondary', 'error', 'outline', 'ghost', 'link', 'minor'."
                 },
                 "shape": {
                     "type": "string",
                     "default": "'default'",
-                    "description": "The shape of the tab button."
+                    "description": "The shape of the tab button: 'default' (rounded), 'pill', 'round'."
                 }
             },
             "description": "Individual tab navigation link.",
@@ -2443,7 +2443,7 @@
                 "aspect": {
                     "type": "string",
                     "default": "'video'",
-                    "description": "Aspect ratio: 'video' (16:9), 'square' (1:1), 'cinema' (21:9)."
+                    "description": "Aspect ratio: 'video' (16:9), 'square' (1:1), '21/9', '4/3', '3/4', '9/16'."
                 },
                 "onPlay": {
                     "type": "string",

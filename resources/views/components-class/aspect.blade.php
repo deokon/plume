@@ -1,7 +1,7 @@
 {{--
 @component x-plume::aspect
 @description A container component to maintain consistent proportions for media and content.
-@prop string $ratio (Default: 'video') The aspect ratio: 'video' (16:9), 'square' (1:1), 'cinema' (21:9).
+@prop string $ratio (Default: 'video') The aspect ratio: 'video' (16:9), 'square' (1:1), 'cinema' (21:9), '4/3', '3/4', '3/2', '2/3', '9/16'. Also accepts custom values like '2/1'.
 @usage
 <x-plume::aspect ratio="square" class="max-w-xs">
     <img src="/photo.jpg" class="object-cover w-full h-full" />

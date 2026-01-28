@@ -2,7 +2,7 @@
 @component x-plume::spinner
 @description A CSS-animated loading indicator for indicating background processes or data fetching.
 @prop string $size (Default: 'md') Size of the spinner: 'xs', 'sm', 'md', 'lg', 'xl'.
-@prop string $style (Default: 'primary') Color style: 'primary', 'secondary', 'error', 'white'.
+@prop string $style (Default: 'primary') Color style: 'primary', 'secondary', 'error', 'background', 'white'.
 @usage
 <x-plume::spinner size="lg" style="primary" />
 <x-plume::button disabled>

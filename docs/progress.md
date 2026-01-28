@@ -10,7 +10,7 @@ A visual indicator of task completion or value within a range. Supports reactive
 | `max` | `int` | `100` | The maximum value representing 100% completion. |
 | `style` | `string` | `'default'` | Color style: 'default', 'secondary', 'error', 'success'. |
 | `title` | `string` | `null` | Optional label text displayed above the bar. |
-| `display` | `string` | `'percentage'` | How to display the value: 'percentage', 'number', 'outof', 'inside' (centered), or 'none'. |
+| `display` | `string` | `'percentage'` | How to display the value: 'percentage', 'number', 'outof', 'inside', 'none'. |
 | `model` | `string` | `null` | AlpineJS model name for dynamic progress updates. |
 
 ## Usage

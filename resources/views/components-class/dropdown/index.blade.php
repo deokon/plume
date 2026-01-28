@@ -3,9 +3,9 @@
 @description Displays a menu to the user—such as a set of actions or functions—triggered by a button.
 @prop string $trigger (Default: null) The text or slot content for the dropdown trigger button.
 @prop string $align (Default: 'right') Alignment of the dropdown menu: 'left', 'right', 'top'.
-@prop string $width (Default: 'md') Width of the menu: 'xs', 'sm', 'md', 'lg', 'xl', or custom class.
+@prop string $width (Default: 'md') Width of the menu: 'xs', 'sm', 'md', 'lg', 'xl', or custom CSS width class.
 @prop string $contentClasses (Default: 'bg-background dark:bg-background-800') Additional classes for the menu container.
-@prop string $triggerStyle (Default: 'outline') Visual style of the automatic trigger button.
+@prop string $triggerStyle (Default: 'outline') Visual style of the automatic trigger button: 'primary', 'secondary', 'error', 'outline', 'ghost', 'link', 'minor'.
 @usage
 <x-plume::dropdown trigger="Actions" align="right" width="sm">
     <x-plume::dropdown.item href="/edit">Edit</x-plume::dropdown.item>

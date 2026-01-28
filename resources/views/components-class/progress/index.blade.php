@@ -5,7 +5,7 @@
 @prop int $max (Default: 100) The maximum value representing 100% completion.
 @prop string $style (Default: 'default') Color style: 'default', 'secondary', 'error', 'success'.
 @prop string $title (Default: null) Optional label text displayed above the bar.
-@prop string $display (Default: 'percentage') How to display the value: 'percentage', 'number', 'outof', 'inside' (centered), or 'none'.
+@prop string $display (Default: 'percentage') How to display the value: 'percentage', 'number', 'outof', 'inside', 'none'.
 @prop string $model (Default: null) AlpineJS model name for dynamic progress updates.
 @usage
 <x-plume::progress title="Uploading..." :value="45" :max="100" style="success" />

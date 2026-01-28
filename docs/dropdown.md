@@ -8,9 +8,9 @@ Displays a menu to the user—such as a set of actions or functions—triggered 
 | :--- | :--- | :--- | :--- |
 | `trigger` | `string` | `null` | The text or slot content for the dropdown trigger button. |
 | `align` | `string` | `'right'` | Alignment of the dropdown menu: 'left', 'right', 'top'. |
-| `width` | `string` | `'md'` | Width of the menu: 'xs', 'sm', 'md', 'lg', 'xl', or custom class. |
+| `width` | `string` | `'md'` | Width of the menu: 'xs', 'sm', 'md', 'lg', 'xl', or custom CSS width class. |
 | `contentClasses` | `string` | `'bg-background dark:bg-background-800'` | Additional classes for the menu container. |
-| `triggerStyle` | `string` | `'outline'` | Visual style of the automatic trigger button. |
+| `triggerStyle` | `string` | `'outline'` | Visual style of the automatic trigger button: 'primary', 'secondary', 'error', 'outline', 'ghost', 'link', 'minor'. |
 
 ## Usage
 
