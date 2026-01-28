@@ -6,7 +6,7 @@ trait HasGrid
 {
     /**
      * Resolve grid column and gap classes.
-     * 
+     *
      * @param int $cols Default columns if min/max not set.
      * @param int $gap Grid gap.
      * @param int|null $minCols Minimum columns (mobile).
@@ -106,6 +106,6 @@ trait HasGrid
             default => 'gap-4',
         };
 
-        return trim("{$minClass} {$smClass} {$maxClass} {$gapClass}");
+        return trim("grid {$minClass} {$smClass} {$maxClass} {$gapClass}");
     }
 }

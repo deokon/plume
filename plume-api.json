@@ -649,7 +649,7 @@
             "path": "plume/resources/views/components-class/data-gallery.blade.php",
             "props": {
                 "data": {
-                    "type": "array",
+                    "type": "array|string",
                     "default": "[]",
                     "description": "Array of objects to display (client-side data)."
                 },
@@ -702,7 +702,7 @@
             "path": "plume/resources/views/components-class/data-table.blade.php",
             "props": {
                 "data": {
-                    "type": "array",
+                    "type": "array|string",
                     "default": "[]",
                     "description": "Array of objects to display (client-side data)."
                 },
