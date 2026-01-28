@@ -7,21 +7,24 @@ use Illuminate\View\View;
 use Closure;
 
 use deokon\Plume\View\Components\Concerns\HasMediaAspectRatio;
+use deokon\Plume\View\Components\Concerns\HasMediaSource;
 
 class Figure extends Component
 {
-    use HasMediaAspectRatio;
+    use HasMediaAspectRatio, HasMediaSource;
 
     public $sources;
 
     public function __construct(
-        public string $src,
-        public string $alt = '',
+        string $src,
+        string $alt = '',
         public ?string $caption = null,
         public ?string $aspect = null,
         public ?string $srcset = null,
         public ?string $sizes = null,
-    ) {}
+    ) {
+        $this->initializeMediaSource($src, $alt);
+    }
 
     public function render(): View|Closure|string
     {

@@ -8,16 +8,17 @@ use Closure;
 use Illuminate\Support\Str;
 
 use deokon\Plume\View\Components\Concerns\HasMediaAspectRatio;
+use deokon\Plume\View\Components\Concerns\HasMediaSource;
 
 class Video extends Component
 {
-    use HasMediaAspectRatio;
+    use HasMediaAspectRatio, HasMediaSource;
 
     public bool $isEmbed;
     public string $embedSrc;
 
     public function __construct(
-        public string $src,
+        string $src,
         public ?string $poster = null,
         public bool $autoplay = false,
         public bool $controls = true,
@@ -28,6 +29,7 @@ class Video extends Component
         public ?string $onPause = null,
         public ?string $onEnded = null,
     ) {
+        $this->initializeMediaSource($src);
         $this->resolveEmbed();
     }
 

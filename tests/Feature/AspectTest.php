@@ -13,10 +13,17 @@ test('aspect ratio component renders correctly', function () {
 test('aspect ratio component supports common ratios', function () {
     $ratios = [
         '16/9' => 'aspect-video',
+        '16:9' => 'aspect-video',
+        'hd' => 'aspect-video',
         'square' => 'aspect-square',
         '1/1' => 'aspect-square',
+        '1:1' => 'aspect-square',
         '4/3' => 'aspect-[4/3]',
+        '4:3' => 'aspect-[4/3]',
+        'standard' => 'aspect-[4/3]',
         'cinema' => 'aspect-[21/9]',
+        'vertical' => 'aspect-[9/16]',
+        'story' => 'aspect-[9/16]',
     ];
 
     foreach ($ratios as $input => $expected) {
@@ -25,8 +32,8 @@ test('aspect ratio component supports common ratios', function () {
     }
 });
 
-test('aspect ratio component supports custom ratios', function () {
-    $view = Blade::render('<x-plume::aspect ratio="2/1">Content</x-plume::aspect>');
-    expect($view)->toContain('aspect-[2/1]');
+test('aspect ratio component falls back to default for unknown ratios', function () {
+    $view = Blade::render('<x-plume::aspect ratio="unknown">Content</x-plume::aspect>');
+    expect($view)->toContain('aspect-video'); // Default for Aspect component
 });
 
