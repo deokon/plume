@@ -47,11 +47,11 @@
             aria-haspopup="listbox" :aria-expanded="open"
             :aria-invalid="hasError('{{ $resolvedModel }}')"
             :aria-describedby="hasError('{{ $resolvedModel }}') ? '{{ $resolvedId }}-error' : null"
-            class="relative w-full cursor-default rounded-md bg-background-50 dark:bg-background-700 py-2 pl-3 pr-10 text-left border border-background-700/40 dark:border-background-400/20 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary sm:text-sm transition-all shadow-sm"
+            class="relative w-full cursor-default rounded-md bg-background-50 dark:bg-background-700 py-2 pl-3 pr-10 text-left border border-background-700/40 dark:border-background-400/20 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary sm:text-sm transition-all shadow-sm min-h-[38px]"
             {{ $attributes->except(['name', 'model', 'id']) }}>
             <span class="block truncate"
                 :class="selectedLabel ? 'text-foreground' : 'text-foreground/50 dark:text-background-400'"
-                x-text="selectedLabel || '{{ $placeholder }}'"></span>
+                x-html="selectedLabel || '{{ $placeholder }}' || '&nbsp;'"></span>
             <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                 <x-plume::icon i="icon-[fluent--chevron-up-down-24-regular]"
                     class="h-4 w-4 text-foreground/40" />
@@ -65,7 +65,7 @@
             x-transition:leave="transition ease-in duration-75"
             x-transition:leave-start="opacity-100 scale-100"
             x-transition:leave-end="opacity-0 scale-95"
-            class="absolute z-50 mt-1 max-h-60 w-full overflow-hidden rounded-md bg-background dark:bg-background-800 text-base shadow-xl ring-1 ring-black/5 focus:outline-none sm:text-sm border border-background-700/40 dark:border-background-400/20">
+            class="absolute z-50 mt-1 max-h-60 min-w-full w-max max-w-[100vw] overflow-hidden rounded-md bg-background dark:bg-background-800 text-base shadow-xl ring-1 ring-black/5 focus:outline-none sm:text-sm border border-background-700/40 dark:border-background-400/20">
             <div class="px-2 py-2 bg-background-50 dark:bg-background-900/50 border-b border-background-700/20 dark:border-background-400/10">
                 <div class="relative flex items-center">
                     <x-plume::icon i="icon-[fluent--search-24-regular]" class="absolute left-2 size-3.5 text-foreground/40" />
