@@ -159,12 +159,16 @@ export function createDataComponent(options) {
                     ? `${this.url}?${params.toString()}`
                     : `${window.location.origin}${this.url.startsWith('/') ? '' : '/'}${this.url}?${params.toString()}`;
 
+                console.log('Plume Data Component fetching:', fetchUrl);
+
                 const response = await fetch(fetchUrl);
                 if (!response.ok) {
                     const errorBody = await response.text();
                     throw new Error(`HTTP error! status: ${response.status}, body: ${errorBody}`);
                 }
                 const result = await response.json();
+
+                console.log('Plume Data Component result:', result);
 
                 if (requestId !== this.latestRequestId) return;
 
