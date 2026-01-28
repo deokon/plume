@@ -23,7 +23,7 @@ class Section extends Component
     {
         return view('plume::components-class.form.section', [
             'component' => $this,
-            'gridClasses' => "grid " . $this->gridClasses(1, 6, $this->minCols, $this->maxCols),
+            'gridClasses' => $this->gridClasses(1, 6, $this->minCols, $this->maxCols),
         ]);
     }
 }

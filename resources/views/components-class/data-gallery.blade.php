@@ -67,7 +67,7 @@ Call `fetch()` from any interactive element within the gallery to refresh its co
             <x-plume::spinner class="size-8 text-primary" />
         </div>
 
-        <div class="grid {{ $gridClasses }} w-full">
+        <div class="{{ $gridClasses }} w-full">
             <template x-for="(item, index) in pagedData" :key="item.id || item.uuid || index">
                 {{ $slot }}
             </template>
