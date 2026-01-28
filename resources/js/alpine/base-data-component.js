@@ -190,13 +190,18 @@ export function createDataComponent(options) {
         },
 
         get totalItems() {
-            return this.url ? this.total : this.filteredData.length;
+            const total = this.url ? this.total : this.filteredData.length;
+            console.log('Plume Data Component totalItems:', total, 'url:', this.url, 'this.total:', this.total);
+            return total;
         },
 
         get filteredData() {
             if (this.url) return [...this.data];
 
-            if (!Array.isArray(this.data)) return [];
+            if (!Array.isArray(this.data)) {
+                console.warn('Plume Data Component: data is not an array', this.data);
+                return [];
+            }
 
             let filtered = [...this.data];
 
@@ -235,13 +240,18 @@ export function createDataComponent(options) {
         },
 
         get pagedData() {
-            if (this.url) return [...this.data];
+            if (this.url) {
+                console.log('Plume Data Component pagedData (url mode) length:', this.data.length);
+                return [...this.data];
+            }
 
             if (!this.paginated) return this.filteredData;
 
             const start = (this.page - 1) * this.perPage;
             const end = start + this.perPage;
-            return this.filteredData.slice(start, end);
+            const paged = this.filteredData.slice(start, end);
+            console.log('Plume Data Component pagedData length:', paged.length, 'start:', start, 'end:', end);
+            return paged;
         },
     };
 }
