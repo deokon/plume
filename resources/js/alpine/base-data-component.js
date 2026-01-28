@@ -155,7 +155,11 @@ export function createDataComponent(options) {
             }
 
             try {
-                const response = await fetch(`${this.url}?${params.toString()}`);
+                const fetchUrl = this.url.startsWith('http') 
+                    ? `${this.url}?${params.toString()}`
+                    : `${window.location.origin}${this.url.startsWith('/') ? '' : '/'}${this.url}?${params.toString()}`;
+
+                const response = await fetch(fetchUrl);
                 if (!response.ok) {
                     const errorBody = await response.text();
                     throw new Error(`HTTP error! status: ${response.status}, body: ${errorBody}`);
