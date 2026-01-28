@@ -123,7 +123,7 @@
                 "ratio": {
                     "type": "string",
                     "default": "'video'",
-                    "description": "The aspect ratio: 'video' (16:9), 'square' (1:1), 'cinema' (21:9), '4/3', '3/4', '3/2', '2/3', '9/16'. Also accepts custom values like '2/1'."
+                    "description": "The aspect ratio: 'square' (1:1), 'video' (16:9), 'standard' (4:3), 'portrait' (3:4), 'cinema' (21:9), 'vertical' (9:16). Supports both '4/3' and '4:3' notations."
                 }
             },
             "description": "A container component to maintain consistent proportions for media and content.",
@@ -904,7 +904,7 @@
                 "aspect": {
                     "type": "string",
                     "default": "null",
-                    "description": "Desired aspect ratio: 'video' (16:9), 'square' (1:1), '21/9', '4/3', '3/4', '3/2', '2/3', '9/16'."
+                    "description": "Desired aspect ratio: 'square' (1:1), 'video' (16:9), 'standard' (4:3), 'portrait' (3:4), 'cinema' (21:9), 'vertical' (9:16). Supports both '4/3' and '4:3' notations."
                 },
                 "srcset": {
                     "type": "string",
@@ -2443,7 +2443,7 @@
                 "aspect": {
                     "type": "string",
                     "default": "'video'",
-                    "description": "Aspect ratio: 'video' (16:9), 'square' (1:1), '21/9', '4/3', '3/4', '9/16'."
+                    "description": "Aspect ratio: 'square' (1:1), 'video' (16:9), 'standard' (4:3), 'portrait' (3:4), 'cinema' (21:9), 'vertical' (9:16). Supports both '4/3' and '4:3' notations."
                 },
                 "onPlay": {
                     "type": "string",

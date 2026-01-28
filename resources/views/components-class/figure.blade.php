@@ -4,7 +4,7 @@
 @prop string $src (Default: null) The image source URL.
 @prop string $alt (Default: '') Alternative text for accessibility.
 @prop string $caption (Default: null) Text caption displayed below the image.
-@prop string $aspect (Default: null) Desired aspect ratio: 'video' (16:9), 'square' (1:1), '21/9', '4/3', '3/4', '3/2', '2/3', '9/16'.
+@prop string $aspect (Default: null) Desired aspect ratio: 'square' (1:1), 'video' (16:9), 'standard' (4:3), 'portrait' (3:4), 'cinema' (21:9), 'vertical' (9:16). Supports both '4/3' and '4:3' notations.
 @prop string $srcset (Default: null) Responsive image sources.
 @prop string $sizes (Default: null) Responsive image sizes.
 --}}

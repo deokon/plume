@@ -6,7 +6,7 @@ A container component to maintain consistent proportions for media and content.
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `ratio` | `string` | `'video'` | The aspect ratio: 'video' (16:9), 'square' (1:1), 'cinema' (21:9), '4/3', '3/4', '3/2', '2/3', '9/16'. Also accepts custom values like '2/1'. |
+| `ratio` | `string` | `'video'` | The aspect ratio: 'square' (1:1), 'video' (16:9), 'standard' (4:3), 'portrait' (3:4), 'cinema' (21:9), 'vertical' (9:16). Supports both '4/3' and '4:3' notations. |
 
 ## Usage
 

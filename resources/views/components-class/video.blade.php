@@ -7,7 +7,7 @@
 @prop bool $controls (Default: true) Whether to show native player controls.
 @prop bool $loop (Default: false) Whether to restart automatically after ending.
 @prop bool $muted (Default: false) Whether to start with audio disabled.
-@prop string $aspect (Default: 'video') Aspect ratio: 'video' (16:9), 'square' (1:1), '21/9', '4/3', '3/4', '9/16'.
+@prop string $aspect (Default: 'video') Aspect ratio: 'square' (1:1), 'video' (16:9), 'standard' (4:3), 'portrait' (3:4), 'cinema' (21:9), 'vertical' (9:16). Supports both '4/3' and '4:3' notations.
 @prop string $onPlay (Default: null) AlpineJS expression or function to call when playback starts.
 @prop string $onPause (Default: null) AlpineJS expression or function to call when playback pauses.
 @prop string $onEnded (Default: null) AlpineJS expression or function to call when playback ends.
