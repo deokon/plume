@@ -22,22 +22,9 @@ export default (
         sortableColumns: sortableColumns,
     });
 
-    return {
-        ...base,
+    // Add extra properties to base instead of spreading to keep getters reactive
+    Object.assign(base, {
         sortable: !!sortable,
-
-        init() {
-            base.init.call(this);
-
-            // Add columns mutation observation
-            if (this.$el && typeof MutationObserver !== 'undefined') {
-                const observer = new MutationObserver(() => {
-                    this.sync();
-                    this.updateTotalPages();
-                });
-                observer.observe(this.$el, { attributes: true, attributeFilter: ['data', 'columns'] });
-            }
-        },
 
         toggleSort(col) {
             if (this.sortCol === col) {
@@ -66,5 +53,22 @@ export default (
                 return value !== undefined ? value : '';
             });
         }
+    });
+
+    // Handle init specially to call base.init
+    const baseInit = base.init;
+    base.init = function () {
+        baseInit.call(this);
+
+        // Add columns mutation observation
+        if (this.$el && typeof MutationObserver !== 'undefined') {
+            const observer = new MutationObserver(() => {
+                this.sync();
+                this.updateTotalPages();
+            });
+            observer.observe(this.$el, { attributes: true, attributeFilter: ['data', 'columns'] });
+        }
     };
+
+    return base;
 };
