@@ -5,8 +5,12 @@ namespace deokon\Plume\View\Components\Form;
 use Illuminate\View\View;
 use Closure;
 
+use deokon\Plume\View\Components\Concerns\HasIcon;
+
 class Input extends BaseFormComponent
 {
+    use HasIcon;
+
     public $after;
     public $rightSide;
 
@@ -18,9 +22,10 @@ class Input extends BaseFormComponent
         ?string $value = '',
         public string $type = 'text',
         public string $placeholder = '',
-        public ?string $icon = null,
+        ?string $icon = null,
     ) {
         parent::__construct($label, $name, $id, $model, $value);
+        $this->initializeIcon($icon);
     }
 
     public function render(): View|Closure|string

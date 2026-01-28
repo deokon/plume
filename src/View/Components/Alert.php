@@ -7,20 +7,21 @@ use Illuminate\View\View;
 use Closure;
 use deokon\Plume\Theme;
 
+use deokon\Plume\View\Components\Concerns\HasIcon;
+
 class Alert extends Component
 {
+    use HasIcon;
+
     public function __construct(
-        public ?string $icon = null,
+        ?string $icon = null,
         public string $style = 'info',
         public bool $closable = false,
         public ?int $autoclose = null,
         public ?string $title = null,
         public ?string $onClose = null,
     ) {
-        // Alias destructive to error
-        if ($this->style === 'destructive') {
-            $this->style = 'error';
-        }
+        $this->initializeIcon($icon);
     }
 
     public function render(): View|Closure|string

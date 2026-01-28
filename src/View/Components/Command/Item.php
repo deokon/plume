@@ -6,14 +6,20 @@ use Illuminate\View\Component;
 use Illuminate\View\View;
 use Closure;
 
+use deokon\Plume\View\Components\Concerns\HasIcon;
+
 class Item extends Component
 {
+    use HasIcon;
+
     public function __construct(
         public ?string $value = null,
         public ?string $onSelect = null,
-        public ?string $icon = null,
+        ?string $icon = null,
         public ?string $shortcut = null,
-    ) {}
+    ) {
+        $this->initializeIcon($icon);
+    }
 
     public function render(): View|Closure|string
     {

@@ -9,14 +9,16 @@ use deokon\Plume\Theme;
 use deokon\Plume\View\Components\Concerns\InteractsWithAttributes;
 use deokon\Plume\View\Components\Concerns\HasStyles;
 
+use deokon\Plume\View\Components\Concerns\HasIcon;
+
 class Button extends Component
 {
-    use InteractsWithAttributes, HasStyles;
+    use InteractsWithAttributes, HasStyles, HasIcon;
 
     public function __construct(
         public ?string $href = null,
         public ?string $method = null,
-        public ?string $icon = null,
+        ?string $icon = null,
         public bool $fullWidth = false,
         public ?string $size = null,
         public ?string $style = null,
@@ -24,7 +26,9 @@ class Button extends Component
         public ?string $confirm = null,
         public ?string $onSuccess = null,
         public ?string $onError = null,
-    ) {}
+    ) {
+        $this->initializeIcon($icon);
+    }
 
     public function render(): View|Closure|string
     {
