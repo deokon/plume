@@ -157,7 +157,8 @@ export function createDataComponent(options) {
             try {
                 const response = await fetch(`${this.url}?${params.toString()}`);
                 if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                    const errorBody = await response.text();
+                    throw new Error(`HTTP error! status: ${response.status}, body: ${errorBody}`);
                 }
                 const result = await response.json();
 
@@ -172,7 +173,7 @@ export function createDataComponent(options) {
                 }
             } catch (e) {
                 if (requestId === this.latestRequestId) {
-                    console.error('Plume Data Component fetch error:', e);
+                    console.error('Plume Data Component fetch error:', e.message);
                 }
             } finally {
                 this.loadingCount--;
