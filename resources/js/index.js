@@ -18,6 +18,34 @@ import search from './alpine/search';
 import stepper from './alpine/stepper';
 import { accordion, accordionItem } from './alpine/accordion';
 
+const Plume = (Alpine) => {
+    // Register components that are already Alpine plugins (Alpine.data + magic methods)
+    Alpine.plugin(modal);
+    Alpine.plugin(drawer);
+    Alpine.plugin(toaster);
+    Alpine.plugin(page);
+    Alpine.plugin(clipboard);
+    Alpine.plugin(form);
+
+    // Register data-only components
+    Alpine.data('pagination', pagination);
+    Alpine.data('dataTable', dataTable);
+    Alpine.data('dataGallery', dataGallery);
+    Alpine.data('calendar', calendar);
+    Alpine.data('carousel', carousel);
+    Alpine.data('combobox', combobox);
+    Alpine.data('command', command);
+    Alpine.data('fileInput', fileInput);
+    Alpine.data('video', video);
+    Alpine.data('tabs', tabs);
+    Alpine.data('search', search);
+    Alpine.data('stepper', stepper);
+    Alpine.data('accordion', accordion);
+    Alpine.data('accordionItem', accordionItem);
+};
+
+export default Plume;
+
 export {
     modal,
     drawer,
