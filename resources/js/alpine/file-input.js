@@ -17,6 +17,15 @@ export default function (model = null, uploadUrl = null) {
                     this.value = this.$data.data[field];
                 }
             }
+
+            this.$watch('value', (val) => {
+                if (!val || (Array.isArray(val) && val.length === 0)) {
+                    if (this.files.length > 0) {
+                        this.files = [];
+                        this.updateInput();
+                    }
+                }
+            });
         },
 
         handleDrop(event) {

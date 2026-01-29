@@ -2137,6 +2137,11 @@
                     "default": "1",
                     "description": "The initially active step number."
                 },
+                "model": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "AlpineJS model name for the active step."
+                },
                 "onStepChange": {
                     "type": "string",
                     "default": "null",
@@ -2149,7 +2154,7 @@
                 }
             },
             "description": "Guide users through multi-step processes with clear visual indicators.",
-            "usage": "<x-plume::stepper active=\"1\">\n    <x-plume::stepper.step title=\"Personal Info\" step=\"1\">\n        Step 1 content...\n    </x-plume::stepper.step>\n    <x-plume::stepper.step title=\"Address\" step=\"2\">\n        Step 2 content...\n    </x-plume::stepper.step>\n</x-plume::stepper>",
+            "usage": "<x-plume::stepper active=\"1\" model=\"currentStep\">\n    <x-plume::stepper.step title=\"Personal Info\" step=\"1\">\n        Step 1 content...\n    </x-plume::stepper.step>\n    <x-plume::stepper.step title=\"Address\" step=\"2\">\n        Step 2 content...\n    </x-plume::stepper.step>\n</x-plume::stepper>",
             "doc_url": "https://plume.dennisokon.com/docs/stepper"
         },
         "x-plume::stepper.actions": {

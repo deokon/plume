@@ -1,4 +1,4 @@
-export default function (initialStep = 1, config = {}) {
+export default function (initialStep = 1, model = null, config = {}) {
     return {
         active: initialStep,
         _config: {
@@ -8,6 +8,19 @@ export default function (initialStep = 1, config = {}) {
         },
 
         init() {
+            if (model) {
+                // Sync with parent Alpine data if available
+                if (typeof this.$data.data !== 'undefined') {
+                    const field = model.replace(/^data\./, '');
+                    this.$watch('active', (val) => (this.$data.data[field] = val));
+                    this.$watch('$data.data.' + field, (val) => (this.active = val));
+                    
+                    if (typeof this.$data.data[field] !== 'undefined' && this.$data.data[field] !== null) {
+                        this.active = this.$data.data[field];
+                    }
+                }
+            }
+
             this.$watch('active', (value) => {
                 this.triggerCallback('onStepChange', value);
             });

@@ -24,7 +24,7 @@
 )" x-modelable="value"
     {{ $attributes->merge(['class' => 'w-full max-w-[280px] bg-background dark:bg-background-800 border border-background-700/40 dark:border-background-400/20 rounded-xl shadow-sm p-4']) }}>
     {{-- Header --}}
-    <div class="flex items-center justify-between mb-4">
+    <div class="flex items-center justify-between mb-4 calendar-header">
         <button @click="prevMonth" type="button"
             class="p-1 hover:bg-background-100 dark:hover:bg-background-800 dark:text-background-200 rounded-full transition-colors text-foreground/70">
             <x-plume::icon i="icon-[fluent--chevron-left-24-regular]" class="size-5" />

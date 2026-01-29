@@ -10,6 +10,7 @@ class Stepper extends Component
 {
     public function __construct(
         public int $active = 1,
+        public ?string $model = null,
         public ?string $onStepChange = null,
         public ?string $onFinish = null,
     ) {}
