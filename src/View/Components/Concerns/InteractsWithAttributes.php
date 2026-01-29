@@ -16,6 +16,10 @@ trait InteractsWithAttributes
             return $attributes->get($key);
         }
 
+        if (property_exists($this, $key) && $this->{$key} !== null) {
+            return $this->{$key};
+        }
+
         return $awareValue ?? $default;
     }
 
