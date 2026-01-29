@@ -15,11 +15,13 @@ export default function (options, model, config = {}) {
             this.filteredOptions = this.options;
 
             if (model) {
+                const modelPath = model.startsWith('data.') ? model : 'data.' + model;
                 // Sync with parent Alpine data if available
-                if (typeof this.$data[model] !== 'undefined') {
-                    this.$watch('value', (val) => (this.$data[model] = val));
-                    this.$watch('$data.' + model, (val) => (this.value = val));
-                    this.value = this.$data[model];
+                if (typeof this.$data.data !== 'undefined') {
+                    const field = model.replace(/^data\./, '');
+                    this.$watch('value', (val) => (this.$data.data[field] = val));
+                    this.$watch('$data.data.' + field, (val) => (this.value = val));
+                    this.value = this.$data.data[field];
                 }
             }
 
