@@ -1,4 +1,4 @@
-export default (initialTotal = 1, initialCurrent = 1, onEachSide = 1) => ({
+export default (initialTotal = 1, initialCurrent = 1, onEachSide = 1, model = null) => ({
     total: parseInt(initialTotal) || 1,
     current: parseInt(initialCurrent) || 1,
     onEachSide: parseInt(onEachSide) || 1,
@@ -22,6 +22,27 @@ export default (initialTotal = 1, initialCurrent = 1, onEachSide = 1) => ({
     },
 
     init() {
+        if (model) {
+            // Sync with parent Alpine data if available
+            if (typeof this.$data.data !== 'undefined') {
+                const field = model.replace(/^data\./, '');
+                this.$watch('current', (val) => (this.$data.data[field] = val));
+                this.$watch('$data.data.' + field, (val) => {
+                    const c = parseInt(val);
+                    if (!isNaN(c) && c !== this.current) {
+                        this.current = Math.max(1, Math.min(c, this.total || 1));
+                    }
+                });
+                
+                if (typeof this.$data.data[field] !== 'undefined' && this.$data.data[field] !== null) {
+                    const c = parseInt(this.$data.data[field]);
+                    if (!isNaN(c)) {
+                        this.current = c;
+                    }
+                }
+            }
+        }
+
         this.$watch('total', (val) => {
             const t = parseInt(val);
             if (!isNaN(t) && t >= 0) {
@@ -77,6 +98,7 @@ export default (initialTotal = 1, initialCurrent = 1, onEachSide = 1) => ({
     dispatch(page) {
         if (page === '...') return;
         const targetPage = Math.max(1, Math.min(page, this.total));
+        this.current = targetPage;
         // Use a more specific event name to avoid conflicts
         this.$dispatch('plume-page-change', { page: targetPage });
     },

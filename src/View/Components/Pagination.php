@@ -16,6 +16,7 @@ class Pagination extends Component
         public int $total = 1,
         public int $current = 1,
         public int $onEachSide = 1,
+        public ?string $model = null,
     ) {}
 
     public function render(): View|Closure|string
@@ -24,6 +25,7 @@ class Pagination extends Component
             'component' => $this,
             'initialTotal' => $this->total,
             'initialCurrent' => $this->current,
+            'model' => $this->model,
         ]);
     }
 }
