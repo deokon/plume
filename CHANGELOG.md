@@ -5,6 +5,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.12.0] - 2026-01-29
+
+### 🚀 Features
+- **JS Registration:** Simplified Alpine.js registration to a single `Alpine.plugin(Plume)` call.
+- **Logic Abstractions:** Consolidated core logic into shared traits (`HasGrid`, `HasIcon`, `HasLink`, `HasMediaSource`, `HasMediaAspectRatio`).
+- **Data Table:** Major refactor to use standard HTML table elements, improving reliability and performance.
+- **Combobox:** Improved attribute merging and aesthetic consistency.
+- **Overlays:** Standardized `Modal` and `Drawer` logic via `BaseOverlayComponent`.
+
+### 🛠 Fixes
+- **Reactivity:** Implemented robust two-way Alpine model sync for `Command`, `Pagination`, `Search`, `Stepper`, `Tabs`, `Carousel`, and `Combobox`.
+- **Data Table:** Resolved rendering and state-sharing issues, especially with server-side fetching.
+- **Styling:** 
+    *   Hidden Carousel scrollbars using Tailwind utilities.
+    *   Fixed Tabs button style resolution (defaulting correctly to ghost).
+    *   Improved Combobox dropdown width and alignment.
+- **Forms:** Unified placeholder and value handling across all form inputs.
+
+### 📝 Documentation
+- **Customization:** Added comprehensive guides for **Theming (Tailwind v4)** and **Behavior & Logic**.
+- **Installation:** Updated instructions for the new simplified JS setup.
+- **Metadata:** Synchronized API definitions and DocBlocks for all 90 components.
+- **Data Gallery:** Reorganized documentation into multiple focused pages.
+
+### 🧪 Testing
+- **Dusk:** Established a comprehensive suite of reactivity tests for all interactive components.
+- **Feature:** Updated all library feature tests to match the new component signatures.
+
 ## [v0.11.1] - 2026-01-27
 
 ### 🛠 Refactors & Improvements
