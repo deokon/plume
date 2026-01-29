@@ -1,4 +1,4 @@
-export default function (config = {}) {
+export default function (model = null, config = {}) {
     return {
         open: false,
         query: '',
@@ -8,7 +8,15 @@ export default function (config = {}) {
         },
 
         init() {
-            // Placeholder for initialization if needed
+            if (model) {
+                // Sync with parent Alpine data if available
+                if (typeof this.$data.data !== 'undefined') {
+                    const field = model.replace(/^data\./, '');
+                    this.$watch('query', (val) => (this.$data.data[field] = val));
+                    this.$watch('$data.data.' + field, (val) => (this.query = val));
+                    this.query = this.$data.data[field];
+                }
+            }
         },
 
         handleSelect(data) {

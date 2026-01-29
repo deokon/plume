@@ -17,8 +17,14 @@
     </x-slot:results>
 </x-plume::search>
 --}}
-<div x-data="search({ onSelect: {{ Js::from($onSelect) }} })"
-    @if ($model) x-init="query = $wire.entangle('{{ $model }}')" @endif
+@php
+    $resolvedModel = $model;
+    if ($model && !str_contains($model, '.') && !str_starts_with($model, 'data.')) {
+        $resolvedModel = 'data.' . $model;
+    }
+@endphp
+<div x-data="search('{{ $resolvedModel }}', { onSelect: {{ Js::from($onSelect) }} })"
+    @if ($model) x-init="if (typeof $wire !== 'undefined') query = $wire.entangle('{{ $model }}')" @endif
     class="relative w-full" @click.away="open = false"
     @plume-search-select.stop="handleSelect($event.detail)">
     {{-- Search Input --}}
