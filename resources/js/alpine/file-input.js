@@ -5,12 +5,17 @@ export default function (model = null, uploadUrl = null) {
         model: model,
         uploadUrl: uploadUrl,
         uploading: false,
+        value: null,
 
         init() {
-            if (this.model && typeof this.$data[this.model] === 'undefined') {
-                // If the model is passed but not yet in the data (rare but possible),
-                // we might need to handle it, but usually Alpine components
-                // in Plume are nested within x-data="form(...)".
+            if (this.model) {
+                // Sync with parent Alpine data if available
+                if (typeof this.$data.data !== 'undefined') {
+                    const field = this.model.replace(/^data\./, '');
+                    this.$watch('value', (val) => (this.$data.data[field] = val));
+                    this.$watch('$data.data.' + field, (val) => (this.value = val));
+                    this.value = this.$data.data[field];
+                }
             }
         },
 
@@ -154,26 +159,17 @@ export default function (model = null, uploadUrl = null) {
             const dataTransfer = new DataTransfer();
             this.files.forEach((file) => dataTransfer.items.add(file.raw));
             this.$refs.input.files = dataTransfer.files;
+            
+            // Update value even if not uploading, so we can track selection reactively
+            if (!this.uploadUrl) {
+                this.value = this.$refs.input.multiple ? Array.from(dataTransfer.files) : dataTransfer.files[0] || null;
+            }
         },
         syncModel() {
             if (!this.model || !this.uploadUrl) return;
 
             const ids = this.files.map((f) => f.id).filter((id) => id !== null);
-            const value = this.$refs.input.multiple ? ids : ids[0] || null;
-
-            // Resolve nested path on the component proxy
-            const parts = this.model.split('.');
-            let obj = this;
-
-            while (parts.length > 1) {
-                const part = parts.shift();
-                if (obj[part] === undefined) return;
-                obj = obj[part];
-            }
-
-            if (obj) {
-                obj[parts[0]] = value;
-            }
+            this.value = this.$refs.input.multiple ? ids : ids[0] || null;
         },
         syncErrors(errorMessage = undefined) {
             if (!this.model) return;

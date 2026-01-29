@@ -17,7 +17,7 @@ class Combobox extends BaseFormComponent
         public string $emptyMessage = 'No results found.',
         public ?string $onSelect = null,
     ) {
-        parent::__construct($label, $name, $id, $model, '');
+        parent::__construct($label, $name, $id, $model, '', $placeholder);
 
         // Normalize options to [value => label] for easier lookup in Alpine
         if (!empty($this->options) && is_array(reset($this->options))) {

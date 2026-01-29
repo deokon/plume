@@ -47,8 +47,7 @@
             aria-haspopup="listbox" :aria-expanded="open"
             :aria-invalid="hasError('{{ $resolvedModel }}')"
             :aria-describedby="hasError('{{ $resolvedModel }}') ? '{{ $resolvedId }}-error' : null"
-            class="relative w-full cursor-default rounded-md bg-background-50 dark:bg-background-700 py-2 pl-3 pr-10 text-left border border-background-700/40 dark:border-background-400/20 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary sm:text-sm transition-all shadow-sm min-h-[38px]"
-            {{ $attributes->except(['name', 'model', 'id']) }}>
+            {{ $attributes->except(['name', 'model', 'id'])->merge(['class' => 'relative w-full cursor-default rounded-md bg-background-50 dark:bg-background-700 py-2 pl-3 pr-10 text-left border border-background-700/40 dark:border-background-400/20 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary sm:text-sm transition-all shadow-sm min-h-[38px]']) }}>
             <span class="block truncate"
                 :class="selectedLabel ? 'text-foreground' : 'text-foreground/50 dark:text-background-400'"
                 x-html="selectedLabel || '{{ $placeholder }}' || '&nbsp;'"></span>

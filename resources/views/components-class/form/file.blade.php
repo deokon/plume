@@ -58,7 +58,7 @@ Combine `uploadUrl` with a simple AlpineJS template to show previews:
     );
 @endphp
 <x-plume::form.element :label="$label ?? $slot" :name="$resolvedName" :id="$resolvedId" :model="$resolvedModel">
-    <div x-data="fileInput('{{ $resolvedModel }}', {{ Js::from($uploadUrl) }})"
+    <div x-data="fileInput('{{ $resolvedModel }}', {{ Js::from($uploadUrl) }})" x-modelable="value"
         class="relative flex min-h-[150px] cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed transition-all"
         :class="isDropping ? 'border-primary bg-primary/5' :
             'border-background-700/40 bg-background-50 dark:border-background-400/20 dark:bg-background-800'"

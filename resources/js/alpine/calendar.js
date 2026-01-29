@@ -38,29 +38,25 @@ export default (
         if (this.mode === 'single' && this.value) {
             this.selectedDate = this.parseDate(this.value);
             this.currDate = new Date(this.selectedDate);
-        } else if (this.mode === 'range' && Array.isArray(this.value) && this.value.length > 0) {
+        }
+        if (this.mode === 'range' && Array.isArray(this.value) && this.value.length > 0) {
             this.rangeStart = this.parseDate(this.value[0]);
             if (this.value[1]) this.rangeEnd = this.parseDate(this.value[1]);
             this.currDate = new Date(this.rangeStart);
         }
 
         if (modelName) {
-            // Note: In Alpine V3, accessing $data in init might be tricky if scopes are not fully merged yet,
-            // but this mimics the original inline script logic.
-            // Using $nextTick might be safer if $data isn't ready.
-            this.$nextTick(() => {
-                if (typeof this.$data[modelName] !== 'undefined') {
-                    if (this.$data[modelName]) {
-                        this.value = this.$data[modelName];
-                        this.syncInternalState(this.value);
-                    }
-                }
-            });
+            // Sync with parent Alpine data if available
+            if (typeof this.$data.data !== 'undefined') {
+                const field = modelName.replace(/^data\./, '');
+                this.$watch('value', (val) => (this.$data.data[field] = val));
+                this.$watch('$data.data.' + field, (val) => (this.value = val));
+                this.value = this.$data.data[field];
+            }
         }
 
         this.$watch('value', (val) => {
             this.syncInternalState(val);
-            this.$dispatch('change', val);
         });
     },
 
