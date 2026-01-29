@@ -7,13 +7,14 @@ Guide users through multi-step processes with clear visual indicators.
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
 | `active` | `int` | `1` | The initially active step number. |
+| `model` | `string` | `null` | AlpineJS model name for the active step. |
 | `onStepChange` | `string` | `null` | AlpineJS expression or function to call when the active step changes. |
 | `onFinish` | `string` | `null` | AlpineJS expression or function to call when the final step is completed. |
 
 ## Usage
 
 ```blade
-<x-plume::stepper active="1">
+<x-plume::stepper active="1" model="currentStep">
     <x-plume::stepper.step title="Personal Info" step="1">
         Step 1 content...
     </x-plume::stepper.step>

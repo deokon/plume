@@ -20,6 +20,7 @@ class Tabs extends Component
 
     public function __construct(
         public string $default = '1',
+        public ?string $model = null,
         public string $side = 'top',
         public string $size = 'md',
         public string $style = 'default',

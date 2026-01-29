@@ -2308,6 +2308,11 @@
                     "default": "'1'",
                     "description": "The key of the tab to be active by default."
                 },
+                "model": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "AlpineJS model name for the active tab."
+                },
                 "side": {
                     "type": "string",
                     "default": "'top'",
@@ -2335,7 +2340,7 @@
                 }
             },
             "description": "A set of layered sections of content, known as tab panels, that are displayed one at a time.",
-            "usage": "<x-plume::tabs default=\"profile\">\n    <x-plume::tabs.group>\n        <x-plume::tabs.item for=\"profile\">Profile</x-plume::tabs.item>\n        <x-plume::tabs.item for=\"settings\">Settings</x-plume::tabs.item>\n    </x-plume::tabs.group>\n    \n    <x-plume::tabs.panel name=\"profile\">\n        Profile Content\n    </x-plume::tabs.panel>\n    <x-plume::tabs.panel name=\"settings\">\n        Settings Content\n    </x-plume::tabs.panel>\n</x-plume::tabs>",
+            "usage": "<x-plume::tabs default=\"profile\" model=\"activeTab\">\n    <x-plume::tabs.group>\n        <x-plume::tabs.item for=\"profile\">Profile</x-plume::tabs.item>\n        <x-plume::tabs.item for=\"settings\">Settings</x-plume::tabs.item>\n    </x-plume::tabs.group>\n    \n    <x-plume::tabs.panel name=\"profile\">\n        Profile Content\n    </x-plume::tabs.panel>\n    <x-plume::tabs.panel name=\"settings\">\n        Settings Content\n    </x-plume::tabs.panel>\n</x-plume::tabs>",
             "doc_url": "https://plume.dennisokon.com/docs/tabs"
         },
         "x-plume::tabs.group": {
