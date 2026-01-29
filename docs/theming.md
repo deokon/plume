@@ -1,95 +1,99 @@
 # Theming
 
-Customize the look and feel of your application using Plume's semantic design system.
+Customize the look and feel of your application using Plume's semantic design system and Tailwind CSS v4.
 
 ## Overview
 
-Plume is built on top of Tailwind CSS v4 and leverages CSS variables for a highly customizable design system. The theming engine is designed to be **semantic**, meaning you define *what* a color represents (e.g., "Primary", "Destructive") rather than specific hex values everywhere.
+Plume is built on top of Tailwind CSS v4 and leverages CSS variables for a highly customizable design system. The theming engine is designed to be **semantic**, meaning you define *what* a color represents (e.g., "Primary", "Background") rather than specific hex values everywhere.
 
-## Semantic Colors
+## Global Style Overrides (CSS Variables)
 
-The palette is organized into semantic scales: **Primary**, **Secondary**, **Background**, and **Destructive**. To customize your theme, override these variables in your project's CSS (after importing the theme).
+The most efficient way to customize the entire library is by overriding the CSS variables in your project's `@theme` block. This allows you to change the "skin" of every component instantly.
 
 ### Color Scales
 
-- **Primary**: Used for main actions, active states, and highlights.
-- **Secondary**: Used for muted elements, borders, and secondary actions.
-- **Background (Neutral)**: Used for page backgrounds, cards, and text colors.
-- **Destructive**: Used for error states, deletions, and critical warnings.
-
-### Example Overrides
+Plume uses several semantic color scales. You can redefine these in your CSS file after importing Tailwind:
 
 ```css
-:root {
-  --color-primary-500: #3b82f6;
-  --color-primary-600: #2563eb;
-  /* ... override other shades as needed ... */
-}
-```
+/* resources/css/app.css */
+@import "tailwindcss";
 
-## Component-Level Customization
-
-### The `class` Attribute
-All Plume components accept a standard `class` attribute. Classes passed here are merged with the component's internal styles using the `tailwind-merge` strategy, allowing you to easily override specific utilities.
-
-```blade
-<x-plume::button class="bg-indigo-600 hover:bg-indigo-700">
-    Custom Color Button
-</x-plume::button>
-```
-
-### Overriding Defaults
-If you find yourself overriding the same component style repeatedly, it is recommended to create a wrapper component in your project:
-
-```blade
-{{-- resources/views/components/primary-button.blade.php --}}
-<x-plume::button {{ $attributes->merge(['class' => 'rounded-none border-2']) }}>
-    {{ $slot }}
-</x-plume::button>
-```
-
-## Color System Details
-
-Plume's semantic colors are mapped to CSS variables. In Tailwind v4, these are typically defined in your `@theme` block:
-
-```css
 @theme {
-  --color-primary: var(--color-blue-600);
-  --color-primary-foreground: var(--color-white);
+  /* Change the primary brand color to Indigo */
+  --color-primary-50: oklch(96% 0.02 264);
+  --color-primary-500: oklch(58% 0.23 268);
+  --color-primary-600: oklch(51% 0.23 268);
+  --color-primary-950: oklch(18% 0.07 268);
   
-  --color-background: var(--color-white);
-  --color-foreground: var(--color-slate-950);
+  /* Update border radius globally */
+  --radius-md: 0px;
+  --radius-xl: 4px;
 }
 ```
 
 ### Common Semantic Variables
 | Variable | Description |
 | :--- | :--- |
-| `--color-primary` | The main brand color for actions and active states. |
-| `--color-background` | The primary background color for pages and containers. |
-| `--color-foreground` | The primary text color. |
-| `--color-error` | Used for destructive actions and error feedback. |
-| `--color-success` | Used for positive feedback and completion. |
+| `--color-primary-*` | The main brand color scale. |
+| `--color-secondary-*` | Muted elements and secondary actions. |
+| `--color-background-*` | Page backgrounds, cards, and neutral borders. |
+| `--color-error-*` | Destructive actions and error feedback. |
 
-## Dark Mode Deep Dive
+## Component-Level Customization
 
-Plume components use a combination of semantic color variables and `dark:` utility classes. When `dark` is active on the `<html>` element:
+### Attribute Merging
+All Plume components correctly merge a provided `class` attribute with their internal defaults. This allows you to add one-off styling without creating new components.
 
-1.  **Variable Swapping:** You should swap your semantic variables (e.g., `--color-background` becomes a dark shade).
-2.  **Internal Classes:** Components will automatically apply their `dark:` utilities (e.g., changing border colors from `border-background-200` to `border-background-700`).
+```blade
+<x-plume::button class="shadow-xl ring-4 ring-primary/20">
+    Elevated Button
+</x-plume::button>
+```
 
-### Recommended Dark Theme Block
+### Arbitrary Values
+For properties not explicitly exposed as props (like specific positioning or overflow behavior), you can use Tailwind's arbitrary value syntax:
+
+```blade
+{{-- Hiding scrollbars on a specific element --}}
+<x-plume::carousel class="[scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+    ...
+</x-plume::carousel>
+```
+
+## Dark Mode
+
+Plume components use a combination of semantic variables and `dark:` utility classes. To customize the dark theme, redefine your variables within a `.dark` class or a media query in your `@theme` block:
+
 ```css
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: var(--color-slate-950);
-    --color-foreground: var(--color-slate-50);
-    /* ... swap other semantic colors ... */
+@theme {
+  /* Light mode defaults... */
+  --color-background: var(--color-white);
+
+  /* Dark mode overrides */
+  @media (prefers-color-scheme: dark) {
+    --color-background: var(--color-background-950);
+    --color-foreground: var(--color-background-50);
   }
 }
 
+/* Or if using a .dark class selector */
 .dark {
-  --color-background: var(--color-slate-950);
-  --color-foreground: var(--color-slate-50);
+  --color-background: var(--color-background-950);
+  --color-foreground: var(--color-background-50);
 }
+```
+
+## Using Wrapper Components
+
+If you find yourself applying the same overrides repeatedly, creating a local wrapper component is the recommended approach for maintainability:
+
+```blade
+{{-- resources/views/components/brand-button.blade.php --}}
+<x-plume::button 
+    {{ $attributes->merge(['class' => 'font-bold tracking-widest uppercase']) }}
+    style="outline"
+    shape="pill"
+>
+    {{ $slot }}
+</x-plume::button>
 ```
