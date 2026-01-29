@@ -7,6 +7,7 @@ A set of layered sections of content, known as tab panels, that are displayed on
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
 | `default` | `string` | `'1'` | The key of the tab to be active by default. |
+| `model` | `string` | `null` | AlpineJS model name for the active tab. |
 | `side` | `string` | `'top'` | Side to display the tab list: 'top', 'bottom', 'left', 'right'. |
 | `size` | `string` | `'md'` | Size of the tabs: 'sm', 'md', 'lg'. |
 | `style` | `string` | `'default'` | Visual style: 'default', 'pill', 'outline'. |
@@ -16,7 +17,7 @@ A set of layered sections of content, known as tab panels, that are displayed on
 ## Usage
 
 ```blade
-<x-plume::tabs default="profile">
+<x-plume::tabs default="profile" model="activeTab">
     <x-plume::tabs.group>
         <x-plume::tabs.item for="profile">Profile</x-plume::tabs.item>
         <x-plume::tabs.item for="settings">Settings</x-plume::tabs.item>

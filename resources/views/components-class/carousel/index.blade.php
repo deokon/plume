@@ -1,27 +1,34 @@
 {{--
 @component x-plume::carousel
-@description A slideshow component for cycling through elements.
-@prop bool $controls (Default: true) Whether to show previous/next arrows.
-@prop bool $indicators (Default: false) Whether to show dots indicating current slide.
-@prop bool $autoplay (Default: false) Whether to automatically cycle through slides.
-@prop int $interval (Default: 5000) Duration in milliseconds between slide changes when autoplay is on.
+@description A slideshow component for cycling through elements like a gallery of images or cards.
+@prop bool $autoplay (Default: false) Whether the carousel should automatically cycle through slides.
+@prop int $interval (Default: 3000) The time delay between slides in milliseconds when autoplay is enabled.
+@prop string $model (Default: null) AlpineJS model name for the active slide index.
 @prop string $onSlideChange (Default: null) AlpineJS expression or function to call when the active slide changes.
 @usage
-<x-plume::carousel indicators autoplay>
-    <x-plume::carousel.item>Slide 1</x-plume::carousel.item>
-    <x-plume::carousel.item>Slide 2</x-plume::carousel.item>
+<x-plume::carousel :autoplay="true" :interval="5000" model="currentSlide">
+    <x-plume::carousel.item>
+        Slide 1 content...
+    </x-plume::carousel.item>
+    <x-plume::carousel.item>
+        Slide 2 content...
+    </x-plume::carousel.item>
 </x-plume::carousel>
 --}}
-<div x-data="carousel({{ $autoplay ? 'true' : 'false' }}, {{ $interval }}, { onSlideChange: {{ Js::from($onSlideChange) }} })" class="relative group w-full overflow-hidden rounded-xl">
-    {{-- Slides --}}
-    <div x-ref="content" @scroll.debounce.50ms="updateActive"
-        class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide w-full"
-        style="scrollbar-width: none; -ms-overflow-style: none;">
+@php
+    $resolvedModel = $model;
+    if ($model && !str_contains($model, '.') && !str_starts_with($model, 'data.')) {
+        $resolvedModel = 'data.' . $model;
+    }
+@endphp
+<div x-data="carousel({{ $autoplay ? 'true' : 'false' }}, {{ $interval }}, {{ $resolvedModel ? "'$resolvedModel'" : 'null' }}, { onSlideChange: {{ $onSlideChange ? Js::from($onSlideChange) : 'null' }} })" class="relative group w-full overflow-hidden rounded-xl">
+    <div class="flex snap-x snap-mandatory overflow-x-auto no-scrollbar scroll-smooth" x-ref="content"
+        @scroll.debounce.100ms="updateActive()">
         {{ $slot }}
     </div>
 
     {{-- Controls --}}
-    @if ($controls)
+    @if (isset($controls) && $controls)
         <button @click="prev" dusk="prev-slide"
             class="absolute top-1/2 left-4 -translate-y-1/2 p-2 rounded-full bg-background/80 dark:bg-background-800/80 backdrop-blur-sm shadow-sm opacity-0 group-hover:opacity-100 transition-opacity hover:bg-background dark:hover:bg-background-700 text-foreground/80 dark:text-background-200 z-10"
             aria-label="Previous slide">
@@ -35,7 +42,7 @@
     @endif
 
     {{-- Indicators --}}
-    @if ($indicators)
+    @if (isset($indicators) && $indicators)
         <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
             <template x-for="i in slideCount">
                 <button @click="scrollTo(i - 1)"

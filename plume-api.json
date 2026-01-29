@@ -493,34 +493,39 @@
         "x-plume::carousel": {
             "path": "plume/resources/views/components-class/carousel/index.blade.php",
             "props": {
-                "controls": {
-                    "type": "bool",
-                    "default": "true",
-                    "description": "Whether to show previous/next arrows."
-                },
-                "indicators": {
-                    "type": "bool",
-                    "default": "false",
-                    "description": "Whether to show dots indicating current slide."
-                },
                 "autoplay": {
                     "type": "bool",
                     "default": "false",
-                    "description": "Whether to automatically cycle through slides."
+                    "description": "Whether the carousel should automatically cycle through slides."
                 },
                 "interval": {
                     "type": "int",
-                    "default": "5000",
-                    "description": "Duration in milliseconds between slide changes when autoplay is on."
+                    "default": "3000",
+                    "description": "The time delay between slides in milliseconds when autoplay is enabled."
+                },
+                "controls": {
+                    "type": "bool",
+                    "default": "true",
+                    "description": "-"
+                },
+                "indicators": {
+                    "type": "bool",
+                    "default": "true",
+                    "description": "-"
+                },
+                "model": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "AlpineJS model name for the active slide index."
                 },
                 "onSlideChange": {
                     "type": "string",
-                    "default": "null",
+                    "default": "''",
                     "description": "AlpineJS expression or function to call when the active slide changes."
                 }
             },
-            "description": "A slideshow component for cycling through elements.",
-            "usage": "<x-plume::carousel indicators autoplay>\n    <x-plume::carousel.item>Slide 1</x-plume::carousel.item>\n    <x-plume::carousel.item>Slide 2</x-plume::carousel.item>\n</x-plume::carousel>",
+            "description": "A slideshow component for cycling through elements like a gallery of images or cards.",
+            "usage": "<x-plume::carousel :autoplay=\"true\" :interval=\"5000\" model=\"currentSlide\">\n    <x-plume::carousel.item>\n        Slide 1 content...\n    </x-plume::carousel.item>\n    <x-plume::carousel.item>\n        Slide 2 content...\n    </x-plume::carousel.item>\n</x-plume::carousel>",
             "doc_url": "https://plume.dennisokon.com/docs/carousel"
         },
         "x-plume::carousel.item": {

@@ -1,4 +1,4 @@
-export default function (autoplay, interval, config = {}) {
+export default function (autoplay, interval, model = null, config = {}) {
     return {
         activeSlide: 0,
         slideCount: 0,
@@ -14,6 +14,23 @@ export default function (autoplay, interval, config = {}) {
                 this.slideCount = this.$refs.content.children.length;
                 this.updateActive();
             });
+
+            if (model) {
+                // Sync with parent Alpine data if available
+                if (typeof this.$data.data !== 'undefined') {
+                    const field = model.replace(/^data\./, '');
+                    this.$watch('activeSlide', (val) => (this.$data.data[field] = val));
+                    this.$watch('$data.data.' + field, (val) => {
+                        if (this.activeSlide !== val) {
+                            this.scrollTo(val);
+                        }
+                    });
+                    
+                    if (typeof this.$data.data[field] !== 'undefined' && this.$data.data[field] !== null) {
+                        this.activeSlide = this.$data.data[field];
+                    }
+                }
+            }
 
             this.$watch('activeSlide', (value) => {
                 this.triggerCallback('onSlideChange', value);
