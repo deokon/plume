@@ -1,9 +1,32 @@
-export default function () {
+export default function (model = null) {
     return {
         open: false,
         search: '',
         activeIndex: 0,
         lastFocusedElement: null,
+
+        init() {
+            if (model) {
+                // Sync with parent Alpine data if available
+                if (typeof this.$data.data !== 'undefined') {
+                    const field = model.replace(/^data\./, '');
+                    this.$watch('open', (val) => (this.$data.data[field] = val));
+                    this.$watch('$data.data.' + field, (val) => {
+                        if (val && !this.open) {
+                            this.toggle(true);
+                        } else if (!val && this.open) {
+                            this.toggle(false);
+                        }
+                    });
+                    
+                    if (typeof this.$data.data[field] !== 'undefined' && this.$data.data[field] !== null) {
+                        if (this.$data.data[field] && !this.open) {
+                            this.toggle(true);
+                        }
+                    }
+                }
+            }
+        },
 
         get filteredItems() {
             return Array.from(this.$refs.items.querySelectorAll('[role=option]')).filter((item) => {
@@ -11,8 +34,10 @@ export default function () {
             });
         },
 
-        toggle() {
-            if (!this.open) {
+        toggle(force = null) {
+            const nextOpen = force !== null ? force : !this.open;
+            
+            if (nextOpen) {
                 this.lastFocusedElement = document.activeElement;
                 this.open = true;
                 this.search = '';

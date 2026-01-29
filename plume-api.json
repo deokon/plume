@@ -599,6 +599,11 @@
                     "default": "'Type a command or search...'",
                     "description": "Placeholder text for the search input."
                 },
+                "model": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "AlpineJS model name for the open/closed state."
+                },
                 "id": {
                     "type": "string",
                     "default": "null",
@@ -2370,17 +2375,17 @@
                 },
                 "size": {
                     "type": "string",
-                    "default": "'md'",
+                    "default": "null",
                     "description": "The size of the tab: 'sm', 'md', 'lg'."
                 },
                 "style": {
                     "type": "string",
-                    "default": "'default'",
+                    "default": "null",
                     "description": "The visual style: 'default', 'secondary', 'error', 'outline', 'ghost', 'link', 'minor'."
                 },
                 "shape": {
                     "type": "string",
-                    "default": "'default'",
+                    "default": "null",
                     "description": "The shape of the tab button: 'default' (rounded), 'pill', 'round'."
                 }
             },

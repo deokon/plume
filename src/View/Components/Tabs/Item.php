@@ -14,9 +14,9 @@ class Item extends Component
 
     public function __construct(
         public string $for,
-        public string $size = 'md',
-        public string $style = 'default',
-        public string $shape = 'default',
+        public ?string $size = null,
+        public ?string $style = null,
+        public ?string $shape = null,
     ) {}
 
     public function render(): View|Closure|string

@@ -3,12 +3,21 @@
 @description A powerful search and action interface accessible via keyboard shortcuts.
 @prop string $trigger (Default: null) Text or slot for the element that opens the command palette.
 @prop string $placeholder (Default: 'Type a command or search...') Placeholder text for the search input.
+@prop string $model (Default: null) AlpineJS model name for the open/closed state.
 @prop string $id (Default: null) Optional unique ID for the command palette.
 --}}
-@php $command = $component; @endphp
-<div x-data="command()" @keydown.window.prevent.cmd.k="toggle()"
+@php
+    $command = $component;
+    $resolvedModel = $model;
+    if ($model && !str_contains($model, '.') && !str_starts_with($model, 'data.')) {
+        $resolvedModel = 'data.' . $model;
+    }
+    $resolvedId = $component->resolveId(null, $resolvedModel, $id);
+@endphp
+<div x-data="command('{{ $resolvedModel }}')" @keydown.window.prevent.cmd.k="toggle()"
     @keydown.window.prevent.ctrl.k="toggle()" @keydown.escape.window="open = false"
-    x-on:keydown.tab="if(open) { handleTab($event) }" class="relative" {{ $attributes }}>
+    x-on:keydown.tab="if(open) { handleTab($event) }" id="{{ $resolvedId }}" class="relative"
+    {{ $attributes->except(['id', 'model']) }}>
 
     {{-- Trigger Slot or Prop --}}
     @php $command = $component; @endphp
@@ -32,7 +41,7 @@
             x-transition:leave-end="opacity-0"
             class="fixed inset-0 z-[100] flex items-start justify-center pt-[10vh] sm:pt-[15vh] px-4 bg-background-950/80 backdrop-blur-sm"
             @click.self="open = false" role="dialog" aria-modal="true"
-            aria-label="Command Palette">
+            aria-label="Command Palette" id="{{ $resolvedId }}-modal">
             <div x-show="open" x-cloak x-transition:enter="{{ $enter }}"
                 x-transition:enter-start="opacity-0 scale-95"
                 x-transition:enter-end="opacity-100 scale-100"

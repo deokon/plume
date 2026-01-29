@@ -9,6 +9,7 @@ A standalone pagination component that dispatches events on change.
 | `total` | `int` | `1` | Total number of pages. |
 | `current` | `int` | `1` | Currently active page. |
 | `onEachSide` | `int` | `1` | Number of page links to show on each side of the current page. |
+| `model` | `string` | `null` | AlpineJS model name for the current page. |
 
 ## Usage
 
@@ -16,12 +17,8 @@ A standalone pagination component that dispatches events on change.
 Simple Usage:
 <x-plume::pagination :total="10" :current="1" />
 
-Listening for changes in AlpineJS:
-<div x-data="{ page: 1 }">
-    <x-plume::pagination 
-        :total="20" 
-        x-bind:data-current="page" 
-        @plume-page-change="page = $event.detail.page; fetchNewData()" 
-    />
-</div>
+Using model for reactivity:
+<x-plume::form formData="{ 'page': 1 }">
+    <x-plume::pagination :total="20" model="page" />
+</x-plume::form>
 ```

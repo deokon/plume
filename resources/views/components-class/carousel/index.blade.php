@@ -22,7 +22,7 @@
     }
 @endphp
 <div x-data="carousel({{ $autoplay ? 'true' : 'false' }}, {{ $interval }}, {{ $resolvedModel ? "'$resolvedModel'" : 'null' }}, { onSlideChange: {{ $onSlideChange ? Js::from($onSlideChange) : 'null' }} })" class="relative group w-full overflow-hidden rounded-xl">
-    <div class="flex snap-x snap-mandatory overflow-x-auto no-scrollbar scroll-smooth" x-ref="content"
+    <div class="flex snap-x snap-mandatory overflow-x-auto scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden" x-ref="content"
         @scroll.debounce.100ms="updateActive()">
         {{ $slot }}
     </div>
