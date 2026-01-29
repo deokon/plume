@@ -62,21 +62,29 @@ For properties not explicitly exposed as props (like specific positioning or ove
 
 ## Dark Mode
 
-Plume components use a combination of semantic variables and `dark:` utility classes. To customize the dark theme, redefine your variables within a `.dark` class or a media query in your `@theme` block:
+Plume components automatically support dark mode via the `.dark` class on the `<html>` element. The library includes a `page` Alpine component that manages theme persistence using `localStorage` and respects system preferences.
+
+### Using the Page Component
+The standard Plume layout uses the `page()` component on the `<html>` element:
+
+```blade
+<html x-data="page()">
+```
+
+### Toggling Dark Mode
+You can toggle the theme using the `toggleColorMode()` method provided by the `page` component:
+
+```blade
+<button @click="toggleColorMode()">
+    <span x-show="!darkMode">Switch to Dark</span>
+    <span x-show="darkMode">Switch to Light</span>
+</button>
+```
+
+### Customizing Dark Styles
+To customize the dark theme colors, redefine your variables within a `.dark` selector in your project's CSS:
 
 ```css
-@theme {
-  /* Light mode defaults... */
-  --color-background: var(--color-white);
-
-  /* Dark mode overrides */
-  @media (prefers-color-scheme: dark) {
-    --color-background: var(--color-background-950);
-    --color-foreground: var(--color-background-50);
-  }
-}
-
-/* Or if using a .dark class selector */
 .dark {
   --color-background: var(--color-background-950);
   --color-foreground: var(--color-background-50);
