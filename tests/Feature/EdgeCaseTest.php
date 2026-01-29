@@ -44,8 +44,7 @@ test('tabs handle missing default active tab', function () {
             <x-plume::tabs.panel for="tab1">Content</x-plume::tabs.panel>
         </x-plume::tabs>
     ');
-    // It should default to first tab or handle it gracefully?
     // Current implementation defaults 'default' prop to '1'.
-    expect($view)->toContain('x-data="tabs(\'1\', { onTabChange: null })"');
+    expect($view)->toContain('x-data="tabs(\'1\', \'\', { onTabChange: null })"');
 });
 

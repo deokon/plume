@@ -13,7 +13,7 @@ BLADE;
     $view = Blade::render($template);
     
     expect($view)
-        ->toContain('x-data="stepper(2, { onStepChange: null, onFinish: null })"')
+        ->toContain('x-data="stepper(2, \'\', { onStepChange: null, onFinish: null })"')
         ->toContain('Step 1')
         ->toContain('Content 1')
         ->toContain('Step 2')

@@ -96,7 +96,7 @@ test('tabs render correctly', function () {
 BLADE;
 
     $view = Blade::render($template);
-    expect($view)->toContain('x-data="tabs(\'tab1\', { onTabChange: null })"')
+    expect($view)->toContain('x-data="tabs(\'tab1\', \'\', { onTabChange: null })"')
         ->toContain('Tab 1')
         ->toContain('Panel 1');
 });
