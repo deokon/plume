@@ -29,7 +29,7 @@ Use `minCols` to arrange children in a responsive grid:
 <div {{ $attributes->merge(['class' => 'space-y-4']) }}>
     @if ($label)
         <div class="space-y-1">
-            <h3 class="text-sm font-medium leading-none text-foreground">
+            <h3 class="text-sm font-medium leading-none text-foreground dark:text-background-400">
                 {{ $label }}</h3>
             @if ($description)
                 <p class="text-xs text-foreground/50 dark:text-background-400">

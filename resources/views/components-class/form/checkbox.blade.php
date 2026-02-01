@@ -42,7 +42,7 @@
         </div>
         @if ($label || $slot->isNotEmpty())
             <label for="{{ $resolvedId }}"
-                class="text-sm font-medium text-foreground cursor-pointer select-none">
+                class="text-sm font-medium text-foreground dark:text-background-400 cursor-pointer select-none">
                 {{ $label ?? $slot }}
             </label>
         @endif

@@ -35,7 +35,7 @@
                 :class="{ 'translate-x-5': {{ $resolvedModel }}, 'translate-x-0': !{{ $resolvedModel }} }"></span>
         </button>
         @if ($label || $slot->isNotEmpty())
-            <span class="text-sm font-medium text-foreground cursor-pointer select-none"
+            <span class="text-sm font-medium text-foreground dark:text-background-400 cursor-pointer select-none"
                 @click="{{ $resolvedModel }} = !{{ $resolvedModel }}">
                 {{ $label ?? $slot }}
             </span>

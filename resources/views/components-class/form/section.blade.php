@@ -24,7 +24,7 @@ Create complex layouts without writing custom grid classes for every field:
 <div {{ $attributes->merge(['class' => 'space-y-6']) }}>
     @if ($title)
         <div>
-            <h3 class="text-lg font-medium leading-6 text-foreground">
+            <h3 class="text-lg font-medium leading-6 text-foreground dark:text-background-200">
                 {{ $title }}</h3>
             @if ($description)
                 <p class="mt-1 text-sm text-foreground/50 dark:text-background-400">
