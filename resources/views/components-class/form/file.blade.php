@@ -17,12 +17,12 @@
 ### Immediate AJAX Pre-upload (Recommended)
 The server must return JSON like: `{"id": "file_uuid"}`. The 'images' model in formData will be updated automatically with the IDs returned from the server.
 ```blade
-<x-plume::form.file 
-    label="Gallery" 
-    model="images" 
-    multiple 
-    :uploadUrl="route('api.upload')" 
-    accept="image/*" 
+<x-plume::form.file
+    label="Gallery"
+    model="images"
+    multiple
+    :uploadUrl="route('api.upload')"
+    accept="image/*"
 />
 ```
 
@@ -30,9 +30,9 @@ The server must return JSON like: `{"id": "file_uuid"}`. The 'images' model in f
 Combine `uploadUrl` with a simple AlpineJS template to show previews:
 ```blade
 <div x-data="{ previews: [] }">
-    <x-plume::form.file 
-        label="Avatar" 
-        model="avatar_id" 
+    <x-plume::form.file
+        label="Avatar"
+        model="avatar_id"
         accept="image/*"
         :uploadUrl="route('api.upload')"
         onSuccess="previews.push($event.detail.preview_url)"
@@ -97,8 +97,7 @@ Combine `uploadUrl` with a simple AlpineJS template to show previews:
                 x-on:click.stop>
                 <template x-for="(file, index) in files" :key="index">
                     <div class="flex flex-col items-center gap-2 group relative">
-                        <div
-                            class="relative size-24 rounded-lg overflow-hidden border border-background-700/40 dark:border-background-400/20 bg-background shadow-sm">
+                        <div class="relative size-24 rounded-lg overflow-hidden border border-background-700/40 dark:border-background-400/20 bg-background shadow-sm">
                             <template x-if="file.preview">
                                 <img :src="file.preview" class="size-full object-cover"
                                     :class="file.progress < 100 ? 'opacity-50 grayscale' : ''">
@@ -139,14 +138,9 @@ Combine `uploadUrl` with a simple AlpineJS template to show previews:
                                 </div>
                             </template>
 
-                            <div x-data="{ hover: false }" x-on:mouseenter="hover = true"
-                                x-on:mouseleave="hover = false"
-                                class="absolute inset-0 bg-background-950/40 transition-opacity flex items-center justify-center"
-                                x-show="hover" x-cloak x-transition>
-                                <x-plume::button style="error" size="sm" shape="round"
-                                    x-on:click.stop="removeFile(index)">
-                                    <x-plume::icon i="icon-[fluent--dismiss-24-regular]"
-                                        class="size-4" />
+                            <div class="absolute inset-0 flex items-center justify-center bg-background-950/40 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                                <x-plume::button style="error" size="sm" shape="round" x-on:click.stop="removeFile(index)">
+                                    <x-plume::icon i="icon-[fluent--dismiss-24-regular]" class="size-4" />
                                 </x-plume::button>
                             </div>
                         </div>
