@@ -111,8 +111,9 @@ export default function (model = null, uploadUrl = null) {
                 xhr.onload = () => {
                     if (xhr.status >= 200 && xhr.status < 300) {
                         const response = JSON.parse(xhr.responseText);
+                        const id = response.data?.id || response.id;
                         this.updateFileInArray(fileObj, {
-                            id: response.id,
+                            id: id,
                             progress: 100,
                             error: null,
                         });
