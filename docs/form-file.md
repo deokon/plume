@@ -24,12 +24,12 @@ A file upload input with drag-and-drop support and automatic pre-uploading.
 ### Immediate AJAX Pre-upload (Recommended)
 The server must return JSON like: `{"id": "file_uuid"}`. The 'images' model in formData will be updated automatically with the IDs returned from the server.
 ```blade
-<x-plume::form.file 
-    label="Gallery" 
-    model="images" 
-    multiple 
-    :uploadUrl="route('api.upload')" 
-    accept="image/*" 
+<x-plume::form.file
+    label="Gallery"
+    model="images"
+    multiple
+    :uploadUrl="route('api.upload')"
+    accept="image/*"
 />
 ```
 
@@ -37,9 +37,9 @@ The server must return JSON like: `{"id": "file_uuid"}`. The 'images' model in f
 Combine `uploadUrl` with a simple AlpineJS template to show previews:
 ```blade
 <div x-data="{ previews: [] }">
-    <x-plume::form.file 
-        label="Avatar" 
-        model="avatar_id" 
+    <x-plume::form.file
+        label="Avatar"
+        model="avatar_id"
         accept="image/*"
         :uploadUrl="route('api.upload')"
         onSuccess="previews.push($event.detail.preview_url)"
