@@ -5,9 +5,10 @@
 @prop int $current (Default: 1) Currently active page.
 @prop int $onEachSide (Default: 1) Number of page links to show on each side of the current page.
 @prop string $model (Default: null) AlpineJS model name for the current page.
+@prop string $onPageChange (Default: null) AlpineJS expression or function to call when the page is changed.
 @usage
 Simple Usage:
-<x-plume::pagination :total="10" :current="1" />
+<x-plume::pagination :total="10" :current="1" on-page-change="console.log($event.detail.page)" />
 
 Using model for reactivity:
 <x-plume::form formData="{ 'page': 1 }">
@@ -21,7 +22,7 @@ Using model for reactivity:
         $resolvedModel = 'data.' . $model;
     }
 @endphp
-<nav x-data="pagination({{ $initialTotal }}, {{ $initialCurrent }}, {{ $onEachSide }}, '{{ $resolvedModel }}')"
+<nav x-data="pagination({{ $initialTotal }}, {{ $initialCurrent }}, {{ $onEachSide }}, '{{ $resolvedModel }}', { onPageChange: {{ Js::from($onPageChange) }} })"
     {{ $attributes->merge(['class' => 'flex items-center justify-center gap-1']) }}
     aria-label="Pagination" data-total="{{ $initialTotal }}" data-current="{{ $initialCurrent }}">
     {{-- Previous Page --}}

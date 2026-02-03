@@ -1,7 +1,11 @@
-export default (initialTotal = 1, initialCurrent = 1, onEachSide = 1, model = null) => ({
+export default (initialTotal = 1, initialCurrent = 1, onEachSide = 1, model = null, config = {}) => ({
     total: parseInt(initialTotal) || 1,
     current: parseInt(initialCurrent) || 1,
     onEachSide: parseInt(onEachSide) || 1,
+    _config: {
+        onPageChange: null,
+        ...config,
+    },
 
     get pages() {
         const total = Math.max(1, this.total);
@@ -101,5 +105,19 @@ export default (initialTotal = 1, initialCurrent = 1, onEachSide = 1, model = nu
         this.current = targetPage;
         // Use a more specific event name to avoid conflicts
         this.$dispatch('plume-page-change', { page: targetPage });
+        this.triggerCallback('onPageChange', { page: targetPage });
+    },
+
+    triggerCallback(name, detail = {}) {
+        const callback = this._config[name];
+        if (!callback) return;
+
+        if (typeof callback === 'function') {
+            callback(detail);
+        } else if (typeof callback === 'string') {
+            window.Alpine.evaluate(this.$el, callback, {
+                scope: { ...detail, $event: { detail } }
+            });
+        }
     },
 });

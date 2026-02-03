@@ -17,6 +17,7 @@ class Pagination extends Component
         public int $current = 1,
         public int $onEachSide = 1,
         public ?string $model = null,
+        public ?string $onPageChange = null,
     ) {}
 
     public function render(): View|Closure|string
