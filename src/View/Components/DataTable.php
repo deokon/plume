@@ -18,6 +18,10 @@ use deokon\Plume\View\Components\Concerns\HasPagination;
  * @prop bool $sortable (Default: true) Whether to enable column sorting.
  * @prop string $url (Default: null) API endpoint URL for server-side fetching.
  * @prop bool $fixedHeight (Default: false) Whether to give the table a fixed height with sticky header.
+ * @prop string $onSort (Default: null) Callback expression for when the table is sorted.
+ * @prop string $onFilter (Default: null) Callback expression for when the data is filtered.
+ * @prop string $onPageChange (Default: null) Callback expression for when the page is changed.
+ * @prop string $onLoad (Default: null) Callback expression for when data is loaded.
  */
 class DataTable extends Component
 {
@@ -32,8 +36,12 @@ class DataTable extends Component
         public bool $sortable = true,
         ?string $url = null,
         public bool $fixedHeight = false,
+        ?string $onSort = null,
+        ?string $onFilter = null,
+        ?string $onPageChange = null,
+        ?string $onLoad = null,
     ) {
-        $this->initializePagination($data, $searchable, $paginated, $perPage, $url);
+        $this->initializePagination($data, $searchable, $paginated, $perPage, $url, $onSort, $onFilter, $onPageChange, $onLoad);
     }
 
     public function render(): View|Closure|string
@@ -48,6 +56,10 @@ class DataTable extends Component
             'sortable' => $this->sortable,
             'url' => $this->url,
             'fixedHeight' => $this->fixedHeight,
+            'onSort' => $this->onSort,
+            'onFilter' => $this->onFilter,
+            'onPageChange' => $this->onPageChange,
+            'onLoad' => $this->onLoad,
         ]);
     }
 }

@@ -22,8 +22,12 @@ class DataGallery extends Component
         public int $gap = 4,
         public ?int $minCols = null,
         public ?int $maxCols = null,
+        ?string $onSort = null,
+        ?string $onFilter = null,
+        ?string $onPageChange = null,
+        ?string $onLoad = null,
     ) {
-        $this->initializePagination($data, $searchable, $paginated, $perPage, $url);
+        $this->initializePagination($data, $searchable, $paginated, $perPage, $url, $onSort, $onFilter, $onPageChange, $onLoad);
     }
 
     public function render(): View|Closure|string
@@ -36,6 +40,10 @@ class DataGallery extends Component
             'perPage' => $this->perPage,
             'url' => $this->url,
             'gridClasses' => $this->gridClasses($this->cols, $this->gap, $this->minCols, $this->maxCols),
+            'onSort' => $this->onSort,
+            'onFilter' => $this->onFilter,
+            'onPageChange' => $this->onPageChange,
+            'onLoad' => $this->onLoad,
         ]);
     }
 }

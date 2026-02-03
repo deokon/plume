@@ -14,6 +14,7 @@
                     "description": "AlpineJS expression or function to call when an item is toggled."
                 }
             },
+            "slots": [],
             "description": "Collapsible content panels for saving vertical space.",
             "usage": "<x-plume::accordion>\n    <x-plume::accordion.item title=\"Item 1\">\n        Content 1\n    </x-plume::accordion.item>\n</x-plume::accordion>",
             "doc_url": "https://plume.dennisokon.com/docs/accordion"
@@ -37,6 +38,7 @@
                     "description": "Whether the item should be open by default."
                 }
             },
+            "slots": [],
             "description": "An individual collapsible item within an accordion.",
             "usage": "<x-plume::accordion>\n    <x-plume::accordion.item title=\"What is Plume?\" id=\"faq-1\" open>\n        Plume is a UI library for Laravel and Alpine.js.\n    </x-plume::accordion.item>\n</x-plume::accordion>",
             "doc_url": "https://plume.dennisokon.com/docs/accordion-item"
@@ -75,6 +77,7 @@
                     "description": "AlpineJS expression or function to call when the alert is closed."
                 }
             },
+            "slots": [],
             "description": "Displays a callout for user attention with semantic styling and optional dismissibility.",
             "usage": "<x-plume::alert style=\"success\" title=\"Settings Updated\" closable autoclose=\"5000\">\n    Your profile settings have been saved successfully.\n</x-plume::alert>",
             "doc_url": "https://plume.dennisokon.com/docs/alert"
@@ -113,6 +116,7 @@
                     "description": "JavaScript action to execute when the primary button is clicked."
                 }
             },
+            "slots": [],
             "description": "Modal dialog specifically designed for alerting users to important information or actions.",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/alert-dialog"
@@ -126,6 +130,7 @@
                     "description": "The aspect ratio: 'square' (1:1), 'video' (16:9), 'standard' (4:3), 'portrait' (3:4), 'cinema' (21:9), 'vertical' (9:16). Supports both '4/3' and '4:3' notations."
                 }
             },
+            "slots": [],
             "description": "A container component to maintain consistent proportions for media and content.",
             "usage": "<x-plume::aspect ratio=\"square\" class=\"max-w-xs\">\n    <img src=\"/photo.jpg\" class=\"object-cover w-full h-full\" />\n</x-plume::aspect>",
             "doc_url": "https://plume.dennisokon.com/docs/aspect"
@@ -159,6 +164,7 @@
                     "description": "Whether the audio should be muted by default."
                 }
             },
+            "slots": [],
             "description": "A styled native HTML5 audio player wrapper.",
             "usage": "<x-plume::audio src=\"/assets/podcast.mp3\" />",
             "doc_url": "https://plume.dennisokon.com/docs/audio"
@@ -197,6 +203,7 @@
                     "description": "Shape of the avatar: 'round' (circle) or 'default' (rounded-md)."
                 }
             },
+            "slots": [],
             "description": "A circular or square image element with text fallback and optional status indicator.",
             "usage": "<x-plume::avatar \n    src=\"https://example.com/user.jpg\" \n    fallback=\"JD\" \n    status=\"success\" \n    size=\"lg\" \n/>",
             "doc_url": "https://plume.dennisokon.com/docs/avatar"
@@ -220,6 +227,7 @@
                     "description": "Shape: 'default' (rounded), 'pill', 'square'."
                 }
             },
+            "slots": [],
             "description": "Displays a small, styled label for status, counts, or categorization.",
             "usage": "<x-plume::badge style=\"success\" shape=\"pill\">Active</x-plume::badge>\n<x-plume::badge style=\"outline\" size=\"sm\">v1.0.0</x-plume::badge>",
             "doc_url": "https://plume.dennisokon.com/docs/badge"
@@ -238,6 +246,7 @@
                     "description": "The character or icon name to use as a separator."
                 }
             },
+            "slots": [],
             "description": "Displays the path to the current resource using a hierarchy of links.",
             "usage": "<x-plume::breadcrumb \n    :items=\"[\n        ['label' => 'Dashboard', 'href' => '/admin'],\n        ['label' => 'Users', 'href' => '/admin/users'],\n        ['label' => 'Edit User', 'active' => true]\n    ]\" \n/>",
             "doc_url": "https://plume.dennisokon.com/docs/breadcrumb"
@@ -256,6 +265,7 @@
                     "description": "Whether the item represents the current page."
                 }
             },
+            "slots": [],
             "description": "An individual link or active label within a breadcrumb trail.",
             "usage": "<x-plume::breadcrumb.item href=\"/dashboard\">Dashboard</x-plume::breadcrumb.item>\n<x-plume::breadcrumb.item active>Settings</x-plume::breadcrumb.item>",
             "doc_url": "https://plume.dennisokon.com/docs/breadcrumb-item"
@@ -263,6 +273,7 @@
         "x-plume::breadcrumb.separator": {
             "path": "plume/resources/views/components-class/breadcrumb/separator.blade.php",
             "props": [],
+            "slots": [],
             "description": "Visual separator between breadcrumb items. Auto-generated by x-plume::breadcrumb but can be used manually.",
             "usage": "<x-plume::breadcrumb.separator>\n    <span class=\"text-xs\">/</span>\n</x-plume::breadcrumb.separator>",
             "doc_url": "https://plume.dennisokon.com/docs/breadcrumb-separator"
@@ -321,6 +332,7 @@
                     "description": "AlpineJS expression or callback function to execute on error."
                 }
             },
+            "slots": [],
             "description": "Displays a button or a component that looks like a button.",
             "usage": "<x-plume::button style=\"primary\" icon=\"icon-[fluent--save-24-regular]\">Save Changes</x-plume::button>\n\n<x-plume::button \n    href=\"/users/1\" \n    method=\"DELETE\" \n    confirm=\"Are you sure you want to delete this user?\"\n    onSuccess=\"$success('User deleted')\">\n    Delete User\n</x-plume::button>",
             "doc_url": "https://plume.dennisokon.com/docs/button"
@@ -349,6 +361,7 @@
                     "description": "The shape of buttons in the group (default, pill, square)."
                 }
             },
+            "slots": [],
             "description": "Groups related buttons together.",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/button-group"
@@ -372,6 +385,7 @@
                     "description": "Visual style of the button."
                 }
             },
+            "slots": [],
             "description": "A button that displays a loading spinner based on an AlpineJS boolean state.",
             "usage": "<div x-data=\"{ isBusy: false }\">\n    <x-plume::button.loader \n        var=\"isBusy\" \n        @click=\"isBusy = true; setTimeout(() => isBusy = false, 2000)\"\n    >\n        Submit Process\n    </x-plume::button.loader>\n</div>",
             "doc_url": "https://plume.dennisokon.com/docs/button-loader"
@@ -415,6 +429,7 @@
                     "description": "Custom JavaScript to execute on click instead of default toggle logic."
                 }
             },
+            "slots": [],
             "description": "Button that toggles between two states.",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/button-toggle"
@@ -453,6 +468,7 @@
                     "description": "AlpineJS expression or function to call when a date is selected."
                 }
             },
+            "slots": [],
             "description": "A visual calendar interface for selecting dates.",
             "usage": "<x-plume::calendar \n    model=\"bookingDate\" \n    min=\"2024-01-01\" \n    max=\"2024-12-31\" \n    mode=\"range\" \n/>",
             "doc_url": "https://plume.dennisokon.com/docs/calendar"
@@ -486,6 +502,7 @@
                     "description": "If provided, renders the card as a clickable link."
                 }
             },
+            "slots": [],
             "description": "A versatile container for related content and actions, featuring semantic sections.",
             "usage": "<x-plume::card title=\"Project Alpha\" description=\"Updated 2 hours ago\" badge=\"In Progress\">\n    <p>Card content goes here.</p>\n    <x-slot:footer>\n        <x-plume::button size=\"sm\">View Project</x-plume::button>\n    </x-slot:footer>\n</x-plume::card>",
             "doc_url": "https://plume.dennisokon.com/docs/card"
@@ -524,6 +541,7 @@
                     "description": "AlpineJS expression or function to call when the active slide changes."
                 }
             },
+            "slots": [],
             "description": "A slideshow component for cycling through elements like a gallery of images or cards.",
             "usage": "<x-plume::carousel :autoplay=\"true\" :interval=\"5000\" model=\"currentSlide\">\n    <x-plume::carousel.item>\n        Slide 1 content...\n    </x-plume::carousel.item>\n    <x-plume::carousel.item>\n        Slide 2 content...\n    </x-plume::carousel.item>\n</x-plume::carousel>",
             "doc_url": "https://plume.dennisokon.com/docs/carousel"
@@ -531,6 +549,7 @@
         "x-plume::carousel.item": {
             "path": "plume/resources/views/components-class/carousel/item.blade.php",
             "props": [],
+            "slots": [],
             "description": "An individual slide within a carousel slideshow.",
             "usage": "<x-plume::carousel>\n    <x-plume::carousel.item>\n        <img src=\"/slide1.jpg\" alt=\"Slide 1\">\n    </x-plume::carousel.item>\n</x-plume::carousel>",
             "doc_url": "https://plume.dennisokon.com/docs/carousel-item"
@@ -559,6 +578,7 @@
                     "description": "Tailwind text color class for the chart elements."
                 }
             },
+            "slots": [],
             "description": "Basic chart component for data visualization (bar, line).",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/chart"
@@ -582,6 +602,7 @@
                     "description": "The code content. If provided as a prop, content is NOT parsed by Blade."
                 }
             },
+            "slots": [],
             "description": "A component for displaying code snippets with optional syntax highlighting label and a copy-to-clipboard feature.",
             "usage": "### Basic Usage\n```blade\n<x-plume::code language=\"javascript\" title=\"app.js\">\n    console.log('Hello Plume!');\n</x-plume::code>\n```\n\n### Displaying Blade/HTML\nImportant: Blade components inside the slot will be rendered by Laravel. To display literal tags, wrap them in `@verbatim` or use the `code` prop:\n\n```blade\n<x-plume::code language=\"blade\">\n    @verbatim\n    <x-plume::button>Literal Tag</x-plume::button>\n    @endverbatim\n</x-plume::code>\n```",
             "doc_url": "https://plume.dennisokon.com/docs/code"
@@ -610,6 +631,7 @@
                     "description": "Optional unique ID for the command palette."
                 }
             },
+            "slots": [],
             "description": "A powerful search and action interface accessible via keyboard shortcuts.",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/command"
@@ -623,6 +645,7 @@
                     "description": "The label for the group."
                 }
             },
+            "slots": [],
             "description": "A container for grouping related command items within a command palette.",
             "usage": "<x-plume::command>\n    <x-plume::command.group title=\"Actions\">\n        <x-plume::command.item>Save File</x-plume::command.item>\n    </x-plume::command.group>\n</x-plume::command>",
             "doc_url": "https://plume.dennisokon.com/docs/command-group"
@@ -651,6 +674,7 @@
                     "description": "Keyboard shortcut text to display (e.g., '\u2318K')."
                 }
             },
+            "slots": [],
             "description": "An individual command or selection within a command palette group.",
             "usage": "<x-plume::command.item \n    icon=\"icon-[fluent--save-24-regular]\" \n    shortcut=\"\u2318S\"\n    @click=\"$success('Saved!')\"\n>\n    Save Document\n</x-plume::command.item>",
             "doc_url": "https://plume.dennisokon.com/docs/command-item"
@@ -702,10 +726,33 @@
                     "type": "int",
                     "default": "null",
                     "description": "Maximum number of grid columns on large screens."
+                },
+                "onSort": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "Callback expression for when the gallery is sorted."
+                },
+                "onFilter": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "Callback expression for when the data is filtered."
+                },
+                "onPageChange": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "Callback expression for when the page is changed."
+                },
+                "onLoad": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "Callback expression for when data is loaded."
                 }
             },
+            "slots": {
+                "controls": "Optional slot for additional search/filter controls above the gallery."
+            },
             "description": "Gallery grid layout for displaying collections of items with dynamic content via slots. Powered by AlpineJS. Supports client-side data or server-side fetching via URL.",
-            "usage": "### Basic Usage\n```blade\n<x-plume::data-gallery :data=\"$products\" paginated searchable :per-page=\"10\">\n    <x-plume::card>\n        <img :src=\"item.image\" class=\"w-full h-48 object-cover\" />\n        <div class=\"p-4\">\n            <h3 x-text=\"item.name\" class=\"font-semibold\"></h3>\n            <p x-text=\"item.description\" class=\"text-sm text-foreground/60\"></p>\n            <span x-text=\"`$${item.price}`\" class=\"font-bold text-primary mt-2 block\"></span>\n        </div>\n    </x-plume::card>\n</x-plume::data-gallery>\n```\n\n### Server-side Data\nWhen a `url` is provided, the gallery automatically handles fetching data from your API:\n```blade\n<x-plume::data-gallery\n    url=\"/api/products\"\n    paginated\n    searchable\n    :per-page=\"10\"\n    cols=\"4\"\n>\n    <!-- item content here -->\n</x-plume::data-gallery>\n```\n\n### Refreshing Data\nCall `fetch()` from any interactive element within the gallery to refresh its content:\n```blade\n<x-plume::button\n    @click=\"fetch()\"\n>\n    Refresh\n</x-plume::button>\n```",
+            "usage": "### Basic Usage\n```blade\n<x-plume::data-gallery :data=\"$products\" paginated searchable :per-page=\"10\" on-page-change=\"console.log('Page changed')\">\n    <x-slot:controls>\n        <x-plume::button size=\"sm\" variant=\"outline\" @click=\"fetch()\">\n            Refresh\n        </x-plume::button>\n    </x-slot:controls>\n\n    <x-plume::card>\n        <img :src=\"item.image\" class=\"w-full h-48 object-cover\" />\n        <div class=\"p-4\">\n            <h3 x-text=\"item.name\" class=\"font-semibold\"></h3>\n            <p x-text=\"item.description\" class=\"text-sm text-foreground/60\"></p>\n            <span x-text=\"`$${item.price}`\" class=\"font-bold text-primary mt-2 block\"></span>\n        </div>\n    </x-plume::card>\n</x-plume::data-gallery>\n```\n\n### Server-side Data\nWhen a `url` is provided, the gallery automatically handles fetching data from your API:\n```blade\n<x-plume::data-gallery\n    url=\"/api/products\"\n    paginated\n    searchable\n    :per-page=\"10\"\n    cols=\"4\"\n>\n    <!-- item content here -->\n</x-plume::data-gallery>\n```\n\n### Refreshing Data\nCall `fetch()` from any interactive element within the gallery to refresh its content:\n```blade\n<x-plume::button\n    @click=\"fetch()\"\n>\n    Refresh\n</x-plume::button>\n```",
             "doc_url": "https://plume.dennisokon.com/docs/data-gallery"
         },
         "x-plume::data-table": {
@@ -750,10 +797,33 @@
                     "type": "bool",
                     "default": "false",
                     "description": "If true, maintains a minimum height based on perPage to prevent layout shifts."
+                },
+                "onSort": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "Callback expression for when the table is sorted."
+                },
+                "onFilter": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "Callback expression for when the data is filtered."
+                },
+                "onPageChange": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "Callback expression for when the page is changed."
+                },
+                "onLoad": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "Callback expression for when data is loaded."
                 }
             },
+            "slots": {
+                "controls": "Optional slot for additional search/filter controls above the table."
+            },
             "description": "Advanced table with sorting, filtering, and pagination. Powered by AlpineJS. Supports client-side data or server-side fetching via URL.",
-            "usage": "### Basic Usage\n```blade\n@php\n    $cols = [\n        ['key' => 'name', 'label' => 'Name', 'sortable' => true],\n        ['key' => 'email', 'label' => 'Email', 'sortable' => true],\n        ['key' => 'role', 'label' => 'Role', 'constructed' => '<span class=\"badge text-xs uppercase\">{role}</span>']\n    ];\n@endphp\n\n<x-plume::data-table \n    :columns=\"$cols\" \n    :data=\"$users\" \n    searchable \n    paginated \n    :per-page=\"15\" \n/>\n```\n\n### Server-side Data\nWhen a `url` is provided, the table automatically handles fetching data from your API:\n```blade\n<x-plume::data-table \n    url=\"/api/users\" \n    :columns=\"$cols\"\n    paginated \n    searchable \n/>\n```\n\n### Refreshing Data\nCall `fetch()` from any interactive element within the table to refresh its content:\n```blade\n<x-plume::button \n    method=\"DELETE\" \n    :href=\"route('users.destroy', $user)\" \n    onSuccess=\"fetch()\"\n>\n    Delete\n</x-plume::button>\n```\n\n### Performance Tip\nUse **Constructed Columns** for simple HTML formatting to keep the table snappy. Use **Slots** only when you need complex Blade components in your cells.",
+            "usage": "### Basic Usage\n```blade\n@php\n    $cols = [\n        ['key' => 'name', 'label' => 'Name', 'sortable' => true],\n        ['key' => 'email', 'label' => 'Email', 'sortable' => true],\n        ['key' => 'role', 'label' => 'Role', 'constructed' => '<span class=\"badge text-xs uppercase\">{role}</span>']\n    ];\n@endphp\n\n<x-plume::data-table \n    :columns=\"$cols\" \n    :data=\"$users\" \n    searchable \n    paginated \n    :per-page=\"15\" \n    on-page-change=\"console.log('Page changed to:', $event.detail.page)\"\n>\n    <x-slot:controls>\n        <x-plume::button size=\"sm\" variant=\"outline\" @click=\"fetch()\">\n            Refresh\n        </x-plume::button>\n    </x-slot:controls>\n</x-plume::data-table>\n```\n\n### Server-side Data\nWhen a `url` is provided, the table automatically handles fetching data from your API:\n```blade\n<x-plume::data-table \n    url=\"/api/users\" \n    :columns=\"$cols\"\n    paginated \n    searchable \n/>\n```\n\n### Refreshing Data\nCall `fetch()` from any interactive element within the table to refresh its content:\n```blade\n<x-plume::button \n    method=\"DELETE\" \n    :href=\"route('users.destroy', $user)\" \n    onSuccess=\"fetch()\"\n>\n    Delete\n</x-plume::button>\n```\n\n### Performance Tip\nUse **Constructed Columns** for simple HTML formatting to keep the table snappy. Use **Slots** only when you need complex Blade components in your cells.",
             "doc_url": "https://plume.dennisokon.com/docs/data-table"
         },
         "x-plume::divider": {
@@ -765,6 +835,7 @@
                     "description": "Text label to display in the center of the divider."
                 }
             },
+            "slots": [],
             "description": "A horizontal rule used to visually separate content sections, with optional text or icon labels.",
             "usage": "<x-plume::divider />\n<x-plume::divider label=\"OR\" />\n<x-plume::divider>\n    <x-plume::icon i=\"icon-[fluent--star-24-regular]\" />\n</x-plume::divider>",
             "doc_url": "https://plume.dennisokon.com/docs/divider"
@@ -818,6 +889,7 @@
                     "description": "AlpineJS expression or function to call when the drawer closes."
                 }
             },
+            "slots": [],
             "description": "A panel that slides in from the edge of the screen. Closes when clicking the backdrop or pressing the ESC key unless 'persistent' is true.",
             "usage": "### Basic Usage\n```blade\n<x-plume::drawer name=\"settings\" title=\"User Settings\" side=\"right\">\n    <x-plume::form ...>\n        ...\n    </x-plume::form>\n</x-plume::drawer>\n\n<x-plume::button @click=\"$openDrawer('settings')\">Open Settings</x-plume::button>\n```\n\n### Multi-step Workflows\nDrawers are ideal for side-panel workflows that don't want to lose page context:\n```blade\n<x-plume::drawer name=\"add-item\" title=\"Add New Item\">\n    <x-plume::stepper ... />\n</x-plume::drawer>\n```",
             "doc_url": "https://plume.dennisokon.com/docs/drawer"
@@ -851,6 +923,7 @@
                     "description": "Visual style of the automatic trigger button: 'primary', 'secondary', 'error', 'outline', 'ghost', 'link', 'minor'."
                 }
             },
+            "slots": [],
             "description": "Displays a menu to the user\u2014such as a set of actions or functions\u2014triggered by a button.",
             "usage": "<x-plume::dropdown trigger=\"Actions\" align=\"right\" width=\"sm\">\n    <x-plume::dropdown.item href=\"/edit\">Edit</x-plume::dropdown.item>\n    <x-plume::dropdown.item href=\"/delete\" class=\"text-error\">Delete</x-plume::dropdown.item>\n</x-plume::dropdown>",
             "doc_url": "https://plume.dennisokon.com/docs/dropdown"
@@ -864,6 +937,7 @@
                     "description": "Visual style of the item (e.g., 'ghost', 'error', 'success')."
                 }
             },
+            "slots": [],
             "description": "Interactive item within a dropdown menu.",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/dropdown-item"
@@ -871,6 +945,7 @@
         "x-plume::dropdown.separator": {
             "path": "plume/resources/views/components-class/dropdown/separator.blade.php",
             "props": [],
+            "slots": [],
             "description": "Visual separator for dropdown items.",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/dropdown-separator"
@@ -894,6 +969,7 @@
                     "description": "Iconify icon name."
                 }
             },
+            "slots": [],
             "description": "A placeholder component to show when a list, table, or page has no data.",
             "usage": "<x-plume::empty-state \n    title=\"No items in cart\" \n    description=\"Your shopping cart is currently empty. Start adding some products!\"\n    icon=\"icon-[fluent--cart-24-regular]\"\n>\n    <x-plume::button href=\"/shop\">Browse Products</x-plume::button>\n</x-plume::empty-state>",
             "doc_url": "https://plume.dennisokon.com/docs/empty-state"
@@ -932,6 +1008,7 @@
                     "description": "Responsive image sizes."
                 }
             },
+            "slots": [],
             "description": "Enhanced image component with captions, aspect ratio control, and support for modern image formats.",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/figure"
@@ -995,6 +1072,7 @@
                     "description": "Renders form elements in a horizontal flex layout."
                 }
             },
+            "slots": [],
             "description": "A robust form container with AJAX submission, validation error handling, and reactive state binding.",
             "usage": "### Basic Usage\n```blade\n<x-plume::form \n    action=\"/profile\" \n    method=\"PUT\" \n    :form-data=\"['name' => 'John', 'email' => 'john@example.com']\"\n    submit-button=\"Save Changes\"\n>\n    <x-plume::form.input name=\"name\" model=\"name\" label=\"Name\" />\n    <x-plume::form.input name=\"email\" model=\"email\" label=\"Email\" />\n</x-plume::form>\n```\n\n### Initializing with Data\nTo populate a form with existing data (e.g., for an edit screen), use the `formData` prop. The keys in the array should match the `model` names of your input fields.\nUsing `Js::from()` is recommended for complex objects or to ensure correct JSON encoding:\n```blade\n<x-plume::form \n    :formData=\"Js::from($user->only(['name', 'email', 'bio']))\"\n    action=\"{{ route('users.update', $user) }}\"\n    method=\"PUT\"\n    submit-button=\"Update Profile\"\n>\n    <x-plume::form.input model=\"name\" label=\"Name\" />\n    <x-plume::form.input model=\"email\" label=\"Email\" />\n</x-plume::form>\n```\n\n### Resetting Form State\nYou can programmatically reset the form to its initial `formData` state by calling the `reset()` method from within the form:\n```blade\n<x-plume::button @click=\"reset()\">Discard Changes</x-plume::button>\n```\n\n### Inline Mode\nThe `inline` prop renders form elements in a horizontal flex layout, ideal for search bars or single-field subscriptions:\n```blade\n<x-plume::form action=\"/search\" method=\"GET\" inline>\n    <x-plume::form.input name=\"q\" placeholder=\"Search...\" />\n    <x-plume::button type=\"submit\">Search</x-plume::button>\n</x-plume::form>\n```\n\n### Validation Error Handling\nWhen the server returns a 422 response with an 'errors' object, Plume automatically populates the form's error bag. Fields with matching 'model' names will display their respective error messages.",
             "doc_url": "https://plume.dennisokon.com/docs/form"
@@ -1002,6 +1080,7 @@
         "x-plume::form.actions": {
             "path": "plume/resources/views/components-class/form/actions.blade.php",
             "props": [],
+            "slots": [],
             "description": "A flex container for form-level action buttons (typically Submit and Cancel).",
             "usage": "Standardized layout for form buttons, typically used at the bottom of a form:\n```blade\n<x-plume::form.actions>\n    <x-plume::button style=\"minor\" @click=\"window.history.back()\">\n        Cancel\n    </x-plume::button>\n    <x-plume::button type=\"submit\">\n        Save Changes\n    </x-plume::button>\n</x-plume::form.actions>\n```",
             "doc_url": "https://plume.dennisokon.com/docs/form-actions"
@@ -1040,6 +1119,7 @@
                     "description": "Whether the checkbox is initially checked."
                 }
             },
+            "slots": [],
             "description": "A checkbox input for binary selection or boolean state.",
             "usage": "<x-plume::form.checkbox \n    label=\"Accept Terms\" \n    name=\"terms\" \n    model=\"accept_terms\" \n    required \n/>\n\n<x-plume::form.checkbox name=\"remember\" model=\"remember\">\n    Remember me\n</x-plume::form.checkbox>",
             "doc_url": "https://plume.dennisokon.com/docs/form-checkbox"
@@ -1073,6 +1153,7 @@
                     "description": "Initial hex color value. Ignored if $model is used."
                 }
             },
+            "slots": [],
             "description": "A native color picker input with hex value display.",
             "usage": "<x-plume::form.color \n    label=\"Brand Color\" \n    model=\"brand_hex\" \n    value=\"#3b82f6\" \n/>",
             "doc_url": "https://plume.dennisokon.com/docs/form-color"
@@ -1121,6 +1202,7 @@
                     "description": "AlpineJS expression or function to call when an option is selected."
                 }
             },
+            "slots": [],
             "description": "A searchable select input with filtering capabilities, integrated label, and validation support.",
             "usage": "<x-plume::form.combobox \n    label=\"Country\" \n    model=\"country_id\" \n    :options=\"['US' => 'United States', 'CA' => 'Canada', 'GB' => 'United Kingdom']\" \n    placeholder=\"Choose a country...\"\n    onSelect=\"$toast('Selected country: ' + result.label)\"\n/>",
             "doc_url": "https://plume.dennisokon.com/docs/form-combobox"
@@ -1159,6 +1241,7 @@
                     "description": "Placeholder text (browser support varies for type=\"date\")."
                 }
             },
+            "slots": [],
             "description": "A native date picker input with integrated label and validation support.",
             "usage": "<x-plume::form.date \n    label=\"Birthday\" \n    model=\"profile.birthday\" \n    required \n/>",
             "doc_url": "https://plume.dennisokon.com/docs/form-date"
@@ -1197,6 +1280,7 @@
                     "description": "Placeholder text."
                 }
             },
+            "slots": [],
             "description": "A native date and time picker input with integrated label and validation support.",
             "usage": "<x-plume::form.datetime \n    label=\"Event Start\" \n    model=\"event.starts_at\" \n    required \n/>",
             "doc_url": "https://plume.dennisokon.com/docs/form-datetime"
@@ -1225,6 +1309,7 @@
                     "description": "AlpineJS model name for validation and state binding."
                 }
             },
+            "slots": [],
             "description": "Base wrapper for form inputs, handling labels and errors.",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/form-element"
@@ -1268,6 +1353,7 @@
                     "description": "API endpoint for immediate pre-upload. If provided, files are uploaded as soon as they are selected."
                 }
             },
+            "slots": [],
             "description": "A file upload input with drag-and-drop support and automatic pre-uploading.",
             "usage": "### Basic Usage\n```blade\n<x-plume::form.file label=\"Resume\" name=\"resume\" accept=\".pdf,.doc\" />\n```\n\n### Immediate AJAX Pre-upload (Recommended)\nThe server must return JSON like: `{\"id\": \"file_uuid\"}`. The 'images' model in formData will be updated automatically with the IDs returned from the server.\n```blade\n<x-plume::form.file\n    label=\"Gallery\"\n    model=\"images\"\n    multiple\n    :uploadUrl=\"route('api.upload')\"\n    accept=\"image/*\"\n/>\n```\n\n### Image Upload with Preview\nCombine `uploadUrl` with a simple AlpineJS template to show previews:\n```blade\n<div x-data=\"{ previews: [] }\">\n    <x-plume::form.file\n        label=\"Avatar\"\n        model=\"avatar_id\"\n        accept=\"image/*\"\n        :uploadUrl=\"route('api.upload')\"\n        onSuccess=\"previews.push($event.detail.preview_url)\"\n    />\n\n    <template x-if=\"previews.length\">\n        <div class=\"mt-4 flex gap-4\">\n            <template x-for=\"url in previews\">\n                <img :src=\"url\" class=\"size-20 rounded-lg object-cover border\" />\n            </template>\n        </div>\n    </template>\n</div>\n```",
             "doc_url": "https://plume.dennisokon.com/docs/form-file"
@@ -1301,6 +1387,7 @@
                     "description": "Shared name attribute for child inputs."
                 }
             },
+            "slots": [],
             "description": "Groups related form inputs (like radios or checkboxes) under a single label.",
             "usage": "### Grouping Checkboxes\nThe `model` prop on the group will be automatically shared with all child inputs, ideal for binding multiple values to an array:\n```blade\n<x-plume::form.group label=\"Interests\" model=\"interests\" description=\"Select all that apply\">\n    <x-plume::form.checkbox value=\"tech\" label=\"Technology\" />\n    <x-plume::form.checkbox value=\"design\" label=\"Design\" />\n    <x-plume::form.checkbox value=\"marketing\" label=\"Marketing\" />\n</x-plume::form.group>\n```\n\n### Grid Layout\nUse `minCols` to arrange children in a responsive grid:\n```blade\n<x-plume::form.group label=\"Options\" :minCols=\"2\">\n    <x-plume::form.radio value=\"1\" label=\"Option 1\" />\n    <x-plume::form.radio value=\"2\" label=\"Option 2\" />\n</x-plume::form.group>\n```",
             "doc_url": "https://plume.dennisokon.com/docs/form-group"
@@ -1349,6 +1436,7 @@
                     "description": "Iconify icon name to display inside the input."
                 }
             },
+            "slots": [],
             "description": "Standard text input fields with integrated label, validation errors, and icon support.",
             "usage": "<x-plume::form.input \n    label=\"Email Address\" \n    name=\"email\" \n    model=\"email\" \n    type=\"email\" \n    icon=\"icon-[fluent--mail-24-regular]\"\n    placeholder=\"you@example.com\"\n    required\n/>\n\n<x-plume::form.input label=\"Username\" model=\"username\">\n    <x-slot:right-side>\n        <x-plume::button style=\"ghost\" size=\"sm\">Check Availability</x-plume::button>\n    </x-slot:right-side>\n</x-plume::form.input>",
             "doc_url": "https://plume.dennisokon.com/docs/form-input"
@@ -1367,6 +1455,7 @@
                     "description": "Whether to display a required indicator (asterisk)."
                 }
             },
+            "slots": [],
             "description": "A label for a form input.",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/form-label"
@@ -1420,6 +1509,7 @@
                     "description": "Placeholder text."
                 }
             },
+            "slots": [],
             "description": "A numeric input field with min, max, and step constraints.",
             "usage": "<x-plume::form.number \n    label=\"Quantity\" \n    model=\"cart.qty\" \n    min=\"1\" \n    max=\"10\" \n    step=\"1\"\n    required\n/>",
             "doc_url": "https://plume.dennisokon.com/docs/form-number"
@@ -1463,6 +1553,7 @@
                     "description": "Iconify icon name."
                 }
             },
+            "slots": [],
             "description": "A secure password input field with a built-in visibility toggle.",
             "usage": "<x-plume::form.password \n    label=\"New Password\" \n    model=\"password\" \n    placeholder=\"Choose a strong password\"\n    required\n/>",
             "doc_url": "https://plume.dennisokon.com/docs/form-password"
@@ -1501,6 +1592,7 @@
                     "description": "Whether this radio is initially selected."
                 }
             },
+            "slots": [],
             "description": "A radio button for single selection from a group of options.",
             "usage": "<x-plume::form.group label=\"Plan\">\n    <x-plume::form.radio name=\"plan\" value=\"basic\" label=\"Basic\" model=\"selectedPlan\" />\n    <x-plume::form.radio name=\"plan\" value=\"pro\" label=\"Pro\" model=\"selectedPlan\" />\n</x-plume::form.group>",
             "doc_url": "https://plume.dennisokon.com/docs/form-radio"
@@ -1549,6 +1641,7 @@
                     "description": "Incremental step value."
                 }
             },
+            "slots": [],
             "description": "A slider input for selecting a numeric value from a range with dynamic value display.",
             "usage": "<x-plume::form.range \n    label=\"Volume\" \n    model=\"settings.volume\" \n    min=\"0\" \n    max=\"100\" \n    step=\"5\"\n/>",
             "doc_url": "https://plume.dennisokon.com/docs/form-range"
@@ -1577,6 +1670,7 @@
                     "description": "Number of columns on large screens. Defaults to minCols if not set."
                 }
             },
+            "slots": [],
             "description": "A titled section for organizing form fields into semantic groups with optional grid layout.",
             "usage": "### Multi-column Layout\nCreate complex layouts without writing custom grid classes for every field:\n```blade\n<x-plume::form.section \n    title=\"Personal Information\" \n    description=\"This information will be displayed on your profile.\"\n    :min-cols=\"1\"\n    :max-cols=\"2\"\n>\n    <x-plume::form.input name=\"first_name\" label=\"First Name\" />\n    <x-plume::form.input name=\"last_name\" label=\"Last Name\" />\n    <x-plume::form.input name=\"email\" label=\"Email\" class=\"sm:col-span-2\" />\n</x-plume::form.section>\n```",
             "doc_url": "https://plume.dennisokon.com/docs/form-section"
@@ -1620,6 +1714,7 @@
                     "description": "Whether to allow multiple selections."
                 }
             },
+            "slots": [],
             "description": "A standard dropdown select input with multi-select support.",
             "usage": "<x-plume::form.select \n    label=\"Category\" \n    model=\"category_id\" \n    :options=\"['1' => 'Technology', '2' => 'Design']\" \n    placeholder=\"Select a category\"\n/>\n\n<x-plume::form.select label=\"Tags\" model=\"tags\" multiple>\n    <option value=\"php\">PHP</option>\n    <option value=\"laravel\">Laravel</option>\n</x-plume::form.select>",
             "doc_url": "https://plume.dennisokon.com/docs/form-select"
@@ -1663,6 +1758,7 @@
                     "description": "Placeholder text."
                 }
             },
+            "slots": [],
             "description": "A multi-line text input for longer content.",
             "usage": "<x-plume::form.textarea \n    label=\"Biography\" \n    model=\"bio\" \n    rows=\"5\" \n    placeholder=\"Tell us about yourself...\" \n/>",
             "doc_url": "https://plume.dennisokon.com/docs/form-textarea"
@@ -1701,6 +1797,7 @@
                     "description": "Placeholder text."
                 }
             },
+            "slots": [],
             "description": "A native time picker input with integrated label and validation support.",
             "usage": "<x-plume::form.time \n    label=\"Preferred Time\" \n    model=\"booking.time\" \n    required \n/>",
             "doc_url": "https://plume.dennisokon.com/docs/form-time"
@@ -1739,6 +1836,7 @@
                     "description": "Whether the toggle is initially on."
                 }
             },
+            "slots": [],
             "description": "A toggle switch for boolean selection or binary states.",
             "usage": "<x-plume::form.toggle \n    label=\"Enable Notifications\" \n    model=\"notifications_enabled\" \n/>",
             "doc_url": "https://plume.dennisokon.com/docs/form-toggle"
@@ -1767,6 +1865,7 @@
                     "description": "Maximum number of grid columns on large screens."
                 }
             },
+            "slots": [],
             "description": "Responsive grid layout for images and figures.",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/gallery"
@@ -1780,6 +1879,7 @@
                     "description": "The full icon name (e.g., 'icon-[fluent--save-24-regular]')."
                 }
             },
+            "slots": [],
             "description": "Displays an icon using the Iconify library (specifically the Fluent set by default).",
             "usage": "<x-plume::icon i=\"icon-[fluent--home-24-filled]\" class=\"size-6 text-primary\" />",
             "doc_url": "https://plume.dennisokon.com/docs/icon"
@@ -1793,6 +1893,7 @@
                     "description": "Size of the component: 'sm', 'md', 'lg'."
                 }
             },
+            "slots": [],
             "description": "Displays keyboard shortcuts or input keys with semantic styling.",
             "usage": "<p>Press <x-plume::kbd>Ctrl</x-plume::kbd> + <x-plume::kbd>K</x-plume::kbd> to search.</p>",
             "doc_url": "https://plume.dennisokon.com/docs/kbd"
@@ -1836,6 +1937,7 @@
                     "description": "AlpineJS expression or function to call when the modal closes."
                 }
             },
+            "slots": [],
             "description": "A dialog box or popup window that is displayed on top of the current page. Closes when clicking the backdrop or pressing the ESC key unless 'persistent' is true.",
             "usage": "### Basic Usage\n```blade\n<x-plume::modal name=\"login-modal\" title=\"Welcome Back\">\n    <x-plume::form ...>\n        ...\n    </x-plume::form>\n</x-plume::modal>\n\n<x-plume::button @click=\"$openModal('login-modal')\">Login</x-plume::button>\n```\n\n### Persistent Modal (Prevent accidental closing)\n```blade\n<x-plume::modal name=\"unsaved-changes\" title=\"Unsaved Changes\" persistent>\n    <p>You have unsaved changes. Are you sure you want to leave?</p>\n    <x-slot:footer>\n        <x-plume::button @click=\"$closeModal()\">Stay</x-plume::button>\n        <x-plume::button style=\"error\" href=\"/dashboard\">Leave Page</x-plume::button>\n    </x-slot:footer>\n</x-plume::modal>\n```\n\n### Lazy Loading Content\nFor modals with heavy content, use a template to delay rendering until the modal is opened:\n```blade\n<x-plume::modal name=\"heavy-report\">\n    <template x-if=\"show\">\n        <livewire:detailed-report />\n    </template>\n</x-plume::modal>\n```",
             "doc_url": "https://plume.dennisokon.com/docs/modal"
@@ -1854,6 +1956,7 @@
                     "description": "Iconify class for the mobile menu toggle."
                 }
             },
+            "slots": [],
             "description": "A top-level navigation component for site-wide links and actions.",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/navbar"
@@ -1872,6 +1975,7 @@
                     "description": "The URL the item links to."
                 }
             },
+            "slots": [],
             "description": "Navigation link within the navbar.",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/navbar-item"
@@ -1885,6 +1989,7 @@
                     "description": "The URL the logo links to."
                 }
             },
+            "slots": [],
             "description": "The brand logo or title.",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/navbar-logo"
@@ -1892,6 +1997,7 @@
         "x-plume::navbar.menu": {
             "path": "plume/resources/views/components-class/navbar/menu.blade.php",
             "props": [],
+            "slots": [],
             "description": "Container for navigation items.",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/navbar-menu"
@@ -1910,6 +2016,7 @@
                     "description": "The URL the item links to."
                 }
             },
+            "slots": [],
             "description": "Individual navigation link for mobile menu.",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/navbar-mobile-item"
@@ -1917,6 +2024,7 @@
         "x-plume::navbar.mobile-menu": {
             "path": "plume/resources/views/components-class/navbar/mobile-menu.blade.php",
             "props": [],
+            "slots": [],
             "description": "Responsive mobile menu container.",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/navbar-mobile-menu"
@@ -1924,6 +2032,7 @@
         "x-plume::navbar.mobile-toggle": {
             "path": "plume/resources/views/components-class/navbar/mobile-toggle.blade.php",
             "props": [],
+            "slots": [],
             "description": "Toggle button for the mobile menu.",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/navbar-mobile-toggle"
@@ -1952,6 +2061,7 @@
                     "description": "AlpineJS model name for the current page."
                 }
             },
+            "slots": [],
             "description": "A standalone pagination component that dispatches events on change.",
             "usage": "Simple Usage:\n<x-plume::pagination :total=\"10\" :current=\"1\" />\n\nUsing model for reactivity:\n<x-plume::form formData=\"{ 'page': 1 }\">\n    <x-plume::pagination :total=\"20\" model=\"page\" />\n</x-plume::form>",
             "doc_url": "https://plume.dennisokon.com/docs/pagination"
@@ -1975,6 +2085,7 @@
                     "description": "Alignment relative to position: 'start', 'center', 'end'."
                 }
             },
+            "slots": [],
             "description": "Displays rich content in a small overlay, triggered by clicking a button or element.",
             "usage": "<x-plume::popover trigger=\"Help Info\" position=\"top\">\n    <div class=\"space-y-2\">\n        <h4 class=\"font-bold\">Information</h4>\n        <p class=\"text-sm\">This is a helpful popover with some detailed explanation.</p>\n    </div>\n</x-plume::popover>",
             "doc_url": "https://plume.dennisokon.com/docs/popover"
@@ -2013,6 +2124,7 @@
                     "description": "AlpineJS model name for dynamic progress updates."
                 }
             },
+            "slots": [],
             "description": "A visual indicator of task completion or value within a range. Supports reactive AlpineJS binding.",
             "usage": "<x-plume::progress title=\"Uploading...\" :value=\"45\" :max=\"100\" style=\"success\" />\n\nReactive usage:\n<div x-data=\"{ uploadProgress: 0 }\">\n    <x-plume::progress \n        title=\"Syncing\" \n        model=\"uploadProgress\" \n        display=\"inside\" \n    />\n</div>",
             "doc_url": "https://plume.dennisokon.com/docs/progress"
@@ -2046,6 +2158,7 @@
                     "description": "-"
                 }
             },
+            "slots": [],
             "description": "No description provided.",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/progress-percent"
@@ -2069,6 +2182,7 @@
                     "description": "AlpineJS expression or function to call when a result is selected."
                 }
             },
+            "slots": [],
             "description": "Styled search input with an integrated results dropdown.",
             "usage": "<x-plume::search model=\"searchQuery\" placeholder=\"Find users...\">\n    <x-slot:results>\n        <template x-for=\"user in filteredUsers\">\n            <x-plume::search.result \n                ::title=\"user.name\" \n                ::href=\"'/users/' + user.id\" \n                ::payload=\"user\"\n            />\n        </template>\n    </x-slot:results>\n</x-plume::search>",
             "doc_url": "https://plume.dennisokon.com/docs/search"
@@ -2097,6 +2211,7 @@
                     "description": "Data passed to the plume-search-select event."
                 }
             },
+            "slots": [],
             "description": "An individual result item within a search component.",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/search-result"
@@ -2115,6 +2230,7 @@
                     "description": "The animation style: 'pulse', 'wave', 'none'."
                 }
             },
+            "slots": [],
             "description": "A placeholder component to indicate loading state for specific shapes or content blocks.",
             "usage": "Profile Placeholder:\n<div class=\"flex items-center gap-4\">\n    <x-plume::skeleton shape=\"circle\" class=\"size-12\" />\n    <div class=\"space-y-2\">\n        <x-plume::skeleton shape=\"text\" class=\"w-24 h-4\" />\n        <x-plume::skeleton shape=\"text\" class=\"w-32 h-3\" />\n    </div>\n</div>",
             "doc_url": "https://plume.dennisokon.com/docs/skeleton"
@@ -2122,6 +2238,7 @@
         "x-plume::spacer": {
             "path": "plume/resources/views/components-class/spacer.blade.php",
             "props": [],
+            "slots": [],
             "description": "A utility component that fills available space in a flex container (using flex-grow).",
             "usage": "<div class=\"flex items-center\">\n    <span>Left</span>\n    <x-plume::spacer />\n    <span>Right</span>\n</div>",
             "doc_url": "https://plume.dennisokon.com/docs/spacer"
@@ -2140,6 +2257,7 @@
                     "description": "Color style: 'primary', 'secondary', 'error', 'background', 'white'."
                 }
             },
+            "slots": [],
             "description": "A CSS-animated loading indicator for indicating background processes or data fetching.",
             "usage": "<x-plume::spinner size=\"lg\" style=\"primary\" />\n<x-plume::button disabled>\n    <x-plume::spinner size=\"xs\" style=\"white\" class=\"mr-2\" />\n    Processing...\n</x-plume::button>",
             "doc_url": "https://plume.dennisokon.com/docs/spinner"
@@ -2168,6 +2286,7 @@
                     "description": "AlpineJS expression or function to call when the final step is completed."
                 }
             },
+            "slots": [],
             "description": "Guide users through multi-step processes with clear visual indicators.",
             "usage": "<x-plume::stepper active=\"1\" model=\"currentStep\">\n    <x-plume::stepper.step title=\"Personal Info\" step=\"1\">\n        Step 1 content...\n    </x-plume::stepper.step>\n    <x-plume::stepper.step title=\"Address\" step=\"2\">\n        Step 2 content...\n    </x-plume::stepper.step>\n</x-plume::stepper>",
             "doc_url": "https://plume.dennisokon.com/docs/stepper"
@@ -2186,6 +2305,7 @@
                     "description": "Text or boolean for the next button."
                 }
             },
+            "slots": [],
             "description": "Standard actions layout for stepper components.",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/stepper-actions"
@@ -2219,6 +2339,7 @@
                     "description": "Text for the next button."
                 }
             },
+            "slots": [],
             "description": "An individual step within a stepper component.",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/stepper-step"
@@ -2247,6 +2368,7 @@
                     "description": "Spacing density: 'compact', 'default', 'loose'."
                 }
             },
+            "slots": [],
             "description": "A standard HTML table with semantic styling and responsive overflow support.",
             "usage": "<x-plume::table striped hoverable>\n    <x-plume::table.thead>\n        <x-plume::table.tr>\n            <x-plume::table.th>Name</x-plume::table.th>\n            <x-plume::table.th>Email</x-plume::table.th>\n        </x-plume::table.tr>\n    </x-plume::table.thead>\n    <x-plume::table.tbody>\n        <x-plume::table.tr>\n            <x-plume::table.td>John Doe</x-plume::table.td>\n            <x-plume::table.td>john@example.com</x-plume::table.td>\n        </x-plume::table.tr>\n    </x-plume::table.tbody>\n</x-plume::table>",
             "doc_url": "https://plume.dennisokon.com/docs/table"
@@ -2254,6 +2376,7 @@
         "x-plume::table.tbody": {
             "path": "plume/resources/views/components-class/table/tbody.blade.php",
             "props": [],
+            "slots": [],
             "description": "Table body container.",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/table-tbody"
@@ -2267,6 +2390,7 @@
                     "description": "Horizontal alignment of the cell (left, center, right)."
                 }
             },
+            "slots": [],
             "description": "Table data cell.",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/table-td"
@@ -2280,6 +2404,7 @@
                     "description": "Horizontal alignment of the header cell (left, center, right)."
                 }
             },
+            "slots": [],
             "description": "Table header cell.",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/table-th"
@@ -2293,6 +2418,7 @@
                     "description": "Whether to make the header sticky to the top of the container during scroll."
                 }
             },
+            "slots": [],
             "description": "Table header container.",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/table-thead"
@@ -2311,6 +2437,7 @@
                     "description": "Horizontal alignment of cells in the row (left, center, right)."
                 }
             },
+            "slots": [],
             "description": "Table row.",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/table-tr"
@@ -2354,6 +2481,7 @@
                     "description": "AlpineJS expression or function to call when the active tab changes."
                 }
             },
+            "slots": [],
             "description": "A set of layered sections of content, known as tab panels, that are displayed one at a time.",
             "usage": "<x-plume::tabs default=\"profile\" model=\"activeTab\">\n    <x-plume::tabs.group>\n        <x-plume::tabs.item for=\"profile\">Profile</x-plume::tabs.item>\n        <x-plume::tabs.item for=\"settings\">Settings</x-plume::tabs.item>\n    </x-plume::tabs.group>\n    \n    <x-plume::tabs.panel name=\"profile\">\n        Profile Content\n    </x-plume::tabs.panel>\n    <x-plume::tabs.panel name=\"settings\">\n        Settings Content\n    </x-plume::tabs.panel>\n</x-plume::tabs>",
             "doc_url": "https://plume.dennisokon.com/docs/tabs"
@@ -2361,6 +2489,7 @@
         "x-plume::tabs.group": {
             "path": "plume/resources/views/components-class/tabs/group.blade.php",
             "props": [],
+            "slots": [],
             "description": "Container for tab navigation items.",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/tabs-group"
@@ -2389,6 +2518,7 @@
                     "description": "The shape of the tab button: 'default' (rounded), 'pill', 'round'."
                 }
             },
+            "slots": [],
             "description": "Individual tab navigation link.",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/tabs-item"
@@ -2402,6 +2532,7 @@
                     "description": "The unique identifier of the tab this panel belongs to."
                 }
             },
+            "slots": [],
             "description": "Content panel for a specific tab.",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/tabs-panel"
@@ -2415,6 +2546,7 @@
                     "description": "Position of the toast stack: 'top-left', 'top-right', 'top-center', 'bottom-left', 'bottom-right', 'bottom-center'."
                 }
             },
+            "slots": [],
             "description": "A container for temporary notification messages (Toasts). Triggered via global magic helpers.",
             "usage": "Place once in your main layout file\n<x-plume::toaster position=\"top-right\" />\n\nTrigger from anywhere using global helpers\n<button @click=\"$success('Profile Saved!')\">Save</button>\n<button @click=\"$error('Action failed')\">Delete</button>\n<button @click=\"$toast('New message', { type: 'info', timeout: 3000 })\">Notify</button>",
             "doc_url": "https://plume.dennisokon.com/docs/toaster"
@@ -2433,6 +2565,7 @@
                     "description": "Tooltip position (top, bottom, left, right)."
                 }
             },
+            "slots": [],
             "description": "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
             "usage": "",
             "doc_url": "https://plume.dennisokon.com/docs/tooltip"
@@ -2491,6 +2624,7 @@
                     "description": "AlpineJS expression or function to call when playback ends."
                 }
             },
+            "slots": [],
             "description": "A styled wrapper for HTML5 video, YouTube, and Vimeo content.",
             "usage": "<x-plume::video \n    src=\"https://www.youtube.com/watch?v=dQw4w9WgXcQ\" \n    aspect=\"video\" \n/>\n\n<x-plume::video \n    src=\"/assets/promo.mp4\" \n    poster=\"/assets/promo-thumb.jpg\" \n    autoplay \n    muted \n/>",
             "doc_url": "https://plume.dennisokon.com/docs/video"

@@ -7,7 +7,8 @@ export default (
     url = null,
     initialData = [],
     initialColumns = [],
-    initialSlots = {}
+    initialSlots = {},
+    callbacks = {}
 ) => {
     let _slots = initialSlots;
 
@@ -20,6 +21,7 @@ export default (
         initialData,
         columns: initialColumns,
         sortableColumns: sortableColumns,
+        callbacks: callbacks,
     });
 
     // Add extra properties to base instead of spreading to keep getters reactive

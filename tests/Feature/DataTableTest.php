@@ -33,6 +33,46 @@ test('data table renders with url for server-side fetching', function () {
         ->toContain('x-show="loading"');
 });
 
+test('data table renders with callback props', function () {
+    $columns = [['key' => 'name', 'label' => 'Name']];
+    
+    $view = Blade::render('
+        <x-plume::data-table 
+            :columns="$columns" 
+            on-sort="console.log(\'sorting\')" 
+            on-filter="console.log(\'filtering\')"
+            on-page-change="console.log(\'paging\')"
+            on-load="console.log(\'loading\')"
+        />', [
+        'columns' => $columns
+    ]);
+
+    expect($view)
+        ->toContain('onSort:')
+        ->toContain('sorting')
+        ->toContain('onFilter:')
+        ->toContain('filtering')
+        ->toContain('onPageChange:')
+        ->toContain('paging')
+        ->toContain('onLoad:')
+        ->toContain('loading');
+});
+
+test('data table renders controls slot', function () {
+    $columns = [['key' => 'name', 'label' => 'Name']];
+
+    $view = Blade::render('
+        <x-plume::data-table :columns="$columns">
+            <x-slot:controls>
+                <button id="custom-control">Custom Control</button>
+            </x-slot:controls>
+        </x-plume::data-table>', [
+        'columns' => $columns
+    ]);
+
+    expect($view)->toContain('id="custom-control"');
+});
+
 test('DataTableResponse returns correct structure', function () {
     $data = [['id' => 1, 'name' => 'Test']];
     $response = new DataTableResponse($data, 100, 1, 10);

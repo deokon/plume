@@ -120,3 +120,43 @@ test('data gallery component accepts all props', function () {
         ->toContain('gap-6')
         ->toContain('x-data="dataGallery');
 });
+
+test('data gallery renders with callback props', function () {
+    $data = [['id' => 1, 'name' => 'Item']];
+
+    $view = Blade::render('
+        <x-plume::data-gallery 
+            :data="$data" 
+            on-sort="console.log(\'sorting\')" 
+            on-filter="console.log(\'filtering\')"
+            on-page-change="console.log(\'paging\')"
+            on-load="console.log(\'loading\')"
+        />', [
+        'data' => $data
+    ]);
+
+    expect($view)
+        ->toContain('onSort:')
+        ->toContain('sorting')
+        ->toContain('onFilter:')
+        ->toContain('filtering')
+        ->toContain('onPageChange:')
+        ->toContain('paging')
+        ->toContain('onLoad:')
+        ->toContain('loading');
+});
+
+test('data gallery renders controls slot', function () {
+    $data = [['id' => 1, 'name' => 'Item']];
+
+    $view = Blade::render('
+        <x-plume::data-gallery :data="$data">
+            <x-slot:controls>
+                <button id="custom-control">Custom Control</button>
+            </x-slot:controls>
+        </x-plume::data-gallery>', [
+        'data' => $data
+    ]);
+
+    expect($view)->toContain('id="custom-control"');
+});

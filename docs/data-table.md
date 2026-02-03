@@ -14,6 +14,16 @@ Advanced table with sorting, filtering, and pagination. Powered by AlpineJS. Sup
 | `sortable` | `bool` | `true` | Whether to enable column sorting globally. |
 | `url` | `string` | `null` | API endpoint URL for server-side fetching. |
 | `fixedHeight` | `bool` | `false` | If true, maintains a minimum height based on perPage to prevent layout shifts. |
+| `onSort` | `string` | `null` | Callback expression for when the table is sorted. |
+| `onFilter` | `string` | `null` | Callback expression for when the data is filtered. |
+| `onPageChange` | `string` | `null` | Callback expression for when the page is changed. |
+| `onLoad` | `string` | `null` | Callback expression for when data is loaded. |
+
+## Slots
+
+| Slot | Description |
+| :--- | :--- |
+| `controls` | Optional slot for additional search/filter controls above the table. |
 
 ## Usage
 
@@ -33,7 +43,14 @@ Advanced table with sorting, filtering, and pagination. Powered by AlpineJS. Sup
     searchable 
     paginated 
     :per-page="15" 
-/>
+    on-page-change="console.log('Page changed to:', $event.detail.page)"
+>
+    <x-slot:controls>
+        <x-plume::button size="sm" variant="outline" @click="fetch()">
+            Refresh
+        </x-plume::button>
+    </x-slot:controls>
+</x-plume::data-table>
 ```
 
 ### Server-side Data

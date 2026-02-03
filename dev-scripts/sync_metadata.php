@@ -99,6 +99,7 @@ foreach ($classAliases as $className => $tagName) {
     $components[$tagName] = [
         'path' => 'plume/' . str_replace($baseDir . '/', '', $viewPath),
         'props' => $props,
+        'slots' => $docData['slots'],
         'description' => $description,
         'usage' => $usage,
         'doc_url' => 'https://plume.dennisokon.com/docs/' . str_replace('.', '-', $alias)
@@ -151,6 +152,7 @@ if (file_exists($viewsDir . '/components')) {
         $components[$tagName] = [
             'path' => 'plume/' . str_replace($baseDir . '/', '', $file->getPathname()),
             'props' => $props,
+            'slots' => $docData['slots'],
             'description' => $description,
             'usage' => $usage,
             'doc_url' => 'https://plume.dennisokon.com/docs/' . str_replace('.', '-', $alias)
@@ -187,6 +189,16 @@ foreach ($components as $tagName => $data) {
         $md .= "\n";
     }
 
+    if (!empty($data['slots'])) {
+        $md .= "## Slots\n\n";
+        $md .= "| Slot | Description |\n";
+        $md .= "| :--- | :--- |\n";
+        foreach ($data['slots'] as $name => $desc) {
+            $md .= "| `{$name}` | {$desc} |\n";
+        }
+        $md .= "\n";
+    }
+
     if ($data['usage']) {
         $md .= "## Usage\n\n";
         if (str_contains($data['usage'], '```') || str_starts_with($data['usage'], '#')) {
@@ -208,7 +220,8 @@ function parseBladeDocBlock($path) {
     $data = [
         'description' => '',
         'usage' => '',
-        'props' => []
+        'props' => [],
+        'slots' => []
     ];
 
     if (!file_exists($path)) return $data;
@@ -228,7 +241,7 @@ function parseBladeDocBlock($path) {
     $block = trim(substr($content, $startPos + strlen($startMarker), $endPos - ($startPos + strlen($startMarker))));
     
     // Improved logic: Identify all @tags and their positions
-    $tags = ['description', 'usage', 'prop', 'component'];
+    $tags = ['description', 'usage', 'prop', 'component', 'slot'];
     $tagPositions = [];
     
     foreach ($tags as $tag) {
@@ -265,6 +278,11 @@ function parseBladeDocBlock($path) {
                     $data['props'][$name] = trim(substr($value, $parenPos + 1));
                 }
             }
+        } elseif ($current['tag'] === 'slot') {
+            $parts = preg_split('/\s+/', $value, 2);
+            $name = $parts[0] ?? 'default';
+            $description = $parts[1] ?? '-';
+            $data['slots'][$name] = $description;
         }
     }
 

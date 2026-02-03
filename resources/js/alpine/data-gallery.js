@@ -1,6 +1,6 @@
 import { createDataComponent } from './base-data-component.js';
 
-export default (perPage = 10, paginated = false, url = null, initialData = []) => {
+export default (perPage = 10, paginated = false, url = null, initialData = [], callbacks = {}) => {
     return createDataComponent({
         perPage,
         paginated,
@@ -8,5 +8,6 @@ export default (perPage = 10, paginated = false, url = null, initialData = []) =
         initialData,
         columns: [],
         sortableColumns: [],
+        callbacks: callbacks,
     });
 };

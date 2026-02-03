@@ -10,10 +10,22 @@
 @prop int $minCols (Default: 1) Minimum number of grid columns on mobile.
 @prop int $maxCols (Default: null) Maximum number of grid columns on large screens.
 @prop int $gap (Default: 4) Gap spacing between items.
+@prop string $onSort (Default: null) Callback expression for when the gallery is sorted.
+@prop string $onFilter (Default: null) Callback expression for when the data is filtered.
+@prop string $onPageChange (Default: null) Callback expression for when the page is changed.
+@prop string $onLoad (Default: null) Callback expression for when data is loaded.
+
+@slot controls Optional slot for additional search/filter controls above the gallery.
 @usage
 ### Basic Usage
 ```blade
-<x-plume::data-gallery :data="$products" paginated searchable :per-page="10">
+<x-plume::data-gallery :data="$products" paginated searchable :per-page="10" on-page-change="console.log('Page changed')">
+    <x-slot:controls>
+        <x-plume::button size="sm" variant="outline" @click="fetch()">
+            Refresh
+        </x-plume::button>
+    </x-slot:controls>
+
     <x-plume::card>
         <img :src="item.image" class="w-full h-48 object-cover" />
         <div class="p-4">
@@ -49,12 +61,22 @@ Call `fetch()` from any interactive element within the gallery to refresh its co
 </x-plume::button>
 ```
 --}}
-<div x-data="dataGallery({{ $perPage }}, {{ Js::from($paginated) }}, {{ Js::from($url) }}, {{ Js::from($data) }})"
+<div x-data="dataGallery({{ $perPage }}, {{ Js::from($paginated) }}, {{ Js::from($url) }}, {{ Js::from($data) }}, { onSort: {{ Js::from($onSort) }}, onFilter: {{ Js::from($onFilter) }}, onPageChange: {{ Js::from($onPageChange) }}, onLoad: {{ Js::from($onLoad) }} })"
     {{ $attributes->merge(['class' => 'space-y-4 w-full']) }}>
-    @if ($searchable)
-        <div class="flex items-center justify-between px-4 pt-4">
-            <x-plume::form.input x-model.debounce.300ms="search" placeholder="Search..."
-                class="max-w-xs" icon="icon-[fluent--search-24-regular]" />
+    @if ($searchable || isset($controls))
+        <div class="flex flex-wrap items-center justify-between gap-4 px-4 pt-4">
+            <div class="flex items-center gap-4 flex-1">
+                @if ($searchable)
+                    <x-plume::form.input x-model.debounce.300ms="search" placeholder="Search..."
+                        class="max-w-xs" icon="icon-[fluent--search-24-regular]" />
+                @endif
+            </div>
+
+            @if (isset($controls))
+                <div class="flex items-center gap-2">
+                    {{ $controls }}
+                </div>
+            @endif
         </div>
     @endif
 

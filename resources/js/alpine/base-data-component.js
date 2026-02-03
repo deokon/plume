@@ -24,6 +24,7 @@ export function createDataComponent(options) {
         searchableColumns = [],
         onSync = null,
         onFetch = null,
+        callbacks = {},
     } = options;
 
     return {
@@ -38,6 +39,7 @@ export function createDataComponent(options) {
         paginated: !!paginated,
         url: url,
         loadingCount: 0,
+        callbacks: callbacks,
 
         get loading() {
             return this.loadingCount > 0;
@@ -51,27 +53,42 @@ export function createDataComponent(options) {
             this.sync();
             this.updateTotalPages();
 
+            // Trigger initial load if we have data
+            if (this.data.length > 0) {
+                this.trigger('load', { data: this.data });
+            }
+
             if (this.$el && typeof this.$el.addEventListener === 'function') {
                 this.$el.addEventListener('plume-refresh', () => {
                     if (this.url) this.fetch();
                 });
             }
 
-            if (this.url) {
-                this.fetch();
-                this.$watch('search', () => {
+            this.$watch('search', (value) => {
+                if (this.url) {
                     this.page = 1;
                     this.fetch();
-                });
-                this.$watch('page', () => {
-                    if (this.url) this.fetch();
-                });
-                this.$watch('sortCol', () => {
-                    if (this.url) this.fetch();
-                });
-                this.$watch('sortDir', () => {
-                    if (this.url) this.fetch();
-                });
+                }
+                this.trigger('filter', { search: value });
+            });
+
+            this.$watch('page', (value) => {
+                if (this.url) this.fetch();
+                this.trigger('page-change', { page: value });
+            });
+
+            this.$watch('sortCol', (value) => {
+                if (this.url) this.fetch();
+                this.trigger('sort', { column: value, direction: this.sortDir });
+            });
+
+            this.$watch('sortDir', (value) => {
+                if (this.url) this.fetch();
+                this.trigger('sort', { column: this.sortCol, direction: value });
+            });
+
+            if (this.url) {
+                this.fetch();
             }
 
             if (this.$el && typeof MutationObserver !== 'undefined') {
@@ -95,6 +112,24 @@ export function createDataComponent(options) {
 
         updateTotalPages() {
             this.totalPages = Math.ceil(this.totalItems / this.perPage) || 1;
+        },
+
+        trigger(name, detail = {}) {
+            this.$dispatch(`plume-${name}`, detail);
+
+            // Convert kebab-case (e.g., page-change) to camelCase for callback lookup (e.g., onPageChange)
+            const callbackKey = 'on' + name.split('-').map(part => part.charAt(0).toUpperCase() + part.slice(1)).join('');
+            const callback = this.callbacks[callbackKey];
+
+            if (callback) {
+                if (typeof callback === 'function') {
+                    callback.call(this, detail);
+                } else if (typeof callback === 'string' && window.Alpine) {
+                    window.Alpine.evaluate(this.$el, callback, {
+                        scope: { ...detail, $event: { detail } }
+                    });
+                }
+            }
         },
 
         sync() {
@@ -172,6 +207,7 @@ export function createDataComponent(options) {
                     this.data = result.data.items;
                     this.total = result.data.pagination.total;
                     this.updateTotalPages();
+                    this.trigger('load', { data: this.data });
                 } else {
                     console.error('Plume Data Component fetch error: result.success is false', result);
                 }

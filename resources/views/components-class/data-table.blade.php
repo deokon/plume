@@ -9,6 +9,12 @@
 @prop bool $sortable (Default: true) Whether to enable column sorting globally.
 @prop string $url (Default: null) API endpoint URL for server-side fetching.
 @prop bool $fixedHeight (Default: false) If true, maintains a minimum height based on perPage to prevent layout shifts.
+@prop string $onSort (Default: null) Callback expression for when the table is sorted.
+@prop string $onFilter (Default: null) Callback expression for when the data is filtered.
+@prop string $onPageChange (Default: null) Callback expression for when the page is changed.
+@prop string $onLoad (Default: null) Callback expression for when data is loaded.
+
+@slot controls Optional slot for additional search/filter controls above the table.
 @usage
 ### Basic Usage
 ```blade
@@ -26,7 +32,14 @@
     searchable 
     paginated 
     :per-page="15" 
-/>
+    on-page-change="console.log('Page changed to:', $event.detail.page)"
+>
+    <x-slot:controls>
+        <x-plume::button size="sm" variant="outline" @click="fetch()">
+            Refresh
+        </x-plume::button>
+    </x-slot:controls>
+</x-plume::data-table>
 ```
 
 ### Server-side Data
@@ -55,12 +68,22 @@ Call `fetch()` from any interactive element within the table to refresh its cont
 ### Performance Tip
 Use **Constructed Columns** for simple HTML formatting to keep the table snappy. Use **Slots** only when you need complex Blade components in your cells.
 --}}
-<div x-data="dataTable({{ $perPage }}, {{ Js::from($paginated) }}, {{ Js::from($sortable) }}, {{ Js::from($url) }}, {{ Js::from($data) }}, {{ Js::from($columns) }}, {{ isset($__laravel_slots) ? Js::from(collect($__laravel_slots)->map(fn($s) => (string) $s)) : '{}' }})"
+<div x-data="dataTable({{ $perPage }}, {{ Js::from($paginated) }}, {{ Js::from($sortable) }}, {{ Js::from($url) }}, {{ Js::from($data) }}, {{ Js::from($columns) }}, {{ isset($__laravel_slots) ? Js::from(collect($__laravel_slots)->map(fn($s) => (string) $s)) : '{}' }}, { onSort: {{ Js::from($onSort) }}, onFilter: {{ Js::from($onFilter) }}, onPageChange: {{ Js::from($onPageChange) }}, onLoad: {{ Js::from($onLoad) }} })"
     {{ $attributes->merge(['class' => 'space-y-4 w-full']) }}>
-    @if ($searchable)
-        <div class="flex items-center justify-between px-4 pt-4">
-            <x-plume::form.input x-model.debounce.300ms="search" placeholder="Search..."
-                class="max-w-xs" icon="icon-[fluent--search-24-regular]" />
+    @if ($searchable || isset($controls))
+        <div class="flex flex-wrap items-center justify-between gap-4 px-4 pt-4">
+            <div class="flex items-center gap-4 flex-1">
+                @if ($searchable)
+                    <x-plume::form.input x-model.debounce.300ms="search" placeholder="Search..."
+                        class="max-w-xs" icon="icon-[fluent--search-24-regular]" />
+                @endif
+            </div>
+
+            @if (isset($controls))
+                <div class="flex items-center gap-2">
+                    {{ $controls }}
+                </div>
+            @endif
         </div>
     @endif
 

@@ -15,12 +15,28 @@ Gallery grid layout for displaying collections of items with dynamic content via
 | `gap` | `int` | `4` | Gap spacing between items. |
 | `minCols` | `int` | `null` | Minimum number of grid columns on mobile. |
 | `maxCols` | `int` | `null` | Maximum number of grid columns on large screens. |
+| `onSort` | `string` | `null` | Callback expression for when the gallery is sorted. |
+| `onFilter` | `string` | `null` | Callback expression for when the data is filtered. |
+| `onPageChange` | `string` | `null` | Callback expression for when the page is changed. |
+| `onLoad` | `string` | `null` | Callback expression for when data is loaded. |
+
+## Slots
+
+| Slot | Description |
+| :--- | :--- |
+| `controls` | Optional slot for additional search/filter controls above the gallery. |
 
 ## Usage
 
 ### Basic Usage
 ```blade
-<x-plume::data-gallery :data="$products" paginated searchable :per-page="10">
+<x-plume::data-gallery :data="$products" paginated searchable :per-page="10" on-page-change="console.log('Page changed')">
+    <x-slot:controls>
+        <x-plume::button size="sm" variant="outline" @click="fetch()">
+            Refresh
+        </x-plume::button>
+    </x-slot:controls>
+
     <x-plume::card>
         <img :src="item.image" class="w-full h-48 object-cover" />
         <div class="p-4">
