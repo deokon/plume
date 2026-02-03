@@ -17,6 +17,8 @@ class Popover extends Component
         public ?string $trigger = null,
         public string $position = 'bottom',
         public string $align = 'center',
+        public ?string $onOpen = null,
+        public ?string $onClose = null,
     ) {}
 
     public function render(): View|Closure|string

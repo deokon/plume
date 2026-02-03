@@ -4,6 +4,8 @@
 @prop string $trigger (Default: null) The text or slot content for the popover trigger.
 @prop string $position (Default: 'bottom') The primary position: 'top', 'bottom', 'left', 'right'.
 @prop string $align (Default: 'center') Alignment relative to position: 'start', 'center', 'end'.
+@prop string $onOpen (Default: null) AlpineJS expression or function to call when the popover opens.
+@prop string $onClose (Default: null) AlpineJS expression or function to call when the popover closes.
 @usage
 <x-plume::popover trigger="Help Info" position="top">
     <div class="space-y-2">
@@ -15,11 +17,29 @@
 @php $popover = $component; @endphp
 <div x-data="{
     open: false,
+    _config: {
+        onOpen: {{ Js::from($onOpen) }},
+        onClose: {{ Js::from($onClose) }}
+    },
     toggle() {
-        this.open = !this.open;
+        this.open ? this.close() : this.show();
+    },
+    show() {
+        this.open = true;
+        this.triggerCallback('onOpen');
     },
     close() {
         this.open = false;
+        this.triggerCallback('onClose');
+    },
+    triggerCallback(name) {
+        const callback = this._config[name];
+        if (!callback) return;
+        if (typeof callback === 'function') {
+            callback();
+        } else if (typeof callback === 'string') {
+            Alpine.evaluate(this.$el, callback);
+        }
     }
 }" class="relative inline-block" @keydown.escape.window="close()"
     @click.outside="close()">

@@ -11,9 +11,12 @@ A styled native HTML5 audio player wrapper.
 | `controls` | `bool` | `true` | Whether to show the audio controls. |
 | `loop` | `bool` | `false` | Whether to restart the audio automatically when it ends. |
 | `muted` | `bool` | `false` | Whether the audio should be muted by default. |
+| `onPlay` | `string` | `null` | AlpineJS expression or function to call when playback starts. |
+| `onPause` | `string` | `null` | AlpineJS expression or function to call when playback pauses. |
+| `onEnded` | `string` | `null` | AlpineJS expression or function to call when playback ends. |
 
 ## Usage
 
 ```blade
-<x-plume::audio src="/assets/podcast.mp3" />
+<x-plume::audio src="/assets/podcast.mp3" on-play="console.log('Playing')" />
 ```

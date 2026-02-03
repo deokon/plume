@@ -6,6 +6,8 @@
 @prop string $width (Default: 'md') Width of the menu: 'xs', 'sm', 'md', 'lg', 'xl', or custom CSS width class.
 @prop string $contentClasses (Default: 'bg-background dark:bg-background-800') Additional classes for the menu container.
 @prop string $triggerStyle (Default: 'outline') Visual style of the automatic trigger button: 'primary', 'secondary', 'error', 'outline', 'ghost', 'link', 'minor'.
+@prop string $onOpen (Default: null) AlpineJS expression or function to call when the dropdown opens.
+@prop string $onClose (Default: null) AlpineJS expression or function to call when the dropdown closes.
 @usage
 <x-plume::dropdown trigger="Actions" align="right" width="sm">
     <x-plume::dropdown.item href="/edit">Edit</x-plume::dropdown.item>
@@ -13,8 +15,34 @@
 </x-plume::dropdown>
 --}}
 @php $dropdown = $component; @endphp
-<div class="relative" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
-    <div @click="open = ! open">
+<div class="relative" x-data="{
+    open: false,
+    _config: {
+        onOpen: {{ Js::from($onOpen) }},
+        onClose: {{ Js::from($onClose) }}
+    },
+    toggle() {
+        this.open ? this.close() : this.show();
+    },
+    show() {
+        this.open = true;
+        this.triggerCallback('onOpen');
+    },
+    close() {
+        this.open = false;
+        this.triggerCallback('onClose');
+    },
+    triggerCallback(name) {
+        const callback = this._config[name];
+        if (!callback) return;
+        if (typeof callback === 'function') {
+            callback();
+        } else if (typeof callback === 'string') {
+            Alpine.evaluate(this.$el, callback);
+        }
+    }
+}" @click.outside="close()" @close.stop="close()">
+    <div @click="toggle">
         @if (isset($trigger) && $trigger instanceof \Illuminate\View\ComponentSlot)
             {{ $trigger }}
         @elseif (isset($trigger))
@@ -34,7 +62,7 @@
         x-transition:leave-start="transform opacity-100 scale-100"
         x-transition:leave-end="transform opacity-0 scale-95"
         class="absolute z-50 mt-2 {{ $widthClass }} rounded-md shadow-lg border border-background-600 dark:border-background-200 {{ $alignmentClasses }}"
-        style="display: none;" @click="open = false">
+        style="display: none;" @click="close()">
         <div class="rounded-md ring-1 ring-black ring-opacity-5 {{ $contentClasses }}">
             {{ $slot }}
         </div>

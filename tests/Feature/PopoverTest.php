@@ -30,3 +30,17 @@ test('popover renders with trigger slot', function () {
         ->toContain('Custom Trigger')
         ->toContain('Content');
 });
+
+test('popover renders with callback props', function () {
+    $view = Blade::render('
+        <x-plume::popover trigger="Open" on-open="console.log(\'open\')" on-close="console.log(\'close\')">
+            Content
+        </x-plume::popover>
+    ');
+
+    expect($view)
+        ->toContain('onOpen:')
+        ->toContain('open')
+        ->toContain('onClose:')
+        ->toContain('close');
+});

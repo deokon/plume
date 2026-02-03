@@ -19,6 +19,8 @@ class Dropdown extends Component
         public string $width = 'md',
         public string $contentClasses = 'bg-background dark:bg-background-800',
         public string $triggerStyle = 'outline',
+        public ?string $onOpen = null,
+        public ?string $onClose = null,
     ) {}
 
     public function render(): View|Closure|string

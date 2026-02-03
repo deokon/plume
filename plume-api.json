@@ -936,6 +936,16 @@
                     "type": "string",
                     "default": "'outline'",
                     "description": "Visual style of the automatic trigger button: 'primary', 'secondary', 'error', 'outline', 'ghost', 'link', 'minor'."
+                },
+                "onOpen": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "AlpineJS expression or function to call when the dropdown opens."
+                },
+                "onClose": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "AlpineJS expression or function to call when the dropdown closes."
                 }
             },
             "slots": [],
@@ -2098,6 +2108,16 @@
                     "type": "string",
                     "default": "'center'",
                     "description": "Alignment relative to position: 'start', 'center', 'end'."
+                },
+                "onOpen": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "AlpineJS expression or function to call when the popover opens."
+                },
+                "onClose": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "AlpineJS expression or function to call when the popover closes."
                 }
             },
             "slots": [],
