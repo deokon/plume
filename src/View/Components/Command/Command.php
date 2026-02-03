@@ -18,6 +18,8 @@ class Command extends Component
         public string $placeholder = 'Type a command or search...',
         public ?string $model = null,
         public ?string $id = null,
+        public ?string $onOpen = null,
+        public ?string $onClose = null,
     ) {}
 
     public function render(): View|Closure|string

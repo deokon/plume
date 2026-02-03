@@ -9,6 +9,8 @@ Displays rich content in a small overlay, triggered by clicking a button or elem
 | `trigger` | `string` | `null` | The text or slot content for the popover trigger. |
 | `position` | `string` | `'bottom'` | The primary position: 'top', 'bottom', 'left', 'right'. |
 | `align` | `string` | `'center'` | Alignment relative to position: 'start', 'center', 'end'. |
+| `onOpen` | `string` | `null` | AlpineJS expression or function to call when the popover opens. |
+| `onClose` | `string` | `null` | AlpineJS expression or function to call when the popover closes. |
 
 ## Usage
 

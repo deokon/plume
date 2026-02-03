@@ -1,9 +1,14 @@
-export default function (model = null) {
+export default function (model = null, config = {}) {
     return {
         open: false,
         search: '',
         activeIndex: 0,
         lastFocusedElement: null,
+        _config: {
+            onOpen: null,
+            onClose: null,
+            ...config,
+        },
 
         init() {
             if (model) {
@@ -43,11 +48,24 @@ export default function (model = null) {
                 this.search = '';
                 this.activeIndex = 0;
                 this.$nextTick(() => this.$refs.input.focus());
+                this.triggerCallback('onOpen');
             } else {
                 this.open = false;
                 if (this.lastFocusedElement) {
                     this.lastFocusedElement.focus();
                 }
+                this.triggerCallback('onClose');
+            }
+        },
+
+        triggerCallback(name) {
+            const callback = this._config[name];
+            if (!callback) return;
+
+            if (typeof callback === 'function') {
+                callback();
+            } else if (typeof callback === 'string') {
+                window.Alpine.evaluate(this.$el, callback);
             }
         },
 

@@ -5,6 +5,8 @@
 @prop string $placeholder (Default: 'Type a command or search...') Placeholder text for the search input.
 @prop string $model (Default: null) AlpineJS model name for the open/closed state.
 @prop string $id (Default: null) Optional unique ID for the command palette.
+@prop string $onOpen (Default: null) AlpineJS expression or function to call when the command palette opens.
+@prop string $onClose (Default: null) AlpineJS expression or function to call when the command palette closes.
 --}}
 @php
     $command = $component;
@@ -14,8 +16,8 @@
     }
     $resolvedId = $component->resolveId(null, $resolvedModel, $id);
 @endphp
-<div x-data="command('{{ $resolvedModel }}')" @keydown.window.prevent.cmd.k="toggle()"
-    @keydown.window.prevent.ctrl.k="toggle()" @keydown.escape.window="open = false"
+<div x-data="command('{{ $resolvedModel }}', { onOpen: {{ Js::from($onOpen) }}, onClose: {{ Js::from($onClose) }} })" @keydown.window.prevent.cmd.k="toggle()"
+    @keydown.window.prevent.ctrl.k="toggle()" @keydown.escape.window="toggle(false)"
     x-on:keydown.tab="if(open) { handleTab($event) }" id="{{ $resolvedId }}" class="relative"
     {{ $attributes->except(['id', 'model']) }}>
 
@@ -40,7 +42,7 @@
             x-transition:leave="{{ $leave }}" x-transition:leave-start="opacity-100"
             x-transition:leave-end="opacity-0"
             class="fixed inset-0 z-[100] flex items-start justify-center pt-[10vh] sm:pt-[15vh] px-4 bg-background-950/80 backdrop-blur-sm"
-            @click.self="open = false" role="dialog" aria-modal="true"
+            @click.self="toggle(false)" role="dialog" aria-modal="true"
             aria-label="Command Palette" id="{{ $resolvedId }}-modal">
             <div x-show="open" x-cloak x-transition:enter="{{ $enter }}"
                 x-transition:enter-start="opacity-0 scale-95"

@@ -11,6 +11,8 @@ Displays a menu to the user—such as a set of actions or functions—triggered 
 | `width` | `string` | `'md'` | Width of the menu: 'xs', 'sm', 'md', 'lg', 'xl', or custom CSS width class. |
 | `contentClasses` | `string` | `'bg-background dark:bg-background-800'` | Additional classes for the menu container. |
 | `triggerStyle` | `string` | `'outline'` | Visual style of the automatic trigger button: 'primary', 'secondary', 'error', 'outline', 'ghost', 'link', 'minor'. |
+| `onOpen` | `string` | `null` | AlpineJS expression or function to call when the dropdown opens. |
+| `onClose` | `string` | `null` | AlpineJS expression or function to call when the dropdown closes. |
 
 ## Usage
 
