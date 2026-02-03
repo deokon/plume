@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.13.0] - 2026-02-03
+
+### 🚀 Features
+- **Standardized Callbacks:** Implemented `onXXX` callback props (supporting both JS functions and Alpine string expressions) across multiple components:
+    - `DataTable`/`DataGallery`: `onSort`, `onFilter`, `onPageChange`, `onLoad`.
+    - `Audio`: `onPlay`, `onPause`, `onEnded`.
+    - `Popover`/`Dropdown`: `onOpen`, `onClose`.
+    - `Command`: `onOpen`, `onClose`.
+    - `Pagination`: `onPageChange`.
+    - `File Input`: `onFileSelect`, `onClear`.
+    - `Toaster`/`Toast`: `onShow`, `onDismiss`.
+    - `Tooltip`: `onShow`, `onHide`.
+- **Data Component Enhancements:**
+    - Added `controls` slot to `DataTable` and `DataGallery` for custom search/filter UI above the content.
+- **Developer Experience:**
+    - Enhanced `sync_metadata.php` to parse and document `@slot` definitions from Blade DocBlocks.
+    - Added a shared Alpine `trigger` utility for consistent event and callback handling.
+
+### 🛠 Fixes
+- Improved reactivity and internal state management for `Tooltip` and `Audio` components.
+- Standardized event detail objects for all component callbacks.
+
 ## [v0.12.1] - 2026-02-01
 
 ### 🚀 Features
