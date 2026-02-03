@@ -1,3 +1,5 @@
+import { trigger } from './utils';
+
 export default function (model = null, config = {}) {
     return {
         open: false,
@@ -13,7 +15,7 @@ export default function (model = null, config = {}) {
         init() {
             if (model) {
                 // Sync with parent Alpine data if available
-                if (typeof this.$data.data !== 'undefined') {
+                if (this.$data && typeof this.$data.data !== 'undefined') {
                     const field = model.replace(/^data\./, '');
                     this.$watch('open', (val) => (this.$data.data[field] = val));
                     this.$watch('$data.data.' + field, (val) => {
@@ -58,15 +60,8 @@ export default function (model = null, config = {}) {
             }
         },
 
-        triggerCallback(name) {
-            const callback = this._config[name];
-            if (!callback) return;
-
-            if (typeof callback === 'function') {
-                callback();
-            } else if (typeof callback === 'string') {
-                window.Alpine.evaluate(this.$el, callback);
-            }
+        triggerCallback(name, detail = {}) {
+            trigger(this, name, detail);
         },
 
         focusables() {

@@ -27,6 +27,7 @@ describe('DataGallery Plugin', () => {
             addEventListener: vi.fn()
         }
         data.$watch = vi.fn()
+        data.$dispatch = vi.fn()
         return data
     }
 
@@ -88,7 +89,7 @@ describe('DataGallery Plugin', () => {
 
         // Manually call the search watcher
         if (instance._searchWatcher) {
-            instance._searchWatcher()
+            instance._searchWatcher('product')
         }
 
         expect(instance.page).toBe(1)
@@ -136,6 +137,7 @@ describe('DataGallery Plugin', () => {
         }
         vi.stubGlobal('fetch', vi.fn(() =>
             Promise.resolve({
+                ok: true,
                 json: () => Promise.resolve(mockResponse)
             })
         ))
@@ -178,6 +180,7 @@ describe('DataGallery Plugin', () => {
     it('tracks loading state during fetch', async () => {
         vi.stubGlobal('fetch', vi.fn(() =>
             new Promise(resolve => setTimeout(() => resolve({
+                ok: true,
                 json: () => Promise.resolve({ success: true, data: { items: [], pagination: { total: 0 } } })
             }), 10))
         ))

@@ -10,9 +10,10 @@ describe('Search Plugin', () => {
         })
     })
 
-    const createInstance = (config = {}) => {
-        const data = search(config)
+    const createInstance = (model = null, config = {}) => {
+        const data = search(model, config)
         data.$el = { tagName: 'DIV' }
+        data.$dispatch = vi.fn()
         return data
     }
 
@@ -24,20 +25,20 @@ describe('Search Plugin', () => {
 
     it('triggers onSelect callback', () => {
         const onSelect = vi.fn()
-        instance = createInstance({ onSelect })
+        instance = createInstance(null, { onSelect })
         const payload = { id: 1, name: 'Result' }
         
         instance.handleSelect(payload)
-        expect(onSelect).toHaveBeenCalledWith(payload)
+        expect(onSelect).toHaveBeenCalledWith({ result: payload })
     })
 
     it('evaluates string expression for onSelect', () => {
-        instance = createInstance({ onSelect: 'console.log(result.id)' })
+        instance = createInstance(null, { onSelect: 'console.log(result.id)' })
         const payload = { id: 5 }
         
         instance.handleSelect(payload)
         expect(window.Alpine.evaluate).toHaveBeenCalledWith(instance.$el, 'console.log(result.id)', {
-            scope: { result: payload }
+            scope: expect.objectContaining({ result: payload })
         })
     })
 })

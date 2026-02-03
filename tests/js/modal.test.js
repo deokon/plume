@@ -21,7 +21,8 @@ describe('Modal Plugin', () => {
     const createInstance = (name, initialShow = false, autofocus = false, config = {}) => {
         modal(Alpine)
         const instance = Alpine.components['modal'](name, initialShow, autofocus, config)
-        instance.$el = { querySelectorAll: vi.fn(() => []) }
+        instance.$el = { querySelectorAll: vi.fn(() => []), tagName: 'DIV' }
+        instance.$dispatch = vi.fn()
         instance.$watch = vi.fn((key, cb) => {
             instance._watches = instance._watches || {}
             instance._watches[key] = cb
@@ -61,20 +62,21 @@ describe('Modal Plugin', () => {
         // Open
         instance.show = true
         instance._watches['show'](true)
-        expect(onOpen).toHaveBeenCalled()
+        expect(onOpen).toHaveBeenCalledWith({})
 
         // Close
         instance.show = false
         instance._watches['show'](false)
-        expect(onClose).toHaveBeenCalled()
+        expect(onClose).toHaveBeenCalledWith({})
     })
 
     it('evaluates string callbacks', () => {
+        vi.stubGlobal('Alpine', Alpine)
         const instance = createInstance('test', false, false, { onOpen: 'alert("opened")' })
         instance.init()
 
         instance.show = true
         instance._watches['show'](true)
-        expect(Alpine.evaluate).toHaveBeenCalledWith(instance.$el, 'alert("opened")')
+        expect(Alpine.evaluate).toHaveBeenCalledWith(instance.$el, 'alert("opened")', expect.any(Object))
     })
 })

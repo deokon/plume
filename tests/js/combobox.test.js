@@ -79,7 +79,7 @@ describe('Combobox Plugin', () => {
         instance.init()
 
         instance.select(options[1])
-        expect(onSelect).toHaveBeenCalledWith(2)
+        expect(onSelect).toHaveBeenCalledWith({ value: 2 })
     })
 
     it('evaluates string expression for onSelect', () => {
@@ -88,7 +88,7 @@ describe('Combobox Plugin', () => {
 
         instance.select(options[2])
         expect(window.Alpine.evaluate).toHaveBeenCalledWith(instance.$el, 'console.log(value)', {
-            scope: { value: 3 }
+            scope: expect.objectContaining({ value: 3 })
         })
     })
 

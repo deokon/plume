@@ -16,14 +16,15 @@ describe('Carousel Plugin', () => {
         vi.useRealTimers()
     })
 
-    const createInstance = (autoplay = false, interval = 3000, config = {}) => {
-        const data = carousel(autoplay, interval, config)
+    const createInstance = (autoplay = false, interval = 3000, model = null, config = {}) => {
+        const data = carousel(autoplay, interval, model, config)
         data.$nextTick = vi.fn(cb => cb())
         data.$watch = vi.fn((key, cb) => {
             data._watches = data._watches || {}
             data._watches[key] = cb
         })
         data.$dispatch = vi.fn()
+        data.$data = {}
         data.$el = {
             addEventListener: vi.fn(),
             removeEventListener: vi.fn(),
@@ -105,22 +106,22 @@ describe('Carousel Plugin', () => {
 
     it('triggers onSlideChange callback', () => {
         const onSlideChange = vi.fn()
-        instance = createInstance(false, 3000, { onSlideChange })
+        instance = createInstance(false, 3000, null, { onSlideChange })
         instance.init()
 
         instance.activeSlide = 1
         instance._watches['activeSlide'](1)
-        expect(onSlideChange).toHaveBeenCalledWith(1)
+        expect(onSlideChange).toHaveBeenCalledWith({ index: 1 })
     })
 
     it('evaluates string expression for onSlideChange', () => {
-        instance = createInstance(false, 3000, { onSlideChange: 'console.log(index)' })
+        instance = createInstance(false, 3000, null, { onSlideChange: 'console.log(index)' })
         instance.init()
 
         instance.activeSlide = 2
         instance._watches['activeSlide'](2)
         expect(window.Alpine.evaluate).toHaveBeenCalledWith(instance.$el, 'console.log(index)', {
-            scope: { index: 2 }
+            scope: expect.objectContaining({ index: 2 })
         })
     })
 })

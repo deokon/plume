@@ -1,3 +1,5 @@
+import { trigger } from './utils';
+
 export default (
     initialValue = null,
     mode = 'single',
@@ -47,7 +49,7 @@ export default (
 
         if (modelName) {
             // Sync with parent Alpine data if available
-            if (typeof this.$data.data !== 'undefined') {
+            if (this.$data && typeof this.$data.data !== 'undefined') {
                 const field = modelName.replace(/^data\./, '');
                 this.$watch('value', (val) => (this.$data.data[field] = val));
                 this.$watch('$data.data.' + field, (val) => (this.value = val));
@@ -156,16 +158,7 @@ export default (
     },
 
     triggerCallback(name, value) {
-        const callback = this._config[name];
-        if (!callback) return;
-
-        if (typeof callback === 'function') {
-            callback(value);
-        } else if (typeof callback === 'string') {
-            window.Alpine.evaluate(this.$el, callback, {
-                scope: { value },
-            });
-        }
+        trigger(this, name, { value });
     },
 
     isSelected(day) {

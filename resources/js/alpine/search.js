@@ -1,3 +1,5 @@
+import { trigger } from './utils';
+
 export default function (model = null, config = {}) {
     return {
         open: false,
@@ -10,7 +12,7 @@ export default function (model = null, config = {}) {
         init() {
             if (model) {
                 // Sync with parent Alpine data if available
-                if (typeof this.$data.data !== 'undefined') {
+                if (this.$data && typeof this.$data.data !== 'undefined') {
                     const field = model.replace(/^data\./, '');
                     this.$watch('query', (val) => (this.$data.data[field] = val));
                     this.$watch('$data.data.' + field, (val) => (this.query = val));
@@ -20,16 +22,7 @@ export default function (model = null, config = {}) {
         },
 
         handleSelect(data) {
-            const callback = this._config.onSelect;
-            if (!callback) return;
-
-            if (typeof callback === 'function') {
-                callback(data);
-            } else if (typeof callback === 'string') {
-                window.Alpine.evaluate(this.$el, callback, {
-                    scope: { result: data },
-                });
-            }
+            trigger(this, 'onSelect', { result: data });
         },
     };
 }

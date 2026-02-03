@@ -19,6 +19,7 @@ describe('Video Plugin', () => {
             }
         }
         data.$el = { tagName: 'DIV' }
+        data.$dispatch = vi.fn()
         return data
     }
 
@@ -49,19 +50,19 @@ describe('Video Plugin', () => {
         instance = createInstance(false, { onPlay, onPause, onEnded })
 
         instance.triggerCallback('onPlay')
-        expect(onPlay).toHaveBeenCalled()
+        expect(onPlay).toHaveBeenCalledWith({})
 
         instance.triggerCallback('onPause')
-        expect(onPause).toHaveBeenCalled()
+        expect(onPause).toHaveBeenCalledWith({})
 
         instance.triggerCallback('onEnded')
-        expect(onEnded).toHaveBeenCalled()
+        expect(onEnded).toHaveBeenCalledWith({})
     })
 
     it('evaluates string expressions for callbacks', () => {
         instance = createInstance(false, { onPlay: 'console.log("playing")' })
         
         instance.triggerCallback('onPlay')
-        expect(window.Alpine.evaluate).toHaveBeenCalledWith(instance.$el, 'console.log("playing")')
+        expect(window.Alpine.evaluate).toHaveBeenCalledWith(instance.$el, 'console.log("playing")', expect.any(Object))
     })
 })

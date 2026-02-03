@@ -1,3 +1,5 @@
+import { trigger } from './utils';
+
 export default function (model = null, uploadUrl = null, config = {}) {
     return {
         isDropping: false,
@@ -14,11 +16,15 @@ export default function (model = null, uploadUrl = null, config = {}) {
 
         init() {
             if (this.model) {
+                const field = this.model.replace(/^data\./, '');
                 // Sync with parent Alpine data if available
-                if (typeof this.$data.data !== 'undefined') {
-                    const field = this.model.replace(/^data\./, '');
-                    this.$watch('value', (val) => (this.$data.data[field] = val));
-                    this.$watch('$data.data.' + field, (val) => (this.value = val));
+                if (this.$data && typeof this.$data.data !== 'undefined') {
+                    this.$watch('value', (val) => {
+                        this.$data.data[field] = val;
+                    });
+                    this.$watch('$data.data.' + field, (val) => {
+                        if (this.value !== val) this.value = val;
+                    });
                     this.value = this.$data.data[field];
                 }
             }
@@ -231,16 +237,7 @@ export default function (model = null, uploadUrl = null, config = {}) {
         },
 
         triggerCallback(name, detail = {}) {
-            const callback = this._config[name];
-            if (!callback) return;
-
-            if (typeof callback === 'function') {
-                callback(detail);
-            } else if (typeof callback === 'string') {
-                window.Alpine.evaluate(this.$el, callback, {
-                    scope: { ...detail, $event: { detail } }
-                });
-            }
+            trigger(this, name, detail);
         },
     };
 }

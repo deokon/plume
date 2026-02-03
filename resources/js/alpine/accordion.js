@@ -1,3 +1,5 @@
+import { trigger } from './utils';
+
 export function accordion(alwaysOpen, config = {}) {
     return {
         active: null,
@@ -11,16 +13,7 @@ export function accordion(alwaysOpen, config = {}) {
             this.active = this.active === id ? null : id;
         },
         triggerToggle(id, isOpen) {
-            const callback = this._config.onToggle;
-            if (!callback) return;
-
-            if (typeof callback === 'function') {
-                callback(id, isOpen);
-            } else if (typeof callback === 'string') {
-                window.Alpine.evaluate(this.$el, callback, {
-                    scope: { id, isOpen },
-                });
-            }
+            trigger(this, 'onToggle', { id, isOpen });
         },
     };
 }

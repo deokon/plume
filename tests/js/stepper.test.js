@@ -10,9 +10,10 @@ describe('Stepper Plugin', () => {
         })
     })
 
-    const createInstance = (initialStep = 1, config = {}) => {
-        const data = stepper(initialStep, config)
+    const createInstance = (initialStep = 1, model = null, config = {}) => {
+        const data = stepper(initialStep, model, config)
         data.$el = { tagName: 'DIV' }
+        data.$dispatch = vi.fn()
         data.$watch = vi.fn((key, cb) => {
             data._watches = data._watches || {}
             data._watches[key] = cb
@@ -27,33 +28,33 @@ describe('Stepper Plugin', () => {
 
     it('triggers onStepChange callback when active changes', () => {
         const onStepChange = vi.fn()
-        instance = createInstance(1, { onStepChange })
+        instance = createInstance(1, null, { onStepChange })
         instance.init()
 
         instance.active = 2
         instance._watches['active'](2)
         
-        expect(onStepChange).toHaveBeenCalledWith(2)
+        expect(onStepChange).toHaveBeenCalledWith({ step: 2 })
     })
 
     it('triggers onFinish callback', () => {
         const onFinish = vi.fn()
-        instance = createInstance(3, { onFinish })
+        instance = createInstance(3, null, { onFinish })
         instance.init()
 
         instance.finish()
-        expect(onFinish).toHaveBeenCalledWith(3)
+        expect(onFinish).toHaveBeenCalledWith({ step: 3 })
     })
 
     it('evaluates string expressions for callbacks', () => {
-        instance = createInstance(1, { onStepChange: 'console.log(step)' })
+        instance = createInstance(1, null, { onStepChange: 'console.log(step)' })
         instance.init()
 
         instance.active = 4
         instance._watches['active'](4)
         
         expect(window.Alpine.evaluate).toHaveBeenCalledWith(instance.$el, 'console.log(step)', {
-            scope: { step: 4 }
+            scope: expect.objectContaining({ step: 4 })
         })
     })
 })

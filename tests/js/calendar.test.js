@@ -106,7 +106,7 @@ describe('Calendar Plugin', () => {
 
         const testDate = new Date(2023, 5, 15)
         instance.selectDate({ day: 15, disabled: false, date: testDate })
-        expect(onDateSelect).toHaveBeenCalledWith('2023-06-15')
+        expect(onDateSelect).toHaveBeenCalledWith({ value: '2023-06-15' })
     })
 
     it('evaluates string expression for onDateSelect', () => {
@@ -116,7 +116,7 @@ describe('Calendar Plugin', () => {
         const testDate = new Date(2023, 5, 15)
         instance.selectDate({ day: 15, disabled: false, date: testDate })
         expect(window.Alpine.evaluate).toHaveBeenCalledWith(instance.$el, 'console.log(value)', {
-            scope: { value: '2023-06-15' }
+            scope: expect.objectContaining({ value: '2023-06-15' })
         })
     })
 })

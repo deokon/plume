@@ -43,6 +43,7 @@ describe('Accordion Plugin', () => {
             const item = accordionItem(id, open)
             const merged = { ...parent, ...item }
             merged.$el = { tagName: 'DIV' }
+            merged.$dispatch = vi.fn()
             
             // Manually define the getter and setter on the merged object
             // because spread operator doesn't copy them properly
@@ -92,10 +93,10 @@ describe('Accordion Plugin', () => {
             const item = createMergedItem('test-id', false, false, { onToggle })
             
             item.isOpen = true
-            expect(onToggle).toHaveBeenCalledWith('test-id', true)
+            expect(onToggle).toHaveBeenCalledWith({ id: 'test-id', isOpen: true })
 
             item.isOpen = false
-            expect(onToggle).toHaveBeenCalledWith('test-id', false)
+            expect(onToggle).toHaveBeenCalledWith({ id: 'test-id', isOpen: false })
         })
 
         it('evaluates string expression for onToggle', () => {
@@ -103,7 +104,7 @@ describe('Accordion Plugin', () => {
             
             item.isOpen = true
             expect(window.Alpine.evaluate).toHaveBeenCalledWith(item.$el, 'console.log(id, isOpen)', {
-                scope: { id: 'test-id', isOpen: true }
+                scope: expect.objectContaining({ id: 'test-id', isOpen: true })
             })
         })
     })

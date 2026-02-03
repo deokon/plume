@@ -1,3 +1,5 @@
+import { trigger } from './utils';
+
 export default function (Alpine) {
     Alpine.magic('openDrawer', () => (name) => {
         window.dispatchEvent(new CustomEvent('open-drawer', { detail: name }));
@@ -91,16 +93,8 @@ export default function (Alpine) {
             }
         },
 
-        triggerCallback(name) {
-            const callback = this._config[name];
-
-            if (!callback) return;
-
-            if (typeof callback === 'function') {
-                callback();
-            } else if (typeof callback === 'string') {
-                Alpine.evaluate(this.$el, callback);
-            }
+        triggerCallback(name, detail = {}) {
+            trigger(this, name, detail);
         },
     }));
 }

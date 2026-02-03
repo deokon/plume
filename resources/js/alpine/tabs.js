@@ -1,3 +1,5 @@
+import { trigger } from './utils';
+
 export default function (initialTab = '1', model = null, config = {}) {
     return {
         activeTab: initialTab,
@@ -26,20 +28,7 @@ export default function (initialTab = '1', model = null, config = {}) {
         },
 
         triggerCallback(name, value) {
-            const callback = this._config[name];
-            if (!callback) return;
-
-            if (typeof callback === 'function') {
-                callback(value);
-            } else if (typeof callback === 'string') {
-                // If the callback is an expression, we can evaluate it
-                // We provide 'tab' as a variable in the scope
-                this.$nextTick(() => {
-                    window.Alpine.evaluate(this.$el, callback, {
-                        scope: { tab: value },
-                    });
-                });
-            }
+            trigger(this, name, { value });
         },
     };
 }

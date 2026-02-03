@@ -26,6 +26,7 @@ describe('DataTable Plugin', () => {
             })
         }
         data.$watch = vi.fn()
+        data.$dispatch = vi.fn()
         return data
     }
 
@@ -79,6 +80,7 @@ describe('DataTable Plugin', () => {
         }
         vi.stubGlobal('fetch', vi.fn(() => 
             Promise.resolve({
+                ok: true,
                 json: () => Promise.resolve(mockResponse)
             })
         ))
@@ -105,8 +107,8 @@ describe('DataTable Plugin', () => {
         const promise2 = new Promise(resolve => resolve2 = resolve);
 
         vi.stubGlobal('fetch', vi.fn()
-            .mockReturnValueOnce(promise1.then(() => ({ json: () => Promise.resolve({ success: true, data: { items: [{ name: 'Stale' }], pagination: { total: 1 } } }) })))
-            .mockReturnValueOnce(promise2.then(() => ({ json: () => Promise.resolve({ success: true, data: { items: [{ name: 'Fresh' }], pagination: { total: 1 } } }) })))
+            .mockReturnValueOnce(promise1.then(() => ({ ok: true, json: () => Promise.resolve({ success: true, data: { items: [{ name: 'Stale' }], pagination: { total: 1 } } }) })))
+            .mockReturnValueOnce(promise2.then(() => ({ ok: true, json: () => Promise.resolve({ success: true, data: { items: [{ name: 'Fresh' }], pagination: { total: 1 } } }) })))
         );
 
         instance = createInstance(10, true, true, '/api/data')

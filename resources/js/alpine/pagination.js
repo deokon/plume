@@ -1,3 +1,5 @@
+import { trigger } from './utils';
+
 export default (initialTotal = 1, initialCurrent = 1, onEachSide = 1, model = null, config = {}) => ({
     total: parseInt(initialTotal) || 1,
     current: parseInt(initialCurrent) || 1,
@@ -28,7 +30,7 @@ export default (initialTotal = 1, initialCurrent = 1, onEachSide = 1, model = nu
     init() {
         if (model) {
             // Sync with parent Alpine data if available
-            if (typeof this.$data.data !== 'undefined') {
+            if (this.$data && typeof this.$data.data !== 'undefined') {
                 const field = model.replace(/^data\./, '');
                 this.$watch('current', (val) => (this.$data.data[field] = val));
                 this.$watch('$data.data.' + field, (val) => {
@@ -104,20 +106,10 @@ export default (initialTotal = 1, initialCurrent = 1, onEachSide = 1, model = nu
         const targetPage = Math.max(1, Math.min(page, this.total));
         this.current = targetPage;
         // Use a more specific event name to avoid conflicts
-        this.$dispatch('plume-page-change', { page: targetPage });
         this.triggerCallback('onPageChange', { page: targetPage });
     },
 
     triggerCallback(name, detail = {}) {
-        const callback = this._config[name];
-        if (!callback) return;
-
-        if (typeof callback === 'function') {
-            callback(detail);
-        } else if (typeof callback === 'string') {
-            window.Alpine.evaluate(this.$el, callback, {
-                scope: { ...detail, $event: { detail } }
-            });
-        }
+        trigger(this, name, detail);
     },
 });

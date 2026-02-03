@@ -1,3 +1,5 @@
+import { trigger } from './utils';
+
 /**
  * Factory function for creating shared pagination/data-list Alpine components
  * Used by both data-table and data-gallery components
@@ -39,7 +41,7 @@ export function createDataComponent(options) {
         paginated: !!paginated,
         url: url,
         loadingCount: 0,
-        callbacks: callbacks,
+        _config: callbacks,
 
         get loading() {
             return this.loadingCount > 0;
@@ -115,21 +117,7 @@ export function createDataComponent(options) {
         },
 
         trigger(name, detail = {}) {
-            this.$dispatch(`plume-${name}`, detail);
-
-            // Convert kebab-case (e.g., page-change) to camelCase for callback lookup (e.g., onPageChange)
-            const callbackKey = 'on' + name.split('-').map(part => part.charAt(0).toUpperCase() + part.slice(1)).join('');
-            const callback = this.callbacks[callbackKey];
-
-            if (callback) {
-                if (typeof callback === 'function') {
-                    callback.call(this, detail);
-                } else if (typeof callback === 'string' && window.Alpine) {
-                    window.Alpine.evaluate(this.$el, callback, {
-                        scope: { ...detail, $event: { detail } }
-                    });
-                }
-            }
+            trigger(this, name, detail);
         },
 
         sync() {

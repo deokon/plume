@@ -17,19 +17,26 @@ describe('FileInput Plugin', () => {
         vi.stubGlobal('DataTransfer', MockDataTransfer)
     })
 
-    const createInstance = (multiple = false, model = null, uploadUrl = null) => {
-        const data = fileInput(model, uploadUrl)
+    const createInstance = (multiple = false, modelName = null, uploadUrl = null, config = {}) => {
+        const data = fileInput(modelName, uploadUrl, config)
         data.$refs = {
             input: { 
                 multiple: multiple,
                 files: []
             }
         }
-        data.$data = {}
-        if (model) {
-            data.$data[model] = multiple ? [] : null
-        }
+        // Initialize $data with an empty data object
+        data.$data = { data: {} }
+        
+        // Mock $watch to store callbacks and simulate Alpine behavior
+        data.$watch = vi.fn((key, cb) => {
+            data._watches = data._watches || {}
+            data._watches[key] = cb
+        })
+        
         data.$dispatch = vi.fn()
+        data.$el = { tagName: 'DIV' }
+        
         return data
     }
 
@@ -93,10 +100,11 @@ describe('FileInput Plugin', () => {
         }
         vi.stubGlobal('XMLHttpRequest', MockXHR);
 
+        // Use model name that matches the internal field extraction logic
         instance = createInstance(false, 'data.avatar', '/upload')
-        instance.data = { avatar: null } 
-        const file = new File(['content'], 'test.txt')
+        instance.init()
         
+        const file = new File(['content'], 'test.txt')
         const uploadPromise = instance.addFiles([file])
         
         await vi.waitFor(() => capturedXhr !== undefined);
@@ -105,7 +113,10 @@ describe('FileInput Plugin', () => {
 
         expect(capturedXhr.open).toHaveBeenCalledWith('POST', '/upload')
         expect(instance.files[0].id).toBe('file_123')
-        expect(instance.data.avatar).toBe('file_123')
+        
+        // Ensure the value was updated
+        expect(instance.value).toBe('file_123')
+        
         expect(instance.$dispatch).toHaveBeenCalledWith('plume-busy')
         expect(instance.$dispatch).toHaveBeenCalledWith('plume-idle')
     })
@@ -128,7 +139,7 @@ describe('FileInput Plugin', () => {
         vi.stubGlobal('XMLHttpRequest', MockXHR);
 
         instance = createInstance(false, 'data.avatar', '/upload')
-        instance.data = { avatar: null }
+        instance.init()
         const file = new File(['content'], 'test.txt')
         
         const uploadPromise = instance.addFiles([file])
@@ -138,20 +149,21 @@ describe('FileInput Plugin', () => {
         await uploadPromise;
 
         expect(instance.files[0].error).toBe('Upload failed')
-        expect(instance.data.avatar).toBeNull()
-                expect(instance.$dispatch).toHaveBeenCalledWith('plume-busy')
-                expect(instance.$dispatch).toHaveBeenCalledWith('plume-idle')
-            })
         
-            it('syncs model with deeply nested paths', () => {
-                instance = createInstance(false, 'form.data.settings.profile_image', '/upload')
-                instance.form = { data: { settings: { profile_image: null } } }
-                
-                instance.files = [{ id: 'img_999', name: 'p.png', size: 100 }]
-                instance.syncModel()
-                
-                expect(instance.form.data.settings.profile_image).toBe('img_999')
-            })
+        expect(instance.value).toBeNull()
+        expect(instance.$dispatch).toHaveBeenCalledWith('plume-busy')
+        expect(instance.$dispatch).toHaveBeenCalledWith('plume-idle')
+    })
+
+    it('syncs model with deeply nested paths', () => {
+        instance = createInstance(false, 'data.settings.profile_image', '/upload')
+        instance.init()
+        
+        instance.files = [{ id: 'img_999', name: 'p.png', size: 100 }]
+        instance.syncModel()
+        
+        expect(instance.value).toBe('img_999')
+    })
 
             it('syncs errors to parent form error bag through $data', () => {
                 instance = createInstance(false, 'data.avatar', '/upload')

@@ -1,3 +1,5 @@
+import { trigger } from './utils';
+
 export default function (autoplay, interval, model = null, config = {}) {
     return {
         activeSlide: 0,
@@ -17,7 +19,7 @@ export default function (autoplay, interval, model = null, config = {}) {
 
             if (model) {
                 // Sync with parent Alpine data if available
-                if (typeof this.$data.data !== 'undefined') {
+                if (this.$data && typeof this.$data.data !== 'undefined') {
                     const field = model.replace(/^data\./, '');
                     this.$watch('activeSlide', (val) => (this.$data.data[field] = val));
                     this.$watch('$data.data.' + field, (val) => {
@@ -84,16 +86,7 @@ export default function (autoplay, interval, model = null, config = {}) {
         },
 
         triggerCallback(name, value) {
-            const callback = this._config[name];
-            if (!callback) return;
-
-            if (typeof callback === 'function') {
-                callback(value);
-            } else if (typeof callback === 'string') {
-                window.Alpine.evaluate(this.$el, callback, {
-                    scope: { index: value },
-                });
-            }
+            trigger(this, name, { index: value });
         },
     };
 }

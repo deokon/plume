@@ -10,9 +10,10 @@ describe('Tabs Plugin', () => {
         })
     })
 
-    const createInstance = (defaultTab = '1', config = {}) => {
-        const data = tabs(defaultTab, config)
+    const createInstance = (defaultTab = '1', model = null, config = {}) => {
+        const data = tabs(defaultTab, model, config)
         data.$el = { tagName: 'DIV' }
+        data.$dispatch = vi.fn()
         data.$watch = vi.fn((key, cb) => {
             data._watches = data._watches || {}
             data._watches[key] = cb
@@ -28,24 +29,24 @@ describe('Tabs Plugin', () => {
 
     it('triggers onTabChange callback when activeTab changes', () => {
         const onTabChange = vi.fn()
-        instance = createInstance('1', { onTabChange })
+        instance = createInstance('1', null, { onTabChange })
         instance.init()
 
         instance.activeTab = '2'
         instance._watches['activeTab']('2')
         
-        expect(onTabChange).toHaveBeenCalledWith('2')
+        expect(onTabChange).toHaveBeenCalledWith({ value: '2' })
     })
 
     it('evaluates string expression for onTabChange', () => {
-        instance = createInstance('1', { onTabChange: 'alert(tab)' })
+        instance = createInstance('1', null, { onTabChange: 'alert(value)' })
         instance.init()
 
         instance.activeTab = '3'
         instance._watches['activeTab']('3')
         
-        expect(window.Alpine.evaluate).toHaveBeenCalledWith(instance.$el, 'alert(tab)', {
-            scope: { tab: '3' }
+        expect(window.Alpine.evaluate).toHaveBeenCalledWith(instance.$el, 'alert(value)', {
+            scope: expect.objectContaining({ value: '3' })
         })
     })
 })

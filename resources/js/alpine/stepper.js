@@ -1,3 +1,5 @@
+import { trigger } from './utils';
+
 export default function (initialStep = 1, model = null, config = {}) {
     return {
         active: initialStep,
@@ -10,7 +12,7 @@ export default function (initialStep = 1, model = null, config = {}) {
         init() {
             if (model) {
                 // Sync with parent Alpine data if available
-                if (typeof this.$data.data !== 'undefined') {
+                if (this.$data && typeof this.$data.data !== 'undefined') {
                     const field = model.replace(/^data\./, '');
                     this.$watch('active', (val) => (this.$data.data[field] = val));
                     this.$watch('$data.data.' + field, (val) => (this.active = val));
@@ -31,16 +33,7 @@ export default function (initialStep = 1, model = null, config = {}) {
         },
 
         triggerCallback(name, value) {
-            const callback = this._config[name];
-            if (!callback) return;
-
-            if (typeof callback === 'function') {
-                callback(value);
-            } else if (typeof callback === 'string') {
-                window.Alpine.evaluate(this.$el, callback, {
-                    scope: { step: value },
-                });
-            }
+            trigger(this, name, { step: value });
         },
     };
 }

@@ -1,3 +1,5 @@
+import { trigger } from './utils';
+
 export default function (Alpine) {
     Alpine.magic('toast', (el, { Alpine }) => (message, options = {}) => {
         Alpine.store('toasts').add({
@@ -33,13 +35,11 @@ export default function (Alpine) {
             this.items.push(item);
 
             if (item.onShow) {
-                if (typeof item.onShow === 'function') {
-                    item.onShow(item);
-                } else if (typeof item.onShow === 'string') {
-                    window.Alpine.evaluate(document.body, item.onShow, {
-                        scope: { toast: item }
-                    });
-                }
+                trigger({
+                    $el: document.body,
+                    $dispatch: (name, detail) => window.dispatchEvent(new CustomEvent(name, { detail })),
+                    _config: item
+                }, 'onShow', { toast: item });
             }
 
             if (toast.autoclose !== false) {
@@ -49,13 +49,11 @@ export default function (Alpine) {
         remove(id) {
             const item = this.items.find((t) => t.id === id);
             if (item && item.onDismiss) {
-                if (typeof item.onDismiss === 'function') {
-                    item.onDismiss(item);
-                } else if (typeof item.onDismiss === 'string') {
-                    window.Alpine.evaluate(document.body, item.onDismiss, {
-                        scope: { toast: item }
-                    });
-                }
+                trigger({
+                    $el: document.body,
+                    $dispatch: (name, detail) => window.dispatchEvent(new CustomEvent(name, { detail })),
+                    _config: item
+                }, 'onDismiss', { toast: item });
             }
             this.items = this.items.filter((t) => t.id !== id);
         },
