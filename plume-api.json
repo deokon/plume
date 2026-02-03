@@ -1386,11 +1386,21 @@
                     "type": "string",
                     "default": "null",
                     "description": "API endpoint for immediate pre-upload. If provided, files are uploaded as soon as they are selected."
+                },
+                "onFileSelect": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "AlpineJS expression or function to call when files are selected."
+                },
+                "onClear": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "AlpineJS expression or function to call when the file list is cleared."
                 }
             },
             "slots": [],
             "description": "A file upload input with drag-and-drop support and automatic pre-uploading.",
-            "usage": "### Basic Usage\n```blade\n<x-plume::form.file label=\"Resume\" name=\"resume\" accept=\".pdf,.doc\" />\n```\n\n### Immediate AJAX Pre-upload (Recommended)\nThe server must return JSON like: `{\"id\": \"file_uuid\"}`. The 'images' model in formData will be updated automatically with the IDs returned from the server.\n```blade\n<x-plume::form.file\n    label=\"Gallery\"\n    model=\"images\"\n    multiple\n    :uploadUrl=\"route('api.upload')\"\n    accept=\"image/*\"\n/>\n```\n\n### Image Upload with Preview\nCombine `uploadUrl` with a simple AlpineJS template to show previews:\n```blade\n<div x-data=\"{ previews: [] }\">\n    <x-plume::form.file\n        label=\"Avatar\"\n        model=\"avatar_id\"\n        accept=\"image/*\"\n        :uploadUrl=\"route('api.upload')\"\n        onSuccess=\"previews.push($event.detail.preview_url)\"\n    />\n\n    <template x-if=\"previews.length\">\n        <div class=\"mt-4 flex gap-4\">\n            <template x-for=\"url in previews\">\n                <img :src=\"url\" class=\"size-20 rounded-lg object-cover border\" />\n            </template>\n        </div>\n    </template>\n</div>\n```",
+            "usage": "### Basic Usage\n```blade\n<x-plume::form.file label=\"Resume\" name=\"resume\" accept=\".pdf,.doc\" />\n```\n\n### Immediate AJAX Pre-upload (Recommended)\nThe server must return JSON like: `{\"id\": \"file_uuid\"}`. The 'images' model in formData will be updated automatically with the IDs returned from the server.\n```blade\n<x-plume::form.file\n    label=\"Gallery\"\n    model=\"images\"\n    multiple\n    :uploadUrl=\"route('api.upload')\"\n    accept=\"image/*\"\n/>\n```\n\n### Image Upload with Preview\nCombine `uploadUrl` with a simple AlpineJS template to show previews:\n```blade\n<div x-data=\"{ previews: [] }\">\n    <x-plume::form.file\n        label=\"Avatar\"\n        model=\"avatar_id\"\n        accept=\"image/*\"\n        :uploadUrl=\"route('api.upload')\"\n        on-file-select=\"console.log('Files selected')\"\n    />\n\n    <template x-if=\"previews.length\">\n        <div class=\"mt-4 flex gap-4\">\n            <template x-for=\"url in previews\">\n                <img :src=\"url\" class=\"size-20 rounded-lg object-cover border\" />\n            </template>\n        </div>\n    </template>\n</div>\n```",
             "doc_url": "https://plume.dennisokon.com/docs/form-file"
         },
         "x-plume::form.group": {

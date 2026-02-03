@@ -1,4 +1,4 @@
-export default function (model = null, uploadUrl = null) {
+export default function (model = null, uploadUrl = null, config = {}) {
     return {
         isDropping: false,
         files: [],
@@ -6,6 +6,11 @@ export default function (model = null, uploadUrl = null) {
         uploadUrl: uploadUrl,
         uploading: false,
         value: null,
+        _config: {
+            onFileSelect: null,
+            onClear: null,
+            ...config,
+        },
 
         init() {
             if (this.model) {
@@ -81,6 +86,7 @@ export default function (model = null, uploadUrl = null) {
 
             this.updateInput();
             this.syncModel();
+            this.triggerCallback('onFileSelect', { files: this.files });
         },
         async uploadFile(fileObj) {
             return new Promise((resolve) => {
@@ -163,6 +169,10 @@ export default function (model = null, uploadUrl = null) {
             
             this.updateInput();
             this.syncModel();
+
+            if (this.files.length === 0) {
+                this.triggerCallback('onClear');
+            }
         },
         updateInput() {
             if (this.uploadUrl) return; // Don't update native input if we are using identifiers
@@ -217,6 +227,19 @@ export default function (model = null, uploadUrl = null) {
                 } else if (errorBag[key]) {
                     delete errorBag[key];
                 }
+            }
+        },
+
+        triggerCallback(name, detail = {}) {
+            const callback = this._config[name];
+            if (!callback) return;
+
+            if (typeof callback === 'function') {
+                callback(detail);
+            } else if (typeof callback === 'string') {
+                window.Alpine.evaluate(this.$el, callback, {
+                    scope: { ...detail, $event: { detail } }
+                });
             }
         },
     };

@@ -15,6 +15,8 @@ class File extends BaseFormComponent
         public bool $multiple = false,
         public ?string $accept = null,
         public ?string $uploadUrl = null,
+        public ?string $onFileSelect = null,
+        public ?string $onClear = null,
     ) {
         parent::__construct($label, $name, $id, $model, '');
     }

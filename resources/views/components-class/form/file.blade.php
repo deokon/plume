@@ -8,6 +8,8 @@
 @prop bool $multiple (Default: false) Allow selecting and uploading multiple files.
 @prop string $accept (Default: null) Accepted file types (e.g., 'image/*', '.pdf').
 @prop string $uploadUrl (Default: null) API endpoint for immediate pre-upload. If provided, files are uploaded as soon as they are selected.
+@prop string $onFileSelect (Default: null) AlpineJS expression or function to call when files are selected.
+@prop string $onClear (Default: null) AlpineJS expression or function to call when the file list is cleared.
 @usage
 ### Basic Usage
 ```blade
@@ -35,7 +37,7 @@ Combine `uploadUrl` with a simple AlpineJS template to show previews:
         model="avatar_id"
         accept="image/*"
         :uploadUrl="route('api.upload')"
-        onSuccess="previews.push($event.detail.preview_url)"
+        on-file-select="console.log('Files selected')"
     />
 
     <template x-if="previews.length">
@@ -58,7 +60,7 @@ Combine `uploadUrl` with a simple AlpineJS template to show previews:
     );
 @endphp
 <x-plume::form.element :label="$label ?? $slot" :name="$resolvedName" :id="$resolvedId" :model="$resolvedModel">
-    <div x-data="fileInput('{{ $resolvedModel }}', {{ Js::from($uploadUrl) }})"
+    <div x-data="fileInput('{{ $resolvedModel }}', {{ Js::from($uploadUrl) }}, { onFileSelect: {{ Js::from($onFileSelect) }}, onClear: {{ Js::from($onClear) }} })"
         class="relative flex min-h-[150px] cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed transition-all"
         :class="isDropping ? 'border-primary bg-primary/5' :
             'border-background-700/40 bg-background-50 dark:border-background-400/20 dark:bg-background-800'"
