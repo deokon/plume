@@ -6,6 +6,7 @@ import clipboard from './alpine/clipboard';
 import pagination from './alpine/pagination';
 import dataTable from './alpine/data-table';
 import dataGallery from './alpine/data-gallery';
+import audio from './alpine/audio';
 import calendar from './alpine/calendar';
 import carousel from './alpine/carousel';
 import combobox from './alpine/combobox';
@@ -31,6 +32,7 @@ const Plume = (Alpine) => {
     Alpine.data('pagination', pagination);
     Alpine.data('dataTable', dataTable);
     Alpine.data('dataGallery', dataGallery);
+    Alpine.data('audio', audio);
     Alpine.data('calendar', calendar);
     Alpine.data('carousel', carousel);
     Alpine.data('combobox', combobox);
@@ -55,6 +57,7 @@ export {
     pagination,
     dataTable,
     dataGallery,
+    audio,
     calendar,
     carousel,
     combobox,

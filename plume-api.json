@@ -162,11 +162,26 @@
                     "type": "bool",
                     "default": "false",
                     "description": "Whether the audio should be muted by default."
+                },
+                "onPlay": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "AlpineJS expression or function to call when playback starts."
+                },
+                "onPause": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "AlpineJS expression or function to call when playback pauses."
+                },
+                "onEnded": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "AlpineJS expression or function to call when playback ends."
                 }
             },
             "slots": [],
             "description": "A styled native HTML5 audio player wrapper.",
-            "usage": "<x-plume::audio src=\"/assets/podcast.mp3\" />",
+            "usage": "<x-plume::audio src=\"/assets/podcast.mp3\" on-play=\"console.log('Playing')\" />",
             "doc_url": "https://plume.dennisokon.com/docs/audio"
         },
         "x-plume::avatar": {

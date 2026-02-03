@@ -18,6 +18,9 @@ class Audio extends Component
         public bool $controls = true,
         public bool $loop = false,
         public bool $muted = false,
+        public ?string $onPlay = null,
+        public ?string $onPause = null,
+        public ?string $onEnded = null,
     ) {
         $this->initializeMediaSource($src);
     }
