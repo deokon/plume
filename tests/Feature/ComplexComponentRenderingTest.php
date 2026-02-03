@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Blade;
 
 test('pagination renders correctly with dynamic attributes', function () {
     $view = Blade::render('<x-plume::pagination :total="5" :current="1" />');
-    expect($view)->toContain('x-data="pagination(5, 1, 1, \'\')"')
+    expect($view)->toContain('x-data="pagination(5, 1, 1,')
+        ->toContain('onPageChange:')
         ->toContain('data-total="5"')
         ->toContain('data-current="1"');
 });
@@ -38,7 +39,9 @@ BLADE;
     $view = Blade::render($template);
     
     expect($view)
-        ->toContain('x-data="command(\'\')"')
+        ->toContain('x-data="command(')
+        ->toContain('onOpen:')
+        ->toContain('onClose:')
         ->toContain('Open')
         ->toContain('Suggestions')
         ->toContain('Item 1');

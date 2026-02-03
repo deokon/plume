@@ -179,7 +179,9 @@ BLADE;
     expect($view)
         ->toContain('Menu')
         ->toContain('Item 1')
-        ->toContain('x-data="{ open: false }"');
+        ->toContain('x-data="{')
+        ->toContain('open: false')
+        ->toContain('_config: {');
 });
 
 test('dropdown renders with trigger prop', function () {
