@@ -2608,7 +2608,7 @@
             },
             "slots": [],
             "description": "A container for temporary notification messages (Toasts). Triggered via global magic helpers.",
-            "usage": "Place once in your main layout file\n<x-plume::toaster position=\"top-right\" />\n\nTrigger from anywhere using global helpers\n<button @click=\"$success('Profile Saved!')\">Save</button>\n<button @click=\"$error('Action failed')\">Delete</button>\n<button @click=\"$toast('New message', { type: 'info', timeout: 3000 })\">Notify</button>",
+            "usage": "Place once in your main layout file\n<x-plume::toaster position=\"top-right\" />\n\nTrigger from anywhere using global helpers\n<button @click=\"$success('Profile Saved!')\">Save</button>\n<button @click=\"$error('Action failed')\">Delete</button>\n<button @click=\"$toast('New message', { type: 'info', timeout: 3000, onShow: 'console.log(\\'show\\')', onDismiss: 'console.log(\\'dismiss\\')' })\">Notify</button>",
             "doc_url": "https://plume.dennisokon.com/docs/toaster"
         },
         "x-plume::tooltip": {
@@ -2623,6 +2623,16 @@
                     "type": "string",
                     "default": "'top'",
                     "description": "Tooltip position (top, bottom, left, right)."
+                },
+                "onShow": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "AlpineJS expression or function to call when the tooltip is shown."
+                },
+                "onHide": {
+                    "type": "string",
+                    "default": "null",
+                    "description": "AlpineJS expression or function to call when the tooltip is hidden."
                 }
             },
             "slots": [],

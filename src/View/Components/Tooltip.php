@@ -15,6 +15,8 @@ class Tooltip extends Component
     public function __construct(
         public string $text,
         public string $position = 'top',
+        public ?string $onShow = null,
+        public ?string $onHide = null,
     ) {}
 
     public function render(): View|Closure|string

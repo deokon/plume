@@ -9,7 +9,7 @@ Place once in your main layout file
 Trigger from anywhere using global helpers
 <button @click="$success('Profile Saved!')">Save</button>
 <button @click="$error('Action failed')">Delete</button>
-<button @click="$toast('New message', { type: 'info', timeout: 3000 })">Notify</button>
+<button @click="$toast('New message', { type: 'info', timeout: 3000, onShow: 'console.log(\'show\')', onDismiss: 'console.log(\'dismiss\')' })">Notify</button>
 --}}
 <div class="fixed {{ $positionClasses }} z-50 flex flex-col gap-2 p-4 sm:p-6 max-h-screen overflow-hidden pointer-events-none"
     x-data>

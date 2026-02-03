@@ -13,6 +13,8 @@ A file upload input with drag-and-drop support and automatic pre-uploading.
 | `multiple` | `bool` | `false` | Allow selecting and uploading multiple files. |
 | `accept` | `string` | `null` | Accepted file types (e.g., 'image/*', '.pdf'). |
 | `uploadUrl` | `string` | `null` | API endpoint for immediate pre-upload. If provided, files are uploaded as soon as they are selected. |
+| `onFileSelect` | `string` | `null` | AlpineJS expression or function to call when files are selected. |
+| `onClear` | `string` | `null` | AlpineJS expression or function to call when the file list is cleared. |
 
 ## Usage
 
@@ -42,7 +44,7 @@ Combine `uploadUrl` with a simple AlpineJS template to show previews:
         model="avatar_id"
         accept="image/*"
         :uploadUrl="route('api.upload')"
-        onSuccess="previews.push($event.detail.preview_url)"
+        on-file-select="console.log('Files selected')"
     />
 
     <template x-if="previews.length">
