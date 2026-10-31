@@ -41,13 +41,14 @@ For modals with heavy content, use a template to delay rendering until the modal
 </x-plume::modal>
 ```
 --}}
-<div x-data="modal('{{ $name }}', @js($show), @js($attributes->has('focusable')), { onOpen: {{ Js::from($onOpen) }}, onClose: {{ Js::from($onClose) }} })"
-    x-on:keydown.escape.window="!@js($persistent) && close()" x-on:keydown.tab.prevent="handleTab($event)"
-    x-show="show" x-cloak role="dialog" aria-modal="true" aria-labelledby="modal-title-{{ $name }}"
+<div x-data="modal('{{ $name }}', @js($show), @js($attributes->has('focusable')), { onOpen: {{ Js::from($onOpen) }}, onClose: {{ Js::from($onClose) }} })" x-on:keydown.escape.window="!@js($persistent) && close()"
+    x-on:keydown.tab.prevent="handleTab($event)" x-show="show" x-cloak role="dialog" aria-modal="true"
+    aria-labelledby="modal-title-{{ $name }}"
     {{ $attributes->merge(['class' => 'fixed inset-0 z-50 overflow-y-auto']) }}
     style="display: {{ $show ? 'block' : 'none' }};">
     <div x-show="show" x-cloak class="fixed inset-0 transform transition-all"
-        x-on:click="!@js($persistent) && close()" x-transition:enter="{{ $enter }}" x-transition:enter-start="opacity-0"
+        x-on:click="!@js($persistent) && close()"
+        x-transition:enter="{{ $enter }}" x-transition:enter-start="opacity-0"
         x-transition:enter-end="opacity-100" x-transition:leave="{{ $leave }}"
         x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
         <div class="absolute inset-0 bg-background-950/80 backdrop-blur-sm"></div>

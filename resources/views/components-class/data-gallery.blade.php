@@ -61,8 +61,7 @@ Call `fetch()` from any interactive element within the gallery to refresh its co
 </x-plume::button>
 ```
 --}}
-<div x-data="dataGallery({{ $perPage }}, {{ Js::from($paginated) }}, {{ Js::from($url) }}, {{ Js::from($data) }}, { onSort: {{ Js::from($onSort) }}, onFilter: {{ Js::from($onFilter) }}, onPageChange: {{ Js::from($onPageChange) }}, onLoad: {{ Js::from($onLoad) }} })"
-    {{ $attributes->merge(['class' => 'space-y-4 w-full']) }}>
+<div x-data="dataGallery({{ $perPage }}, {{ Js::from($paginated) }}, {{ Js::from($url) }}, {{ Js::from($data) }}, { onSort: {{ Js::from($onSort) }}, onFilter: {{ Js::from($onFilter) }}, onPageChange: {{ Js::from($onPageChange) }}, onLoad: {{ Js::from($onLoad) }} })" {{ $attributes->merge(['class' => 'space-y-4 w-full']) }}>
     @if ($searchable || isset($controls))
         <div class="flex flex-wrap items-center justify-between gap-4 px-4 pt-4">
             <div class="flex items-center gap-4 flex-1">

@@ -17,7 +17,6 @@ export default function (options, model, config = {}) {
             this.filteredOptions = this.options;
 
             if (model) {
-                const modelPath = model.startsWith('data.') ? model : 'data.' + model;
                 // Sync with parent Alpine data if available
                 if (this.$data && typeof this.$data.data !== 'undefined') {
                     const field = model.replace(/^data\./, '');

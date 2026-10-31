@@ -16,8 +16,11 @@ export default function (initialStep = 1, model = null, config = {}) {
                     const field = model.replace(/^data\./, '');
                     this.$watch('active', (val) => (this.$data.data[field] = val));
                     this.$watch('$data.data.' + field, (val) => (this.active = val));
-                    
-                    if (typeof this.$data.data[field] !== 'undefined' && this.$data.data[field] !== null) {
+
+                    if (
+                        typeof this.$data.data[field] !== 'undefined' &&
+                        this.$data.data[field] !== null
+                    ) {
                         this.active = this.$data.data[field];
                     }
                 }

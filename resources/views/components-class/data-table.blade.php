@@ -68,8 +68,7 @@ Call `fetch()` from any interactive element within the table to refresh its cont
 ### Performance Tip
 Use **Constructed Columns** for simple HTML formatting to keep the table snappy. Use **Slots** only when you need complex Blade components in your cells.
 --}}
-<div x-data="dataTable({{ $perPage }}, {{ Js::from($paginated) }}, {{ Js::from($sortable) }}, {{ Js::from($url) }}, {{ Js::from($data) }}, {{ Js::from($columns) }}, {{ isset($__laravel_slots) ? Js::from(collect($__laravel_slots)->map(fn($s) => (string) $s)) : '{}' }}, { onSort: {{ Js::from($onSort) }}, onFilter: {{ Js::from($onFilter) }}, onPageChange: {{ Js::from($onPageChange) }}, onLoad: {{ Js::from($onLoad) }} })"
-    {{ $attributes->merge(['class' => 'space-y-4 w-full']) }}>
+<div x-data="dataTable({{ $perPage }}, {{ Js::from($paginated) }}, {{ Js::from($sortable) }}, {{ Js::from($url) }}, {{ Js::from($data) }}, {{ Js::from($columns) }}, {{ isset($__laravel_slots) ? Js::from(collect($__laravel_slots)->map(fn($s) => (string) $s)) : '{}' }}, { onSort: {{ Js::from($onSort) }}, onFilter: {{ Js::from($onFilter) }}, onPageChange: {{ Js::from($onPageChange) }}, onLoad: {{ Js::from($onLoad) }} })" {{ $attributes->merge(['class' => 'space-y-4 w-full']) }}>
     @if ($searchable || isset($controls))
         <div class="flex flex-wrap items-center justify-between gap-4 px-4 pt-4">
             <div class="flex items-center gap-4 flex-1">
@@ -100,7 +99,8 @@ Use **Constructed Columns** for simple HTML formatting to keep the table snappy.
         <div class="relative w-full overflow-auto">
             <table class="w-full caption-bottom text-sm border-collapse">
                 <thead class="border-b border-background-700/40 dark:border-background-400/20">
-                    <tr class="border-b border-background-700/40 data-[state=selected]:bg-background-600 dark:border-background-400/40 dark:data-[state=selected]:bg-background-700">
+                    <tr
+                        class="border-b border-background-700/40 data-[state=selected]:bg-background-600 dark:border-background-400/40 dark:data-[state=selected]:bg-background-700">
                         <template x-for="col in columns" :key="col.key">
                             <th class="h-12 px-4 text-left align-middle uppercase font-medium text-foreground/70 dark:text-background-400"
                                 :class="(col.sortable !== false && sortable ?
@@ -130,7 +130,8 @@ Use **Constructed Columns** for simple HTML formatting to keep the table snappy.
                 </thead>
                 <tbody class="[&_tr:last-child]:border-0">
                     <template x-for="(row, index) in pagedData" :key="row.id || row.uuid || index">
-                        <tr class="border-b border-background-700/40 hover:bg-background-100/50 dark:border-background-400/20 dark:hover:bg-background-800/50 transition-colors">
+                        <tr
+                            class="border-b border-background-700/40 hover:bg-background-100/50 dark:border-background-400/20 dark:hover:bg-background-800/50 transition-colors">
                             <template x-for="col in columns" :key="col.key">
                                 <td class="p-4 align-middle" :class="col.cellClass">
                                     <template x-if="col.constructed">

@@ -25,8 +25,11 @@ export default function (model = null, config = {}) {
                             this.toggle(false);
                         }
                     });
-                    
-                    if (typeof this.$data.data[field] !== 'undefined' && this.$data.data[field] !== null) {
+
+                    if (
+                        typeof this.$data.data[field] !== 'undefined' &&
+                        this.$data.data[field] !== null
+                    ) {
                         if (this.$data.data[field] && !this.open) {
                             this.toggle(true);
                         }
@@ -43,7 +46,7 @@ export default function (model = null, config = {}) {
 
         toggle(force = null) {
             const nextOpen = force !== null ? force : !this.open;
-            
+
             if (nextOpen) {
                 this.lastFocusedElement = document.activeElement;
                 this.open = true;

@@ -35,11 +35,16 @@ export default function (Alpine) {
             this.items.push(item);
 
             if (item.onShow) {
-                trigger({
-                    $el: document.body,
-                    $dispatch: (name, detail) => window.dispatchEvent(new CustomEvent(name, { detail })),
-                    _config: item
-                }, 'onShow', { toast: item });
+                trigger(
+                    {
+                        $el: document.body,
+                        $dispatch: (name, detail) =>
+                            window.dispatchEvent(new CustomEvent(name, { detail })),
+                        _config: item,
+                    },
+                    'onShow',
+                    { toast: item }
+                );
             }
 
             if (toast.autoclose !== false) {
@@ -49,11 +54,16 @@ export default function (Alpine) {
         remove(id) {
             const item = this.items.find((t) => t.id === id);
             if (item && item.onDismiss) {
-                trigger({
-                    $el: document.body,
-                    $dispatch: (name, detail) => window.dispatchEvent(new CustomEvent(name, { detail })),
-                    _config: item
-                }, 'onDismiss', { toast: item });
+                trigger(
+                    {
+                        $el: document.body,
+                        $dispatch: (name, detail) =>
+                            window.dispatchEvent(new CustomEvent(name, { detail })),
+                        _config: item,
+                    },
+                    'onDismiss',
+                    { toast: item }
+                );
             }
             this.items = this.items.filter((t) => t.id !== id);
         },

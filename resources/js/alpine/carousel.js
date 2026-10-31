@@ -27,8 +27,11 @@ export default function (autoplay, interval, model = null, config = {}) {
                             this.scrollTo(val);
                         }
                     });
-                    
-                    if (typeof this.$data.data[field] !== 'undefined' && this.$data.data[field] !== null) {
+
+                    if (
+                        typeof this.$data.data[field] !== 'undefined' &&
+                        this.$data.data[field] !== null
+                    ) {
                         this.activeSlide = this.$data.data[field];
                     }
                 }
