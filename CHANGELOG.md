@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.13.1] - 2026-10-31
+
+### 🚀 Features
+- **Laravel 13 Support:** Added support for Laravel 13 (`illuminate/support` and `illuminate/view` `^10.0|^11.0|^12.0|^13.0`).
+- **Testing & Tooling Upgrades:** Added support for Orchestra Testbench 11 and Pest 5.
+
+### 🛠 Fixes
+- **PHP 8.4/8.5 Compatibility:** Resolved non-compound root namespace reflection warning in metadata generation script.
+- **ESLint 9 Flat Config:** Migrated JavaScript linting configuration to flat config (`eslint.config.mjs`) and resolved unused variable warnings in Alpine components.
+
 ## [v0.13.0] - 2026-02-03
 
 ### 🚀 Features

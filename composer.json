@@ -1,7 +1,7 @@
 {
     "name": "deokon/plume",
     "description": "A comprehensive UI library for Laravel and Alpine.js",
-    "version": "0.13.0",
+    "version": "0.13.1",
     "type": "library",
   "license": "MIT",
   "authors": [
