@@ -9,7 +9,7 @@ export default function (autoplay, config = {}) {
             onEnded: null,
             ...config,
         },
-        
+
         init() {
             // Keep state in sync with native events even if using native controls
             const audio = this.$refs.audio;

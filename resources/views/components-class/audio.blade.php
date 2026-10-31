@@ -12,11 +12,11 @@
 @usage
 <x-plume::audio src="/assets/podcast.mp3" on-play="console.log('Playing')" />
 --}}
-<div x-data="audio({{ $autoplay ? 'true' : 'false' }}, { 
-        onPlay: {{ Js::from($onPlay) }}, 
-        onPause: {{ Js::from($onPause) }}, 
-        onEnded: {{ Js::from($onEnded) }} 
-    })"
+<div x-data="audio({{ $autoplay ? 'true' : 'false' }}, {
+    onPlay: {{ Js::from($onPlay) }},
+    onPause: {{ Js::from($onPause) }},
+    onEnded: {{ Js::from($onEnded) }}
+})"
     {{ $attributes->merge(['class' => 'inline-block w-full rounded-full bg-background-100 dark:bg-background-800 p-1']) }}>
     <audio x-ref="audio" src="{{ $src }}" @if ($autoplay) autoplay @endif
         @if ($controls) controls @endif

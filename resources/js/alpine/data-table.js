@@ -12,7 +12,9 @@ export default (
 ) => {
     let _slots = initialSlots;
 
-    const sortableColumns = sortable ? initialColumns.map(col => col.slot || col.key).filter(Boolean) : [];
+    const sortableColumns = sortable
+        ? initialColumns.map((col) => col.slot || col.key).filter(Boolean)
+        : [];
 
     const base = createDataComponent({
         perPage,
@@ -54,7 +56,7 @@ export default (
                 }
                 return value !== undefined ? value : '';
             });
-        }
+        },
     });
 
     // Handle init specially to call base.init

@@ -15,8 +15,11 @@ export default function (initialTab = '1', model = null, config = {}) {
                     const field = model.replace(/^data\./, '');
                     this.$watch('activeTab', (val) => (this.$data.data[field] = val));
                     this.$watch('$data.data.' + field, (val) => (this.activeTab = val));
-                    
-                    if (typeof this.$data.data[field] !== 'undefined' && this.$data.data[field] !== null) {
+
+                    if (
+                        typeof this.$data.data[field] !== 'undefined' &&
+                        this.$data.data[field] !== null
+                    ) {
                         this.activeTab = this.$data.data[field];
                     }
                 }

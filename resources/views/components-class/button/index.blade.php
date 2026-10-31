@@ -47,13 +47,17 @@
     $hasConfirm = ($confirm && is_string($confirm)) || $confirmSlot;
     $confirmMessage = $confirmSlot ? trim(strip_tags((string) $confirmSlot)) : (string) $confirm;
     $clickAction = $hasConfirm
-        ? 'if (!confirm(' . Js::from($confirmMessage) . ')) { $event.preventDefault(); $event.stopImmediatePropagation(); return false; }'
+        ? 'if (!confirm(' .
+            Js::from($confirmMessage) .
+            ')) { $event.preventDefault(); $event.stopImmediatePropagation(); return false; }'
         : null;
 @endphp
 
 @if ($method && $href)
-    <x-plume::form :action="$href" :method="$method" :onSuccess="$onSuccess" :onError="$onError" :showAlerts="false" inline>
-        <button type="submit" @if ($clickAction) x-on:click="{{ $clickAction }}" @endif
+    <x-plume::form :action="$href" :method="$method" :onSuccess="$onSuccess" :onError="$onError"
+        :showAlerts="false" inline>
+        <button type="submit"
+            @if ($clickAction) x-on:click="{{ $clickAction }}" @endif
             {{ $cleanAttributes->merge(['class' => $buttonComponent->classes($resolvedSize, $resolvedStyle, $resolvedShape) . ' relative']) }}
             x-bind:class="{ '[&>:not(:last-child)]:invisible': processing }">
             <span>
@@ -69,7 +73,8 @@
         </button>
     </x-plume::form>
 @elseif($href)
-    <a href="{{ $href }}" @if ($clickAction) x-on:click="{{ $clickAction }}" @endif
+    <a href="{{ $href }}"
+        @if ($clickAction) x-on:click="{{ $clickAction }}" @endif
         {{ $cleanAttributes->merge(['class' => $buttonComponent->classes($resolvedSize, $resolvedStyle, $resolvedShape)]) }}>
         @if ($icon)
             <x-plume::icon i="{{ $icon }}" />
@@ -77,7 +82,8 @@
         {{ $slot }}
     </a>
 @else
-    <button type="{{ $attributes->get('type', 'button') }}" @if ($clickAction) x-on:click="{{ $clickAction }}" @endif
+    <button type="{{ $attributes->get('type', 'button') }}"
+        @if ($clickAction) x-on:click="{{ $clickAction }}" @endif
         {{ $cleanAttributes->merge(['class' => $buttonComponent->classes($resolvedSize, $resolvedStyle, $resolvedShape)]) }}>
         @if ($icon)
             <x-plume::icon i="{{ $icon }}" />

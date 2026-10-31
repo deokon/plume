@@ -142,7 +142,7 @@ export default function (Alpine) {
             }
         },
 
-        handleFailure(result, status) {
+        handleFailure(result, _status) {
             this.hasFailed = true;
             this.message = result.message || 'Validation failed or server error.';
             this.errors = result.errors || {};

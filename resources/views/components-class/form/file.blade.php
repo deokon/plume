@@ -81,7 +81,8 @@ Combine `uploadUrl` with a simple AlpineJS template to show previews:
                         class="size-6 text-foreground/60 dark:text-background-400" />
                 </div>
                 <div class="space-y-1">
-                    <p class="text-sm font-medium text-foreground dark:text-background-400">Click to upload or drag and drop
+                    <p class="text-sm font-medium text-foreground dark:text-background-400">Click to
+                        upload or drag and drop
                     </p>
                     <p class="text-xs text-foreground/50 dark:text-background-400">
                         @if ($accept)
@@ -99,7 +100,8 @@ Combine `uploadUrl` with a simple AlpineJS template to show previews:
                 x-on:click.stop>
                 <template x-for="(file, index) in files" :key="index">
                     <div class="flex flex-col items-center gap-2 group relative">
-                        <div class="relative size-24 rounded-lg overflow-hidden border border-background-700/40 dark:border-background-400/20 bg-background shadow-sm">
+                        <div
+                            class="relative size-24 rounded-lg overflow-hidden border border-background-700/40 dark:border-background-400/20 bg-background shadow-sm">
                             <template x-if="file.preview">
                                 <img :src="file.preview" class="size-full object-cover"
                                     :class="file.progress < 100 ? 'opacity-50 grayscale' : ''">
@@ -120,7 +122,8 @@ Combine `uploadUrl` with a simple AlpineJS template to show previews:
                                         <div class="bg-primary h-1.5 rounded-full transition-all duration-300"
                                             :style="`width: ${file.progress}%`"></div>
                                     </div>
-                                    <span class="text-[8px] font-bold text-foreground dark:text-background-200"
+                                    <span
+                                        class="text-[8px] font-bold text-foreground dark:text-background-200"
                                         x-text="file.progress < 100 ? `${file.progress}%` : 'Processing...'"></span>
                                 </div>
                             </template>
@@ -140,9 +143,12 @@ Combine `uploadUrl` with a simple AlpineJS template to show previews:
                                 </div>
                             </template>
 
-                            <div class="absolute inset-0 flex items-center justify-center bg-background-950/40 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-                                <x-plume::button style="error" size="sm" shape="round" x-on:click.stop="removeFile(index)">
-                                    <x-plume::icon i="icon-[fluent--dismiss-24-regular]" class="size-4" />
+                            <div
+                                class="absolute inset-0 flex items-center justify-center bg-background-950/40 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                                <x-plume::button style="error" size="sm" shape="round"
+                                    x-on:click.stop="removeFile(index)">
+                                    <x-plume::icon i="icon-[fluent--dismiss-24-regular]"
+                                        class="size-4" />
                                 </x-plume::button>
                             </div>
                         </div>

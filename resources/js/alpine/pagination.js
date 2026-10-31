@@ -1,6 +1,12 @@
 import { trigger } from './utils';
 
-export default (initialTotal = 1, initialCurrent = 1, onEachSide = 1, model = null, config = {}) => ({
+export default (
+    initialTotal = 1,
+    initialCurrent = 1,
+    onEachSide = 1,
+    model = null,
+    config = {}
+) => ({
     total: parseInt(initialTotal) || 1,
     current: parseInt(initialCurrent) || 1,
     onEachSide: parseInt(onEachSide) || 1,
@@ -39,8 +45,11 @@ export default (initialTotal = 1, initialCurrent = 1, onEachSide = 1, model = nu
                         this.current = Math.max(1, Math.min(c, this.total || 1));
                     }
                 });
-                
-                if (typeof this.$data.data[field] !== 'undefined' && this.$data.data[field] !== null) {
+
+                if (
+                    typeof this.$data.data[field] !== 'undefined' &&
+                    this.$data.data[field] !== null
+                ) {
                     const c = parseInt(this.$data.data[field]);
                     if (!isNaN(c)) {
                         this.current = c;

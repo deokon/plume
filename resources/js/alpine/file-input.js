@@ -134,7 +134,9 @@ export default function (model = null, uploadUrl = null, config = {}) {
                         try {
                             const response = JSON.parse(xhr.responseText);
                             errorMessage = response.message || response.error || errorMessage;
-                        } catch (e) {}
+                        } catch {
+                            // Ignore JSON parse errors and use fallback message
+                        }
                         this.updateFileInArray(fileObj, { error: errorMessage });
                     }
                     this.syncModel();
@@ -169,10 +171,10 @@ export default function (model = null, uploadUrl = null, config = {}) {
                 URL.revokeObjectURL(file.preview);
             }
             this.files.splice(index, 1);
-            
+
             // Clear errors when files are removed
             this.syncErrors(null);
-            
+
             this.updateInput();
             this.syncModel();
 
@@ -185,10 +187,12 @@ export default function (model = null, uploadUrl = null, config = {}) {
             const dataTransfer = new DataTransfer();
             this.files.forEach((file) => dataTransfer.items.add(file.raw));
             this.$refs.input.files = dataTransfer.files;
-            
+
             // Update value even if not uploading, so we can track selection reactively
             if (!this.uploadUrl) {
-                this.value = this.$refs.input.multiple ? Array.from(dataTransfer.files) : dataTransfer.files[0] || null;
+                this.value = this.$refs.input.multiple
+                    ? Array.from(dataTransfer.files)
+                    : dataTransfer.files[0] || null;
             }
         },
         syncModel() {

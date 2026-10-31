@@ -98,7 +98,10 @@ export function createDataComponent(options) {
                     this.sync();
                     this.updateTotalPages();
                 });
-                observer.observe(this.$el, { attributes: true, attributeFilter: ['data', 'columns'] });
+                observer.observe(this.$el, {
+                    attributes: true,
+                    attributeFilter: ['data', 'columns'],
+                });
             }
 
             if (!this.url) {
@@ -151,7 +154,7 @@ export function createDataComponent(options) {
                 if (onSync) {
                     onSync.call(this, d);
                 }
-            } catch (e) {
+            } catch {
                 // If parsing fails, it might be because the attribute is already a JS array (Alpine bound)
                 // We ignore the error in that case.
             }
@@ -178,7 +181,7 @@ export function createDataComponent(options) {
             }
 
             try {
-                const fetchUrl = this.url.startsWith('http') 
+                const fetchUrl = this.url.startsWith('http')
                     ? `${this.url}?${params.toString()}`
                     : `${window.location.origin}${this.url.startsWith('/') ? '' : '/'}${this.url}?${params.toString()}`;
 
@@ -197,7 +200,10 @@ export function createDataComponent(options) {
                     this.updateTotalPages();
                     this.trigger('load', { data: this.data });
                 } else {
-                    console.error('Plume Data Component fetch error: result.success is false', result);
+                    console.error(
+                        'Plume Data Component fetch error: result.success is false',
+                        result
+                    );
                 }
             } catch (e) {
                 if (requestId === this.latestRequestId) {

@@ -3,7 +3,6 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 use Illuminate\Support\Str;
-use ReflectionClass;
 
 $baseDir = realpath(__DIR__ . '/..');
 $serviceProvider = $baseDir . '/src/PlumeServiceProvider.php';
